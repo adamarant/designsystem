@@ -1,3 +1,4 @@
+/* === Core === */
 @import './button.css';
 @import './card.css';
 @import './input.css';
@@ -6,3 +7,29 @@
 @import './modal.css';
 @import './toast.css';
 @import './table.css';
+
+/* === Tier 1 — Essential === */
+@import './tabs.css';
+@import './alert.css';
+@import './divider.css';
+@import './dropdown.css';
+@import './tooltip.css';
+@import './avatar.css';
+@import './skeleton.css';
+@import './empty-state.css';
+
+/* === Tier 2 — Common === */
+@import './toggle.css';
+@import './breadcrumb.css';
+@import './pagination.css';
+@import './tag.css';
+@import './accordion.css';
+@import './drawer.css';
+@import './progress.css';
+
+/* === Tier 3 — Advanced === */
+@import './popover.css';
+@import './slider.css';
+@import './timeline.css';
+@import './kbd.css';
+@import './command.css';

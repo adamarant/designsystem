@@ -1,4 +1,4 @@
-/* @ds/designsystem v1.0.0 */
+/* @ds/designsystem v0.1.0 */
 /* ==========================================================================
    @ds/designsystem
 
@@ -622,6 +622,7 @@ hr {
 }
 
 
+/* === Core === */
 /* ==========================================================================
    Component: Button
    Inverted primary, rounded-full CTAs, refined sizing.
@@ -1488,6 +1489,2721 @@ hr {
 }
 
 .ds-table-wrapper .ds-table { margin: 0; }
+
+
+/* === Tier 1 — Essential === */
+/* ==========================================================================
+   Component: Tabs
+   Horizontal/vertical tab navigation with pill, small, and full-width variants.
+   ========================================================================== */
+
+.ds-tabs {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border-bottom: 1px solid var(--ds-color-border);
+  gap: var(--ds-space-0);
+}
+
+/* --- Pill variant --- */
+
+.ds-tabs--pills {
+  border-bottom: none;
+  gap: var(--ds-space-1);
+  background-color: var(--ds-color-bg-elevated);
+  border-radius: var(--ds-radius-lg);
+  padding: var(--ds-space-1);
+}
+
+.ds-tabs--pills .ds-tab {
+  border-bottom: none;
+  border-radius: var(--ds-radius-md);
+  padding: var(--ds-space-1-5) var(--ds-space-3);
+}
+
+.ds-tabs--pills .ds-tab:hover {
+  background-color: var(--ds-color-overlay-hover);
+}
+
+.ds-tabs--pills .ds-tab--active {
+  background-color: var(--ds-color-surface);
+  color: var(--ds-color-text);
+  box-shadow: var(--ds-shadow-sm);
+  border-bottom: none;
+}
+
+/* --- Vertical variant --- */
+
+.ds-tabs--vertical {
+  flex-direction: column;
+  border-bottom: none;
+  border-right: 1px solid var(--ds-color-border);
+  gap: var(--ds-space-0-5);
+}
+
+.ds-tabs--vertical .ds-tab {
+  border-bottom: none;
+  border-right: 2px solid transparent;
+  padding: var(--ds-space-2) var(--ds-space-4);
+  text-align: left;
+}
+
+.ds-tabs--vertical .ds-tab--active {
+  border-bottom: none;
+  border-right-color: var(--ds-color-interactive);
+  color: var(--ds-color-text);
+}
+
+/* --- Small variant --- */
+
+.ds-tabs--sm .ds-tab {
+  padding: var(--ds-space-1-5) var(--ds-space-3);
+  font-size: var(--ds-text-xs);
+}
+
+/* --- Full width variant --- */
+
+.ds-tabs--full {
+  width: 100%;
+}
+
+.ds-tabs--full .ds-tab {
+  flex: 1;
+  justify-content: center;
+}
+
+/* --- Individual Tab --- */
+
+.ds-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  padding: var(--ds-space-2) var(--ds-space-4);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text-secondary);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  white-space: nowrap;
+  transition: all var(--ds-duration-fast) ease;
+  margin-bottom: -1px;
+}
+
+.ds-tab:hover {
+  color: var(--ds-color-text);
+}
+
+.ds-tab:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+  border-radius: var(--ds-radius-sm);
+}
+
+.ds-tab--active {
+  color: var(--ds-color-text);
+  border-bottom-color: var(--ds-color-interactive);
+}
+
+.ds-tab:disabled,
+.ds-tab[aria-disabled="true"] {
+  opacity: var(--ds-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* --- Tab Icon --- */
+
+.ds-tab__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+/* --- Tab Count Badge --- */
+
+.ds-tab__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-space-0) var(--ds-space-1-5);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text-tertiary);
+  background-color: var(--ds-color-bg-elevated);
+  border-radius: var(--ds-radius-full);
+  min-width: 1.25rem;
+}
+
+.ds-tab--active .ds-tab__count {
+  color: var(--ds-color-text-secondary);
+  background-color: var(--ds-color-overlay-active);
+}
+
+/* --- Tab Panel --- */
+
+.ds-tab-panel {
+  padding-top: var(--ds-space-5);
+}
+
+/* ==========================================================================
+   Component: Alert
+   Contextual feedback banners with semantic variants and dismissibility.
+   ========================================================================== */
+
+.ds-alert {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--ds-space-3);
+  padding: var(--ds-space-4);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  background-color: var(--ds-color-surface);
+  border-left: 3px solid var(--ds-color-border);
+}
+
+/* --- Semantic Variants --- */
+
+.ds-alert--info {
+  background-color: var(--ds-color-info-subtle);
+  border-color: var(--ds-color-info-border);
+  border-left-color: var(--ds-color-info);
+}
+
+.ds-alert--success {
+  background-color: var(--ds-color-success-subtle);
+  border-color: var(--ds-color-success-border);
+  border-left-color: var(--ds-color-success);
+}
+
+.ds-alert--warning {
+  background-color: var(--ds-color-warning-subtle);
+  border-color: var(--ds-color-warning-border);
+  border-left-color: var(--ds-color-warning);
+}
+
+.ds-alert--error {
+  background-color: var(--ds-color-error-subtle);
+  border-color: var(--ds-color-error-border);
+  border-left-color: var(--ds-color-error);
+}
+
+/* --- Icon --- */
+
+.ds-alert__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--ds-color-text-secondary);
+}
+
+.ds-alert--info .ds-alert__icon    { color: var(--ds-color-info); }
+.ds-alert--success .ds-alert__icon { color: var(--ds-color-success); }
+.ds-alert--warning .ds-alert__icon { color: var(--ds-color-warning); }
+.ds-alert--error .ds-alert__icon   { color: var(--ds-color-error); }
+
+/* --- Content --- */
+
+.ds-alert__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.ds-alert__title {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text);
+}
+
+.ds-alert__description {
+  font-size: var(--ds-text-sm);
+  line-height: var(--ds-leading-normal);
+  color: var(--ds-color-text-secondary);
+  margin-top: var(--ds-space-1);
+}
+
+.ds-alert__title + .ds-alert__description {
+  margin-top: var(--ds-space-1);
+}
+
+/* --- Close Button --- */
+
+.ds-alert__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--ds-color-text-tertiary);
+  border-radius: var(--ds-radius-sm);
+  cursor: pointer;
+  transition: color var(--ds-duration-fast) ease;
+}
+
+.ds-alert__close:hover {
+  color: var(--ds-color-text);
+}
+
+.ds-alert__close:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
+
+/* --- Compact Variant --- */
+
+.ds-alert--compact {
+  padding: var(--ds-space-2) var(--ds-space-3);
+  border-radius: var(--ds-radius-none);
+}
+
+/* --- Banner Variant --- */
+
+.ds-alert--banner {
+  border-radius: var(--ds-radius-none);
+  border-left: none;
+  border-right: none;
+  border-top: 1px solid var(--ds-color-border);
+  border-bottom: 1px solid var(--ds-color-border);
+  width: 100%;
+}
+
+.ds-alert--banner.ds-alert--info {
+  border-top-color: var(--ds-color-info-border);
+  border-bottom-color: var(--ds-color-info-border);
+}
+
+.ds-alert--banner.ds-alert--success {
+  border-top-color: var(--ds-color-success-border);
+  border-bottom-color: var(--ds-color-success-border);
+}
+
+.ds-alert--banner.ds-alert--warning {
+  border-top-color: var(--ds-color-warning-border);
+  border-bottom-color: var(--ds-color-warning-border);
+}
+
+.ds-alert--banner.ds-alert--error {
+  border-top-color: var(--ds-color-error-border);
+  border-bottom-color: var(--ds-color-error-border);
+}
+
+/* ==========================================================================
+   Component: Divider
+   Horizontal and vertical separators with optional centered label.
+   ========================================================================== */
+
+.ds-divider {
+  border: none;
+  border-top: 1px solid var(--ds-color-border);
+  margin-block: var(--ds-space-4);
+  width: 100%;
+}
+
+/* --- Vertical --- */
+
+.ds-divider--vertical {
+  border-top: none;
+  border-left: 1px solid var(--ds-color-border);
+  display: inline-block;
+  width: auto;
+  height: auto;
+  min-height: 1rem;
+  align-self: stretch;
+  margin-block: var(--ds-space-0);
+  margin-inline: var(--ds-space-3);
+}
+
+/* --- Subtle --- */
+
+.ds-divider--subtle {
+  border-color: var(--ds-color-border-subtle);
+}
+
+/* --- Spacious --- */
+
+.ds-divider--spacious {
+  margin-block: var(--ds-space-8);
+}
+
+.ds-divider--spacious.ds-divider--vertical {
+  margin-block: var(--ds-space-0);
+  margin-inline: var(--ds-space-6);
+}
+
+/* --- Label (centered text with lines on either side) --- */
+
+.ds-divider--label {
+  border-top: none;
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-wide);
+  white-space: nowrap;
+}
+
+.ds-divider--label::before,
+.ds-divider--label::after {
+  content: '';
+  flex: 1;
+  height: 0;
+  border-top: 1px solid var(--ds-color-border);
+}
+
+/* ==========================================================================
+   Component: Dropdown
+   Floating menu with surface bg, scale transition, keyboard-friendly items.
+   ========================================================================== */
+
+.ds-dropdown {
+  position: relative;
+}
+
+.ds-dropdown__trigger {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* --- Menu panel --- */
+
+.ds-dropdown__menu {
+  position: absolute;
+  top: calc(100% + var(--ds-space-1));
+  left: 0;
+  z-index: var(--ds-z-dropdown);
+  min-width: 12rem;
+  padding-block: var(--ds-space-1);
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  box-shadow: var(--ds-shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.96);
+  transform-origin: top left;
+  transition:
+    opacity var(--ds-duration-normal) var(--ds-ease-default),
+    visibility var(--ds-duration-normal) var(--ds-ease-default),
+    transform var(--ds-duration-normal) var(--ds-ease-out-expo);
+}
+
+/* Open state — modifier on menu or parent */
+
+.ds-dropdown__menu--open,
+.ds-dropdown--open .ds-dropdown__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* --- Alignment variants --- */
+
+.ds-dropdown__menu--right {
+  left: auto;
+  right: 0;
+  transform-origin: top right;
+}
+
+.ds-dropdown__menu--up {
+  top: auto;
+  bottom: calc(100% + var(--ds-space-1));
+  transform-origin: bottom left;
+}
+
+.ds-dropdown__menu--up.ds-dropdown__menu--right {
+  transform-origin: bottom right;
+}
+
+/* --- Menu item --- */
+
+.ds-dropdown__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ds-space-2);
+  padding: var(--ds-space-1-5) var(--ds-space-3);
+  margin-inline: var(--ds-space-1);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  cursor: pointer;
+  border-radius: var(--ds-radius-md);
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-dropdown__item:hover {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+}
+
+.ds-dropdown__item--active {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+}
+
+.ds-dropdown__item--danger:hover {
+  color: var(--ds-color-error);
+}
+
+.ds-dropdown__item--disabled {
+  opacity: var(--ds-opacity-disabled);
+  pointer-events: none;
+}
+
+/* --- Item slots --- */
+
+.ds-dropdown__item-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.ds-dropdown__item-label {
+  flex: 1;
+}
+
+.ds-dropdown__item-shortcut {
+  margin-left: auto;
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
+
+/* --- Divider --- */
+
+.ds-dropdown__divider {
+  margin-block: var(--ds-space-1);
+  border: 0;
+  border-top: 1px solid var(--ds-color-border);
+}
+
+/* --- Section header --- */
+
+.ds-dropdown__header {
+  padding: var(--ds-space-2) var(--ds-space-3);
+  margin-inline: var(--ds-space-1);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-wide);
+  color: var(--ds-color-text-tertiary);
+}
+
+/* ==========================================================================
+   Component: Tooltip
+   Inverted bubble with arrow, positioned via modifier classes.
+   Default placement: top.
+   ========================================================================== */
+
+.ds-tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+/* --- Tooltip bubble --- */
+
+.ds-tooltip__content {
+  position: absolute;
+  z-index: var(--ds-z-tooltip);
+  background-color: var(--ds-color-inverted);
+  color: var(--ds-color-on-inverted);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  line-height: var(--ds-leading-snug);
+  padding: var(--ds-space-1) var(--ds-space-2);
+  border-radius: var(--ds-radius-md);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--ds-duration-fast) var(--ds-ease-default),
+    visibility var(--ds-duration-fast) var(--ds-ease-default),
+    transform var(--ds-duration-fast) var(--ds-ease-out);
+}
+
+/* --- Arrow (shared base) --- */
+
+.ds-tooltip__content::after {
+  content: '';
+  position: absolute;
+  border: 4px solid transparent;
+}
+
+/* --- Show on hover --- */
+
+.ds-tooltip:hover .ds-tooltip__content {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- Delay modifier --- */
+
+.ds-tooltip--delay .ds-tooltip__content {
+  transition-delay: 0ms;
+}
+
+.ds-tooltip--delay:hover .ds-tooltip__content {
+  transition-delay: 200ms;
+}
+
+/* =============================================
+   Placement: Top (default)
+   ============================================= */
+
+.ds-tooltip .ds-tooltip__content,
+.ds-tooltip--top .ds-tooltip__content {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+}
+
+.ds-tooltip:hover .ds-tooltip__content,
+.ds-tooltip--top:hover .ds-tooltip__content {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Arrow — points down */
+.ds-tooltip .ds-tooltip__content::after,
+.ds-tooltip--top .ds-tooltip__content::after {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top-color: var(--ds-color-inverted);
+}
+
+/* =============================================
+   Placement: Bottom
+   ============================================= */
+
+.ds-tooltip--bottom .ds-tooltip__content {
+  top: calc(100% + 8px);
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+.ds-tooltip--bottom:hover .ds-tooltip__content {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Arrow — points up */
+.ds-tooltip--bottom .ds-tooltip__content::after {
+  bottom: 100%;
+  top: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top-color: transparent;
+  border-bottom-color: var(--ds-color-inverted);
+}
+
+/* =============================================
+   Placement: Left
+   ============================================= */
+
+.ds-tooltip--left .ds-tooltip__content {
+  right: calc(100% + 8px);
+  left: auto;
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%) translateX(4px);
+}
+
+.ds-tooltip--left:hover .ds-tooltip__content {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Arrow — points right */
+.ds-tooltip--left .ds-tooltip__content::after {
+  left: 100%;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  transform: translateY(-50%);
+  border-top-color: transparent;
+  border-left-color: var(--ds-color-inverted);
+}
+
+/* =============================================
+   Placement: Right
+   ============================================= */
+
+.ds-tooltip--right .ds-tooltip__content {
+  left: calc(100% + 8px);
+  right: auto;
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+}
+
+.ds-tooltip--right:hover .ds-tooltip__content {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Arrow — points left */
+.ds-tooltip--right .ds-tooltip__content::after {
+  right: 100%;
+  left: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  border-top-color: transparent;
+  border-right-color: var(--ds-color-inverted);
+}
+
+/* ==========================================================================
+   Component: Avatar
+   User photos, token images, initials. Stackable in groups.
+   ========================================================================== */
+
+.ds-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text-secondary);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  line-height: var(--ds-leading-none);
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.ds-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Sizes --- */
+
+.ds-avatar--xs {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: var(--ds-text-xs);
+}
+
+.ds-avatar--sm {
+  width: 2rem;
+  height: 2rem;
+  font-size: var(--ds-text-xs);
+}
+
+.ds-avatar--md {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: var(--ds-text-sm);
+}
+
+.ds-avatar--lg {
+  width: 3rem;
+  height: 3rem;
+  font-size: var(--ds-text-base);
+}
+
+.ds-avatar--xl {
+  width: 4rem;
+  height: 4rem;
+  font-size: var(--ds-text-lg);
+}
+
+/* --- Shape variants --- */
+
+.ds-avatar--square {
+  border-radius: var(--ds-radius-lg);
+}
+
+.ds-avatar--bordered {
+  border: 2px solid var(--ds-color-surface);
+}
+
+/* --- Avatar Group --- */
+
+.ds-avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+.ds-avatar-group > .ds-avatar + .ds-avatar {
+  margin-left: -0.5rem;
+}
+
+.ds-avatar-group--sm > .ds-avatar + .ds-avatar {
+  margin-left: -0.375rem;
+}
+
+/* --- Status indicator --- */
+
+.ds-avatar__status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: var(--ds-radius-full);
+  border: 2px solid var(--ds-color-surface);
+}
+
+.ds-avatar__status--online {
+  background-color: var(--ds-color-success);
+}
+
+.ds-avatar__status--offline {
+  background-color: var(--ds-color-text-tertiary);
+}
+
+.ds-avatar__status--busy {
+  background-color: var(--ds-color-error);
+}
+
+/* ==========================================================================
+   Component: Skeleton
+   Loading placeholders with a subtle pulse animation.
+   ========================================================================== */
+
+.ds-skeleton {
+  display: block;
+  background-color: var(--ds-color-bg-muted);
+  border-radius: var(--ds-radius-md);
+  animation: ds-skeleton-pulse var(--ds-duration-slower) var(--ds-ease-default) infinite;
+}
+
+/* --- Text variants --- */
+
+.ds-skeleton--text {
+  height: 1rem;
+  width: 100%;
+  border-radius: var(--ds-radius-sm);
+  margin-bottom: var(--ds-space-2);
+}
+
+.ds-skeleton--text-sm {
+  height: 0.75rem;
+  width: 100%;
+  border-radius: var(--ds-radius-sm);
+  margin-bottom: var(--ds-space-2);
+}
+
+.ds-skeleton--text-lg {
+  height: 1.5rem;
+  width: 100%;
+  border-radius: var(--ds-radius-sm);
+  margin-bottom: var(--ds-space-2);
+}
+
+.ds-skeleton--heading {
+  height: 2rem;
+  width: 60%;
+  border-radius: var(--ds-radius-md);
+  margin-bottom: var(--ds-space-3);
+}
+
+/* --- Shape variants --- */
+
+.ds-skeleton--circle,
+.ds-skeleton--avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--ds-radius-full);
+}
+
+.ds-skeleton--card {
+  height: 12rem;
+  width: 100%;
+  border-radius: var(--ds-radius-xl);
+}
+
+/* --- UI element variants --- */
+
+.ds-skeleton--btn {
+  height: 2.25rem;
+  width: 6rem;
+  border-radius: var(--ds-radius-lg);
+}
+
+.ds-skeleton--input {
+  height: 2.5rem;
+  width: 100%;
+  border-radius: var(--ds-radius-lg);
+}
+
+/* --- Width modifiers --- */
+
+.ds-skeleton--w-1\/2 {
+  width: 50%;
+}
+
+.ds-skeleton--w-3\/4 {
+  width: 75%;
+}
+
+.ds-skeleton--w-1\/3 {
+  width: 33%;
+}
+
+/* --- Pulse animation --- */
+
+@keyframes ds-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* ==========================================================================
+   Component: Empty State
+   Centered message for when there's no data to display.
+   ========================================================================== */
+
+.ds-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--ds-space-12);
+  gap: var(--ds-space-4);
+}
+
+.ds-empty-state__icon {
+  width: 3rem;
+  height: 3rem;
+  color: var(--ds-color-text-tertiary);
+  margin-bottom: var(--ds-space-2);
+}
+
+.ds-empty-state__title {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-font-display-weight);
+  font-size: var(--ds-text-lg);
+  color: var(--ds-color-text);
+  letter-spacing: var(--ds-tracking-tight);
+  line-height: var(--ds-leading-tight);
+}
+
+.ds-empty-state__description {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  max-width: 20rem;
+  line-height: var(--ds-leading-relaxed);
+}
+
+.ds-empty-state__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-space-3);
+  margin-top: var(--ds-space-2);
+}
+
+/* --- Compact variant --- */
+
+.ds-empty-state--compact {
+  padding: var(--ds-space-8);
+}
+
+.ds-empty-state--compact .ds-empty-state__icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.ds-empty-state--compact .ds-empty-state__title {
+  font-size: var(--ds-text-base);
+}
+
+/* --- Card variant --- */
+
+.ds-empty-state--card {
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+}
+
+
+/* === Tier 2 — Common === */
+/* ==========================================================================
+   Toggle / Switch Component
+   ==========================================================================
+   A toggle (switch) control for binary on/off states.
+   Supports aria-checked attribute and modifier-class driven states.
+
+   Usage:
+     <button class="ds-toggle" role="switch" aria-checked="false"></button>
+
+     <label class="ds-toggle-label">
+       <button class="ds-toggle" role="switch" aria-checked="true"></button>
+       <span class="ds-toggle-label__text">Dark mode</span>
+     </label>
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Track
+   --------------------------------------------------------------------------- */
+
+.ds-toggle {
+  display: inline-flex;
+  position: relative;
+  width: 2.75rem;
+  height: 1.5rem;
+  padding: 2px;
+  border: none;
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-bg-muted);
+  cursor: pointer;
+  transition: background-color var(--ds-duration-normal) var(--ds-ease-out);
+  -webkit-appearance: none;
+  appearance: none;
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Thumb (pseudo-element)
+   --------------------------------------------------------------------------- */
+
+.ds-toggle::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--ds-radius-full);
+  background-color: #fff;
+  box-shadow: var(--ds-shadow-sm);
+  transform: translateY(-50%);
+  transition: transform var(--ds-duration-normal) var(--ds-ease-out);
+}
+
+/* ---------------------------------------------------------------------------
+   Checked state
+   --------------------------------------------------------------------------- */
+
+.ds-toggle[aria-checked="true"],
+.ds-toggle--checked {
+  background-color: var(--ds-color-interactive);
+}
+
+.ds-toggle[aria-checked="true"]::after,
+.ds-toggle--checked::after {
+  transform: translateX(1.25rem) translateY(-50%);
+}
+
+/* ---------------------------------------------------------------------------
+   Hover
+   --------------------------------------------------------------------------- */
+
+.ds-toggle:hover {
+  background-color: var(--ds-color-border-hover);
+}
+
+.ds-toggle[aria-checked="true"]:hover,
+.ds-toggle--checked:hover {
+  background-color: var(--ds-color-interactive-hover);
+}
+
+/* ---------------------------------------------------------------------------
+   Focus
+   --------------------------------------------------------------------------- */
+
+.ds-toggle:focus-visible {
+  outline: 2px solid var(--ds-color-interactive);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Disabled
+   --------------------------------------------------------------------------- */
+
+.ds-toggle:disabled,
+.ds-toggle--disabled {
+  opacity: var(--ds-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Size: Small
+   --------------------------------------------------------------------------- */
+
+.ds-toggle--sm {
+  width: 2rem;
+  height: 1.125rem;
+}
+
+.ds-toggle--sm::after {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.ds-toggle--sm[aria-checked="true"]::after,
+.ds-toggle--sm.ds-toggle--checked::after {
+  transform: translateX(0.875rem) translateY(-50%);
+}
+
+/* ---------------------------------------------------------------------------
+   Label wrapper
+   --------------------------------------------------------------------------- */
+
+.ds-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  cursor: pointer;
+  font-size: var(--ds-text-sm);
+  font-family: var(--ds-font-sans);
+}
+
+.ds-toggle-label__text {
+  color: var(--ds-color-text-secondary);
+}
+
+/* ==========================================================================
+   Breadcrumb Navigation
+   ==========================================================================
+   A horizontal breadcrumb trail for hierarchical navigation.
+
+   Usage:
+     <nav class="ds-breadcrumb" aria-label="Breadcrumb">
+       <span class="ds-breadcrumb__item">
+         <a href="/" class="ds-breadcrumb__link">Home</a>
+       </span>
+       <span class="ds-breadcrumb__item">
+         <a href="/products" class="ds-breadcrumb__link">Products</a>
+       </span>
+       <span class="ds-breadcrumb__item">
+         <span class="ds-breadcrumb__current" aria-current="page">Widget</span>
+       </span>
+     </nav>
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Container
+   --------------------------------------------------------------------------- */
+
+.ds-breadcrumb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ds-space-1);
+  font-size: var(--ds-text-sm);
+  font-family: var(--ds-font-sans);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Item
+   --------------------------------------------------------------------------- */
+
+.ds-breadcrumb__item {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+}
+
+/* Separator — rendered via ::after on every item except the last */
+.ds-breadcrumb__item:not(:last-child)::after {
+  content: "/";
+  color: var(--ds-color-text-tertiary);
+  flex-shrink: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Link
+   --------------------------------------------------------------------------- */
+
+.ds-breadcrumb__link {
+  color: var(--ds-color-text-tertiary);
+  text-decoration: none;
+  transition: color var(--ds-duration-fast) var(--ds-ease-out);
+}
+
+.ds-breadcrumb__link:hover {
+  color: var(--ds-color-text-secondary);
+}
+
+.ds-breadcrumb__link:focus-visible {
+  outline: 2px solid var(--ds-color-interactive);
+  outline-offset: 2px;
+  border-radius: var(--ds-radius-sm);
+}
+
+/* ---------------------------------------------------------------------------
+   Current page (non-interactive)
+   --------------------------------------------------------------------------- */
+
+.ds-breadcrumb__current {
+  color: var(--ds-color-text);
+  font-weight: var(--ds-weight-medium);
+}
+
+/* ---------------------------------------------------------------------------
+   Modifier: Compact
+   --------------------------------------------------------------------------- */
+
+.ds-breadcrumb--compact {
+  gap: var(--ds-space-0-5, 0.125rem);
+  font-size: var(--ds-text-xs);
+}
+
+.ds-breadcrumb--compact .ds-breadcrumb__item {
+  gap: var(--ds-space-0-5, 0.125rem);
+}
+
+/* ==========================================================================
+   Pagination Component
+   ==========================================================================
+   A row of page-number controls for navigating multi-page content.
+
+   Usage:
+     <nav class="ds-pagination" aria-label="Pagination">
+       <button class="ds-pagination__prev" aria-label="Previous page">&lsaquo;</button>
+       <button class="ds-pagination__item">1</button>
+       <button class="ds-pagination__item ds-pagination__item--active" aria-current="page">2</button>
+       <span class="ds-pagination__ellipsis">&hellip;</span>
+       <button class="ds-pagination__item">10</button>
+       <button class="ds-pagination__next" aria-label="Next page">&rsaquo;</button>
+     </nav>
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Container
+   --------------------------------------------------------------------------- */
+
+.ds-pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ds-space-1);
+  font-family: var(--ds-font-sans);
+}
+
+/* ---------------------------------------------------------------------------
+   Item (page number)
+   --------------------------------------------------------------------------- */
+
+.ds-pagination__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 var(--ds-space-1);
+  border: none;
+  border-radius: var(--ds-radius-md);
+  background: transparent;
+  color: var(--ds-color-text-secondary);
+  font-size: var(--ds-text-sm);
+  font-family: var(--ds-font-sans);
+  cursor: pointer;
+  transition:
+    background-color var(--ds-duration-fast) var(--ds-ease-out),
+    color var(--ds-duration-fast) var(--ds-ease-out);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ds-pagination__item:hover {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+}
+
+.ds-pagination__item:focus-visible {
+  outline: 2px solid var(--ds-color-interactive);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Active page
+   --------------------------------------------------------------------------- */
+
+.ds-pagination__item--active,
+.ds-pagination__item--active:hover {
+  background-color: var(--ds-color-inverted);
+  color: var(--ds-color-on-inverted);
+  cursor: default;
+}
+
+/* ---------------------------------------------------------------------------
+   Disabled item
+   --------------------------------------------------------------------------- */
+
+.ds-pagination__item--disabled,
+.ds-pagination__item--disabled:hover {
+  opacity: var(--ds-opacity-disabled);
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Previous / Next navigation buttons
+   --------------------------------------------------------------------------- */
+
+.ds-pagination__prev,
+.ds-pagination__next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: var(--ds-radius-md);
+  background: transparent;
+  color: var(--ds-color-text-secondary);
+  font-size: var(--ds-text-sm);
+  font-family: var(--ds-font-sans);
+  cursor: pointer;
+  transition:
+    background-color var(--ds-duration-fast) var(--ds-ease-out),
+    color var(--ds-duration-fast) var(--ds-ease-out);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ds-pagination__prev:hover,
+.ds-pagination__next:hover {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+}
+
+.ds-pagination__prev:focus-visible,
+.ds-pagination__next:focus-visible {
+  outline: 2px solid var(--ds-color-interactive);
+  outline-offset: 2px;
+}
+
+.ds-pagination__prev:disabled,
+.ds-pagination__next:disabled {
+  opacity: var(--ds-opacity-disabled);
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Ellipsis
+   --------------------------------------------------------------------------- */
+
+.ds-pagination__ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  color: var(--ds-color-text-tertiary);
+  font-size: var(--ds-text-sm);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Page info text (e.g. "Page 1 of 10")
+   --------------------------------------------------------------------------- */
+
+.ds-pagination__info {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-tertiary);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   Modifier: Compact
+   --------------------------------------------------------------------------- */
+
+.ds-pagination--compact .ds-pagination__item,
+.ds-pagination--compact .ds-pagination__prev,
+.ds-pagination--compact .ds-pagination__next,
+.ds-pagination--compact .ds-pagination__ellipsis {
+  min-width: 1.75rem;
+  height: 1.75rem;
+  font-size: var(--ds-text-xs);
+}
+
+/* ==========================================================================
+   Tag / Chip Component
+   ==========================================================================
+   Interactive, optionally removable tag for categorisation and filtering.
+
+   Usage:
+     <span class="ds-tag">Default</span>
+     <span class="ds-tag ds-tag--success">Approved</span>
+     <span class="ds-tag ds-tag--removable">
+       Removable
+       <button class="ds-tag__remove" aria-label="Remove">&times;</button>
+     </span>
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+
+.ds-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  padding: var(--ds-space-1) var(--ds-space-2-5, 0.625rem);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  font-family: var(--ds-font-sans);
+  line-height: 1;
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-bg-elevated);
+  border: 1px solid var(--ds-color-border);
+  color: var(--ds-color-text-secondary);
+  white-space: nowrap;
+  transition:
+    border-color var(--ds-duration-fast) var(--ds-ease-out),
+    background-color var(--ds-duration-fast) var(--ds-ease-out);
+}
+
+.ds-tag:hover {
+  border-color: var(--ds-color-border-hover);
+}
+
+/* ---------------------------------------------------------------------------
+   Color variants — subtle background + vivid text + subtle border
+   --------------------------------------------------------------------------- */
+
+.ds-tag--primary {
+  background-color: var(--ds-color-interactive-subtle, var(--ds-color-bg-elevated));
+  color: var(--ds-color-interactive);
+  border-color: var(--ds-color-interactive-border, var(--ds-color-interactive));
+}
+
+.ds-tag--success {
+  background-color: var(--ds-color-success-subtle, var(--ds-color-bg-elevated));
+  color: var(--ds-color-success);
+  border-color: var(--ds-color-success-border, var(--ds-color-success));
+}
+
+.ds-tag--warning {
+  background-color: var(--ds-color-warning-subtle, var(--ds-color-bg-elevated));
+  color: var(--ds-color-warning);
+  border-color: var(--ds-color-warning-border, var(--ds-color-warning));
+}
+
+.ds-tag--error {
+  background-color: var(--ds-color-error-subtle, var(--ds-color-bg-elevated));
+  color: var(--ds-color-error);
+  border-color: var(--ds-color-error-border, var(--ds-color-error));
+}
+
+.ds-tag--info {
+  background-color: var(--ds-color-info-subtle, var(--ds-color-bg-elevated));
+  color: var(--ds-color-info);
+  border-color: var(--ds-color-info-border, var(--ds-color-info));
+}
+
+.ds-tag--purple {
+  background-color: var(--ds-color-purple-subtle, var(--ds-color-bg-elevated));
+  color: var(--ds-color-purple, var(--ds-color-interactive));
+  border-color: var(--ds-color-purple-border, var(--ds-color-purple, var(--ds-color-interactive)));
+}
+
+/* ---------------------------------------------------------------------------
+   Removable — tighter right padding for the close button
+   --------------------------------------------------------------------------- */
+
+.ds-tag--removable {
+  padding-right: var(--ds-space-1);
+}
+
+/* ---------------------------------------------------------------------------
+   Remove button
+   --------------------------------------------------------------------------- */
+
+.ds-tag__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  border: none;
+  border-radius: var(--ds-radius-full);
+  background: transparent;
+  color: currentColor;
+  font-size: inherit;
+  line-height: 1;
+  opacity: 0.6;
+  cursor: pointer;
+  transition:
+    opacity var(--ds-duration-fast) var(--ds-ease-out),
+    background-color var(--ds-duration-fast) var(--ds-ease-out);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ds-tag__remove:hover {
+  opacity: 1;
+  background-color: var(--ds-color-overlay-hover);
+}
+
+.ds-tag__remove:focus-visible {
+  outline: 2px solid var(--ds-color-interactive);
+  outline-offset: 1px;
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Variant: Outline
+   --------------------------------------------------------------------------- */
+
+.ds-tag--outline {
+  background-color: transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   Size: Small
+   --------------------------------------------------------------------------- */
+
+.ds-tag--sm {
+  padding: var(--ds-space-0-5, 0.125rem) var(--ds-space-2, 0.5rem);
+  font-size: 0.625rem;
+}
+
+.ds-tag--sm.ds-tag--removable {
+  padding-right: var(--ds-space-0-5, 0.125rem);
+}
+
+/* ---------------------------------------------------------------------------
+   Size: Large
+   --------------------------------------------------------------------------- */
+
+.ds-tag--lg {
+  padding: var(--ds-space-1-5, 0.375rem) var(--ds-space-3);
+  font-size: var(--ds-text-sm);
+}
+
+.ds-tag--lg.ds-tag--removable {
+  padding-right: var(--ds-space-1-5, 0.375rem);
+}
+
+/* ==========================================================================
+ * Accordion / Collapse
+ * ==========================================================================
+ *
+ * A vertically stacked set of collapsible sections. Supports CSS-only
+ * open/close via the `.ds-accordion__item--open` modifier.
+ *
+ * Variants:
+ *   --flush      – borderless, full-bleed style
+ *   --separated  – visually detached items with individual borders
+ *
+ * Markup:
+ *   <div class="ds-accordion">
+ *     <div class="ds-accordion__item ds-accordion__item--open">
+ *       <button class="ds-accordion__trigger">Section</button>
+ *       <div class="ds-accordion__content">
+ *         <div class="ds-accordion__body">…</div>
+ *       </div>
+ *     </div>
+ *   </div>
+ * ========================================================================== */
+
+/* Container
+ * -------------------------------------------------------------------------- */
+
+.ds-accordion {
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  overflow: hidden;
+}
+
+/* Item
+ * -------------------------------------------------------------------------- */
+
+.ds-accordion__item {
+  border-top: 1px solid var(--ds-color-border);
+}
+
+.ds-accordion__item:first-child {
+  border-top: 0;
+}
+
+/* Trigger (button)
+ * -------------------------------------------------------------------------- */
+
+.ds-accordion__trigger {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: var(--ds-space-4);
+  text-align: left;
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+/* Chevron indicator (CSS border-arrow) */
+.ds-accordion__trigger::after {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--ds-color-text-secondary);
+  border-bottom: 2px solid var(--ds-color-text-secondary);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-left: var(--ds-space-3);
+  transition: transform var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-accordion__trigger:hover {
+  background-color: var(--ds-color-overlay);
+}
+
+/* Open state – rotate chevron */
+.ds-accordion__item--open .ds-accordion__trigger::after {
+  transform: rotate(225deg);
+}
+
+/* Collapsible content wrapper
+ * -------------------------------------------------------------------------- */
+
+.ds-accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height var(--ds-duration-normal) var(--ds-ease-default),
+    padding var(--ds-duration-normal) var(--ds-ease-default);
+}
+
+.ds-accordion__item--open .ds-accordion__content {
+  max-height: 80rem;
+}
+
+/* Inner body (visible content)
+ * -------------------------------------------------------------------------- */
+
+.ds-accordion__body {
+  padding: var(--ds-space-4);
+  padding-top: 0;
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  line-height: 1.625;
+}
+
+/* ==========================================================================
+ * Variant: Flush
+ * ========================================================================== */
+
+.ds-accordion--flush {
+  border: 0;
+  border-radius: 0;
+}
+
+.ds-accordion--flush .ds-accordion__item {
+  border-top: 0;
+  border-bottom: 1px solid var(--ds-color-border);
+}
+
+.ds-accordion--flush .ds-accordion__item:last-child {
+  border-bottom: 0;
+}
+
+/* ==========================================================================
+ * Variant: Separated
+ * ========================================================================== */
+
+.ds-accordion--separated {
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.ds-accordion--separated .ds-accordion__item {
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  margin-bottom: var(--ds-space-3);
+  overflow: hidden;
+}
+
+.ds-accordion--separated .ds-accordion__item:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+ * Drawer / Sheet
+ * ==========================================================================
+ *
+ * A sliding overlay panel anchored to the edge of the viewport.
+ * Default direction is right; use `--left` or `--bottom` modifiers
+ * to change the slide origin.
+ *
+ * Sizes:
+ *   --sm   18 rem
+ *   (default)  24 rem
+ *   --lg   36 rem
+ *
+ * Markup:
+ *   <div class="ds-drawer ds-drawer--right ds-drawer--open">
+ *     <div class="ds-drawer__content">
+ *       <div class="ds-drawer__header">
+ *         <h3>Title</h3>
+ *         <button class="ds-drawer__close" aria-label="Close">&times;</button>
+ *       </div>
+ *       <div class="ds-drawer__body">…</div>
+ *       <div class="ds-drawer__footer">…</div>
+ *     </div>
+ *   </div>
+ * ========================================================================== */
+
+/* Overlay backdrop
+ * -------------------------------------------------------------------------- */
+
+.ds-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-overlay);
+  background-color: var(--ds-color-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--ds-duration-normal) var(--ds-ease-default),
+    visibility var(--ds-duration-normal) var(--ds-ease-default);
+}
+
+.ds-drawer--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sliding panel
+ * -------------------------------------------------------------------------- */
+
+.ds-drawer__content {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ds-color-surface);
+  box-shadow: var(--ds-shadow-lg);
+  overflow-y: auto;
+  transition: transform var(--ds-duration-normal) var(--ds-ease-out-expo);
+}
+
+/* ==========================================================================
+ * Direction: Right (default)
+ * ========================================================================== */
+
+.ds-drawer__content,
+.ds-drawer--right .ds-drawer__content {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 24rem;
+  max-width: 90vw;
+  border-left: 1px solid var(--ds-color-border);
+  transform: translateX(100%);
+}
+
+.ds-drawer--open .ds-drawer__content,
+.ds-drawer--right.ds-drawer--open .ds-drawer__content {
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+ * Direction: Left
+ * ========================================================================== */
+
+.ds-drawer--left .ds-drawer__content {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: auto;
+  width: 24rem;
+  max-width: 90vw;
+  border-left: 0;
+  border-right: 1px solid var(--ds-color-border);
+  transform: translateX(-100%);
+}
+
+.ds-drawer--left.ds-drawer--open .ds-drawer__content {
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+ * Direction: Bottom
+ * ========================================================================== */
+
+.ds-drawer--bottom .ds-drawer__content {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: auto;
+  width: auto;
+  max-height: 90dvh;
+  border-left: 0;
+  border-top: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl) var(--ds-radius-xl) 0 0;
+  transform: translateY(100%);
+}
+
+.ds-drawer--bottom.ds-drawer--open .ds-drawer__content {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+ * Sizes
+ * ========================================================================== */
+
+.ds-drawer--sm .ds-drawer__content {
+  width: 18rem;
+}
+
+.ds-drawer--lg .ds-drawer__content {
+  width: 36rem;
+}
+
+/* Bottom drawers should not have a fixed width */
+.ds-drawer--bottom.ds-drawer--sm .ds-drawer__content,
+.ds-drawer--bottom.ds-drawer--lg .ds-drawer__content {
+  width: auto;
+}
+
+/* ==========================================================================
+ * Header
+ * ========================================================================== */
+
+.ds-drawer__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--ds-space-4) var(--ds-space-5);
+  border-bottom: 1px solid var(--ds-color-border);
+}
+
+.ds-drawer__header h3 {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-font-display-weight);
+  font-size: var(--ds-text-lg);
+  color: var(--ds-color-text);
+  margin: 0;
+}
+
+/* ==========================================================================
+ * Close button
+ * ========================================================================== */
+
+.ds-drawer__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ds-radius-md);
+  background-color: transparent;
+  color: var(--ds-color-text-tertiary);
+  font-size: var(--ds-text-lg);
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background-color var(--ds-duration-fast) var(--ds-ease-default),
+    color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-drawer__close:hover {
+  background-color: var(--ds-color-overlay);
+  color: var(--ds-color-text);
+}
+
+/* ==========================================================================
+ * Body
+ * ========================================================================== */
+
+.ds-drawer__body {
+  padding: var(--ds-space-5);
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ==========================================================================
+ * Footer
+ * ========================================================================== */
+
+.ds-drawer__footer {
+  padding: var(--ds-space-4) var(--ds-space-5);
+  border-top: 1px solid var(--ds-color-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ds-space-2);
+}
+
+/* ==========================================================================
+ * Progress Bar & Step Indicator
+ * ==========================================================================
+ *
+ * Two related components for communicating progress:
+ *
+ * 1. **Progress bar** — a horizontal fill bar with optional label row.
+ *    Sizes: --sm, (default), --lg
+ *    Statuses: --success, --warning, --error, --info
+ *
+ * 2. **Step indicator** — a numbered sequence of steps with connectors.
+ *    States: --completed, --current, --error
+ *    Layout: horizontal (default), --vertical
+ *
+ * Progress bar markup:
+ *   <div class="ds-progress__label">
+ *     <span>Uploading…</span><span>64 %</span>
+ *   </div>
+ *   <div class="ds-progress">
+ *     <div class="ds-progress__bar" style="width: 64%"></div>
+ *   </div>
+ *
+ * Step indicator markup:
+ *   <div class="ds-steps">
+ *     <div class="ds-step ds-step--completed">
+ *       <div class="ds-step__indicator">1</div>
+ *       <div class="ds-step__content">
+ *         <span class="ds-step__title">Account</span>
+ *         <span class="ds-step__description">Create your account</span>
+ *       </div>
+ *     </div>
+ *     <div class="ds-step__connector"></div>
+ *     <div class="ds-step ds-step--current">…</div>
+ *   </div>
+ * ========================================================================== */
+
+/* ==========================================================================
+ * Progress Bar
+ * ========================================================================== */
+
+/* Label row (sits above the bar) */
+.ds-progress__label {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  margin-bottom: var(--ds-space-1-5);
+}
+
+/* Track */
+.ds-progress {
+  width: 100%;
+  height: 0.5rem;
+  background-color: var(--ds-color-bg-muted);
+  border-radius: var(--ds-radius-full);
+  overflow: hidden;
+}
+
+/* Fill */
+.ds-progress__bar {
+  height: 100%;
+  min-width: 0.25rem;
+  background-color: var(--ds-color-inverted);
+  border-radius: var(--ds-radius-full);
+  transition: width var(--ds-duration-normal) var(--ds-ease-default);
+}
+
+/* Sizes
+ * -------------------------------------------------------------------------- */
+
+.ds-progress--sm {
+  height: 0.25rem;
+}
+
+.ds-progress--lg {
+  height: 0.75rem;
+}
+
+/* Status colours
+ * -------------------------------------------------------------------------- */
+
+.ds-progress--success .ds-progress__bar {
+  background-color: var(--ds-color-success);
+}
+
+.ds-progress--warning .ds-progress__bar {
+  background-color: var(--ds-color-warning);
+}
+
+.ds-progress--error .ds-progress__bar {
+  background-color: var(--ds-color-error);
+}
+
+.ds-progress--info .ds-progress__bar {
+  background-color: var(--ds-color-info);
+}
+
+/* ==========================================================================
+ * Step Indicator
+ * ========================================================================== */
+
+/* Steps container (horizontal by default) */
+.ds-steps {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+}
+
+/* Vertical variant */
+.ds-steps--vertical {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Single step
+ * -------------------------------------------------------------------------- */
+
+.ds-step {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+}
+
+/* Circle indicator */
+.ds-step__indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--ds-radius-full);
+  border: 2px solid var(--ds-color-border);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text-tertiary);
+  background-color: var(--ds-color-surface);
+  flex-shrink: 0;
+  transition:
+    background-color var(--ds-duration-fast) var(--ds-ease-default),
+    border-color var(--ds-duration-fast) var(--ds-ease-default),
+    color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+/* Completed step */
+.ds-step--completed .ds-step__indicator {
+  background-color: var(--ds-color-inverted);
+  border-color: var(--ds-color-inverted);
+  color: var(--ds-color-on-inverted);
+}
+
+/* Current step */
+.ds-step--current .ds-step__indicator {
+  border-color: var(--ds-color-interactive);
+  color: var(--ds-color-text);
+}
+
+/* Error step */
+.ds-step--error .ds-step__indicator {
+  border-color: var(--ds-color-error);
+  color: var(--ds-color-error);
+}
+
+/* Step content
+ * -------------------------------------------------------------------------- */
+
+.ds-step__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-step__title {
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text);
+}
+
+.ds-step__description {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
+
+/* Connector (line between steps)
+ * -------------------------------------------------------------------------- */
+
+/* Horizontal connector */
+.ds-step__connector {
+  flex: 1;
+  height: 2px;
+  min-width: var(--ds-space-4);
+  background-color: var(--ds-color-border);
+  margin-inline: var(--ds-space-2);
+}
+
+/* Filled connector after a completed step */
+.ds-step--completed + .ds-step__connector {
+  background-color: var(--ds-color-inverted);
+}
+
+/* Vertical connector */
+.ds-steps--vertical .ds-step__connector {
+  flex: none;
+  width: 2px;
+  height: 2rem;
+  min-width: auto;
+  margin-inline: 0;
+  margin-left: calc(1rem - 1px); /* center under the 2 rem indicator */
+  margin-block: var(--ds-space-1);
+  background-color: var(--ds-color-border-subtle);
+}
+
+.ds-steps--vertical .ds-step--completed + .ds-step__connector {
+  background-color: var(--ds-color-inverted);
+}
+
+
+/* === Tier 3 — Advanced === */
+/* ==========================================================================
+ * Popover
+ * ==========================================================================
+ *
+ * Flexible popover component for displaying complex content anchored to a
+ * trigger element. Supports four placement directions (top, bottom, left,
+ * right) and multiple size variants. Default placement is bottom.
+ *
+ * Usage:
+ *   <div class="ds-popover ds-popover--open">
+ *     <button>Trigger</button>
+ *     <div class="ds-popover__content">...</div>
+ *   </div>
+ *
+ * Modifiers:
+ *   .ds-popover--open         — Shows the popover content
+ *   .ds-popover--top          — Places content above the trigger
+ *   .ds-popover--bottom       — Places content below the trigger (default)
+ *   .ds-popover--left         — Places content to the left of the trigger
+ *   .ds-popover--right        — Places content to the right of the trigger
+ *   .ds-popover__content--sm  — Smaller popover (12rem min-width)
+ *   .ds-popover__content--lg  — Larger popover (24rem min-width)
+ * ========================================================================== */
+
+.ds-popover {
+  position: relative;
+  display: inline-flex;
+}
+
+.ds-popover__content {
+  position: absolute;
+  z-index: var(--ds-z-dropdown);
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  box-shadow: var(--ds-shadow-lg);
+  padding: var(--ds-space-4);
+  min-width: 16rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.96);
+  transition:
+    opacity var(--ds-duration-fast) var(--ds-ease),
+    visibility var(--ds-duration-fast) var(--ds-ease),
+    transform var(--ds-duration-fast) var(--ds-ease-out-expo);
+}
+
+/* Open state */
+.ds-popover--open .ds-popover__content {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* Placement: bottom (default) */
+.ds-popover__content,
+.ds-popover--bottom .ds-popover__content {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.96);
+}
+
+.ds-popover--open .ds-popover__content,
+.ds-popover--bottom.ds-popover--open .ds-popover__content {
+  transform: translateX(-50%) scale(1);
+}
+
+/* Placement: top */
+.ds-popover--top .ds-popover__content {
+  bottom: calc(100% + 8px);
+  top: auto;
+  left: 50%;
+  transform: translateX(-50%) scale(0.96);
+}
+
+.ds-popover--top.ds-popover--open .ds-popover__content {
+  transform: translateX(-50%) scale(1);
+}
+
+/* Placement: left */
+.ds-popover--left .ds-popover__content {
+  right: calc(100% + 8px);
+  top: 50%;
+  left: auto;
+  transform: translateY(-50%) scale(0.96);
+}
+
+.ds-popover--left.ds-popover--open .ds-popover__content {
+  transform: translateY(-50%) scale(1);
+}
+
+/* Placement: right */
+.ds-popover--right .ds-popover__content {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) scale(0.96);
+}
+
+.ds-popover--right.ds-popover--open .ds-popover__content {
+  transform: translateY(-50%) scale(1);
+}
+
+/* Size: small */
+.ds-popover__content--sm {
+  min-width: 12rem;
+  padding: var(--ds-space-3);
+}
+
+/* Size: large */
+.ds-popover__content--lg {
+  min-width: 24rem;
+}
+
+/* ==========================================================================
+ * Slider
+ * ==========================================================================
+ *
+ * Range slider input component with customizable thumb and track styling.
+ * Supports labels, value display, size variants, and disabled state.
+ *
+ * Usage:
+ *   <div class="ds-slider">
+ *     <input type="range" min="0" max="100" value="50" />
+ *     <div class="ds-slider__labels">
+ *       <span>0</span>
+ *       <span>100</span>
+ *     </div>
+ *   </div>
+ *
+ * Modifiers:
+ *   .ds-slider--sm        — Smaller track and thumb
+ *   .ds-slider--disabled  — Reduced opacity, no interaction
+ * ========================================================================== */
+
+.ds-slider {
+  width: 100%;
+  position: relative;
+}
+
+.ds-slider input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 0.375rem;
+  background-color: var(--ds-color-bg-muted);
+  border-radius: var(--ds-radius-full);
+  outline: none;
+  cursor: pointer;
+}
+
+/* Webkit thumb */
+.ds-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-inverted);
+  border: 2px solid var(--ds-color-surface);
+  box-shadow: var(--ds-shadow-sm);
+  cursor: pointer;
+  transition: transform var(--ds-duration-fast) var(--ds-ease);
+}
+
+/* Firefox thumb */
+.ds-slider input[type="range"]::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-inverted);
+  border: 2px solid var(--ds-color-surface);
+  box-shadow: var(--ds-shadow-sm);
+  cursor: pointer;
+  transition: transform var(--ds-duration-fast) var(--ds-ease);
+}
+
+/* Hover: scale up thumb */
+.ds-slider input[type="range"]:hover::-webkit-slider-thumb {
+  transform: scale(1.1);
+}
+
+.ds-slider input[type="range"]:hover::-moz-range-thumb {
+  transform: scale(1.1);
+}
+
+/* Focus ring */
+.ds-slider input[type="range"]:focus-visible::-webkit-slider-thumb {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
+
+.ds-slider input[type="range"]:focus-visible::-moz-range-thumb {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
+
+/* Labels row */
+.ds-slider__labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  margin-top: var(--ds-space-1);
+}
+
+/* Current value display */
+.ds-slider__value {
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text);
+}
+
+/* Size: small */
+.ds-slider--sm input[type="range"] {
+  height: 0.25rem;
+}
+
+.ds-slider--sm input[type="range"]::-webkit-slider-thumb {
+  width: 1rem;
+  height: 1rem;
+}
+
+.ds-slider--sm input[type="range"]::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Disabled state */
+.ds-slider--disabled {
+  opacity: var(--ds-opacity-disabled);
+  cursor: not-allowed;
+}
+
+.ds-slider--disabled input[type="range"] {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+ * Timeline
+ * ==========================================================================
+ *
+ * Vertical timeline component for roadmaps, activity feeds, and step-based
+ * flows. Each item has a dot indicator on a vertical line with support for
+ * completed, current, and error states.
+ *
+ * Usage:
+ *   <div class="ds-timeline">
+ *     <div class="ds-timeline__item ds-timeline__item--completed">
+ *       <div class="ds-timeline__dot"></div>
+ *       <div class="ds-timeline__content">
+ *         <div class="ds-timeline__title">Step one</div>
+ *         <div class="ds-timeline__description">Details here.</div>
+ *         <div class="ds-timeline__time">2 hours ago</div>
+ *       </div>
+ *     </div>
+ *   </div>
+ *
+ * Modifiers:
+ *   .ds-timeline__item--completed  — Green dot (success)
+ *   .ds-timeline__item--current    — Inverted dot (active)
+ *   .ds-timeline__item--error      — Red dot (error)
+ *   .ds-timeline--compact          — Tighter spacing, smaller dots
+ * ========================================================================== */
+
+.ds-timeline {
+  position: relative;
+  padding-left: var(--ds-space-8);
+}
+
+/* Vertical line */
+.ds-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.9rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--ds-color-border);
+}
+
+/* Item */
+.ds-timeline__item {
+  position: relative;
+  padding-bottom: var(--ds-space-6);
+}
+
+.ds-timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+/* Dot */
+.ds-timeline__dot {
+  position: absolute;
+  left: calc(-1 * var(--ds-space-8) + 0.5rem);
+  width: 1rem;
+  height: 1rem;
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-bg-elevated);
+  border: 2px solid var(--ds-color-border);
+  z-index: 1;
+}
+
+/* Dot state: completed */
+.ds-timeline__item--completed .ds-timeline__dot {
+  background-color: var(--ds-color-success);
+  border-color: var(--ds-color-success);
+}
+
+/* Dot state: current */
+.ds-timeline__item--current .ds-timeline__dot {
+  background-color: var(--ds-color-inverted);
+  border-color: var(--ds-color-inverted);
+}
+
+/* Dot state: error */
+.ds-timeline__item--error .ds-timeline__dot {
+  background-color: var(--ds-color-error);
+  border-color: var(--ds-color-error);
+}
+
+/* Content area */
+.ds-timeline__content {
+  /* no additional layout needed; flows naturally after the dot */
+}
+
+/* Title */
+.ds-timeline__title {
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text);
+}
+
+/* Description */
+.ds-timeline__description {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  margin-top: var(--ds-space-1);
+}
+
+/* Timestamp */
+.ds-timeline__time {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  margin-top: var(--ds-space-0-5);
+}
+
+/* Compact variant */
+.ds-timeline--compact {
+  padding-left: var(--ds-space-6);
+}
+
+.ds-timeline--compact::before {
+  left: 0.6rem;
+}
+
+.ds-timeline--compact .ds-timeline__item {
+  padding-bottom: var(--ds-space-4);
+}
+
+.ds-timeline--compact .ds-timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+.ds-timeline--compact .ds-timeline__dot {
+  left: calc(-1 * var(--ds-space-6) + 0.25rem);
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* ==========================================================================
+ * Kbd
+ * ==========================================================================
+ *
+ * Keyboard shortcut display component with a raised 3D key appearance.
+ * Use individually or group multiple keys with ds-kbd-group for combos
+ * like "Cmd + K".
+ *
+ * Usage:
+ *   <kbd class="ds-kbd">Esc</kbd>
+ *
+ *   <span class="ds-kbd-group">
+ *     <kbd class="ds-kbd">Cmd</kbd>
+ *     <span class="ds-kbd-group__separator">+</span>
+ *     <kbd class="ds-kbd">K</kbd>
+ *   </span>
+ *
+ * Modifiers:
+ *   .ds-kbd--lg  — Larger key display
+ * ========================================================================== */
+
+.ds-kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  padding: var(--ds-space-0-5) var(--ds-space-1-5);
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-xs);
+  background-color: var(--ds-color-bg-elevated);
+  border: 1px solid var(--ds-color-border);
+  border-bottom-width: 2px;
+  border-radius: var(--ds-radius-sm);
+  color: var(--ds-color-text-secondary);
+  line-height: 1;
+  vertical-align: baseline;
+}
+
+/* Large variant */
+.ds-kbd--lg {
+  font-size: var(--ds-text-sm);
+  padding: var(--ds-space-1) var(--ds-space-2);
+}
+
+/* Key group (for combos like Cmd + K) */
+.ds-kbd-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+}
+
+/* Separator between keys */
+.ds-kbd-group__separator {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
+
+/* ==========================================================================
+ * Command
+ * ==========================================================================
+ *
+ * Command palette / search overlay following the Cmd+K pattern. Provides a
+ * full-screen overlay with a centered search dialog, grouped results,
+ * keyboard-navigable items, and a footer with shortcut hints.
+ *
+ * Usage:
+ *   <div class="ds-command ds-command--open">
+ *     <div class="ds-command__content">
+ *       <div class="ds-command__input-wrapper">
+ *         <span class="ds-command__input-icon">...</span>
+ *         <input class="ds-command__input" placeholder="Search..." />
+ *       </div>
+ *       <div class="ds-command__list">
+ *         <div class="ds-command__group">
+ *           <div class="ds-command__group-heading">Results</div>
+ *           <div class="ds-command__item ds-command__item--active">
+ *             <span class="ds-command__item-icon">...</span>
+ *             <span class="ds-command__item-label">Item</span>
+ *             <span class="ds-command__item-shortcut">Ctrl+N</span>
+ *           </div>
+ *         </div>
+ *         <div class="ds-command__empty">No results found.</div>
+ *       </div>
+ *       <div class="ds-command__footer">...</div>
+ *     </div>
+ *   </div>
+ *
+ * Modifiers:
+ *   .ds-command--open  — Shows the command palette
+ * ========================================================================== */
+
+/* Overlay */
+.ds-command {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-modal);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20vh;
+  background-color: var(--ds-color-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--ds-duration-fast) var(--ds-ease),
+    visibility var(--ds-duration-fast) var(--ds-ease);
+}
+
+/* Open state */
+.ds-command--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Content panel */
+.ds-command__content {
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  box-shadow: var(--ds-shadow-lg);
+  width: 100%;
+  max-width: 32rem;
+  overflow: hidden;
+  transform: scale(0.96) translateY(-8px);
+  transition:
+    transform var(--ds-duration-fast) var(--ds-ease-out-expo);
+}
+
+.ds-command--open .ds-command__content {
+  transform: scale(1) translateY(0);
+}
+
+/* Input wrapper */
+.ds-command__input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+  padding: var(--ds-space-3) var(--ds-space-4);
+  border-bottom: 1px solid var(--ds-color-border);
+}
+
+/* Search icon */
+.ds-command__input-icon {
+  color: var(--ds-color-text-tertiary);
+  flex-shrink: 0;
+}
+
+/* Search input */
+.ds-command__input {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: var(--ds-text-base);
+  color: var(--ds-color-text);
+  font-family: var(--ds-font-sans);
+}
+
+.ds-command__input::placeholder {
+  color: var(--ds-color-text-tertiary);
+}
+
+/* Results list */
+.ds-command__list {
+  max-height: 20rem;
+  overflow-y: auto;
+  padding: var(--ds-space-2);
+}
+
+/* Group of results */
+.ds-command__group {
+  /* structural grouping — no additional visual styles needed */
+}
+
+/* Group heading */
+.ds-command__group-heading {
+  font-size: var(--ds-text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ds-color-text-tertiary);
+  padding: var(--ds-space-2) var(--ds-space-3);
+  font-weight: var(--ds-weight-medium);
+}
+
+/* Individual item */
+.ds-command__item {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+  padding: var(--ds-space-2-5) var(--ds-space-3);
+  border-radius: var(--ds-radius-lg);
+  cursor: pointer;
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  transition:
+    background-color var(--ds-duration-fast) var(--ds-ease),
+    color var(--ds-duration-fast) var(--ds-ease);
+}
+
+/* Item hover & active states */
+.ds-command__item:hover,
+.ds-command__item--active {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+}
+
+/* Item icon */
+.ds-command__item-icon {
+  flex-shrink: 0;
+  color: var(--ds-color-text-tertiary);
+}
+
+/* Item label */
+.ds-command__item-label {
+  flex: 1;
+}
+
+/* Item shortcut hint */
+.ds-command__item-shortcut {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  flex-shrink: 0;
+}
+
+/* Empty state */
+.ds-command__empty {
+  padding: var(--ds-space-8);
+  text-align: center;
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-tertiary);
+}
+
+/* Footer */
+.ds-command__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-4);
+  padding: var(--ds-space-2) var(--ds-space-3);
+  border-top: 1px solid var(--ds-color-border);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
 
 
 /* ==========================================================================
