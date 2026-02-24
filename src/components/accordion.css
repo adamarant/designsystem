@@ -1,0 +1,150 @@
+/* ==========================================================================
+ * Accordion / Collapse
+ * ==========================================================================
+ *
+ * A vertically stacked set of collapsible sections. Supports CSS-only
+ * open/close via the `.ds-accordion__item--open` modifier.
+ *
+ * Variants:
+ *   --flush      – borderless, full-bleed style
+ *   --separated  – visually detached items with individual borders
+ *
+ * Markup:
+ *   <div class="ds-accordion">
+ *     <div class="ds-accordion__item ds-accordion__item--open">
+ *       <button class="ds-accordion__trigger">Section</button>
+ *       <div class="ds-accordion__content">
+ *         <div class="ds-accordion__body">…</div>
+ *       </div>
+ *     </div>
+ *   </div>
+ * ========================================================================== */
+
+/* Container
+ * -------------------------------------------------------------------------- */
+
+.ds-accordion {
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  overflow: hidden;
+}
+
+/* Item
+ * -------------------------------------------------------------------------- */
+
+.ds-accordion__item {
+  border-top: 1px solid var(--ds-color-border);
+}
+
+.ds-accordion__item:first-child {
+  border-top: 0;
+}
+
+/* Trigger (button)
+ * -------------------------------------------------------------------------- */
+
+.ds-accordion__trigger {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: var(--ds-space-4);
+  text-align: left;
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+/* Chevron indicator (CSS border-arrow) */
+.ds-accordion__trigger::after {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--ds-color-text-secondary);
+  border-bottom: 2px solid var(--ds-color-text-secondary);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-left: var(--ds-space-3);
+  transition: transform var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-accordion__trigger:hover {
+  background-color: var(--ds-color-overlay);
+}
+
+/* Open state – rotate chevron */
+.ds-accordion__item--open .ds-accordion__trigger::after {
+  transform: rotate(225deg);
+}
+
+/* Collapsible content wrapper
+ * -------------------------------------------------------------------------- */
+
+.ds-accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height var(--ds-duration-normal) var(--ds-ease-default),
+    padding var(--ds-duration-normal) var(--ds-ease-default);
+}
+
+.ds-accordion__item--open .ds-accordion__content {
+  max-height: 80rem;
+}
+
+/* Inner body (visible content)
+ * -------------------------------------------------------------------------- */
+
+.ds-accordion__body {
+  padding: var(--ds-space-4);
+  padding-top: 0;
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  line-height: 1.625;
+}
+
+/* ==========================================================================
+ * Variant: Flush
+ * ========================================================================== */
+
+.ds-accordion--flush {
+  border: 0;
+  border-radius: 0;
+}
+
+.ds-accordion--flush .ds-accordion__item {
+  border-top: 0;
+  border-bottom: 1px solid var(--ds-color-border);
+}
+
+.ds-accordion--flush .ds-accordion__item:last-child {
+  border-bottom: 0;
+}
+
+/* ==========================================================================
+ * Variant: Separated
+ * ========================================================================== */
+
+.ds-accordion--separated {
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.ds-accordion--separated .ds-accordion__item {
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  margin-bottom: var(--ds-space-3);
+  overflow: hidden;
+}
+
+.ds-accordion--separated .ds-accordion__item:last-child {
+  margin-bottom: 0;
+}
