@@ -1,0 +1,135 @@
+/* ==========================================================================
+   Toggle / Switch Component
+   ==========================================================================
+   A toggle (switch) control for binary on/off states.
+   Supports aria-checked attribute and modifier-class driven states.
+
+   Usage:
+     <button class="ds-toggle" role="switch" aria-checked="false"></button>
+
+     <label class="ds-toggle-label">
+       <button class="ds-toggle" role="switch" aria-checked="true"></button>
+       <span class="ds-toggle-label__text">Dark mode</span>
+     </label>
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Track
+   --------------------------------------------------------------------------- */
+
+.ds-toggle {
+  display: inline-flex;
+  position: relative;
+  width: 2.75rem;
+  height: 1.5rem;
+  padding: 2px;
+  border: none;
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-bg-muted);
+  cursor: pointer;
+  transition: background-color var(--ds-duration-normal) var(--ds-ease-out);
+  -webkit-appearance: none;
+  appearance: none;
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Thumb (pseudo-element)
+   --------------------------------------------------------------------------- */
+
+.ds-toggle::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--ds-radius-full);
+  background-color: #fff;
+  box-shadow: var(--ds-shadow-sm);
+  transform: translateY(-50%);
+  transition: transform var(--ds-duration-normal) var(--ds-ease-out);
+}
+
+/* ---------------------------------------------------------------------------
+   Checked state
+   --------------------------------------------------------------------------- */
+
+.ds-toggle[aria-checked="true"],
+.ds-toggle--checked {
+  background-color: var(--ds-color-interactive);
+}
+
+.ds-toggle[aria-checked="true"]::after,
+.ds-toggle--checked::after {
+  transform: translateX(1.25rem) translateY(-50%);
+}
+
+/* ---------------------------------------------------------------------------
+   Hover
+   --------------------------------------------------------------------------- */
+
+.ds-toggle:hover {
+  background-color: var(--ds-color-border-hover);
+}
+
+.ds-toggle[aria-checked="true"]:hover,
+.ds-toggle--checked:hover {
+  background-color: var(--ds-color-interactive-hover);
+}
+
+/* ---------------------------------------------------------------------------
+   Focus
+   --------------------------------------------------------------------------- */
+
+.ds-toggle:focus-visible {
+  outline: 2px solid var(--ds-color-interactive);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Disabled
+   --------------------------------------------------------------------------- */
+
+.ds-toggle:disabled,
+.ds-toggle--disabled {
+  opacity: var(--ds-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Size: Small
+   --------------------------------------------------------------------------- */
+
+.ds-toggle--sm {
+  width: 2rem;
+  height: 1.125rem;
+}
+
+.ds-toggle--sm::after {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.ds-toggle--sm[aria-checked="true"]::after,
+.ds-toggle--sm.ds-toggle--checked::after {
+  transform: translateX(0.875rem) translateY(-50%);
+}
+
+/* ---------------------------------------------------------------------------
+   Label wrapper
+   --------------------------------------------------------------------------- */
+
+.ds-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  cursor: pointer;
+  font-size: var(--ds-text-sm);
+  font-family: var(--ds-font-sans);
+}
+
+.ds-toggle-label__text {
+  color: var(--ds-color-text-secondary);
+}
