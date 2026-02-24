@@ -1,0 +1,55 @@
+/* ==========================================================================
+ * Kbd
+ * ==========================================================================
+ *
+ * Keyboard shortcut display component with a raised 3D key appearance.
+ * Use individually or group multiple keys with ds-kbd-group for combos
+ * like "Cmd + K".
+ *
+ * Usage:
+ *   <kbd class="ds-kbd">Esc</kbd>
+ *
+ *   <span class="ds-kbd-group">
+ *     <kbd class="ds-kbd">Cmd</kbd>
+ *     <span class="ds-kbd-group__separator">+</span>
+ *     <kbd class="ds-kbd">K</kbd>
+ *   </span>
+ *
+ * Modifiers:
+ *   .ds-kbd--lg  — Larger key display
+ * ========================================================================== */
+
+.ds-kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  padding: var(--ds-space-0-5) var(--ds-space-1-5);
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-xs);
+  background-color: var(--ds-color-bg-elevated);
+  border: 1px solid var(--ds-color-border);
+  border-bottom-width: 2px;
+  border-radius: var(--ds-radius-sm);
+  color: var(--ds-color-text-secondary);
+  line-height: 1;
+  vertical-align: baseline;
+}
+
+/* Large variant */
+.ds-kbd--lg {
+  font-size: var(--ds-text-sm);
+  padding: var(--ds-space-1) var(--ds-space-2);
+}
+
+/* Key group (for combos like Cmd + K) */
+.ds-kbd-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+}
+
+/* Separator between keys */
+.ds-kbd-group__separator {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
