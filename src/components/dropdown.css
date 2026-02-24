@@ -1,0 +1,139 @@
+/* ==========================================================================
+   Component: Dropdown
+   Floating menu with surface bg, scale transition, keyboard-friendly items.
+   ========================================================================== */
+
+.ds-dropdown {
+  position: relative;
+}
+
+.ds-dropdown__trigger {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* --- Menu panel --- */
+
+.ds-dropdown__menu {
+  position: absolute;
+  top: calc(100% + var(--ds-space-1));
+  left: 0;
+  z-index: var(--ds-z-dropdown);
+  min-width: 12rem;
+  padding-block: var(--ds-space-1);
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  box-shadow: var(--ds-shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.96);
+  transform-origin: top left;
+  transition:
+    opacity var(--ds-duration-normal) var(--ds-ease-default),
+    visibility var(--ds-duration-normal) var(--ds-ease-default),
+    transform var(--ds-duration-normal) var(--ds-ease-out-expo);
+}
+
+/* Open state — modifier on menu or parent */
+
+.ds-dropdown__menu--open,
+.ds-dropdown--open .ds-dropdown__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* --- Alignment variants --- */
+
+.ds-dropdown__menu--right {
+  left: auto;
+  right: 0;
+  transform-origin: top right;
+}
+
+.ds-dropdown__menu--up {
+  top: auto;
+  bottom: calc(100% + var(--ds-space-1));
+  transform-origin: bottom left;
+}
+
+.ds-dropdown__menu--up.ds-dropdown__menu--right {
+  transform-origin: bottom right;
+}
+
+/* --- Menu item --- */
+
+.ds-dropdown__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ds-space-2);
+  padding: var(--ds-space-1-5) var(--ds-space-3);
+  margin-inline: var(--ds-space-1);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  cursor: pointer;
+  border-radius: var(--ds-radius-md);
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-dropdown__item:hover {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+}
+
+.ds-dropdown__item--active {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+}
+
+.ds-dropdown__item--danger:hover {
+  color: var(--ds-color-error);
+}
+
+.ds-dropdown__item--disabled {
+  opacity: var(--ds-opacity-disabled);
+  pointer-events: none;
+}
+
+/* --- Item slots --- */
+
+.ds-dropdown__item-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.ds-dropdown__item-label {
+  flex: 1;
+}
+
+.ds-dropdown__item-shortcut {
+  margin-left: auto;
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
+
+/* --- Divider --- */
+
+.ds-dropdown__divider {
+  margin-block: var(--ds-space-1);
+  border: 0;
+  border-top: 1px solid var(--ds-color-border);
+}
+
+/* --- Section header --- */
+
+.ds-dropdown__header {
+  padding: var(--ds-space-2) var(--ds-space-3);
+  margin-inline: var(--ds-space-1);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-wide);
+  color: var(--ds-color-text-tertiary);
+}
