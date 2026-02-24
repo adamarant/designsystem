@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Component: Table
+   ========================================================================== */
+
+.ds-table {
+  width: 100%;
+  text-align: left;
+  font-size: var(--ds-text-sm);
+}
+
+.ds-table th {
+  padding: var(--ds-space-3) var(--ds-space-4);
+  font-weight: var(--ds-weight-medium);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-wide);
+  border-bottom: 1px solid var(--ds-color-border);
+}
+
+.ds-table td {
+  padding: var(--ds-space-3) var(--ds-space-4);
+  color: var(--ds-color-text);
+  border-bottom: 1px solid var(--ds-color-border-subtle);
+}
+
+.ds-table tbody tr {
+  transition: background-color var(--ds-duration-normal) var(--ds-ease-default);
+}
+
+.ds-table tbody tr:hover {
+  background-color: var(--ds-color-overlay-subtle);
+}
+
+.ds-table--compact th,
+.ds-table--compact td {
+  padding: var(--ds-space-2) var(--ds-space-3);
+  font-size: var(--ds-text-xs);
+}
+
+.ds-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  background-color: var(--ds-color-surface);
+}
+
+.ds-table-wrapper .ds-table { margin: 0; }

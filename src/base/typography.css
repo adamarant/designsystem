@@ -1,0 +1,163 @@
+/* ==========================================================================
+   Base: Typography
+   Display font for headings, generous sizes, editorial hierarchy.
+   ========================================================================== */
+
+/* Display font utility — use on headings to get the display typeface */
+.ds-font-display {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-font-display-weight);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-font-display-weight);
+  line-height: var(--ds-leading-tight);
+  letter-spacing: var(--ds-tracking-tight);
+  color: var(--ds-color-text);
+}
+
+h1 { font-size: var(--ds-text-5xl); }
+h2 { font-size: var(--ds-text-4xl); }
+h3 { font-size: var(--ds-text-2xl); }
+h4 { font-size: var(--ds-text-xl); }
+h5 { font-size: var(--ds-text-lg); }
+h6 { font-size: var(--ds-text-base); font-weight: var(--ds-weight-medium); }
+
+p {
+  line-height: var(--ds-leading-normal);
+  color: var(--ds-color-text-secondary);
+}
+
+p + p {
+  margin-top: var(--ds-space-4);
+}
+
+small {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
+
+strong, b {
+  font-weight: var(--ds-weight-semibold);
+}
+
+/* Overline / label style (like "PRODUCT DESIGNER & DEVELOPER") */
+.ds-overline {
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  letter-spacing: var(--ds-tracking-wide);
+  text-transform: uppercase;
+  color: var(--ds-color-text-secondary);
+}
+
+/* Section title style */
+.ds-section-title {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-font-display-weight);
+  font-size: var(--ds-text-3xl);
+  letter-spacing: var(--ds-tracking-tight);
+  color: var(--ds-color-text);
+}
+
+@media (min-width: 640px) {
+  .ds-section-title { font-size: var(--ds-text-4xl); }
+}
+
+/* Hero title — large editorial display */
+.ds-hero-title {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-font-display-weight);
+  font-size: var(--ds-text-4xl);
+  line-height: var(--ds-leading-tight);
+  letter-spacing: var(--ds-tracking-tight);
+  color: var(--ds-color-text);
+}
+
+@media (min-width: 640px) {
+  .ds-hero-title { font-size: var(--ds-text-5xl); }
+}
+@media (min-width: 768px) {
+  .ds-hero-title { font-size: var(--ds-text-6xl); }
+}
+@media (min-width: 1024px) {
+  .ds-hero-title { font-size: var(--ds-text-7xl); }
+}
+
+code, kbd, samp {
+  font-family: var(--ds-font-mono);
+  font-size: 0.9em;
+  background-color: var(--ds-color-bg-elevated);
+  padding: 2px 6px;
+  border-radius: var(--ds-radius-sm);
+}
+
+pre {
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  line-height: var(--ds-leading-relaxed);
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  padding: var(--ds-space-4);
+  border-radius: var(--ds-radius-lg);
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+blockquote {
+  padding-left: var(--ds-space-4);
+  border-left: 2px solid var(--ds-color-border-hover);
+  color: var(--ds-color-text-secondary);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: var(--ds-color-border);
+  margin: var(--ds-space-8) 0;
+}
+
+/* Prose: opt-in rich text styling */
+.ds-prose a {
+  color: var(--ds-color-info);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--ds-duration-fast) var(--ds-ease-default);
+}
+.ds-prose a:hover {
+  opacity: 0.8;
+}
+
+.ds-prose ul, .ds-prose ol {
+  padding-left: var(--ds-space-6);
+  margin-top: var(--ds-space-2);
+  margin-bottom: var(--ds-space-2);
+}
+.ds-prose ul { list-style-type: disc; }
+.ds-prose ol { list-style-type: decimal; }
+
+.ds-prose li {
+  line-height: var(--ds-leading-normal);
+  color: var(--ds-color-text-secondary);
+}
+.ds-prose li + li {
+  margin-top: var(--ds-space-1);
+}
+
+/* Tabular figures for numbers */
+.ds-tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Stat numbers — display font, large */
+.ds-stat-number {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-font-display-weight);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--ds-text-2xl);
+  color: var(--ds-color-text);
+}

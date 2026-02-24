@@ -1,0 +1,75 @@
+/* ==========================================================================
+   Utilities: Spacing (margin & padding)
+   Pattern: ds-{m|p}{side}-{size}
+   ========================================================================== */
+
+/* --- Padding --- */
+.ds-p-0  { padding: var(--ds-space-0); }
+.ds-p-1  { padding: var(--ds-space-1); }
+.ds-p-2  { padding: var(--ds-space-2); }
+.ds-p-3  { padding: var(--ds-space-3); }
+.ds-p-4  { padding: var(--ds-space-4); }
+.ds-p-5  { padding: var(--ds-space-5); }
+.ds-p-6  { padding: var(--ds-space-6); }
+.ds-p-8  { padding: var(--ds-space-8); }
+.ds-p-10 { padding: var(--ds-space-10); }
+.ds-p-12 { padding: var(--ds-space-12); }
+
+.ds-px-0  { padding-inline: var(--ds-space-0); }
+.ds-px-2  { padding-inline: var(--ds-space-2); }
+.ds-px-3  { padding-inline: var(--ds-space-3); }
+.ds-px-4  { padding-inline: var(--ds-space-4); }
+.ds-px-5  { padding-inline: var(--ds-space-5); }
+.ds-px-6  { padding-inline: var(--ds-space-6); }
+.ds-px-8  { padding-inline: var(--ds-space-8); }
+
+.ds-py-0  { padding-block: var(--ds-space-0); }
+.ds-py-2  { padding-block: var(--ds-space-2); }
+.ds-py-3  { padding-block: var(--ds-space-3); }
+.ds-py-4  { padding-block: var(--ds-space-4); }
+.ds-py-5  { padding-block: var(--ds-space-5); }
+.ds-py-6  { padding-block: var(--ds-space-6); }
+.ds-py-8  { padding-block: var(--ds-space-8); }
+.ds-py-10 { padding-block: var(--ds-space-10); }
+.ds-py-12 { padding-block: var(--ds-space-12); }
+.ds-py-16 { padding-block: var(--ds-space-16); }
+.ds-py-20 { padding-block: var(--ds-space-20); }
+
+.ds-pt-4  { padding-top: var(--ds-space-4); }
+.ds-pt-8  { padding-top: var(--ds-space-8); }
+.ds-pt-12 { padding-top: var(--ds-space-12); }
+.ds-pt-16 { padding-top: var(--ds-space-16); }
+
+.ds-pb-4  { padding-bottom: var(--ds-space-4); }
+.ds-pb-8  { padding-bottom: var(--ds-space-8); }
+
+/* --- Margin --- */
+.ds-m-0    { margin: var(--ds-space-0); }
+.ds-m-auto { margin: auto; }
+
+.ds-mx-auto { margin-inline: auto; }
+.ds-mx-2   { margin-inline: var(--ds-space-2); }
+.ds-mx-4   { margin-inline: var(--ds-space-4); }
+
+.ds-my-0  { margin-block: var(--ds-space-0); }
+.ds-my-2  { margin-block: var(--ds-space-2); }
+.ds-my-4  { margin-block: var(--ds-space-4); }
+.ds-my-6  { margin-block: var(--ds-space-6); }
+.ds-my-8  { margin-block: var(--ds-space-8); }
+
+.ds-mt-0  { margin-top: var(--ds-space-0); }
+.ds-mt-1  { margin-top: var(--ds-space-1); }
+.ds-mt-2  { margin-top: var(--ds-space-2); }
+.ds-mt-4  { margin-top: var(--ds-space-4); }
+.ds-mt-6  { margin-top: var(--ds-space-6); }
+.ds-mt-8  { margin-top: var(--ds-space-8); }
+
+.ds-mb-0  { margin-bottom: var(--ds-space-0); }
+.ds-mb-1  { margin-bottom: var(--ds-space-1); }
+.ds-mb-2  { margin-bottom: var(--ds-space-2); }
+.ds-mb-4  { margin-bottom: var(--ds-space-4); }
+.ds-mb-6  { margin-bottom: var(--ds-space-6); }
+.ds-mb-8  { margin-bottom: var(--ds-space-8); }
+
+.ds-ml-auto { margin-left: auto; }
+.ds-mr-auto { margin-right: auto; }

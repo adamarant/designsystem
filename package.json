@@ -1,0 +1,32 @@
+{
+  "name": "@digiko/designsystem",
+  "version": "0.1.0",
+  "description": "Design system — installable, extensible, indestructible.",
+  "main": "dist/designsystem.css",
+  "style": "dist/designsystem.css",
+  "exports": {
+    ".": "./dist/designsystem.css",
+    "./tokens": "./src/tokens/index.css",
+    "./base": "./src/base/index.css",
+    "./components": "./src/components/index.css",
+    "./utilities": "./src/utilities/index.css",
+    "./js": "./dist/designsystem.js"
+  },
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node scripts/build.js --watch"
+  },
+  "keywords": ["design-system", "css", "tokens", "components"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riccardointeractive/designsystem.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,116 @@
+/* ==========================================================================
+   Component: Form Inputs
+   Surface bg, clean borders, focus ring.
+   ========================================================================== */
+
+.ds-label {
+  display: block;
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text-secondary);
+  margin-bottom: var(--ds-space-1-5);
+}
+
+.ds-input,
+.ds-textarea,
+.ds-select {
+  width: 100%;
+  padding: var(--ds-space-2-5) var(--ds-space-4);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-sm);
+  line-height: var(--ds-leading-normal);
+  color: var(--ds-color-text);
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  transition: all var(--ds-duration-fast) ease;
+}
+
+.ds-input:hover,
+.ds-textarea:hover,
+.ds-select:hover {
+  border-color: var(--ds-color-border-hover);
+}
+
+.ds-input:focus,
+.ds-textarea:focus,
+.ds-select:focus {
+  border-color: var(--ds-color-border-active);
+  box-shadow: 0 0 0 1px var(--ds-color-border-active);
+  outline: none;
+}
+
+.ds-input::placeholder,
+.ds-textarea::placeholder {
+  color: var(--ds-color-text-tertiary);
+}
+
+/* States */
+.ds-input--error,
+.ds-textarea--error {
+  border-color: var(--ds-color-error);
+}
+.ds-input--error:focus,
+.ds-textarea--error:focus {
+  box-shadow: 0 0 0 1px var(--ds-color-error);
+}
+
+.ds-input--success {
+  border-color: var(--ds-color-success);
+}
+
+/* Sizes */
+.ds-input--sm {
+  padding: var(--ds-space-1) var(--ds-space-2);
+  font-size: var(--ds-text-xs);
+  border-radius: var(--ds-radius-md);
+}
+
+.ds-input--lg {
+  padding: var(--ds-space-3) var(--ds-space-4);
+  font-size: var(--ds-text-base);
+}
+
+/* Textarea */
+.ds-textarea {
+  min-height: 6rem;
+  padding: var(--ds-space-2-5) var(--ds-space-4);
+  resize: vertical;
+}
+
+/* Select */
+.ds-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a1a1aa' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--ds-space-3) center;
+  padding-right: var(--ds-space-8);
+}
+
+/* Help text */
+.ds-help {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  margin-top: var(--ds-space-1-5);
+}
+.ds-help--error { color: var(--ds-color-error); }
+
+/* Form Group */
+.ds-form-group { margin-bottom: var(--ds-space-4); }
+
+/* Checkbox / Radio */
+.ds-checkbox,
+.ds-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  cursor: pointer;
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+}
+.ds-checkbox input,
+.ds-radio input {
+  accent-color: var(--ds-color-interactive);
+  width: 0.875rem;
+  height: 0.875rem;
+}

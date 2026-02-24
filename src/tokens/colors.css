@@ -1,0 +1,180 @@
+/* ==========================================================================
+   Design Tokens: Colors
+   Refined zinc palette, editorial warmth.
+   Light-first with elegant dark mode. Override any --ds-* variable to re-theme.
+   ========================================================================== */
+
+/* Light theme (default) */
+:root,
+[data-theme="light"] {
+  /* --- Backgrounds — clean whites, warm grays --- */
+  --ds-color-bg: #fafafa;
+  --ds-color-bg-subtle: #ffffff;
+  --ds-color-bg-muted: #e4e4e7;
+  --ds-color-bg-elevated: #f4f4f5;
+
+  --ds-color-surface: #ffffff;
+  --ds-color-surface-hover: #fafafa;
+  --ds-color-surface-active: #f4f4f5;
+
+  /* --- Text — zinc hierarchy --- */
+  --ds-color-text: #09090b;
+  --ds-color-text-secondary: #52525b;
+  --ds-color-text-tertiary: #a1a1aa;
+  --ds-color-text-disabled: #d4d4d8;
+
+  /* --- Inverted (primary buttons: dark bg + light text) --- */
+  --ds-color-inverted: #18181b;
+  --ds-color-on-inverted: #fafafa;
+
+  /* --- Borders — solid zinc --- */
+  --ds-color-border: #e4e4e7;
+  --ds-color-border-hover: #d4d4d8;
+  --ds-color-border-active: #a1a1aa;
+  --ds-color-border-subtle: #f4f4f5;
+
+  /* --- Interactive --- */
+  --ds-color-interactive: #3f3f46;
+  --ds-color-interactive-hover: #27272a;
+
+  /* --- Overlays --- */
+  --ds-color-overlay: rgba(0, 0, 0, 0.5);
+  --ds-color-overlay-subtle: rgba(0, 0, 0, 0.02);
+  --ds-color-overlay-hover: rgba(0, 0, 0, 0.04);
+  --ds-color-overlay-active: rgba(0, 0, 0, 0.08);
+
+  /* --- Navigation (glass effect) --- */
+  --ds-color-nav-bg: rgba(250, 250, 250, 0.8);
+  --ds-color-nav-border: rgba(228, 228, 231, 0.6);
+
+  /* --- Selection --- */
+  --ds-color-selection-bg: #09090b;
+  --ds-color-selection-text: #fafafa;
+
+  /* --- Shadows --- */
+  --ds-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --ds-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --ds-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* --- Scrollbar --- */
+  --ds-scrollbar-thumb: #d4d4d4;
+  --ds-scrollbar-thumb-hover: #a3a3a3;
+
+  color-scheme: light;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  /* --- Backgrounds — deep, refined zinc-900 palette --- */
+  --ds-color-bg: #09090b;
+  --ds-color-bg-subtle: #0f0f11;
+  --ds-color-bg-muted: #27272a;
+  --ds-color-bg-elevated: #18181b;
+
+  --ds-color-surface: #0f0f11;
+  --ds-color-surface-hover: #18181b;
+  --ds-color-surface-active: #27272a;
+
+  /* --- Text --- */
+  --ds-color-text: #fafafa;
+  --ds-color-text-secondary: #a1a1aa;
+  --ds-color-text-tertiary: #52525b;
+  --ds-color-text-disabled: #3f3f46;
+
+  /* --- Inverted (primary buttons: light bg + dark text) --- */
+  --ds-color-inverted: #fafafa;
+  --ds-color-on-inverted: #09090b;
+
+  /* --- Borders --- */
+  --ds-color-border: #27272a;
+  --ds-color-border-hover: #3f3f46;
+  --ds-color-border-active: #52525b;
+  --ds-color-border-subtle: #18181b;
+
+  /* --- Interactive --- */
+  --ds-color-interactive: #d4d4d8;
+  --ds-color-interactive-hover: #fafafa;
+
+  /* --- Overlays --- */
+  --ds-color-overlay: rgba(0, 0, 0, 0.7);
+  --ds-color-overlay-subtle: rgba(255, 255, 255, 0.03);
+  --ds-color-overlay-hover: rgba(255, 255, 255, 0.06);
+  --ds-color-overlay-active: rgba(255, 255, 255, 0.1);
+
+  /* --- Navigation --- */
+  --ds-color-nav-bg: rgba(9, 9, 11, 0.8);
+  --ds-color-nav-border: rgba(39, 39, 42, 0.6);
+
+  /* --- Selection --- */
+  --ds-color-selection-bg: #fafafa;
+  --ds-color-selection-text: #09090b;
+
+  /* --- Shadows (stronger in dark) --- */
+  --ds-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --ds-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --ds-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  /* --- Scrollbar --- */
+  --ds-scrollbar-thumb: #27272a;
+  --ds-scrollbar-thumb-hover: #3f3f46;
+
+  color-scheme: dark;
+}
+
+/* Shared tokens (same in both themes) */
+:root {
+  /* --- Semantic Status --- */
+  --ds-color-success: #16a34a;
+  --ds-color-success-subtle: rgba(22, 163, 74, 0.1);
+  --ds-color-success-border: rgba(22, 163, 74, 0.2);
+
+  --ds-color-warning: #d97706;
+  --ds-color-warning-subtle: rgba(217, 119, 6, 0.1);
+  --ds-color-warning-border: rgba(217, 119, 6, 0.2);
+
+  --ds-color-error: #dc2626;
+  --ds-color-error-subtle: rgba(220, 38, 38, 0.1);
+  --ds-color-error-border: rgba(220, 38, 38, 0.2);
+
+  --ds-color-info: #2563eb;
+  --ds-color-info-subtle: rgba(37, 99, 235, 0.1);
+  --ds-color-info-border: rgba(37, 99, 235, 0.2);
+
+  /* --- Accent Colors (for badges, categories) --- */
+  --ds-color-accent-blue: #2563eb;
+  --ds-color-accent-purple: #7c3aed;
+  --ds-color-accent-green: #16a34a;
+  --ds-color-accent-orange: #d97706;
+  --ds-color-accent-blue-subtle: rgba(37, 99, 235, 0.1);
+  --ds-color-accent-purple-subtle: rgba(124, 58, 237, 0.1);
+  --ds-color-accent-green-subtle: rgba(22, 163, 74, 0.1);
+  --ds-color-accent-orange-subtle: rgba(217, 119, 6, 0.1);
+}
+
+/* Dark overrides for status/accent (brighter for contrast) */
+[data-theme="dark"] {
+  --ds-color-success: #4ade80;
+  --ds-color-success-subtle: rgba(74, 222, 128, 0.1);
+  --ds-color-success-border: rgba(74, 222, 128, 0.2);
+
+  --ds-color-warning: #fbbf24;
+  --ds-color-warning-subtle: rgba(251, 191, 36, 0.1);
+  --ds-color-warning-border: rgba(251, 191, 36, 0.2);
+
+  --ds-color-error: #f87171;
+  --ds-color-error-subtle: rgba(248, 113, 113, 0.1);
+  --ds-color-error-border: rgba(248, 113, 113, 0.2);
+
+  --ds-color-info: #60a5fa;
+  --ds-color-info-subtle: rgba(96, 165, 250, 0.1);
+  --ds-color-info-border: rgba(96, 165, 250, 0.2);
+
+  --ds-color-accent-blue: #60a5fa;
+  --ds-color-accent-purple: #a78bfa;
+  --ds-color-accent-green: #4ade80;
+  --ds-color-accent-orange: #fbbf24;
+  --ds-color-accent-blue-subtle: rgba(96, 165, 250, 0.1);
+  --ds-color-accent-purple-subtle: rgba(167, 139, 250, 0.1);
+  --ds-color-accent-green-subtle: rgba(74, 222, 128, 0.1);
+  --ds-color-accent-orange-subtle: rgba(251, 191, 36, 0.1);
+}

@@ -1,0 +1,19 @@
+/* ==========================================================================
+   @ds/designsystem
+
+   Import this one file to get everything.
+   Or import individual layers for fine-grained control:
+
+     import '@ds/designsystem/tokens'
+     import '@ds/designsystem/base'
+     import '@ds/designsystem/components'
+     import '@ds/designsystem/utilities'
+
+   To customize: override any --ds-* variable in your project CSS.
+   Your values always win. Nothing breaks.
+   ========================================================================== */
+
+@import './tokens/index.css';
+@import './base/index.css';
+@import './components/index.css';
+@import './utilities/index.css';

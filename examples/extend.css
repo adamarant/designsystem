@@ -1,0 +1,80 @@
+/* ==========================================================================
+   Example: How to extend the design system in your project
+
+   1. Install:  npm install @ds/designsystem
+   2. Import:   @import '@ds/designsystem'   (or link the CSS)
+   3. Override:  redeclare any --ds-* token below
+   4. Extend:    add your own components using ds tokens
+
+   Your overrides always win. Your additions never conflict.
+   ========================================================================== */
+
+/* --- Step 1: Override tokens to re-brand --- */
+:root {
+  /* Swap fonts — the whole system updates */
+  --ds-font-display: 'Playfair Display', Georgia, serif;
+  --ds-font-sans: 'DM Sans', system-ui, sans-serif;
+  --ds-font-display-weight: 700;
+
+  /* Rounder corners */
+  --ds-radius-lg: 16px;
+  --ds-radius-xl: 24px;
+  --ds-radius-2xl: 32px;
+}
+
+/* Change just the dark theme accent */
+[data-theme="dark"] {
+  --ds-color-inverted: #e11d48;
+  --ds-color-on-inverted: #ffffff;
+}
+
+/* --- Step 2: Add your own components using tokens --- */
+
+/* Custom: Pricing card (uses ds tokens, won't break) */
+.pricing-card {
+  padding: var(--ds-space-8);
+  background: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  text-align: center;
+  transition: all var(--ds-duration-normal) var(--ds-ease-out-expo);
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ds-shadow-lg);
+}
+
+.pricing-card--featured {
+  border-color: var(--ds-color-accent-blue);
+  box-shadow: 0 0 0 1px var(--ds-color-accent-blue);
+}
+
+.pricing-card__price {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-font-display-weight);
+  font-size: var(--ds-text-5xl);
+  color: var(--ds-color-text);
+}
+
+.pricing-card__period {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-tertiary);
+}
+
+/* Custom: Avatar component */
+.avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--ds-radius-full);
+  background: var(--ds-color-inverted);
+  color: var(--ds-color-on-inverted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-semibold);
+}
+
+.avatar--sm { width: 2rem; height: 2rem; font-size: var(--ds-text-xs); }
+.avatar--lg { width: 3.5rem; height: 3.5rem; font-size: var(--ds-text-lg); }

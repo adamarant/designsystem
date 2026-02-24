@@ -1,0 +1,11 @@
+/* ==========================================================================
+   Design Tokens — All tokens in one import
+
+   To override: just redeclare any --ds-* variable in your project's CSS.
+   Your values win. Nothing breaks.
+   ========================================================================== */
+
+@import './colors.css';
+@import './typography.css';
+@import './spacing.css';
+@import './shadows.css';

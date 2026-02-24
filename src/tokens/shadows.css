@@ -1,0 +1,26 @@
+/* ==========================================================================
+   Design Tokens: Effects & Transitions
+   Expo easing, smooth editorial motion.
+   Shadows are defined per-theme in colors.css.
+   ========================================================================== */
+
+:root {
+  /* --- Focus Ring --- */
+  --ds-ring-width: 2px;
+  --ds-ring-offset: 2px;
+  --ds-ring-color: var(--ds-color-border-active);
+
+  /* --- Transitions --- */
+  --ds-duration-fast: 100ms;
+  --ds-duration-normal: 200ms;
+  --ds-duration-slow: 400ms;
+  --ds-duration-slower: 800ms;
+
+  --ds-ease-default: ease;
+  --ds-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ds-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ds-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* --- Opacity --- */
+  --ds-opacity-disabled: 0.5;
+}

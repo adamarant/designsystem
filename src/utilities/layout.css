@@ -1,0 +1,134 @@
+/* ==========================================================================
+   Utilities: Layout
+   Container with clamp padding, generous responsive grid.
+   ========================================================================== */
+
+/* --- Container --- */
+.ds-container {
+  width: 100%;
+  max-width: var(--ds-container-max);
+  margin-inline: auto;
+  padding-inline: var(--ds-container-padding);
+}
+
+/* --- Section (generous vertical rhythm) --- */
+.ds-section {
+  padding-block: var(--ds-section-padding);
+}
+
+/* --- Flex --- */
+.ds-flex       { display: flex; }
+.ds-inline-flex { display: inline-flex; }
+.ds-flex-col   { flex-direction: column; }
+.ds-flex-row   { flex-direction: row; }
+.ds-flex-wrap  { flex-wrap: wrap; }
+.ds-flex-1     { flex: 1 1 0%; }
+.ds-flex-auto  { flex: 1 1 auto; }
+.ds-flex-none  { flex: none; }
+.ds-shrink-0   { flex-shrink: 0; }
+
+/* --- Alignment --- */
+.ds-items-start    { align-items: flex-start; }
+.ds-items-center   { align-items: center; }
+.ds-items-end      { align-items: flex-end; }
+.ds-items-stretch  { align-items: stretch; }
+.ds-items-baseline { align-items: baseline; }
+
+.ds-justify-start   { justify-content: flex-start; }
+.ds-justify-center  { justify-content: center; }
+.ds-justify-end     { justify-content: flex-end; }
+.ds-justify-between { justify-content: space-between; }
+.ds-justify-around  { justify-content: space-around; }
+.ds-justify-evenly  { justify-content: space-evenly; }
+
+.ds-self-start  { align-self: flex-start; }
+.ds-self-center { align-self: center; }
+.ds-self-end    { align-self: flex-end; }
+
+/* --- Grid --- */
+.ds-grid {
+  display: grid;
+  gap: var(--ds-space-6);
+}
+
+.ds-grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.ds-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.ds-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.ds-grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (min-width: 640px) {
+  .ds-sm\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .ds-sm\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 768px) {
+  .ds-md\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .ds-md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .ds-md\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .ds-md\:flex-row { flex-direction: row; }
+}
+
+@media (min-width: 1024px) {
+  .ds-lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .ds-lg\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* --- Gap --- */
+.ds-gap-0  { gap: var(--ds-space-0); }
+.ds-gap-1  { gap: var(--ds-space-1); }
+.ds-gap-2  { gap: var(--ds-space-2); }
+.ds-gap-3  { gap: var(--ds-space-3); }
+.ds-gap-4  { gap: var(--ds-space-4); }
+.ds-gap-5  { gap: var(--ds-space-5); }
+.ds-gap-6  { gap: var(--ds-space-6); }
+.ds-gap-8  { gap: var(--ds-space-8); }
+.ds-gap-12 { gap: var(--ds-space-12); }
+
+/* --- Display --- */
+.ds-block        { display: block; }
+.ds-inline-block { display: inline-block; }
+.ds-inline       { display: inline; }
+.ds-hidden       { display: none; }
+
+@media (min-width: 768px) {
+  .ds-md\:hidden { display: none; }
+  .ds-md\:block  { display: block; }
+  .ds-md\:flex   { display: flex; }
+}
+
+/* --- Position --- */
+.ds-relative { position: relative; }
+.ds-absolute { position: absolute; }
+.ds-fixed    { position: fixed; }
+.ds-sticky   { position: sticky; top: 0; }
+
+/* --- Overflow --- */
+.ds-overflow-hidden { overflow: hidden; }
+.ds-overflow-auto   { overflow: auto; }
+.ds-overflow-x-auto { overflow-x: auto; }
+
+/* --- Width/Height --- */
+.ds-w-full    { width: 100%; }
+.ds-h-full    { height: 100%; }
+.ds-h-screen  { height: 100dvh; }
+.ds-min-h-screen { min-height: 100dvh; }
+
+/* --- Stack (vertical spacing) --- */
+.ds-stack > * + * {
+  margin-top: var(--ds-space-4);
+}
+
+.ds-stack--sm > * + * { margin-top: var(--ds-space-2); }
+.ds-stack--lg > * + * { margin-top: var(--ds-space-8); }
+
+/* --- Center content --- */
+.ds-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Aspect Ratio --- */
+.ds-aspect-square { aspect-ratio: 1; }
+.ds-aspect-video  { aspect-ratio: 16/9; }
+.ds-aspect-card   { aspect-ratio: 16/10; }

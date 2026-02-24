@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Base: Reset
+   Clean, modern, antialiased.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+  tab-size: 4;
+  scroll-behavior: smooth;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-base);
+  line-height: var(--ds-leading-normal);
+  color: var(--ds-color-text);
+  background-color: var(--ds-color-bg);
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button,
+[role="button"],
+select,
+summary {
+  cursor: pointer;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Hide number input spinners */
+input[type="number"] { -moz-appearance: textfield; }
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Focus: subtle ring */
+*:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
+
+/* Selection — inverted */
+::selection {
+  background-color: var(--ds-color-selection-bg);
+  color: var(--ds-color-selection-text);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ds-scrollbar-thumb);
+  border-radius: var(--ds-radius-sm);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ds-scrollbar-thumb-hover);
+}
+
+.ds-no-scrollbar::-webkit-scrollbar { display: none; }
+.ds-no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
