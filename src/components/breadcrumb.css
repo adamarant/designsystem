@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Breadcrumb Navigation
+   ==========================================================================
+   A horizontal breadcrumb trail for hierarchical navigation.
+
+   Usage:
+     <nav class="ds-breadcrumb" aria-label="Breadcrumb">
+       <span class="ds-breadcrumb__item">
+         <a href="/" class="ds-breadcrumb__link">Home</a>
+       </span>
+       <span class="ds-breadcrumb__item">
+         <a href="/products" class="ds-breadcrumb__link">Products</a>
+       </span>
+       <span class="ds-breadcrumb__item">
+         <span class="ds-breadcrumb__current" aria-current="page">Widget</span>
+       </span>
+     </nav>
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Container
+   --------------------------------------------------------------------------- */
+
+.ds-breadcrumb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ds-space-1);
+  font-size: var(--ds-text-sm);
+  font-family: var(--ds-font-sans);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Item
+   --------------------------------------------------------------------------- */
+
+.ds-breadcrumb__item {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+}
+
+/* Separator — rendered via ::after on every item except the last */
+.ds-breadcrumb__item:not(:last-child)::after {
+  content: "/";
+  color: var(--ds-color-text-tertiary);
+  flex-shrink: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Link
+   --------------------------------------------------------------------------- */
+
+.ds-breadcrumb__link {
+  color: var(--ds-color-text-tertiary);
+  text-decoration: none;
+  transition: color var(--ds-duration-fast) var(--ds-ease-out);
+}
+
+.ds-breadcrumb__link:hover {
+  color: var(--ds-color-text-secondary);
+}
+
+.ds-breadcrumb__link:focus-visible {
+  outline: 2px solid var(--ds-color-interactive);
+  outline-offset: 2px;
+  border-radius: var(--ds-radius-sm);
+}
+
+/* ---------------------------------------------------------------------------
+   Current page (non-interactive)
+   --------------------------------------------------------------------------- */
+
+.ds-breadcrumb__current {
+  color: var(--ds-color-text);
+  font-weight: var(--ds-weight-medium);
+}
+
+/* ---------------------------------------------------------------------------
+   Modifier: Compact
+   --------------------------------------------------------------------------- */
+
+.ds-breadcrumb--compact {
+  gap: var(--ds-space-0-5, 0.125rem);
+  font-size: var(--ds-text-xs);
+}
+
+.ds-breadcrumb--compact .ds-breadcrumb__item {
+  gap: var(--ds-space-0-5, 0.125rem);
+}
