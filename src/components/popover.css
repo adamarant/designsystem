@@ -1,0 +1,112 @@
+/* ==========================================================================
+ * Popover
+ * ==========================================================================
+ *
+ * Flexible popover component for displaying complex content anchored to a
+ * trigger element. Supports four placement directions (top, bottom, left,
+ * right) and multiple size variants. Default placement is bottom.
+ *
+ * Usage:
+ *   <div class="ds-popover ds-popover--open">
+ *     <button>Trigger</button>
+ *     <div class="ds-popover__content">...</div>
+ *   </div>
+ *
+ * Modifiers:
+ *   .ds-popover--open         — Shows the popover content
+ *   .ds-popover--top          — Places content above the trigger
+ *   .ds-popover--bottom       — Places content below the trigger (default)
+ *   .ds-popover--left         — Places content to the left of the trigger
+ *   .ds-popover--right        — Places content to the right of the trigger
+ *   .ds-popover__content--sm  — Smaller popover (12rem min-width)
+ *   .ds-popover__content--lg  — Larger popover (24rem min-width)
+ * ========================================================================== */
+
+.ds-popover {
+  position: relative;
+  display: inline-flex;
+}
+
+.ds-popover__content {
+  position: absolute;
+  z-index: var(--ds-z-dropdown);
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  box-shadow: var(--ds-shadow-lg);
+  padding: var(--ds-space-4);
+  min-width: 16rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.96);
+  transition:
+    opacity var(--ds-duration-fast) var(--ds-ease),
+    visibility var(--ds-duration-fast) var(--ds-ease),
+    transform var(--ds-duration-fast) var(--ds-ease-out-expo);
+}
+
+/* Open state */
+.ds-popover--open .ds-popover__content {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* Placement: bottom (default) */
+.ds-popover__content,
+.ds-popover--bottom .ds-popover__content {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.96);
+}
+
+.ds-popover--open .ds-popover__content,
+.ds-popover--bottom.ds-popover--open .ds-popover__content {
+  transform: translateX(-50%) scale(1);
+}
+
+/* Placement: top */
+.ds-popover--top .ds-popover__content {
+  bottom: calc(100% + 8px);
+  top: auto;
+  left: 50%;
+  transform: translateX(-50%) scale(0.96);
+}
+
+.ds-popover--top.ds-popover--open .ds-popover__content {
+  transform: translateX(-50%) scale(1);
+}
+
+/* Placement: left */
+.ds-popover--left .ds-popover__content {
+  right: calc(100% + 8px);
+  top: 50%;
+  left: auto;
+  transform: translateY(-50%) scale(0.96);
+}
+
+.ds-popover--left.ds-popover--open .ds-popover__content {
+  transform: translateY(-50%) scale(1);
+}
+
+/* Placement: right */
+.ds-popover--right .ds-popover__content {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) scale(0.96);
+}
+
+.ds-popover--right.ds-popover--open .ds-popover__content {
+  transform: translateY(-50%) scale(1);
+}
+
+/* Size: small */
+.ds-popover__content--sm {
+  min-width: 12rem;
+  padding: var(--ds-space-3);
+}
+
+/* Size: large */
+.ds-popover__content--lg {
+  min-width: 24rem;
+}
