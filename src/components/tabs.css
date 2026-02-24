@@ -1,0 +1,163 @@
+/* ==========================================================================
+   Component: Tabs
+   Horizontal/vertical tab navigation with pill, small, and full-width variants.
+   ========================================================================== */
+
+.ds-tabs {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border-bottom: 1px solid var(--ds-color-border);
+  gap: var(--ds-space-0);
+}
+
+/* --- Pill variant --- */
+
+.ds-tabs--pills {
+  border-bottom: none;
+  gap: var(--ds-space-1);
+  background-color: var(--ds-color-bg-elevated);
+  border-radius: var(--ds-radius-lg);
+  padding: var(--ds-space-1);
+}
+
+.ds-tabs--pills .ds-tab {
+  border-bottom: none;
+  border-radius: var(--ds-radius-md);
+  padding: var(--ds-space-1-5) var(--ds-space-3);
+}
+
+.ds-tabs--pills .ds-tab:hover {
+  background-color: var(--ds-color-overlay-hover);
+}
+
+.ds-tabs--pills .ds-tab--active {
+  background-color: var(--ds-color-surface);
+  color: var(--ds-color-text);
+  box-shadow: var(--ds-shadow-sm);
+  border-bottom: none;
+}
+
+/* --- Vertical variant --- */
+
+.ds-tabs--vertical {
+  flex-direction: column;
+  border-bottom: none;
+  border-right: 1px solid var(--ds-color-border);
+  gap: var(--ds-space-0-5);
+}
+
+.ds-tabs--vertical .ds-tab {
+  border-bottom: none;
+  border-right: 2px solid transparent;
+  padding: var(--ds-space-2) var(--ds-space-4);
+  text-align: left;
+}
+
+.ds-tabs--vertical .ds-tab--active {
+  border-bottom: none;
+  border-right-color: var(--ds-color-interactive);
+  color: var(--ds-color-text);
+}
+
+/* --- Small variant --- */
+
+.ds-tabs--sm .ds-tab {
+  padding: var(--ds-space-1-5) var(--ds-space-3);
+  font-size: var(--ds-text-xs);
+}
+
+/* --- Full width variant --- */
+
+.ds-tabs--full {
+  width: 100%;
+}
+
+.ds-tabs--full .ds-tab {
+  flex: 1;
+  justify-content: center;
+}
+
+/* --- Individual Tab --- */
+
+.ds-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  padding: var(--ds-space-2) var(--ds-space-4);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text-secondary);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  white-space: nowrap;
+  transition: all var(--ds-duration-fast) ease;
+  margin-bottom: -1px;
+}
+
+.ds-tab:hover {
+  color: var(--ds-color-text);
+}
+
+.ds-tab:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+  border-radius: var(--ds-radius-sm);
+}
+
+.ds-tab--active {
+  color: var(--ds-color-text);
+  border-bottom-color: var(--ds-color-interactive);
+}
+
+.ds-tab:disabled,
+.ds-tab[aria-disabled="true"] {
+  opacity: var(--ds-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* --- Tab Icon --- */
+
+.ds-tab__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+/* --- Tab Count Badge --- */
+
+.ds-tab__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-space-0) var(--ds-space-1-5);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text-tertiary);
+  background-color: var(--ds-color-bg-elevated);
+  border-radius: var(--ds-radius-full);
+  min-width: 1.25rem;
+}
+
+.ds-tab--active .ds-tab__count {
+  color: var(--ds-color-text-secondary);
+  background-color: var(--ds-color-overlay-active);
+}
+
+/* --- Tab Panel --- */
+
+.ds-tab-panel {
+  padding-top: var(--ds-space-5);
+}
