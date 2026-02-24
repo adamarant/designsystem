@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Component: Divider
+   Horizontal and vertical separators with optional centered label.
+   ========================================================================== */
+
+.ds-divider {
+  border: none;
+  border-top: 1px solid var(--ds-color-border);
+  margin-block: var(--ds-space-4);
+  width: 100%;
+}
+
+/* --- Vertical --- */
+
+.ds-divider--vertical {
+  border-top: none;
+  border-left: 1px solid var(--ds-color-border);
+  display: inline-block;
+  width: auto;
+  height: auto;
+  min-height: 1rem;
+  align-self: stretch;
+  margin-block: var(--ds-space-0);
+  margin-inline: var(--ds-space-3);
+}
+
+/* --- Subtle --- */
+
+.ds-divider--subtle {
+  border-color: var(--ds-color-border-subtle);
+}
+
+/* --- Spacious --- */
+
+.ds-divider--spacious {
+  margin-block: var(--ds-space-8);
+}
+
+.ds-divider--spacious.ds-divider--vertical {
+  margin-block: var(--ds-space-0);
+  margin-inline: var(--ds-space-6);
+}
+
+/* --- Label (centered text with lines on either side) --- */
+
+.ds-divider--label {
+  border-top: none;
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-wide);
+  white-space: nowrap;
+}
+
+.ds-divider--label::before,
+.ds-divider--label::after {
+  content: '';
+  flex: 1;
+  height: 0;
+  border-top: 1px solid var(--ds-color-border);
+}
