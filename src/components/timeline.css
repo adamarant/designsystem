@@ -1,0 +1,131 @@
+/* ==========================================================================
+ * Timeline
+ * ==========================================================================
+ *
+ * Vertical timeline component for roadmaps, activity feeds, and step-based
+ * flows. Each item has a dot indicator on a vertical line with support for
+ * completed, current, and error states.
+ *
+ * Usage:
+ *   <div class="ds-timeline">
+ *     <div class="ds-timeline__item ds-timeline__item--completed">
+ *       <div class="ds-timeline__dot"></div>
+ *       <div class="ds-timeline__content">
+ *         <div class="ds-timeline__title">Step one</div>
+ *         <div class="ds-timeline__description">Details here.</div>
+ *         <div class="ds-timeline__time">2 hours ago</div>
+ *       </div>
+ *     </div>
+ *   </div>
+ *
+ * Modifiers:
+ *   .ds-timeline__item--completed  — Green dot (success)
+ *   .ds-timeline__item--current    — Inverted dot (active)
+ *   .ds-timeline__item--error      — Red dot (error)
+ *   .ds-timeline--compact          — Tighter spacing, smaller dots
+ * ========================================================================== */
+
+.ds-timeline {
+  position: relative;
+  padding-left: var(--ds-space-8);
+}
+
+/* Vertical line */
+.ds-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.9rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--ds-color-border);
+}
+
+/* Item */
+.ds-timeline__item {
+  position: relative;
+  padding-bottom: var(--ds-space-6);
+}
+
+.ds-timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+/* Dot */
+.ds-timeline__dot {
+  position: absolute;
+  left: calc(-1 * var(--ds-space-8) + 0.5rem);
+  width: 1rem;
+  height: 1rem;
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-bg-elevated);
+  border: 2px solid var(--ds-color-border);
+  z-index: 1;
+}
+
+/* Dot state: completed */
+.ds-timeline__item--completed .ds-timeline__dot {
+  background-color: var(--ds-color-success);
+  border-color: var(--ds-color-success);
+}
+
+/* Dot state: current */
+.ds-timeline__item--current .ds-timeline__dot {
+  background-color: var(--ds-color-inverted);
+  border-color: var(--ds-color-inverted);
+}
+
+/* Dot state: error */
+.ds-timeline__item--error .ds-timeline__dot {
+  background-color: var(--ds-color-error);
+  border-color: var(--ds-color-error);
+}
+
+/* Content area */
+.ds-timeline__content {
+  /* no additional layout needed; flows naturally after the dot */
+}
+
+/* Title */
+.ds-timeline__title {
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text);
+}
+
+/* Description */
+.ds-timeline__description {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  margin-top: var(--ds-space-1);
+}
+
+/* Timestamp */
+.ds-timeline__time {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  margin-top: var(--ds-space-0-5);
+}
+
+/* Compact variant */
+.ds-timeline--compact {
+  padding-left: var(--ds-space-6);
+}
+
+.ds-timeline--compact::before {
+  left: 0.6rem;
+}
+
+.ds-timeline--compact .ds-timeline__item {
+  padding-bottom: var(--ds-space-4);
+}
+
+.ds-timeline--compact .ds-timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+.ds-timeline--compact .ds-timeline__dot {
+  left: calc(-1 * var(--ds-space-6) + 0.25rem);
+  width: 0.75rem;
+  height: 0.75rem;
+}
