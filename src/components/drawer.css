@@ -1,0 +1,209 @@
+/* ==========================================================================
+ * Drawer / Sheet
+ * ==========================================================================
+ *
+ * A sliding overlay panel anchored to the edge of the viewport.
+ * Default direction is right; use `--left` or `--bottom` modifiers
+ * to change the slide origin.
+ *
+ * Sizes:
+ *   --sm   18 rem
+ *   (default)  24 rem
+ *   --lg   36 rem
+ *
+ * Markup:
+ *   <div class="ds-drawer ds-drawer--right ds-drawer--open">
+ *     <div class="ds-drawer__content">
+ *       <div class="ds-drawer__header">
+ *         <h3>Title</h3>
+ *         <button class="ds-drawer__close" aria-label="Close">&times;</button>
+ *       </div>
+ *       <div class="ds-drawer__body">…</div>
+ *       <div class="ds-drawer__footer">…</div>
+ *     </div>
+ *   </div>
+ * ========================================================================== */
+
+/* Overlay backdrop
+ * -------------------------------------------------------------------------- */
+
+.ds-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-overlay);
+  background-color: var(--ds-color-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--ds-duration-normal) var(--ds-ease-default),
+    visibility var(--ds-duration-normal) var(--ds-ease-default);
+}
+
+.ds-drawer--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sliding panel
+ * -------------------------------------------------------------------------- */
+
+.ds-drawer__content {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ds-color-surface);
+  box-shadow: var(--ds-shadow-lg);
+  overflow-y: auto;
+  transition: transform var(--ds-duration-normal) var(--ds-ease-out-expo);
+}
+
+/* ==========================================================================
+ * Direction: Right (default)
+ * ========================================================================== */
+
+.ds-drawer__content,
+.ds-drawer--right .ds-drawer__content {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 24rem;
+  max-width: 90vw;
+  border-left: 1px solid var(--ds-color-border);
+  transform: translateX(100%);
+}
+
+.ds-drawer--open .ds-drawer__content,
+.ds-drawer--right.ds-drawer--open .ds-drawer__content {
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+ * Direction: Left
+ * ========================================================================== */
+
+.ds-drawer--left .ds-drawer__content {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: auto;
+  width: 24rem;
+  max-width: 90vw;
+  border-left: 0;
+  border-right: 1px solid var(--ds-color-border);
+  transform: translateX(-100%);
+}
+
+.ds-drawer--left.ds-drawer--open .ds-drawer__content {
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+ * Direction: Bottom
+ * ========================================================================== */
+
+.ds-drawer--bottom .ds-drawer__content {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: auto;
+  width: auto;
+  max-height: 90dvh;
+  border-left: 0;
+  border-top: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl) var(--ds-radius-xl) 0 0;
+  transform: translateY(100%);
+}
+
+.ds-drawer--bottom.ds-drawer--open .ds-drawer__content {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+ * Sizes
+ * ========================================================================== */
+
+.ds-drawer--sm .ds-drawer__content {
+  width: 18rem;
+}
+
+.ds-drawer--lg .ds-drawer__content {
+  width: 36rem;
+}
+
+/* Bottom drawers should not have a fixed width */
+.ds-drawer--bottom.ds-drawer--sm .ds-drawer__content,
+.ds-drawer--bottom.ds-drawer--lg .ds-drawer__content {
+  width: auto;
+}
+
+/* ==========================================================================
+ * Header
+ * ========================================================================== */
+
+.ds-drawer__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--ds-space-4) var(--ds-space-5);
+  border-bottom: 1px solid var(--ds-color-border);
+}
+
+.ds-drawer__header h3 {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-font-display-weight);
+  font-size: var(--ds-text-lg);
+  color: var(--ds-color-text);
+  margin: 0;
+}
+
+/* ==========================================================================
+ * Close button
+ * ========================================================================== */
+
+.ds-drawer__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ds-radius-md);
+  background-color: transparent;
+  color: var(--ds-color-text-tertiary);
+  font-size: var(--ds-text-lg);
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background-color var(--ds-duration-fast) var(--ds-ease-default),
+    color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-drawer__close:hover {
+  background-color: var(--ds-color-overlay);
+  color: var(--ds-color-text);
+}
+
+/* ==========================================================================
+ * Body
+ * ========================================================================== */
+
+.ds-drawer__body {
+  padding: var(--ds-space-5);
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ==========================================================================
+ * Footer
+ * ========================================================================== */
+
+.ds-drawer__footer {
+  padding: var(--ds-space-4) var(--ds-space-5);
+  border-top: 1px solid var(--ds-color-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ds-space-2);
+}
