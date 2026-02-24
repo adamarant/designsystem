@@ -293,6 +293,36 @@ Tokens:         src/tokens/ (4 files)
 Examples:       examples/index.html (open in browser)
 ```
 
+## End-of-Session Checklist
+
+After every modification session, run through this before closing:
+
+- [ ] **No hardcoded values** — grep all touched files for hex colors (`#`), `px` values in spacing/font-size, raw font names, hardcoded rgba. Every value must be a `--ds-*` token.
+- [ ] **BEM naming correct** — all new classes follow `ds-component__element--modifier`. No typos, no camelCase, no missing prefix.
+- [ ] **File header present** — every new/modified component file has the `/* === Component: Name ... === */` comment block.
+- [ ] **index.css updated** — new components are imported in `src/components/index.css`, in the right tier section.
+- [ ] **Build passes** — run `node scripts/build.js` and confirm no warnings. Check output size is reasonable.
+- [ ] **dist committed** — `dist/designsystem.css` is rebuilt and included in the commit.
+- [ ] **Light + dark work** — visually verify new components render correctly in both themes (open `examples/index.html`, toggle theme).
+- [ ] **No breaking changes** — existing class names unchanged. No removed selectors. No renamed tokens.
+- [ ] **examples/index.html updated** — if a new component was added, it has a usage example in the demo page.
+- [ ] **Commit per component** — each new component gets its own `feat:` commit. Index + dist get a separate `chore:` commit at the end.
+
+Quick one-liner to catch violations:
+
+```bash
+# Find hardcoded colors in component files
+grep -rn '#[0-9a-fA-F]\{3,8\}' src/components/ --include="*.css" | grep -v '/\*'
+
+# Find hardcoded px spacing (ignore 0px, 1px, 2px structural)
+grep -rn '[3-9]px\|[0-9][0-9]px' src/components/ --include="*.css" | grep -v '/\*'
+
+# Find missing ds- prefix
+grep -rn '^\.' src/components/ --include="*.css" | grep -v '\.ds-' | grep -v '/\*' | grep -v '::' | grep -v '@'
+```
+
+---
+
 ## Commit Convention
 
 ```
