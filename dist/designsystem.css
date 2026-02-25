@@ -1,14 +1,14 @@
 /* @ds/designsystem v0.1.0 */
 /* ==========================================================================
-   @ds/designsystem
+   @digiko-npm/designsystem
 
    Import this one file to get everything.
    Or import individual layers for fine-grained control:
 
-     import '@ds/designsystem/tokens'
-     import '@ds/designsystem/base'
-     import '@ds/designsystem/components'
-     import '@ds/designsystem/utilities'
+     import '@digiko-npm/designsystem/tokens'
+     import '@digiko-npm/designsystem/base'
+     import '@digiko-npm/designsystem/components'
+     import '@digiko-npm/designsystem/utilities'
 
    To customize: override any --ds-* variable in your project CSS.
    Your values always win. Nothing breaks.

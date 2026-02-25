@@ -4,7 +4,7 @@
 
 CSS-only design system. Zero dependencies. Install anywhere, override tokens, nothing breaks.
 
-**Package:** `digiko-designsystem`
+**Package:** `@digiko-npm/designsystem`
 **Stack:** Pure CSS + CSS Custom Properties
 **Build:** `node scripts/build.js` (concatenates all CSS into `dist/designsystem.css`)
 **Theme:** Light default, dark via `[data-theme="dark"]`
@@ -258,15 +258,15 @@ src/
 ## How Consuming Projects Use This
 
 ```bash
-# Install from GitHub
-npm install digiko-dev/designsystem
+# Install from npm
+npm install @digiko-npm/designsystem
 
 # Import in CSS (all-in-one)
-@import 'digiko-designsystem';
+@import '@digiko-npm/designsystem';
 
 # Or import individual layers
-@import 'digiko-designsystem/tokens';
-@import 'digiko-designsystem/components';
+@import '@digiko-npm/designsystem/tokens';
+@import '@digiko-npm/designsystem/components';
 ```
 
 **Override any token** in the consuming project's CSS:
