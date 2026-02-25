@@ -19,6 +19,15 @@ npm install @digiko-npm/designsystem
 @import '@digiko-npm/designsystem/base';
 @import '@digiko-npm/designsystem/components';
 @import '@digiko-npm/designsystem/utilities';
+
+/* Or cherry-pick single components (tokens + base required) */
+@import '@digiko-npm/designsystem/tokens';
+@import '@digiko-npm/designsystem/base';
+@import '@digiko-npm/designsystem/components/button';
+@import '@digiko-npm/designsystem/components/card';
+
+/* Minified bundle */
+@import '@digiko-npm/designsystem/min';
 ```
 
 ```html

@@ -52,13 +52,58 @@ function build() {
     fs.copyFileSync(jsSource, path.join(DIST, 'designsystem.js'));
   }
 
+  // Minified bundle
+  const minified = minifyCSS(css);
+  fs.writeFileSync(path.join(DIST, 'designsystem.min.css'), banner + minified);
+
   const elapsed = Date.now() - start;
   const size = (Buffer.byteLength(css) / 1024).toFixed(1);
-  console.log(`  Built designsystem.css (${size}KB) in ${elapsed}ms`);
+  const minSize = (Buffer.byteLength(minified) / 1024).toFixed(1);
+  console.log(`  Built designsystem.css (${size}KB) + min (${minSize}KB) in ${elapsed}ms`);
+}
+
+function minifyCSS(css) {
+  return css
+    .replace(/\/\*[\s\S]*?\*\//g, '')       // Remove comments
+    .replace(/\s+/g, ' ')                    // Collapse whitespace
+    .replace(/\s*([{}:;,>~+])\s*/g, '$1')   // Remove space around symbols
+    .replace(/;}/g, '}')                     // Remove trailing semicolons
+    .trim();
+}
+
+function updateExportsMap() {
+  const pkgPath = path.join(__dirname, '..', 'package.json');
+  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+
+  const componentsDir = path.join(SRC, 'components');
+  const componentFiles = fs.readdirSync(componentsDir)
+    .filter(f => f.endsWith('.css') && f !== 'index.css')
+    .sort();
+
+  const exports = {
+    '.': './dist/designsystem.css',
+    './min': './dist/designsystem.min.css',
+    './tokens': './src/tokens/index.css',
+    './base': './src/base/index.css',
+    './components': './src/components/index.css',
+  };
+
+  for (const file of componentFiles) {
+    const name = file.replace('.css', '');
+    exports[`./components/${name}`] = `./src/components/${file}`;
+  }
+
+  exports['./utilities'] = './src/utilities/index.css';
+  exports['./js'] = './dist/designsystem.js';
+
+  pkg.exports = exports;
+  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
+  console.log(`  Updated exports map (${componentFiles.length} components)`);
 }
 
 // Run
 build();
+updateExportsMap();
 
 // Watch mode
 if (process.argv.includes('--watch')) {

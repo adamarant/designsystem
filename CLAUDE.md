@@ -267,6 +267,15 @@ npm install @digiko-npm/designsystem
 # Or import individual layers
 @import '@digiko-npm/designsystem/tokens';
 @import '@digiko-npm/designsystem/components';
+
+# Or cherry-pick single components (tokens + base required)
+@import '@digiko-npm/designsystem/tokens';
+@import '@digiko-npm/designsystem/base';
+@import '@digiko-npm/designsystem/components/button';
+@import '@digiko-npm/designsystem/components/card';
+
+# Minified bundle
+@import '@digiko-npm/designsystem/min';
 ```
 
 **Override any token** in the consuming project's CSS:
