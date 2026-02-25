@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.2.1 */
+/* @ds/designsystem v0.2.2 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -87,7 +87,7 @@
 }
 
 /* Dark theme */
-[data-theme="dark"] {
+[data-theme="dark"], .dark {
   /* --- Backgrounds — deep, refined zinc-900 palette --- */
   --ds-color-bg: #09090b;
   --ds-color-bg-subtle: #0f0f11;
@@ -175,7 +175,7 @@
 }
 
 /* Dark overrides for status/accent (brighter for contrast) */
-[data-theme="dark"] {
+[data-theme="dark"], .dark {
   --ds-color-success: #4ade80;
   --ds-color-success-subtle: rgba(74, 222, 128, 0.1);
   --ds-color-success-border: rgba(74, 222, 128, 0.2);
