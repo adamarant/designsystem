@@ -18,9 +18,14 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
-    "dev": "node scripts/build.js --watch"
+    "dev": "node scripts/build.js --watch & live-server --host=localhost --port=3000 --open=examples/ --watch=dist/ --wait=200 --no-browser"
   },
-  "keywords": ["design-system", "css", "tokens", "components"],
+  "keywords": [
+    "design-system",
+    "css",
+    "tokens",
+    "components"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -28,5 +33,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
   }
 }
