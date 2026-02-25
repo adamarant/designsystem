@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accordion — Design System</title>
+  <link rel="stylesheet" href="../../dist/designsystem.css">
+  <link rel="stylesheet" href="../_shared/demo.css">
+</head>
+<body>
+
+  <div class="demo-layout">
+    <aside class="demo-sidebar">
+      <a href="../" class="demo-sidebar__brand">Design System</a>
+      <input class="ds-input ds-input--sm" id="componentSearch" placeholder="Search...">
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Core</div>
+        <a href="button.html" class="demo-sidebar__link">Button</a>
+        <a href="card.html" class="demo-sidebar__link">Card</a>
+        <a href="input.html" class="demo-sidebar__link">Input</a>
+        <a href="badge.html" class="demo-sidebar__link">Badge</a>
+        <a href="nav.html" class="demo-sidebar__link">Navigation</a>
+        <a href="modal.html" class="demo-sidebar__link">Modal</a>
+        <a href="toast.html" class="demo-sidebar__link">Toast</a>
+        <a href="table.html" class="demo-sidebar__link">Table</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Essential</div>
+        <a href="tabs.html" class="demo-sidebar__link">Tabs</a>
+        <a href="alert.html" class="demo-sidebar__link">Alert</a>
+        <a href="divider.html" class="demo-sidebar__link">Divider</a>
+        <a href="dropdown.html" class="demo-sidebar__link">Dropdown</a>
+        <a href="tooltip.html" class="demo-sidebar__link">Tooltip</a>
+        <a href="avatar.html" class="demo-sidebar__link">Avatar</a>
+        <a href="skeleton.html" class="demo-sidebar__link">Skeleton</a>
+        <a href="empty-state.html" class="demo-sidebar__link">Empty State</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Common</div>
+        <a href="toggle.html" class="demo-sidebar__link">Toggle</a>
+        <a href="breadcrumb.html" class="demo-sidebar__link">Breadcrumb</a>
+        <a href="pagination.html" class="demo-sidebar__link">Pagination</a>
+        <a href="tag.html" class="demo-sidebar__link">Tag</a>
+        <a href="accordion.html" class="demo-sidebar__link demo-sidebar__link--active">Accordion</a>
+        <a href="drawer.html" class="demo-sidebar__link">Drawer</a>
+        <a href="progress.html" class="demo-sidebar__link">Progress</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Advanced</div>
+        <a href="popover.html" class="demo-sidebar__link">Popover</a>
+        <a href="slider.html" class="demo-sidebar__link">Slider</a>
+        <a href="timeline.html" class="demo-sidebar__link">Timeline</a>
+        <a href="kbd.html" class="demo-sidebar__link">Kbd</a>
+        <a href="command.html" class="demo-sidebar__link">Command</a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: var(--ds-space-4); border-top: 1px solid var(--ds-color-border-subtle);">
+        <button class="ds-btn ds-btn--ghost ds-btn--sm" data-toggle-theme style="width: 100%;">Toggle Theme</button>
+      </div>
+    </aside>
+
+    <main class="demo-main">
+      <header>
+        <h1>Accordion</h1>
+        <p>A vertically stacked set of collapsible sections. CSS-only open/close via modifier.</p>
+        <div class="demo-meta">
+          <span class="ds-badge">Common</span>
+          <code>@import '@digiko-npm/designsystem/components/accordion';</code>
+        </div>
+      </header>
+
+
+    <section class="demo-example">
+      <h2>Default Accordion</h2>
+      <div class="demo-preview">
+        <div class="ds-accordion">
+  <div class="ds-accordion__item ds-accordion__item--open">
+    <button class="ds-accordion__trigger">What is this design system?</button>
+    <div class="ds-accordion__content">
+      <div class="ds-accordion__body">A CSS-only design system with zero dependencies. Install anywhere, override tokens, nothing breaks.</div>
+    </div>
+  </div>
+  <div class="ds-accordion__item">
+    <button class="ds-accordion__trigger">How do I install it?</button>
+    <div class="ds-accordion__content">
+      <div class="ds-accordion__body">Install via npm and import the CSS bundle into your project.</div>
+    </div>
+  </div>
+  <div class="ds-accordion__item">
+    <button class="ds-accordion__trigger">Can I customize the theme?</button>
+    <div class="ds-accordion__content">
+      <div class="ds-accordion__body">Yes, override any CSS custom property to match your brand.</div>
+    </div>
+  </div>
+</div>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;div class=&quot;ds-accordion&quot;&gt;
+  &lt;div class=&quot;ds-accordion__item ds-accordion__item--open&quot;&gt;
+    &lt;button class=&quot;ds-accordion__trigger&quot;&gt;What is this design system?&lt;/button&gt;
+    &lt;div class=&quot;ds-accordion__content&quot;&gt;
+      &lt;div class=&quot;ds-accordion__body&quot;&gt;A CSS-only design system with zero dependencies. Install anywhere, override tokens, nothing breaks.&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ds-accordion__item&quot;&gt;
+    &lt;button class=&quot;ds-accordion__trigger&quot;&gt;How do I install it?&lt;/button&gt;
+    &lt;div class=&quot;ds-accordion__content&quot;&gt;
+      &lt;div class=&quot;ds-accordion__body&quot;&gt;Install via npm and import the CSS bundle into your project.&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ds-accordion__item&quot;&gt;
+    &lt;button class=&quot;ds-accordion__trigger&quot;&gt;Can I customize the theme?&lt;/button&gt;
+    &lt;div class=&quot;ds-accordion__content&quot;&gt;
+      &lt;div class=&quot;ds-accordion__body&quot;&gt;Yes, override any CSS custom property to match your brand.&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>Separated Accordion</h2>
+      <div class="demo-preview">
+        <div class="ds-accordion ds-accordion--separated">
+  <div class="ds-accordion__item ds-accordion__item--open">
+    <button class="ds-accordion__trigger">Account Settings</button>
+    <div class="ds-accordion__content">
+      <div class="ds-accordion__body">Manage your account preferences and security settings.</div>
+    </div>
+  </div>
+  <div class="ds-accordion__item">
+    <button class="ds-accordion__trigger">Notifications</button>
+    <div class="ds-accordion__content">
+      <div class="ds-accordion__body">Configure how and when you receive notifications.</div>
+    </div>
+  </div>
+</div>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;div class=&quot;ds-accordion ds-accordion--separated&quot;&gt;
+  &lt;div class=&quot;ds-accordion__item ds-accordion__item--open&quot;&gt;
+    &lt;button class=&quot;ds-accordion__trigger&quot;&gt;Account Settings&lt;/button&gt;
+    &lt;div class=&quot;ds-accordion__content&quot;&gt;
+      &lt;div class=&quot;ds-accordion__body&quot;&gt;Manage your account preferences and security settings.&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ds-accordion__item&quot;&gt;
+    &lt;button class=&quot;ds-accordion__trigger&quot;&gt;Notifications&lt;/button&gt;
+    &lt;div class=&quot;ds-accordion__content&quot;&gt;
+      &lt;div class=&quot;ds-accordion__body&quot;&gt;Configure how and when you receive notifications.&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-api">
+      <h2>API</h2>
+      <table class="ds-table">
+        <thead><tr><th>Class</th><th>Type</th></tr></thead>
+        <tbody><tr><td><code>.ds-accordion</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-accordion__item</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-accordion__trigger</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-accordion__content</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-accordion__body</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-accordion--flush</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-accordion--separated</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-accordion--open</code></td><td>Modifier</td></tr></tbody>
+      </table>
+    </section>
+
+    <nav class="demo-nav-footer">
+      <a href="tag.html">&larr; Tag</a>
+      <a href="drawer.html">Drawer &rarr;</a>
+    </nav>
+    </main>
+  </div>
+
+  <script src="../_shared/demo.js"></script>
+</body>
+</html>

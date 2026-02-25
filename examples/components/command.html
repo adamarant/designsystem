@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Command — Design System</title>
+  <link rel="stylesheet" href="../../dist/designsystem.css">
+  <link rel="stylesheet" href="../_shared/demo.css">
+</head>
+<body>
+
+  <div class="demo-layout">
+    <aside class="demo-sidebar">
+      <a href="../" class="demo-sidebar__brand">Design System</a>
+      <input class="ds-input ds-input--sm" id="componentSearch" placeholder="Search...">
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Core</div>
+        <a href="button.html" class="demo-sidebar__link">Button</a>
+        <a href="card.html" class="demo-sidebar__link">Card</a>
+        <a href="input.html" class="demo-sidebar__link">Input</a>
+        <a href="badge.html" class="demo-sidebar__link">Badge</a>
+        <a href="nav.html" class="demo-sidebar__link">Navigation</a>
+        <a href="modal.html" class="demo-sidebar__link">Modal</a>
+        <a href="toast.html" class="demo-sidebar__link">Toast</a>
+        <a href="table.html" class="demo-sidebar__link">Table</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Essential</div>
+        <a href="tabs.html" class="demo-sidebar__link">Tabs</a>
+        <a href="alert.html" class="demo-sidebar__link">Alert</a>
+        <a href="divider.html" class="demo-sidebar__link">Divider</a>
+        <a href="dropdown.html" class="demo-sidebar__link">Dropdown</a>
+        <a href="tooltip.html" class="demo-sidebar__link">Tooltip</a>
+        <a href="avatar.html" class="demo-sidebar__link">Avatar</a>
+        <a href="skeleton.html" class="demo-sidebar__link">Skeleton</a>
+        <a href="empty-state.html" class="demo-sidebar__link">Empty State</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Common</div>
+        <a href="toggle.html" class="demo-sidebar__link">Toggle</a>
+        <a href="breadcrumb.html" class="demo-sidebar__link">Breadcrumb</a>
+        <a href="pagination.html" class="demo-sidebar__link">Pagination</a>
+        <a href="tag.html" class="demo-sidebar__link">Tag</a>
+        <a href="accordion.html" class="demo-sidebar__link">Accordion</a>
+        <a href="drawer.html" class="demo-sidebar__link">Drawer</a>
+        <a href="progress.html" class="demo-sidebar__link">Progress</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Advanced</div>
+        <a href="popover.html" class="demo-sidebar__link">Popover</a>
+        <a href="slider.html" class="demo-sidebar__link">Slider</a>
+        <a href="timeline.html" class="demo-sidebar__link">Timeline</a>
+        <a href="kbd.html" class="demo-sidebar__link">Kbd</a>
+        <a href="command.html" class="demo-sidebar__link demo-sidebar__link--active">Command</a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: var(--ds-space-4); border-top: 1px solid var(--ds-color-border-subtle);">
+        <button class="ds-btn ds-btn--ghost ds-btn--sm" data-toggle-theme style="width: 100%;">Toggle Theme</button>
+      </div>
+    </aside>
+
+    <main class="demo-main">
+      <header>
+        <h1>Command</h1>
+        <p>Command palette / search overlay following the Cmd+K pattern.</p>
+        <div class="demo-meta">
+          <span class="ds-badge">Advanced</span>
+          <code>@import '@digiko-npm/designsystem/components/command';</code>
+        </div>
+      </header>
+
+
+    <section class="demo-example">
+      <h2>Command Palette</h2>
+      <div class="demo-preview">
+        <div style="background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);overflow:hidden;max-width:32rem;box-shadow:var(--ds-shadow-lg);">
+  <div class="ds-command__input-wrapper">
+    <span class="ds-command__input-icon">&#128269;</span>
+    <input class="ds-command__input" placeholder="Type a command or search..." />
+  </div>
+  <div class="ds-command__list">
+    <div class="ds-command__group">
+      <div class="ds-command__group-heading">Suggestions</div>
+      <div class="ds-command__item ds-command__item--active">
+        <span class="ds-command__item-label">New File</span>
+        <span class="ds-command__item-shortcut">Ctrl+N</span>
+      </div>
+      <div class="ds-command__item">
+        <span class="ds-command__item-label">Open Settings</span>
+        <span class="ds-command__item-shortcut">Ctrl+,</span>
+      </div>
+      <div class="ds-command__item">
+        <span class="ds-command__item-label">Toggle Theme</span>
+      </div>
+    </div>
+  </div>
+  <div class="ds-command__footer">Navigate with arrow keys &middot; Enter to select &middot; Esc to close</div>
+</div>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;div style=&quot;background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);overflow:hidden;max-width:32rem;box-shadow:var(--ds-shadow-lg);&quot;&gt;
+  &lt;div class=&quot;ds-command__input-wrapper&quot;&gt;
+    &lt;span class=&quot;ds-command__input-icon&quot;&gt;&amp;#128269;&lt;/span&gt;
+    &lt;input class=&quot;ds-command__input&quot; placeholder=&quot;Type a command or search...&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ds-command__list&quot;&gt;
+    &lt;div class=&quot;ds-command__group&quot;&gt;
+      &lt;div class=&quot;ds-command__group-heading&quot;&gt;Suggestions&lt;/div&gt;
+      &lt;div class=&quot;ds-command__item ds-command__item--active&quot;&gt;
+        &lt;span class=&quot;ds-command__item-label&quot;&gt;New File&lt;/span&gt;
+        &lt;span class=&quot;ds-command__item-shortcut&quot;&gt;Ctrl+N&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;ds-command__item&quot;&gt;
+        &lt;span class=&quot;ds-command__item-label&quot;&gt;Open Settings&lt;/span&gt;
+        &lt;span class=&quot;ds-command__item-shortcut&quot;&gt;Ctrl+,&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;ds-command__item&quot;&gt;
+        &lt;span class=&quot;ds-command__item-label&quot;&gt;Toggle Theme&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ds-command__footer&quot;&gt;Navigate with arrow keys &amp;middot; Enter to select &amp;middot; Esc to close&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-api">
+      <h2>API</h2>
+      <table class="ds-table">
+        <thead><tr><th>Class</th><th>Type</th></tr></thead>
+        <tbody><tr><td><code>.ds-command</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-command__content</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-command__input-wrapper</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-command__input-icon</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-command__input</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-command__list</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-command__group</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-command__group-heading</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-command__item</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-command__item-icon</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-command__item-label</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-command__item-shortcut</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-command__empty</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-command__footer</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-command--open</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-command--active</code></td><td>Modifier</td></tr></tbody>
+      </table>
+    </section>
+
+    <nav class="demo-nav-footer">
+      <a href="kbd.html">&larr; Kbd</a>
+      <span></span>
+    </nav>
+    </main>
+  </div>
+
+  <script src="../_shared/demo.js"></script>
+</body>
+</html>

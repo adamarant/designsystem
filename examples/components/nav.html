@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigation — Design System</title>
+  <link rel="stylesheet" href="../../dist/designsystem.css">
+  <link rel="stylesheet" href="../_shared/demo.css">
+</head>
+<body>
+
+  <div class="demo-layout">
+    <aside class="demo-sidebar">
+      <a href="../" class="demo-sidebar__brand">Design System</a>
+      <input class="ds-input ds-input--sm" id="componentSearch" placeholder="Search...">
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Core</div>
+        <a href="button.html" class="demo-sidebar__link">Button</a>
+        <a href="card.html" class="demo-sidebar__link">Card</a>
+        <a href="input.html" class="demo-sidebar__link">Input</a>
+        <a href="badge.html" class="demo-sidebar__link">Badge</a>
+        <a href="nav.html" class="demo-sidebar__link demo-sidebar__link--active">Navigation</a>
+        <a href="modal.html" class="demo-sidebar__link">Modal</a>
+        <a href="toast.html" class="demo-sidebar__link">Toast</a>
+        <a href="table.html" class="demo-sidebar__link">Table</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Essential</div>
+        <a href="tabs.html" class="demo-sidebar__link">Tabs</a>
+        <a href="alert.html" class="demo-sidebar__link">Alert</a>
+        <a href="divider.html" class="demo-sidebar__link">Divider</a>
+        <a href="dropdown.html" class="demo-sidebar__link">Dropdown</a>
+        <a href="tooltip.html" class="demo-sidebar__link">Tooltip</a>
+        <a href="avatar.html" class="demo-sidebar__link">Avatar</a>
+        <a href="skeleton.html" class="demo-sidebar__link">Skeleton</a>
+        <a href="empty-state.html" class="demo-sidebar__link">Empty State</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Common</div>
+        <a href="toggle.html" class="demo-sidebar__link">Toggle</a>
+        <a href="breadcrumb.html" class="demo-sidebar__link">Breadcrumb</a>
+        <a href="pagination.html" class="demo-sidebar__link">Pagination</a>
+        <a href="tag.html" class="demo-sidebar__link">Tag</a>
+        <a href="accordion.html" class="demo-sidebar__link">Accordion</a>
+        <a href="drawer.html" class="demo-sidebar__link">Drawer</a>
+        <a href="progress.html" class="demo-sidebar__link">Progress</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Advanced</div>
+        <a href="popover.html" class="demo-sidebar__link">Popover</a>
+        <a href="slider.html" class="demo-sidebar__link">Slider</a>
+        <a href="timeline.html" class="demo-sidebar__link">Timeline</a>
+        <a href="kbd.html" class="demo-sidebar__link">Kbd</a>
+        <a href="command.html" class="demo-sidebar__link">Command</a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: var(--ds-space-4); border-top: 1px solid var(--ds-color-border-subtle);">
+        <button class="ds-btn ds-btn--ghost ds-btn--sm" data-toggle-theme style="width: 100%;">Toggle Theme</button>
+      </div>
+    </aside>
+
+    <main class="demo-main">
+      <header>
+        <h1>Navigation</h1>
+        <p>Fixed glass header, backdrop-blur, h-16. Clean links.</p>
+        <div class="demo-meta">
+          <span class="ds-badge">Core</span>
+          <code>@import '@digiko-npm/designsystem/components/nav';</code>
+        </div>
+      </header>
+
+
+    <section class="demo-example">
+      <h2>Top Navigation</h2>
+      <div class="demo-preview">
+        <nav class="ds-nav ds-nav--static">
+  <div class="ds-nav__inner">
+    <a class="ds-nav__brand" href="#">Acme Inc</a>
+    <div class="ds-nav__menu">
+      <a class="ds-nav__link ds-nav__link--active" href="#">Dashboard</a>
+      <a class="ds-nav__link" href="#">Projects</a>
+      <a class="ds-nav__link" href="#">Settings</a>
+    </div>
+    <div class="ds-nav__actions">
+      <button class="ds-nav__icon-btn" aria-label="Toggle theme">&#9790;</button>
+    </div>
+  </div>
+</nav>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;nav class=&quot;ds-nav ds-nav--static&quot;&gt;
+  &lt;div class=&quot;ds-nav__inner&quot;&gt;
+    &lt;a class=&quot;ds-nav__brand&quot; href=&quot;#&quot;&gt;Acme Inc&lt;/a&gt;
+    &lt;div class=&quot;ds-nav__menu&quot;&gt;
+      &lt;a class=&quot;ds-nav__link ds-nav__link--active&quot; href=&quot;#&quot;&gt;Dashboard&lt;/a&gt;
+      &lt;a class=&quot;ds-nav__link&quot; href=&quot;#&quot;&gt;Projects&lt;/a&gt;
+      &lt;a class=&quot;ds-nav__link&quot; href=&quot;#&quot;&gt;Settings&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ds-nav__actions&quot;&gt;
+      &lt;button class=&quot;ds-nav__icon-btn&quot; aria-label=&quot;Toggle theme&quot;&gt;&amp;#9790;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>Sidebar</h2>
+      <div class="demo-preview">
+        <aside class="ds-sidebar">
+  <div class="ds-sidebar__section">
+    <div class="ds-sidebar__title">Main</div>
+    <a class="ds-sidebar__link ds-sidebar__link--active" href="#">Dashboard</a>
+    <a class="ds-sidebar__link" href="#">Analytics</a>
+    <a class="ds-sidebar__link" href="#">Reports</a>
+  </div>
+  <div class="ds-sidebar__section">
+    <div class="ds-sidebar__title">Settings</div>
+    <a class="ds-sidebar__link" href="#">Profile</a>
+    <a class="ds-sidebar__link" href="#">Billing</a>
+  </div>
+</aside>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;aside class=&quot;ds-sidebar&quot;&gt;
+  &lt;div class=&quot;ds-sidebar__section&quot;&gt;
+    &lt;div class=&quot;ds-sidebar__title&quot;&gt;Main&lt;/div&gt;
+    &lt;a class=&quot;ds-sidebar__link ds-sidebar__link--active&quot; href=&quot;#&quot;&gt;Dashboard&lt;/a&gt;
+    &lt;a class=&quot;ds-sidebar__link&quot; href=&quot;#&quot;&gt;Analytics&lt;/a&gt;
+    &lt;a class=&quot;ds-sidebar__link&quot; href=&quot;#&quot;&gt;Reports&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ds-sidebar__section&quot;&gt;
+    &lt;div class=&quot;ds-sidebar__title&quot;&gt;Settings&lt;/div&gt;
+    &lt;a class=&quot;ds-sidebar__link&quot; href=&quot;#&quot;&gt;Profile&lt;/a&gt;
+    &lt;a class=&quot;ds-sidebar__link&quot; href=&quot;#&quot;&gt;Billing&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/aside&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-api">
+      <h2>API</h2>
+      <table class="ds-table">
+        <thead><tr><th>Class</th><th>Type</th></tr></thead>
+        <tbody><tr><td><code>.ds-nav</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-sidebar</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-nav__inner</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-nav__brand</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-nav__menu</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-nav__link</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-nav__actions</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-nav__icon-btn</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-nav__mobile</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-nav__mobile-links</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-nav--static</code></td><td>Variant</td></tr></tbody>
+      </table>
+    </section>
+
+    <nav class="demo-nav-footer">
+      <a href="badge.html">&larr; Badge</a>
+      <a href="modal.html">Modal &rarr;</a>
+    </nav>
+    </main>
+  </div>
+
+  <script src="../_shared/demo.js"></script>
+</body>
+</html>

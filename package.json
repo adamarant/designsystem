@@ -47,7 +47,8 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
-    "dev": "node scripts/build.js --watch & live-server --host=localhost --port=3000 --open=examples/ --watch=dist/ --wait=200 --no-browser"
+    "docs": "node scripts/generate-docs.js",
+    "dev": "node scripts/build.js --watch & node scripts/generate-docs.js && live-server --host=localhost --port=3000 --open=examples/ --watch=dist/,examples/ --wait=200 --no-browser"
   },
   "keywords": [
     "design-system",

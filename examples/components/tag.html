@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tag — Design System</title>
+  <link rel="stylesheet" href="../../dist/designsystem.css">
+  <link rel="stylesheet" href="../_shared/demo.css">
+</head>
+<body>
+
+  <div class="demo-layout">
+    <aside class="demo-sidebar">
+      <a href="../" class="demo-sidebar__brand">Design System</a>
+      <input class="ds-input ds-input--sm" id="componentSearch" placeholder="Search...">
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Core</div>
+        <a href="button.html" class="demo-sidebar__link">Button</a>
+        <a href="card.html" class="demo-sidebar__link">Card</a>
+        <a href="input.html" class="demo-sidebar__link">Input</a>
+        <a href="badge.html" class="demo-sidebar__link">Badge</a>
+        <a href="nav.html" class="demo-sidebar__link">Navigation</a>
+        <a href="modal.html" class="demo-sidebar__link">Modal</a>
+        <a href="toast.html" class="demo-sidebar__link">Toast</a>
+        <a href="table.html" class="demo-sidebar__link">Table</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Essential</div>
+        <a href="tabs.html" class="demo-sidebar__link">Tabs</a>
+        <a href="alert.html" class="demo-sidebar__link">Alert</a>
+        <a href="divider.html" class="demo-sidebar__link">Divider</a>
+        <a href="dropdown.html" class="demo-sidebar__link">Dropdown</a>
+        <a href="tooltip.html" class="demo-sidebar__link">Tooltip</a>
+        <a href="avatar.html" class="demo-sidebar__link">Avatar</a>
+        <a href="skeleton.html" class="demo-sidebar__link">Skeleton</a>
+        <a href="empty-state.html" class="demo-sidebar__link">Empty State</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Common</div>
+        <a href="toggle.html" class="demo-sidebar__link">Toggle</a>
+        <a href="breadcrumb.html" class="demo-sidebar__link">Breadcrumb</a>
+        <a href="pagination.html" class="demo-sidebar__link">Pagination</a>
+        <a href="tag.html" class="demo-sidebar__link demo-sidebar__link--active">Tag</a>
+        <a href="accordion.html" class="demo-sidebar__link">Accordion</a>
+        <a href="drawer.html" class="demo-sidebar__link">Drawer</a>
+        <a href="progress.html" class="demo-sidebar__link">Progress</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Advanced</div>
+        <a href="popover.html" class="demo-sidebar__link">Popover</a>
+        <a href="slider.html" class="demo-sidebar__link">Slider</a>
+        <a href="timeline.html" class="demo-sidebar__link">Timeline</a>
+        <a href="kbd.html" class="demo-sidebar__link">Kbd</a>
+        <a href="command.html" class="demo-sidebar__link">Command</a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: var(--ds-space-4); border-top: 1px solid var(--ds-color-border-subtle);">
+        <button class="ds-btn ds-btn--ghost ds-btn--sm" data-toggle-theme style="width: 100%;">Toggle Theme</button>
+      </div>
+    </aside>
+
+    <main class="demo-main">
+      <header>
+        <h1>Tag</h1>
+        <p>Interactive, optionally removable tag for categorisation and filtering.</p>
+        <div class="demo-meta">
+          <span class="ds-badge">Common</span>
+          <code>@import '@digiko-npm/designsystem/components/tag';</code>
+        </div>
+      </header>
+
+
+    <section class="demo-example">
+      <h2>Tag Variants</h2>
+      <div class="demo-preview">
+        <span class="ds-tag">Default</span>
+<span class="ds-tag ds-tag--primary">Primary</span>
+<span class="ds-tag ds-tag--success">Approved</span>
+<span class="ds-tag ds-tag--warning">Pending</span>
+<span class="ds-tag ds-tag--error">Rejected</span>
+<span class="ds-tag ds-tag--info">Info</span>
+<span class="ds-tag ds-tag--purple">Feature</span>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;span class=&quot;ds-tag&quot;&gt;Default&lt;/span&gt;
+&lt;span class=&quot;ds-tag ds-tag--primary&quot;&gt;Primary&lt;/span&gt;
+&lt;span class=&quot;ds-tag ds-tag--success&quot;&gt;Approved&lt;/span&gt;
+&lt;span class=&quot;ds-tag ds-tag--warning&quot;&gt;Pending&lt;/span&gt;
+&lt;span class=&quot;ds-tag ds-tag--error&quot;&gt;Rejected&lt;/span&gt;
+&lt;span class=&quot;ds-tag ds-tag--info&quot;&gt;Info&lt;/span&gt;
+&lt;span class=&quot;ds-tag ds-tag--purple&quot;&gt;Feature&lt;/span&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>Removable Tags</h2>
+      <div class="demo-preview">
+        <span class="ds-tag ds-tag--removable ds-tag--primary">React <button class="ds-tag__remove" aria-label="Remove">&times;</button></span>
+<span class="ds-tag ds-tag--removable ds-tag--success">TypeScript <button class="ds-tag__remove" aria-label="Remove">&times;</button></span>
+<span class="ds-tag ds-tag--removable">CSS <button class="ds-tag__remove" aria-label="Remove">&times;</button></span>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;span class=&quot;ds-tag ds-tag--removable ds-tag--primary&quot;&gt;React &lt;button class=&quot;ds-tag__remove&quot; aria-label=&quot;Remove&quot;&gt;&amp;times;&lt;/button&gt;&lt;/span&gt;
+&lt;span class=&quot;ds-tag ds-tag--removable ds-tag--success&quot;&gt;TypeScript &lt;button class=&quot;ds-tag__remove&quot; aria-label=&quot;Remove&quot;&gt;&amp;times;&lt;/button&gt;&lt;/span&gt;
+&lt;span class=&quot;ds-tag ds-tag--removable&quot;&gt;CSS &lt;button class=&quot;ds-tag__remove&quot; aria-label=&quot;Remove&quot;&gt;&amp;times;&lt;/button&gt;&lt;/span&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>Tag Sizes</h2>
+      <div class="demo-preview">
+        <span class="ds-tag ds-tag--sm">Small</span>
+<span class="ds-tag">Default</span>
+<span class="ds-tag ds-tag--lg">Large</span>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;span class=&quot;ds-tag ds-tag--sm&quot;&gt;Small&lt;/span&gt;
+&lt;span class=&quot;ds-tag&quot;&gt;Default&lt;/span&gt;
+&lt;span class=&quot;ds-tag ds-tag--lg&quot;&gt;Large&lt;/span&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-api">
+      <h2>API</h2>
+      <table class="ds-table">
+        <thead><tr><th>Class</th><th>Type</th></tr></thead>
+        <tbody><tr><td><code>.ds-tag</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-tag__remove</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-tag--primary</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-tag--success</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-tag--warning</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-tag--error</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-tag--info</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-tag--purple</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-tag--outline</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-tag--sm</code></td><td>Size</td></tr>
+          <tr><td><code>.ds-tag--lg</code></td><td>Size</td></tr>
+          <tr><td><code>.ds-tag--removable</code></td><td>Modifier</td></tr></tbody>
+      </table>
+    </section>
+
+    <nav class="demo-nav-footer">
+      <a href="pagination.html">&larr; Pagination</a>
+      <a href="accordion.html">Accordion &rarr;</a>
+    </nav>
+    </main>
+  </div>
+
+  <script src="../_shared/demo.js"></script>
+</body>
+</html>

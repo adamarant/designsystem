@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tooltip — Design System</title>
+  <link rel="stylesheet" href="../../dist/designsystem.css">
+  <link rel="stylesheet" href="../_shared/demo.css">
+</head>
+<body>
+
+  <div class="demo-layout">
+    <aside class="demo-sidebar">
+      <a href="../" class="demo-sidebar__brand">Design System</a>
+      <input class="ds-input ds-input--sm" id="componentSearch" placeholder="Search...">
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Core</div>
+        <a href="button.html" class="demo-sidebar__link">Button</a>
+        <a href="card.html" class="demo-sidebar__link">Card</a>
+        <a href="input.html" class="demo-sidebar__link">Input</a>
+        <a href="badge.html" class="demo-sidebar__link">Badge</a>
+        <a href="nav.html" class="demo-sidebar__link">Navigation</a>
+        <a href="modal.html" class="demo-sidebar__link">Modal</a>
+        <a href="toast.html" class="demo-sidebar__link">Toast</a>
+        <a href="table.html" class="demo-sidebar__link">Table</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Essential</div>
+        <a href="tabs.html" class="demo-sidebar__link">Tabs</a>
+        <a href="alert.html" class="demo-sidebar__link">Alert</a>
+        <a href="divider.html" class="demo-sidebar__link">Divider</a>
+        <a href="dropdown.html" class="demo-sidebar__link">Dropdown</a>
+        <a href="tooltip.html" class="demo-sidebar__link demo-sidebar__link--active">Tooltip</a>
+        <a href="avatar.html" class="demo-sidebar__link">Avatar</a>
+        <a href="skeleton.html" class="demo-sidebar__link">Skeleton</a>
+        <a href="empty-state.html" class="demo-sidebar__link">Empty State</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Common</div>
+        <a href="toggle.html" class="demo-sidebar__link">Toggle</a>
+        <a href="breadcrumb.html" class="demo-sidebar__link">Breadcrumb</a>
+        <a href="pagination.html" class="demo-sidebar__link">Pagination</a>
+        <a href="tag.html" class="demo-sidebar__link">Tag</a>
+        <a href="accordion.html" class="demo-sidebar__link">Accordion</a>
+        <a href="drawer.html" class="demo-sidebar__link">Drawer</a>
+        <a href="progress.html" class="demo-sidebar__link">Progress</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Advanced</div>
+        <a href="popover.html" class="demo-sidebar__link">Popover</a>
+        <a href="slider.html" class="demo-sidebar__link">Slider</a>
+        <a href="timeline.html" class="demo-sidebar__link">Timeline</a>
+        <a href="kbd.html" class="demo-sidebar__link">Kbd</a>
+        <a href="command.html" class="demo-sidebar__link">Command</a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: var(--ds-space-4); border-top: 1px solid var(--ds-color-border-subtle);">
+        <button class="ds-btn ds-btn--ghost ds-btn--sm" data-toggle-theme style="width: 100%;">Toggle Theme</button>
+      </div>
+    </aside>
+
+    <main class="demo-main">
+      <header>
+        <h1>Tooltip</h1>
+        <p>Inverted bubble with arrow, positioned via modifier classes.</p>
+        <div class="demo-meta">
+          <span class="ds-badge">Essential</span>
+          <code>@import '@digiko-npm/designsystem/components/tooltip';</code>
+        </div>
+      </header>
+
+
+    <section class="demo-example">
+      <h2>Tooltip Placements</h2>
+      <div class="demo-preview">
+        <span class="ds-tooltip ds-tooltip--top" style="margin:2rem;">
+  <button class="ds-btn ds-btn--secondary">Hover me</button>
+  <span class="ds-tooltip__content">Tooltip on top</span>
+</span>
+<span class="ds-tooltip ds-tooltip--bottom" style="margin:2rem;">
+  <button class="ds-btn ds-btn--secondary">Bottom</button>
+  <span class="ds-tooltip__content">Tooltip on bottom</span>
+</span>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;span class=&quot;ds-tooltip ds-tooltip--top&quot; style=&quot;margin:2rem;&quot;&gt;
+  &lt;button class=&quot;ds-btn ds-btn--secondary&quot;&gt;Hover me&lt;/button&gt;
+  &lt;span class=&quot;ds-tooltip__content&quot;&gt;Tooltip on top&lt;/span&gt;
+&lt;/span&gt;
+&lt;span class=&quot;ds-tooltip ds-tooltip--bottom&quot; style=&quot;margin:2rem;&quot;&gt;
+  &lt;button class=&quot;ds-btn ds-btn--secondary&quot;&gt;Bottom&lt;/button&gt;
+  &lt;span class=&quot;ds-tooltip__content&quot;&gt;Tooltip on bottom&lt;/span&gt;
+&lt;/span&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-api">
+      <h2>API</h2>
+      <table class="ds-table">
+        <thead><tr><th>Class</th><th>Type</th></tr></thead>
+        <tbody><tr><td><code>.ds-tooltip</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-tooltip__content</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-tooltip--top</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-tooltip--bottom</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-tooltip--left</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-tooltip--right</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-tooltip--delay</code></td><td>Modifier</td></tr></tbody>
+      </table>
+    </section>
+
+    <nav class="demo-nav-footer">
+      <a href="dropdown.html">&larr; Dropdown</a>
+      <a href="avatar.html">Avatar &rarr;</a>
+    </nav>
+    </main>
+  </div>
+
+  <script src="../_shared/demo.js"></script>
+</body>
+</html>

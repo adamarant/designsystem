@@ -175,10 +175,12 @@ Theme switching is via `data-theme` attribute on `<html>`:
 
 ### 5. Adding a New Component
 
-1. Create `src/components/component-name.css`
-2. Add `@import './component-name.css';` to `src/components/index.css`
-3. Run `node scripts/build.js` to rebuild `dist/designsystem.css`
-4. Add usage examples to `examples/index.html`
+1. Create `src/components/component-name.css` (with header comment in detailed format — see `accordion.css`)
+2. Add `@import './component-name.css';` to `src/components/index.css` (in the right tier section)
+3. Add entry to `components.json` with classes, variants, sizes, modifiers, and HTML examples
+4. Run `npm run build` — auto-updates exports map, validates manifest, builds CSS + minified
+5. Run `npm run docs` — generates the component demo page at `examples/components/component-name.html`
+6. Verify at `localhost:3000` with `npm run dev`
 
 ### 6. Code Integrity
 

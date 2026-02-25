@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toast — Design System</title>
+  <link rel="stylesheet" href="../../dist/designsystem.css">
+  <link rel="stylesheet" href="../_shared/demo.css">
+</head>
+<body>
+
+  <div class="demo-layout">
+    <aside class="demo-sidebar">
+      <a href="../" class="demo-sidebar__brand">Design System</a>
+      <input class="ds-input ds-input--sm" id="componentSearch" placeholder="Search...">
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Core</div>
+        <a href="button.html" class="demo-sidebar__link">Button</a>
+        <a href="card.html" class="demo-sidebar__link">Card</a>
+        <a href="input.html" class="demo-sidebar__link">Input</a>
+        <a href="badge.html" class="demo-sidebar__link">Badge</a>
+        <a href="nav.html" class="demo-sidebar__link">Navigation</a>
+        <a href="modal.html" class="demo-sidebar__link">Modal</a>
+        <a href="toast.html" class="demo-sidebar__link demo-sidebar__link--active">Toast</a>
+        <a href="table.html" class="demo-sidebar__link">Table</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Essential</div>
+        <a href="tabs.html" class="demo-sidebar__link">Tabs</a>
+        <a href="alert.html" class="demo-sidebar__link">Alert</a>
+        <a href="divider.html" class="demo-sidebar__link">Divider</a>
+        <a href="dropdown.html" class="demo-sidebar__link">Dropdown</a>
+        <a href="tooltip.html" class="demo-sidebar__link">Tooltip</a>
+        <a href="avatar.html" class="demo-sidebar__link">Avatar</a>
+        <a href="skeleton.html" class="demo-sidebar__link">Skeleton</a>
+        <a href="empty-state.html" class="demo-sidebar__link">Empty State</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Common</div>
+        <a href="toggle.html" class="demo-sidebar__link">Toggle</a>
+        <a href="breadcrumb.html" class="demo-sidebar__link">Breadcrumb</a>
+        <a href="pagination.html" class="demo-sidebar__link">Pagination</a>
+        <a href="tag.html" class="demo-sidebar__link">Tag</a>
+        <a href="accordion.html" class="demo-sidebar__link">Accordion</a>
+        <a href="drawer.html" class="demo-sidebar__link">Drawer</a>
+        <a href="progress.html" class="demo-sidebar__link">Progress</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Advanced</div>
+        <a href="popover.html" class="demo-sidebar__link">Popover</a>
+        <a href="slider.html" class="demo-sidebar__link">Slider</a>
+        <a href="timeline.html" class="demo-sidebar__link">Timeline</a>
+        <a href="kbd.html" class="demo-sidebar__link">Kbd</a>
+        <a href="command.html" class="demo-sidebar__link">Command</a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: var(--ds-space-4); border-top: 1px solid var(--ds-color-border-subtle);">
+        <button class="ds-btn ds-btn--ghost ds-btn--sm" data-toggle-theme style="width: 100%;">Toggle Theme</button>
+      </div>
+    </aside>
+
+    <main class="demo-main">
+      <header>
+        <h1>Toast</h1>
+        <p>Notification toasts with positions and enter/exit animations.</p>
+        <div class="demo-meta">
+          <span class="ds-badge">Core</span>
+          <code>@import '@digiko-npm/designsystem/components/toast';</code>
+        </div>
+      </header>
+
+
+    <section class="demo-example">
+      <h2>Toast Variants</h2>
+      <div class="demo-preview">
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+  <div class="ds-toast ds-toast--success" style="animation:none;">
+    <span class="ds-toast__message">Changes saved successfully</span>
+    <button class="ds-toast__close">&times;</button>
+  </div>
+  <div class="ds-toast ds-toast--error" style="animation:none;">
+    <span class="ds-toast__message">Failed to upload file</span>
+    <button class="ds-toast__close">&times;</button>
+  </div>
+  <div class="ds-toast ds-toast--warning" style="animation:none;">
+    <span class="ds-toast__message">Your session will expire in 5 minutes</span>
+    <button class="ds-toast__close">&times;</button>
+  </div>
+  <div class="ds-toast ds-toast--info" style="animation:none;">
+    <span class="ds-toast__message">A new version is available</span>
+    <button class="ds-toast__close">&times;</button>
+  </div>
+</div>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;div style=&quot;display:flex;flex-direction:column;gap:0.5rem;&quot;&gt;
+  &lt;div class=&quot;ds-toast ds-toast--success&quot; style=&quot;animation:none;&quot;&gt;
+    &lt;span class=&quot;ds-toast__message&quot;&gt;Changes saved successfully&lt;/span&gt;
+    &lt;button class=&quot;ds-toast__close&quot;&gt;&amp;times;&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ds-toast ds-toast--error&quot; style=&quot;animation:none;&quot;&gt;
+    &lt;span class=&quot;ds-toast__message&quot;&gt;Failed to upload file&lt;/span&gt;
+    &lt;button class=&quot;ds-toast__close&quot;&gt;&amp;times;&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ds-toast ds-toast--warning&quot; style=&quot;animation:none;&quot;&gt;
+    &lt;span class=&quot;ds-toast__message&quot;&gt;Your session will expire in 5 minutes&lt;/span&gt;
+    &lt;button class=&quot;ds-toast__close&quot;&gt;&amp;times;&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ds-toast ds-toast--info&quot; style=&quot;animation:none;&quot;&gt;
+    &lt;span class=&quot;ds-toast__message&quot;&gt;A new version is available&lt;/span&gt;
+    &lt;button class=&quot;ds-toast__close&quot;&gt;&amp;times;&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-api">
+      <h2>API</h2>
+      <table class="ds-table">
+        <thead><tr><th>Class</th><th>Type</th></tr></thead>
+        <tbody><tr><td><code>.ds-toast</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-toast-container</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-toast__message</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-toast__close</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-toast--info</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-toast--success</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-toast--warning</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-toast--error</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-toast--exit</code></td><td>Modifier</td></tr></tbody>
+      </table>
+    </section>
+
+    <nav class="demo-nav-footer">
+      <a href="modal.html">&larr; Modal</a>
+      <a href="table.html">Table &rarr;</a>
+    </nav>
+    </main>
+  </div>
+
+  <script src="../_shared/demo.js"></script>
+</body>
+</html>

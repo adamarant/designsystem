@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress — Design System</title>
+  <link rel="stylesheet" href="../../dist/designsystem.css">
+  <link rel="stylesheet" href="../_shared/demo.css">
+</head>
+<body>
+
+  <div class="demo-layout">
+    <aside class="demo-sidebar">
+      <a href="../" class="demo-sidebar__brand">Design System</a>
+      <input class="ds-input ds-input--sm" id="componentSearch" placeholder="Search...">
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Core</div>
+        <a href="button.html" class="demo-sidebar__link">Button</a>
+        <a href="card.html" class="demo-sidebar__link">Card</a>
+        <a href="input.html" class="demo-sidebar__link">Input</a>
+        <a href="badge.html" class="demo-sidebar__link">Badge</a>
+        <a href="nav.html" class="demo-sidebar__link">Navigation</a>
+        <a href="modal.html" class="demo-sidebar__link">Modal</a>
+        <a href="toast.html" class="demo-sidebar__link">Toast</a>
+        <a href="table.html" class="demo-sidebar__link">Table</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Essential</div>
+        <a href="tabs.html" class="demo-sidebar__link">Tabs</a>
+        <a href="alert.html" class="demo-sidebar__link">Alert</a>
+        <a href="divider.html" class="demo-sidebar__link">Divider</a>
+        <a href="dropdown.html" class="demo-sidebar__link">Dropdown</a>
+        <a href="tooltip.html" class="demo-sidebar__link">Tooltip</a>
+        <a href="avatar.html" class="demo-sidebar__link">Avatar</a>
+        <a href="skeleton.html" class="demo-sidebar__link">Skeleton</a>
+        <a href="empty-state.html" class="demo-sidebar__link">Empty State</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Common</div>
+        <a href="toggle.html" class="demo-sidebar__link">Toggle</a>
+        <a href="breadcrumb.html" class="demo-sidebar__link">Breadcrumb</a>
+        <a href="pagination.html" class="demo-sidebar__link">Pagination</a>
+        <a href="tag.html" class="demo-sidebar__link">Tag</a>
+        <a href="accordion.html" class="demo-sidebar__link">Accordion</a>
+        <a href="drawer.html" class="demo-sidebar__link">Drawer</a>
+        <a href="progress.html" class="demo-sidebar__link demo-sidebar__link--active">Progress</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Advanced</div>
+        <a href="popover.html" class="demo-sidebar__link">Popover</a>
+        <a href="slider.html" class="demo-sidebar__link">Slider</a>
+        <a href="timeline.html" class="demo-sidebar__link">Timeline</a>
+        <a href="kbd.html" class="demo-sidebar__link">Kbd</a>
+        <a href="command.html" class="demo-sidebar__link">Command</a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: var(--ds-space-4); border-top: 1px solid var(--ds-color-border-subtle);">
+        <button class="ds-btn ds-btn--ghost ds-btn--sm" data-toggle-theme style="width: 100%;">Toggle Theme</button>
+      </div>
+    </aside>
+
+    <main class="demo-main">
+      <header>
+        <h1>Progress</h1>
+        <p>Progress bar with label row and step indicator for multi-step flows.</p>
+        <div class="demo-meta">
+          <span class="ds-badge">Common</span>
+          <code>@import '@digiko-npm/designsystem/components/progress';</code>
+        </div>
+      </header>
+
+
+    <section class="demo-example">
+      <h2>Progress Bar</h2>
+      <div class="demo-preview">
+        <div class="ds-progress__label">
+  <span>Uploading files...</span>
+  <span>64%</span>
+</div>
+<div class="ds-progress">
+  <div class="ds-progress__bar" style="width:64%;"></div>
+</div>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;div class=&quot;ds-progress__label&quot;&gt;
+  &lt;span&gt;Uploading files...&lt;/span&gt;
+  &lt;span&gt;64%&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ds-progress&quot;&gt;
+  &lt;div class=&quot;ds-progress__bar&quot; style=&quot;width:64%;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>Progress Variants</h2>
+      <div class="demo-preview">
+        <div class="ds-progress ds-progress--success" style="margin-bottom:0.5rem;"><div class="ds-progress__bar" style="width:100%;"></div></div>
+<div class="ds-progress ds-progress--warning" style="margin-bottom:0.5rem;"><div class="ds-progress__bar" style="width:75%;"></div></div>
+<div class="ds-progress ds-progress--error" style="margin-bottom:0.5rem;"><div class="ds-progress__bar" style="width:30%;"></div></div>
+<div class="ds-progress ds-progress--sm" style="margin-bottom:0.5rem;"><div class="ds-progress__bar" style="width:50%;"></div></div>
+<div class="ds-progress ds-progress--lg"><div class="ds-progress__bar" style="width:80%;"></div></div>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;div class=&quot;ds-progress ds-progress--success&quot; style=&quot;margin-bottom:0.5rem;&quot;&gt;&lt;div class=&quot;ds-progress__bar&quot; style=&quot;width:100%;&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;ds-progress ds-progress--warning&quot; style=&quot;margin-bottom:0.5rem;&quot;&gt;&lt;div class=&quot;ds-progress__bar&quot; style=&quot;width:75%;&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;ds-progress ds-progress--error&quot; style=&quot;margin-bottom:0.5rem;&quot;&gt;&lt;div class=&quot;ds-progress__bar&quot; style=&quot;width:30%;&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;ds-progress ds-progress--sm&quot; style=&quot;margin-bottom:0.5rem;&quot;&gt;&lt;div class=&quot;ds-progress__bar&quot; style=&quot;width:50%;&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;ds-progress ds-progress--lg&quot;&gt;&lt;div class=&quot;ds-progress__bar&quot; style=&quot;width:80%;&quot;&gt;&lt;/div&gt;&lt;/div&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>Step Indicator</h2>
+      <div class="demo-preview">
+        <div class="ds-steps">
+  <div class="ds-step ds-step--completed">
+    <div class="ds-step__indicator">&#10003;</div>
+    <div class="ds-step__content">
+      <span class="ds-step__title">Account</span>
+    </div>
+  </div>
+  <div class="ds-step__connector"></div>
+  <div class="ds-step ds-step--current">
+    <div class="ds-step__indicator">2</div>
+    <div class="ds-step__content">
+      <span class="ds-step__title">Profile</span>
+    </div>
+  </div>
+  <div class="ds-step__connector"></div>
+  <div class="ds-step">
+    <div class="ds-step__indicator">3</div>
+    <div class="ds-step__content">
+      <span class="ds-step__title">Review</span>
+    </div>
+  </div>
+</div>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;div class=&quot;ds-steps&quot;&gt;
+  &lt;div class=&quot;ds-step ds-step--completed&quot;&gt;
+    &lt;div class=&quot;ds-step__indicator&quot;&gt;&amp;#10003;&lt;/div&gt;
+    &lt;div class=&quot;ds-step__content&quot;&gt;
+      &lt;span class=&quot;ds-step__title&quot;&gt;Account&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ds-step__connector&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;ds-step ds-step--current&quot;&gt;
+    &lt;div class=&quot;ds-step__indicator&quot;&gt;2&lt;/div&gt;
+    &lt;div class=&quot;ds-step__content&quot;&gt;
+      &lt;span class=&quot;ds-step__title&quot;&gt;Profile&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ds-step__connector&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;ds-step&quot;&gt;
+    &lt;div class=&quot;ds-step__indicator&quot;&gt;3&lt;/div&gt;
+    &lt;div class=&quot;ds-step__content&quot;&gt;
+      &lt;span class=&quot;ds-step__title&quot;&gt;Review&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-api">
+      <h2>API</h2>
+      <table class="ds-table">
+        <thead><tr><th>Class</th><th>Type</th></tr></thead>
+        <tbody><tr><td><code>.ds-progress</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-steps</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-step</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-progress__bar</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-progress__label</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-progress__indicator</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-progress__content</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-progress__title</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-progress__description</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-progress__connector</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-progress--success</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-progress--warning</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-progress--error</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-progress--info</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-progress--sm</code></td><td>Size</td></tr>
+          <tr><td><code>.ds-progress--lg</code></td><td>Size</td></tr>
+          <tr><td><code>.ds-progress--completed</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-progress--current</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-progress--error</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-progress--vertical</code></td><td>Modifier</td></tr></tbody>
+      </table>
+    </section>
+
+    <nav class="demo-nav-footer">
+      <a href="drawer.html">&larr; Drawer</a>
+      <a href="popover.html">Popover &rarr;</a>
+    </nav>
+    </main>
+  </div>
+
+  <script src="../_shared/demo.js"></script>
+</body>
+</html>
