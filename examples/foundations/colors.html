@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colors — Design System</title>
+  <link rel="stylesheet" href="../../dist/designsystem.css">
+  <link rel="stylesheet" href="../_shared/demo.css">
+</head>
+<body>
+
+  <div class="demo-layout">
+    <aside class="demo-sidebar">
+      <a href="../" class="demo-sidebar__brand">Design System</a>
+      <input class="ds-input ds-input--sm" id="componentSearch" placeholder="Search...">
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Foundations</div>
+        <a href="../foundations/colors.html" class="demo-sidebar__link demo-sidebar__link--active">Colors</a>
+        <a href="../foundations/typography.html" class="demo-sidebar__link">Typography</a>
+        <a href="../foundations/spacing.html" class="demo-sidebar__link">Spacing & Layout</a>
+        <a href="../foundations/effects.html" class="demo-sidebar__link">Effects</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Core</div>
+        <a href="../components/button.html" class="demo-sidebar__link">Button</a>
+        <a href="../components/card.html" class="demo-sidebar__link">Card</a>
+        <a href="../components/input.html" class="demo-sidebar__link">Input</a>
+        <a href="../components/badge.html" class="demo-sidebar__link">Badge</a>
+        <a href="../components/nav.html" class="demo-sidebar__link">Navigation</a>
+        <a href="../components/modal.html" class="demo-sidebar__link">Modal</a>
+        <a href="../components/toast.html" class="demo-sidebar__link">Toast</a>
+        <a href="../components/table.html" class="demo-sidebar__link">Table</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Essential</div>
+        <a href="../components/tabs.html" class="demo-sidebar__link">Tabs</a>
+        <a href="../components/alert.html" class="demo-sidebar__link">Alert</a>
+        <a href="../components/divider.html" class="demo-sidebar__link">Divider</a>
+        <a href="../components/dropdown.html" class="demo-sidebar__link">Dropdown</a>
+        <a href="../components/tooltip.html" class="demo-sidebar__link">Tooltip</a>
+        <a href="../components/avatar.html" class="demo-sidebar__link">Avatar</a>
+        <a href="../components/skeleton.html" class="demo-sidebar__link">Skeleton</a>
+        <a href="../components/empty-state.html" class="demo-sidebar__link">Empty State</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Common</div>
+        <a href="../components/toggle.html" class="demo-sidebar__link">Toggle</a>
+        <a href="../components/breadcrumb.html" class="demo-sidebar__link">Breadcrumb</a>
+        <a href="../components/pagination.html" class="demo-sidebar__link">Pagination</a>
+        <a href="../components/tag.html" class="demo-sidebar__link">Tag</a>
+        <a href="../components/accordion.html" class="demo-sidebar__link">Accordion</a>
+        <a href="../components/drawer.html" class="demo-sidebar__link">Drawer</a>
+        <a href="../components/progress.html" class="demo-sidebar__link">Progress</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Advanced</div>
+        <a href="../components/popover.html" class="demo-sidebar__link">Popover</a>
+        <a href="../components/slider.html" class="demo-sidebar__link">Slider</a>
+        <a href="../components/timeline.html" class="demo-sidebar__link">Timeline</a>
+        <a href="../components/kbd.html" class="demo-sidebar__link">Kbd</a>
+        <a href="../components/command.html" class="demo-sidebar__link">Command</a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: var(--ds-space-4); border-top: 1px solid var(--ds-color-border-subtle);">
+        <button class="ds-btn ds-btn--ghost ds-btn--sm" data-toggle-theme style="width: 100%;">Toggle Theme</button>
+      </div>
+    </aside>
+
+    <main class="demo-main">
+
+      <header>
+        <h1>Colors</h1>
+        <p>Background, surface, text, border, status, and accent color tokens. All adapt automatically to light/dark theme.</p>
+        <div class="demo-meta">
+          <span class="ds-badge">Foundation</span>
+          <code>@import '@digiko-npm/designsystem/tokens';</code>
+        </div>
+      </header>
+
+      <section class="demo-example">
+        <h2>Bg</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-bg);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-bg</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-bg-subtle);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-bg-subtle</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-bg-muted);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-bg-muted</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-bg-elevated);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-bg-elevated</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>Surface</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-surface);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-surface</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-surface-hover);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-surface-hover</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-surface-active);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-surface-active</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>Text</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-text);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-text</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-text-secondary);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-text-secondary</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-text-tertiary);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-text-tertiary</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-text-disabled);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-text-disabled</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>Inverted</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-inverted);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-inverted</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>On</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-on-inverted);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-on-inverted</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>Border</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-border);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-border</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-border-hover);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-border-hover</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-border-active);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-border-active</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-border-subtle);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-border-subtle</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>Interactive</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-interactive);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-interactive</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-interactive-hover);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-interactive-hover</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>Overlay</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-overlay);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-overlay</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-overlay-subtle);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-overlay-subtle</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-overlay-hover);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-overlay-hover</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-overlay-active);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-overlay-active</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>Nav</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-nav-bg);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-nav-bg</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-nav-border);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-nav-border</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>Selection</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-selection-bg);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-selection-bg</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-selection-text);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-selection-text</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>Success</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-success);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-success</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-success-subtle);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-success-subtle</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-success-border);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-success-border</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>Warning</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-warning);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-warning</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-warning-subtle);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-warning-subtle</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-warning-border);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-warning-border</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>Error</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-error);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-error</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-error-subtle);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-error-subtle</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-error-border);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-error-border</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>Info</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-info);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-info</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-info-subtle);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-info-subtle</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-info-border);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-info-border</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="demo-example">
+        <h2>Accent</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-accent-blue);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-accent-blue</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-accent-purple);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-accent-purple</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-accent-green);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-accent-green</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-accent-orange);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-accent-orange</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-accent-blue-subtle);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-accent-blue-subtle</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-accent-purple-subtle);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-accent-purple-subtle</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-accent-green-subtle);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-accent-green-subtle</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+            <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-accent-orange-subtle);"></div>
+            <div>
+              <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-accent-orange-subtle</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../_shared/demo.js"></script>
+</body>
+</html>

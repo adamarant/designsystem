@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spacing & Layout — Design System</title>
+  <link rel="stylesheet" href="../../dist/designsystem.css">
+  <link rel="stylesheet" href="../_shared/demo.css">
+</head>
+<body>
+
+  <div class="demo-layout">
+    <aside class="demo-sidebar">
+      <a href="../" class="demo-sidebar__brand">Design System</a>
+      <input class="ds-input ds-input--sm" id="componentSearch" placeholder="Search...">
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Foundations</div>
+        <a href="../foundations/colors.html" class="demo-sidebar__link">Colors</a>
+        <a href="../foundations/typography.html" class="demo-sidebar__link">Typography</a>
+        <a href="../foundations/spacing.html" class="demo-sidebar__link demo-sidebar__link--active">Spacing & Layout</a>
+        <a href="../foundations/effects.html" class="demo-sidebar__link">Effects</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Core</div>
+        <a href="../components/button.html" class="demo-sidebar__link">Button</a>
+        <a href="../components/card.html" class="demo-sidebar__link">Card</a>
+        <a href="../components/input.html" class="demo-sidebar__link">Input</a>
+        <a href="../components/badge.html" class="demo-sidebar__link">Badge</a>
+        <a href="../components/nav.html" class="demo-sidebar__link">Navigation</a>
+        <a href="../components/modal.html" class="demo-sidebar__link">Modal</a>
+        <a href="../components/toast.html" class="demo-sidebar__link">Toast</a>
+        <a href="../components/table.html" class="demo-sidebar__link">Table</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Essential</div>
+        <a href="../components/tabs.html" class="demo-sidebar__link">Tabs</a>
+        <a href="../components/alert.html" class="demo-sidebar__link">Alert</a>
+        <a href="../components/divider.html" class="demo-sidebar__link">Divider</a>
+        <a href="../components/dropdown.html" class="demo-sidebar__link">Dropdown</a>
+        <a href="../components/tooltip.html" class="demo-sidebar__link">Tooltip</a>
+        <a href="../components/avatar.html" class="demo-sidebar__link">Avatar</a>
+        <a href="../components/skeleton.html" class="demo-sidebar__link">Skeleton</a>
+        <a href="../components/empty-state.html" class="demo-sidebar__link">Empty State</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Common</div>
+        <a href="../components/toggle.html" class="demo-sidebar__link">Toggle</a>
+        <a href="../components/breadcrumb.html" class="demo-sidebar__link">Breadcrumb</a>
+        <a href="../components/pagination.html" class="demo-sidebar__link">Pagination</a>
+        <a href="../components/tag.html" class="demo-sidebar__link">Tag</a>
+        <a href="../components/accordion.html" class="demo-sidebar__link">Accordion</a>
+        <a href="../components/drawer.html" class="demo-sidebar__link">Drawer</a>
+        <a href="../components/progress.html" class="demo-sidebar__link">Progress</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Advanced</div>
+        <a href="../components/popover.html" class="demo-sidebar__link">Popover</a>
+        <a href="../components/slider.html" class="demo-sidebar__link">Slider</a>
+        <a href="../components/timeline.html" class="demo-sidebar__link">Timeline</a>
+        <a href="../components/kbd.html" class="demo-sidebar__link">Kbd</a>
+        <a href="../components/command.html" class="demo-sidebar__link">Command</a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: var(--ds-space-4); border-top: 1px solid var(--ds-color-border-subtle);">
+        <button class="ds-btn ds-btn--ghost ds-btn--sm" data-toggle-theme style="width: 100%;">Toggle Theme</button>
+      </div>
+    </aside>
+
+    <main class="demo-main">
+
+      <header>
+        <h1>Spacing & Layout</h1>
+        <p>Spacing scale, border radius, z-index layers, and container sizes.</p>
+        <div class="demo-meta">
+          <span class="ds-badge">Foundation</span>
+          <code>@import '@digiko-npm/designsystem/tokens';</code>
+        </div>
+      </header>
+
+      <section class="demo-example">
+        <h2>Spacing Scale</h2>
+        <div class="demo-preview" style="flex-direction: column; gap: var(--ds-space-2);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-0</code>
+            <div style="height: 16px; width: var(--ds-space-0); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">0</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-0-5</code>
+            <div style="height: 16px; width: var(--ds-space-0-5); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">0.125rem / 2px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-1</code>
+            <div style="height: 16px; width: var(--ds-space-1); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">0.25rem / 4px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-1-5</code>
+            <div style="height: 16px; width: var(--ds-space-1-5); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">0.375rem / 6px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-2</code>
+            <div style="height: 16px; width: var(--ds-space-2); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">0.5rem / 8px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-2-5</code>
+            <div style="height: 16px; width: var(--ds-space-2-5); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">0.625rem / 10px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-3</code>
+            <div style="height: 16px; width: var(--ds-space-3); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">0.75rem / 12px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-4</code>
+            <div style="height: 16px; width: var(--ds-space-4); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">1rem / 16px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-5</code>
+            <div style="height: 16px; width: var(--ds-space-5); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">1.25rem / 20px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-6</code>
+            <div style="height: 16px; width: var(--ds-space-6); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">1.5rem / 24px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-8</code>
+            <div style="height: 16px; width: var(--ds-space-8); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">2rem / 32px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-10</code>
+            <div style="height: 16px; width: var(--ds-space-10); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">2.5rem / 40px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-12</code>
+            <div style="height: 16px; width: var(--ds-space-12); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">3rem / 48px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-16</code>
+            <div style="height: 16px; width: var(--ds-space-16); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">4rem / 64px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-20</code>
+            <div style="height: 16px; width: var(--ds-space-20); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">5rem / 80px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-24</code>
+            <div style="height: 16px; width: var(--ds-space-24); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">6rem / 96px</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">space-32</code>
+            <div style="height: 16px; width: var(--ds-space-32); background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
+            <span style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">8rem / 128px</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-example">
+        <h2>Border Radius</h2>
+        <div class="demo-preview" style="gap: var(--ds-space-5); flex-wrap: wrap;">
+          <div style="text-align: center;">
+            <div style="width: 64px; height: 64px; background: var(--ds-color-inverted); border-radius: var(--ds-radius-none);"></div>
+            <div style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); margin-top: var(--ds-space-2);">none</div>
+            <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-disabled);">0</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 64px; height: 64px; background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm);"></div>
+            <div style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); margin-top: var(--ds-space-2);">sm</div>
+            <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-disabled);">6px</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 64px; height: 64px; background: var(--ds-color-inverted); border-radius: var(--ds-radius-md);"></div>
+            <div style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); margin-top: var(--ds-space-2);">md</div>
+            <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-disabled);">8px</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 64px; height: 64px; background: var(--ds-color-inverted); border-radius: var(--ds-radius-lg);"></div>
+            <div style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); margin-top: var(--ds-space-2);">lg</div>
+            <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-disabled);">12px</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 64px; height: 64px; background: var(--ds-color-inverted); border-radius: var(--ds-radius-xl);"></div>
+            <div style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); margin-top: var(--ds-space-2);">xl</div>
+            <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-disabled);">16px</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 64px; height: 64px; background: var(--ds-color-inverted); border-radius: var(--ds-radius-2xl);"></div>
+            <div style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); margin-top: var(--ds-space-2);">2xl</div>
+            <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-disabled);">20px</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 64px; height: 64px; background: var(--ds-color-inverted); border-radius: var(--ds-radius-full);"></div>
+            <div style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); margin-top: var(--ds-space-2);">full</div>
+            <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-disabled);">9999px</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-example">
+        <h2>Z-Index Scale</h2>
+        <div class="demo-preview" style="flex-direction: column; gap: var(--ds-space-2);">
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">base</code>
+            <div style="height: 24px; width: 10%; background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); display: flex; align-items: center; padding-left: var(--ds-space-2);">
+              <span style="font-size: var(--ds-text-xs); color: var(--ds-color-on-inverted); font-family: var(--ds-font-mono);">0</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">dropdown</code>
+            <div style="height: 24px; width: 25%; background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); display: flex; align-items: center; padding-left: var(--ds-space-2);">
+              <span style="font-size: var(--ds-text-xs); color: var(--ds-color-on-inverted); font-family: var(--ds-font-mono);">50</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">sticky</code>
+            <div style="height: 24px; width: 30%; background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); display: flex; align-items: center; padding-left: var(--ds-space-2);">
+              <span style="font-size: var(--ds-text-xs); color: var(--ds-color-on-inverted); font-family: var(--ds-font-mono);">60</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">overlay</code>
+            <div style="height: 24px; width: 40%; background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); display: flex; align-items: center; padding-left: var(--ds-space-2);">
+              <span style="font-size: var(--ds-text-xs); color: var(--ds-color-on-inverted); font-family: var(--ds-font-mono);">80</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">modal</code>
+            <div style="height: 24px; width: 50%; background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); display: flex; align-items: center; padding-left: var(--ds-space-2);">
+              <span style="font-size: var(--ds-text-xs); color: var(--ds-color-on-inverted); font-family: var(--ds-font-mono);">100</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">toast</code>
+            <div style="height: 24px; width: 75%; background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); display: flex; align-items: center; padding-left: var(--ds-space-2);">
+              <span style="font-size: var(--ds-text-xs); color: var(--ds-color-on-inverted); font-family: var(--ds-font-mono);">150</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">tooltip</code>
+            <div style="height: 24px; width: 100%; background: var(--ds-color-inverted); border-radius: var(--ds-radius-sm); display: flex; align-items: center; padding-left: var(--ds-space-2);">
+              <span style="font-size: var(--ds-text-xs); color: var(--ds-color-on-inverted); font-family: var(--ds-font-mono);">200</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-example">
+        <h2>Container Sizes</h2>
+        <table class="ds-table">
+          <thead><tr><th>Token</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td><code>container-max</code></td><td>1200px</td></tr>
+            <tr><td><code>container-padding</code></td><td>clamp(20px, 5vw, 80px)</td></tr>
+            <tr><td><code>container-sm</code></td><td>640px</td></tr>
+            <tr><td><code>container-md</code></td><td>768px</td></tr>
+            <tr><td><code>container-lg</code></td><td>1024px</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="../_shared/demo.js"></script>
+</body>
+</html>
