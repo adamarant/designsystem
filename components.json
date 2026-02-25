@@ -1,0 +1,594 @@
+{
+  "categories": [
+    { "id": "core", "label": "Core", "description": "Foundational UI building blocks" },
+    { "id": "essential", "label": "Essential", "description": "Commonly needed interaction patterns" },
+    { "id": "common", "label": "Common", "description": "Frequently used data and navigation patterns" },
+    { "id": "advanced", "label": "Advanced", "description": "Specialized and complex components" }
+  ],
+  "components": [
+    {
+      "name": "button",
+      "title": "Button",
+      "description": "Inverted primary, rounded-full CTAs, refined sizing.",
+      "category": "core",
+      "classes": [".ds-btn", ".ds-btn-group"],
+      "elements": [],
+      "variants": ["--secondary", "--outline", "--ghost", "--danger", "--success"],
+      "sizes": ["--sm", "--lg"],
+      "modifiers": ["--pill", "--full", "--icon", "--loading"],
+      "examples": [
+        {
+          "title": "Variants",
+          "html": "<button class=\"ds-btn\">Primary</button>\n<button class=\"ds-btn ds-btn--secondary\">Secondary</button>\n<button class=\"ds-btn ds-btn--outline\">Outline</button>\n<button class=\"ds-btn ds-btn--ghost\">Ghost</button>\n<button class=\"ds-btn ds-btn--danger\">Delete</button>\n<button class=\"ds-btn ds-btn--success\">Approve</button>"
+        },
+        {
+          "title": "Sizes",
+          "html": "<button class=\"ds-btn ds-btn--sm\">Small</button>\n<button class=\"ds-btn\">Default</button>\n<button class=\"ds-btn ds-btn--lg\">Large</button>"
+        },
+        {
+          "title": "Modifiers",
+          "html": "<button class=\"ds-btn ds-btn--pill\">Get Started</button>\n<button class=\"ds-btn ds-btn--full\">Full Width</button>\n<button class=\"ds-btn ds-btn--icon\" aria-label=\"Settings\">&#9881;</button>\n<button class=\"ds-btn ds-btn--loading\">Saving</button>"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "title": "Card",
+      "description": "Surface + border, hover with shadow lift, rounded-xl.",
+      "category": "core",
+      "classes": [".ds-card", ".ds-stat-card"],
+      "elements": ["__header", "__title", "__description", "__body", "__footer", "__media"],
+      "variants": ["--interactive", "--elevated", "--hover", "--compact", "--flush"],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Basic Card",
+          "html": "<div class=\"ds-card\">\n  <div class=\"ds-card__header\">\n    <h3 class=\"ds-card__title\">Project Overview</h3>\n    <p class=\"ds-card__description\">Summary of the current sprint progress</p>\n  </div>\n  <div class=\"ds-card__body\">Content goes here</div>\n  <div class=\"ds-card__footer\">\n    <button class=\"ds-btn ds-btn--sm ds-btn--secondary\">Cancel</button>\n    <button class=\"ds-btn ds-btn--sm\">Save</button>\n  </div>\n</div>"
+        },
+        {
+          "title": "Stat Card",
+          "html": "<div class=\"ds-stat-card\">\n  <div class=\"ds-stat-card__icon\">&#128200;</div>\n  <div class=\"ds-stat-card__label\">Total Revenue</div>\n  <div class=\"ds-stat-card__value\">$45,231</div>\n  <div class=\"ds-stat-card__detail\">+12.5% from last month</div>\n</div>"
+        },
+        {
+          "title": "Interactive Card",
+          "html": "<div class=\"ds-card ds-card--interactive\">\n  <div class=\"ds-card__header\">\n    <h3 class=\"ds-card__title\">Design System</h3>\n    <p class=\"ds-card__description\">CSS component library</p>\n  </div>\n  <div class=\"ds-card__body\">Click to open project details</div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "title": "Input",
+      "description": "Form inputs with surface bg, clean borders, focus ring.",
+      "category": "core",
+      "classes": [".ds-input", ".ds-textarea", ".ds-select", ".ds-label", ".ds-help", ".ds-form-group", ".ds-checkbox", ".ds-radio"],
+      "elements": [],
+      "variants": ["--error", "--success"],
+      "sizes": ["--sm", "--lg"],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Text Input",
+          "html": "<div class=\"ds-form-group\">\n  <label class=\"ds-label\">Email address</label>\n  <input class=\"ds-input\" type=\"email\" placeholder=\"you@example.com\" />\n  <p class=\"ds-help\">We'll never share your email</p>\n</div>"
+        },
+        {
+          "title": "Input States",
+          "html": "<div class=\"ds-form-group\">\n  <label class=\"ds-label\">Username</label>\n  <input class=\"ds-input ds-input--error\" type=\"text\" value=\"ab\" />\n  <p class=\"ds-help ds-help--error\">Username must be at least 3 characters</p>\n</div>\n<div class=\"ds-form-group\">\n  <label class=\"ds-label\">Password</label>\n  <input class=\"ds-input ds-input--success\" type=\"password\" value=\"strongpass\" />\n</div>"
+        },
+        {
+          "title": "Other Inputs",
+          "html": "<div class=\"ds-form-group\">\n  <label class=\"ds-label\">Description</label>\n  <textarea class=\"ds-textarea\" placeholder=\"Write something...\"></textarea>\n</div>\n<div class=\"ds-form-group\">\n  <label class=\"ds-label\">Country</label>\n  <select class=\"ds-select\">\n    <option>United States</option>\n    <option>United Kingdom</option>\n    <option>Germany</option>\n  </select>\n</div>\n<label class=\"ds-checkbox\"><input type=\"checkbox\" /> Remember me</label>\n<label class=\"ds-radio\"><input type=\"radio\" name=\"plan\" /> Free plan</label>"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "title": "Badge",
+      "description": "Pill shape, border + subtle bg, clean and refined.",
+      "category": "core",
+      "classes": [".ds-badge"],
+      "elements": [],
+      "variants": ["--primary", "--success", "--warning", "--error", "--info", "--purple", "--outline"],
+      "sizes": [],
+      "modifiers": ["--dot", "--upper"],
+      "examples": [
+        {
+          "title": "Semantic Variants",
+          "html": "<span class=\"ds-badge\">Default</span>\n<span class=\"ds-badge ds-badge--primary\">Primary</span>\n<span class=\"ds-badge ds-badge--success\">Success</span>\n<span class=\"ds-badge ds-badge--warning\">Warning</span>\n<span class=\"ds-badge ds-badge--error\">Error</span>\n<span class=\"ds-badge ds-badge--info\">Info</span>\n<span class=\"ds-badge ds-badge--purple\">Purple</span>"
+        },
+        {
+          "title": "Modifiers",
+          "html": "<span class=\"ds-badge ds-badge--outline\">Outline</span>\n<span class=\"ds-badge ds-badge--dot ds-badge--success\">Online</span>\n<span class=\"ds-badge ds-badge--upper ds-badge--primary\">New</span>\n<span class=\"ds-badge ds-badge--upper ds-badge--purple\">Beta</span>"
+        }
+      ]
+    },
+    {
+      "name": "nav",
+      "title": "Navigation",
+      "description": "Fixed glass header, backdrop-blur, h-16. Clean links.",
+      "category": "core",
+      "classes": [".ds-nav", ".ds-sidebar"],
+      "elements": ["__inner", "__brand", "__menu", "__link", "__actions", "__icon-btn", "__mobile", "__mobile-links"],
+      "variants": ["--static"],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Top Navigation",
+          "html": "<nav class=\"ds-nav ds-nav--static\">\n  <div class=\"ds-nav__inner\">\n    <a class=\"ds-nav__brand\" href=\"#\">Acme Inc</a>\n    <div class=\"ds-nav__menu\">\n      <a class=\"ds-nav__link ds-nav__link--active\" href=\"#\">Dashboard</a>\n      <a class=\"ds-nav__link\" href=\"#\">Projects</a>\n      <a class=\"ds-nav__link\" href=\"#\">Settings</a>\n    </div>\n    <div class=\"ds-nav__actions\">\n      <button class=\"ds-nav__icon-btn\" aria-label=\"Toggle theme\">&#9790;</button>\n    </div>\n  </div>\n</nav>"
+        },
+        {
+          "title": "Sidebar",
+          "html": "<aside class=\"ds-sidebar\">\n  <div class=\"ds-sidebar__section\">\n    <div class=\"ds-sidebar__title\">Main</div>\n    <a class=\"ds-sidebar__link ds-sidebar__link--active\" href=\"#\">Dashboard</a>\n    <a class=\"ds-sidebar__link\" href=\"#\">Analytics</a>\n    <a class=\"ds-sidebar__link\" href=\"#\">Reports</a>\n  </div>\n  <div class=\"ds-sidebar__section\">\n    <div class=\"ds-sidebar__title\">Settings</div>\n    <a class=\"ds-sidebar__link\" href=\"#\">Profile</a>\n    <a class=\"ds-sidebar__link\" href=\"#\">Billing</a>\n  </div>\n</aside>"
+        }
+      ]
+    },
+    {
+      "name": "modal",
+      "title": "Modal",
+      "description": "Backdrop blur, shadow-2xl, rounded-xl. Smooth scale transition.",
+      "category": "core",
+      "classes": [".ds-modal"],
+      "elements": ["__content", "__header", "__close", "__body", "__footer"],
+      "variants": [],
+      "sizes": ["--md", "--lg"],
+      "modifiers": ["--open"],
+      "examples": [
+        {
+          "title": "Basic Modal",
+          "html": "<div class=\"ds-modal ds-modal--open\" style=\"position:relative;background:transparent;padding:0;\">\n  <div class=\"ds-modal__content\" style=\"position:relative;transform:none;\">\n    <div class=\"ds-modal__header\">\n      <div>\n        <h3>Confirm Action</h3>\n        <p>This action cannot be undone.</p>\n      </div>\n      <button class=\"ds-modal__close\" aria-label=\"Close\">&times;</button>\n    </div>\n    <div class=\"ds-modal__body\">\n      <p>Are you sure you want to delete this project? All data will be permanently removed.</p>\n    </div>\n    <div class=\"ds-modal__footer\">\n      <button class=\"ds-btn ds-btn--secondary\">Cancel</button>\n      <button class=\"ds-btn ds-btn--danger\">Delete</button>\n    </div>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "title": "Toast",
+      "description": "Notification toasts with positions and enter/exit animations.",
+      "category": "core",
+      "classes": [".ds-toast", ".ds-toast-container"],
+      "elements": ["__message", "__close"],
+      "variants": ["--info", "--success", "--warning", "--error"],
+      "sizes": [],
+      "modifiers": ["--exit"],
+      "examples": [
+        {
+          "title": "Toast Variants",
+          "html": "<div style=\"display:flex;flex-direction:column;gap:0.5rem;\">\n  <div class=\"ds-toast ds-toast--success\" style=\"animation:none;\">\n    <span class=\"ds-toast__message\">Changes saved successfully</span>\n    <button class=\"ds-toast__close\">&times;</button>\n  </div>\n  <div class=\"ds-toast ds-toast--error\" style=\"animation:none;\">\n    <span class=\"ds-toast__message\">Failed to upload file</span>\n    <button class=\"ds-toast__close\">&times;</button>\n  </div>\n  <div class=\"ds-toast ds-toast--warning\" style=\"animation:none;\">\n    <span class=\"ds-toast__message\">Your session will expire in 5 minutes</span>\n    <button class=\"ds-toast__close\">&times;</button>\n  </div>\n  <div class=\"ds-toast ds-toast--info\" style=\"animation:none;\">\n    <span class=\"ds-toast__message\">A new version is available</span>\n    <button class=\"ds-toast__close\">&times;</button>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "title": "Table",
+      "description": "Data table with compact variant and scrollable wrapper.",
+      "category": "core",
+      "classes": [".ds-table", ".ds-table-wrapper"],
+      "elements": [],
+      "variants": ["--compact"],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Basic Table",
+          "html": "<div class=\"ds-table-wrapper\">\n  <table class=\"ds-table\">\n    <thead>\n      <tr>\n        <th>Name</th>\n        <th>Role</th>\n        <th>Status</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>Alice Johnson</td>\n        <td>Engineer</td>\n        <td><span class=\"ds-badge ds-badge--success\">Active</span></td>\n      </tr>\n      <tr>\n        <td>Bob Smith</td>\n        <td>Designer</td>\n        <td><span class=\"ds-badge ds-badge--warning\">Away</span></td>\n      </tr>\n      <tr>\n        <td>Carol White</td>\n        <td>Manager</td>\n        <td><span class=\"ds-badge ds-badge--error\">Offline</span></td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+        },
+        {
+          "title": "Compact Table",
+          "html": "<div class=\"ds-table-wrapper\">\n  <table class=\"ds-table ds-table--compact\">\n    <thead>\n      <tr><th>Endpoint</th><th>Method</th><th>Latency</th></tr>\n    </thead>\n    <tbody>\n      <tr><td>/api/users</td><td>GET</td><td>42ms</td></tr>\n      <tr><td>/api/posts</td><td>POST</td><td>128ms</td></tr>\n      <tr><td>/api/auth</td><td>POST</td><td>95ms</td></tr>\n    </tbody>\n  </table>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "title": "Tabs",
+      "description": "Horizontal/vertical tab navigation with pill, small, and full-width variants.",
+      "category": "essential",
+      "classes": [".ds-tabs", ".ds-tab", ".ds-tab-panel"],
+      "elements": ["__icon", "__count"],
+      "variants": ["--pills", "--vertical", "--full"],
+      "sizes": ["--sm"],
+      "modifiers": ["--active"],
+      "examples": [
+        {
+          "title": "Default Tabs",
+          "html": "<div class=\"ds-tabs\">\n  <button class=\"ds-tab ds-tab--active\">Overview</button>\n  <button class=\"ds-tab\">Analytics</button>\n  <button class=\"ds-tab\">Reports</button>\n  <button class=\"ds-tab\" disabled>Settings</button>\n</div>"
+        },
+        {
+          "title": "Pill Tabs",
+          "html": "<div class=\"ds-tabs ds-tabs--pills\">\n  <button class=\"ds-tab ds-tab--active\">All</button>\n  <button class=\"ds-tab\">Active</button>\n  <button class=\"ds-tab\">Archived</button>\n</div>"
+        },
+        {
+          "title": "Tabs with Counts",
+          "html": "<div class=\"ds-tabs\">\n  <button class=\"ds-tab ds-tab--active\">Issues <span class=\"ds-tab__count\">24</span></button>\n  <button class=\"ds-tab\">Pull Requests <span class=\"ds-tab__count\">8</span></button>\n  <button class=\"ds-tab\">Discussions <span class=\"ds-tab__count\">3</span></button>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "title": "Alert",
+      "description": "Contextual feedback banners with semantic variants and dismissibility.",
+      "category": "essential",
+      "classes": [".ds-alert"],
+      "elements": ["__icon", "__content", "__title", "__description", "__close"],
+      "variants": ["--info", "--success", "--warning", "--error", "--compact", "--banner"],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Semantic Variants",
+          "html": "<div class=\"ds-alert ds-alert--info\">\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Information</div>\n    <div class=\"ds-alert__description\">A new software update is available for download.</div>\n  </div>\n  <button class=\"ds-alert__close\">&times;</button>\n</div>\n<div class=\"ds-alert ds-alert--success\" style=\"margin-top:0.5rem;\">\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Success</div>\n    <div class=\"ds-alert__description\">Your profile has been updated successfully.</div>\n  </div>\n</div>\n<div class=\"ds-alert ds-alert--warning\" style=\"margin-top:0.5rem;\">\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Warning</div>\n    <div class=\"ds-alert__description\">Your storage is almost full. Consider upgrading your plan.</div>\n  </div>\n</div>\n<div class=\"ds-alert ds-alert--error\" style=\"margin-top:0.5rem;\">\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Error</div>\n    <div class=\"ds-alert__description\">Unable to process your request. Please try again.</div>\n  </div>\n</div>"
+        },
+        {
+          "title": "Banner Alert",
+          "html": "<div class=\"ds-alert ds-alert--banner ds-alert--info\">\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Scheduled Maintenance</div>\n    <div class=\"ds-alert__description\">System will be down for maintenance on March 1st from 2:00 AM to 4:00 AM UTC.</div>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "divider",
+      "title": "Divider",
+      "description": "Horizontal and vertical separators with optional centered label.",
+      "category": "essential",
+      "classes": [".ds-divider"],
+      "elements": [],
+      "variants": ["--vertical", "--subtle", "--spacious", "--label"],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Divider Types",
+          "html": "<p>Content above</p>\n<hr class=\"ds-divider\" />\n<p>Content below</p>\n<hr class=\"ds-divider ds-divider--subtle\" />\n<p>After subtle divider</p>"
+        },
+        {
+          "title": "Label Divider",
+          "html": "<div class=\"ds-divider ds-divider--label\">Or continue with</div>"
+        }
+      ]
+    },
+    {
+      "name": "dropdown",
+      "title": "Dropdown",
+      "description": "Floating menu with surface bg, scale transition, keyboard-friendly items.",
+      "category": "essential",
+      "classes": [".ds-dropdown"],
+      "elements": ["__trigger", "__menu", "__item", "__item-icon", "__item-label", "__item-shortcut", "__divider", "__header"],
+      "variants": [],
+      "sizes": [],
+      "modifiers": ["--open"],
+      "examples": [
+        {
+          "title": "Dropdown Menu",
+          "html": "<div class=\"ds-dropdown ds-dropdown--open\" style=\"position:relative;\">\n  <button class=\"ds-btn ds-btn--secondary ds-dropdown__trigger\">Options &#9662;</button>\n  <div class=\"ds-dropdown__menu ds-dropdown__menu--open\" style=\"position:relative;top:auto;opacity:1;visibility:visible;transform:none;\">\n    <div class=\"ds-dropdown__header\">Actions</div>\n    <div class=\"ds-dropdown__item\">Edit</div>\n    <div class=\"ds-dropdown__item\">Duplicate</div>\n    <div class=\"ds-dropdown__item\">Archive</div>\n    <hr class=\"ds-dropdown__divider\" />\n    <div class=\"ds-dropdown__item ds-dropdown__item--danger\">Delete</div>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "title": "Tooltip",
+      "description": "Inverted bubble with arrow, positioned via modifier classes.",
+      "category": "essential",
+      "classes": [".ds-tooltip"],
+      "elements": ["__content"],
+      "variants": ["--top", "--bottom", "--left", "--right"],
+      "sizes": [],
+      "modifiers": ["--delay"],
+      "examples": [
+        {
+          "title": "Tooltip Placements",
+          "html": "<span class=\"ds-tooltip ds-tooltip--top\" style=\"margin:2rem;\">\n  <button class=\"ds-btn ds-btn--secondary\">Hover me</button>\n  <span class=\"ds-tooltip__content\">Tooltip on top</span>\n</span>\n<span class=\"ds-tooltip ds-tooltip--bottom\" style=\"margin:2rem;\">\n  <button class=\"ds-btn ds-btn--secondary\">Bottom</button>\n  <span class=\"ds-tooltip__content\">Tooltip on bottom</span>\n</span>"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "title": "Avatar",
+      "description": "User photos, token images, initials. Stackable in groups.",
+      "category": "essential",
+      "classes": [".ds-avatar", ".ds-avatar-group"],
+      "elements": ["__status"],
+      "variants": ["--square", "--bordered"],
+      "sizes": ["--xs", "--sm", "--md", "--lg", "--xl"],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Sizes",
+          "html": "<span class=\"ds-avatar ds-avatar--xs\">XS</span>\n<span class=\"ds-avatar ds-avatar--sm\">SM</span>\n<span class=\"ds-avatar\">MD</span>\n<span class=\"ds-avatar ds-avatar--lg\">LG</span>\n<span class=\"ds-avatar ds-avatar--xl\">XL</span>"
+        },
+        {
+          "title": "Avatar Group with Status",
+          "html": "<div class=\"ds-avatar-group\">\n  <span class=\"ds-avatar ds-avatar--bordered\">AB</span>\n  <span class=\"ds-avatar ds-avatar--bordered\">CD</span>\n  <span class=\"ds-avatar ds-avatar--bordered\">EF</span>\n  <span class=\"ds-avatar ds-avatar--bordered\">+3</span>\n</div>"
+        },
+        {
+          "title": "Status Indicators",
+          "html": "<span class=\"ds-avatar\">\n  JD\n  <span class=\"ds-avatar__status ds-avatar__status--online\"></span>\n</span>\n<span class=\"ds-avatar\">\n  AK\n  <span class=\"ds-avatar__status ds-avatar__status--busy\"></span>\n</span>\n<span class=\"ds-avatar\">\n  MR\n  <span class=\"ds-avatar__status ds-avatar__status--offline\"></span>\n</span>"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "title": "Skeleton",
+      "description": "Loading placeholders with a subtle pulse animation.",
+      "category": "essential",
+      "classes": [".ds-skeleton"],
+      "elements": [],
+      "variants": ["--text", "--text-sm", "--text-lg", "--heading", "--circle", "--avatar", "--card", "--btn", "--input"],
+      "sizes": [],
+      "modifiers": ["--w-1/2", "--w-3/4", "--w-1/3"],
+      "examples": [
+        {
+          "title": "Text Skeleton",
+          "html": "<div class=\"ds-skeleton ds-skeleton--heading\"></div>\n<div class=\"ds-skeleton ds-skeleton--text\"></div>\n<div class=\"ds-skeleton ds-skeleton--text ds-skeleton--w-3/4\"></div>\n<div class=\"ds-skeleton ds-skeleton--text ds-skeleton--w-1/2\"></div>"
+        },
+        {
+          "title": "Card Skeleton",
+          "html": "<div class=\"ds-card\">\n  <div class=\"ds-card__body\" style=\"display:flex;gap:1rem;align-items:center;\">\n    <div class=\"ds-skeleton ds-skeleton--avatar\"></div>\n    <div style=\"flex:1;\">\n      <div class=\"ds-skeleton ds-skeleton--text ds-skeleton--w-1/3\"></div>\n      <div class=\"ds-skeleton ds-skeleton--text-sm ds-skeleton--w-1/2\"></div>\n    </div>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "empty-state",
+      "title": "Empty State",
+      "description": "Centered message for when there's no data to display.",
+      "category": "essential",
+      "classes": [".ds-empty-state"],
+      "elements": ["__icon", "__title", "__description", "__actions"],
+      "variants": ["--compact", "--card"],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Basic Empty State",
+          "html": "<div class=\"ds-empty-state\">\n  <div class=\"ds-empty-state__icon\">&#128269;</div>\n  <div class=\"ds-empty-state__title\">No results found</div>\n  <div class=\"ds-empty-state__description\">Try adjusting your search or filters to find what you're looking for.</div>\n  <div class=\"ds-empty-state__actions\">\n    <button class=\"ds-btn ds-btn--secondary\">Clear filters</button>\n    <button class=\"ds-btn\">New search</button>\n  </div>\n</div>"
+        },
+        {
+          "title": "Card Empty State",
+          "html": "<div class=\"ds-empty-state ds-empty-state--card\">\n  <div class=\"ds-empty-state__icon\">&#128196;</div>\n  <div class=\"ds-empty-state__title\">No documents yet</div>\n  <div class=\"ds-empty-state__description\">Upload your first document to get started.</div>\n  <div class=\"ds-empty-state__actions\">\n    <button class=\"ds-btn\">Upload Document</button>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "title": "Toggle",
+      "description": "A toggle (switch) control for binary on/off states.",
+      "category": "common",
+      "classes": [".ds-toggle", ".ds-toggle-label"],
+      "elements": ["__text"],
+      "variants": [],
+      "sizes": ["--sm"],
+      "modifiers": ["--checked", "--disabled"],
+      "examples": [
+        {
+          "title": "Toggle States",
+          "html": "<button class=\"ds-toggle\" role=\"switch\" aria-checked=\"false\"></button>\n<button class=\"ds-toggle\" role=\"switch\" aria-checked=\"true\"></button>\n<button class=\"ds-toggle ds-toggle--sm\" role=\"switch\" aria-checked=\"true\"></button>"
+        },
+        {
+          "title": "Toggle with Label",
+          "html": "<label class=\"ds-toggle-label\">\n  <button class=\"ds-toggle\" role=\"switch\" aria-checked=\"true\"></button>\n  <span class=\"ds-toggle-label__text\">Dark mode</span>\n</label>\n<label class=\"ds-toggle-label\">\n  <button class=\"ds-toggle\" role=\"switch\" aria-checked=\"false\"></button>\n  <span class=\"ds-toggle-label__text\">Notifications</span>\n</label>"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "title": "Breadcrumb",
+      "description": "A horizontal breadcrumb trail for hierarchical navigation.",
+      "category": "common",
+      "classes": [".ds-breadcrumb"],
+      "elements": ["__item", "__link", "__current"],
+      "variants": ["--compact"],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Basic Breadcrumb",
+          "html": "<nav class=\"ds-breadcrumb\" aria-label=\"Breadcrumb\">\n  <span class=\"ds-breadcrumb__item\">\n    <a href=\"#\" class=\"ds-breadcrumb__link\">Home</a>\n  </span>\n  <span class=\"ds-breadcrumb__item\">\n    <a href=\"#\" class=\"ds-breadcrumb__link\">Products</a>\n  </span>\n  <span class=\"ds-breadcrumb__item\">\n    <span class=\"ds-breadcrumb__current\" aria-current=\"page\">Widget Pro</span>\n  </span>\n</nav>"
+        },
+        {
+          "title": "Compact Breadcrumb",
+          "html": "<nav class=\"ds-breadcrumb ds-breadcrumb--compact\" aria-label=\"Breadcrumb\">\n  <span class=\"ds-breadcrumb__item\">\n    <a href=\"#\" class=\"ds-breadcrumb__link\">Dashboard</a>\n  </span>\n  <span class=\"ds-breadcrumb__item\">\n    <a href=\"#\" class=\"ds-breadcrumb__link\">Settings</a>\n  </span>\n  <span class=\"ds-breadcrumb__item\">\n    <span class=\"ds-breadcrumb__current\" aria-current=\"page\">Profile</span>\n  </span>\n</nav>"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "title": "Pagination",
+      "description": "A row of page-number controls for navigating multi-page content.",
+      "category": "common",
+      "classes": [".ds-pagination"],
+      "elements": ["__item", "__prev", "__next", "__ellipsis", "__info"],
+      "variants": ["--compact"],
+      "sizes": [],
+      "modifiers": ["--active", "--disabled"],
+      "examples": [
+        {
+          "title": "Basic Pagination",
+          "html": "<nav class=\"ds-pagination\" aria-label=\"Pagination\">\n  <button class=\"ds-pagination__prev\" aria-label=\"Previous page\">&lsaquo;</button>\n  <button class=\"ds-pagination__item\">1</button>\n  <button class=\"ds-pagination__item ds-pagination__item--active\" aria-current=\"page\">2</button>\n  <button class=\"ds-pagination__item\">3</button>\n  <span class=\"ds-pagination__ellipsis\">&hellip;</span>\n  <button class=\"ds-pagination__item\">10</button>\n  <button class=\"ds-pagination__next\" aria-label=\"Next page\">&rsaquo;</button>\n</nav>"
+        },
+        {
+          "title": "Compact Pagination",
+          "html": "<nav class=\"ds-pagination ds-pagination--compact\" aria-label=\"Pagination\">\n  <button class=\"ds-pagination__prev\" disabled>&lsaquo;</button>\n  <button class=\"ds-pagination__item ds-pagination__item--active\">1</button>\n  <button class=\"ds-pagination__item\">2</button>\n  <button class=\"ds-pagination__item\">3</button>\n  <button class=\"ds-pagination__next\">&rsaquo;</button>\n  <span class=\"ds-pagination__info\">Page 1 of 3</span>\n</nav>"
+        }
+      ]
+    },
+    {
+      "name": "tag",
+      "title": "Tag",
+      "description": "Interactive, optionally removable tag for categorisation and filtering.",
+      "category": "common",
+      "classes": [".ds-tag"],
+      "elements": ["__remove"],
+      "variants": ["--primary", "--success", "--warning", "--error", "--info", "--purple", "--outline"],
+      "sizes": ["--sm", "--lg"],
+      "modifiers": ["--removable"],
+      "examples": [
+        {
+          "title": "Tag Variants",
+          "html": "<span class=\"ds-tag\">Default</span>\n<span class=\"ds-tag ds-tag--primary\">Primary</span>\n<span class=\"ds-tag ds-tag--success\">Approved</span>\n<span class=\"ds-tag ds-tag--warning\">Pending</span>\n<span class=\"ds-tag ds-tag--error\">Rejected</span>\n<span class=\"ds-tag ds-tag--info\">Info</span>\n<span class=\"ds-tag ds-tag--purple\">Feature</span>"
+        },
+        {
+          "title": "Removable Tags",
+          "html": "<span class=\"ds-tag ds-tag--removable ds-tag--primary\">React <button class=\"ds-tag__remove\" aria-label=\"Remove\">&times;</button></span>\n<span class=\"ds-tag ds-tag--removable ds-tag--success\">TypeScript <button class=\"ds-tag__remove\" aria-label=\"Remove\">&times;</button></span>\n<span class=\"ds-tag ds-tag--removable\">CSS <button class=\"ds-tag__remove\" aria-label=\"Remove\">&times;</button></span>"
+        },
+        {
+          "title": "Tag Sizes",
+          "html": "<span class=\"ds-tag ds-tag--sm\">Small</span>\n<span class=\"ds-tag\">Default</span>\n<span class=\"ds-tag ds-tag--lg\">Large</span>"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "title": "Accordion",
+      "description": "A vertically stacked set of collapsible sections. CSS-only open/close via modifier.",
+      "category": "common",
+      "classes": [".ds-accordion"],
+      "elements": ["__item", "__trigger", "__content", "__body"],
+      "variants": ["--flush", "--separated"],
+      "sizes": [],
+      "modifiers": ["--open"],
+      "examples": [
+        {
+          "title": "Default Accordion",
+          "html": "<div class=\"ds-accordion\">\n  <div class=\"ds-accordion__item ds-accordion__item--open\">\n    <button class=\"ds-accordion__trigger\">What is this design system?</button>\n    <div class=\"ds-accordion__content\">\n      <div class=\"ds-accordion__body\">A CSS-only design system with zero dependencies. Install anywhere, override tokens, nothing breaks.</div>\n    </div>\n  </div>\n  <div class=\"ds-accordion__item\">\n    <button class=\"ds-accordion__trigger\">How do I install it?</button>\n    <div class=\"ds-accordion__content\">\n      <div class=\"ds-accordion__body\">Install via npm and import the CSS bundle into your project.</div>\n    </div>\n  </div>\n  <div class=\"ds-accordion__item\">\n    <button class=\"ds-accordion__trigger\">Can I customize the theme?</button>\n    <div class=\"ds-accordion__content\">\n      <div class=\"ds-accordion__body\">Yes, override any CSS custom property to match your brand.</div>\n    </div>\n  </div>\n</div>"
+        },
+        {
+          "title": "Separated Accordion",
+          "html": "<div class=\"ds-accordion ds-accordion--separated\">\n  <div class=\"ds-accordion__item ds-accordion__item--open\">\n    <button class=\"ds-accordion__trigger\">Account Settings</button>\n    <div class=\"ds-accordion__content\">\n      <div class=\"ds-accordion__body\">Manage your account preferences and security settings.</div>\n    </div>\n  </div>\n  <div class=\"ds-accordion__item\">\n    <button class=\"ds-accordion__trigger\">Notifications</button>\n    <div class=\"ds-accordion__content\">\n      <div class=\"ds-accordion__body\">Configure how and when you receive notifications.</div>\n    </div>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "title": "Drawer",
+      "description": "A sliding overlay panel anchored to the edge of the viewport.",
+      "category": "common",
+      "classes": [".ds-drawer"],
+      "elements": ["__content", "__header", "__close", "__body", "__footer"],
+      "variants": ["--right", "--left", "--bottom"],
+      "sizes": ["--sm", "--lg"],
+      "modifiers": ["--open"],
+      "examples": [
+        {
+          "title": "Right Drawer",
+          "html": "<div class=\"ds-drawer ds-drawer--open\" style=\"position:relative;background:transparent;\">\n  <div class=\"ds-drawer__content\" style=\"position:relative;transform:none;width:24rem;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);\">\n    <div class=\"ds-drawer__header\">\n      <h3>Filter Options</h3>\n      <button class=\"ds-drawer__close\" aria-label=\"Close\">&times;</button>\n    </div>\n    <div class=\"ds-drawer__body\">\n      <div class=\"ds-form-group\">\n        <label class=\"ds-label\">Category</label>\n        <select class=\"ds-select\">\n          <option>All Categories</option>\n          <option>Design</option>\n          <option>Engineering</option>\n        </select>\n      </div>\n    </div>\n    <div class=\"ds-drawer__footer\">\n      <button class=\"ds-btn ds-btn--secondary\">Reset</button>\n      <button class=\"ds-btn\">Apply Filters</button>\n    </div>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "title": "Progress",
+      "description": "Progress bar with label row and step indicator for multi-step flows.",
+      "category": "common",
+      "classes": [".ds-progress", ".ds-steps", ".ds-step"],
+      "elements": ["__bar", "__label", "__indicator", "__content", "__title", "__description", "__connector"],
+      "variants": ["--success", "--warning", "--error", "--info"],
+      "sizes": ["--sm", "--lg"],
+      "modifiers": ["--completed", "--current", "--error", "--vertical"],
+      "examples": [
+        {
+          "title": "Progress Bar",
+          "html": "<div class=\"ds-progress__label\">\n  <span>Uploading files...</span>\n  <span>64%</span>\n</div>\n<div class=\"ds-progress\">\n  <div class=\"ds-progress__bar\" style=\"width:64%;\"></div>\n</div>"
+        },
+        {
+          "title": "Progress Variants",
+          "html": "<div class=\"ds-progress ds-progress--success\" style=\"margin-bottom:0.5rem;\"><div class=\"ds-progress__bar\" style=\"width:100%;\"></div></div>\n<div class=\"ds-progress ds-progress--warning\" style=\"margin-bottom:0.5rem;\"><div class=\"ds-progress__bar\" style=\"width:75%;\"></div></div>\n<div class=\"ds-progress ds-progress--error\" style=\"margin-bottom:0.5rem;\"><div class=\"ds-progress__bar\" style=\"width:30%;\"></div></div>\n<div class=\"ds-progress ds-progress--sm\" style=\"margin-bottom:0.5rem;\"><div class=\"ds-progress__bar\" style=\"width:50%;\"></div></div>\n<div class=\"ds-progress ds-progress--lg\"><div class=\"ds-progress__bar\" style=\"width:80%;\"></div></div>"
+        },
+        {
+          "title": "Step Indicator",
+          "html": "<div class=\"ds-steps\">\n  <div class=\"ds-step ds-step--completed\">\n    <div class=\"ds-step__indicator\">&#10003;</div>\n    <div class=\"ds-step__content\">\n      <span class=\"ds-step__title\">Account</span>\n    </div>\n  </div>\n  <div class=\"ds-step__connector\"></div>\n  <div class=\"ds-step ds-step--current\">\n    <div class=\"ds-step__indicator\">2</div>\n    <div class=\"ds-step__content\">\n      <span class=\"ds-step__title\">Profile</span>\n    </div>\n  </div>\n  <div class=\"ds-step__connector\"></div>\n  <div class=\"ds-step\">\n    <div class=\"ds-step__indicator\">3</div>\n    <div class=\"ds-step__content\">\n      <span class=\"ds-step__title\">Review</span>\n    </div>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "title": "Popover",
+      "description": "Flexible popover for displaying complex content anchored to a trigger element.",
+      "category": "advanced",
+      "classes": [".ds-popover"],
+      "elements": ["__content"],
+      "variants": ["--top", "--bottom", "--left", "--right"],
+      "sizes": ["--sm", "--lg"],
+      "modifiers": ["--open"],
+      "examples": [
+        {
+          "title": "Basic Popover",
+          "html": "<div class=\"ds-popover ds-popover--open\" style=\"display:inline-flex;\">\n  <button class=\"ds-btn ds-btn--secondary\">User Info</button>\n  <div class=\"ds-popover__content\" style=\"position:relative;top:auto;left:auto;transform:none;opacity:1;visibility:visible;margin-top:0.5rem;\">\n    <div style=\"display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;\">\n      <span class=\"ds-avatar\">JD</span>\n      <div>\n        <strong>Jane Doe</strong><br/>\n        <span style=\"font-size:var(--ds-text-sm);color:var(--ds-color-text-secondary);\">Senior Engineer</span>\n      </div>\n    </div>\n    <button class=\"ds-btn ds-btn--sm ds-btn--full\">View Profile</button>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "title": "Slider",
+      "description": "Range slider input with customizable thumb and track styling.",
+      "category": "advanced",
+      "classes": [".ds-slider"],
+      "elements": ["__labels", "__value"],
+      "variants": [],
+      "sizes": ["--sm"],
+      "modifiers": ["--disabled"],
+      "examples": [
+        {
+          "title": "Basic Slider",
+          "html": "<div class=\"ds-slider\">\n  <input type=\"range\" min=\"0\" max=\"100\" value=\"50\" />\n  <div class=\"ds-slider__labels\">\n    <span>0</span>\n    <span>100</span>\n  </div>\n</div>"
+        },
+        {
+          "title": "Slider with Value",
+          "html": "<div style=\"display:flex;align-items:center;gap:1rem;\">\n  <div class=\"ds-slider\" style=\"flex:1;\">\n    <input type=\"range\" min=\"0\" max=\"100\" value=\"75\" />\n  </div>\n  <span class=\"ds-slider__value\">75%</span>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "timeline",
+      "title": "Timeline",
+      "description": "Vertical timeline for roadmaps, activity feeds, and step-based flows.",
+      "category": "advanced",
+      "classes": [".ds-timeline"],
+      "elements": ["__item", "__dot", "__content", "__title", "__description", "__time"],
+      "variants": ["--compact"],
+      "sizes": [],
+      "modifiers": ["--completed", "--current", "--error"],
+      "examples": [
+        {
+          "title": "Activity Timeline",
+          "html": "<div class=\"ds-timeline\">\n  <div class=\"ds-timeline__item ds-timeline__item--completed\">\n    <div class=\"ds-timeline__dot\"></div>\n    <div class=\"ds-timeline__content\">\n      <div class=\"ds-timeline__title\">Project Created</div>\n      <div class=\"ds-timeline__description\">Initial repository setup and configuration.</div>\n      <div class=\"ds-timeline__time\">3 days ago</div>\n    </div>\n  </div>\n  <div class=\"ds-timeline__item ds-timeline__item--completed\">\n    <div class=\"ds-timeline__dot\"></div>\n    <div class=\"ds-timeline__content\">\n      <div class=\"ds-timeline__title\">Design Review</div>\n      <div class=\"ds-timeline__description\">UI mockups approved by the team.</div>\n      <div class=\"ds-timeline__time\">2 days ago</div>\n    </div>\n  </div>\n  <div class=\"ds-timeline__item ds-timeline__item--current\">\n    <div class=\"ds-timeline__dot\"></div>\n    <div class=\"ds-timeline__content\">\n      <div class=\"ds-timeline__title\">Development</div>\n      <div class=\"ds-timeline__description\">Building core components and layout.</div>\n      <div class=\"ds-timeline__time\">In progress</div>\n    </div>\n  </div>\n  <div class=\"ds-timeline__item\">\n    <div class=\"ds-timeline__dot\"></div>\n    <div class=\"ds-timeline__content\">\n      <div class=\"ds-timeline__title\">Testing</div>\n      <div class=\"ds-timeline__description\">QA and cross-browser testing.</div>\n    </div>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "title": "Kbd",
+      "description": "Keyboard shortcut display with a raised 3D key appearance.",
+      "category": "advanced",
+      "classes": [".ds-kbd", ".ds-kbd-group"],
+      "elements": ["__separator"],
+      "variants": [],
+      "sizes": ["--lg"],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Single Keys",
+          "html": "<kbd class=\"ds-kbd\">Esc</kbd>\n<kbd class=\"ds-kbd\">Enter</kbd>\n<kbd class=\"ds-kbd\">Tab</kbd>\n<kbd class=\"ds-kbd ds-kbd--lg\">Space</kbd>"
+        },
+        {
+          "title": "Key Combinations",
+          "html": "<span class=\"ds-kbd-group\">\n  <kbd class=\"ds-kbd\">Cmd</kbd>\n  <span class=\"ds-kbd-group__separator\">+</span>\n  <kbd class=\"ds-kbd\">K</kbd>\n</span>\n<span class=\"ds-kbd-group\" style=\"margin-left:1rem;\">\n  <kbd class=\"ds-kbd\">Ctrl</kbd>\n  <span class=\"ds-kbd-group__separator\">+</span>\n  <kbd class=\"ds-kbd\">Shift</kbd>\n  <span class=\"ds-kbd-group__separator\">+</span>\n  <kbd class=\"ds-kbd\">P</kbd>\n</span>"
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "title": "Command",
+      "description": "Command palette / search overlay following the Cmd+K pattern.",
+      "category": "advanced",
+      "classes": [".ds-command"],
+      "elements": ["__content", "__input-wrapper", "__input-icon", "__input", "__list", "__group", "__group-heading", "__item", "__item-icon", "__item-label", "__item-shortcut", "__empty", "__footer"],
+      "variants": [],
+      "sizes": [],
+      "modifiers": ["--open", "--active"],
+      "examples": [
+        {
+          "title": "Command Palette",
+          "html": "<div style=\"background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);overflow:hidden;max-width:32rem;box-shadow:var(--ds-shadow-lg);\">\n  <div class=\"ds-command__input-wrapper\">\n    <span class=\"ds-command__input-icon\">&#128269;</span>\n    <input class=\"ds-command__input\" placeholder=\"Type a command or search...\" />\n  </div>\n  <div class=\"ds-command__list\">\n    <div class=\"ds-command__group\">\n      <div class=\"ds-command__group-heading\">Suggestions</div>\n      <div class=\"ds-command__item ds-command__item--active\">\n        <span class=\"ds-command__item-label\">New File</span>\n        <span class=\"ds-command__item-shortcut\">Ctrl+N</span>\n      </div>\n      <div class=\"ds-command__item\">\n        <span class=\"ds-command__item-label\">Open Settings</span>\n        <span class=\"ds-command__item-shortcut\">Ctrl+,</span>\n      </div>\n      <div class=\"ds-command__item\">\n        <span class=\"ds-command__item-label\">Toggle Theme</span>\n      </div>\n    </div>\n  </div>\n  <div class=\"ds-command__footer\">Navigate with arrow keys &middot; Enter to select &middot; Esc to close</div>\n</div>"
+        }
+      ]
+    }
+  ]
+}

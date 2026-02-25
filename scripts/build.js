@@ -101,9 +101,49 @@ function updateExportsMap() {
   console.log(`  Updated exports map (${componentFiles.length} components)`);
 }
 
+function validateManifest() {
+  const manifestPath = path.join(__dirname, '..', 'components.json');
+  if (!fs.existsSync(manifestPath)) {
+    console.warn('  Warning: components.json not found — skipping validation');
+    return;
+  }
+
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+  const manifestNames = new Set(manifest.components.map(c => c.name));
+
+  const componentsDir = path.join(SRC, 'components');
+  const cssFiles = fs.readdirSync(componentsDir)
+    .filter(f => f.endsWith('.css') && f !== 'index.css')
+    .map(f => f.replace('.css', ''));
+  const cssNames = new Set(cssFiles);
+
+  let warnings = 0;
+
+  // CSS files missing from manifest
+  for (const name of cssNames) {
+    if (!manifestNames.has(name)) {
+      console.warn(`  Warning: ${name}.css has no entry in components.json`);
+      warnings++;
+    }
+  }
+
+  // Manifest entries with missing CSS files
+  for (const name of manifestNames) {
+    if (!cssNames.has(name)) {
+      console.warn(`  Warning: components.json has "${name}" but ${name}.css not found`);
+      warnings++;
+    }
+  }
+
+  if (warnings === 0) {
+    console.log(`  Manifest validated (${manifestNames.size} components in sync)`);
+  }
+}
+
 // Run
 build();
 updateExportsMap();
+validateManifest();
 
 // Watch mode
 if (process.argv.includes('--watch')) {

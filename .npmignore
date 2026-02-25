@@ -4,3 +4,4 @@ examples/
 .DS_Store
 *.log
 CLAUDE.md
+components.json
