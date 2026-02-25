@@ -297,18 +297,40 @@ Examples:       examples/index.html (open in browser)
 
 After every modification session, run through this before closing:
 
+### Code Quality
 - [ ] **No hardcoded values** — grep all touched files for hex colors (`#`), `px` values in spacing/font-size, raw font names, hardcoded rgba. Every value must be a `--ds-*` token.
 - [ ] **BEM naming correct** — all new classes follow `ds-component__element--modifier`. No typos, no camelCase, no missing prefix.
 - [ ] **File header present** — every new/modified component file has the `/* === Component: Name ... === */` comment block.
 - [ ] **index.css updated** — new components are imported in `src/components/index.css`, in the right tier section.
+- [ ] **No breaking changes** — existing class names unchanged. No removed selectors. No renamed tokens.
+
+### Build & Verify
 - [ ] **Build passes** — run `node scripts/build.js` and confirm no warnings. Check output size is reasonable.
 - [ ] **dist committed** — `dist/designsystem.css` is rebuilt and included in the commit.
 - [ ] **Light + dark work** — visually verify new components render correctly in both themes (open `examples/index.html`, toggle theme).
-- [ ] **No breaking changes** — existing class names unchanged. No removed selectors. No renamed tokens.
 - [ ] **examples/index.html updated** — if a new component was added, it has a usage example in the demo page.
-- [ ] **Commit per component** — each new component gets its own `feat:` commit. Index + dist get a separate `chore:` commit at the end.
 
-Quick one-liner to catch violations:
+### Git & Publish
+- [ ] **Commit per component** — each new component gets its own `feat:` commit. Index + dist get a separate `chore:` commit at the end.
+- [ ] **Bump version** — if publishing to npm, update `version` in `package.json` following semver (patch for fixes, minor for new components, major for breaking changes).
+- [ ] **README up to date** — if new components or features were added, update `README.md` (this is the npm package page).
+- [ ] **Push to origin** — `git push origin master`.
+- [ ] **Publish to npm** — `npm publish --access public`. Requires a valid granular access token with "Bypass 2FA" and "Read and write" permissions (create at npmjs.com > Settings > Access Tokens).
+
+### npm Publishing Quick Reference
+
+```bash
+# Build, bump, publish
+node scripts/build.js
+npm version patch          # or minor / major
+npm publish --access public
+
+# If token expired, generate a new one at:
+# https://www.npmjs.com/settings/digiko-npm/tokens
+# Then: npm config set //registry.npmjs.org/:_authToken <token>
+```
+
+### Quick one-liners to catch violations
 
 ```bash
 # Find hardcoded colors in component files
