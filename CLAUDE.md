@@ -290,6 +290,8 @@ npm install @digiko-npm/designsystem
 }
 ```
 
+**No `@layer` declarations:** This DS intentionally emits flat (unlayered) CSS. Consuming projects wrap the import in their own layer (e.g., `@import "designsystem" layer(ds)`), keeping full control over layer priority without nested-layer complexity.
+
 ---
 
 ## Quick Reference
