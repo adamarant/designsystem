@@ -57,8 +57,8 @@
 }
 
 .ds-pagination__item:focus-visible {
-  outline: 2px solid var(--ds-color-interactive);
-  outline-offset: 2px;
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
 }
 
 /* ---------------------------------------------------------------------------
@@ -116,8 +116,8 @@
 
 .ds-pagination__prev:focus-visible,
 .ds-pagination__next:focus-visible {
-  outline: 2px solid var(--ds-color-interactive);
-  outline-offset: 2px;
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
 }
 
 .ds-pagination__prev:disabled,

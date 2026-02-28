@@ -119,8 +119,8 @@
 }
 
 .ds-tag__remove:focus-visible {
-  outline: 2px solid var(--ds-color-interactive);
-  outline-offset: 1px;
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
   opacity: 1;
 }
 

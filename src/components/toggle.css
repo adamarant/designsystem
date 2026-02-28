@@ -45,7 +45,7 @@
   width: 1.25rem;
   height: 1.25rem;
   border-radius: var(--ds-radius-full);
-  background-color: #fff;
+  background-color: var(--ds-color-surface);
   box-shadow: var(--ds-shadow-sm);
   transform: translateY(-50%);
   transition: transform var(--ds-duration-normal) var(--ds-ease-out);
@@ -83,8 +83,8 @@
    --------------------------------------------------------------------------- */
 
 .ds-toggle:focus-visible {
-  outline: 2px solid var(--ds-color-interactive);
-  outline-offset: 2px;
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
 }
 
 /* ---------------------------------------------------------------------------

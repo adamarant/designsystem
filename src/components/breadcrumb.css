@@ -67,8 +67,8 @@
 }
 
 .ds-breadcrumb__link:focus-visible {
-  outline: 2px solid var(--ds-color-interactive);
-  outline-offset: 2px;
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
   border-radius: var(--ds-radius-sm);
 }
 

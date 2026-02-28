@@ -1,31 +1,31 @@
 /* ==========================================================================
- * Drawer / Sheet
- * ==========================================================================
- *
- * A sliding overlay panel anchored to the edge of the viewport.
- * Default direction is right; use `--left` or `--bottom` modifiers
- * to change the slide origin.
- *
- * Sizes:
- *   --sm   18 rem
- *   (default)  24 rem
- *   --lg   36 rem
- *
- * Markup:
- *   <div class="ds-drawer ds-drawer--right ds-drawer--open">
- *     <div class="ds-drawer__content">
- *       <div class="ds-drawer__header">
- *         <h3>Title</h3>
- *         <button class="ds-drawer__close" aria-label="Close">&times;</button>
- *       </div>
- *       <div class="ds-drawer__body">…</div>
- *       <div class="ds-drawer__footer">…</div>
- *     </div>
- *   </div>
- * ========================================================================== */
+   Drawer / Sheet
+   ==========================================================================
+   A sliding overlay panel anchored to the edge of the viewport.
+   Default direction is right; use `--left` or `--bottom` modifiers
+   to change the slide origin.
 
-/* Overlay backdrop
- * -------------------------------------------------------------------------- */
+   Sizes:
+     --sm        18 rem
+     (default)   24 rem
+     --lg        36 rem
+
+   Usage:
+     <div class="ds-drawer ds-drawer--right ds-drawer--open">
+       <div class="ds-drawer__content">
+         <div class="ds-drawer__header">
+           <h3>Title</h3>
+           <button class="ds-drawer__close" aria-label="Close">&times;</button>
+         </div>
+         <div class="ds-drawer__body">…</div>
+         <div class="ds-drawer__footer">…</div>
+       </div>
+     </div>
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Overlay backdrop
+   --------------------------------------------------------------------------- */
 
 .ds-drawer {
   position: fixed;
@@ -44,8 +44,9 @@
   visibility: visible;
 }
 
-/* Sliding panel
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Sliding panel
+   --------------------------------------------------------------------------- */
 
 .ds-drawer__content {
   position: fixed;

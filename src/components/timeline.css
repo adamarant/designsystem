@@ -1,29 +1,28 @@
 /* ==========================================================================
- * Timeline
- * ==========================================================================
- *
- * Vertical timeline component for roadmaps, activity feeds, and step-based
- * flows. Each item has a dot indicator on a vertical line with support for
- * completed, current, and error states.
- *
- * Usage:
- *   <div class="ds-timeline">
- *     <div class="ds-timeline__item ds-timeline__item--completed">
- *       <div class="ds-timeline__dot"></div>
- *       <div class="ds-timeline__content">
- *         <div class="ds-timeline__title">Step one</div>
- *         <div class="ds-timeline__description">Details here.</div>
- *         <div class="ds-timeline__time">2 hours ago</div>
- *       </div>
- *     </div>
- *   </div>
- *
- * Modifiers:
- *   .ds-timeline__item--completed  — Green dot (success)
- *   .ds-timeline__item--current    — Inverted dot (active)
- *   .ds-timeline__item--error      — Red dot (error)
- *   .ds-timeline--compact          — Tighter spacing, smaller dots
- * ========================================================================== */
+   Timeline
+   ==========================================================================
+   Vertical timeline component for roadmaps, activity feeds, and step-based
+   flows. Each item has a dot indicator on a vertical line with support for
+   completed, current, and error states.
+
+   Usage:
+     <div class="ds-timeline">
+       <div class="ds-timeline__item ds-timeline__item--completed">
+         <div class="ds-timeline__dot"></div>
+         <div class="ds-timeline__content">
+           <div class="ds-timeline__title">Step one</div>
+           <div class="ds-timeline__description">Details here.</div>
+           <div class="ds-timeline__time">2 hours ago</div>
+         </div>
+       </div>
+     </div>
+
+   Modifiers:
+     .ds-timeline__item--completed  — Green dot (success)
+     .ds-timeline__item--current    — Inverted dot (active)
+     .ds-timeline__item--error      — Red dot (error)
+     .ds-timeline--compact          — Tighter spacing, smaller dots
+   ========================================================================== */
 
 .ds-timeline {
   position: relative;

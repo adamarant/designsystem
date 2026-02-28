@@ -99,7 +99,7 @@
   color: var(--ds-color-text-tertiary);
   border-radius: var(--ds-radius-sm);
   cursor: pointer;
-  transition: color var(--ds-duration-fast) ease;
+  transition: color var(--ds-duration-fast) var(--ds-ease-default);
 }
 
 .ds-alert__close:hover {

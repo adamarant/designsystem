@@ -50,7 +50,7 @@
   color: var(--ds-color-text-tertiary);
   padding: var(--ds-space-1);
   border-radius: var(--ds-radius-sm);
-  transition: color var(--ds-duration-fast) ease;
+  transition: color var(--ds-duration-fast) var(--ds-ease-default);
 }
 .ds-toast__close:hover {
   color: var(--ds-color-text);

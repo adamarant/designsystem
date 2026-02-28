@@ -18,7 +18,7 @@
   border-radius: var(--ds-radius-lg);
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all var(--ds-duration-fast) ease;
+  transition: all var(--ds-duration-fast) var(--ds-ease-default);
 
   /* Default: inverted (dark bg in light mode, light bg in dark mode) */
   background-color: var(--ds-color-inverted);
@@ -82,7 +82,7 @@
 }
 .ds-btn--danger:hover {
   background-color: var(--ds-color-error);
-  color: #fff;
+  color: var(--ds-color-on-inverted);
   opacity: 1;
 }
 
@@ -93,7 +93,7 @@
 }
 .ds-btn--success:hover {
   background-color: var(--ds-color-success);
-  color: #fff;
+  color: var(--ds-color-on-inverted);
   opacity: 1;
 }
 

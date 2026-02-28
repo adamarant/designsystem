@@ -1,23 +1,22 @@
 /* ==========================================================================
- * Slider
- * ==========================================================================
- *
- * Range slider input component with customizable thumb and track styling.
- * Supports labels, value display, size variants, and disabled state.
- *
- * Usage:
- *   <div class="ds-slider">
- *     <input type="range" min="0" max="100" value="50" />
- *     <div class="ds-slider__labels">
- *       <span>0</span>
- *       <span>100</span>
- *     </div>
- *   </div>
- *
- * Modifiers:
- *   .ds-slider--sm        — Smaller track and thumb
- *   .ds-slider--disabled  — Reduced opacity, no interaction
- * ========================================================================== */
+   Slider
+   ==========================================================================
+   Range slider input component with customizable thumb and track styling.
+   Supports labels, value display, size variants, and disabled state.
+
+   Usage:
+     <div class="ds-slider">
+       <input type="range" min="0" max="100" value="50" />
+       <div class="ds-slider__labels">
+         <span>0</span>
+         <span>100</span>
+       </div>
+     </div>
+
+   Modifiers:
+     .ds-slider--sm        — Smaller track and thumb
+     .ds-slider--disabled  — Reduced opacity, no interaction
+   ========================================================================== */
 
 .ds-slider {
   width: 100%;

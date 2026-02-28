@@ -1,36 +1,35 @@
 /* ==========================================================================
- * Command
- * ==========================================================================
- *
- * Command palette / search overlay following the Cmd+K pattern. Provides a
- * full-screen overlay with a centered search dialog, grouped results,
- * keyboard-navigable items, and a footer with shortcut hints.
- *
- * Usage:
- *   <div class="ds-command ds-command--open">
- *     <div class="ds-command__content">
- *       <div class="ds-command__input-wrapper">
- *         <span class="ds-command__input-icon">...</span>
- *         <input class="ds-command__input" placeholder="Search..." />
- *       </div>
- *       <div class="ds-command__list">
- *         <div class="ds-command__group">
- *           <div class="ds-command__group-heading">Results</div>
- *           <div class="ds-command__item ds-command__item--active">
- *             <span class="ds-command__item-icon">...</span>
- *             <span class="ds-command__item-label">Item</span>
- *             <span class="ds-command__item-shortcut">Ctrl+N</span>
- *           </div>
- *         </div>
- *         <div class="ds-command__empty">No results found.</div>
- *       </div>
- *       <div class="ds-command__footer">...</div>
- *     </div>
- *   </div>
- *
- * Modifiers:
- *   .ds-command--open  — Shows the command palette
- * ========================================================================== */
+   Command Palette
+   ==========================================================================
+   Command palette / search overlay following the Cmd+K pattern. Provides a
+   full-screen overlay with a centered search dialog, grouped results,
+   keyboard-navigable items, and a footer with shortcut hints.
+
+   Usage:
+     <div class="ds-command ds-command--open">
+       <div class="ds-command__content">
+         <div class="ds-command__input-wrapper">
+           <span class="ds-command__input-icon">...</span>
+           <input class="ds-command__input" placeholder="Search..." />
+         </div>
+         <div class="ds-command__list">
+           <div class="ds-command__group">
+             <div class="ds-command__group-heading">Results</div>
+             <div class="ds-command__item ds-command__item--active">
+               <span class="ds-command__item-icon">...</span>
+               <span class="ds-command__item-label">Item</span>
+               <span class="ds-command__item-shortcut">Ctrl+N</span>
+             </div>
+           </div>
+           <div class="ds-command__empty">No results found.</div>
+         </div>
+         <div class="ds-command__footer">...</div>
+       </div>
+     </div>
+
+   Modifiers:
+     .ds-command--open  — Shows the command palette
+   ========================================================================== */
 
 /* Overlay */
 .ds-command {

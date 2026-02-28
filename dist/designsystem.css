@@ -666,7 +666,7 @@ hr {
   border-radius: var(--ds-radius-lg);
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all var(--ds-duration-fast) ease;
+  transition: all var(--ds-duration-fast) var(--ds-ease-default);
 
   /* Default: inverted (dark bg in light mode, light bg in dark mode) */
   background-color: var(--ds-color-inverted);
@@ -730,7 +730,7 @@ hr {
 }
 .ds-btn--danger:hover {
   background-color: var(--ds-color-error);
-  color: #fff;
+  color: var(--ds-color-on-inverted);
   opacity: 1;
 }
 
@@ -741,7 +741,7 @@ hr {
 }
 .ds-btn--success:hover {
   background-color: var(--ds-color-success);
-  color: #fff;
+  color: var(--ds-color-on-inverted);
   opacity: 1;
 }
 
@@ -982,7 +982,7 @@ hr {
   background-color: var(--ds-color-surface);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-lg);
-  transition: all var(--ds-duration-fast) ease;
+  transition: all var(--ds-duration-fast) var(--ds-ease-default);
 }
 
 .ds-input,
@@ -1360,7 +1360,7 @@ hr {
   background-color: var(--ds-color-surface);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-xl);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--ds-shadow-lg);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1480,7 +1480,7 @@ hr {
   color: var(--ds-color-text-tertiary);
   padding: var(--ds-space-1);
   border-radius: var(--ds-radius-sm);
-  transition: color var(--ds-duration-fast) ease;
+  transition: color var(--ds-duration-fast) var(--ds-ease-default);
 }
 .ds-toast__close:hover {
   color: var(--ds-color-text);
@@ -1649,7 +1649,7 @@ hr {
   border-left: none;
   border-right: none;
   white-space: nowrap;
-  transition: all var(--ds-duration-fast) ease;
+  transition: all var(--ds-duration-fast) var(--ds-ease-default);
   margin-bottom: -1px;
 }
 
@@ -1815,7 +1815,7 @@ hr {
   color: var(--ds-color-text-tertiary);
   border-radius: var(--ds-radius-sm);
   cursor: pointer;
-  transition: color var(--ds-duration-fast) ease;
+  transition: color var(--ds-duration-fast) var(--ds-ease-default);
 }
 
 .ds-alert__close:hover {
@@ -2560,7 +2560,7 @@ hr {
   width: 1.25rem;
   height: 1.25rem;
   border-radius: var(--ds-radius-full);
-  background-color: #fff;
+  background-color: var(--ds-color-surface);
   box-shadow: var(--ds-shadow-sm);
   transform: translateY(-50%);
   transition: transform var(--ds-duration-normal) var(--ds-ease-out);
@@ -2598,8 +2598,8 @@ hr {
    --------------------------------------------------------------------------- */
 
 .ds-toggle:focus-visible {
-  outline: 2px solid var(--ds-color-interactive);
-  outline-offset: 2px;
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
 }
 
 /* ---------------------------------------------------------------------------
@@ -2718,8 +2718,8 @@ hr {
 }
 
 .ds-breadcrumb__link:focus-visible {
-  outline: 2px solid var(--ds-color-interactive);
-  outline-offset: 2px;
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
   border-radius: var(--ds-radius-sm);
 }
 
@@ -2804,8 +2804,8 @@ hr {
 }
 
 .ds-pagination__item:focus-visible {
-  outline: 2px solid var(--ds-color-interactive);
-  outline-offset: 2px;
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
 }
 
 /* ---------------------------------------------------------------------------
@@ -2863,8 +2863,8 @@ hr {
 
 .ds-pagination__prev:focus-visible,
 .ds-pagination__next:focus-visible {
-  outline: 2px solid var(--ds-color-interactive);
-  outline-offset: 2px;
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
 }
 
 .ds-pagination__prev:disabled,
@@ -3033,8 +3033,8 @@ hr {
 }
 
 .ds-tag__remove:focus-visible {
-  outline: 2px solid var(--ds-color-interactive);
-  outline-offset: 1px;
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
   opacity: 1;
 }
 
@@ -3073,29 +3073,29 @@ hr {
 }
 
 /* ==========================================================================
- * Accordion / Collapse
- * ==========================================================================
- *
- * A vertically stacked set of collapsible sections. Supports CSS-only
- * open/close via the `.ds-accordion__item--open` modifier.
- *
- * Variants:
- *   --flush      – borderless, full-bleed style
- *   --separated  – visually detached items with individual borders
- *
- * Markup:
- *   <div class="ds-accordion">
- *     <div class="ds-accordion__item ds-accordion__item--open">
- *       <button class="ds-accordion__trigger">Section</button>
- *       <div class="ds-accordion__content">
- *         <div class="ds-accordion__body">…</div>
- *       </div>
- *     </div>
- *   </div>
- * ========================================================================== */
+   Accordion / Collapse
+   ==========================================================================
+   A vertically stacked set of collapsible sections. Supports CSS-only
+   open/close via the `.ds-accordion__item--open` modifier.
 
-/* Container
- * -------------------------------------------------------------------------- */
+   Variants:
+     --flush      – borderless, full-bleed style
+     --separated  – visually detached items with individual borders
+
+   Usage:
+     <div class="ds-accordion">
+       <div class="ds-accordion__item ds-accordion__item--open">
+         <button class="ds-accordion__trigger">Section</button>
+         <div class="ds-accordion__content">
+           <div class="ds-accordion__body">…</div>
+         </div>
+       </div>
+     </div>
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Container
+   --------------------------------------------------------------------------- */
 
 .ds-accordion {
   border: 1px solid var(--ds-color-border);
@@ -3103,8 +3103,9 @@ hr {
   overflow: hidden;
 }
 
-/* Item
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Item
+   --------------------------------------------------------------------------- */
 
 .ds-accordion__item {
   border-top: 1px solid var(--ds-color-border);
@@ -3114,8 +3115,9 @@ hr {
   border-top: 0;
 }
 
-/* Trigger (button)
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Trigger (button)
+   --------------------------------------------------------------------------- */
 
 .ds-accordion__trigger {
   display: flex;
@@ -3158,8 +3160,9 @@ hr {
   transform: rotate(225deg);
 }
 
-/* Collapsible content wrapper
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Collapsible content wrapper
+   --------------------------------------------------------------------------- */
 
 .ds-accordion__content {
   max-height: 0;
@@ -3173,8 +3176,9 @@ hr {
   max-height: 80rem;
 }
 
-/* Inner body (visible content)
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Inner body (visible content)
+   --------------------------------------------------------------------------- */
 
 .ds-accordion__body {
   padding: var(--ds-space-4);
@@ -3224,33 +3228,33 @@ hr {
 }
 
 /* ==========================================================================
- * Drawer / Sheet
- * ==========================================================================
- *
- * A sliding overlay panel anchored to the edge of the viewport.
- * Default direction is right; use `--left` or `--bottom` modifiers
- * to change the slide origin.
- *
- * Sizes:
- *   --sm   18 rem
- *   (default)  24 rem
- *   --lg   36 rem
- *
- * Markup:
- *   <div class="ds-drawer ds-drawer--right ds-drawer--open">
- *     <div class="ds-drawer__content">
- *       <div class="ds-drawer__header">
- *         <h3>Title</h3>
- *         <button class="ds-drawer__close" aria-label="Close">&times;</button>
- *       </div>
- *       <div class="ds-drawer__body">…</div>
- *       <div class="ds-drawer__footer">…</div>
- *     </div>
- *   </div>
- * ========================================================================== */
+   Drawer / Sheet
+   ==========================================================================
+   A sliding overlay panel anchored to the edge of the viewport.
+   Default direction is right; use `--left` or `--bottom` modifiers
+   to change the slide origin.
 
-/* Overlay backdrop
- * -------------------------------------------------------------------------- */
+   Sizes:
+     --sm        18 rem
+     (default)   24 rem
+     --lg        36 rem
+
+   Usage:
+     <div class="ds-drawer ds-drawer--right ds-drawer--open">
+       <div class="ds-drawer__content">
+         <div class="ds-drawer__header">
+           <h3>Title</h3>
+           <button class="ds-drawer__close" aria-label="Close">&times;</button>
+         </div>
+         <div class="ds-drawer__body">…</div>
+         <div class="ds-drawer__footer">…</div>
+       </div>
+     </div>
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Overlay backdrop
+   --------------------------------------------------------------------------- */
 
 .ds-drawer {
   position: fixed;
@@ -3269,8 +3273,9 @@ hr {
   visibility: visible;
 }
 
-/* Sliding panel
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Sliding panel
+   --------------------------------------------------------------------------- */
 
 .ds-drawer__content {
   position: fixed;
@@ -3434,44 +3439,43 @@ hr {
 }
 
 /* ==========================================================================
- * Progress Bar & Step Indicator
- * ==========================================================================
- *
- * Two related components for communicating progress:
- *
- * 1. **Progress bar** — a horizontal fill bar with optional label row.
- *    Sizes: --sm, (default), --lg
- *    Statuses: --success, --warning, --error, --info
- *
- * 2. **Step indicator** — a numbered sequence of steps with connectors.
- *    States: --completed, --current, --error
- *    Layout: horizontal (default), --vertical
- *
- * Progress bar markup:
- *   <div class="ds-progress__label">
- *     <span>Uploading…</span><span>64 %</span>
- *   </div>
- *   <div class="ds-progress">
- *     <div class="ds-progress__bar" style="width: 64%"></div>
- *   </div>
- *
- * Step indicator markup:
- *   <div class="ds-steps">
- *     <div class="ds-step ds-step--completed">
- *       <div class="ds-step__indicator">1</div>
- *       <div class="ds-step__content">
- *         <span class="ds-step__title">Account</span>
- *         <span class="ds-step__description">Create your account</span>
- *       </div>
- *     </div>
- *     <div class="ds-step__connector"></div>
- *     <div class="ds-step ds-step--current">…</div>
- *   </div>
- * ========================================================================== */
+   Progress Bar & Step Indicator
+   ==========================================================================
+   Two related components for communicating progress:
+
+   1. Progress bar — a horizontal fill bar with optional label row.
+      Sizes: --sm, (default), --lg
+      Statuses: --success, --warning, --error, --info
+
+   2. Step indicator — a numbered sequence of steps with connectors.
+      States: --completed, --current, --error
+      Layout: horizontal (default), --vertical
+
+   Progress bar usage:
+     <div class="ds-progress__label">
+       <span>Uploading…</span><span>64 %</span>
+     </div>
+     <div class="ds-progress">
+       <div class="ds-progress__bar" style="width: 64%"></div>
+     </div>
+
+   Step indicator usage:
+     <div class="ds-steps">
+       <div class="ds-step ds-step--completed">
+         <div class="ds-step__indicator">1</div>
+         <div class="ds-step__content">
+           <span class="ds-step__title">Account</span>
+           <span class="ds-step__description">Create your account</span>
+         </div>
+       </div>
+       <div class="ds-step__connector"></div>
+       <div class="ds-step ds-step--current">…</div>
+     </div>
+   ========================================================================== */
 
 /* ==========================================================================
- * Progress Bar
- * ========================================================================== */
+   Progress Bar
+   ========================================================================== */
 
 /* Label row (sits above the bar) */
 .ds-progress__label {
@@ -3500,8 +3504,9 @@ hr {
   transition: width var(--ds-duration-normal) var(--ds-ease-default);
 }
 
-/* Sizes
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Sizes
+   --------------------------------------------------------------------------- */
 
 .ds-progress--sm {
   height: 0.25rem;
@@ -3511,8 +3516,9 @@ hr {
   height: 0.75rem;
 }
 
-/* Status colours
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Status colours
+   --------------------------------------------------------------------------- */
 
 .ds-progress--success .ds-progress__bar {
   background-color: var(--ds-color-success);
@@ -3531,8 +3537,8 @@ hr {
 }
 
 /* ==========================================================================
- * Step Indicator
- * ========================================================================== */
+   Step Indicator
+   ========================================================================== */
 
 /* Steps container (horizontal by default) */
 .ds-steps {
@@ -3548,8 +3554,9 @@ hr {
   align-items: flex-start;
 }
 
-/* Single step
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Single step
+   --------------------------------------------------------------------------- */
 
 .ds-step {
   display: flex;
@@ -3596,8 +3603,9 @@ hr {
   color: var(--ds-color-error);
 }
 
-/* Step content
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Step content
+   --------------------------------------------------------------------------- */
 
 .ds-step__content {
   display: flex;
@@ -3615,8 +3623,9 @@ hr {
   color: var(--ds-color-text-tertiary);
 }
 
-/* Connector (line between steps)
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Connector (line between steps)
+   --------------------------------------------------------------------------- */
 
 /* Horizontal connector */
 .ds-step__connector {
@@ -3651,28 +3660,27 @@ hr {
 
 /* === Tier 3 — Advanced === */
 /* ==========================================================================
- * Popover
- * ==========================================================================
- *
- * Flexible popover component for displaying complex content anchored to a
- * trigger element. Supports four placement directions (top, bottom, left,
- * right) and multiple size variants. Default placement is bottom.
- *
- * Usage:
- *   <div class="ds-popover ds-popover--open">
- *     <button>Trigger</button>
- *     <div class="ds-popover__content">...</div>
- *   </div>
- *
- * Modifiers:
- *   .ds-popover--open         — Shows the popover content
- *   .ds-popover--top          — Places content above the trigger
- *   .ds-popover--bottom       — Places content below the trigger (default)
- *   .ds-popover--left         — Places content to the left of the trigger
- *   .ds-popover--right        — Places content to the right of the trigger
- *   .ds-popover__content--sm  — Smaller popover (12rem min-width)
- *   .ds-popover__content--lg  — Larger popover (24rem min-width)
- * ========================================================================== */
+   Popover
+   ==========================================================================
+   Flexible popover component for displaying complex content anchored to a
+   trigger element. Supports four placement directions (top, bottom, left,
+   right) and multiple size variants. Default placement is bottom.
+
+   Usage:
+     <div class="ds-popover ds-popover--open">
+       <button>Trigger</button>
+       <div class="ds-popover__content">...</div>
+     </div>
+
+   Modifiers:
+     .ds-popover--open         — Shows the popover content
+     .ds-popover--top          — Places content above the trigger
+     .ds-popover--bottom       — Places content below the trigger (default)
+     .ds-popover--left         — Places content to the left of the trigger
+     .ds-popover--right        — Places content to the right of the trigger
+     .ds-popover__content--sm  — Smaller popover (12rem min-width)
+     .ds-popover__content--lg  — Larger popover (24rem min-width)
+   ========================================================================== */
 
 .ds-popover {
   position: relative;
@@ -3764,25 +3772,24 @@ hr {
 }
 
 /* ==========================================================================
- * Slider
- * ==========================================================================
- *
- * Range slider input component with customizable thumb and track styling.
- * Supports labels, value display, size variants, and disabled state.
- *
- * Usage:
- *   <div class="ds-slider">
- *     <input type="range" min="0" max="100" value="50" />
- *     <div class="ds-slider__labels">
- *       <span>0</span>
- *       <span>100</span>
- *     </div>
- *   </div>
- *
- * Modifiers:
- *   .ds-slider--sm        — Smaller track and thumb
- *   .ds-slider--disabled  — Reduced opacity, no interaction
- * ========================================================================== */
+   Slider
+   ==========================================================================
+   Range slider input component with customizable thumb and track styling.
+   Supports labels, value display, size variants, and disabled state.
+
+   Usage:
+     <div class="ds-slider">
+       <input type="range" min="0" max="100" value="50" />
+       <div class="ds-slider__labels">
+         <span>0</span>
+         <span>100</span>
+       </div>
+     </div>
+
+   Modifiers:
+     .ds-slider--sm        — Smaller track and thumb
+     .ds-slider--disabled  — Reduced opacity, no interaction
+   ========================================================================== */
 
 .ds-slider {
   width: 100%;
@@ -3890,31 +3897,30 @@ hr {
 }
 
 /* ==========================================================================
- * Timeline
- * ==========================================================================
- *
- * Vertical timeline component for roadmaps, activity feeds, and step-based
- * flows. Each item has a dot indicator on a vertical line with support for
- * completed, current, and error states.
- *
- * Usage:
- *   <div class="ds-timeline">
- *     <div class="ds-timeline__item ds-timeline__item--completed">
- *       <div class="ds-timeline__dot"></div>
- *       <div class="ds-timeline__content">
- *         <div class="ds-timeline__title">Step one</div>
- *         <div class="ds-timeline__description">Details here.</div>
- *         <div class="ds-timeline__time">2 hours ago</div>
- *       </div>
- *     </div>
- *   </div>
- *
- * Modifiers:
- *   .ds-timeline__item--completed  — Green dot (success)
- *   .ds-timeline__item--current    — Inverted dot (active)
- *   .ds-timeline__item--error      — Red dot (error)
- *   .ds-timeline--compact          — Tighter spacing, smaller dots
- * ========================================================================== */
+   Timeline
+   ==========================================================================
+   Vertical timeline component for roadmaps, activity feeds, and step-based
+   flows. Each item has a dot indicator on a vertical line with support for
+   completed, current, and error states.
+
+   Usage:
+     <div class="ds-timeline">
+       <div class="ds-timeline__item ds-timeline__item--completed">
+         <div class="ds-timeline__dot"></div>
+         <div class="ds-timeline__content">
+           <div class="ds-timeline__title">Step one</div>
+           <div class="ds-timeline__description">Details here.</div>
+           <div class="ds-timeline__time">2 hours ago</div>
+         </div>
+       </div>
+     </div>
+
+   Modifiers:
+     .ds-timeline__item--completed  — Green dot (success)
+     .ds-timeline__item--current    — Inverted dot (active)
+     .ds-timeline__item--error      — Red dot (error)
+     .ds-timeline--compact          — Tighter spacing, smaller dots
+   ========================================================================== */
 
 .ds-timeline {
   position: relative;
@@ -4022,25 +4028,24 @@ hr {
 }
 
 /* ==========================================================================
- * Kbd
- * ==========================================================================
- *
- * Keyboard shortcut display component with a raised 3D key appearance.
- * Use individually or group multiple keys with ds-kbd-group for combos
- * like "Cmd + K".
- *
- * Usage:
- *   <kbd class="ds-kbd">Esc</kbd>
- *
- *   <span class="ds-kbd-group">
- *     <kbd class="ds-kbd">Cmd</kbd>
- *     <span class="ds-kbd-group__separator">+</span>
- *     <kbd class="ds-kbd">K</kbd>
- *   </span>
- *
- * Modifiers:
- *   .ds-kbd--lg  — Larger key display
- * ========================================================================== */
+   Kbd
+   ==========================================================================
+   Keyboard shortcut display component with a raised 3D key appearance.
+   Use individually or group multiple keys with ds-kbd-group for combos
+   like "Cmd + K".
+
+   Usage:
+     <kbd class="ds-kbd">Esc</kbd>
+
+     <span class="ds-kbd-group">
+       <kbd class="ds-kbd">Cmd</kbd>
+       <span class="ds-kbd-group__separator">+</span>
+       <kbd class="ds-kbd">K</kbd>
+     </span>
+
+   Modifiers:
+     .ds-kbd--lg  — Larger key display
+   ========================================================================== */
 
 .ds-kbd {
   display: inline-flex;
@@ -4078,38 +4083,37 @@ hr {
 }
 
 /* ==========================================================================
- * Command
- * ==========================================================================
- *
- * Command palette / search overlay following the Cmd+K pattern. Provides a
- * full-screen overlay with a centered search dialog, grouped results,
- * keyboard-navigable items, and a footer with shortcut hints.
- *
- * Usage:
- *   <div class="ds-command ds-command--open">
- *     <div class="ds-command__content">
- *       <div class="ds-command__input-wrapper">
- *         <span class="ds-command__input-icon">...</span>
- *         <input class="ds-command__input" placeholder="Search..." />
- *       </div>
- *       <div class="ds-command__list">
- *         <div class="ds-command__group">
- *           <div class="ds-command__group-heading">Results</div>
- *           <div class="ds-command__item ds-command__item--active">
- *             <span class="ds-command__item-icon">...</span>
- *             <span class="ds-command__item-label">Item</span>
- *             <span class="ds-command__item-shortcut">Ctrl+N</span>
- *           </div>
- *         </div>
- *         <div class="ds-command__empty">No results found.</div>
- *       </div>
- *       <div class="ds-command__footer">...</div>
- *     </div>
- *   </div>
- *
- * Modifiers:
- *   .ds-command--open  — Shows the command palette
- * ========================================================================== */
+   Command Palette
+   ==========================================================================
+   Command palette / search overlay following the Cmd+K pattern. Provides a
+   full-screen overlay with a centered search dialog, grouped results,
+   keyboard-navigable items, and a footer with shortcut hints.
+
+   Usage:
+     <div class="ds-command ds-command--open">
+       <div class="ds-command__content">
+         <div class="ds-command__input-wrapper">
+           <span class="ds-command__input-icon">...</span>
+           <input class="ds-command__input" placeholder="Search..." />
+         </div>
+         <div class="ds-command__list">
+           <div class="ds-command__group">
+             <div class="ds-command__group-heading">Results</div>
+             <div class="ds-command__item ds-command__item--active">
+               <span class="ds-command__item-icon">...</span>
+               <span class="ds-command__item-label">Item</span>
+               <span class="ds-command__item-shortcut">Ctrl+N</span>
+             </div>
+           </div>
+           <div class="ds-command__empty">No results found.</div>
+         </div>
+         <div class="ds-command__footer">...</div>
+       </div>
+     </div>
+
+   Modifiers:
+     .ds-command--open  — Shows the command palette
+   ========================================================================== */
 
 /* Overlay */
 .ds-command {

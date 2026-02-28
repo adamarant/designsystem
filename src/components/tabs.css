@@ -97,7 +97,7 @@
   border-left: none;
   border-right: none;
   white-space: nowrap;
-  transition: all var(--ds-duration-fast) ease;
+  transition: all var(--ds-duration-fast) var(--ds-ease-default);
   margin-bottom: -1px;
 }
 

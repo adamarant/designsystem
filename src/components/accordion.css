@@ -1,27 +1,27 @@
 /* ==========================================================================
- * Accordion / Collapse
- * ==========================================================================
- *
- * A vertically stacked set of collapsible sections. Supports CSS-only
- * open/close via the `.ds-accordion__item--open` modifier.
- *
- * Variants:
- *   --flush      – borderless, full-bleed style
- *   --separated  – visually detached items with individual borders
- *
- * Markup:
- *   <div class="ds-accordion">
- *     <div class="ds-accordion__item ds-accordion__item--open">
- *       <button class="ds-accordion__trigger">Section</button>
- *       <div class="ds-accordion__content">
- *         <div class="ds-accordion__body">…</div>
- *       </div>
- *     </div>
- *   </div>
- * ========================================================================== */
+   Accordion / Collapse
+   ==========================================================================
+   A vertically stacked set of collapsible sections. Supports CSS-only
+   open/close via the `.ds-accordion__item--open` modifier.
 
-/* Container
- * -------------------------------------------------------------------------- */
+   Variants:
+     --flush      – borderless, full-bleed style
+     --separated  – visually detached items with individual borders
+
+   Usage:
+     <div class="ds-accordion">
+       <div class="ds-accordion__item ds-accordion__item--open">
+         <button class="ds-accordion__trigger">Section</button>
+         <div class="ds-accordion__content">
+           <div class="ds-accordion__body">…</div>
+         </div>
+       </div>
+     </div>
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Container
+   --------------------------------------------------------------------------- */
 
 .ds-accordion {
   border: 1px solid var(--ds-color-border);
@@ -29,8 +29,9 @@
   overflow: hidden;
 }
 
-/* Item
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Item
+   --------------------------------------------------------------------------- */
 
 .ds-accordion__item {
   border-top: 1px solid var(--ds-color-border);
@@ -40,8 +41,9 @@
   border-top: 0;
 }
 
-/* Trigger (button)
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Trigger (button)
+   --------------------------------------------------------------------------- */
 
 .ds-accordion__trigger {
   display: flex;
@@ -84,8 +86,9 @@
   transform: rotate(225deg);
 }
 
-/* Collapsible content wrapper
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Collapsible content wrapper
+   --------------------------------------------------------------------------- */
 
 .ds-accordion__content {
   max-height: 0;
@@ -99,8 +102,9 @@
   max-height: 80rem;
 }
 
-/* Inner body (visible content)
- * -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Inner body (visible content)
+   --------------------------------------------------------------------------- */
 
 .ds-accordion__body {
   padding: var(--ds-space-4);

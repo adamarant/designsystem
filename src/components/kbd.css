@@ -1,23 +1,22 @@
 /* ==========================================================================
- * Kbd
- * ==========================================================================
- *
- * Keyboard shortcut display component with a raised 3D key appearance.
- * Use individually or group multiple keys with ds-kbd-group for combos
- * like "Cmd + K".
- *
- * Usage:
- *   <kbd class="ds-kbd">Esc</kbd>
- *
- *   <span class="ds-kbd-group">
- *     <kbd class="ds-kbd">Cmd</kbd>
- *     <span class="ds-kbd-group__separator">+</span>
- *     <kbd class="ds-kbd">K</kbd>
- *   </span>
- *
- * Modifiers:
- *   .ds-kbd--lg  — Larger key display
- * ========================================================================== */
+   Kbd
+   ==========================================================================
+   Keyboard shortcut display component with a raised 3D key appearance.
+   Use individually or group multiple keys with ds-kbd-group for combos
+   like "Cmd + K".
+
+   Usage:
+     <kbd class="ds-kbd">Esc</kbd>
+
+     <span class="ds-kbd-group">
+       <kbd class="ds-kbd">Cmd</kbd>
+       <span class="ds-kbd-group__separator">+</span>
+       <kbd class="ds-kbd">K</kbd>
+     </span>
+
+   Modifiers:
+     .ds-kbd--lg  — Larger key display
+   ========================================================================== */
 
 .ds-kbd {
   display: inline-flex;

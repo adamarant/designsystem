@@ -1,26 +1,25 @@
 /* ==========================================================================
- * Popover
- * ==========================================================================
- *
- * Flexible popover component for displaying complex content anchored to a
- * trigger element. Supports four placement directions (top, bottom, left,
- * right) and multiple size variants. Default placement is bottom.
- *
- * Usage:
- *   <div class="ds-popover ds-popover--open">
- *     <button>Trigger</button>
- *     <div class="ds-popover__content">...</div>
- *   </div>
- *
- * Modifiers:
- *   .ds-popover--open         — Shows the popover content
- *   .ds-popover--top          — Places content above the trigger
- *   .ds-popover--bottom       — Places content below the trigger (default)
- *   .ds-popover--left         — Places content to the left of the trigger
- *   .ds-popover--right        — Places content to the right of the trigger
- *   .ds-popover__content--sm  — Smaller popover (12rem min-width)
- *   .ds-popover__content--lg  — Larger popover (24rem min-width)
- * ========================================================================== */
+   Popover
+   ==========================================================================
+   Flexible popover component for displaying complex content anchored to a
+   trigger element. Supports four placement directions (top, bottom, left,
+   right) and multiple size variants. Default placement is bottom.
+
+   Usage:
+     <div class="ds-popover ds-popover--open">
+       <button>Trigger</button>
+       <div class="ds-popover__content">...</div>
+     </div>
+
+   Modifiers:
+     .ds-popover--open         — Shows the popover content
+     .ds-popover--top          — Places content above the trigger
+     .ds-popover--bottom       — Places content below the trigger (default)
+     .ds-popover--left         — Places content to the left of the trigger
+     .ds-popover--right        — Places content to the right of the trigger
+     .ds-popover__content--sm  — Smaller popover (12rem min-width)
+     .ds-popover__content--lg  — Larger popover (24rem min-width)
+   ========================================================================== */
 
 .ds-popover {
   position: relative;
