@@ -21,9 +21,19 @@
   .ds-sm\:text-5xl { font-size: var(--ds-text-5xl); }
 }
 @media (min-width: 768px) {
+  .ds-md\:text-lg  { font-size: var(--ds-text-lg); }
+  .ds-md\:text-xl  { font-size: var(--ds-text-xl); }
+  .ds-md\:text-2xl { font-size: var(--ds-text-2xl); }
+  .ds-md\:text-3xl { font-size: var(--ds-text-3xl); }
+  .ds-md\:text-4xl { font-size: var(--ds-text-4xl); }
   .ds-md\:text-6xl { font-size: var(--ds-text-6xl); }
 }
 @media (min-width: 1024px) {
+  .ds-lg\:text-xl  { font-size: var(--ds-text-xl); }
+  .ds-lg\:text-2xl { font-size: var(--ds-text-2xl); }
+  .ds-lg\:text-3xl { font-size: var(--ds-text-3xl); }
+  .ds-lg\:text-4xl { font-size: var(--ds-text-4xl); }
+  .ds-lg\:text-5xl { font-size: var(--ds-text-5xl); }
   .ds-lg\:text-7xl { font-size: var(--ds-text-7xl); }
 }
 
@@ -125,6 +135,7 @@
 .ds-tracking-tight   { letter-spacing: var(--ds-tracking-tight); }
 .ds-tracking-normal  { letter-spacing: var(--ds-tracking-normal); }
 .ds-tracking-wide    { letter-spacing: var(--ds-tracking-wide); }
+.ds-tracking-wider   { letter-spacing: var(--ds-tracking-wider); }
 
 /* --- Truncation --- */
 .ds-truncate {
