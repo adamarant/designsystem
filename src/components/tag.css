@@ -24,7 +24,7 @@
   font-size: var(--ds-text-xs);
   font-weight: var(--ds-weight-medium);
   font-family: var(--ds-font-sans);
-  line-height: 1;
+  line-height: var(--ds-leading-none);
   border-radius: var(--ds-radius-full);
   background-color: var(--ds-color-bg-elevated);
   border: 1px solid var(--ds-color-border);
@@ -103,7 +103,7 @@
   background: transparent;
   color: currentColor;
   font-size: inherit;
-  line-height: 1;
+  line-height: var(--ds-leading-none);
   opacity: 0.6;
   cursor: pointer;
   transition:

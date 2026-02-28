@@ -172,7 +172,7 @@
   background-color: transparent;
   color: var(--ds-color-text-tertiary);
   font-size: var(--ds-text-lg);
-  line-height: 1;
+  line-height: var(--ds-leading-none);
   cursor: pointer;
   flex-shrink: 0;
   transition:

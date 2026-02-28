@@ -2880,7 +2880,7 @@ hr {
   font-size: var(--ds-text-xs);
   font-weight: var(--ds-weight-medium);
   font-family: var(--ds-font-sans);
-  line-height: 1;
+  line-height: var(--ds-leading-none);
   border-radius: var(--ds-radius-full);
   background-color: var(--ds-color-bg-elevated);
   border: 1px solid var(--ds-color-border);
@@ -2959,7 +2959,7 @@ hr {
   background: transparent;
   color: currentColor;
   font-size: inherit;
-  line-height: 1;
+  line-height: var(--ds-leading-none);
   opacity: 0.6;
   cursor: pointer;
   transition:
@@ -3123,7 +3123,7 @@ hr {
   padding-top: 0;
   font-size: var(--ds-text-sm);
   color: var(--ds-color-text-secondary);
-  line-height: 1.625;
+  line-height: var(--ds-leading-relaxed);
 }
 
 /* ==========================================================================
@@ -3339,7 +3339,7 @@ hr {
   background-color: transparent;
   color: var(--ds-color-text-tertiary);
   font-size: var(--ds-text-lg);
-  line-height: 1;
+  line-height: var(--ds-leading-none);
   cursor: pointer;
   flex-shrink: 0;
   transition:

@@ -107,7 +107,7 @@
   padding-top: 0;
   font-size: var(--ds-text-sm);
   color: var(--ds-color-text-secondary);
-  line-height: 1.625;
+  line-height: var(--ds-leading-relaxed);
 }
 
 /* ==========================================================================
