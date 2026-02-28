@@ -76,6 +76,10 @@
           "html": "<div class=\"ds-form-group\">\n  <label class=\"ds-label\">Username</label>\n  <input class=\"ds-input ds-input--error\" type=\"text\" value=\"ab\" />\n  <p class=\"ds-help ds-help--error\">Username must be at least 3 characters</p>\n</div>\n<div class=\"ds-form-group\">\n  <label class=\"ds-label\">Password</label>\n  <input class=\"ds-input ds-input--success\" type=\"password\" value=\"strongpass\" />\n</div>"
         },
         {
+          "title": "Sizes",
+          "html": "<input class=\"ds-input ds-input--xs\" placeholder=\"Extra Small (24px)\" />\n<input class=\"ds-input ds-input--sm\" placeholder=\"Small (32px)\" />\n<input class=\"ds-input\" placeholder=\"Default (40px)\" />\n<input class=\"ds-input ds-input--lg\" placeholder=\"Large (48px)\" />"
+        },
+        {
           "title": "Other Inputs",
           "html": "<div class=\"ds-form-group\">\n  <label class=\"ds-label\">Description</label>\n  <textarea class=\"ds-textarea\" placeholder=\"Write something...\"></textarea>\n</div>\n<div class=\"ds-form-group\">\n  <label class=\"ds-label\">Country</label>\n  <select class=\"ds-select\">\n    <option>United States</option>\n    <option>United Kingdom</option>\n    <option>Germany</option>\n  </select>\n</div>\n<label class=\"ds-checkbox\"><input type=\"checkbox\" /> Remember me</label>\n<label class=\"ds-radio\"><input type=\"radio\" name=\"plan\" /> Free plan</label>"
         }
@@ -137,6 +141,10 @@
         {
           "title": "Basic Modal",
           "html": "<div class=\"ds-modal ds-modal--open\" style=\"position:relative;background:transparent;padding:0;\">\n  <div class=\"ds-modal__content\" style=\"position:relative;transform:none;\">\n    <div class=\"ds-modal__header\">\n      <div>\n        <h3>Confirm Action</h3>\n        <p>This action cannot be undone.</p>\n      </div>\n      <button class=\"ds-modal__close\" aria-label=\"Close\">&times;</button>\n    </div>\n    <div class=\"ds-modal__body\">\n      <p>Are you sure you want to delete this project? All data will be permanently removed.</p>\n    </div>\n    <div class=\"ds-modal__footer\">\n      <button class=\"ds-btn ds-btn--secondary\">Cancel</button>\n      <button class=\"ds-btn ds-btn--danger\">Delete</button>\n    </div>\n  </div>\n</div>"
+        },
+        {
+          "title": "Sizes",
+          "html": "<p style=\"font-size:var(--ds-text-sm);color:var(--ds-color-text-secondary);\">default (32rem) &middot; <code>.ds-modal--md</code> (42rem) &middot; <code>.ds-modal--lg</code> (56rem)</p>"
         }
       ]
     },
@@ -200,6 +208,10 @@
         {
           "title": "Tabs with Counts",
           "html": "<div class=\"ds-tabs\">\n  <button class=\"ds-tab ds-tab--active\">Issues <span class=\"ds-tab__count\">24</span></button>\n  <button class=\"ds-tab\">Pull Requests <span class=\"ds-tab__count\">8</span></button>\n  <button class=\"ds-tab\">Discussions <span class=\"ds-tab__count\">3</span></button>\n</div>"
+        },
+        {
+          "title": "Sizes",
+          "html": "<div class=\"ds-tabs ds-tabs--sm\" style=\"margin-bottom:1rem;\">\n  <button class=\"ds-tab ds-tab--active\">Small</button>\n  <button class=\"ds-tab\">Tabs</button>\n</div>\n<div class=\"ds-tabs\">\n  <button class=\"ds-tab ds-tab--active\">Default</button>\n  <button class=\"ds-tab\">Tabs</button>\n</div>"
         }
       ]
     },
@@ -364,6 +376,10 @@
         {
           "title": "Toggle with Label",
           "html": "<label class=\"ds-toggle-label\">\n  <button class=\"ds-toggle\" role=\"switch\" aria-checked=\"true\"></button>\n  <span class=\"ds-toggle-label__text\">Dark mode</span>\n</label>\n<label class=\"ds-toggle-label\">\n  <button class=\"ds-toggle\" role=\"switch\" aria-checked=\"false\"></button>\n  <span class=\"ds-toggle-label__text\">Notifications</span>\n</label>"
+        },
+        {
+          "title": "Sizes",
+          "html": "<button class=\"ds-toggle ds-toggle--sm\" role=\"switch\" aria-checked=\"true\"></button>\n<button class=\"ds-toggle\" role=\"switch\" aria-checked=\"true\"></button>"
         }
       ]
     },
@@ -469,6 +485,10 @@
         {
           "title": "Right Drawer",
           "html": "<div class=\"ds-drawer ds-drawer--open\" style=\"position:relative;background:transparent;\">\n  <div class=\"ds-drawer__content\" style=\"position:relative;transform:none;width:24rem;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);\">\n    <div class=\"ds-drawer__header\">\n      <h3>Filter Options</h3>\n      <button class=\"ds-drawer__close\" aria-label=\"Close\">&times;</button>\n    </div>\n    <div class=\"ds-drawer__body\">\n      <div class=\"ds-form-group\">\n        <label class=\"ds-label\">Category</label>\n        <select class=\"ds-select\">\n          <option>All Categories</option>\n          <option>Design</option>\n          <option>Engineering</option>\n        </select>\n      </div>\n    </div>\n    <div class=\"ds-drawer__footer\">\n      <button class=\"ds-btn ds-btn--secondary\">Reset</button>\n      <button class=\"ds-btn\">Apply Filters</button>\n    </div>\n  </div>\n</div>"
+        },
+        {
+          "title": "Sizes",
+          "html": "<p style=\"font-size:var(--ds-text-sm);color:var(--ds-color-text-secondary);\"><code>.ds-drawer--sm</code> (20rem) &middot; default (28rem) &middot; <code>.ds-drawer--lg</code> (36rem)</p>"
         }
       ]
     },
@@ -488,7 +508,7 @@
           "html": "<div class=\"ds-progress__label\">\n  <span>Uploading files...</span>\n  <span>64%</span>\n</div>\n<div class=\"ds-progress\">\n  <div class=\"ds-progress__bar\" style=\"width:64%;\"></div>\n</div>"
         },
         {
-          "title": "Progress Variants",
+          "title": "Variants & Sizes",
           "html": "<div class=\"ds-progress ds-progress--success\" style=\"margin-bottom:0.5rem;\"><div class=\"ds-progress__bar\" style=\"width:100%;\"></div></div>\n<div class=\"ds-progress ds-progress--warning\" style=\"margin-bottom:0.5rem;\"><div class=\"ds-progress__bar\" style=\"width:75%;\"></div></div>\n<div class=\"ds-progress ds-progress--error\" style=\"margin-bottom:0.5rem;\"><div class=\"ds-progress__bar\" style=\"width:30%;\"></div></div>\n<div class=\"ds-progress ds-progress--sm\" style=\"margin-bottom:0.5rem;\"><div class=\"ds-progress__bar\" style=\"width:50%;\"></div></div>\n<div class=\"ds-progress ds-progress--lg\"><div class=\"ds-progress__bar\" style=\"width:80%;\"></div></div>"
         },
         {
@@ -511,6 +531,10 @@
         {
           "title": "Basic Popover",
           "html": "<div class=\"ds-popover ds-popover--open\" style=\"display:inline-flex;\">\n  <button class=\"ds-btn ds-btn--secondary\">User Info</button>\n  <div class=\"ds-popover__content\" style=\"position:relative;top:auto;left:auto;transform:none;opacity:1;visibility:visible;margin-top:0.5rem;\">\n    <div style=\"display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;\">\n      <span class=\"ds-avatar\">JD</span>\n      <div>\n        <strong>Jane Doe</strong><br/>\n        <span style=\"font-size:var(--ds-text-sm);color:var(--ds-color-text-secondary);\">Senior Engineer</span>\n      </div>\n    </div>\n    <button class=\"ds-btn ds-btn--sm ds-btn--full\">View Profile</button>\n  </div>\n</div>"
+        },
+        {
+          "title": "Sizes",
+          "html": "<p style=\"font-size:var(--ds-text-sm);color:var(--ds-color-text-secondary);\"><code>.ds-popover--sm</code> (16rem) &middot; default (20rem) &middot; <code>.ds-popover--lg</code> (28rem)</p>"
         }
       ]
     },
@@ -532,6 +556,10 @@
         {
           "title": "Slider with Value",
           "html": "<div style=\"display:flex;align-items:center;gap:1rem;\">\n  <div class=\"ds-slider\" style=\"flex:1;\">\n    <input type=\"range\" min=\"0\" max=\"100\" value=\"75\" />\n  </div>\n  <span class=\"ds-slider__value\">75%</span>\n</div>"
+        },
+        {
+          "title": "Sizes",
+          "html": "<div class=\"ds-slider ds-slider--sm\" style=\"margin-bottom:1rem;\">\n  <input type=\"range\" min=\"0\" max=\"100\" value=\"40\" />\n</div>\n<div class=\"ds-slider\">\n  <input type=\"range\" min=\"0\" max=\"100\" value=\"60\" />\n</div>"
         }
       ]
     },
@@ -570,6 +598,10 @@
         {
           "title": "Key Combinations",
           "html": "<span class=\"ds-kbd-group\">\n  <kbd class=\"ds-kbd\">Cmd</kbd>\n  <span class=\"ds-kbd-group__separator\">+</span>\n  <kbd class=\"ds-kbd\">K</kbd>\n</span>\n<span class=\"ds-kbd-group\" style=\"margin-left:1rem;\">\n  <kbd class=\"ds-kbd\">Ctrl</kbd>\n  <span class=\"ds-kbd-group__separator\">+</span>\n  <kbd class=\"ds-kbd\">Shift</kbd>\n  <span class=\"ds-kbd-group__separator\">+</span>\n  <kbd class=\"ds-kbd\">P</kbd>\n</span>"
+        },
+        {
+          "title": "Sizes",
+          "html": "<kbd class=\"ds-kbd\">Default</kbd>\n<kbd class=\"ds-kbd ds-kbd--lg\">Large</kbd>"
         }
       ]
     },
