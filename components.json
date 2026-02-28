@@ -14,7 +14,7 @@
       "classes": [".ds-btn", ".ds-btn-group"],
       "elements": [],
       "variants": ["--secondary", "--outline", "--ghost", "--danger", "--success"],
-      "sizes": ["--sm", "--lg"],
+      "sizes": ["--xs", "--sm", "--lg"],
       "modifiers": ["--pill", "--full", "--icon", "--loading"],
       "examples": [
         {
@@ -23,7 +23,7 @@
         },
         {
           "title": "Sizes",
-          "html": "<button class=\"ds-btn ds-btn--sm\">Small</button>\n<button class=\"ds-btn\">Default</button>\n<button class=\"ds-btn ds-btn--lg\">Large</button>"
+          "html": "<button class=\"ds-btn ds-btn--xs\">Extra Small</button>\n<button class=\"ds-btn ds-btn--sm\">Small</button>\n<button class=\"ds-btn\">Default</button>\n<button class=\"ds-btn ds-btn--lg\">Large</button>"
         },
         {
           "title": "Modifiers",
@@ -64,7 +64,7 @@
       "classes": [".ds-input", ".ds-textarea", ".ds-select", ".ds-label", ".ds-help", ".ds-form-group", ".ds-checkbox", ".ds-radio"],
       "elements": [],
       "variants": ["--error", "--success"],
-      "sizes": ["--sm", "--lg"],
+      "sizes": ["--xs", "--sm", "--lg"],
       "modifiers": [],
       "examples": [
         {

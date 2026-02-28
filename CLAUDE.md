@@ -103,7 +103,7 @@ Every component file must follow this exact pattern:
 .ds-component--active { }
 ```
 
-**Size variants:** `--sm`, `--md` (default, no class needed), `--lg`
+**Size variants:** `--xs`, `--sm`, `--md` (default, no class needed), `--lg`
 **Semantic variants:** `--success`, `--warning`, `--error`, `--info`
 **Visual variants:** `--outline`, `--ghost`, `--compact`, `--flush`
 
@@ -133,6 +133,18 @@ accent-blue, accent-purple, accent-green, accent-orange (+ -subtle variants)
 ```
 0, 0-5, 1, 1-5, 2, 2-5, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32
 ```
+
+**Component Heights** — `var(--ds-size-*)`
+```
+1: 1.5rem (24px) — xs: btn--xs, input--xs
+2: 2rem  (32px) — sm: btn--sm, input--sm
+3: 2.5rem (40px) — md: btn, input (default)
+4: 3rem  (48px) — lg: btn--lg, input--lg
+```
+Inline components at the same size tier MUST share the same height.
+Button XS + Input XS = both 24px. Always.
+Applied via explicit `height` + flexbox centering (not via padding math).
+Textarea is exempt (multi-line, uses `height: auto`).
 
 **Typography** — `var(--ds-text-*)`, `var(--ds-weight-*)`, `var(--ds-leading-*)`, `var(--ds-tracking-*)`
 ```
