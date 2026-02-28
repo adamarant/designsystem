@@ -197,6 +197,7 @@
   .ds-sm\:hidden     { display: none; }
   .ds-sm\:block      { display: block; }
   .ds-sm\:flex       { display: flex; }
+  .ds-sm\:flex-row   { flex-direction: row; }
   .ds-sm\:table-cell { display: table-cell; }
 }
 

@@ -15,6 +15,18 @@
 .ds-text-6xl  { font-size: var(--ds-text-6xl); }
 .ds-text-7xl  { font-size: var(--ds-text-7xl); }
 
+/* --- Text Size (responsive) --- */
+@media (min-width: 640px) {
+  .ds-sm\:text-4xl { font-size: var(--ds-text-4xl); }
+  .ds-sm\:text-5xl { font-size: var(--ds-text-5xl); }
+}
+@media (min-width: 768px) {
+  .ds-md\:text-6xl { font-size: var(--ds-text-6xl); }
+}
+@media (min-width: 1024px) {
+  .ds-lg\:text-7xl { font-size: var(--ds-text-7xl); }
+}
+
 /* --- Text Weight --- */
 .ds-font-light    { font-weight: var(--ds-weight-light); }
 .ds-font-normal   { font-weight: var(--ds-weight-normal); }

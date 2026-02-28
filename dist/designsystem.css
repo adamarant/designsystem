@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.2.4 */
+/* @ds/designsystem v0.3.1 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -4474,6 +4474,7 @@ hr {
   .ds-sm\:hidden     { display: none; }
   .ds-sm\:block      { display: block; }
   .ds-sm\:flex       { display: flex; }
+  .ds-sm\:flex-row   { flex-direction: row; }
   .ds-sm\:table-cell { display: table-cell; }
 }
 
@@ -4638,6 +4639,18 @@ hr {
 .ds-text-5xl  { font-size: var(--ds-text-5xl); }
 .ds-text-6xl  { font-size: var(--ds-text-6xl); }
 .ds-text-7xl  { font-size: var(--ds-text-7xl); }
+
+/* --- Text Size (responsive) --- */
+@media (min-width: 640px) {
+  .ds-sm\:text-4xl { font-size: var(--ds-text-4xl); }
+  .ds-sm\:text-5xl { font-size: var(--ds-text-5xl); }
+}
+@media (min-width: 768px) {
+  .ds-md\:text-6xl { font-size: var(--ds-text-6xl); }
+}
+@media (min-width: 1024px) {
+  .ds-lg\:text-7xl { font-size: var(--ds-text-7xl); }
+}
 
 /* --- Text Weight --- */
 .ds-font-light    { font-weight: var(--ds-weight-light); }
