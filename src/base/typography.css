@@ -44,6 +44,7 @@ strong, b {
 
 /* Overline / label style (like "PRODUCT DESIGNER & DEVELOPER") */
 .ds-overline {
+  font-family: var(--ds-font-sans);
   font-size: var(--ds-text-sm);
   font-weight: var(--ds-weight-medium);
   letter-spacing: var(--ds-tracking-wide);

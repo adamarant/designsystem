@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.2.2 */
+/* @ds/designsystem v0.2.3 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -526,6 +526,7 @@ strong, b {
 
 /* Overline / label style (like "PRODUCT DESIGNER & DEVELOPER") */
 .ds-overline {
+  font-family: var(--ds-font-sans);
   font-size: var(--ds-text-sm);
   font-weight: var(--ds-weight-medium);
   letter-spacing: var(--ds-tracking-wide);
