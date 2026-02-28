@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.3.1 */
+/* @ds/designsystem v0.3.2 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -4360,6 +4360,8 @@ hr {
 .ds-gap-6  { gap: var(--ds-space-6); }
 .ds-gap-8  { gap: var(--ds-space-8); }
 .ds-gap-12 { gap: var(--ds-space-12); }
+.ds-gap-16 { gap: var(--ds-space-16); }
+.ds-gap-20 { gap: var(--ds-space-20); }
 
 /* --- Display --- */
 .ds-block        { display: block; }
@@ -4395,8 +4397,11 @@ hr {
   margin-top: var(--ds-space-4);
 }
 
-.ds-stack--sm > * + * { margin-top: var(--ds-space-2); }
-.ds-stack--lg > * + * { margin-top: var(--ds-space-8); }
+.ds-stack--sm > * + *  { margin-top: var(--ds-space-2); }
+.ds-stack--lg > * + *  { margin-top: var(--ds-space-8); }
+.ds-stack--xl > * + *  { margin-top: var(--ds-space-12); }
+.ds-stack--2xl > * + * { margin-top: var(--ds-space-16); }
+.ds-stack--3xl > * + * { margin-top: var(--ds-space-24); }
 
 /* --- Center content --- */
 .ds-center {
