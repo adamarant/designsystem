@@ -148,7 +148,7 @@ Textarea is exempt (multi-line, uses `height: auto`).
 
 **Typography** — `var(--ds-text-*)`, `var(--ds-weight-*)`, `var(--ds-leading-*)`, `var(--ds-tracking-*)`
 ```
-text: xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl
+text: 2xs, xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl
 weight: light, normal, medium, semibold, bold
 leading: none, tight, snug, normal, relaxed, loose
 tracking: tighter, tight, normal, wide

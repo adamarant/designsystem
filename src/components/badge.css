@@ -46,13 +46,13 @@
 .ds-badge--info {
   background-color: var(--ds-color-accent-blue-subtle);
   color: var(--ds-color-accent-blue);
-  border-color: rgba(37, 99, 235, 0.2);
+  border-color: var(--ds-color-accent-blue-border);
 }
 
 .ds-badge--purple {
   background-color: var(--ds-color-accent-purple-subtle);
   color: var(--ds-color-accent-purple);
-  border-color: rgba(124, 58, 237, 0.2);
+  border-color: var(--ds-color-accent-purple-border);
 }
 
 /* Outline (no bg) */
@@ -74,7 +74,7 @@
 /* Uppercase badge (like "NEW", "BETA") */
 .ds-badge--upper {
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: var(--ds-text-2xs);
   font-weight: var(--ds-weight-semibold);
   letter-spacing: var(--ds-tracking-wide);
 }

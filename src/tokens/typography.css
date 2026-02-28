@@ -16,6 +16,7 @@
   --ds-font-display-weight: 400;
 
   /* --- Font Sizes --- */
+  --ds-text-2xs: 0.625rem;    /* 10px */
   --ds-text-xs: 0.75rem;      /* 12px */
   --ds-text-sm: 0.875rem;     /* 14px */
   --ds-text-base: 1rem;       /* 16px */

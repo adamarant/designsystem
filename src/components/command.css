@@ -119,7 +119,7 @@
 .ds-command__group-heading {
   font-size: var(--ds-text-xs);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--ds-tracking-wide);
   color: var(--ds-color-text-tertiary);
   padding: var(--ds-space-2) var(--ds-space-3);
   font-weight: var(--ds-weight-medium);

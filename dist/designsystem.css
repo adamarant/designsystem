@@ -169,9 +169,13 @@
   --ds-color-accent-green: #16a34a;
   --ds-color-accent-orange: #d97706;
   --ds-color-accent-blue-subtle: rgba(37, 99, 235, 0.1);
+  --ds-color-accent-blue-border: rgba(37, 99, 235, 0.2);
   --ds-color-accent-purple-subtle: rgba(124, 58, 237, 0.1);
+  --ds-color-accent-purple-border: rgba(124, 58, 237, 0.2);
   --ds-color-accent-green-subtle: rgba(22, 163, 74, 0.1);
+  --ds-color-accent-green-border: rgba(22, 163, 74, 0.2);
   --ds-color-accent-orange-subtle: rgba(217, 119, 6, 0.1);
+  --ds-color-accent-orange-border: rgba(217, 119, 6, 0.2);
 }
 
 /* Dark overrides for status/accent (brighter for contrast) */
@@ -197,9 +201,13 @@
   --ds-color-accent-green: #4ade80;
   --ds-color-accent-orange: #fbbf24;
   --ds-color-accent-blue-subtle: rgba(96, 165, 250, 0.1);
+  --ds-color-accent-blue-border: rgba(96, 165, 250, 0.2);
   --ds-color-accent-purple-subtle: rgba(167, 139, 250, 0.1);
+  --ds-color-accent-purple-border: rgba(167, 139, 250, 0.2);
   --ds-color-accent-green-subtle: rgba(74, 222, 128, 0.1);
+  --ds-color-accent-green-border: rgba(74, 222, 128, 0.2);
   --ds-color-accent-orange-subtle: rgba(251, 191, 36, 0.1);
+  --ds-color-accent-orange-border: rgba(251, 191, 36, 0.2);
 }
 
 /* ==========================================================================
@@ -220,6 +228,7 @@
   --ds-font-display-weight: 400;
 
   /* --- Font Sizes --- */
+  --ds-text-2xs: 0.625rem;    /* 10px */
   --ds-text-xs: 0.75rem;      /* 12px */
   --ds-text-sm: 0.875rem;     /* 14px */
   --ds-text-base: 1rem;       /* 16px */
@@ -1128,13 +1137,13 @@ hr {
 .ds-badge--info {
   background-color: var(--ds-color-accent-blue-subtle);
   color: var(--ds-color-accent-blue);
-  border-color: rgba(37, 99, 235, 0.2);
+  border-color: var(--ds-color-accent-blue-border);
 }
 
 .ds-badge--purple {
   background-color: var(--ds-color-accent-purple-subtle);
   color: var(--ds-color-accent-purple);
-  border-color: rgba(124, 58, 237, 0.2);
+  border-color: var(--ds-color-accent-purple-border);
 }
 
 /* Outline (no bg) */
@@ -1156,7 +1165,7 @@ hr {
 /* Uppercase badge (like "NEW", "BETA") */
 .ds-badge--upper {
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: var(--ds-text-2xs);
   font-weight: var(--ds-weight-semibold);
   letter-spacing: var(--ds-tracking-wide);
 }
@@ -3043,7 +3052,7 @@ hr {
 
 .ds-tag--sm {
   padding: var(--ds-space-0-5, 0.125rem) var(--ds-space-2, 0.5rem);
-  font-size: 0.625rem;
+  font-size: var(--ds-text-2xs);
 }
 
 .ds-tag--sm.ds-tag--removable {
@@ -4189,7 +4198,7 @@ hr {
 .ds-command__group-heading {
   font-size: var(--ds-text-xs);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--ds-tracking-wide);
   color: var(--ds-color-text-tertiary);
   padding: var(--ds-space-2) var(--ds-space-3);
   font-weight: var(--ds-weight-medium);
