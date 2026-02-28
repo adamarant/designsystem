@@ -51,6 +51,12 @@ strong, b {
   color: var(--ds-color-text-secondary);
 }
 
+/* UI heading — body font for functional/interface headings (labels, settings, admin) */
+.ds-heading-ui {
+  font-family: var(--ds-font-sans);
+  font-weight: var(--ds-weight-medium);
+}
+
 /* Section title style */
 .ds-section-title {
   font-family: var(--ds-font-display);
