@@ -12,6 +12,8 @@
 .ds-text-3xl  { font-size: var(--ds-text-3xl); }
 .ds-text-4xl  { font-size: var(--ds-text-4xl); }
 .ds-text-5xl  { font-size: var(--ds-text-5xl); }
+.ds-text-6xl  { font-size: var(--ds-text-6xl); }
+.ds-text-7xl  { font-size: var(--ds-text-7xl); }
 
 /* --- Text Weight --- */
 .ds-font-light    { font-weight: var(--ds-weight-light); }
@@ -35,12 +37,46 @@
 .ds-text-error     { color: var(--ds-color-error); }
 .ds-text-info      { color: var(--ds-color-info); }
 
+/* --- Text Color (extended) --- */
+.ds-text-interactive { color: var(--ds-color-interactive); }
+.ds-text-on-inverted { color: var(--ds-color-on-inverted); }
+
 /* --- Background Color --- */
 .ds-bg-base     { background-color: var(--ds-color-bg); }
 .ds-bg-surface  { background-color: var(--ds-color-surface); }
 .ds-bg-subtle   { background-color: var(--ds-color-bg-subtle); }
 .ds-bg-elevated { background-color: var(--ds-color-bg-elevated); }
 .ds-bg-inverted { background-color: var(--ds-color-inverted); color: var(--ds-color-on-inverted); }
+.ds-bg-hover    { background-color: var(--ds-color-surface-hover); }
+.ds-bg-muted    { background-color: var(--ds-color-bg-muted); }
+.ds-bg-overlay  { background-color: var(--ds-color-overlay); }
+.ds-bg-nav      { background-color: var(--ds-color-nav-bg); }
+
+/* Status backgrounds */
+.ds-bg-error          { background-color: var(--ds-color-error); }
+.ds-bg-success        { background-color: var(--ds-color-success); }
+.ds-bg-warning        { background-color: var(--ds-color-warning); }
+.ds-bg-info           { background-color: var(--ds-color-info); }
+.ds-bg-error-subtle   { background-color: var(--ds-color-error-subtle); }
+.ds-bg-success-subtle { background-color: var(--ds-color-success-subtle); }
+.ds-bg-warning-subtle { background-color: var(--ds-color-warning-subtle); }
+.ds-bg-info-subtle    { background-color: var(--ds-color-info-subtle); }
+
+/* Accent backgrounds */
+.ds-bg-accent-blue          { background-color: var(--ds-color-accent-blue); }
+.ds-bg-accent-purple        { background-color: var(--ds-color-accent-purple); }
+.ds-bg-accent-green         { background-color: var(--ds-color-accent-green); }
+.ds-bg-accent-orange        { background-color: var(--ds-color-accent-orange); }
+.ds-bg-accent-blue-subtle   { background-color: var(--ds-color-accent-blue-subtle); }
+.ds-bg-accent-purple-subtle { background-color: var(--ds-color-accent-purple-subtle); }
+.ds-bg-accent-green-subtle  { background-color: var(--ds-color-accent-green-subtle); }
+.ds-bg-accent-orange-subtle { background-color: var(--ds-color-accent-orange-subtle); }
+
+/* Accent text */
+.ds-text-accent-blue   { color: var(--ds-color-accent-blue); }
+.ds-text-accent-purple { color: var(--ds-color-accent-purple); }
+.ds-text-accent-green  { color: var(--ds-color-accent-green); }
+.ds-text-accent-orange { color: var(--ds-color-accent-orange); }
 
 /* --- Surface Card --- */
 .ds-surface {
@@ -99,11 +135,28 @@
   overflow: hidden;
 }
 
+/* --- Font Family --- */
+.ds-font-mono { font-family: var(--ds-font-mono); }
+.ds-font-sans { font-family: var(--ds-font-sans); }
+
 /* --- Border --- */
 .ds-border      { border: 1px solid var(--ds-color-border); }
 .ds-border-t    { border-top: 1px solid var(--ds-color-border); }
 .ds-border-b    { border-bottom: 1px solid var(--ds-color-border); }
+.ds-border-l    { border-left: 1px solid var(--ds-color-border); }
+.ds-border-r    { border-right: 1px solid var(--ds-color-border); }
 .ds-border-none { border: none; }
+
+/* --- Border Color --- */
+.ds-border-error       { border-color: var(--ds-color-error); }
+.ds-border-success     { border-color: var(--ds-color-success); }
+.ds-border-interactive { border-color: var(--ds-color-interactive); }
+.ds-border-hover       { border-color: var(--ds-color-border-hover); }
+.ds-border-active      { border-color: var(--ds-color-border-active); }
+.ds-border-nav         { border-color: var(--ds-color-nav-border); }
+
+/* --- Divide --- */
+.ds-divide-y > * + * { border-top: 1px solid var(--ds-color-border); }
 
 /* --- Border Radius --- */
 .ds-rounded-none { border-radius: var(--ds-radius-none); }
@@ -129,6 +182,29 @@
 .ds-cursor-pointer     { cursor: pointer; }
 .ds-cursor-default     { cursor: default; }
 .ds-cursor-not-allowed { cursor: not-allowed; }
+.ds-cursor-grab        { cursor: grab; }
+.ds-cursor-grabbing    { cursor: grabbing; }
+
+/* --- Interaction --- */
+.ds-pointer-events-none { pointer-events: none; }
+.ds-select-none         { user-select: none; }
+.ds-whitespace-nowrap   { white-space: nowrap; }
+
+/* --- Backdrop --- */
+.ds-backdrop-blur {
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+}
+
+/* --- Transform --- */
+.-ds-translate-y-1\/2 { transform: translateY(-50%); }
+.-ds-translate-x-1\/2 { transform: translateX(-50%); }
+.ds-translate-y-full  { transform: translateY(100%); }
+.ds-scale-105         { transform: scale(1.05); }
+.ds-rotate-180        { transform: rotate(180deg); }
+
+/* --- Placeholder --- */
+.ds-placeholder-tertiary::placeholder { color: var(--ds-color-text-tertiary); }
 
 /* --- Transitions --- */
 .ds-tr-colors {
@@ -144,6 +220,10 @@
 
 .ds-tr-opacity {
   transition: opacity var(--ds-duration-normal) var(--ds-ease-default);
+}
+
+.ds-tr-transform {
+  transition: transform var(--ds-duration-normal) var(--ds-ease-default);
 }
 
 /* --- Animations --- */
