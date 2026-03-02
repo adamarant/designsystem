@@ -1008,7 +1008,7 @@ hr {
 .ds-textarea:focus,
 .ds-select:focus {
   border-color: var(--ds-color-border-active);
-  box-shadow: 0 0 0 1px var(--ds-color-border-active);
+  box-shadow: inset 0 0 0 1px var(--ds-color-border-active);
   outline: none;
 }
 
@@ -1024,7 +1024,7 @@ hr {
 }
 .ds-input--error:focus,
 .ds-textarea--error:focus {
-  box-shadow: 0 0 0 1px var(--ds-color-error);
+  box-shadow: inset 0 0 0 1px var(--ds-color-error);
 }
 
 .ds-input--success {
