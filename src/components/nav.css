@@ -12,7 +12,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 var(--ds-container-padding);
   height: 4rem;
   background-color: var(--ds-color-nav-bg);
   border-bottom: 1px solid var(--ds-color-nav-border);
@@ -31,6 +30,7 @@
   width: 100%;
   max-width: var(--ds-container-max);
   margin-inline: auto;
+  padding-inline: var(--ds-container-padding);
 }
 
 .ds-nav__brand {

@@ -41,8 +41,8 @@
   --ds-section-padding: clamp(80px, 12vw, 160px);
 
   /* --- Container --- */
-  --ds-container-max: 1200px;
-  --ds-container-padding: clamp(20px, 5vw, 80px);
+  --ds-container-max: 1440px;
+  --ds-container-padding: clamp(8px, 5vw, 80px);
   --ds-container-sm: 640px;
   --ds-container-md: 768px;
   --ds-container-lg: 1024px;
