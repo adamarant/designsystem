@@ -29,7 +29,7 @@ p {
   color: var(--ds-color-text-secondary);
 }
 
-p + p {
+.ds-prose p + p {
   margin-top: var(--ds-space-4);
 }
 
