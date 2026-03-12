@@ -39,6 +39,11 @@
   border-color: var(--ds-color-border-hover);
 }
 
+/* Tags used as <button> for selection — no focus ring on click */
+button.ds-tag:focus-visible {
+  outline: none;
+}
+
 /* ---------------------------------------------------------------------------
    Color variants — subtle background + vivid text + subtle border
    --------------------------------------------------------------------------- */

@@ -17,7 +17,7 @@
   width: 100%;
   padding: 0 var(--ds-space-4);
   font-family: var(--ds-font-sans);
-  font-size: var(--ds-text-sm);
+  font-size: var(--ds-text-base); /* 16px — prevents iOS auto-zoom on focus */
   line-height: var(--ds-leading-normal);
   color: var(--ds-color-text);
   background-color: var(--ds-color-surface);

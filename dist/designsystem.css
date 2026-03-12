@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.3.4 */
+/* @ds/designsystem v0.3.12 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -382,8 +382,7 @@ html {
 }
 
 html, body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -984,7 +983,7 @@ hr {
   width: 100%;
   padding: 0 var(--ds-space-4);
   font-family: var(--ds-font-sans);
-  font-size: var(--ds-text-sm);
+  font-size: var(--ds-text-base); /* 16px — prevents iOS auto-zoom on focus */
   line-height: var(--ds-leading-normal);
   color: var(--ds-color-text);
   background-color: var(--ds-color-surface);
@@ -2959,6 +2958,11 @@ hr {
 
 .ds-tag:hover {
   border-color: var(--ds-color-border-hover);
+}
+
+/* Tags used as <button> for selection — no focus ring on click */
+button.ds-tag:focus-visible {
+  outline: none;
 }
 
 /* ---------------------------------------------------------------------------
