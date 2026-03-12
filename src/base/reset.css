@@ -17,6 +17,9 @@ html {
   text-size-adjust: 100%;
   tab-size: 4;
   scroll-behavior: smooth;
+  /* overflow-y:auto enables scrollbar-gutter:stable (requires non-visible overflow) */
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
 html, body {
@@ -89,20 +92,11 @@ input[type="number"]::-webkit-inner-spin-button {
   color: var(--ds-color-selection-text);
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--ds-scrollbar-thumb);
-  border-radius: var(--ds-radius-sm);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--ds-scrollbar-thumb-hover);
+/* Scrollbar — use standard properties (compatible with scrollbar-gutter:stable).
+   ::-webkit-scrollbar breaks scrollbar-gutter in Chromium browsers. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ds-scrollbar-thumb) transparent;
 }
 
 .ds-no-scrollbar::-webkit-scrollbar { display: none; }
