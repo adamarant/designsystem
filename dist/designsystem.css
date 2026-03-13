@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.3.22 */
+/* @ds/designsystem v0.3.23 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -1089,6 +1089,29 @@ hr {
 
 .ds-form__actions {
   margin-top: var(--ds-space-8);
+}
+
+/* --- Input Group ---
+   Wrapper for input with leading icon.
+   Icon sits inside the input via absolute positioning. */
+.ds-input-group {
+  position: relative;
+}
+
+.ds-input-group__icon {
+  position: absolute;
+  left: var(--ds-space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ds-color-text-tertiary);
+  pointer-events: none;
+}
+
+.ds-input-group .ds-input {
+  padding-left: calc(var(--ds-space-3) + 1rem + var(--ds-space-2));
 }
 
 /* Checkbox / Radio */
