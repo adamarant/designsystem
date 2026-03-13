@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.3.21 */
+/* @ds/designsystem v0.3.22 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -1076,8 +1076,20 @@ hr {
 }
 .ds-help--error { color: var(--ds-color-error); }
 
-/* Form Group */
+/* Form Group (legacy — prefer ds-form) */
 .ds-form-group { margin-bottom: var(--ds-space-4); }
+
+/* --- Form Stack ---
+   Vertical form layout: comfortable spacing between fields (20px),
+   extra breathing room before the action area (32px).
+   Use ds-form__actions on the button/submit wrapper. */
+.ds-form > * + * {
+  margin-top: var(--ds-space-5);
+}
+
+.ds-form__actions {
+  margin-top: var(--ds-space-8);
+}
 
 /* Checkbox / Radio */
 .ds-checkbox,
@@ -4421,16 +4433,17 @@ button.ds-tag:focus-visible {
 .ds-h-screen  { height: 100dvh; }
 .ds-min-h-screen { min-height: 100dvh; }
 
-/* --- Stack (vertical spacing) --- */
-.ds-stack > * + * {
+/* --- Stack (vertical spacing) ---
+   :where() lowers specificity so ds-mt-* can override individual children. */
+:where(.ds-stack) > * + * {
   margin-top: var(--ds-space-4);
 }
 
-.ds-stack--sm > * + *  { margin-top: var(--ds-space-2); }
-.ds-stack--lg > * + *  { margin-top: var(--ds-space-8); }
-.ds-stack--xl > * + *  { margin-top: var(--ds-space-12); }
-.ds-stack--2xl > * + * { margin-top: var(--ds-space-16); }
-.ds-stack--3xl > * + * { margin-top: var(--ds-space-24); }
+:where(.ds-stack--sm) > * + *  { margin-top: var(--ds-space-2); }
+:where(.ds-stack--lg) > * + *  { margin-top: var(--ds-space-8); }
+:where(.ds-stack--xl) > * + *  { margin-top: var(--ds-space-12); }
+:where(.ds-stack--2xl) > * + * { margin-top: var(--ds-space-16); }
+:where(.ds-stack--3xl) > * + * { margin-top: var(--ds-space-24); }
 
 /* --- Center content --- */
 .ds-center {
