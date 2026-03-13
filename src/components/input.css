@@ -114,11 +114,11 @@
 .ds-form-group { margin-bottom: var(--ds-space-4); }
 
 /* --- Form Stack ---
-   Vertical form layout: comfortable spacing between fields (20px),
+   Vertical form layout: comfortable spacing between fields (24px),
    extra breathing room before the action area (32px).
    Use ds-form__actions on the button/submit wrapper. */
 .ds-form > * + * {
-  margin-top: var(--ds-space-5);
+  margin-top: var(--ds-space-6);
 }
 
 .ds-form__actions {
