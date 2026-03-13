@@ -140,6 +140,12 @@
   --ds-color-info-subtle: rgba(37, 99, 235, 0.1);
   --ds-color-info-border: rgba(37, 99, 235, 0.2);
 
+  /* --- Solid fills (theme-stable, always pair with white text) --- */
+  --ds-color-success-solid: #16a34a;
+  --ds-color-warning-solid: #d97706;
+  --ds-color-error-solid: #dc2626;
+  --ds-color-info-solid: #2563eb;
+
   /* --- Accent Colors (for badges, categories) --- */
   --ds-color-accent-blue: #2563eb;
   --ds-color-accent-purple: #7c3aed;

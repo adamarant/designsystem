@@ -35,7 +35,7 @@
 .ds-table--compact th,
 .ds-table--compact td {
   padding: var(--ds-space-2) var(--ds-space-3);
-  font-size: var(--ds-text-xs);
+  font-size: var(--ds-text-sm);
 }
 
 .ds-table-wrapper {

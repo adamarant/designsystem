@@ -102,8 +102,13 @@
 .ds-nav__mobile-links {
   display: flex;
   flex-direction: column;
-  gap: var(--ds-space-4);
+  gap: var(--ds-space-1);
   padding: var(--ds-space-4) var(--ds-container-padding);
+}
+
+.ds-nav__mobile-links .ds-nav__link {
+  font-size: var(--ds-text-lg);
+  padding: var(--ds-space-3) 0;
 }
 
 /* --- Sidebar --- */
@@ -136,10 +141,14 @@
   align-items: center;
   gap: var(--ds-space-2);
   padding: var(--ds-space-2) var(--ds-space-3);
+  width: 100%;
   font-size: var(--ds-text-sm);
   color: var(--ds-color-text-secondary);
   border-radius: var(--ds-radius-md);
   transition: all var(--ds-duration-normal) var(--ds-ease-default);
+}
+.ds-sidebar__link + .ds-sidebar__link {
+  margin-top: var(--ds-space-1);
 }
 
 .ds-sidebar__link:hover {

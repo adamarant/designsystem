@@ -27,9 +27,9 @@
   box-shadow: var(--ds-shadow-lg);
 }
 
-/* Hover card — subtle bg change */
+/* Hover card — border highlight */
 .ds-card--hover:hover {
-  border-color: var(--ds-color-border-hover);
+  border-color: var(--ds-color-border-active);
 }
 
 .ds-card__header {

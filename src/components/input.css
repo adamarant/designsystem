@@ -75,7 +75,7 @@
 .ds-input--sm {
   height: var(--ds-size-2);
   padding: 0 var(--ds-space-2);
-  font-size: var(--ds-text-xs);
+  font-size: var(--ds-text-sm);
   border-radius: var(--ds-radius-md);
 }
 

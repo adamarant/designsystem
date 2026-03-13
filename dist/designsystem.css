@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.3.13 */
+/* @ds/designsystem v0.3.20 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -162,6 +162,12 @@
   --ds-color-info: #2563eb;
   --ds-color-info-subtle: rgba(37, 99, 235, 0.1);
   --ds-color-info-border: rgba(37, 99, 235, 0.2);
+
+  /* --- Solid fills (theme-stable, always pair with white text) --- */
+  --ds-color-success-solid: #16a34a;
+  --ds-color-warning-solid: #d97706;
+  --ds-color-error-solid: #dc2626;
+  --ds-color-info-solid: #2563eb;
 
   /* --- Accent Colors (for badges, categories) --- */
   --ds-color-accent-blue: #2563eb;
@@ -865,9 +871,9 @@ hr {
   box-shadow: var(--ds-shadow-lg);
 }
 
-/* Hover card — subtle bg change */
+/* Hover card — border highlight */
 .ds-card--hover:hover {
-  border-color: var(--ds-color-border-hover);
+  border-color: var(--ds-color-border-active);
 }
 
 .ds-card__header {
@@ -1035,7 +1041,7 @@ hr {
 .ds-input--sm {
   height: var(--ds-size-2);
   padding: 0 var(--ds-space-2);
-  font-size: var(--ds-text-xs);
+  font-size: var(--ds-text-sm);
   border-radius: var(--ds-radius-md);
 }
 
@@ -1275,8 +1281,13 @@ hr {
 .ds-nav__mobile-links {
   display: flex;
   flex-direction: column;
-  gap: var(--ds-space-4);
+  gap: var(--ds-space-1);
   padding: var(--ds-space-4) var(--ds-container-padding);
+}
+
+.ds-nav__mobile-links .ds-nav__link {
+  font-size: var(--ds-text-lg);
+  padding: var(--ds-space-3) 0;
 }
 
 /* --- Sidebar --- */
@@ -1309,10 +1320,14 @@ hr {
   align-items: center;
   gap: var(--ds-space-2);
   padding: var(--ds-space-2) var(--ds-space-3);
+  width: 100%;
   font-size: var(--ds-text-sm);
   color: var(--ds-color-text-secondary);
   border-radius: var(--ds-radius-md);
   transition: all var(--ds-duration-normal) var(--ds-ease-default);
+}
+.ds-sidebar__link + .ds-sidebar__link {
+  margin-top: var(--ds-space-1);
 }
 
 .ds-sidebar__link:hover {
@@ -1537,7 +1552,7 @@ hr {
 .ds-table--compact th,
 .ds-table--compact td {
   padding: var(--ds-space-2) var(--ds-space-3);
-  font-size: var(--ds-text-xs);
+  font-size: var(--ds-text-sm);
 }
 
 .ds-table-wrapper {
