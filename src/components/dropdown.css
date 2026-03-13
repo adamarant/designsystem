@@ -21,7 +21,7 @@
   left: 0;
   z-index: var(--ds-z-dropdown);
   min-width: 12rem;
-  padding-block: var(--ds-space-1);
+  padding-block: var(--ds-space-1-5);
   background-color: var(--ds-color-surface);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-xl);
@@ -70,7 +70,7 @@
   flex-direction: row;
   align-items: center;
   gap: var(--ds-space-2);
-  padding: var(--ds-space-1-5) var(--ds-space-3);
+  padding: var(--ds-space-2) var(--ds-space-3);
   margin-inline: var(--ds-space-1);
   font-size: var(--ds-text-sm);
   color: var(--ds-color-text-secondary);
