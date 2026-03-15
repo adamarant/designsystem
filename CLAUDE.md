@@ -269,10 +269,11 @@ src/
 
 ---
 
-## How Consuming Projects Use This
+## How Consuming Projects Should Use This
+
+### Installation
 
 ```bash
-# Install from npm
 npm install @digiko-npm/designsystem
 
 # Import in CSS (all-in-one)
@@ -292,6 +293,58 @@ npm install @digiko-npm/designsystem
 @import '@digiko-npm/designsystem/min';
 ```
 
+### Component-First Hierarchy (CRITICAL)
+
+Components are **self-contained and fully styled by default**. This is the correct priority order:
+
+**1. Use DS components first** — they work out of the box, no extra classes needed:
+```html
+<input class="ds-input" />                    <!-- fully styled -->
+<button class="ds-btn">Save</button>          <!-- fully styled -->
+<div class="ds-card"><div class="ds-card__body">Content</div></div>
+```
+
+**2. Use BEM modifiers for variants** — size, state, visual style:
+```html
+<input class="ds-input ds-input--lg" />
+<input class="ds-input ds-input--error" />
+<button class="ds-btn ds-btn--secondary ds-btn--sm">Cancel</button>
+```
+
+**3. Use utilities ONLY for layout composition** — arranging components within a container:
+```html
+<div class="ds-flex ds-gap-4">
+  <input class="ds-input" />
+  <button class="ds-btn">Search</button>
+</div>
+```
+
+### Anti-Patterns — Do NOT Do This
+
+```html
+<!-- WRONG: Using utilities to style what a component already handles -->
+<input class="ds-bg-surface ds-border ds-rounded-xl ds-p-4 ds-text-sm" />
+
+<!-- RIGHT: The component handles all of that -->
+<input class="ds-input" />
+
+<!-- WRONG: Utility soup to build a card -->
+<div class="ds-bg-surface ds-border ds-rounded-xl ds-p-6 ds-shadow-md">
+
+<!-- RIGHT: Use the component -->
+<div class="ds-card"><div class="ds-card__body">
+
+<!-- WRONG: Mixing utilities that duplicate component styles -->
+<button class="ds-btn ds-bg-surface ds-border ds-rounded-lg ds-p-3">
+
+<!-- RIGHT: Use the modifier -->
+<button class="ds-btn ds-btn--secondary">
+```
+
+**Rule of thumb:** If you're adding more than 2-3 utility classes to a single element, check if a DS component already does what you need. Utilities are for **layout** (flex, grid, gap, margin between sections), not for **styling** individual elements.
+
+### Token Overrides
+
 **Override any token** in the consuming project's CSS:
 ```css
 :root {
@@ -301,6 +354,13 @@ npm install @digiko-npm/designsystem
   --ds-color-inverted: #2563eb;  /* blue primary buttons */
 }
 ```
+
+### Project-Specific CSS
+
+Each consuming project may need CSS classes the DS doesn't cover (e.g., a hero overlay, admin sidebar, page-specific patterns). These should:
+- Live in `src/styles/components.css`
+- Use a **project-specific prefix** (NOT `cx-*` — that prefix is local to the riccardo/CORTEX project)
+- Reference `--ds-*` tokens for all values (no hardcoded colors/spacing)
 
 **No `@layer` declarations:** This DS intentionally emits flat (unlayered) CSS. Consuming projects wrap the import in their own layer (e.g., `@import "designsystem" layer(ds)`), keeping full control over layer priority without nested-layer complexity.
 
@@ -323,6 +383,7 @@ Examples:       examples/index.html (open in browser)
 After every modification session, run through this before closing:
 
 ### Code Quality
+- [ ] **No utility soup** — if an element has 3+ `ds-*` utility classes, check if a DS component (`ds-input`, `ds-card`, `ds-btn`, etc.) already covers it. Utilities are for layout, not styling.
 - [ ] **No hardcoded values** — grep all touched files for hex colors (`#`), `px` values in spacing/font-size, raw font names, hardcoded rgba. Every value must be a `--ds-*` token.
 - [ ] **BEM naming correct** — all new classes follow `ds-component__element--modifier`. No typos, no camelCase, no missing prefix.
 - [ ] **File header present** — every new/modified component file has the `/* === Component: Name ... === */` comment block.
