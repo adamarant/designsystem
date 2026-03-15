@@ -1088,6 +1088,31 @@
           "html": "<div style=\"background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);overflow:hidden;max-width:32rem;box-shadow:var(--ds-shadow-lg);\">\n  <div class=\"ds-command__input-wrapper\">\n    <span class=\"ds-command__input-icon\">&#128269;</span>\n    <input class=\"ds-command__input\" placeholder=\"Type a command or search...\" />\n  </div>\n  <div class=\"ds-command__list\">\n    <div class=\"ds-command__group\">\n      <div class=\"ds-command__group-heading\">Suggestions</div>\n      <div class=\"ds-command__item ds-command__item--active\">\n        <span class=\"ds-command__item-label\">New File</span>\n        <span class=\"ds-command__item-shortcut\">Ctrl+N</span>\n      </div>\n      <div class=\"ds-command__item\">\n        <span class=\"ds-command__item-label\">Open Settings</span>\n        <span class=\"ds-command__item-shortcut\">Ctrl+,</span>\n      </div>\n      <div class=\"ds-command__item\">\n        <span class=\"ds-command__item-label\">Toggle Theme</span>\n      </div>\n    </div>\n  </div>\n  <div class=\"ds-command__footer\">Navigate with arrow keys &middot; Enter to select &middot; Esc to close</div>\n</div>"
         }
       ]
+    },
+    {
+      "name": "sortable",
+      "title": "Sortable",
+      "description": "Drag-to-reorder styles for table rows or list items. Provides grip handle, dragging states, and drop zone indicators.",
+      "category": "common",
+      "classes": [
+        ".ds-sortable__handle",
+        ".ds-sortable-row"
+      ],
+      "elements": [],
+      "variants": [
+        "--visible"
+      ],
+      "sizes": [],
+      "modifiers": [
+        "--dragging",
+        "--over"
+      ],
+      "examples": [
+        {
+          "title": "Sortable Table Rows",
+          "html": "<table class=\"ds-table\" style=\"max-width:24rem;\">\n  <thead><tr><th style=\"width:2rem\"></th><th>Name</th></tr></thead>\n  <tbody>\n    <tr>\n      <td><span class=\"ds-sortable__handle ds-sortable__handle--visible\">&#9776;</span></td>\n      <td>First item</td>\n    </tr>\n    <tr>\n      <td><span class=\"ds-sortable__handle ds-sortable__handle--visible\">&#9776;</span></td>\n      <td>Second item</td>\n    </tr>\n    <tr class=\"ds-sortable--over\">\n      <td><span class=\"ds-sortable__handle ds-sortable__handle--visible\">&#9776;</span></td>\n      <td>Drop target</td>\n    </tr>\n  </tbody>\n</table>"
+        }
+      ]
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "@digiko-npm/designsystem",
-  "version": "0.3.30",
+  "version": "0.3.31",
   "description": "Design system — installable, extensible, indestructible.",
   "main": "dist/designsystem.css",
   "style": "dist/designsystem.css",
@@ -33,6 +33,7 @@
     "./components/progress": "./src/components/progress.css",
     "./components/skeleton": "./src/components/skeleton.css",
     "./components/slider": "./src/components/slider.css",
+    "./components/sortable": "./src/components/sortable.css",
     "./components/table": "./src/components/table.css",
     "./components/tabs": "./src/components/tabs.css",
     "./components/tag": "./src/components/tag.css",

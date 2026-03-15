@@ -1,0 +1,53 @@
+/* ==========================================================================
+   Component: Sortable
+   Optional drag-to-reorder styles for table rows or list items.
+   Provides grip handle, dragging states, and drop zone indicators.
+   Works with native HTML5 Drag API or any JS drag library.
+   ========================================================================== */
+
+/* --- Grip handle: visible on row hover, grab cursor --- */
+.ds-sortable__handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-space-1);
+  color: var(--ds-color-text-tertiary);
+  cursor: grab;
+  border-radius: var(--ds-radius-sm);
+  opacity: 0;
+  transition:
+    opacity var(--ds-duration-fast) var(--ds-ease-default),
+    color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-sortable__handle:active {
+  cursor: grabbing;
+}
+
+/* Show handle on row hover */
+tr:hover .ds-sortable__handle,
+.ds-sortable-row:hover .ds-sortable__handle,
+.ds-sortable__handle:focus-visible {
+  opacity: 1;
+}
+
+tr:hover .ds-sortable__handle,
+.ds-sortable-row:hover .ds-sortable__handle {
+  color: var(--ds-color-text-secondary);
+}
+
+/* --- Dragging state: applied to the row being dragged --- */
+.ds-sortable--dragging {
+  opacity: 0.5;
+  background-color: var(--ds-color-surface);
+}
+
+/* --- Drop target: applied to the row being hovered over --- */
+.ds-sortable--over {
+  box-shadow: inset 0 -2px 0 var(--ds-color-interactive);
+}
+
+/* --- Always-visible handle variant --- */
+.ds-sortable__handle--visible {
+  opacity: 1;
+}

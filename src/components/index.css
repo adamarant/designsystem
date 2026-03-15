@@ -28,6 +28,7 @@
 @import './progress.css';
 @import './drop-zone.css';
 @import './custom-select.css';
+@import './sortable.css';
 
 /* === Tier 3 — Advanced === */
 @import './popover.css';
