@@ -1,0 +1,310 @@
+/* ==========================================================================
+   Component: Custom Select
+   Replaces native <select> with styled dropdown panel.
+   Desktop: absolute positioned panel below trigger.
+   Mobile: fullscreen overlay with header + search.
+   ========================================================================== */
+
+/* --- Wrapper --- */
+
+.ds-custom-select {
+  position: relative;
+  width: 100%;
+}
+
+/* --- Trigger --- */
+
+.ds-custom-select__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: var(--ds-size-3);
+  padding: 0 var(--ds-space-4);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-base);
+  line-height: var(--ds-leading-normal);
+  color: var(--ds-color-text);
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-custom-select__trigger:hover {
+  border-color: var(--ds-color-border-hover);
+}
+
+.ds-custom-select__trigger--open {
+  border-color: var(--ds-color-border-active);
+  box-shadow: inset 0 0 0 1px var(--ds-color-border-active);
+}
+
+.ds-custom-select__trigger--disabled {
+  opacity: var(--ds-opacity-disabled);
+  pointer-events: none;
+}
+
+.ds-custom-select__trigger-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-custom-select__placeholder {
+  color: var(--ds-color-text-tertiary);
+}
+
+/* Chevron icon */
+.ds-custom-select__chevron {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  margin-left: var(--ds-space-2);
+  color: var(--ds-color-text-tertiary);
+  transition: transform var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-custom-select__trigger--open .ds-custom-select__chevron {
+  transform: rotate(180deg);
+}
+
+/* --- Trigger sizes --- */
+
+.ds-custom-select--xs .ds-custom-select__trigger {
+  height: var(--ds-size-1);
+  padding: 0 var(--ds-space-1-5);
+  font-size: var(--ds-text-xs);
+  border-radius: var(--ds-radius-sm);
+}
+
+.ds-custom-select--sm .ds-custom-select__trigger {
+  height: var(--ds-size-2);
+  padding: 0 var(--ds-space-2);
+  font-size: var(--ds-text-sm);
+  border-radius: var(--ds-radius-md);
+}
+
+.ds-custom-select--lg .ds-custom-select__trigger {
+  height: var(--ds-size-4);
+  padding: 0 var(--ds-space-4);
+  font-size: var(--ds-text-base);
+}
+
+/* --- Backdrop (mobile only) --- */
+
+.ds-custom-select__backdrop {
+  display: none;
+}
+
+/* --- Panel --- */
+
+/* Desktop: position:fixed set via JS to escape overflow:hidden parents.
+   Fallback absolute positioning when JS hasn't applied styles yet. */
+.ds-custom-select__panel {
+  position: fixed;
+  z-index: var(--ds-z-dropdown);
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  box-shadow: var(--ds-shadow-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: scale(0.96);
+  transform-origin: top center;
+  animation: ds-custom-select-in var(--ds-duration-normal) var(--ds-ease-out-expo) forwards;
+}
+
+@keyframes ds-custom-select-in {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- Header (mobile only — hidden on desktop) --- */
+
+.ds-custom-select__header {
+  display: none;
+}
+
+/* --- Search --- */
+
+.ds-custom-select__search {
+  position: relative;
+  padding: var(--ds-space-2) var(--ds-space-3);
+  border-bottom: 1px solid var(--ds-color-border);
+}
+
+.ds-custom-select__search-icon {
+  position: absolute;
+  left: calc(var(--ds-space-3) + var(--ds-space-2-5));
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  color: var(--ds-color-text-tertiary);
+  pointer-events: none;
+}
+
+.ds-custom-select__search input {
+  width: 100%;
+  height: var(--ds-size-2);
+  padding: 0 var(--ds-space-2) 0 calc(1rem + var(--ds-space-3) + var(--ds-space-2));
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text);
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.ds-custom-select__search input::placeholder {
+  color: var(--ds-color-text-tertiary);
+}
+
+/* --- Options list --- */
+
+.ds-custom-select__list {
+  max-height: 15rem;
+  overflow-y: auto;
+  padding-block: var(--ds-space-1);
+  overscroll-behavior: contain;
+}
+
+/* --- Option --- */
+
+.ds-custom-select__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-space-2);
+  padding: var(--ds-space-2) var(--ds-space-3);
+  margin-inline: var(--ds-space-1);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  cursor: pointer;
+  border-radius: var(--ds-radius-md);
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-custom-select__option:hover {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+}
+
+.ds-custom-select__option--selected {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+  font-weight: var(--ds-weight-medium);
+}
+
+.ds-custom-select__option-check {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: var(--ds-color-interactive);
+}
+
+/* --- Empty state --- */
+
+.ds-custom-select__empty {
+  padding: var(--ds-space-6) var(--ds-space-4);
+  text-align: center;
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-tertiary);
+}
+
+/* ==========================================================================
+   Mobile: fullscreen panel
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .ds-custom-select__backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: var(--ds-z-overlay);
+    background-color: var(--ds-color-overlay);
+    animation: ds-custom-select-backdrop-in var(--ds-duration-normal) var(--ds-ease-default) forwards;
+  }
+
+  @keyframes ds-custom-select-backdrop-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .ds-custom-select__panel {
+    position: fixed;
+    inset: 0;
+    top: auto;
+    z-index: var(--ds-z-modal);
+    max-height: 85dvh;
+    border-radius: var(--ds-radius-xl) var(--ds-radius-xl) 0 0;
+    box-shadow: var(--ds-shadow-lg);
+    transform: none;
+    opacity: 1;
+    animation: ds-custom-select-slide-up var(--ds-duration-normal) var(--ds-ease-out-expo) forwards;
+  }
+
+  @keyframes ds-custom-select-slide-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .ds-custom-select__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--ds-space-4) var(--ds-space-4);
+    border-bottom: 1px solid var(--ds-color-border);
+  }
+
+  .ds-custom-select__header-title {
+    font-family: var(--ds-font-display);
+    font-weight: var(--ds-font-display-weight);
+    font-size: var(--ds-text-base);
+    color: var(--ds-color-text);
+  }
+
+  .ds-custom-select__header-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    color: var(--ds-color-text-tertiary);
+    border-radius: var(--ds-radius-md);
+    cursor: pointer;
+    transition: color var(--ds-duration-fast) var(--ds-ease-default);
+  }
+  .ds-custom-select__header-close:hover {
+    color: var(--ds-color-text);
+  }
+
+  .ds-custom-select__list {
+    max-height: none;
+    flex: 1;
+    overflow-y: auto;
+    padding-block: var(--ds-space-2);
+  }
+
+  .ds-custom-select__option {
+    padding: var(--ds-space-3) var(--ds-space-4);
+    margin-inline: 0;
+    font-size: var(--ds-text-base);
+    border-radius: 0;
+  }
+}

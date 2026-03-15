@@ -65,24 +65,31 @@
 }
 
 /* Sizes */
-.ds-input--xs {
+.ds-input--xs,
+.ds-select--xs {
   height: var(--ds-size-1);
   padding: 0 var(--ds-space-1-5);
   font-size: var(--ds-text-xs);
   border-radius: var(--ds-radius-sm);
 }
 
-.ds-input--sm {
+.ds-input--sm,
+.ds-select--sm {
   height: var(--ds-size-2);
   padding: 0 var(--ds-space-2);
   font-size: var(--ds-text-sm);
   border-radius: var(--ds-radius-md);
 }
 
-.ds-input--lg {
+.ds-input--lg,
+.ds-select--lg {
   height: var(--ds-size-4);
   padding: 0 var(--ds-space-4);
   font-size: var(--ds-text-base);
+}
+
+.ds-select--lg {
+  padding-right: var(--ds-space-8);
 }
 
 /* Textarea */

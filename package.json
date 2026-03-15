@@ -1,6 +1,6 @@
 {
   "name": "@digiko-npm/designsystem",
-  "version": "0.3.24",
+  "version": "0.3.30",
   "description": "Design system — installable, extensible, indestructible.",
   "main": "dist/designsystem.css",
   "style": "dist/designsystem.css",
@@ -18,8 +18,10 @@
     "./components/button": "./src/components/button.css",
     "./components/card": "./src/components/card.css",
     "./components/command": "./src/components/command.css",
+    "./components/custom-select": "./src/components/custom-select.css",
     "./components/divider": "./src/components/divider.css",
     "./components/drawer": "./src/components/drawer.css",
+    "./components/drop-zone": "./src/components/drop-zone.css",
     "./components/dropdown": "./src/components/dropdown.css",
     "./components/empty-state": "./src/components/empty-state.css",
     "./components/input": "./src/components/input.css",

@@ -1,0 +1,132 @@
+/* ==========================================================================
+   Component: Drop Zone
+   Dashed-border upload area with icon, label, hint, and progress states.
+   ==========================================================================
+
+   Usage:
+     <div class="ds-drop-zone">
+       <div class="ds-drop-zone__icon">☁</div>
+       <p class="ds-drop-zone__label">Drop files here or click to upload</p>
+       <p class="ds-drop-zone__hint">JPG, PNG, WebP · Max 10 MB</p>
+     </div>
+
+   States:
+     ds-drop-zone--active      Drag-over highlight
+     ds-drop-zone--uploading   Progress state (reduced opacity on content)
+
+   Sizes:
+     ds-drop-zone--lg          Taller area (empty-state hero usage)
+
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+
+.ds-drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-space-3);
+  padding: var(--ds-space-8) var(--ds-space-6);
+  border: none;
+  border-radius: var(--ds-radius-xl);
+  text-align: center;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%2327272a' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
+  transition:
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+:root:not(.dark) .ds-drop-zone {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%23d4d4d8' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------------------------------------------------
+   Hover
+   --------------------------------------------------------------------------- */
+
+.ds-drop-zone:hover {
+  background-color: var(--ds-color-bg-elevated);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%233f3f46' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
+}
+
+:root:not(.dark) .ds-drop-zone:hover {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------------------------------------------------
+   Icon container
+   --------------------------------------------------------------------------- */
+
+.ds-drop-zone__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--ds-radius-xl);
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text-secondary);
+  transition: color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-drop-zone:hover .ds-drop-zone__icon {
+  color: var(--ds-color-text-primary);
+}
+
+/* ---------------------------------------------------------------------------
+   Label + hint
+   --------------------------------------------------------------------------- */
+
+.ds-drop-zone__label {
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text-primary);
+}
+
+.ds-drop-zone__hint {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  margin-top: calc(-1 * var(--ds-space-1));
+}
+
+/* ---------------------------------------------------------------------------
+   States
+   --------------------------------------------------------------------------- */
+
+/* Active — drag-over */
+.ds-drop-zone--active {
+  background-color: var(--ds-color-bg-elevated);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%2352525b' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
+}
+
+:root:not(.dark) .ds-drop-zone--active {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%2371717a' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
+}
+
+/* Uploading */
+.ds-drop-zone--uploading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* ---------------------------------------------------------------------------
+   Sizes
+   --------------------------------------------------------------------------- */
+
+.ds-drop-zone--lg {
+  padding: var(--ds-space-16) var(--ds-space-4);
+  min-height: 16rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Error message
+   --------------------------------------------------------------------------- */
+
+.ds-drop-zone__error {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-error);
+}
