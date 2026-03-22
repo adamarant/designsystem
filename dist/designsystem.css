@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.3.30 */
+/* @ds/designsystem v0.3.33 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -1274,8 +1274,10 @@ hr {
   transition: color var(--ds-duration-normal) var(--ds-ease-default);
 }
 
-.ds-nav__link:hover {
-  color: var(--ds-color-text);
+@media (hover: hover) {
+  .ds-nav__link:hover {
+    color: var(--ds-color-text);
+  }
 }
 
 .ds-nav__link--active {
@@ -1300,9 +1302,11 @@ hr {
   color: var(--ds-color-text-secondary);
   transition: all var(--ds-duration-normal) var(--ds-ease-default);
 }
-.ds-nav__icon-btn:hover {
-  color: var(--ds-color-text);
-  background-color: var(--ds-color-overlay-hover);
+@media (hover: hover) {
+  .ds-nav__icon-btn:hover {
+    color: var(--ds-color-text);
+    background-color: var(--ds-color-overlay-hover);
+  }
 }
 
 /* --- Mobile nav overlay --- */
@@ -1372,9 +1376,11 @@ hr {
   margin-top: var(--ds-space-1);
 }
 
-.ds-sidebar__link:hover {
-  color: var(--ds-color-text);
-  background-color: var(--ds-color-overlay-hover);
+@media (hover: hover) {
+  .ds-sidebar__link:hover {
+    color: var(--ds-color-text);
+    background-color: var(--ds-color-overlay-hover);
+  }
 }
 
 .ds-sidebar__link--active {
@@ -2571,6 +2577,281 @@ hr {
 
 
 /* === Tier 2 — Common === */
+/* ==========================================================================
+   Datepicker
+   ==========================================================================
+   Calendar dropdown for date selection. Follows popover positioning pattern
+   with scale animation. Supports compact mode for inline/table usage.
+
+   Usage:
+     <div class="ds-datepicker ds-datepicker--open">
+       <button class="ds-datepicker__trigger">Mar 20, 2026</button>
+       <div class="ds-datepicker__panel">
+         <div class="ds-datepicker__header">
+           <button class="ds-datepicker__nav">‹</button>
+           <span class="ds-datepicker__title">March 2026</span>
+           <button class="ds-datepicker__nav">›</button>
+         </div>
+         <div class="ds-datepicker__weekdays">
+           <span class="ds-datepicker__weekday">Mo</span>
+           ...
+         </div>
+         <div class="ds-datepicker__grid">
+           <button class="ds-datepicker__day">1</button>
+           <button class="ds-datepicker__day ds-datepicker__day--today">20</button>
+           <button class="ds-datepicker__day ds-datepicker__day--selected">15</button>
+           ...
+         </div>
+         <div class="ds-datepicker__footer">
+           <button class="ds-datepicker__today">Today</button>
+         </div>
+       </div>
+     </div>
+
+   Modifiers:
+     .ds-datepicker--open              — Shows the calendar panel
+     .ds-datepicker--compact           — Reduced sizing for inline/table use
+     .ds-datepicker__day--today        — Highlights current date
+     .ds-datepicker__day--selected     — Marks selected date
+     .ds-datepicker__day--other-month  — Dims days from adjacent months
+   ========================================================================== */
+
+/* Wrapper */
+.ds-datepicker {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Trigger button */
+.ds-datepicker__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--ds-color-text);
+  font: inherit;
+  line-height: 1;
+}
+
+/* Calendar panel */
+.ds-datepicker__panel {
+  position: absolute;
+  z-index: var(--ds-z-dropdown);
+  top: calc(100% + 4px);
+  left: 0;
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  box-shadow: var(--ds-shadow-lg);
+  padding: var(--ds-space-3);
+  min-width: 17rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.96);
+  transition:
+    opacity var(--ds-duration-fast) var(--ds-ease),
+    visibility var(--ds-duration-fast) var(--ds-ease),
+    transform var(--ds-duration-fast) var(--ds-ease-out-expo);
+}
+
+/* Open state */
+.ds-datepicker--open .ds-datepicker__panel {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* Header — month/year + nav arrows */
+.ds-datepicker__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--ds-space-2);
+}
+
+.ds-datepicker__title {
+  font-size: var(--ds-text-sm);
+  font-weight: 600;
+  color: var(--ds-color-text);
+  user-select: none;
+}
+
+.ds-datepicker__nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: none;
+  background: none;
+  border-radius: var(--ds-radius-md);
+  color: var(--ds-color-text-secondary);
+  cursor: pointer;
+  font-size: var(--ds-text-base);
+  transition: all var(--ds-duration-fast) var(--ds-ease);
+}
+
+.ds-datepicker__nav:hover {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+}
+
+/* Weekday header row */
+.ds-datepicker__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: var(--ds-space-1);
+}
+
+.ds-datepicker__weekday {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  text-align: center;
+  padding: var(--ds-space-1) 0;
+  user-select: none;
+  font-weight: 500;
+}
+
+/* Day grid */
+.ds-datepicker__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+}
+
+/* Day cell */
+.ds-datepicker__day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border: none;
+  background: none;
+  border-radius: var(--ds-radius-md);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text);
+  cursor: pointer;
+  transition: all var(--ds-duration-fast) var(--ds-ease);
+  padding: 0;
+  line-height: 1;
+  user-select: none;
+}
+
+.ds-datepicker__day:hover {
+  background-color: var(--ds-color-bg-elevated);
+}
+
+/* Today — subtle ring */
+.ds-datepicker__day--today {
+  box-shadow: inset 0 0 0 1px var(--ds-color-border-active);
+  font-weight: 600;
+}
+
+/* Selected — inverted fill */
+.ds-datepicker__day--selected {
+  background-color: var(--ds-color-text);
+  color: var(--ds-color-bg);
+  font-weight: 600;
+}
+
+.ds-datepicker__day--selected:hover {
+  background-color: var(--ds-color-text);
+  opacity: 0.85;
+}
+
+/* Other month days — dimmed */
+.ds-datepicker__day--other-month {
+  color: var(--ds-color-text-tertiary);
+  opacity: 0.4;
+}
+
+/* Footer — Today pill */
+.ds-datepicker__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--ds-space-2);
+  padding-top: var(--ds-space-2);
+  border-top: 1px solid var(--ds-color-border);
+}
+
+.ds-datepicker__today {
+  font-size: var(--ds-text-xs);
+  font-weight: 500;
+  color: var(--ds-color-text-secondary);
+  background: none;
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-full);
+  padding: var(--ds-space-1) var(--ds-space-3);
+  cursor: pointer;
+  transition: all var(--ds-duration-fast) var(--ds-ease);
+}
+
+.ds-datepicker__today:hover {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+  border-color: var(--ds-color-border-hover);
+}
+
+/* Step arrows — prev/next day buttons beside the date text */
+.ds-datepicker__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: none;
+  background: none;
+  border-radius: var(--ds-radius-default);
+  color: var(--ds-color-text-tertiary);
+  cursor: pointer;
+  font-size: var(--ds-text-xs);
+  transition: all var(--ds-duration-fast) var(--ds-ease);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.ds-datepicker__step:hover {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+}
+
+/* Compact mode — for inline table cells */
+.ds-datepicker--compact .ds-datepicker__panel {
+  min-width: 14rem;
+  padding: var(--ds-space-2);
+}
+
+.ds-datepicker--compact .ds-datepicker__title {
+  font-size: var(--ds-text-xs);
+}
+
+.ds-datepicker--compact .ds-datepicker__nav {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: var(--ds-text-sm);
+}
+
+.ds-datepicker--compact .ds-datepicker__weekday {
+  font-size: 0.625rem;
+}
+
+.ds-datepicker--compact .ds-datepicker__day {
+  font-size: var(--ds-text-xs);
+}
+
+.ds-datepicker--compact .ds-datepicker__today {
+  font-size: 0.625rem;
+  padding: 2px var(--ds-space-2);
+}
+
+.ds-datepicker--compact .ds-datepicker__footer {
+  margin-top: var(--ds-space-1);
+  padding-top: var(--ds-space-1);
+}
+
 /* ==========================================================================
    Toggle / Switch Component
    ==========================================================================
@@ -5023,11 +5304,15 @@ tr:hover .ds-sortable__handle,
 .ds-z-60  { z-index: var(--ds-z-sticky); }
 
 /* --- Inset / Position Values --- */
-.ds-inset-0  { inset: 0; }
-.ds-top-0    { top: 0; }
-.ds-right-0  { right: 0; }
-.ds-bottom-0 { bottom: 0; }
-.ds-left-0   { left: 0; }
+.ds-inset-0    { inset: 0; }
+.ds-inset-x-0  { left: 0; right: 0; }
+.ds-inset-y-0  { top: 0; bottom: 0; }
+.ds-top-0      { top: 0; }
+.ds-top-full   { top: 100%; }
+.ds-right-0    { right: 0; }
+.ds-bottom-0   { bottom: 0; }
+.ds-bottom-full { bottom: 100%; }
+.ds-left-0     { left: 0; }
 .ds-top-2    { top: var(--ds-space-2); }
 .ds-right-2  { right: var(--ds-space-2); }
 .ds-left-2   { left: var(--ds-space-2); }

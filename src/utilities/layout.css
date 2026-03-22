@@ -192,11 +192,15 @@
 .ds-z-60  { z-index: var(--ds-z-sticky); }
 
 /* --- Inset / Position Values --- */
-.ds-inset-0  { inset: 0; }
-.ds-top-0    { top: 0; }
-.ds-right-0  { right: 0; }
-.ds-bottom-0 { bottom: 0; }
-.ds-left-0   { left: 0; }
+.ds-inset-0    { inset: 0; }
+.ds-inset-x-0  { left: 0; right: 0; }
+.ds-inset-y-0  { top: 0; bottom: 0; }
+.ds-top-0      { top: 0; }
+.ds-top-full   { top: 100%; }
+.ds-right-0    { right: 0; }
+.ds-bottom-0   { bottom: 0; }
+.ds-bottom-full { bottom: 100%; }
+.ds-left-0     { left: 0; }
 .ds-top-2    { top: var(--ds-space-2); }
 .ds-right-2  { right: var(--ds-space-2); }
 .ds-left-2   { left: var(--ds-space-2); }
