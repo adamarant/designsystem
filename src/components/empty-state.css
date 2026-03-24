@@ -67,3 +67,9 @@
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-xl);
 }
+
+/* --- Left-aligned variant --- */
+.ds-empty-state--left {
+  align-items: flex-start;
+  text-align: left;
+}
