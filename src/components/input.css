@@ -23,7 +23,11 @@
   background-color: var(--ds-color-surface);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-lg);
-  transition: all var(--ds-duration-fast) var(--ds-ease-default);
+  outline: none;
+  transition:
+    border-color var(--ds-duration-fast) var(--ds-ease-default),
+    box-shadow var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
 }
 
 .ds-input,
@@ -31,26 +35,22 @@
   height: var(--ds-size-3);
 }
 
-/* Hover — only when not in error/success state */
+/* Hover */
 .ds-input:hover,
 .ds-textarea:hover,
 .ds-select:hover {
   border-color: var(--ds-color-border-hover);
 }
 
-/* Focus — single ring strategy via outline, no border change.
-   offset: -1px hugs the border edge instead of floating outside. */
-.ds-input:focus,
-.ds-textarea:focus,
-.ds-select:focus {
-  outline: none;
-}
+/* Focus — box-shadow ring instead of outline.
+   Inputs always trigger :focus-visible (browser heuristic for text entry),
+   so outline creates unavoidable double-border with offset.
+   box-shadow follows border-radius perfectly and has no gap. */
 .ds-input:focus-visible,
 .ds-textarea:focus-visible,
 .ds-select:focus-visible {
-  border-color: var(--ds-color-border-active);
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: -1px;
+  border-color: var(--ds-ring-color);
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 .ds-input::placeholder,
@@ -58,7 +58,7 @@
   color: var(--ds-color-text-tertiary);
 }
 
-/* States — error */
+/* States — error: border + ring match the semantic color */
 .ds-input--error,
 .ds-textarea--error {
   border-color: var(--ds-color-error);
@@ -70,10 +70,10 @@
 .ds-input--error:focus-visible,
 .ds-textarea--error:focus-visible {
   border-color: var(--ds-color-error);
-  outline-color: var(--ds-color-error);
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-error);
 }
 
-/* States — success */
+/* States — success: border + ring match the semantic color */
 .ds-input--success {
   border-color: var(--ds-color-success);
 }
@@ -82,7 +82,7 @@
 }
 .ds-input--success:focus-visible {
   border-color: var(--ds-color-success);
-  outline-color: var(--ds-color-success);
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-success);
 }
 
 /* Sizes */

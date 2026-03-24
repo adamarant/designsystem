@@ -116,7 +116,7 @@ function pageShell(title, activeName, pathPrefix, cssPath, content) {
   <div class="demo-layout">
     <aside class="demo-sidebar">
       <a href="${pathPrefix}" class="demo-sidebar__brand">Design System</a>
-      <input class="ds-input" id="componentSearch" placeholder="Search...">
+      <input class="ds-input" id="componentSearch" placeholder="Search..." autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other">
 ${buildSidebar(activeName, pathPrefix)}
       <div style="margin-top: auto; padding-top: var(--ds-space-4); border-top: 1px solid var(--ds-color-border-subtle);">
         <button class="ds-btn ds-btn--ghost ds-btn--sm" data-toggle-theme style="width: 100%;">Toggle Theme</button>
@@ -431,17 +431,23 @@ const foundationGenerators = {
 // ============================================================================
 
 function buildExamples(component) {
-  return component.examples.map(ex => `
+  return component.examples.map(ex => {
+    // Add autocomplete/autofill suppression to all inputs in demo previews.
+    // This prevents 1Password, browser autofill, etc. from cluttering examples.
+    // The raw code block still shows clean HTML without these attributes.
+    const demoHtml = ex.html.replace(/<input\b/g, '<input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other"');
+    return `
     <section class="demo-example">
       <h2>${ex.title}</h2>
       <div class="demo-preview">
-        ${ex.html}
+        ${demoHtml}
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
         <pre><code>${escapeHTML(ex.html)}</code></pre>
       </details>
-    </section>`).join('\n');
+    </section>`;
+  }).join('\n');
 }
 
 function buildAPI(component) {

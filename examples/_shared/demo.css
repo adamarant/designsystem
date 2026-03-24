@@ -46,6 +46,11 @@
   top: 0;
 }
 
+/* Prevent flex column from shrinking the search input */
+.demo-sidebar > .ds-input {
+  flex-shrink: 0;
+}
+
 .demo-sidebar__group {
   display: flex;
   flex-direction: column;
@@ -180,6 +185,12 @@
   cursor: pointer;
   user-select: none;
   border-top: 1px solid var(--ds-color-border-subtle);
+  outline: none;
+}
+
+.demo-code summary:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: -2px;
 }
 
 .demo-code summary:hover {
