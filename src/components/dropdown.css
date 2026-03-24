@@ -85,6 +85,10 @@
   background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
 }
+.ds-dropdown__item:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: calc(-1 * var(--ds-ring-offset));
+}
 
 .ds-dropdown__item--active {
   background-color: var(--ds-color-bg-elevated);

@@ -380,6 +380,20 @@
   --ds-opacity-disabled: 0.5;
 }
 
+/* --- Reduced Motion ---
+   Zero out duration tokens so every component that uses
+   var(--ds-duration-*) transitions instantly.
+   Keyframe animations are handled per-component.
+   -------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ds-duration-fast: 0s;
+    --ds-duration-normal: 0s;
+    --ds-duration-slow: 0s;
+    --ds-duration-slower: 0s;
+  }
+}
+
 
 /* ==========================================================================
    Base: Reset
@@ -485,14 +499,11 @@ input[type="number"]::-webkit-inner-spin-button {
 .ds-no-scrollbar::-webkit-scrollbar { display: none; }
 .ds-no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Reduce motion */
+/* Reduce motion — scroll only.
+   Transitions are handled via --ds-duration-* tokens in shadows.css.
+   Keyframe animations are handled per-component. */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+  html { scroll-behavior: auto !important; }
 }
 
 /* ==========================================================================
@@ -857,6 +868,10 @@ hr {
   to { transform: rotate(360deg); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .ds-btn--loading::after { animation: none; opacity: 0.6; }
+}
+
 /* ==========================================================================
    Component: Card
    Surface + border, hover with shadow lift, rounded-xl.
@@ -878,6 +893,10 @@ hr {
   border-color: var(--ds-color-border-hover);
   box-shadow: var(--ds-shadow-lg);
   transform: translateY(-4px);
+}
+.ds-card--interactive:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
 }
 
 /* Elevated card — visible shadow */
@@ -1024,6 +1043,12 @@ hr {
   border-color: var(--ds-color-border-active);
   box-shadow: inset 0 0 0 1px var(--ds-color-border-active);
   outline: none;
+}
+.ds-input:focus-visible,
+.ds-textarea:focus-visible,
+.ds-select:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
 }
 
 .ds-input::placeholder,
@@ -1295,6 +1320,11 @@ hr {
   }
 }
 
+.ds-nav__link:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
+
 .ds-nav__link--active {
   color: var(--ds-color-text);
 }
@@ -1322,6 +1352,11 @@ hr {
     color: var(--ds-color-text);
     background-color: var(--ds-color-overlay-hover);
   }
+}
+
+.ds-nav__icon-btn:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
 }
 
 /* --- Mobile nav overlay --- */
@@ -1396,6 +1431,11 @@ hr {
     color: var(--ds-color-text);
     background-color: var(--ds-color-overlay-hover);
   }
+}
+
+.ds-sidebar__link:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: calc(-1 * var(--ds-ring-offset));
 }
 
 .ds-sidebar__link--active {
@@ -1487,6 +1527,10 @@ hr {
 .ds-modal__close:hover {
   color: var(--ds-color-text);
 }
+.ds-modal__close:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
 
 .ds-modal__body {
   padding: var(--ds-space-5);
@@ -1564,6 +1608,10 @@ hr {
 .ds-toast__close:hover {
   color: var(--ds-color-text);
 }
+.ds-toast__close:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
 
 @keyframes ds-toast-in {
   from { opacity: 0; transform: translateY(-8px); }
@@ -1576,6 +1624,11 @@ hr {
 
 @keyframes ds-toast-out {
   to { opacity: 0; transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-toast { animation: none; }
+  .ds-toast--exit { animation: none; opacity: 0; }
 }
 
 /* ==========================================================================
@@ -2098,6 +2151,10 @@ hr {
   background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
 }
+.ds-dropdown__item:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: calc(-1 * var(--ds-ring-offset));
+}
 
 .ds-dropdown__item--active {
   background-color: var(--ds-color-bg-elevated);
@@ -2520,6 +2577,10 @@ hr {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .ds-skeleton { animation: none; }
+}
+
 /* ==========================================================================
    Component: Empty State
    Centered message for when there's no data to display.
@@ -2651,6 +2712,11 @@ hr {
   line-height: 1;
 }
 
+.ds-datepicker__trigger:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
+
 /* Calendar panel */
 .ds-datepicker__panel {
   position: absolute;
@@ -2713,6 +2779,10 @@ hr {
   background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
 }
+.ds-datepicker__nav:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: calc(-1 * var(--ds-ring-offset));
+}
 
 /* Weekday header row */
 .ds-datepicker__weekdays {
@@ -2757,6 +2827,10 @@ hr {
 
 .ds-datepicker__day:hover {
   background-color: var(--ds-color-bg-elevated);
+}
+.ds-datepicker__day:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: calc(-1 * var(--ds-ring-offset));
 }
 
 /* Today — subtle ring */
@@ -2809,6 +2883,10 @@ hr {
   color: var(--ds-color-text);
   border-color: var(--ds-color-border-hover);
 }
+.ds-datepicker__today:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
 
 /* Step arrows — prev/next day buttons beside the date text */
 .ds-datepicker__step {
@@ -2831,6 +2909,10 @@ hr {
 .ds-datepicker__step:hover {
   background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
+}
+.ds-datepicker__step:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: calc(-1 * var(--ds-ring-offset));
 }
 
 /* Compact mode — for inline table cells */
@@ -3513,6 +3595,10 @@ button.ds-tag:focus-visible {
 .ds-accordion__trigger:hover {
   background-color: var(--ds-color-overlay);
 }
+.ds-accordion__trigger:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
 
 /* Open state – rotate chevron */
 .ds-accordion__item--open .ds-accordion__trigger::after {
@@ -3772,6 +3858,10 @@ button.ds-tag:focus-visible {
 .ds-drawer__close:hover {
   background-color: var(--ds-color-overlay);
   color: var(--ds-color-text);
+}
+.ds-drawer__close:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
 }
 
 /* ==========================================================================
@@ -4057,6 +4147,10 @@ button.ds-tag:focus-visible {
   transition:
     background-color var(--ds-duration-fast) var(--ds-ease-default);
 }
+.ds-drop-zone:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
 
 :root:not(.dark) .ds-drop-zone {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%23d4d4d8' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
@@ -4186,6 +4280,11 @@ button.ds-tag:focus-visible {
 
 .ds-custom-select__trigger:hover {
   border-color: var(--ds-color-border-hover);
+}
+
+.ds-custom-select__trigger:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
 }
 
 .ds-custom-select__trigger--open {
@@ -4351,6 +4450,10 @@ button.ds-tag:focus-visible {
   background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
 }
+.ds-custom-select__option:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: calc(-1 * var(--ds-ring-offset));
+}
 
 .ds-custom-select__option--selected {
   background-color: var(--ds-color-bg-elevated);
@@ -4458,6 +4561,15 @@ button.ds-tag:focus-visible {
     font-size: var(--ds-text-base);
     border-radius: 0;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-custom-select__panel {
+    animation: none;
+    opacity: 1;
+    transform: scale(1);
+  }
+  .ds-custom-select__backdrop { animation: none; opacity: 1; }
 }
 
 /* ==========================================================================
@@ -5085,6 +5197,10 @@ tr:hover .ds-sortable__handle,
 .ds-command__item--active {
   background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
+}
+.ds-command__item:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: calc(-1 * var(--ds-ring-offset));
 }
 
 /* Item icon */

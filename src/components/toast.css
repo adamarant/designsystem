@@ -55,6 +55,10 @@
 .ds-toast__close:hover {
   color: var(--ds-color-text);
 }
+.ds-toast__close:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
 
 @keyframes ds-toast-in {
   from { opacity: 0; transform: translateY(-8px); }
@@ -67,4 +71,9 @@
 
 @keyframes ds-toast-out {
   to { opacity: 0; transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-toast { animation: none; }
+  .ds-toast--exit { animation: none; opacity: 0; }
 }

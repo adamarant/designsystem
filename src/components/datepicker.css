@@ -57,6 +57,11 @@
   line-height: 1;
 }
 
+.ds-datepicker__trigger:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
+
 /* Calendar panel */
 .ds-datepicker__panel {
   position: absolute;
@@ -119,6 +124,10 @@
   background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
 }
+.ds-datepicker__nav:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: calc(-1 * var(--ds-ring-offset));
+}
 
 /* Weekday header row */
 .ds-datepicker__weekdays {
@@ -163,6 +172,10 @@
 
 .ds-datepicker__day:hover {
   background-color: var(--ds-color-bg-elevated);
+}
+.ds-datepicker__day:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: calc(-1 * var(--ds-ring-offset));
 }
 
 /* Today — subtle ring */
@@ -215,6 +228,10 @@
   color: var(--ds-color-text);
   border-color: var(--ds-color-border-hover);
 }
+.ds-datepicker__today:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
 
 /* Step arrows — prev/next day buttons beside the date text */
 .ds-datepicker__step {
@@ -237,6 +254,10 @@
 .ds-datepicker__step:hover {
   background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
+}
+.ds-datepicker__step:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: calc(-1 * var(--ds-ring-offset));
 }
 
 /* Compact mode — for inline table cells */

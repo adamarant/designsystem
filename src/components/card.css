@@ -20,6 +20,10 @@
   box-shadow: var(--ds-shadow-lg);
   transform: translateY(-4px);
 }
+.ds-card--interactive:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
 
 /* Elevated card — visible shadow */
 .ds-card--elevated {

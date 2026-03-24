@@ -80,6 +80,10 @@
 .ds-accordion__trigger:hover {
   background-color: var(--ds-color-overlay);
 }
+.ds-accordion__trigger:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
 
 /* Open state – rotate chevron */
 .ds-accordion__item--open .ds-accordion__trigger::after {

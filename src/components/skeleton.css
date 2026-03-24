@@ -94,3 +94,7 @@
     opacity: 0.4;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-skeleton { animation: none; }
+}

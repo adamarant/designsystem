@@ -59,6 +59,11 @@
   }
 }
 
+.ds-nav__link:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
+
 .ds-nav__link--active {
   color: var(--ds-color-text);
 }
@@ -86,6 +91,11 @@
     color: var(--ds-color-text);
     background-color: var(--ds-color-overlay-hover);
   }
+}
+
+.ds-nav__icon-btn:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
 }
 
 /* --- Mobile nav overlay --- */
@@ -160,6 +170,11 @@
     color: var(--ds-color-text);
     background-color: var(--ds-color-overlay-hover);
   }
+}
+
+.ds-sidebar__link:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: calc(-1 * var(--ds-ring-offset));
 }
 
 .ds-sidebar__link--active {

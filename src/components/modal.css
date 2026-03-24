@@ -82,6 +82,10 @@
 .ds-modal__close:hover {
   color: var(--ds-color-text);
 }
+.ds-modal__close:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
 
 .ds-modal__body {
   padding: var(--ds-space-5);

@@ -185,6 +185,10 @@
   background-color: var(--ds-color-overlay);
   color: var(--ds-color-text);
 }
+.ds-drawer__close:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
 
 /* ==========================================================================
  * Body

@@ -44,6 +44,12 @@
   box-shadow: inset 0 0 0 1px var(--ds-color-border-active);
   outline: none;
 }
+.ds-input:focus-visible,
+.ds-textarea:focus-visible,
+.ds-select:focus-visible {
+  outline: var(--ds-ring-width) solid var(--ds-ring-color);
+  outline-offset: var(--ds-ring-offset);
+}
 
 .ds-input::placeholder,
 .ds-textarea::placeholder {

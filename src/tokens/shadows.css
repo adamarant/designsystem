@@ -39,3 +39,17 @@
   /* --- Opacity --- */
   --ds-opacity-disabled: 0.5;
 }
+
+/* --- Reduced Motion ---
+   Zero out duration tokens so every component that uses
+   var(--ds-duration-*) transitions instantly.
+   Keyframe animations are handled per-component.
+   -------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ds-duration-fast: 0s;
+    --ds-duration-normal: 0s;
+    --ds-duration-slow: 0s;
+    --ds-duration-slower: 0s;
+  }
+}
