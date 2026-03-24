@@ -38,8 +38,9 @@
 }
 
 .ds-custom-select__trigger:focus-visible {
+  border-color: var(--ds-color-border-active);
   outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline-offset: -1px;
 }
 
 .ds-custom-select__trigger--open {

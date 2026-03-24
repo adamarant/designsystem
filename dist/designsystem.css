@@ -1031,24 +1031,26 @@ hr {
   height: var(--ds-size-3);
 }
 
+/* Hover — only when not in error/success state */
 .ds-input:hover,
 .ds-textarea:hover,
 .ds-select:hover {
   border-color: var(--ds-color-border-hover);
 }
 
+/* Focus — single ring strategy via outline, no border change.
+   offset: -1px hugs the border edge instead of floating outside. */
 .ds-input:focus,
 .ds-textarea:focus,
 .ds-select:focus {
-  border-color: var(--ds-color-border-active);
-  box-shadow: inset 0 0 0 1px var(--ds-color-border-active);
   outline: none;
 }
 .ds-input:focus-visible,
 .ds-textarea:focus-visible,
 .ds-select:focus-visible {
+  border-color: var(--ds-color-border-active);
   outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline-offset: -1px;
 }
 
 .ds-input::placeholder,
@@ -1056,18 +1058,31 @@ hr {
   color: var(--ds-color-text-tertiary);
 }
 
-/* States */
+/* States — error */
 .ds-input--error,
 .ds-textarea--error {
   border-color: var(--ds-color-error);
 }
-.ds-input--error:focus,
-.ds-textarea--error:focus {
-  box-shadow: inset 0 0 0 1px var(--ds-color-error);
+.ds-input--error:hover,
+.ds-textarea--error:hover {
+  border-color: var(--ds-color-error);
+}
+.ds-input--error:focus-visible,
+.ds-textarea--error:focus-visible {
+  border-color: var(--ds-color-error);
+  outline-color: var(--ds-color-error);
 }
 
+/* States — success */
 .ds-input--success {
   border-color: var(--ds-color-success);
+}
+.ds-input--success:hover {
+  border-color: var(--ds-color-success);
+}
+.ds-input--success:focus-visible {
+  border-color: var(--ds-color-success);
+  outline-color: var(--ds-color-success);
 }
 
 /* Sizes */
@@ -4283,8 +4298,9 @@ button.ds-tag:focus-visible {
 }
 
 .ds-custom-select__trigger:focus-visible {
+  border-color: var(--ds-color-border-active);
   outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline-offset: -1px;
 }
 
 .ds-custom-select__trigger--open {
