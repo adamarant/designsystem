@@ -31,6 +31,8 @@
         <a href="../components/toast.html" class="demo-sidebar__link">Toast</a>
         <a href="../components/table.html" class="demo-sidebar__link">Table</a>
         <a href="../components/icon-btn.html" class="demo-sidebar__link">Icon Button</a>
+        <a href="../components/field.html" class="demo-sidebar__link">Field</a>
+        <a href="../components/stat-card.html" class="demo-sidebar__link">Stat Card</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Essential</div>
@@ -58,6 +60,9 @@
         <a href="../components/custom-select.html" class="demo-sidebar__link demo-sidebar__link--active">Custom Select</a>
         <a href="../components/sortable.html" class="demo-sidebar__link">Sortable</a>
         <a href="../components/chip.html" class="demo-sidebar__link">Chip</a>
+        <a href="../components/collapsible.html" class="demo-sidebar__link">Collapsible</a>
+        <a href="../components/description-list.html" class="demo-sidebar__link">Description List</a>
+        <a href="../components/result.html" class="demo-sidebar__link">Result</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Advanced</div>
@@ -80,7 +85,7 @@
 
       <header>
         <h1>Custom Select</h1>
-        <p>Styled select dropdown replacing native <select>. Desktop: absolute panel. Mobile: fullscreen sheet with search.</p>
+        <p>Styled select dropdown replacing native <select>. Desktop: absolute panel. Mobile: fullscreen sheet with search. Supports multi-select with tags.</p>
         <div class="demo-meta">
           <span class="ds-badge">Common</span>
           <code>@import '@digiko-npm/designsystem/components/custom-select';</code>
@@ -109,6 +114,33 @@
       </details>
     </section>
 
+    <section class="demo-example">
+      <h2>Multi-Select</h2>
+      <div class="demo-preview">
+        <div class="ds-custom-select ds-custom-select--multi">
+  <button class="ds-custom-select__trigger">
+    <div class="ds-custom-select__tags">
+      <span class="ds-custom-select__tag">React <button class="ds-custom-select__tag-remove" aria-label="Remove">&times;</button></span>
+      <span class="ds-custom-select__tag">Vue <button class="ds-custom-select__tag-remove" aria-label="Remove">&times;</button></span>
+    </div>
+    <span class="ds-custom-select__chevron">&#9662;</span>
+  </button>
+</div>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;div class=&quot;ds-custom-select ds-custom-select--multi&quot;&gt;
+  &lt;button class=&quot;ds-custom-select__trigger&quot;&gt;
+    &lt;div class=&quot;ds-custom-select__tags&quot;&gt;
+      &lt;span class=&quot;ds-custom-select__tag&quot;&gt;React &lt;button class=&quot;ds-custom-select__tag-remove&quot; aria-label=&quot;Remove&quot;&gt;&amp;times;&lt;/button&gt;&lt;/span&gt;
+      &lt;span class=&quot;ds-custom-select__tag&quot;&gt;Vue &lt;button class=&quot;ds-custom-select__tag-remove&quot; aria-label=&quot;Remove&quot;&gt;&amp;times;&lt;/button&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;span class=&quot;ds-custom-select__chevron&quot;&gt;&amp;#9662;&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+      </details>
+    </section>
+
     <section class="demo-api">
       <h2>API</h2>
       <table class="ds-table">
@@ -129,6 +161,10 @@
           <tr><td><code>.ds-custom-select__option</code></td><td>Element</td></tr>
           <tr><td><code>.ds-custom-select__option-check</code></td><td>Element</td></tr>
           <tr><td><code>.ds-custom-select__empty</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-custom-select__tags</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-custom-select__tag</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-custom-select__tag-remove</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-custom-select--multi</code></td><td>Variant</td></tr>
           <tr><td><code>.ds-custom-select--xs</code></td><td>Size</td></tr>
           <tr><td><code>.ds-custom-select--sm</code></td><td>Size</td></tr>
           <tr><td><code>.ds-custom-select--lg</code></td><td>Size</td></tr>

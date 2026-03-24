@@ -1,0 +1,84 @@
+/* ==========================================================================
+   Component: Result
+   Feedback page for success, error, 404, empty, etc.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Container
+   --------------------------------------------------------------------------- */
+
+.ds-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--ds-space-12) var(--ds-space-6);
+  max-width: 28rem;
+  margin-inline: auto;
+}
+
+/* ---------------------------------------------------------------------------
+   Icon
+   --------------------------------------------------------------------------- */
+
+.ds-result__icon {
+  width: 3rem;
+  height: 3rem;
+  margin-block-end: var(--ds-space-4);
+  color: var(--ds-color-text-secondary);
+}
+
+/* ---------------------------------------------------------------------------
+   Title
+   --------------------------------------------------------------------------- */
+
+.ds-result__title {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-weight-semibold);
+  font-size: var(--ds-text-xl);
+  color: var(--ds-color-text);
+  line-height: var(--ds-leading-tight);
+}
+
+/* ---------------------------------------------------------------------------
+   Description
+   --------------------------------------------------------------------------- */
+
+.ds-result__description {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  line-height: var(--ds-leading-relaxed);
+  margin-block-start: var(--ds-space-2);
+}
+
+/* ---------------------------------------------------------------------------
+   Actions
+   --------------------------------------------------------------------------- */
+
+.ds-result__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-space-3);
+  margin-block-start: var(--ds-space-6);
+}
+
+/* ---------------------------------------------------------------------------
+   Semantic variants — icon color
+   --------------------------------------------------------------------------- */
+
+.ds-result--success .ds-result__icon {
+  color: var(--ds-color-success);
+}
+
+.ds-result--warning .ds-result__icon {
+  color: var(--ds-color-warning);
+}
+
+.ds-result--error .ds-result__icon {
+  color: var(--ds-color-error);
+}
+
+.ds-result--info .ds-result__icon {
+  color: var(--ds-color-info);
+}

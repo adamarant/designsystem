@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spinner — Design System</title>
+  <title>Collapsible — Design System</title>
   <link rel="stylesheet" href="../../dist/designsystem.css">
   <link rel="stylesheet" href="../_shared/demo.css">
 </head>
@@ -44,7 +44,7 @@
         <a href="../components/avatar.html" class="demo-sidebar__link">Avatar</a>
         <a href="../components/skeleton.html" class="demo-sidebar__link">Skeleton</a>
         <a href="../components/empty-state.html" class="demo-sidebar__link">Empty State</a>
-        <a href="../components/spinner.html" class="demo-sidebar__link demo-sidebar__link--active">Spinner</a>
+        <a href="../components/spinner.html" class="demo-sidebar__link">Spinner</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Common</div>
@@ -60,7 +60,7 @@
         <a href="../components/custom-select.html" class="demo-sidebar__link">Custom Select</a>
         <a href="../components/sortable.html" class="demo-sidebar__link">Sortable</a>
         <a href="../components/chip.html" class="demo-sidebar__link">Chip</a>
-        <a href="../components/collapsible.html" class="demo-sidebar__link">Collapsible</a>
+        <a href="../components/collapsible.html" class="demo-sidebar__link demo-sidebar__link--active">Collapsible</a>
         <a href="../components/description-list.html" class="demo-sidebar__link">Description List</a>
         <a href="../components/result.html" class="demo-sidebar__link">Result</a>
       </div>
@@ -84,59 +84,65 @@
     <main class="demo-main">
 
       <header>
-        <h1>Spinner</h1>
-        <p>CSS-only loading spinner with size and color variants.</p>
+        <h1>Collapsible</h1>
+        <p>Single collapsible section — a standalone, simplified accordion item.</p>
         <div class="demo-meta">
-          <span class="ds-badge">Essential</span>
-          <code>@import '@digiko-npm/designsystem/components/spinner';</code>
+          <span class="ds-badge">Common</span>
+          <code>@import '@digiko-npm/designsystem/components/collapsible';</code>
         </div>
       </header>
 
 
     <section class="demo-example">
-      <h2>Sizes</h2>
+      <h2>Default Collapsible</h2>
       <div class="demo-preview">
-        <div class="ds-flex ds-items-center ds-gap-4">
-  <span class="ds-spinner ds-spinner--sm"></span>
-  <span class="ds-spinner ds-spinner--md"></span>
-  <span class="ds-spinner"></span>
-  <span class="ds-spinner ds-spinner--lg"></span>
+        <div class="ds-collapsible">
+  <button class="ds-collapsible__trigger">
+    More details
+    <span class="ds-collapsible__icon"></span>
+  </button>
+  <div class="ds-collapsible__content">
+    <div class="ds-collapsible__body">Hidden content revealed on toggle.</div>
+  </div>
 </div>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-flex ds-items-center ds-gap-4&quot;&gt;
-  &lt;span class=&quot;ds-spinner ds-spinner--sm&quot;&gt;&lt;/span&gt;
-  &lt;span class=&quot;ds-spinner ds-spinner--md&quot;&gt;&lt;/span&gt;
-  &lt;span class=&quot;ds-spinner&quot;&gt;&lt;/span&gt;
-  &lt;span class=&quot;ds-spinner ds-spinner--lg&quot;&gt;&lt;/span&gt;
+        <pre><code>&lt;div class=&quot;ds-collapsible&quot;&gt;
+  &lt;button class=&quot;ds-collapsible__trigger&quot;&gt;
+    More details
+    &lt;span class=&quot;ds-collapsible__icon&quot;&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class=&quot;ds-collapsible__content&quot;&gt;
+    &lt;div class=&quot;ds-collapsible__body&quot;&gt;Hidden content revealed on toggle.&lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
       </details>
     </section>
 
     <section class="demo-example">
-      <h2>Color Variants</h2>
+      <h2>Open State</h2>
       <div class="demo-preview">
-        <div class="ds-flex ds-items-center ds-gap-4">
-  <span class="ds-spinner"></span>
-  <span style="background:var(--ds-color-inverted);padding:1rem;border-radius:var(--ds-radius-lg)">
-    <span class="ds-spinner ds-spinner--muted"></span>
-  </span>
-  <span style="background:var(--ds-color-interactive);padding:1rem;border-radius:var(--ds-radius-lg)">
-    <span class="ds-spinner ds-spinner--light"></span>
-  </span>
+        <div class="ds-collapsible ds-collapsible--open">
+  <button class="ds-collapsible__trigger">
+    Show less
+    <span class="ds-collapsible__icon"></span>
+  </button>
+  <div class="ds-collapsible__content">
+    <div class="ds-collapsible__body">This content is visible because the collapsible is open.</div>
+  </div>
 </div>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-flex ds-items-center ds-gap-4&quot;&gt;
-  &lt;span class=&quot;ds-spinner&quot;&gt;&lt;/span&gt;
-  &lt;span style=&quot;background:var(--ds-color-inverted);padding:1rem;border-radius:var(--ds-radius-lg)&quot;&gt;
-    &lt;span class=&quot;ds-spinner ds-spinner--muted&quot;&gt;&lt;/span&gt;
-  &lt;/span&gt;
-  &lt;span style=&quot;background:var(--ds-color-interactive);padding:1rem;border-radius:var(--ds-radius-lg)&quot;&gt;
-    &lt;span class=&quot;ds-spinner ds-spinner--light&quot;&gt;&lt;/span&gt;
-  &lt;/span&gt;
+        <pre><code>&lt;div class=&quot;ds-collapsible ds-collapsible--open&quot;&gt;
+  &lt;button class=&quot;ds-collapsible__trigger&quot;&gt;
+    Show less
+    &lt;span class=&quot;ds-collapsible__icon&quot;&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class=&quot;ds-collapsible__content&quot;&gt;
+    &lt;div class=&quot;ds-collapsible__body&quot;&gt;This content is visible because the collapsible is open.&lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
       </details>
     </section>
@@ -145,18 +151,20 @@
       <h2>API</h2>
       <table class="ds-table">
         <thead><tr><th>Class</th><th>Type</th></tr></thead>
-        <tbody><tr><td><code>.ds-spinner</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-spinner--muted</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-spinner--light</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-spinner--sm</code></td><td>Size</td></tr>
-          <tr><td><code>.ds-spinner--md</code></td><td>Size</td></tr>
-          <tr><td><code>.ds-spinner--lg</code></td><td>Size</td></tr></tbody>
+        <tbody><tr><td><code>.ds-collapsible</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-collapsible__trigger</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-collapsible__icon</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-collapsible__content</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-collapsible__body</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-collapsible--flush</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-collapsible--ghost</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-collapsible--open</code></td><td>Modifier</td></tr></tbody>
       </table>
     </section>
 
     <nav class="demo-nav-footer">
-      <a href="bottom-nav.html">&larr; Bottom Nav</a>
-      <a href="field.html">Field &rarr;</a>
+      <a href="stat-card.html">&larr; Stat Card</a>
+      <a href="description-list.html">Description List &rarr;</a>
     </nav>
     </main>
   </div>

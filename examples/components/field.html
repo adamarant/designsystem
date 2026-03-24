@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spinner — Design System</title>
+  <title>Field — Design System</title>
   <link rel="stylesheet" href="../../dist/designsystem.css">
   <link rel="stylesheet" href="../_shared/demo.css">
 </head>
@@ -31,7 +31,7 @@
         <a href="../components/toast.html" class="demo-sidebar__link">Toast</a>
         <a href="../components/table.html" class="demo-sidebar__link">Table</a>
         <a href="../components/icon-btn.html" class="demo-sidebar__link">Icon Button</a>
-        <a href="../components/field.html" class="demo-sidebar__link">Field</a>
+        <a href="../components/field.html" class="demo-sidebar__link demo-sidebar__link--active">Field</a>
         <a href="../components/stat-card.html" class="demo-sidebar__link">Stat Card</a>
       </div>
       <div class="demo-sidebar__group">
@@ -44,7 +44,7 @@
         <a href="../components/avatar.html" class="demo-sidebar__link">Avatar</a>
         <a href="../components/skeleton.html" class="demo-sidebar__link">Skeleton</a>
         <a href="../components/empty-state.html" class="demo-sidebar__link">Empty State</a>
-        <a href="../components/spinner.html" class="demo-sidebar__link demo-sidebar__link--active">Spinner</a>
+        <a href="../components/spinner.html" class="demo-sidebar__link">Spinner</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Common</div>
@@ -84,59 +84,66 @@
     <main class="demo-main">
 
       <header>
-        <h1>Spinner</h1>
-        <p>CSS-only loading spinner with size and color variants.</p>
+        <h1>Field</h1>
+        <p>Unified wrapper for form fields — label + input slot + hint + error.</p>
         <div class="demo-meta">
-          <span class="ds-badge">Essential</span>
-          <code>@import '@digiko-npm/designsystem/components/spinner';</code>
+          <span class="ds-badge">Core</span>
+          <code>@import '@digiko-npm/designsystem/components/field';</code>
         </div>
       </header>
 
 
     <section class="demo-example">
-      <h2>Sizes</h2>
+      <h2>Default Field</h2>
       <div class="demo-preview">
-        <div class="ds-flex ds-items-center ds-gap-4">
-  <span class="ds-spinner ds-spinner--sm"></span>
-  <span class="ds-spinner ds-spinner--md"></span>
-  <span class="ds-spinner"></span>
-  <span class="ds-spinner ds-spinner--lg"></span>
+        <div class="ds-field">
+  <label class="ds-field__label">Email</label>
+  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" class="ds-input" type="email" placeholder="you@example.com" />
+  <span class="ds-field__hint">We'll never share your email.</span>
 </div>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-flex ds-items-center ds-gap-4&quot;&gt;
-  &lt;span class=&quot;ds-spinner ds-spinner--sm&quot;&gt;&lt;/span&gt;
-  &lt;span class=&quot;ds-spinner ds-spinner--md&quot;&gt;&lt;/span&gt;
-  &lt;span class=&quot;ds-spinner&quot;&gt;&lt;/span&gt;
-  &lt;span class=&quot;ds-spinner ds-spinner--lg&quot;&gt;&lt;/span&gt;
+        <pre><code>&lt;div class=&quot;ds-field&quot;&gt;
+  &lt;label class=&quot;ds-field__label&quot;&gt;Email&lt;/label&gt;
+  &lt;input class=&quot;ds-input&quot; type=&quot;email&quot; placeholder=&quot;you@example.com&quot; /&gt;
+  &lt;span class=&quot;ds-field__hint&quot;&gt;We'll never share your email.&lt;/span&gt;
 &lt;/div&gt;</code></pre>
       </details>
     </section>
 
     <section class="demo-example">
-      <h2>Color Variants</h2>
+      <h2>Required with Error</h2>
       <div class="demo-preview">
-        <div class="ds-flex ds-items-center ds-gap-4">
-  <span class="ds-spinner"></span>
-  <span style="background:var(--ds-color-inverted);padding:1rem;border-radius:var(--ds-radius-lg)">
-    <span class="ds-spinner ds-spinner--muted"></span>
-  </span>
-  <span style="background:var(--ds-color-interactive);padding:1rem;border-radius:var(--ds-radius-lg)">
-    <span class="ds-spinner ds-spinner--light"></span>
-  </span>
+        <div class="ds-field ds-field--required">
+  <label class="ds-field__label">Password</label>
+  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" class="ds-input ds-input--error" type="password" />
+  <span class="ds-field__error">Password must be at least 8 characters.</span>
 </div>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-flex ds-items-center ds-gap-4&quot;&gt;
-  &lt;span class=&quot;ds-spinner&quot;&gt;&lt;/span&gt;
-  &lt;span style=&quot;background:var(--ds-color-inverted);padding:1rem;border-radius:var(--ds-radius-lg)&quot;&gt;
-    &lt;span class=&quot;ds-spinner ds-spinner--muted&quot;&gt;&lt;/span&gt;
-  &lt;/span&gt;
-  &lt;span style=&quot;background:var(--ds-color-interactive);padding:1rem;border-radius:var(--ds-radius-lg)&quot;&gt;
-    &lt;span class=&quot;ds-spinner ds-spinner--light&quot;&gt;&lt;/span&gt;
-  &lt;/span&gt;
+        <pre><code>&lt;div class=&quot;ds-field ds-field--required&quot;&gt;
+  &lt;label class=&quot;ds-field__label&quot;&gt;Password&lt;/label&gt;
+  &lt;input class=&quot;ds-input ds-input--error&quot; type=&quot;password&quot; /&gt;
+  &lt;span class=&quot;ds-field__error&quot;&gt;Password must be at least 8 characters.&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>Horizontal Layout</h2>
+      <div class="demo-preview">
+        <div class="ds-field ds-field--horizontal">
+  <label class="ds-field__label">Username</label>
+  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" class="ds-input" type="text" />
+</div>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;div class=&quot;ds-field ds-field--horizontal&quot;&gt;
+  &lt;label class=&quot;ds-field__label&quot;&gt;Username&lt;/label&gt;
+  &lt;input class=&quot;ds-input&quot; type=&quot;text&quot; /&gt;
 &lt;/div&gt;</code></pre>
       </details>
     </section>
@@ -145,18 +152,19 @@
       <h2>API</h2>
       <table class="ds-table">
         <thead><tr><th>Class</th><th>Type</th></tr></thead>
-        <tbody><tr><td><code>.ds-spinner</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-spinner--muted</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-spinner--light</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-spinner--sm</code></td><td>Size</td></tr>
-          <tr><td><code>.ds-spinner--md</code></td><td>Size</td></tr>
-          <tr><td><code>.ds-spinner--lg</code></td><td>Size</td></tr></tbody>
+        <tbody><tr><td><code>.ds-field</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-field__label</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-field__hint</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-field__error</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-field--required</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-field--horizontal</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-field--disabled</code></td><td>Modifier</td></tr></tbody>
       </table>
     </section>
 
     <nav class="demo-nav-footer">
-      <a href="bottom-nav.html">&larr; Bottom Nav</a>
-      <a href="field.html">Field &rarr;</a>
+      <a href="spinner.html">&larr; Spinner</a>
+      <a href="stat-card.html">Stat Card &rarr;</a>
     </nav>
     </main>
   </div>

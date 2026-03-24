@@ -71,8 +71,7 @@
       "description": "Surface + border, hover with shadow lift, rounded-xl.",
       "category": "core",
       "classes": [
-        ".ds-card",
-        ".ds-stat-card"
+        ".ds-card"
       ],
       "elements": [
         "__header",
@@ -923,7 +922,7 @@
     {
       "name": "custom-select",
       "title": "Custom Select",
-      "description": "Styled select dropdown replacing native <select>. Desktop: absolute panel. Mobile: fullscreen sheet with search.",
+      "description": "Styled select dropdown replacing native <select>. Desktop: absolute panel. Mobile: fullscreen sheet with search. Supports multi-select with tags.",
       "category": "common",
       "classes": [
         ".ds-custom-select"
@@ -943,9 +942,14 @@
         "__list",
         "__option",
         "__option-check",
-        "__empty"
+        "__empty",
+        "__tags",
+        "__tag",
+        "__tag-remove"
       ],
-      "variants": [],
+      "variants": [
+        "--multi"
+      ],
       "sizes": [
         "--xs",
         "--sm",
@@ -960,6 +964,10 @@
         {
           "title": "Default",
           "html": "<div class=\"ds-custom-select\">\n  <button class=\"ds-custom-select__trigger\">\n    <span class=\"ds-custom-select__trigger-label\">Apartamento</span>\n    <span class=\"ds-custom-select__chevron\">&#9662;</span>\n  </button>\n</div>"
+        },
+        {
+          "title": "Multi-Select",
+          "html": "<div class=\"ds-custom-select ds-custom-select--multi\">\n  <button class=\"ds-custom-select__trigger\">\n    <div class=\"ds-custom-select__tags\">\n      <span class=\"ds-custom-select__tag\">React <button class=\"ds-custom-select__tag-remove\" aria-label=\"Remove\">&times;</button></span>\n      <span class=\"ds-custom-select__tag\">Vue <button class=\"ds-custom-select__tag-remove\" aria-label=\"Remove\">&times;</button></span>\n    </div>\n    <span class=\"ds-custom-select__chevron\">&#9662;</span>\n  </button>\n</div>"
         }
       ]
     },
@@ -1342,6 +1350,166 @@
         {
           "title": "Color Variants",
           "html": "<div class=\"ds-flex ds-items-center ds-gap-4\">\n  <span class=\"ds-spinner\"></span>\n  <span style=\"background:var(--ds-color-inverted);padding:1rem;border-radius:var(--ds-radius-lg)\">\n    <span class=\"ds-spinner ds-spinner--muted\"></span>\n  </span>\n  <span style=\"background:var(--ds-color-interactive);padding:1rem;border-radius:var(--ds-radius-lg)\">\n    <span class=\"ds-spinner ds-spinner--light\"></span>\n  </span>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "title": "Field",
+      "description": "Unified wrapper for form fields — label + input slot + hint + error.",
+      "category": "core",
+      "classes": [
+        ".ds-field"
+      ],
+      "elements": [
+        "__label",
+        "__hint",
+        "__error"
+      ],
+      "variants": [],
+      "sizes": [],
+      "modifiers": [
+        "--required",
+        "--horizontal",
+        "--disabled"
+      ],
+      "examples": [
+        {
+          "title": "Default Field",
+          "html": "<div class=\"ds-field\">\n  <label class=\"ds-field__label\">Email</label>\n  <input class=\"ds-input\" type=\"email\" placeholder=\"you@example.com\" />\n  <span class=\"ds-field__hint\">We'll never share your email.</span>\n</div>"
+        },
+        {
+          "title": "Required with Error",
+          "html": "<div class=\"ds-field ds-field--required\">\n  <label class=\"ds-field__label\">Password</label>\n  <input class=\"ds-input ds-input--error\" type=\"password\" />\n  <span class=\"ds-field__error\">Password must be at least 8 characters.</span>\n</div>"
+        },
+        {
+          "title": "Horizontal Layout",
+          "html": "<div class=\"ds-field ds-field--horizontal\">\n  <label class=\"ds-field__label\">Username</label>\n  <input class=\"ds-input\" type=\"text\" />\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "stat-card",
+      "title": "Stat Card",
+      "description": "Compact metric display with label, value, detail, and optional icon.",
+      "category": "core",
+      "classes": [
+        ".ds-stat-card"
+      ],
+      "elements": [
+        "__label",
+        "__value",
+        "__detail",
+        "__icon"
+      ],
+      "variants": [],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Basic Stat",
+          "html": "<div class=\"ds-stat-card\">\n  <div class=\"ds-stat-card__label\">Total Revenue</div>\n  <div class=\"ds-stat-card__value\">$45,231</div>\n  <div class=\"ds-stat-card__detail\">+12.5% from last month</div>\n</div>"
+        },
+        {
+          "title": "With Icon",
+          "html": "<div class=\"ds-stat-card\">\n  <div class=\"ds-stat-card__icon\">&#128200;</div>\n  <div class=\"ds-stat-card__label\">Active Users</div>\n  <div class=\"ds-stat-card__value\">1,234</div>\n  <div class=\"ds-stat-card__detail\">+5.2% this week</div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "title": "Collapsible",
+      "description": "Single collapsible section — a standalone, simplified accordion item.",
+      "category": "common",
+      "classes": [
+        ".ds-collapsible"
+      ],
+      "elements": [
+        "__trigger",
+        "__icon",
+        "__content",
+        "__body"
+      ],
+      "variants": [
+        "--flush",
+        "--ghost"
+      ],
+      "sizes": [],
+      "modifiers": [
+        "--open"
+      ],
+      "examples": [
+        {
+          "title": "Default Collapsible",
+          "html": "<div class=\"ds-collapsible\">\n  <button class=\"ds-collapsible__trigger\">\n    More details\n    <span class=\"ds-collapsible__icon\"></span>\n  </button>\n  <div class=\"ds-collapsible__content\">\n    <div class=\"ds-collapsible__body\">Hidden content revealed on toggle.</div>\n  </div>\n</div>"
+        },
+        {
+          "title": "Open State",
+          "html": "<div class=\"ds-collapsible ds-collapsible--open\">\n  <button class=\"ds-collapsible__trigger\">\n    Show less\n    <span class=\"ds-collapsible__icon\"></span>\n  </button>\n  <div class=\"ds-collapsible__content\">\n    <div class=\"ds-collapsible__body\">This content is visible because the collapsible is open.</div>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "description-list",
+      "title": "Description List",
+      "description": "Key-value pairs display with horizontal, vertical, bordered, and striped layouts.",
+      "category": "common",
+      "classes": [
+        ".ds-description-list"
+      ],
+      "elements": [
+        "__item",
+        "__term",
+        "__detail"
+      ],
+      "variants": [
+        "--horizontal",
+        "--bordered",
+        "--striped"
+      ],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Vertical (Default)",
+          "html": "<div class=\"ds-description-list\">\n  <div class=\"ds-description-list__item\">\n    <dt class=\"ds-description-list__term\">Name</dt>\n    <dd class=\"ds-description-list__detail\">John Doe</dd>\n  </div>\n  <div class=\"ds-description-list__item\">\n    <dt class=\"ds-description-list__term\">Email</dt>\n    <dd class=\"ds-description-list__detail\">john@example.com</dd>\n  </div>\n</div>"
+        },
+        {
+          "title": "Horizontal & Bordered",
+          "html": "<div class=\"ds-description-list ds-description-list--horizontal ds-description-list--bordered\">\n  <div class=\"ds-description-list__item\">\n    <dt class=\"ds-description-list__term\">Status</dt>\n    <dd class=\"ds-description-list__detail\">Active</dd>\n  </div>\n  <div class=\"ds-description-list__item\">\n    <dt class=\"ds-description-list__term\">Role</dt>\n    <dd class=\"ds-description-list__detail\">Administrator</dd>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "result",
+      "title": "Result",
+      "description": "Feedback page for success, error, 404, or informational outcomes.",
+      "category": "common",
+      "classes": [
+        ".ds-result"
+      ],
+      "elements": [
+        "__icon",
+        "__title",
+        "__description",
+        "__actions"
+      ],
+      "variants": [
+        "--success",
+        "--warning",
+        "--error",
+        "--info"
+      ],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Success",
+          "html": "<div class=\"ds-result ds-result--success\">\n  <div class=\"ds-result__icon\">&#10003;</div>\n  <h2 class=\"ds-result__title\">Payment Successful</h2>\n  <p class=\"ds-result__description\">Your order has been confirmed and will be shipped shortly.</p>\n  <div class=\"ds-result__actions\">\n    <button class=\"ds-btn\">View Order</button>\n    <button class=\"ds-btn ds-btn--ghost\">Continue Shopping</button>\n  </div>\n</div>"
+        },
+        {
+          "title": "Error",
+          "html": "<div class=\"ds-result ds-result--error\">\n  <div class=\"ds-result__icon\">&#10007;</div>\n  <h2 class=\"ds-result__title\">Something went wrong</h2>\n  <p class=\"ds-result__description\">We couldn't process your request. Please try again later.</p>\n  <div class=\"ds-result__actions\">\n    <button class=\"ds-btn ds-btn--danger\">Retry</button>\n  </div>\n</div>"
         }
       ]
     }

@@ -92,40 +92,4 @@
 .ds-card--flush .ds-card__header { border-block-end: none; }
 .ds-card--flush .ds-card__footer { border-block-start: none; }
 
-/* Stat card (like StatCard component) */
-.ds-stat-card {
-  background-color: var(--ds-color-surface);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-xl);
-  padding: var(--ds-space-5);
-}
-
-.ds-stat-card__label {
-  font-size: var(--ds-text-sm);
-  color: var(--ds-color-text-tertiary);
-}
-
-.ds-stat-card__value {
-  font-family: var(--ds-font-display);
-  font-weight: var(--ds-font-display-weight);
-  font-size: var(--ds-text-2xl);
-  color: var(--ds-color-text);
-  margin-block-start: var(--ds-space-1);
-}
-
-.ds-stat-card__detail {
-  font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
-  margin-block-start: var(--ds-space-0-5);
-}
-
-.ds-stat-card__icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: var(--ds-radius-xl);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--ds-color-bg-elevated);
-  color: var(--ds-color-text-secondary);
-}
+/* Stat card — extracted to stat-card.css */

@@ -231,7 +231,7 @@ src/
 │   ├── reset.css              # Modern CSS reset
 │   └── typography.css         # Heading hierarchy, prose, overline, hero
 ├── components/
-│   ├── index.css              # Imports all 28 components
+│   ├── index.css              # Imports all components
 │   │
 │   │  # Core (8)
 │   ├── button.css             # ds-btn, variants, sizes, groups, loading, pill
@@ -390,7 +390,7 @@ Build:          node scripts/build.js
 Watch:          node scripts/build.js --watch
 Source:         src/
 Compiled:       dist/designsystem.css
-Components:     src/components/ (28 files)
+Components:     src/components/ (43 files)
 Tokens:         src/tokens/ (4 files)
 Examples:       examples/index.html (open in browser)
 ```

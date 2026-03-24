@@ -1,0 +1,77 @@
+/* ==========================================================================
+   Component: Field
+   Unified wrapper for form fields — label + input + hint + error.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Container
+   --------------------------------------------------------------------------- */
+
+.ds-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-1-5);
+}
+
+/* ---------------------------------------------------------------------------
+   Label
+   --------------------------------------------------------------------------- */
+
+.ds-field__label {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text);
+  line-height: var(--ds-leading-normal);
+}
+
+/* Required asterisk */
+.ds-field--required .ds-field__label::after {
+  content: " *";
+  color: var(--ds-color-error);
+}
+
+/* ---------------------------------------------------------------------------
+   Hint (help text below input)
+   --------------------------------------------------------------------------- */
+
+.ds-field__hint {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  line-height: var(--ds-leading-normal);
+}
+
+/* ---------------------------------------------------------------------------
+   Error message
+   --------------------------------------------------------------------------- */
+
+.ds-field__error {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-error);
+  line-height: var(--ds-leading-normal);
+}
+
+/* ---------------------------------------------------------------------------
+   Modifier: Horizontal layout (label left, input right)
+   --------------------------------------------------------------------------- */
+
+.ds-field--horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--ds-space-4);
+}
+
+.ds-field--horizontal .ds-field__label {
+  flex-shrink: 0;
+  min-width: 8rem;
+  padding-block-start: var(--ds-space-2);
+}
+
+/* ---------------------------------------------------------------------------
+   Modifier: Disabled
+   --------------------------------------------------------------------------- */
+
+.ds-field--disabled {
+  opacity: var(--ds-opacity-disabled);
+  pointer-events: none;
+}
