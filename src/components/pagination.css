@@ -31,145 +31,158 @@
   align-items: center;
   gap: var(--ds-space-1);
   font-family: var(--ds-font-sans);
+  container-type: inline-size;
+
+  /* ---------------------------------------------------------------------------
+     Item (page number)
+     --------------------------------------------------------------------------- */
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 var(--ds-space-1);
+    border: none;
+    border-radius: var(--ds-radius-md);
+    background: transparent;
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-sm);
+    font-family: var(--ds-font-sans);
+    cursor: pointer;
+    transition:
+      background-color var(--ds-duration-fast) var(--ds-ease-out),
+      color var(--ds-duration-fast) var(--ds-ease-out);
+    -webkit-appearance: none;
+    appearance: none;
+
+    &:hover {
+      background-color: var(--ds-color-bg-elevated);
+      color: var(--ds-color-text);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+      scroll-margin-block: var(--ds-space-16, 4rem);
+    }
+
+    /* ---------------------------------------------------------------------------
+       Active page
+       --------------------------------------------------------------------------- */
+
+    &--active,
+    &--active:hover {
+      background-color: var(--ds-color-inverted);
+      color: var(--ds-color-on-inverted);
+      cursor: default;
+    }
+
+    /* ---------------------------------------------------------------------------
+       Disabled item
+       --------------------------------------------------------------------------- */
+
+    &--disabled,
+    &--disabled:hover {
+      opacity: var(--ds-opacity-disabled);
+      pointer-events: none;
+    }
+  }
+
+  /* ---------------------------------------------------------------------------
+     Previous / Next navigation buttons
+     --------------------------------------------------------------------------- */
+
+  &__prev,
+  &__next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: none;
+    border-radius: var(--ds-radius-md);
+    background: transparent;
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-sm);
+    font-family: var(--ds-font-sans);
+    cursor: pointer;
+    transition:
+      background-color var(--ds-duration-fast) var(--ds-ease-out),
+      color var(--ds-duration-fast) var(--ds-ease-out);
+    -webkit-appearance: none;
+    appearance: none;
+
+    &:hover {
+      background-color: var(--ds-color-bg-elevated);
+      color: var(--ds-color-text);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+      scroll-margin-block: var(--ds-space-16, 4rem);
+    }
+
+    &:disabled {
+      opacity: var(--ds-opacity-disabled);
+      pointer-events: none;
+    }
+  }
+
+  /* ---------------------------------------------------------------------------
+     Ellipsis
+     --------------------------------------------------------------------------- */
+
+  &__ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    color: var(--ds-color-text-tertiary);
+    font-size: var(--ds-text-sm);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* ---------------------------------------------------------------------------
+     Page info text (e.g. "Page 1 of 10")
+     --------------------------------------------------------------------------- */
+
+  &__info {
+    font-size: var(--ds-text-sm);
+    color: var(--ds-color-text-tertiary);
+    white-space: nowrap;
+  }
+
+  /* ---------------------------------------------------------------------------
+     Modifier: Compact
+     --------------------------------------------------------------------------- */
+
+  &--compact {
+    & .ds-pagination__item,
+    & .ds-pagination__prev,
+    & .ds-pagination__next,
+    & .ds-pagination__ellipsis {
+      min-width: 1.75rem;
+      height: 1.75rem;
+      font-size: var(--ds-text-xs);
+    }
+  }
 }
 
-/* ---------------------------------------------------------------------------
-   Item (page number)
-   --------------------------------------------------------------------------- */
+/* Container query: hide page numbers when pagination is narrow, show only prev/next */
+@container (max-width: 320px) {
+  .ds-pagination__item,
+  .ds-pagination__ellipsis {
+    display: none;
+  }
 
-.ds-pagination__item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2rem;
-  height: 2rem;
-  padding: 0 var(--ds-space-1);
-  border: none;
-  border-radius: var(--ds-radius-md);
-  background: transparent;
-  color: var(--ds-color-text-secondary);
-  font-size: var(--ds-text-sm);
-  font-family: var(--ds-font-sans);
-  cursor: pointer;
-  transition:
-    background-color var(--ds-duration-fast) var(--ds-ease-out),
-    color var(--ds-duration-fast) var(--ds-ease-out);
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.ds-pagination__item:hover {
-  background-color: var(--ds-color-bg-elevated);
-  color: var(--ds-color-text);
-}
-
-.ds-pagination__item:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
-  scroll-margin-block: var(--ds-space-16, 4rem);
-}
-
-/* ---------------------------------------------------------------------------
-   Active page
-   --------------------------------------------------------------------------- */
-
-.ds-pagination__item--active,
-.ds-pagination__item--active:hover {
-  background-color: var(--ds-color-inverted);
-  color: var(--ds-color-on-inverted);
-  cursor: default;
-}
-
-/* ---------------------------------------------------------------------------
-   Disabled item
-   --------------------------------------------------------------------------- */
-
-.ds-pagination__item--disabled,
-.ds-pagination__item--disabled:hover {
-  opacity: var(--ds-opacity-disabled);
-  pointer-events: none;
-}
-
-/* ---------------------------------------------------------------------------
-   Previous / Next navigation buttons
-   --------------------------------------------------------------------------- */
-
-.ds-pagination__prev,
-.ds-pagination__next {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2rem;
-  height: 2rem;
-  padding: 0;
-  border: none;
-  border-radius: var(--ds-radius-md);
-  background: transparent;
-  color: var(--ds-color-text-secondary);
-  font-size: var(--ds-text-sm);
-  font-family: var(--ds-font-sans);
-  cursor: pointer;
-  transition:
-    background-color var(--ds-duration-fast) var(--ds-ease-out),
-    color var(--ds-duration-fast) var(--ds-ease-out);
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.ds-pagination__prev:hover,
-.ds-pagination__next:hover {
-  background-color: var(--ds-color-bg-elevated);
-  color: var(--ds-color-text);
-}
-
-.ds-pagination__prev:focus-visible,
-.ds-pagination__next:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
-  scroll-margin-block: var(--ds-space-16, 4rem);
-}
-
-.ds-pagination__prev:disabled,
-.ds-pagination__next:disabled {
-  opacity: var(--ds-opacity-disabled);
-  pointer-events: none;
-}
-
-/* ---------------------------------------------------------------------------
-   Ellipsis
-   --------------------------------------------------------------------------- */
-
-.ds-pagination__ellipsis {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2rem;
-  height: 2rem;
-  color: var(--ds-color-text-tertiary);
-  font-size: var(--ds-text-sm);
-  user-select: none;
-  pointer-events: none;
-}
-
-/* ---------------------------------------------------------------------------
-   Page info text (e.g. "Page 1 of 10")
-   --------------------------------------------------------------------------- */
-
-.ds-pagination__info {
-  font-size: var(--ds-text-sm);
-  color: var(--ds-color-text-tertiary);
-  white-space: nowrap;
-}
-
-/* ---------------------------------------------------------------------------
-   Modifier: Compact
-   --------------------------------------------------------------------------- */
-
-.ds-pagination--compact .ds-pagination__item,
-.ds-pagination--compact .ds-pagination__prev,
-.ds-pagination--compact .ds-pagination__next,
-.ds-pagination--compact .ds-pagination__ellipsis {
-  min-width: 1.75rem;
-  height: 1.75rem;
-  font-size: var(--ds-text-xs);
+  .ds-pagination__info {
+    flex: 1;
+    text-align: center;
+  }
 }

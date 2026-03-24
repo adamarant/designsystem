@@ -11,65 +11,65 @@
   text-align: center;
   padding: var(--ds-space-12);
   gap: var(--ds-space-4);
-}
 
-.ds-empty-state__icon {
-  width: 3rem;
-  height: 3rem;
-  color: var(--ds-color-text-tertiary);
-  margin-block-end: var(--ds-space-2);
-}
+  &__icon {
+    width: 3rem;
+    height: 3rem;
+    color: var(--ds-color-text-tertiary);
+    margin-block-end: var(--ds-space-2);
+  }
 
-.ds-empty-state__title {
-  font-family: var(--ds-font-display);
-  font-weight: var(--ds-font-display-weight);
-  font-size: var(--ds-text-lg);
-  color: var(--ds-color-text);
-  letter-spacing: var(--ds-tracking-tight);
-  line-height: var(--ds-leading-tight);
-}
+  &__title {
+    font-family: var(--ds-font-display);
+    font-weight: var(--ds-font-display-weight);
+    font-size: var(--ds-text-lg);
+    color: var(--ds-color-text);
+    letter-spacing: var(--ds-tracking-tight);
+    line-height: var(--ds-leading-tight);
+  }
 
-.ds-empty-state__description {
-  font-size: var(--ds-text-sm);
-  color: var(--ds-color-text-secondary);
-  max-width: 20rem;
-  line-height: var(--ds-leading-relaxed);
-}
+  &__description {
+    font-size: var(--ds-text-sm);
+    color: var(--ds-color-text-secondary);
+    max-width: 20rem;
+    line-height: var(--ds-leading-relaxed);
+  }
 
-.ds-empty-state__actions {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: var(--ds-space-3);
-  margin-block-start: var(--ds-space-2);
-}
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ds-space-3);
+    margin-block-start: var(--ds-space-2);
+  }
 
-/* --- Compact variant --- */
+  /* --- Compact variant --- */
 
-.ds-empty-state--compact {
-  padding: var(--ds-space-8);
-}
+  &--compact {
+    padding: var(--ds-space-8);
 
-.ds-empty-state--compact .ds-empty-state__icon {
-  width: 2rem;
-  height: 2rem;
-}
+    & .ds-empty-state__icon {
+      width: 2rem;
+      height: 2rem;
+    }
 
-.ds-empty-state--compact .ds-empty-state__title {
-  font-size: var(--ds-text-base);
-}
+    & .ds-empty-state__title {
+      font-size: var(--ds-text-base);
+    }
+  }
 
-/* --- Card variant --- */
+  /* --- Card variant --- */
 
-.ds-empty-state--card {
-  background-color: var(--ds-color-surface);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-xl);
-}
+  &--card {
+    background-color: var(--ds-color-surface);
+    border: 1px solid var(--ds-color-border);
+    border-radius: var(--ds-radius-xl);
+  }
 
-/* --- Left-aligned variant --- */
-.ds-empty-state--left {
-  align-items: flex-start;
-  text-align: start;
+  /* --- Left-aligned variant --- */
+  &--left {
+    align-items: flex-start;
+    text-align: start;
+  }
 }

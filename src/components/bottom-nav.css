@@ -39,6 +39,77 @@
   background: var(--ds-color-surface);
   border-block-start: 1px solid var(--ds-color-border);
   padding-block-end: env(safe-area-inset-bottom, 0px);
+
+  /* Nav item */
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ds-space-1);
+    flex: 1;
+    padding: var(--ds-space-2) 0;
+    color: var(--ds-color-text-tertiary);
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font: inherit;
+    transition: color var(--ds-duration-fast) var(--ds-ease-default);
+    -webkit-tap-highlight-color: transparent;
+
+    &--active {
+      color: var(--ds-color-text);
+    }
+
+    &--create {
+      color: var(--ds-color-text-tertiary);
+    }
+  }
+
+  /* Icon wrapper */
+  &__icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Notification badge */
+  &__badge {
+    position: absolute;
+    inset-block-start: calc(-1 * var(--ds-space-1));
+    inset-inline-end: calc(-1 * var(--ds-space-2));
+    min-width: var(--ds-space-4);
+    height: var(--ds-space-4);
+    padding: 0 var(--ds-space-1);
+    border-radius: var(--ds-radius-full);
+    background: var(--ds-color-error);
+    color: var(--ds-color-on-inverted);
+    font-size: var(--ds-text-2xs);
+    font-weight: var(--ds-weight-semibold);
+    line-height: var(--ds-space-4);
+    text-align: center;
+  }
+
+  /* Label */
+  &__label {
+    font-size: var(--ds-text-2xs);
+    font-weight: var(--ds-weight-medium);
+    letter-spacing: var(--ds-tracking-wide);
+  }
+
+  /* Create button — elevated center icon */
+  &__create-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--ds-radius-full);
+    background: var(--ds-color-text);
+    color: var(--ds-color-bg-base);
+  }
 }
 
 @media (max-width: 1023px) /* below --ds-breakpoint-lg */ {
@@ -51,75 +122,4 @@
 
 @media (min-width: 1024px) /* --ds-breakpoint-lg */ {
   .ds-bottom-nav { display: none !important; }
-}
-
-/* Nav item */
-.ds-bottom-nav__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--ds-space-1);
-  flex: 1;
-  padding: var(--ds-space-2) 0;
-  color: var(--ds-color-text-tertiary);
-  text-decoration: none;
-  border: none;
-  background: none;
-  cursor: pointer;
-  font: inherit;
-  transition: color var(--ds-duration-fast) var(--ds-ease-default);
-  -webkit-tap-highlight-color: transparent;
-}
-
-.ds-bottom-nav__item--active {
-  color: var(--ds-color-text);
-}
-
-/* Icon wrapper */
-.ds-bottom-nav__icon {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Notification badge */
-.ds-bottom-nav__badge {
-  position: absolute;
-  inset-block-start: calc(-1 * var(--ds-space-1));
-  inset-inline-end: calc(-1 * var(--ds-space-2));
-  min-width: var(--ds-space-4);
-  height: var(--ds-space-4);
-  padding: 0 var(--ds-space-1);
-  border-radius: var(--ds-radius-full);
-  background: var(--ds-color-error);
-  color: var(--ds-color-on-inverted);
-  font-size: var(--ds-text-2xs);
-  font-weight: var(--ds-weight-semibold);
-  line-height: var(--ds-space-4);
-  text-align: center;
-}
-
-/* Label */
-.ds-bottom-nav__label {
-  font-size: var(--ds-text-2xs);
-  font-weight: var(--ds-weight-medium);
-  letter-spacing: var(--ds-tracking-wide);
-}
-
-/* Create button — elevated center icon */
-.ds-bottom-nav__create-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: var(--ds-radius-full);
-  background: var(--ds-color-text);
-  color: var(--ds-color-bg-base);
-}
-
-.ds-bottom-nav__item--create {
-  color: var(--ds-color-text-tertiary);
 }

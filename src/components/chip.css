@@ -33,47 +33,47 @@
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-full);
   white-space: nowrap;
-}
 
-/* Logic chip (AND/OR toggle) */
-.ds-chip--logic {
-  cursor: pointer;
-  font-weight: 600;
-  color: var(--ds-color-text-tertiary);
-  background: transparent;
-  border-color: var(--ds-color-border);
-  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
-}
+  /* Logic chip (AND/OR toggle) */
+  &--logic {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--ds-color-text-tertiary);
+    background: transparent;
+    border-color: var(--ds-color-border);
+    transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
 
-.ds-chip--logic:hover {
-  background: var(--ds-color-overlay-hover);
-}
+    &:hover {
+      background: var(--ds-color-overlay-hover);
+    }
+  }
 
-/* Sort chip (dashed border) */
-.ds-chip--sort {
-  border-style: dashed;
-}
+  /* Sort chip (dashed border) */
+  &--sort {
+    border-style: dashed;
+  }
 
-/* Remove button */
-.ds-chip__remove {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 14px;
-  height: 14px;
-  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
-  min-height: 1.5rem;
-  border: none;
-  border-radius: var(--ds-radius-full);
-  background: transparent;
-  color: var(--ds-color-text-tertiary);
-  cursor: pointer;
-  transition:
-    color var(--ds-duration-fast) var(--ds-ease-default),
-    background-color var(--ds-duration-fast) var(--ds-ease-default);
-}
+  /* Remove button */
+  &__remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+    min-height: 1.5rem;
+    border: none;
+    border-radius: var(--ds-radius-full);
+    background: transparent;
+    color: var(--ds-color-text-tertiary);
+    cursor: pointer;
+    transition:
+      color var(--ds-duration-fast) var(--ds-ease-default),
+      background-color var(--ds-duration-fast) var(--ds-ease-default);
 
-.ds-chip__remove:hover {
-  color: var(--ds-color-text);
-  background: var(--ds-color-overlay-hover);
+    &:hover {
+      color: var(--ds-color-text);
+      background: var(--ds-color-overlay-hover);
+    }
+  }
 }

@@ -45,179 +45,190 @@
   transition:
     opacity var(--ds-duration-normal) var(--ds-ease-default),
     visibility var(--ds-duration-normal) var(--ds-ease-default);
-}
 
-.ds-drawer--open {
-  opacity: 1;
-  visibility: visible;
-}
+  &--open {
+    opacity: 1;
+    visibility: visible;
 
-/* ---------------------------------------------------------------------------
-   Sliding panel
-   --------------------------------------------------------------------------- */
+    & .ds-drawer__content {
+      transform: translateX(0);
+    }
+  }
 
-.ds-drawer__content {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--ds-color-surface);
-  box-shadow: var(--ds-shadow-lg);
-  overflow-y: auto;
-  transition: transform var(--ds-duration-normal) var(--ds-ease-out-expo);
-}
+  /* ---------------------------------------------------------------------------
+     Sliding panel
+     --------------------------------------------------------------------------- */
 
-/* ==========================================================================
- * Direction: Right (default)
- * ========================================================================== */
+  &__content {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--ds-color-surface);
+    box-shadow: var(--ds-shadow-lg);
+    overflow-y: auto;
+    transition: transform var(--ds-duration-normal) var(--ds-ease-out-expo);
+    /* Direction: Right (default) */
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    width: 24rem;
+    max-width: 90vw;
+    border-inline-start: 1px solid var(--ds-color-border);
+    transform: translateX(100%);
+  }
 
-.ds-drawer__content,
-.ds-drawer--right .ds-drawer__content {
-  inset-block-start: 0;
-  inset-inline-end: 0;
-  inset-block-end: 0;
-  width: 24rem;
-  max-width: 90vw;
-  border-inline-start: 1px solid var(--ds-color-border);
-  transform: translateX(100%);
-}
+  /* ==========================================================================
+   * Direction: Right (explicit)
+   * ========================================================================== */
 
-.ds-drawer--open .ds-drawer__content,
-.ds-drawer--right.ds-drawer--open .ds-drawer__content {
-  transform: translateX(0);
-}
+  &--right &__content {
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    width: 24rem;
+    max-width: 90vw;
+    border-inline-start: 1px solid var(--ds-color-border);
+    transform: translateX(100%);
+  }
 
-/* ==========================================================================
- * Direction: Left
- * ========================================================================== */
+  &--right&--open &__content {
+    transform: translateX(0);
+  }
 
-.ds-drawer--left .ds-drawer__content {
-  inset-inline-start: 0;
-  inset-block-start: 0;
-  inset-block-end: 0;
-  inset-inline-end: auto;
-  width: 24rem;
-  max-width: 90vw;
-  border-inline-start: 0;
-  border-inline-end: 1px solid var(--ds-color-border);
-  transform: translateX(-100%);
-}
+  /* ==========================================================================
+   * Direction: Left
+   * ========================================================================== */
 
-.ds-drawer--left.ds-drawer--open .ds-drawer__content {
-  transform: translateX(0);
-}
+  &--left &__content {
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    inset-block-end: 0;
+    inset-inline-end: auto;
+    width: 24rem;
+    max-width: 90vw;
+    border-inline-start: 0;
+    border-inline-end: 1px solid var(--ds-color-border);
+    transform: translateX(-100%);
+  }
 
-/* ==========================================================================
- * Direction: Bottom
- * ========================================================================== */
+  &--left&--open &__content {
+    transform: translateX(0);
+  }
 
-.ds-drawer--bottom .ds-drawer__content {
-  inset-block-end: 0;
-  inset-inline-start: 0;
-  inset-inline-end: 0;
-  inset-block-start: auto;
-  width: auto;
-  max-height: 90dvh;
-  border-inline-start: 0;
-  border-block-start: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-xl) var(--ds-radius-xl) 0 0;
-  transform: translateY(100%);
-}
+  /* ==========================================================================
+   * Direction: Bottom
+   * ========================================================================== */
 
-.ds-drawer--bottom.ds-drawer--open .ds-drawer__content {
-  transform: translateY(0);
-}
+  &--bottom &__content {
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    inset-block-start: auto;
+    width: auto;
+    max-height: 90dvh;
+    border-inline-start: 0;
+    border-block-start: 1px solid var(--ds-color-border);
+    border-radius: var(--ds-radius-xl) var(--ds-radius-xl) 0 0;
+    transform: translateY(100%);
+  }
 
-/* ==========================================================================
- * Sizes
- * ========================================================================== */
+  &--bottom&--open &__content {
+    transform: translateY(0);
+  }
 
-.ds-drawer--sm .ds-drawer__content {
-  width: 18rem;
-}
+  /* ==========================================================================
+   * Sizes
+   * ========================================================================== */
 
-.ds-drawer--lg .ds-drawer__content {
-  width: 36rem;
-}
+  &--sm &__content {
+    width: 18rem;
+  }
 
-/* Bottom drawers should not have a fixed width */
-.ds-drawer--bottom.ds-drawer--sm .ds-drawer__content,
-.ds-drawer--bottom.ds-drawer--lg .ds-drawer__content {
-  width: auto;
-}
+  &--lg &__content {
+    width: 36rem;
+  }
 
-/* ==========================================================================
- * Header
- * ========================================================================== */
+  /* Bottom drawers should not have a fixed width */
+  &--bottom&--sm &__content,
+  &--bottom&--lg &__content {
+    width: auto;
+  }
 
-.ds-drawer__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: var(--ds-space-4) var(--ds-space-5);
-  border-block-end: 1px solid var(--ds-color-border);
-}
+  /* ==========================================================================
+   * Header
+   * ========================================================================== */
 
-.ds-drawer__header h3 {
-  font-family: var(--ds-font-display);
-  font-weight: var(--ds-font-display-weight);
-  font-size: var(--ds-text-lg);
-  color: var(--ds-color-text);
-  margin: 0;
-}
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: var(--ds-space-4) var(--ds-space-5);
+    border-block-end: 1px solid var(--ds-color-border);
 
-/* ==========================================================================
- * Close button
- * ========================================================================== */
+    & h3 {
+      font-family: var(--ds-font-display);
+      font-weight: var(--ds-font-display-weight);
+      font-size: var(--ds-text-lg);
+      color: var(--ds-color-text);
+      margin: 0;
+    }
+  }
 
-.ds-drawer__close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
-  border: 0;
-  border-radius: var(--ds-radius-md);
-  background-color: transparent;
-  color: var(--ds-color-text-tertiary);
-  font-size: var(--ds-text-lg);
-  line-height: var(--ds-leading-none);
-  cursor: pointer;
-  flex-shrink: 0;
-  transition:
-    background-color var(--ds-duration-fast) var(--ds-ease-default),
-    color var(--ds-duration-fast) var(--ds-ease-default);
-}
+  /* ==========================================================================
+   * Close button
+   * ========================================================================== */
 
-.ds-drawer__close:hover {
-  background-color: var(--ds-color-overlay);
-  color: var(--ds-color-text);
-}
-.ds-drawer__close:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
-  scroll-margin-block: var(--ds-space-16, 4rem);
-}
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    border-radius: var(--ds-radius-md);
+    background-color: transparent;
+    color: var(--ds-color-text-tertiary);
+    font-size: var(--ds-text-lg);
+    line-height: var(--ds-leading-none);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition:
+      background-color var(--ds-duration-fast) var(--ds-ease-default),
+      color var(--ds-duration-fast) var(--ds-ease-default);
 
-/* ==========================================================================
- * Body
- * ========================================================================== */
+    &:hover {
+      background-color: var(--ds-color-overlay);
+      color: var(--ds-color-text);
+    }
 
-.ds-drawer__body {
-  padding: var(--ds-space-5);
-  flex: 1;
-  overflow-y: auto;
-}
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+      scroll-margin-block: var(--ds-space-16, 4rem);
+    }
+  }
 
-/* ==========================================================================
- * Footer
- * ========================================================================== */
+  /* ==========================================================================
+   * Body
+   * ========================================================================== */
 
-.ds-drawer__footer {
-  padding: var(--ds-space-4) var(--ds-space-5);
-  border-block-start: 1px solid var(--ds-color-border);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: var(--ds-space-2);
+  &__body {
+    padding: var(--ds-space-5);
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  /* ==========================================================================
+   * Footer
+   * ========================================================================== */
+
+  &__footer {
+    padding: var(--ds-space-4) var(--ds-space-5);
+    border-block-start: 1px solid var(--ds-color-border);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--ds-space-2);
+  }
 }

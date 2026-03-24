@@ -13,155 +13,155 @@
 .ds-tooltip {
   position: relative;
   display: inline-flex;
-}
 
-/* --- Tooltip bubble --- */
+  /* --- Tooltip bubble --- */
 
-.ds-tooltip__content {
-  position: absolute;
-  z-index: var(--ds-z-tooltip);
-  background-color: var(--ds-color-inverted);
-  color: var(--ds-color-on-inverted);
-  font-size: var(--ds-text-xs);
-  font-weight: var(--ds-weight-medium);
-  line-height: var(--ds-leading-snug);
-  padding: var(--ds-space-1) var(--ds-space-2);
-  border-radius: var(--ds-radius-md);
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity var(--ds-duration-fast) var(--ds-ease-default),
-    visibility var(--ds-duration-fast) var(--ds-ease-default),
-    transform var(--ds-duration-fast) var(--ds-ease-out);
-}
+  &__content {
+    position: absolute;
+    z-index: var(--ds-z-tooltip);
+    background-color: var(--ds-color-inverted);
+    color: var(--ds-color-on-inverted);
+    font-size: var(--ds-text-xs);
+    font-weight: var(--ds-weight-medium);
+    line-height: var(--ds-leading-snug);
+    padding: var(--ds-space-1) var(--ds-space-2);
+    border-radius: var(--ds-radius-md);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity var(--ds-duration-fast) var(--ds-ease-default),
+      visibility var(--ds-duration-fast) var(--ds-ease-default),
+      transform var(--ds-duration-fast) var(--ds-ease-out);
 
-/* --- Arrow (shared base) --- */
+    /* --- Arrow (shared base) --- */
 
-.ds-tooltip__content::after {
-  content: '';
-  position: absolute;
-  border: 4px solid transparent;
-}
+    &::after {
+      content: '';
+      position: absolute;
+      border: 4px solid transparent;
+    }
+  }
 
-/* --- Show on hover --- */
+  /* --- Show on hover --- */
 
-.ds-tooltip:hover .ds-tooltip__content {
-  opacity: 1;
-  visibility: visible;
-}
+  &:hover .ds-tooltip__content {
+    opacity: 1;
+    visibility: visible;
+  }
 
-/* --- Delay modifier --- */
+  /* --- Delay modifier --- */
 
-.ds-tooltip--delay .ds-tooltip__content {
-  transition-delay: 0ms;
-}
+  &--delay .ds-tooltip__content {
+    transition-delay: 0ms;
+  }
 
-.ds-tooltip--delay:hover .ds-tooltip__content {
-  transition-delay: 200ms;
-}
+  &--delay:hover .ds-tooltip__content {
+    transition-delay: 200ms;
+  }
 
-/* =============================================
-   Placement: Top (default)
-   ============================================= */
+  /* =============================================
+     Placement: Top (default)
+     ============================================= */
 
-.ds-tooltip .ds-tooltip__content,
-.ds-tooltip--top .ds-tooltip__content {
-  inset-block-end: calc(100% + var(--ds-offset-md));
-  inset-inline-start: 50%;
-  transform: translateX(-50%) translateY(4px);
-}
+  & .ds-tooltip__content,
+  &--top .ds-tooltip__content {
+    inset-block-end: calc(100% + var(--ds-offset-md));
+    inset-inline-start: 50%;
+    transform: translateX(-50%) translateY(4px);
+  }
 
-.ds-tooltip:hover .ds-tooltip__content,
-.ds-tooltip--top:hover .ds-tooltip__content {
-  transform: translateX(-50%) translateY(0);
-}
+  &:hover .ds-tooltip__content,
+  &--top:hover .ds-tooltip__content {
+    transform: translateX(-50%) translateY(0);
+  }
 
-/* Arrow — points down */
-.ds-tooltip .ds-tooltip__content::after,
-.ds-tooltip--top .ds-tooltip__content::after {
-  inset-block-start: 100%;
-  inset-inline-start: 50%;
-  transform: translateX(-50%);
-  border-top-color: var(--ds-color-inverted);
-}
+  /* Arrow — points down */
+  & .ds-tooltip__content::after,
+  &--top .ds-tooltip__content::after {
+    inset-block-start: 100%;
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+    border-top-color: var(--ds-color-inverted);
+  }
 
-/* =============================================
-   Placement: Bottom
-   ============================================= */
+  /* =============================================
+     Placement: Bottom
+     ============================================= */
 
-.ds-tooltip--bottom .ds-tooltip__content {
-  inset-block-start: calc(100% + var(--ds-offset-md));
-  inset-block-end: auto;
-  inset-inline-start: 50%;
-  transform: translateX(-50%) translateY(-4px);
-}
+  &--bottom .ds-tooltip__content {
+    inset-block-start: calc(100% + var(--ds-offset-md));
+    inset-block-end: auto;
+    inset-inline-start: 50%;
+    transform: translateX(-50%) translateY(-4px);
+  }
 
-.ds-tooltip--bottom:hover .ds-tooltip__content {
-  transform: translateX(-50%) translateY(0);
-}
+  &--bottom:hover .ds-tooltip__content {
+    transform: translateX(-50%) translateY(0);
+  }
 
-/* Arrow — points up */
-.ds-tooltip--bottom .ds-tooltip__content::after {
-  inset-block-end: 100%;
-  inset-block-start: auto;
-  inset-inline-start: 50%;
-  transform: translateX(-50%);
-  border-top-color: transparent;
-  border-bottom-color: var(--ds-color-inverted);
-}
+  /* Arrow — points up */
+  &--bottom .ds-tooltip__content::after {
+    inset-block-end: 100%;
+    inset-block-start: auto;
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+    border-top-color: transparent;
+    border-bottom-color: var(--ds-color-inverted);
+  }
 
-/* =============================================
-   Placement: Left
-   ============================================= */
+  /* =============================================
+     Placement: Left
+     ============================================= */
 
-.ds-tooltip--left .ds-tooltip__content {
-  inset-inline-end: calc(100% + var(--ds-offset-md));
-  inset-inline-start: auto;
-  inset-block-end: auto;
-  inset-block-start: 50%;
-  transform: translateY(-50%) translateX(4px);
-}
+  &--left .ds-tooltip__content {
+    inset-inline-end: calc(100% + var(--ds-offset-md));
+    inset-inline-start: auto;
+    inset-block-end: auto;
+    inset-block-start: 50%;
+    transform: translateY(-50%) translateX(4px);
+  }
 
-.ds-tooltip--left:hover .ds-tooltip__content {
-  transform: translateY(-50%) translateX(0);
-}
+  &--left:hover .ds-tooltip__content {
+    transform: translateY(-50%) translateX(0);
+  }
 
-/* Arrow — points right */
-.ds-tooltip--left .ds-tooltip__content::after {
-  inset-inline-start: 100%;
-  inset-block-start: 50%;
-  inset-block-end: auto;
-  inset-inline-end: auto;
-  transform: translateY(-50%);
-  border-top-color: transparent;
-  border-inline-start-color: var(--ds-color-inverted);
-}
+  /* Arrow — points right */
+  &--left .ds-tooltip__content::after {
+    inset-inline-start: 100%;
+    inset-block-start: 50%;
+    inset-block-end: auto;
+    inset-inline-end: auto;
+    transform: translateY(-50%);
+    border-top-color: transparent;
+    border-inline-start-color: var(--ds-color-inverted);
+  }
 
-/* =============================================
-   Placement: Right
-   ============================================= */
+  /* =============================================
+     Placement: Right
+     ============================================= */
 
-.ds-tooltip--right .ds-tooltip__content {
-  inset-inline-start: calc(100% + var(--ds-offset-md));
-  inset-inline-end: auto;
-  inset-block-end: auto;
-  inset-block-start: 50%;
-  transform: translateY(-50%) translateX(-4px);
-}
+  &--right .ds-tooltip__content {
+    inset-inline-start: calc(100% + var(--ds-offset-md));
+    inset-inline-end: auto;
+    inset-block-end: auto;
+    inset-block-start: 50%;
+    transform: translateY(-50%) translateX(-4px);
+  }
 
-.ds-tooltip--right:hover .ds-tooltip__content {
-  transform: translateY(-50%) translateX(0);
-}
+  &--right:hover .ds-tooltip__content {
+    transform: translateY(-50%) translateX(0);
+  }
 
-/* Arrow — points left */
-.ds-tooltip--right .ds-tooltip__content::after {
-  inset-inline-end: 100%;
-  inset-inline-start: auto;
-  inset-block-start: 50%;
-  inset-block-end: auto;
-  transform: translateY(-50%);
-  border-top-color: transparent;
-  border-inline-end-color: var(--ds-color-inverted);
+  /* Arrow — points left */
+  &--right .ds-tooltip__content::after {
+    inset-inline-end: 100%;
+    inset-inline-start: auto;
+    inset-block-start: 50%;
+    inset-block-end: auto;
+    transform: translateY(-50%);
+    border-top-color: transparent;
+    border-inline-end-color: var(--ds-color-inverted);
+  }
 }

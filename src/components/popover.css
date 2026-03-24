@@ -24,88 +24,88 @@
 .ds-popover {
   position: relative;
   display: inline-flex;
-}
 
-.ds-popover__content {
-  position: absolute;
-  z-index: var(--ds-z-dropdown);
-  background-color: var(--ds-color-surface);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-xl);
-  box-shadow: var(--ds-shadow-lg);
-  padding: var(--ds-space-4);
-  min-width: 16rem;
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0.96);
-  transition:
-    opacity var(--ds-duration-fast) var(--ds-ease),
-    visibility var(--ds-duration-fast) var(--ds-ease),
-    transform var(--ds-duration-fast) var(--ds-ease-out-expo);
-}
+  &__content {
+    position: absolute;
+    z-index: var(--ds-z-dropdown);
+    background-color: var(--ds-color-surface);
+    border: 1px solid var(--ds-color-border);
+    border-radius: var(--ds-radius-xl);
+    box-shadow: var(--ds-shadow-lg);
+    padding: var(--ds-space-4);
+    min-width: 16rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.96);
+    transition:
+      opacity var(--ds-duration-fast) var(--ds-ease),
+      visibility var(--ds-duration-fast) var(--ds-ease),
+      transform var(--ds-duration-fast) var(--ds-ease-out-expo);
 
-/* Open state */
-.ds-popover--open .ds-popover__content {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-}
+    /* Size: small */
+    &--sm {
+      min-width: 12rem;
+      padding: var(--ds-space-3);
+    }
 
-/* Placement: bottom (default) */
-.ds-popover__content,
-.ds-popover--bottom .ds-popover__content {
-  inset-block-start: calc(100% + var(--ds-offset-md));
-  inset-inline-start: 50%;
-  transform: translateX(-50%) scale(0.96);
-}
+    /* Size: large */
+    &--lg {
+      min-width: 24rem;
+    }
+  }
 
-.ds-popover--open .ds-popover__content,
-.ds-popover--bottom.ds-popover--open .ds-popover__content {
-  transform: translateX(-50%) scale(1);
-}
+  /* Open state */
+  &--open .ds-popover__content {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
 
-/* Placement: top */
-.ds-popover--top .ds-popover__content {
-  inset-block-end: calc(100% + var(--ds-offset-md));
-  inset-block-start: auto;
-  inset-inline-start: 50%;
-  transform: translateX(-50%) scale(0.96);
-}
+  /* Placement: bottom (default) */
+  & .ds-popover__content,
+  &--bottom .ds-popover__content {
+    inset-block-start: calc(100% + var(--ds-offset-md));
+    inset-inline-start: 50%;
+    transform: translateX(-50%) scale(0.96);
+  }
 
-.ds-popover--top.ds-popover--open .ds-popover__content {
-  transform: translateX(-50%) scale(1);
-}
+  &--open .ds-popover__content,
+  &--bottom&--open .ds-popover__content {
+    transform: translateX(-50%) scale(1);
+  }
 
-/* Placement: left */
-.ds-popover--left .ds-popover__content {
-  inset-inline-end: calc(100% + var(--ds-offset-md));
-  inset-block-start: 50%;
-  inset-inline-start: auto;
-  transform: translateY(-50%) scale(0.96);
-}
+  /* Placement: top */
+  &--top .ds-popover__content {
+    inset-block-end: calc(100% + var(--ds-offset-md));
+    inset-block-start: auto;
+    inset-inline-start: 50%;
+    transform: translateX(-50%) scale(0.96);
+  }
 
-.ds-popover--left.ds-popover--open .ds-popover__content {
-  transform: translateY(-50%) scale(1);
-}
+  &--top&--open .ds-popover__content {
+    transform: translateX(-50%) scale(1);
+  }
 
-/* Placement: right */
-.ds-popover--right .ds-popover__content {
-  inset-inline-start: calc(100% + var(--ds-offset-md));
-  inset-block-start: 50%;
-  transform: translateY(-50%) scale(0.96);
-}
+  /* Placement: left */
+  &--left .ds-popover__content {
+    inset-inline-end: calc(100% + var(--ds-offset-md));
+    inset-block-start: 50%;
+    inset-inline-start: auto;
+    transform: translateY(-50%) scale(0.96);
+  }
 
-.ds-popover--right.ds-popover--open .ds-popover__content {
-  transform: translateY(-50%) scale(1);
-}
+  &--left&--open .ds-popover__content {
+    transform: translateY(-50%) scale(1);
+  }
 
-/* Size: small */
-.ds-popover__content--sm {
-  min-width: 12rem;
-  padding: var(--ds-space-3);
-}
+  /* Placement: right */
+  &--right .ds-popover__content {
+    inset-inline-start: calc(100% + var(--ds-offset-md));
+    inset-block-start: 50%;
+    transform: translateY(-50%) scale(0.96);
+  }
 
-/* Size: large */
-.ds-popover__content--lg {
-  min-width: 24rem;
+  &--right&--open .ds-popover__content {
+    transform: translateY(-50%) scale(1);
+  }
 }

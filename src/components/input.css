@@ -46,144 +46,223 @@
   height: var(--ds-size-3);
 }
 
-/* Hover */
-.ds-input:hover,
-.ds-textarea:hover,
-.ds-select:hover {
-  border-color: var(--ds-color-border-hover);
+.ds-input {
+  /* Hover */
+  &:hover {
+    border-color: var(--ds-color-border-hover);
+  }
+
+  /* Focus — box-shadow ring instead of outline.
+     Inputs always trigger :focus-visible (browser heuristic for text entry),
+     so outline creates unavoidable double-border with offset.
+     box-shadow follows border-radius perfectly and has no gap. */
+  &:focus-visible {
+    border-color: var(--ds-ring-color);
+    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    scroll-margin-block: var(--ds-space-16, 4rem);
+  }
+
+  &::placeholder {
+    color: var(--ds-color-text-tertiary);
+  }
+
+  /* States — error: border + ring match the semantic color */
+  &--error {
+    border-color: var(--ds-color-error);
+
+    &:hover {
+      border-color: var(--ds-color-error);
+    }
+
+    &:focus-visible {
+      border-color: var(--ds-color-error);
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-error);
+    }
+  }
+
+  /* States — success: border + ring match the semantic color */
+  &--success {
+    border-color: var(--ds-color-success);
+
+    &:hover {
+      border-color: var(--ds-color-success);
+    }
+
+    &:focus-visible {
+      border-color: var(--ds-color-success);
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-success);
+    }
+  }
+
+  /* Sizes */
+  &--xs {
+    height: var(--ds-size-1);
+    padding: 0 var(--ds-space-1-5);
+    font-size: var(--ds-text-xs);
+    border-radius: var(--ds-radius-sm);
+  }
+
+  &--sm {
+    height: var(--ds-size-2);
+    padding: 0 var(--ds-space-2);
+    font-size: var(--ds-text-sm);
+    border-radius: var(--ds-radius-md);
+  }
+
+  &--lg {
+    height: var(--ds-size-4);
+    padding: 0 var(--ds-space-4);
+    font-size: var(--ds-text-base);
+  }
+
+  /* --- Layout Modifiers ---
+     Override default width/display/chrome assumptions. */
+
+  /* Flush — naked input inside a styled container.
+     No border, no background, no padding, no focus ring.
+     The container handles visual chrome. */
+  &--flush {
+    background: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    height: auto;
+
+    &:hover {
+      border-color: transparent;
+    }
+
+    &:focus-visible {
+      border-color: transparent;
+      box-shadow: none;
+    }
+  }
+
+  /* Inline — auto-width for use in flex rows */
+  &--inline {
+    width: auto;
+    display: inline-flex;
+  }
 }
 
-/* Focus — box-shadow ring instead of outline.
-   Inputs always trigger :focus-visible (browser heuristic for text entry),
-   so outline creates unavoidable double-border with offset.
-   box-shadow follows border-radius perfectly and has no gap. */
-.ds-input:focus-visible,
-.ds-textarea:focus-visible,
-.ds-select:focus-visible {
-  border-color: var(--ds-ring-color);
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
-  scroll-margin-block: var(--ds-space-16, 4rem);
-}
-
-.ds-input::placeholder,
-.ds-textarea::placeholder {
-  color: var(--ds-color-text-tertiary);
-}
-
-/* States — error: border + ring match the semantic color */
-.ds-input--error,
-.ds-textarea--error {
-  border-color: var(--ds-color-error);
-}
-.ds-input--error:hover,
-.ds-textarea--error:hover {
-  border-color: var(--ds-color-error);
-}
-.ds-input--error:focus-visible,
-.ds-textarea--error:focus-visible {
-  border-color: var(--ds-color-error);
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-error);
-}
-
-/* States — success: border + ring match the semantic color */
-.ds-input--success {
-  border-color: var(--ds-color-success);
-}
-.ds-input--success:hover {
-  border-color: var(--ds-color-success);
-}
-.ds-input--success:focus-visible {
-  border-color: var(--ds-color-success);
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-success);
-}
-
-/* Sizes */
-.ds-input--xs,
-.ds-select--xs {
-  height: var(--ds-size-1);
-  padding: 0 var(--ds-space-1-5);
-  font-size: var(--ds-text-xs);
-  border-radius: var(--ds-radius-sm);
-}
-
-.ds-input--sm,
-.ds-select--sm {
-  height: var(--ds-size-2);
-  padding: 0 var(--ds-space-2);
-  font-size: var(--ds-text-sm);
-  border-radius: var(--ds-radius-md);
-}
-
-.ds-input--lg,
-.ds-select--lg {
-  height: var(--ds-size-4);
-  padding: 0 var(--ds-space-4);
-  font-size: var(--ds-text-base);
-}
-
-.ds-select--lg {
-  padding-inline-end: var(--ds-space-8);
-}
-
-/* Textarea */
 .ds-textarea {
+  &:hover {
+    border-color: var(--ds-color-border-hover);
+  }
+
+  &:focus-visible {
+    border-color: var(--ds-ring-color);
+    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    scroll-margin-block: var(--ds-space-16, 4rem);
+  }
+
+  &::placeholder {
+    color: var(--ds-color-text-tertiary);
+  }
+
+  /* States — error */
+  &--error {
+    border-color: var(--ds-color-error);
+
+    &:hover {
+      border-color: var(--ds-color-error);
+    }
+
+    &:focus-visible {
+      border-color: var(--ds-color-error);
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-error);
+    }
+  }
+
+  /* Textarea */
   min-height: 6rem;
   padding: var(--ds-space-2-5) var(--ds-space-4);
   height: auto;
   resize: vertical;
 }
 
-/* Select */
 .ds-select {
+  &:hover {
+    border-color: var(--ds-color-border-hover);
+  }
+
+  &:focus-visible {
+    border-color: var(--ds-ring-color);
+    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    scroll-margin-block: var(--ds-space-16, 4rem);
+  }
+
+  /* Select */
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a1a1aa' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right var(--ds-space-3) center;
   padding-inline-end: var(--ds-space-8);
+
+  /* Sizes */
+  &--xs {
+    height: var(--ds-size-1);
+    padding: 0 var(--ds-space-1-5);
+    font-size: var(--ds-text-xs);
+    border-radius: var(--ds-radius-sm);
+  }
+
+  &--sm {
+    height: var(--ds-size-2);
+    padding: 0 var(--ds-space-2);
+    font-size: var(--ds-text-sm);
+    border-radius: var(--ds-radius-md);
+  }
+
+  &--lg {
+    height: var(--ds-size-4);
+    padding: 0 var(--ds-space-4);
+    font-size: var(--ds-text-base);
+    padding-inline-end: var(--ds-space-8);
+  }
+
+  /* Full width (opt-in for select, already default for input/textarea) */
+  &--full {
+    width: 100%;
+  }
 }
 
-/* --- Layout Modifiers ---
-   Override default width/display/chrome assumptions. */
+/* --- Input Group ---
+   Wrapper for input with leading icon.
+   Icon sits inside the input via absolute positioning. */
+.ds-input-group {
+  position: relative;
 
-/* Full width (opt-in for select, already default for input/textarea) */
-.ds-select--full {
-  width: 100%;
-}
+  &__icon {
+    position: absolute;
+    inset-inline-start: var(--ds-space-3);
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ds-color-text-tertiary);
+    pointer-events: none;
+  }
 
-/* Flush — naked input inside a styled container.
-   No border, no background, no padding, no focus ring.
-   The container handles visual chrome. */
-.ds-input--flush {
-  background: transparent;
-  border: none;
-  padding: 0;
-  border-radius: 0;
-  box-shadow: none;
-  height: auto;
-}
-.ds-input--flush:hover {
-  border-color: transparent;
-}
-.ds-input--flush:focus-visible {
-  border-color: transparent;
-  box-shadow: none;
-}
+  & .ds-input {
+    padding-inline-start: calc(var(--ds-space-3) + 1rem + var(--ds-space-2));
+  }
 
-/* Inline — auto-width for use in flex rows */
-.ds-input--inline {
-  width: auto;
-  display: inline-flex;
-}
+  /* --- Input Group: icon-right ---
+     Move icon to the right side, flip input padding. */
+  &--icon-right {
+    & .ds-input-group__icon {
+      inset-inline-start: auto;
+      inset-inline-end: var(--ds-space-3);
+    }
 
-/* --- Input Group: icon-right ---
-   Move icon to the right side, flip input padding. */
-.ds-input-group--icon-right .ds-input-group__icon {
-  inset-inline-start: auto;
-  inset-inline-end: var(--ds-space-3);
-}
-.ds-input-group--icon-right .ds-input {
-  padding-inline-start: var(--ds-space-4);
-  padding-inline-end: calc(var(--ds-space-3) + 1rem + var(--ds-space-2));
+    & .ds-input {
+      padding-inline-start: var(--ds-space-4);
+      padding-inline-end: calc(var(--ds-space-3) + 1rem + var(--ds-space-2));
+    }
+  }
 }
 
 /* Help text */
@@ -191,8 +270,9 @@
   font-size: var(--ds-text-xs);
   color: var(--ds-color-text-tertiary);
   margin-block-start: var(--ds-space-1-5);
+
+  &--error { color: var(--ds-color-error); }
 }
-.ds-help--error { color: var(--ds-color-error); }
 
 /* Form Group (legacy — prefer ds-form) */
 .ds-form-group { margin-block-end: var(--ds-space-4); }
@@ -201,35 +281,14 @@
    Vertical form layout: comfortable spacing between fields (24px),
    extra breathing room before the action area (32px).
    Use ds-form__actions on the button/submit wrapper. */
-.ds-form > * + * {
-  margin-block-start: var(--ds-space-6);
-}
+.ds-form {
+  & > * + * {
+    margin-block-start: var(--ds-space-6);
+  }
 
-.ds-form__actions {
-  margin-block-start: var(--ds-space-8);
-}
-
-/* --- Input Group ---
-   Wrapper for input with leading icon.
-   Icon sits inside the input via absolute positioning. */
-.ds-input-group {
-  position: relative;
-}
-
-.ds-input-group__icon {
-  position: absolute;
-  inset-inline-start: var(--ds-space-3);
-  inset-block-start: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ds-color-text-tertiary);
-  pointer-events: none;
-}
-
-.ds-input-group .ds-input {
-  padding-inline-start: calc(var(--ds-space-3) + 1rem + var(--ds-space-2));
+  &__actions {
+    margin-block-start: var(--ds-space-8);
+  }
 }
 
 /* Checkbox / Radio */
@@ -241,12 +300,12 @@
   cursor: pointer;
   font-size: var(--ds-text-sm);
   color: var(--ds-color-text-secondary);
-}
-.ds-checkbox input,
-.ds-radio input {
-  accent-color: var(--ds-color-interactive);
-  width: 1rem;
-  height: 1rem;
-  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
-  min-height: 1.5rem;
+
+  & input {
+    accent-color: var(--ds-color-interactive);
+    width: 1rem;
+    height: 1rem;
+    min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+    min-height: 1.5rem;
+  }
 }

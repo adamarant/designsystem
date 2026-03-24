@@ -44,100 +44,101 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%2327272a' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
   transition:
     background-color var(--ds-duration-fast) var(--ds-ease-default);
-}
-.ds-drop-zone:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
-  scroll-margin-block: var(--ds-space-16, 4rem);
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    scroll-margin-block: var(--ds-space-16, 4rem);
+  }
+
+  /* ---------------------------------------------------------------------------
+     Hover
+     --------------------------------------------------------------------------- */
+
+  &:hover {
+    background-color: var(--ds-color-bg-elevated);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%233f3f46' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
+  }
+
+  /* ---------------------------------------------------------------------------
+     Icon container
+     --------------------------------------------------------------------------- */
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--ds-radius-xl);
+    background-color: var(--ds-color-bg-elevated);
+    color: var(--ds-color-text-secondary);
+    transition: color var(--ds-duration-fast) var(--ds-ease-default);
+  }
+
+  &:hover &__icon {
+    color: var(--ds-color-text);
+  }
+
+  /* ---------------------------------------------------------------------------
+     Label + hint
+     --------------------------------------------------------------------------- */
+
+  &__label {
+    font-size: var(--ds-text-sm);
+    font-weight: var(--ds-weight-medium);
+    color: var(--ds-color-text);
+  }
+
+  &__hint {
+    font-size: var(--ds-text-xs);
+    color: var(--ds-color-text-tertiary);
+    margin-block-start: calc(-1 * var(--ds-space-1));
+  }
+
+  /* ---------------------------------------------------------------------------
+     States
+     --------------------------------------------------------------------------- */
+
+  /* Active — drag-over */
+  &--active {
+    background-color: var(--ds-color-bg-elevated);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%2352525b' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
+  }
+
+  /* Uploading */
+  &--uploading {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  /* ---------------------------------------------------------------------------
+     Sizes
+     --------------------------------------------------------------------------- */
+
+  &--lg {
+    padding: var(--ds-space-16) var(--ds-space-4);
+    min-height: 16rem;
+  }
+
+  /* ---------------------------------------------------------------------------
+     Error message
+     --------------------------------------------------------------------------- */
+
+  &__error {
+    font-size: var(--ds-text-xs);
+    color: var(--ds-color-error);
+  }
 }
 
 :root:not(.dark) .ds-drop-zone {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%23d4d4d8' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
 }
 
-/* ---------------------------------------------------------------------------
-   Hover
-   --------------------------------------------------------------------------- */
-
-.ds-drop-zone:hover {
-  background-color: var(--ds-color-bg-elevated);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%233f3f46' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
-}
-
 :root:not(.dark) .ds-drop-zone:hover {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
 }
 
-/* ---------------------------------------------------------------------------
-   Icon container
-   --------------------------------------------------------------------------- */
-
-.ds-drop-zone__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: var(--ds-radius-xl);
-  background-color: var(--ds-color-bg-elevated);
-  color: var(--ds-color-text-secondary);
-  transition: color var(--ds-duration-fast) var(--ds-ease-default);
-}
-
-.ds-drop-zone:hover .ds-drop-zone__icon {
-  color: var(--ds-color-text);
-}
-
-/* ---------------------------------------------------------------------------
-   Label + hint
-   --------------------------------------------------------------------------- */
-
-.ds-drop-zone__label {
-  font-size: var(--ds-text-sm);
-  font-weight: var(--ds-weight-medium);
-  color: var(--ds-color-text);
-}
-
-.ds-drop-zone__hint {
-  font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
-  margin-block-start: calc(-1 * var(--ds-space-1));
-}
-
-/* ---------------------------------------------------------------------------
-   States
-   --------------------------------------------------------------------------- */
-
-/* Active — drag-over */
-.ds-drop-zone--active {
-  background-color: var(--ds-color-bg-elevated);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%2352525b' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
-}
-
 :root:not(.dark) .ds-drop-zone--active {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%2371717a' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
-}
-
-/* Uploading */
-.ds-drop-zone--uploading {
-  pointer-events: none;
-  opacity: 0.7;
-}
-
-/* ---------------------------------------------------------------------------
-   Sizes
-   --------------------------------------------------------------------------- */
-
-.ds-drop-zone--lg {
-  padding: var(--ds-space-16) var(--ds-space-4);
-  min-height: 16rem;
-}
-
-/* ---------------------------------------------------------------------------
-   Error message
-   --------------------------------------------------------------------------- */
-
-.ds-drop-zone__error {
-  font-size: var(--ds-text-xs);
-  color: var(--ds-color-error);
 }

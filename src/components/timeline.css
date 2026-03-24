@@ -27,104 +27,104 @@
 .ds-timeline {
   position: relative;
   padding-inline-start: var(--ds-space-8);
-}
 
-/* Vertical line */
-.ds-timeline::before {
-  content: "";
-  position: absolute;
-  inset-inline-start: 0.9rem;
-  inset-block-start: 0;
-  inset-block-end: 0;
-  width: 2px;
-  background-color: var(--ds-color-border);
-}
+  /* Vertical line */
+  &::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0.9rem;
+    inset-block-start: 0;
+    inset-block-end: 0;
+    width: 2px;
+    background-color: var(--ds-color-border);
+  }
 
-/* Item */
-.ds-timeline__item {
-  position: relative;
-  padding-block-end: var(--ds-space-6);
-}
+  /* Item */
+  &__item {
+    position: relative;
+    padding-block-end: var(--ds-space-6);
 
-.ds-timeline__item:last-child {
-  padding-block-end: 0;
-}
+    &:last-child {
+      padding-block-end: 0;
+    }
 
-/* Dot */
-.ds-timeline__dot {
-  position: absolute;
-  inset-inline-start: calc(-1 * var(--ds-space-8) + 0.5rem);
-  width: 1rem;
-  height: 1rem;
-  border-radius: var(--ds-radius-full);
-  background-color: var(--ds-color-bg-elevated);
-  border: 2px solid var(--ds-color-border);
-  z-index: 1;
-}
+    /* Dot state: completed */
+    &--completed .ds-timeline__dot {
+      background-color: var(--ds-color-success);
+      border-color: var(--ds-color-success);
+    }
 
-/* Dot state: completed */
-.ds-timeline__item--completed .ds-timeline__dot {
-  background-color: var(--ds-color-success);
-  border-color: var(--ds-color-success);
-}
+    /* Dot state: current */
+    &--current .ds-timeline__dot {
+      background-color: var(--ds-color-inverted);
+      border-color: var(--ds-color-inverted);
+    }
 
-/* Dot state: current */
-.ds-timeline__item--current .ds-timeline__dot {
-  background-color: var(--ds-color-inverted);
-  border-color: var(--ds-color-inverted);
-}
+    /* Dot state: error */
+    &--error .ds-timeline__dot {
+      background-color: var(--ds-color-error);
+      border-color: var(--ds-color-error);
+    }
+  }
 
-/* Dot state: error */
-.ds-timeline__item--error .ds-timeline__dot {
-  background-color: var(--ds-color-error);
-  border-color: var(--ds-color-error);
-}
+  /* Dot */
+  &__dot {
+    position: absolute;
+    inset-inline-start: calc(-1 * var(--ds-space-8) + 0.5rem);
+    width: 1rem;
+    height: 1rem;
+    border-radius: var(--ds-radius-full);
+    background-color: var(--ds-color-bg-elevated);
+    border: 2px solid var(--ds-color-border);
+    z-index: 1;
+  }
 
-/* Content area */
-.ds-timeline__content {
-  /* no additional layout needed; flows naturally after the dot */
-}
+  /* Content area */
+  &__content {
+    /* no additional layout needed; flows naturally after the dot */
+  }
 
-/* Title */
-.ds-timeline__title {
-  font-size: var(--ds-text-sm);
-  font-weight: var(--ds-weight-medium);
-  color: var(--ds-color-text);
-}
+  /* Title */
+  &__title {
+    font-size: var(--ds-text-sm);
+    font-weight: var(--ds-weight-medium);
+    color: var(--ds-color-text);
+  }
 
-/* Description */
-.ds-timeline__description {
-  font-size: var(--ds-text-sm);
-  color: var(--ds-color-text-secondary);
-  margin-block-start: var(--ds-space-1);
-}
+  /* Description */
+  &__description {
+    font-size: var(--ds-text-sm);
+    color: var(--ds-color-text-secondary);
+    margin-block-start: var(--ds-space-1);
+  }
 
-/* Timestamp */
-.ds-timeline__time {
-  font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
-  margin-block-start: var(--ds-space-0-5);
-}
+  /* Timestamp */
+  &__time {
+    font-size: var(--ds-text-xs);
+    color: var(--ds-color-text-tertiary);
+    margin-block-start: var(--ds-space-0-5);
+  }
 
-/* Compact variant */
-.ds-timeline--compact {
-  padding-inline-start: var(--ds-space-6);
-}
+  /* Compact variant */
+  &--compact {
+    padding-inline-start: var(--ds-space-6);
 
-.ds-timeline--compact::before {
-  inset-inline-start: 0.6rem;
-}
+    &::before {
+      inset-inline-start: 0.6rem;
+    }
 
-.ds-timeline--compact .ds-timeline__item {
-  padding-block-end: var(--ds-space-4);
-}
+    & .ds-timeline__item {
+      padding-block-end: var(--ds-space-4);
 
-.ds-timeline--compact .ds-timeline__item:last-child {
-  padding-block-end: 0;
-}
+      &:last-child {
+        padding-block-end: 0;
+      }
+    }
 
-.ds-timeline--compact .ds-timeline__dot {
-  inset-inline-start: calc(-1 * var(--ds-space-6) + 0.25rem);
-  width: 0.75rem;
-  height: 0.75rem;
+    & .ds-timeline__dot {
+      inset-inline-start: calc(-1 * var(--ds-space-6) + 0.25rem);
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+  }
 }

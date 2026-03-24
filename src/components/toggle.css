@@ -37,92 +37,92 @@
   -webkit-appearance: none;
   appearance: none;
   flex-shrink: 0;
-}
 
-/* ---------------------------------------------------------------------------
-   Thumb (pseudo-element)
-   --------------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------------
+     Thumb (pseudo-element)
+     --------------------------------------------------------------------------- */
 
-.ds-toggle::after {
-  content: "";
-  position: absolute;
-  inset-inline-start: 2px;
-  inset-block-start: 50%;
-  width: 1.25rem;
-  height: 1.25rem;
-  border-radius: var(--ds-radius-full);
-  background-color: var(--ds-color-surface);
-  box-shadow: var(--ds-shadow-sm);
-  transform: translateY(-50%);
-  transition: transform var(--ds-duration-normal) var(--ds-ease-out);
-}
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 2px;
+    inset-block-start: 50%;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: var(--ds-radius-full);
+    background-color: var(--ds-color-surface);
+    box-shadow: var(--ds-shadow-sm);
+    transform: translateY(-50%);
+    transition: transform var(--ds-duration-normal) var(--ds-ease-out);
+  }
 
-/* ---------------------------------------------------------------------------
-   Checked state
-   --------------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------------
+     Checked state
+     --------------------------------------------------------------------------- */
 
-.ds-toggle[aria-checked="true"],
-.ds-toggle--checked {
-  background-color: var(--ds-color-interactive);
-}
+  &[aria-checked="true"],
+  &--checked {
+    background-color: var(--ds-color-interactive);
+  }
 
-.ds-toggle[aria-checked="true"]::after,
-.ds-toggle--checked::after {
-  transform: translateX(1.25rem) translateY(-50%);
-}
+  &[aria-checked="true"]::after,
+  &--checked::after {
+    transform: translateX(1.25rem) translateY(-50%);
+  }
 
-/* ---------------------------------------------------------------------------
-   Hover
-   --------------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------------
+     Hover
+     --------------------------------------------------------------------------- */
 
-.ds-toggle:hover {
-  background-color: var(--ds-color-border-hover);
-}
+  &:hover {
+    background-color: var(--ds-color-border-hover);
+  }
 
-.ds-toggle[aria-checked="true"]:hover,
-.ds-toggle--checked:hover {
-  background-color: var(--ds-color-interactive-hover);
-}
+  &[aria-checked="true"]:hover,
+  &--checked:hover {
+    background-color: var(--ds-color-interactive-hover);
+  }
 
-/* ---------------------------------------------------------------------------
-   Focus
-   --------------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------------
+     Focus
+     --------------------------------------------------------------------------- */
 
-.ds-toggle:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
-  scroll-margin-block: var(--ds-space-16, 4rem);
-}
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    scroll-margin-block: var(--ds-space-16, 4rem);
+  }
 
-/* ---------------------------------------------------------------------------
-   Disabled
-   --------------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------------
+     Disabled
+     --------------------------------------------------------------------------- */
 
-.ds-toggle:disabled,
-.ds-toggle--disabled {
-  opacity: var(--ds-opacity-disabled);
-  cursor: not-allowed;
-  pointer-events: none;
-}
+  &:disabled,
+  &--disabled {
+    opacity: var(--ds-opacity-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 
-/* ---------------------------------------------------------------------------
-   Size: Small
-   --------------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------------
+     Size: Small
+     --------------------------------------------------------------------------- */
 
-.ds-toggle--sm {
-  width: 2rem;
-  height: 1.125rem;
-  min-height: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
-}
+  &--sm {
+    width: 2rem;
+    height: 1.125rem;
+    min-height: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
 
-.ds-toggle--sm::after {
-  width: 0.875rem;
-  height: 0.875rem;
-}
+    &::after {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
 
-.ds-toggle--sm[aria-checked="true"]::after,
-.ds-toggle--sm.ds-toggle--checked::after {
-  transform: translateX(0.875rem) translateY(-50%);
+    &[aria-checked="true"]::after,
+    &.ds-toggle--checked::after {
+      transform: translateX(0.875rem) translateY(-50%);
+    }
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -136,8 +136,8 @@
   cursor: pointer;
   font-size: var(--ds-text-sm);
   font-family: var(--ds-font-sans);
-}
 
-.ds-toggle-label__text {
-  color: var(--ds-color-text-secondary);
+  &__text {
+    color: var(--ds-color-text-secondary);
+  }
 }

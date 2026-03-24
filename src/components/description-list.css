@@ -3,96 +3,98 @@
    Key-value pairs display with horizontal and vertical layouts.
    ========================================================================== */
 
-/* ---------------------------------------------------------------------------
-   Container
-   --------------------------------------------------------------------------- */
-
 .ds-description-list {
   display: flex;
   flex-direction: column;
   gap: 0;
-}
 
-/* ---------------------------------------------------------------------------
-   Item
-   --------------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------------
+     Item
+     --------------------------------------------------------------------------- */
 
-.ds-description-list__item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ds-space-1);
-  padding: var(--ds-space-3) 0;
-}
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-1);
+    padding: var(--ds-space-3) 0;
 
-.ds-description-list__item:first-child {
-  padding-block-start: 0;
-}
+    &:first-child {
+      padding-block-start: 0;
+    }
 
-.ds-description-list__item:last-child {
-  padding-block-end: 0;
-}
+    &:last-child {
+      padding-block-end: 0;
+    }
+  }
 
-/* ---------------------------------------------------------------------------
-   Term (key)
-   --------------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------------
+     Term (key)
+     --------------------------------------------------------------------------- */
 
-.ds-description-list__term {
-  font-family: var(--ds-font-sans);
-  font-size: var(--ds-text-sm);
-  font-weight: var(--ds-weight-medium);
-  color: var(--ds-color-text-secondary);
-  line-height: var(--ds-leading-normal);
-}
+  &__term {
+    font-family: var(--ds-font-sans);
+    font-size: var(--ds-text-sm);
+    font-weight: var(--ds-weight-medium);
+    color: var(--ds-color-text-secondary);
+    line-height: var(--ds-leading-normal);
+  }
 
-/* ---------------------------------------------------------------------------
-   Detail (value)
-   --------------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------------
+     Detail (value)
+     --------------------------------------------------------------------------- */
 
-.ds-description-list__detail {
-  font-family: var(--ds-font-sans);
-  font-size: var(--ds-text-sm);
-  color: var(--ds-color-text);
-  line-height: var(--ds-leading-normal);
-}
+  &__detail {
+    font-family: var(--ds-font-sans);
+    font-size: var(--ds-text-sm);
+    color: var(--ds-color-text);
+    line-height: var(--ds-leading-normal);
+  }
 
-/* ---------------------------------------------------------------------------
-   Variant: Horizontal (term and detail on same row)
-   --------------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------------
+     Variant: Horizontal (term and detail on same row)
+     --------------------------------------------------------------------------- */
 
-.ds-description-list--horizontal .ds-description-list__item {
-  flex-direction: row;
-  align-items: flex-start;
-  gap: var(--ds-space-4);
-}
+  &--horizontal {
+    & .ds-description-list__item {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: var(--ds-space-4);
+    }
 
-.ds-description-list--horizontal .ds-description-list__term {
-  flex-shrink: 0;
-  min-width: 10rem;
-}
+    & .ds-description-list__term {
+      flex-shrink: 0;
+      min-width: 10rem;
+    }
 
-.ds-description-list--horizontal .ds-description-list__detail {
-  flex: 1;
-  min-width: 0;
-}
+    & .ds-description-list__detail {
+      flex: 1;
+      min-width: 0;
+    }
+  }
 
-/* ---------------------------------------------------------------------------
-   Variant: Bordered (separator between items)
-   --------------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------------
+     Variant: Bordered (separator between items)
+     --------------------------------------------------------------------------- */
 
-.ds-description-list--bordered .ds-description-list__item {
-  border-block-end: 1px solid var(--ds-color-border);
-}
+  &--bordered {
+    & .ds-description-list__item {
+      border-block-end: 1px solid var(--ds-color-border);
 
-.ds-description-list--bordered .ds-description-list__item:last-child {
-  border-block-end: 0;
-}
+      &:last-child {
+        border-block-end: 0;
+      }
+    }
+  }
 
-/* ---------------------------------------------------------------------------
-   Variant: Striped (alternating background)
-   --------------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------------
+     Variant: Striped (alternating background)
+     --------------------------------------------------------------------------- */
 
-.ds-description-list--striped .ds-description-list__item:nth-child(odd) {
-  background-color: var(--ds-color-bg-subtle);
-  padding-inline: var(--ds-space-3);
-  border-radius: var(--ds-radius-md);
+  &--striped {
+    & .ds-description-list__item:nth-child(odd) {
+      background-color: var(--ds-color-bg-subtle);
+      padding-inline: var(--ds-space-3);
+      border-radius: var(--ds-radius-md);
+    }
+  }
 }

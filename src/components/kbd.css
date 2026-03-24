@@ -32,12 +32,12 @@
   color: var(--ds-color-text-secondary);
   line-height: 1;
   vertical-align: baseline;
-}
 
-/* Large variant */
-.ds-kbd--lg {
-  font-size: var(--ds-text-sm);
-  padding: var(--ds-space-1) var(--ds-space-2);
+  /* Large variant */
+  &--lg {
+    font-size: var(--ds-text-sm);
+    padding: var(--ds-space-1) var(--ds-space-2);
+  }
 }
 
 /* Key group (for combos like Cmd + K) */
@@ -45,10 +45,10 @@
   display: inline-flex;
   align-items: center;
   gap: var(--ds-space-1);
-}
 
-/* Separator between keys */
-.ds-kbd-group__separator {
-  font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
+  /* Separator between keys */
+  &__separator {
+    font-size: var(--ds-text-xs);
+    color: var(--ds-color-text-tertiary);
+  }
 }
