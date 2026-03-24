@@ -1,0 +1,79 @@
+{
+  "name": "@digiko-npm/ds-hooks",
+  "version": "0.1.0",
+  "description": "React hooks companion for @digiko-npm/designsystem — click-outside, keyboard nav, focus trap, and more.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./useClickOutside": {
+      "types": "./dist/useClickOutside.d.ts",
+      "import": "./dist/useClickOutside.js"
+    },
+    "./useEscapeKey": {
+      "types": "./dist/useEscapeKey.d.ts",
+      "import": "./dist/useEscapeKey.js"
+    },
+    "./useKeyboardNav": {
+      "types": "./dist/useKeyboardNav.d.ts",
+      "import": "./dist/useKeyboardNav.js"
+    },
+    "./useDebouncedValue": {
+      "types": "./dist/useDebouncedValue.d.ts",
+      "import": "./dist/useDebouncedValue.js"
+    },
+    "./useFocusTrap": {
+      "types": "./dist/useFocusTrap.d.ts",
+      "import": "./dist/useFocusTrap.js"
+    },
+    "./useScrollLock": {
+      "types": "./dist/useScrollLock.d.ts",
+      "import": "./dist/useScrollLock.js"
+    },
+    "./useClipboard": {
+      "types": "./dist/useClipboard.d.ts",
+      "import": "./dist/useClipboard.js"
+    },
+    "./useMediaQuery": {
+      "types": "./dist/useMediaQuery.d.ts",
+      "import": "./dist/useMediaQuery.js"
+    }
+  },
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "typescript": "^5.7.0"
+  },
+  "keywords": [
+    "react-hooks",
+    "design-system",
+    "click-outside",
+    "keyboard-navigation",
+    "focus-trap"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digiko-dev/designsystem.git",
+    "directory": "packages/ds-hooks"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
