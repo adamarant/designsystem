@@ -43,7 +43,7 @@ npm install @digiko-npm/designsystem
 <span class="ds-badge ds-badge--success">Active</span>
 ```
 
-## Components (28)
+## Components (32)
 
 | Core | Essential | Common | Advanced |
 |------|-----------|--------|----------|
@@ -54,7 +54,10 @@ npm install @digiko-npm/designsystem
 | Nav | Tooltip | Accordion | Command |
 | Modal | Avatar | Drawer | |
 | Toast | Skeleton | Progress | |
-| Table | Empty State | | |
+| Table | Empty State | Datepicker | |
+| | | Drop Zone | |
+| | | Custom Select | |
+| | | Sortable | |
 
 All components use `ds-` prefix with BEM naming: `.ds-btn`, `.ds-btn--secondary`, `.ds-card__body`.
 

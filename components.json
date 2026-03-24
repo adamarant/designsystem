@@ -845,6 +845,49 @@
       ]
     },
     {
+      "name": "datepicker",
+      "title": "Datepicker",
+      "description": "Calendar dropdown for date selection. Popover positioning with scale animation. Supports compact mode for inline/table usage.",
+      "category": "common",
+      "classes": [
+        ".ds-datepicker"
+      ],
+      "elements": [
+        "__trigger",
+        "__panel",
+        "__header",
+        "__title",
+        "__nav",
+        "__weekdays",
+        "__weekday",
+        "__grid",
+        "__day",
+        "__footer",
+        "__today",
+        "__step"
+      ],
+      "variants": [
+        "--compact"
+      ],
+      "sizes": [],
+      "modifiers": [
+        "--open",
+        "__day--today",
+        "__day--selected",
+        "__day--other-month"
+      ],
+      "examples": [
+        {
+          "title": "Default",
+          "html": "<div class=\"ds-datepicker ds-datepicker--open\" style=\"min-height:20rem;\">\n  <button class=\"ds-datepicker__trigger\">Mar 20, 2026</button>\n  <div class=\"ds-datepicker__panel\">\n    <div class=\"ds-datepicker__header\">\n      <button class=\"ds-datepicker__nav\">‹</button>\n      <span class=\"ds-datepicker__title\">March 2026</span>\n      <button class=\"ds-datepicker__nav\">›</button>\n    </div>\n    <div class=\"ds-datepicker__weekdays\">\n      <span class=\"ds-datepicker__weekday\">Mo</span>\n      <span class=\"ds-datepicker__weekday\">Tu</span>\n      <span class=\"ds-datepicker__weekday\">We</span>\n      <span class=\"ds-datepicker__weekday\">Th</span>\n      <span class=\"ds-datepicker__weekday\">Fr</span>\n      <span class=\"ds-datepicker__weekday\">Sa</span>\n      <span class=\"ds-datepicker__weekday\">Su</span>\n    </div>\n    <div class=\"ds-datepicker__grid\">\n      <button class=\"ds-datepicker__day ds-datepicker__day--other-month\">24</button>\n      <button class=\"ds-datepicker__day ds-datepicker__day--other-month\">25</button>\n      <button class=\"ds-datepicker__day ds-datepicker__day--other-month\">26</button>\n      <button class=\"ds-datepicker__day ds-datepicker__day--other-month\">27</button>\n      <button class=\"ds-datepicker__day ds-datepicker__day--other-month\">28</button>\n      <button class=\"ds-datepicker__day\">1</button>\n      <button class=\"ds-datepicker__day\">2</button>\n      <button class=\"ds-datepicker__day\">3</button>\n      <button class=\"ds-datepicker__day\">4</button>\n      <button class=\"ds-datepicker__day\">5</button>\n      <button class=\"ds-datepicker__day\">6</button>\n      <button class=\"ds-datepicker__day\">7</button>\n      <button class=\"ds-datepicker__day\">8</button>\n      <button class=\"ds-datepicker__day\">9</button>\n      <button class=\"ds-datepicker__day\">10</button>\n      <button class=\"ds-datepicker__day\">11</button>\n      <button class=\"ds-datepicker__day\">12</button>\n      <button class=\"ds-datepicker__day\">13</button>\n      <button class=\"ds-datepicker__day\">14</button>\n      <button class=\"ds-datepicker__day ds-datepicker__day--selected\">15</button>\n      <button class=\"ds-datepicker__day\">16</button>\n      <button class=\"ds-datepicker__day\">17</button>\n      <button class=\"ds-datepicker__day\">18</button>\n      <button class=\"ds-datepicker__day\">19</button>\n      <button class=\"ds-datepicker__day ds-datepicker__day--today\">20</button>\n      <button class=\"ds-datepicker__day\">21</button>\n      <button class=\"ds-datepicker__day\">22</button>\n      <button class=\"ds-datepicker__day\">23</button>\n      <button class=\"ds-datepicker__day\">24</button>\n      <button class=\"ds-datepicker__day\">25</button>\n      <button class=\"ds-datepicker__day\">26</button>\n      <button class=\"ds-datepicker__day\">27</button>\n      <button class=\"ds-datepicker__day\">28</button>\n      <button class=\"ds-datepicker__day\">29</button>\n      <button class=\"ds-datepicker__day\">30</button>\n      <button class=\"ds-datepicker__day\">31</button>\n    </div>\n    <div class=\"ds-datepicker__footer\">\n      <button class=\"ds-datepicker__today\">Today</button>\n    </div>\n  </div>\n</div>"
+        },
+        {
+          "title": "With Step Arrows",
+          "html": "<div class=\"ds-datepicker\">\n  <button class=\"ds-datepicker__step\">‹</button>\n  <button class=\"ds-datepicker__trigger\">Mar 20, 2026</button>\n  <button class=\"ds-datepicker__step\">›</button>\n</div>"
+        }
+      ]
+    },
+    {
       "name": "drop-zone",
       "title": "Drop Zone",
       "description": "Dashed-border upload area with icon, label, hint, and progress states.",
