@@ -1,0 +1,163 @@
+/* ==========================================================================
+   Component: Number Input
+   Numeric input with increment/decrement stepper buttons.
+
+   ARIA requirements (consumer responsibility):
+   - Input: type="number", aria-label or aria-labelledby
+   - Buttons: aria-label="Increase" / aria-label="Decrease"
+   - Disabled: aria-disabled="true" on buttons when at min/max
+   - Keyboard: ArrowUp/Down to increment/decrement
+
+   Usage:
+     <div class="ds-number-input">
+       <button class="ds-number-input__decrement" aria-label="Decrease">−</button>
+       <input class="ds-number-input__field" type="number" value="1" />
+       <button class="ds-number-input__increment" aria-label="Increase">+</button>
+     </div>
+
+   Modifiers:
+     .ds-number-input--xs/--sm/--lg  — Size variants
+   ========================================================================== */
+
+.ds-number-input {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  background-color: var(--ds-color-surface);
+  overflow: hidden;
+  transition:
+    border-color var(--ds-duration-fast) var(--ds-ease-default),
+    box-shadow var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-number-input:focus-within {
+  border-color: var(--ds-color-border-active);
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+}
+
+/* --- Field --- */
+.ds-number-input__field {
+  width: 3.5rem;
+  height: var(--ds-size-3);
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--ds-color-text);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-base);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.ds-number-input__field::-webkit-inner-spin-button,
+.ds-number-input__field::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* --- Stepper buttons --- */
+.ds-number-input__decrement,
+.ds-number-input__increment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ds-size-3);
+  height: var(--ds-size-3);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--ds-color-text-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: var(--ds-text-lg);
+  font-family: var(--ds-font-sans);
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-number-input__decrement {
+  border-inline-end: 1px solid var(--ds-color-border-subtle);
+}
+
+.ds-number-input__increment {
+  border-inline-start: 1px solid var(--ds-color-border-subtle);
+}
+
+.ds-number-input__decrement:hover,
+.ds-number-input__increment:hover {
+  background-color: var(--ds-color-surface-hover);
+  color: var(--ds-color-text);
+}
+
+.ds-number-input__decrement:focus-visible,
+.ds-number-input__increment:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+}
+
+.ds-number-input__decrement:disabled,
+.ds-number-input__increment:disabled,
+.ds-number-input__decrement[aria-disabled="true"],
+.ds-number-input__increment[aria-disabled="true"] {
+  opacity: var(--ds-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Size variants
+   ========================================================================== */
+
+/* XS */
+.ds-number-input--xs .ds-number-input__field {
+  height: var(--ds-size-1);
+  width: 2.5rem;
+  font-size: var(--ds-text-xs);
+}
+
+.ds-number-input--xs .ds-number-input__decrement,
+.ds-number-input--xs .ds-number-input__increment {
+  width: var(--ds-size-1);
+  height: var(--ds-size-1);
+  font-size: var(--ds-text-sm);
+}
+
+.ds-number-input--xs {
+  border-radius: var(--ds-radius-md);
+}
+
+/* SM */
+.ds-number-input--sm .ds-number-input__field {
+  height: var(--ds-size-2);
+  width: 3rem;
+  font-size: var(--ds-text-sm);
+}
+
+.ds-number-input--sm .ds-number-input__decrement,
+.ds-number-input--sm .ds-number-input__increment {
+  width: var(--ds-size-2);
+  height: var(--ds-size-2);
+  font-size: var(--ds-text-base);
+}
+
+.ds-number-input--sm {
+  border-radius: var(--ds-radius-md);
+}
+
+/* LG */
+.ds-number-input--lg .ds-number-input__field {
+  height: var(--ds-size-4);
+  width: 4rem;
+  font-size: var(--ds-text-lg);
+}
+
+.ds-number-input--lg .ds-number-input__decrement,
+.ds-number-input--lg .ds-number-input__increment {
+  width: var(--ds-size-4);
+  height: var(--ds-size-4);
+  font-size: var(--ds-text-xl);
+}

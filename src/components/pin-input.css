@@ -1,0 +1,136 @@
+/* ==========================================================================
+   Component: Pin Input
+   One-character-per-field input for OTP codes, PINs, and verification.
+
+   ARIA requirements (consumer responsibility):
+   - Each input: inputmode="numeric", pattern="[0-9]", maxlength="1"
+   - Group: role="group", aria-label="Verification code"
+   - Auto-focus next field on input, previous on backspace
+   - Paste: distribute characters across fields
+
+   Usage:
+     <div class="ds-pin-input" role="group" aria-label="Verification code">
+       <input class="ds-pin-input__field" inputmode="numeric" maxlength="1" />
+       <input class="ds-pin-input__field" inputmode="numeric" maxlength="1" />
+       <input class="ds-pin-input__field" inputmode="numeric" maxlength="1" />
+       <span class="ds-pin-input__separator">–</span>
+       <input class="ds-pin-input__field" inputmode="numeric" maxlength="1" />
+       <input class="ds-pin-input__field" inputmode="numeric" maxlength="1" />
+       <input class="ds-pin-input__field" inputmode="numeric" maxlength="1" />
+     </div>
+
+   Modifiers:
+     .ds-pin-input--sm/--lg  — Size variants
+     .ds-pin-input--error    — Error state (red border)
+     .ds-pin-input--success  — Success state (green border)
+   ========================================================================== */
+
+.ds-pin-input {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+}
+
+/* --- Individual field --- */
+.ds-pin-input__field {
+  width: var(--ds-size-3);
+  height: var(--ds-size-3);
+  padding: 0;
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  background-color: var(--ds-color-surface);
+  color: var(--ds-color-text);
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-xl);
+  font-weight: var(--ds-weight-semibold);
+  text-align: center;
+  line-height: 1;
+  caret-color: var(--ds-color-interactive);
+  transition:
+    border-color var(--ds-duration-fast) var(--ds-ease-default),
+    box-shadow var(--ds-duration-fast) var(--ds-ease-default);
+  -moz-appearance: textfield;
+}
+
+.ds-pin-input__field::-webkit-inner-spin-button,
+.ds-pin-input__field::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ds-pin-input__field::placeholder {
+  color: var(--ds-color-text-disabled);
+}
+
+.ds-pin-input__field:hover {
+  border-color: var(--ds-color-border-hover);
+}
+
+.ds-pin-input__field:focus {
+  outline: none;
+  border-color: var(--ds-color-border-active);
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+}
+
+/* --- Separator (dash between groups) --- */
+.ds-pin-input__separator {
+  color: var(--ds-color-text-tertiary);
+  font-size: var(--ds-text-lg);
+  user-select: none;
+  padding-inline: var(--ds-space-0-5);
+}
+
+/* ==========================================================================
+   Size variants
+   ========================================================================== */
+
+/* SM */
+.ds-pin-input--sm {
+  gap: var(--ds-space-1-5);
+}
+
+.ds-pin-input--sm .ds-pin-input__field {
+  width: var(--ds-size-2);
+  height: var(--ds-size-2);
+  font-size: var(--ds-text-base);
+  border-radius: var(--ds-radius-md);
+}
+
+/* LG */
+.ds-pin-input--lg {
+  gap: var(--ds-space-3);
+}
+
+.ds-pin-input--lg .ds-pin-input__field {
+  width: var(--ds-size-4);
+  height: var(--ds-size-4);
+  font-size: var(--ds-text-2xl);
+}
+
+/* ==========================================================================
+   State variants
+   ========================================================================== */
+
+/* Error */
+.ds-pin-input--error .ds-pin-input__field {
+  border-color: var(--ds-color-error);
+}
+
+.ds-pin-input--error .ds-pin-input__field:focus {
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-error);
+}
+
+/* Success */
+.ds-pin-input--success .ds-pin-input__field {
+  border-color: var(--ds-color-success);
+}
+
+.ds-pin-input--success .ds-pin-input__field:focus {
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-success);
+}
+
+/* Disabled */
+.ds-pin-input--disabled .ds-pin-input__field {
+  opacity: var(--ds-opacity-disabled);
+  pointer-events: none;
+}

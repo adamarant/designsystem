@@ -51,6 +51,41 @@
   line-height: var(--ds-leading-normal);
 }
 
+/* Animated error appearance */
+.ds-field__error[data-animate] {
+  animation: ds-field-error-in var(--ds-duration-fast) var(--ds-ease-out);
+}
+
+@keyframes ds-field-error-in {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Success message */
+.ds-field__success {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-success);
+  line-height: var(--ds-leading-normal);
+}
+
+/* Character counter */
+.ds-field__counter {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  line-height: var(--ds-leading-normal);
+  text-align: end;
+}
+
+.ds-field__counter--limit {
+  color: var(--ds-color-error);
+}
+
 /* ---------------------------------------------------------------------------
    Modifier: Horizontal layout (label left, input right)
    --------------------------------------------------------------------------- */
