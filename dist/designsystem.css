@@ -100,8 +100,8 @@
   /* --- Backgrounds — deep, refined zinc-900 palette --- */
   --ds-color-bg: #09090b;
   --ds-color-bg-subtle: #0f0f11;
-  --ds-color-bg-muted: #27272a;
-  --ds-color-bg-elevated: #18181b;
+  --ds-color-bg-muted: #18181b;
+  --ds-color-bg-elevated: #27272a;
 
   --ds-color-surface: #0f0f11;
   --ds-color-surface-hover: #18181b;
