@@ -65,8 +65,8 @@
 /* Dot indicator */
 .ds-badge--dot::before {
   content: '';
-  width: 6px;
-  height: 6px;
+  width: var(--ds-dot-size);
+  height: var(--ds-dot-size);
   border-radius: var(--ds-radius-full);
   background-color: currentColor;
 }

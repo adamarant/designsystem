@@ -12,7 +12,7 @@
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-lg);
   background-color: var(--ds-color-surface);
-  border-left: 3px solid var(--ds-color-border);
+  border-left: var(--ds-accent-border-width) solid var(--ds-color-border);
 }
 
 /* --- Semantic Variants --- */

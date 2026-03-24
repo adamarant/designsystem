@@ -62,7 +62,7 @@
 
 .ds-tooltip .ds-tooltip__content,
 .ds-tooltip--top .ds-tooltip__content {
-  bottom: calc(100% + 8px);
+  bottom: calc(100% + var(--ds-offset-md));
   left: 50%;
   transform: translateX(-50%) translateY(4px);
 }
@@ -86,7 +86,7 @@
    ============================================= */
 
 .ds-tooltip--bottom .ds-tooltip__content {
-  top: calc(100% + 8px);
+  top: calc(100% + var(--ds-offset-md));
   bottom: auto;
   left: 50%;
   transform: translateX(-50%) translateY(-4px);
@@ -111,7 +111,7 @@
    ============================================= */
 
 .ds-tooltip--left .ds-tooltip__content {
-  right: calc(100% + 8px);
+  right: calc(100% + var(--ds-offset-md));
   left: auto;
   bottom: auto;
   top: 50%;
@@ -138,7 +138,7 @@
    ============================================= */
 
 .ds-tooltip--right .ds-tooltip__content {
-  left: calc(100% + 8px);
+  left: calc(100% + var(--ds-offset-md));
   right: auto;
   bottom: auto;
   top: 50%;

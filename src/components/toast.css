@@ -35,10 +35,10 @@
   animation: ds-toast-in var(--ds-duration-slow) var(--ds-ease-out-expo) forwards;
 }
 
-.ds-toast--info    { border-left: 3px solid var(--ds-color-info); }
-.ds-toast--success { border-left: 3px solid var(--ds-color-success); }
-.ds-toast--warning { border-left: 3px solid var(--ds-color-warning); }
-.ds-toast--error   { border-left: 3px solid var(--ds-color-error); }
+.ds-toast--info    { border-left: var(--ds-accent-border-width) solid var(--ds-color-info); }
+.ds-toast--success { border-left: var(--ds-accent-border-width) solid var(--ds-color-success); }
+.ds-toast--warning { border-left: var(--ds-accent-border-width) solid var(--ds-color-warning); }
+.ds-toast--error   { border-left: var(--ds-accent-border-width) solid var(--ds-color-error); }
 
 .ds-toast__message {
   flex: 1;

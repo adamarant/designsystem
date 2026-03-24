@@ -61,7 +61,7 @@
 .ds-datepicker__panel {
   position: absolute;
   z-index: var(--ds-z-dropdown);
-  top: calc(100% + 4px);
+  top: calc(100% + var(--ds-offset-sm));
   left: 0;
   background-color: var(--ds-color-surface);
   border: 1px solid var(--ds-color-border);

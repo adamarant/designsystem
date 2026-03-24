@@ -12,8 +12,8 @@
   justify-content: center;
   padding: var(--ds-space-4);
   background-color: var(--ds-color-overlay);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(var(--ds-blur-sm));
+  -webkit-backdrop-filter: blur(var(--ds-blur-sm));
   opacity: 0;
   visibility: hidden;
   transition:

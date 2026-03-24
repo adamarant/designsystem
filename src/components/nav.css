@@ -15,8 +15,8 @@
   height: 4rem;
   background-color: var(--ds-color-nav-bg);
   border-bottom: 1px solid var(--ds-color-nav-border);
-  backdrop-filter: blur(20px) saturate(1.5);
-  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(var(--ds-blur-lg)) saturate(1.5);
+  -webkit-backdrop-filter: blur(var(--ds-blur-lg)) saturate(1.5);
 }
 
 .ds-nav--static {
@@ -94,7 +94,7 @@
   max-height: 0;
   border-bottom: 0 solid var(--ds-color-nav-border);
   background-color: var(--ds-color-nav-bg);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(var(--ds-blur-lg));
   transition: all var(--ds-duration-slow) var(--ds-ease-out-expo);
 }
 

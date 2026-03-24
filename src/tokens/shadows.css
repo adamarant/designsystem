@@ -21,6 +21,21 @@
   --ds-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ds-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 
+  /* --- Backdrop Blur --- */
+  --ds-blur-sm: 4px;
+  --ds-blur-md: 12px;
+  --ds-blur-lg: 20px;
+
+  /* --- Indicator Sizes --- */
+  --ds-dot-size: 6px;
+
+  /* --- Accent Border --- */
+  --ds-accent-border-width: 3px;
+
+  /* --- Popover/Tooltip Offset --- */
+  --ds-offset-sm: 4px;
+  --ds-offset-md: 8px;
+
   /* --- Opacity --- */
   --ds-opacity-disabled: 0.5;
 }

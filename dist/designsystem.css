@@ -361,6 +361,21 @@
   --ds-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ds-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 
+  /* --- Backdrop Blur --- */
+  --ds-blur-sm: 4px;
+  --ds-blur-md: 12px;
+  --ds-blur-lg: 20px;
+
+  /* --- Indicator Sizes --- */
+  --ds-dot-size: 6px;
+
+  /* --- Accent Border --- */
+  --ds-accent-border-width: 3px;
+
+  /* --- Popover/Tooltip Offset --- */
+  --ds-offset-sm: 4px;
+  --ds-offset-md: 8px;
+
   /* --- Opacity --- */
   --ds-opacity-disabled: 0.5;
 }
@@ -1205,8 +1220,8 @@ hr {
 /* Dot indicator */
 .ds-badge--dot::before {
   content: '';
-  width: 6px;
-  height: 6px;
+  width: var(--ds-dot-size);
+  height: var(--ds-dot-size);
   border-radius: var(--ds-radius-full);
   background-color: currentColor;
 }
@@ -1236,8 +1251,8 @@ hr {
   height: 4rem;
   background-color: var(--ds-color-nav-bg);
   border-bottom: 1px solid var(--ds-color-nav-border);
-  backdrop-filter: blur(20px) saturate(1.5);
-  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(var(--ds-blur-lg)) saturate(1.5);
+  -webkit-backdrop-filter: blur(var(--ds-blur-lg)) saturate(1.5);
 }
 
 .ds-nav--static {
@@ -1315,7 +1330,7 @@ hr {
   max-height: 0;
   border-bottom: 0 solid var(--ds-color-nav-border);
   background-color: var(--ds-color-nav-bg);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(var(--ds-blur-lg));
   transition: all var(--ds-duration-slow) var(--ds-ease-out-expo);
 }
 
@@ -1402,8 +1417,8 @@ hr {
   justify-content: center;
   padding: var(--ds-space-4);
   background-color: var(--ds-color-overlay);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(var(--ds-blur-sm));
+  -webkit-backdrop-filter: blur(var(--ds-blur-sm));
   opacity: 0;
   visibility: hidden;
   transition:
@@ -1529,10 +1544,10 @@ hr {
   animation: ds-toast-in var(--ds-duration-slow) var(--ds-ease-out-expo) forwards;
 }
 
-.ds-toast--info    { border-left: 3px solid var(--ds-color-info); }
-.ds-toast--success { border-left: 3px solid var(--ds-color-success); }
-.ds-toast--warning { border-left: 3px solid var(--ds-color-warning); }
-.ds-toast--error   { border-left: 3px solid var(--ds-color-error); }
+.ds-toast--info    { border-left: var(--ds-accent-border-width) solid var(--ds-color-info); }
+.ds-toast--success { border-left: var(--ds-accent-border-width) solid var(--ds-color-success); }
+.ds-toast--warning { border-left: var(--ds-accent-border-width) solid var(--ds-color-warning); }
+.ds-toast--error   { border-left: var(--ds-accent-border-width) solid var(--ds-color-error); }
 
 .ds-toast__message {
   flex: 1;
@@ -1792,7 +1807,7 @@ hr {
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-lg);
   background-color: var(--ds-color-surface);
-  border-left: 3px solid var(--ds-color-border);
+  border-left: var(--ds-accent-border-width) solid var(--ds-color-border);
 }
 
 /* --- Semantic Variants --- */
@@ -2200,7 +2215,7 @@ hr {
 
 .ds-tooltip .ds-tooltip__content,
 .ds-tooltip--top .ds-tooltip__content {
-  bottom: calc(100% + 8px);
+  bottom: calc(100% + var(--ds-offset-md));
   left: 50%;
   transform: translateX(-50%) translateY(4px);
 }
@@ -2224,7 +2239,7 @@ hr {
    ============================================= */
 
 .ds-tooltip--bottom .ds-tooltip__content {
-  top: calc(100% + 8px);
+  top: calc(100% + var(--ds-offset-md));
   bottom: auto;
   left: 50%;
   transform: translateX(-50%) translateY(-4px);
@@ -2249,7 +2264,7 @@ hr {
    ============================================= */
 
 .ds-tooltip--left .ds-tooltip__content {
-  right: calc(100% + 8px);
+  right: calc(100% + var(--ds-offset-md));
   left: auto;
   bottom: auto;
   top: 50%;
@@ -2276,7 +2291,7 @@ hr {
    ============================================= */
 
 .ds-tooltip--right .ds-tooltip__content {
-  left: calc(100% + 8px);
+  left: calc(100% + var(--ds-offset-md));
   right: auto;
   bottom: auto;
   top: 50%;
@@ -2640,7 +2655,7 @@ hr {
 .ds-datepicker__panel {
   position: absolute;
   z-index: var(--ds-z-dropdown);
-  top: calc(100% + 4px);
+  top: calc(100% + var(--ds-offset-sm));
   left: 0;
   background-color: var(--ds-color-surface);
   border: 1px solid var(--ds-color-border);
@@ -4557,7 +4572,7 @@ tr:hover .ds-sortable__handle,
 /* Placement: bottom (default) */
 .ds-popover__content,
 .ds-popover--bottom .ds-popover__content {
-  top: calc(100% + 8px);
+  top: calc(100% + var(--ds-offset-md));
   left: 50%;
   transform: translateX(-50%) scale(0.96);
 }
@@ -4569,7 +4584,7 @@ tr:hover .ds-sortable__handle,
 
 /* Placement: top */
 .ds-popover--top .ds-popover__content {
-  bottom: calc(100% + 8px);
+  bottom: calc(100% + var(--ds-offset-md));
   top: auto;
   left: 50%;
   transform: translateX(-50%) scale(0.96);
@@ -4581,7 +4596,7 @@ tr:hover .ds-sortable__handle,
 
 /* Placement: left */
 .ds-popover--left .ds-popover__content {
-  right: calc(100% + 8px);
+  right: calc(100% + var(--ds-offset-md));
   top: 50%;
   left: auto;
   transform: translateY(-50%) scale(0.96);
@@ -4593,7 +4608,7 @@ tr:hover .ds-sortable__handle,
 
 /* Placement: right */
 .ds-popover--right .ds-popover__content {
-  left: calc(100% + 8px);
+  left: calc(100% + var(--ds-offset-md));
   top: 50%;
   transform: translateY(-50%) scale(0.96);
 }
