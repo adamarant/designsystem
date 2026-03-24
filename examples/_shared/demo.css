@@ -81,7 +81,8 @@
   background: var(--ds-color-overlay-hover);
 }
 
-.demo-sidebar__link--active {
+.demo-sidebar__link--active,
+.demo-sidebar__link--active:hover {
   color: var(--ds-color-text);
   background: var(--ds-color-overlay-active);
   font-weight: var(--ds-weight-medium);

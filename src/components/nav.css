@@ -187,7 +187,8 @@
   scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
-.ds-sidebar__link--active {
+.ds-sidebar__link--active,
+.ds-sidebar__link--active:hover {
   color: var(--ds-color-text);
   background-color: var(--ds-color-bg-elevated);
 }
