@@ -1,6 +1,11 @@
 /* ==========================================================================
    Component: Alert
    Contextual feedback banners with semantic variants and dismissibility.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="alert" (for important messages) or role="status"
+   - Dismissible: close button needs aria-label="Dismiss"
+   - For non-urgent info, use role="status" instead of role="alert"
    ========================================================================== */
 
 .ds-alert {
@@ -109,6 +114,7 @@
 .ds-alert__close:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* --- Compact Variant --- */

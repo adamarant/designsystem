@@ -2,6 +2,12 @@
    Component: Tooltip
    Inverted bubble with arrow, positioned via modifier classes.
    Default placement: top.
+
+   ARIA requirements (consumer responsibility):
+   - Tooltip content: role="tooltip", id="[tooltip-id]"
+   - Trigger element: aria-describedby="[tooltip-id]"
+   - Keyboard: tooltip should show on focus as well as hover (CSS handles this via :hover)
+   - For focus support: also add :focus-within show logic if trigger is focusable
    ========================================================================== */
 
 .ds-tooltip {

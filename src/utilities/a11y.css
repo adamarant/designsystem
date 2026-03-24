@@ -1,0 +1,102 @@
+/* ==========================================================================
+   Utilities: Accessibility
+   Screen-reader helpers, skip links, focus utilities, and motion control.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Screen Reader Only — visually hidden, available to assistive technology
+   --------------------------------------------------------------------------- */
+
+.ds-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Not Screen Reader Only — reset ds-sr-only when needed (e.g., responsive)
+   --------------------------------------------------------------------------- */
+
+.ds-not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* ---------------------------------------------------------------------------
+   Focus Visible Only — invisible by default, shown on keyboard focus
+   --------------------------------------------------------------------------- */
+
+.ds-focus-visible-only {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ds-focus-visible-only:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------------------------------------------------------------------------
+   Skip Link — skip to main content, visible only on focus
+   --------------------------------------------------------------------------- */
+
+.ds-skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.ds-skip-link:focus-visible {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: var(--ds-z-tooltip, 200);
+  width: auto;
+  height: auto;
+  padding: var(--ds-space-3) var(--ds-space-5);
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background-color: var(--ds-color-inverted);
+  color: var(--ds-color-on-inverted);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  border-radius: 0 0 var(--ds-radius-lg) 0;
+  box-shadow: var(--ds-shadow-lg);
+  text-decoration: none;
+  outline: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Reduce Motion — force reduced motion on a specific element
+   --------------------------------------------------------------------------- */
+
+.ds-reduce-motion,
+.ds-reduce-motion *,
+.ds-reduce-motion *::before,
+.ds-reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}

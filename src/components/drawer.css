@@ -5,13 +5,21 @@
    Default direction is right; use `--left` or `--bottom` modifiers
    to change the slide origin.
 
+   ARIA requirements (consumer responsibility):
+   - Container: role="dialog", aria-modal="true", aria-labelledby="[title-id]"
+   - Close button: aria-label="Close"
+   - Focus: trap focus inside drawer when open
+   - Keyboard: Escape closes drawer
+   - On open: move focus to first focusable element or close button
+   - On close: return focus to the element that triggered the drawer
+
    Sizes:
      --sm        18 rem
      (default)   24 rem
      --lg        36 rem
 
    Usage:
-     <div class="ds-drawer ds-drawer--right ds-drawer--open">
+     <div class="ds-drawer ds-drawer--right ds-drawer--open" role="dialog" aria-modal="true">
        <div class="ds-drawer__content">
          <div class="ds-drawer__header">
            <h3>Title</h3>
@@ -188,6 +196,7 @@
 .ds-drawer__close:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* ==========================================================================

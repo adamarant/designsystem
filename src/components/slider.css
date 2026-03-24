@@ -4,9 +4,15 @@
    Range slider input component with customizable thumb and track styling.
    Supports labels, value display, size variants, and disabled state.
 
+   ARIA requirements (consumer responsibility):
+   - Use native <input type="range"> (inherits slider role)
+   - Add aria-label or aria-labelledby for context
+   - Add aria-valuemin, aria-valuemax, aria-valuenow if using custom slider
+   - Add aria-valuetext for human-readable value (e.g., "50%")
+
    Usage:
      <div class="ds-slider">
-       <input type="range" min="0" max="100" value="50" />
+       <input type="range" min="0" max="100" value="50" aria-label="Volume" />
        <div class="ds-slider__labels">
          <span>0</span>
          <span>100</span>
@@ -39,8 +45,8 @@
 .ds-slider input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  height: 1.5rem;
   border-radius: var(--ds-radius-full);
   background-color: var(--ds-color-inverted);
   border: 2px solid var(--ds-color-surface);
@@ -51,8 +57,8 @@
 
 /* Firefox thumb */
 .ds-slider input[type="range"]::-moz-range-thumb {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  height: 1.5rem;
   border-radius: var(--ds-radius-full);
   background-color: var(--ds-color-inverted);
   border: 2px solid var(--ds-color-surface);
@@ -74,6 +80,7 @@
 .ds-slider input[type="range"]:focus-visible::-webkit-slider-thumb {
   outline: var(--ds-ring-width) solid var(--ds-ring-color);
   outline-offset: 0;
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-slider input[type="range"]:focus-visible::-moz-range-thumb {

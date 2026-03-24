@@ -282,6 +282,28 @@ src/
     └── index.html             # Live demo of all components
 ```
 
+### 9. Accessibility (WCAG 2.2 AA)
+
+**Target Sizes:** All interactive components meet the WCAG 2.5.8 minimum of 24×24 CSS pixels. This is enforced via explicit `min-width`/`min-height: 1.5rem` on small interactive elements (tag remove buttons, chip remove, checkbox/radio inputs, slider thumbs, sortable handles, search clear buttons).
+
+**Focus Not Obscured:** All focusable components include `scroll-margin-block: var(--ds-space-16, 4rem)` on `:focus-visible`, preventing sticky headers from covering focused elements during keyboard navigation.
+
+**Color Contrast:**
+- `--ds-color-text` and `--ds-color-text-secondary` pass WCAG AAA (≥7:1) in both themes
+- `--ds-color-text-tertiary` does NOT meet 4.5:1 — use only for decorative/supplementary text, never as the sole carrier of information
+- `--ds-color-text-disabled` is exempt per WCAG 1.4.3 (disabled elements)
+
+**ARIA Reference:** Every component CSS file includes an ARIA requirements block in its header comment. These are the consumer's responsibility — the DS is CSS-only and cannot add ARIA attributes. Check the component file header for the exact attributes needed.
+
+**Utility Classes:**
+- `.ds-sr-only` — visually hidden, available to screen readers
+- `.ds-not-sr-only` — reset sr-only
+- `.ds-focus-visible-only` — invisible by default, shown on keyboard focus
+- `.ds-skip-link` — skip to content link (sr-only, visible on focus, position fixed)
+- `.ds-reduce-motion` — force reduced motion on an element and its children
+
+**Motion:** Components with animations include `@media (prefers-reduced-motion: reduce)` blocks. Use `.ds-reduce-motion` for per-element control.
+
 ---
 
 ## How Consuming Projects Should Use This

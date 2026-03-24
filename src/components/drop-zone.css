@@ -1,6 +1,12 @@
 /* ==========================================================================
    Component: Drop Zone
    Dashed-border upload area with icon, label, hint, and progress states.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="button" if clickable, tabindex="0" for keyboard access
+   - Label: aria-label="Upload files" or visible label via aria-labelledby
+   - Drag state: announce via aria-live="polite" region
+   - Progress: use aria-busy="true" during upload, aria-valuenow for progress
    ==========================================================================
 
    Usage:
@@ -42,6 +48,7 @@
 .ds-drop-zone:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 :root:not(.dark) .ds-drop-zone {

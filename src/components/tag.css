@@ -3,6 +3,11 @@
    ==========================================================================
    Interactive, optionally removable tag for categorisation and filtering.
 
+   ARIA requirements (consumer responsibility):
+   - Remove button: add aria-label="Remove [tag name]"
+   - Selectable tags (as <button>): use aria-pressed="true|false"
+   - Tag list: wrap in role="list" with aria-label
+
    Usage:
      <span class="ds-tag">Default</span>
      <span class="ds-tag ds-tag--success">Approved</span>
@@ -43,6 +48,7 @@
 button.ds-tag:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* ---------------------------------------------------------------------------
@@ -103,6 +109,8 @@ button.ds-tag:focus-visible {
   justify-content: center;
   width: 1rem;
   height: 1rem;
+  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  min-height: 1.5rem;
   padding: 0;
   border: none;
   border-radius: var(--ds-radius-full);

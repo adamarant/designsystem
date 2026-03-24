@@ -1,6 +1,13 @@
 /* ==========================================================================
    Component: Form Inputs
    Surface bg, clean borders, focus ring.
+
+   ARIA requirements (consumer responsibility):
+   - Input: associate with <label for="id"> or aria-label
+   - Error state: add aria-invalid="true" + aria-describedby pointing to error msg
+   - Required: add aria-required="true" or HTML required attribute
+   - Input group: icon is decorative (pointer-events: none), no ARIA needed
+   - Checkbox/radio: use native <input type="checkbox|radio"> inside <label>
    ========================================================================== */
 
 .ds-label {
@@ -55,6 +62,7 @@
 .ds-select:focus-visible {
   border-color: var(--ds-ring-color);
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-input::placeholder,
@@ -237,6 +245,8 @@
 .ds-checkbox input,
 .ds-radio input {
   accent-color: var(--ds-color-interactive);
-  width: 0.875rem;
-  height: 0.875rem;
+  width: 1rem;
+  height: 1rem;
+  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  min-height: 1.5rem;
 }

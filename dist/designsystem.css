@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.6.0 */
+/* @ds/designsystem v0.7.0 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -43,7 +43,13 @@
   --ds-color-surface-hover: #fafafa;
   --ds-color-surface-active: #f4f4f5;
 
-  /* --- Text — zinc hierarchy --- */
+  /* --- Text — zinc hierarchy ---
+     Contrast ratios on --ds-color-bg (#fafafa):
+     --text:           #09090b → ~19.3:1 ✅ WCAG AAA
+     --text-secondary: #52525b → ~7.6:1  ✅ WCAG AAA
+     --text-tertiary:  #a1a1aa → ~2.5:1  ⚠ Decorative/non-essential only (does not meet 4.5:1)
+     --text-disabled:  #d4d4d8 → ~1.5:1  ⚠ Disabled state (exempt per WCAG 1.4.3)
+     --- */
   --ds-color-text: #09090b;
   --ds-color-text-secondary: #52525b;
   --ds-color-text-tertiary: #a1a1aa;
@@ -101,7 +107,13 @@
   --ds-color-surface-hover: #18181b;
   --ds-color-surface-active: #27272a;
 
-  /* --- Text --- */
+  /* --- Text ---
+     Contrast ratios on --ds-color-bg (#09090b):
+     --text:           #fafafa → ~19.3:1 ✅ WCAG AAA
+     --text-secondary: #a1a1aa → ~7.6:1  ✅ WCAG AAA
+     --text-tertiary:  #71717a → ~3.8:1  ⚠ Decorative/non-essential only (does not meet 4.5:1)
+     --text-disabled:  #3f3f46 → ~2.0:1  ⚠ Disabled state (exempt per WCAG 1.4.3)
+     --- */
   --ds-color-text: #fafafa;
   --ds-color-text-secondary: #a1a1aa;
   --ds-color-text-tertiary: #71717a;
@@ -696,6 +708,13 @@ hr {
 /* ==========================================================================
    Component: Button
    Inverted primary, rounded-full CTAs, refined sizing.
+
+   ARIA requirements (consumer responsibility):
+   - Use <button> or <a role="button"> elements
+   - Disabled: add aria-disabled="true" (supported by DS styles)
+   - Loading: add aria-busy="true" when --loading is applied
+   - Icon-only: add aria-label="[action]" for screen readers
+   - Button groups: wrap in role="group" with aria-label
    ========================================================================== */
 
 .ds-btn {
@@ -727,6 +746,7 @@ hr {
 .ds-btn:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-btn:disabled,
@@ -1027,6 +1047,13 @@ hr {
 /* ==========================================================================
    Component: Form Inputs
    Surface bg, clean borders, focus ring.
+
+   ARIA requirements (consumer responsibility):
+   - Input: associate with <label for="id"> or aria-label
+   - Error state: add aria-invalid="true" + aria-describedby pointing to error msg
+   - Required: add aria-required="true" or HTML required attribute
+   - Input group: icon is decorative (pointer-events: none), no ARIA needed
+   - Checkbox/radio: use native <input type="checkbox|radio"> inside <label>
    ========================================================================== */
 
 .ds-label {
@@ -1081,6 +1108,7 @@ hr {
 .ds-select:focus-visible {
   border-color: var(--ds-ring-color);
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-input::placeholder,
@@ -1263,8 +1291,10 @@ hr {
 .ds-checkbox input,
 .ds-radio input {
   accent-color: var(--ds-color-interactive);
-  width: 0.875rem;
-  height: 0.875rem;
+  width: 1rem;
+  height: 1rem;
+  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  min-height: 1.5rem;
 }
 
 /* ==========================================================================
@@ -1429,6 +1459,13 @@ hr {
 /* ==========================================================================
    Component: Navigation
    Fixed glass header, backdrop-blur, h-16. Clean links.
+
+   ARIA requirements (consumer responsibility):
+   - Nav: <nav aria-label="Main navigation"> (or aria-label="Sidebar")
+   - Active link: aria-current="page" on the current page link
+   - Mobile menu: toggle aria-expanded on hamburger button
+   - Mobile menu button: aria-label="Open menu" / "Close menu"
+   - Skip nav: add ds-skip-link before nav to skip to main content
    ========================================================================== */
 
 .ds-nav {
@@ -1490,6 +1527,7 @@ hr {
 .ds-nav__link:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-nav__link--active {
@@ -1524,6 +1562,7 @@ hr {
 .ds-nav__icon-btn:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* --- Mobile nav overlay --- */
@@ -1603,6 +1642,7 @@ hr {
 .ds-sidebar__link:focus-visible {
   outline: none;
   box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-sidebar__link--active {
@@ -1613,6 +1653,14 @@ hr {
 /* ==========================================================================
    Component: Modal
    Backdrop blur, shadow-2xl, rounded-xl. Smooth scale transition.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="dialog", aria-modal="true", aria-labelledby="[title-id]"
+   - Close button: aria-label="Close"
+   - Focus: trap focus inside modal when open
+   - Keyboard: Escape closes modal
+   - On open: move focus to first focusable element or close button
+   - On close: return focus to the element that triggered the modal
    ========================================================================== */
 
 .ds-modal {
@@ -1697,6 +1745,7 @@ hr {
 .ds-modal__close:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-modal__body {
@@ -1738,6 +1787,12 @@ hr {
 
 /* ==========================================================================
    Component: Toast
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="status", aria-live="polite" (or role="alert" for errors)
+   - Close button: aria-label="Dismiss notification"
+   - Auto-dismiss: provide enough time (minimum 5s), or let user control
+   - Toast region: wrap container in aria-label="Notifications"
    ========================================================================== */
 
 .ds-toast-container {
@@ -1793,9 +1848,15 @@ hr {
 .ds-toast__close:hover {
   color: var(--ds-color-text);
 }
+.ds-toast__close {
+  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  min-height: 1.5rem;
+}
+
 .ds-toast__close:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 @keyframes ds-toast-in {
@@ -1870,6 +1931,13 @@ hr {
 /* ==========================================================================
    Component: Tabs
    Horizontal/vertical tab navigation with pill, small, and full-width variants.
+
+   ARIA requirements (consumer responsibility):
+   - Tab list: role="tablist", aria-label="[description]"
+   - Tab: role="tab", aria-selected="true|false", aria-controls="[panel-id]"
+   - Tab panel: role="tabpanel", id matching aria-controls, aria-labelledby="[tab-id]"
+   - Keyboard: ArrowLeft/Right (horizontal) or ArrowUp/Down (vertical) to navigate
+   - Active tab: only the active tab should be in tab order (tabindex="0"), others tabindex="-1"
    ========================================================================== */
 
 .ds-tabs {
@@ -1978,6 +2046,7 @@ hr {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
   border-radius: var(--ds-radius-sm);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-tab--active {
@@ -2034,6 +2103,11 @@ hr {
 /* ==========================================================================
    Component: Alert
    Contextual feedback banners with semantic variants and dismissibility.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="alert" (for important messages) or role="status"
+   - Dismissible: close button needs aria-label="Dismiss"
+   - For non-urgent info, use role="status" instead of role="alert"
    ========================================================================== */
 
 .ds-alert {
@@ -2142,6 +2216,7 @@ hr {
 .ds-alert__close:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* --- Compact Variant --- */
@@ -2252,6 +2327,14 @@ hr {
 /* ==========================================================================
    Component: Dropdown
    Floating menu with surface bg, scale transition, keyboard-friendly items.
+
+   ARIA requirements (consumer responsibility):
+   - Trigger: aria-haspopup="true", aria-expanded="true|false"
+   - Menu: role="menu"
+   - Items: role="menuitem"
+   - Keyboard: ArrowUp/Down to navigate, Enter to select, Escape to close
+   - On open: move focus to first menu item
+   - On close: return focus to trigger
    ========================================================================== */
 
 .ds-dropdown {
@@ -2344,6 +2427,7 @@ hr {
 .ds-dropdown__item:focus-visible {
   outline: none;
   box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-dropdown__item--active {
@@ -2402,6 +2486,12 @@ hr {
    Component: Tooltip
    Inverted bubble with arrow, positioned via modifier classes.
    Default placement: top.
+
+   ARIA requirements (consumer responsibility):
+   - Tooltip content: role="tooltip", id="[tooltip-id]"
+   - Trigger element: aria-describedby="[tooltip-id]"
+   - Keyboard: tooltip should show on focus as well as hover (CSS handles this via :hover)
+   - For focus support: also add :focus-within show logic if trigger is focusable
    ========================================================================== */
 
 .ds-tooltip {
@@ -3151,6 +3241,12 @@ hr {
    A toggle (switch) control for binary on/off states.
    Supports aria-checked attribute and modifier-class driven states.
 
+   ARIA requirements (consumer responsibility):
+   - Element: <button role="switch" aria-checked="false|true">
+   - Label: pair with visible label via aria-labelledby or wrap in <label>
+   - Keyboard: Space toggles state (native <button> handles this)
+   - State: update aria-checked on toggle
+
    Usage:
      <button class="ds-toggle" role="switch" aria-checked="false"></button>
 
@@ -3232,6 +3328,7 @@ hr {
 .ds-toggle:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* ---------------------------------------------------------------------------
@@ -3252,6 +3349,7 @@ hr {
 .ds-toggle--sm {
   width: 2rem;
   height: 1.125rem;
+  min-height: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
 }
 
 .ds-toggle--sm::after {
@@ -3285,6 +3383,12 @@ hr {
    Breadcrumb Navigation
    ==========================================================================
    A horizontal breadcrumb trail for hierarchical navigation.
+
+   ARIA requirements (consumer responsibility):
+   - Container: <nav aria-label="Breadcrumb">
+   - Current page: aria-current="page" on the last item
+   - Links: use <a> elements for navigation
+   - Separator: decorative (generated via CSS ::after, not in DOM)
 
    Usage:
      <nav class="ds-breadcrumb" aria-label="Breadcrumb">
@@ -3353,6 +3457,7 @@ hr {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
   border-radius: var(--ds-radius-sm);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* ---------------------------------------------------------------------------
@@ -3381,6 +3486,13 @@ hr {
    Pagination Component
    ==========================================================================
    A row of page-number controls for navigating multi-page content.
+
+   ARIA requirements (consumer responsibility):
+   - Container: <nav aria-label="Pagination">
+   - Active page: aria-current="page"
+   - Prev/Next: aria-label="Previous page" / "Next page"
+   - Disabled: aria-disabled="true" on disabled prev/next buttons
+   - Page items: aria-label="Page [N]" (optional, number is visible)
 
    Usage:
      <nav class="ds-pagination" aria-label="Pagination">
@@ -3438,6 +3550,7 @@ hr {
 .ds-pagination__item:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* ---------------------------------------------------------------------------
@@ -3497,6 +3610,7 @@ hr {
 .ds-pagination__next:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-pagination__prev:disabled,
@@ -3549,6 +3663,11 @@ hr {
    ==========================================================================
    Interactive, optionally removable tag for categorisation and filtering.
 
+   ARIA requirements (consumer responsibility):
+   - Remove button: add aria-label="Remove [tag name]"
+   - Selectable tags (as <button>): use aria-pressed="true|false"
+   - Tag list: wrap in role="list" with aria-label
+
    Usage:
      <span class="ds-tag">Default</span>
      <span class="ds-tag ds-tag--success">Approved</span>
@@ -3589,6 +3708,7 @@ hr {
 button.ds-tag:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* ---------------------------------------------------------------------------
@@ -3649,6 +3769,8 @@ button.ds-tag:focus-visible {
   justify-content: center;
   width: 1rem;
   height: 1rem;
+  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  min-height: 1.5rem;
   padding: 0;
   border: none;
   border-radius: var(--ds-radius-full);
@@ -3716,6 +3838,12 @@ button.ds-tag:focus-visible {
    A vertically stacked set of collapsible sections. Supports CSS-only
    open/close via the `.ds-accordion__item--open` modifier.
 
+   ARIA requirements (consumer responsibility):
+   - Trigger: <button> with aria-expanded="true|false"
+   - Trigger: aria-controls="[content-panel-id]"
+   - Content panel: id matching aria-controls, role="region", aria-labelledby="[trigger-id]"
+   - Keyboard: Enter/Space toggles section (native <button> handles this)
+
    Variants:
      --flush      – borderless, full-bleed style
      --separated  – visually detached items with individual borders
@@ -3723,8 +3851,8 @@ button.ds-tag:focus-visible {
    Usage:
      <div class="ds-accordion">
        <div class="ds-accordion__item ds-accordion__item--open">
-         <button class="ds-accordion__trigger">Section</button>
-         <div class="ds-accordion__content">
+         <button class="ds-accordion__trigger" aria-expanded="true" aria-controls="panel-1">Section</button>
+         <div class="ds-accordion__content" id="panel-1" role="region">
            <div class="ds-accordion__body">…</div>
          </div>
        </div>
@@ -3795,6 +3923,7 @@ button.ds-tag:focus-visible {
 .ds-accordion__trigger:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* Open state – rotate chevron */
@@ -3876,13 +4005,21 @@ button.ds-tag:focus-visible {
    Default direction is right; use `--left` or `--bottom` modifiers
    to change the slide origin.
 
+   ARIA requirements (consumer responsibility):
+   - Container: role="dialog", aria-modal="true", aria-labelledby="[title-id]"
+   - Close button: aria-label="Close"
+   - Focus: trap focus inside drawer when open
+   - Keyboard: Escape closes drawer
+   - On open: move focus to first focusable element or close button
+   - On close: return focus to the element that triggered the drawer
+
    Sizes:
      --sm        18 rem
      (default)   24 rem
      --lg        36 rem
 
    Usage:
-     <div class="ds-drawer ds-drawer--right ds-drawer--open">
+     <div class="ds-drawer ds-drawer--right ds-drawer--open" role="dialog" aria-modal="true">
        <div class="ds-drawer__content">
          <div class="ds-drawer__header">
            <h3>Title</h3>
@@ -4059,6 +4196,7 @@ button.ds-tag:focus-visible {
 .ds-drawer__close:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* ==========================================================================
@@ -4306,6 +4444,12 @@ button.ds-tag:focus-visible {
 /* ==========================================================================
    Component: Drop Zone
    Dashed-border upload area with icon, label, hint, and progress states.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="button" if clickable, tabindex="0" for keyboard access
+   - Label: aria-label="Upload files" or visible label via aria-labelledby
+   - Drag state: announce via aria-live="polite" region
+   - Progress: use aria-busy="true" during upload, aria-valuenow for progress
    ==========================================================================
 
    Usage:
@@ -4347,6 +4491,7 @@ button.ds-tag:focus-visible {
 .ds-drop-zone:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 :root:not(.dark) .ds-drop-zone {
@@ -4445,6 +4590,14 @@ button.ds-tag:focus-visible {
    Replaces native <select> with styled dropdown panel.
    Desktop: absolute positioned panel below trigger.
    Mobile: fullscreen overlay with header + search.
+
+   ARIA requirements (consumer responsibility):
+   - Trigger: role="combobox", aria-expanded="true|false", aria-haspopup="listbox"
+   - Trigger: aria-controls="[panel-list-id]", aria-labelledby="[label-id]"
+   - Panel list: role="listbox", id matching aria-controls
+   - Option: role="option", aria-selected="true|false"
+   - Multi-select: add aria-multiselectable="true" on listbox
+   - Keyboard: ArrowUp/Down to navigate, Enter/Space to select, Escape to close
    ========================================================================== */
 
 /* --- Wrapper --- */
@@ -4483,6 +4636,7 @@ button.ds-tag:focus-visible {
   border-color: var(--ds-color-border-active);
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-custom-select__trigger--open {
@@ -4809,6 +4963,8 @@ button.ds-tag:focus-visible {
   justify-content: center;
   width: 1rem;
   height: 1rem;
+  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  min-height: 1.5rem;
   padding: 0;
   border: none;
   border-radius: var(--ds-radius-full);
@@ -4878,6 +5034,11 @@ button.ds-tag:focus-visible {
 /* ==========================================================================
    Component: Collapsible
    Single collapsible section — a simplified, standalone accordion item.
+
+   ARIA requirements (consumer responsibility):
+   - Trigger: <button> with aria-expanded="true|false"
+   - Trigger: aria-controls="[content-panel-id]"
+   - Content: id matching aria-controls
    ========================================================================== */
 
 /* ---------------------------------------------------------------------------
@@ -4919,6 +5080,7 @@ button.ds-tag:focus-visible {
 .ds-collapsible__trigger:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* ---------------------------------------------------------------------------
@@ -5175,6 +5337,12 @@ button.ds-tag:focus-visible {
    Optional drag-to-reorder styles for table rows or list items.
    Provides grip handle, dragging states, and drop zone indicators.
    Works with native HTML5 Drag API or any JS drag library.
+
+   ARIA requirements (consumer responsibility):
+   - Handle: aria-label="Reorder [item]", role="button"
+   - Draggable row: aria-grabbed="true|false" (when using HTML5 DnD)
+   - Drop target: aria-dropeffect="move"
+   - Keyboard: handle should support ArrowUp/Down + Enter to move items
    ========================================================================== */
 
 /* --- Grip handle: visible on row hover, grab cursor --- */
@@ -5182,6 +5350,8 @@ button.ds-tag:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  min-height: 1.5rem;
   padding: var(--ds-space-1);
   color: var(--ds-color-text-tertiary);
   cursor: grab;
@@ -5207,6 +5377,7 @@ tr:hover .ds-sortable__handle,
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
   border-radius: var(--ds-radius-sm);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 tr:hover .ds-sortable__handle,
@@ -5350,9 +5521,15 @@ tr:hover .ds-sortable__handle,
    Range slider input component with customizable thumb and track styling.
    Supports labels, value display, size variants, and disabled state.
 
+   ARIA requirements (consumer responsibility):
+   - Use native <input type="range"> (inherits slider role)
+   - Add aria-label or aria-labelledby for context
+   - Add aria-valuemin, aria-valuemax, aria-valuenow if using custom slider
+   - Add aria-valuetext for human-readable value (e.g., "50%")
+
    Usage:
      <div class="ds-slider">
-       <input type="range" min="0" max="100" value="50" />
+       <input type="range" min="0" max="100" value="50" aria-label="Volume" />
        <div class="ds-slider__labels">
          <span>0</span>
          <span>100</span>
@@ -5385,8 +5562,8 @@ tr:hover .ds-sortable__handle,
 .ds-slider input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  height: 1.5rem;
   border-radius: var(--ds-radius-full);
   background-color: var(--ds-color-inverted);
   border: 2px solid var(--ds-color-surface);
@@ -5397,8 +5574,8 @@ tr:hover .ds-sortable__handle,
 
 /* Firefox thumb */
 .ds-slider input[type="range"]::-moz-range-thumb {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  height: 1.5rem;
   border-radius: var(--ds-radius-full);
   background-color: var(--ds-color-inverted);
   border: 2px solid var(--ds-color-surface);
@@ -5420,6 +5597,7 @@ tr:hover .ds-sortable__handle,
 .ds-slider input[type="range"]:focus-visible::-webkit-slider-thumb {
   outline: var(--ds-ring-width) solid var(--ds-ring-color);
   outline-offset: 0;
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-slider input[type="range"]:focus-visible::-moz-range-thumb {
@@ -5662,17 +5840,26 @@ tr:hover .ds-sortable__handle,
    full-screen overlay with a centered search dialog, grouped results,
    keyboard-navigable items, and a footer with shortcut hints.
 
+   ARIA requirements (consumer responsibility):
+   - Input: role="combobox", aria-expanded="true", aria-controls="[list-id]"
+   - Input: aria-activedescendant="[active-item-id]" for keyboard nav
+   - List: role="listbox", id matching aria-controls
+   - Items: role="option", id for aria-activedescendant
+   - Groups: role="group", aria-labelledby="[heading-id]"
+   - Overlay: role="dialog", aria-modal="true", aria-label="Command palette"
+   - Keyboard: ArrowUp/Down to navigate, Enter to select, Escape to close
+
    Usage:
-     <div class="ds-command ds-command--open">
+     <div class="ds-command ds-command--open" role="dialog" aria-modal="true" aria-label="Command palette">
        <div class="ds-command__content">
          <div class="ds-command__input-wrapper">
            <span class="ds-command__input-icon">...</span>
-           <input class="ds-command__input" placeholder="Search..." />
+           <input class="ds-command__input" role="combobox" placeholder="Search..." />
          </div>
-         <div class="ds-command__list">
+         <div class="ds-command__list" role="listbox">
            <div class="ds-command__group">
              <div class="ds-command__group-heading">Results</div>
-             <div class="ds-command__item ds-command__item--active">
+             <div class="ds-command__item ds-command__item--active" role="option">
                <span class="ds-command__item-icon">...</span>
                <span class="ds-command__item-label">Item</span>
                <span class="ds-command__item-shortcut">Ctrl+N</span>
@@ -5805,6 +5992,7 @@ tr:hover .ds-sortable__handle,
 .ds-command__item:focus-visible {
   outline: none;
   box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* Item icon */
@@ -5849,25 +6037,20 @@ tr:hover .ds-sortable__handle,
    Inline search bar with dropdown results, keyboard navigation, and
    responsive mobile expansion. Distinct from ds-command (modal overlay).
 
+   ARIA requirements (consumer responsibility):
+   - Container: role="search" on wrapper or parent <form>
+   - Input: role="combobox", aria-expanded="true|false", aria-controls="[list-id]"
+   - Dropdown: role="listbox" with id matching aria-controls
+   - Results: role="option", aria-selected="true" on active result
+   - Clear button: aria-label="Clear search"
+   - Keyboard: ArrowUp/Down to navigate, Enter to select, Escape to close
+
    Usage:
-     <div class="ds-search">
+     <div class="ds-search" role="search">
        <span class="ds-search__icon">...</span>
        <input class="ds-search__input" placeholder="Search..." />
        <kbd class="ds-search__shortcut">Ctrl+K</kbd>
-       <button class="ds-search__clear">...</button>
-     </div>
-     <div class="ds-search__dropdown">
-       <div class="ds-search__group">
-         <span class="ds-search__group-label">Pages</span>
-         <button class="ds-search__result ds-search__result--active">
-           <span class="ds-search__result-icon">...</span>
-           <div class="ds-search__result-content">
-             <span class="ds-search__result-title">Page name</span>
-             <span class="ds-search__result-meta">Database</span>
-           </div>
-         </button>
-       </div>
-       <div class="ds-search__empty">No results found.</div>
+       <button class="ds-search__clear" aria-label="Clear search">...</button>
      </div>
 
    Modifiers:
@@ -5945,6 +6128,8 @@ tr:hover .ds-sortable__handle,
   flex-shrink: 0;
   width: 1.25rem;
   height: 1.25rem;
+  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  min-height: 1.5rem;
   border: none;
   border-radius: var(--ds-radius-sm);
   background: transparent;
@@ -6017,6 +6202,7 @@ tr:hover .ds-sortable__handle,
 .ds-search__result:focus-visible {
   outline: none;
   box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-search__result-icon {
@@ -6336,10 +6522,15 @@ tr:hover .ds-sortable__handle,
    Interactive filter/sort chips with optional remove button. Distinct from
    ds-tag (which is a static label). Chips represent active filter state.
 
+   ARIA requirements (consumer responsibility):
+   - Remove button: add aria-label="Remove [filter name]"
+   - Logic chip (AND/OR): use aria-pressed="true|false" on <button>
+   - Chip group: wrap in role="group" with aria-label="Active filters"
+
    Usage:
      <span class="ds-chip">
        Status: Active
-       <button class="ds-chip__remove">×</button>
+       <button class="ds-chip__remove" aria-label="Remove Status filter">×</button>
      </span>
      <button class="ds-chip ds-chip--logic">AND</button>
      <span class="ds-chip ds-chip--sort">Date ↑</span>
@@ -6389,6 +6580,8 @@ tr:hover .ds-sortable__handle,
   justify-content: center;
   width: 14px;
   height: 14px;
+  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  min-height: 1.5rem;
   border: none;
   border-radius: var(--ds-radius-full);
   background: transparent;
@@ -6409,12 +6602,17 @@ tr:hover .ds-sortable__handle,
    Standalone icon button for actions, toolbar items, and table rows.
    A minimal interactive element that wraps a single icon.
 
+   ARIA requirements (consumer responsibility):
+   - Always add aria-label="[action]" (e.g., aria-label="Delete")
+   - Disabled: add aria-disabled="true"
+   - Toggle: use aria-pressed="true|false" for toggle icon buttons
+
    Usage:
-     <button class="ds-icon-btn">
+     <button class="ds-icon-btn" aria-label="Delete">
        <svg>...</svg>
      </button>
-     <button class="ds-icon-btn ds-icon-btn--sm">...</button>
-     <button class="ds-icon-btn ds-icon-btn--danger">...</button>
+     <button class="ds-icon-btn ds-icon-btn--sm" aria-label="Edit">...</button>
+     <button class="ds-icon-btn ds-icon-btn--danger" aria-label="Remove">...</button>
 
    Sizes:
      .ds-icon-btn--xs  — 24px (var(--ds-size-1))
@@ -6453,6 +6651,7 @@ tr:hover .ds-sortable__handle,
 .ds-icon-btn:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-icon-btn:disabled,
@@ -6506,16 +6705,22 @@ tr:hover .ds-sortable__handle,
    Mobile bottom navigation bar. Hidden on desktop, shown on mobile.
    Fixed to bottom with safe-area insets for notched devices.
 
+   ARIA requirements (consumer responsibility):
+   - Container: <nav aria-label="Bottom navigation">
+   - Active item: aria-current="page" on the current tab
+   - Badge: aria-label on badge parent (e.g., "Home, 3 notifications")
+   - Create button: aria-label="Create new"
+
    Usage:
-     <nav class="ds-bottom-nav">
-       <a href="/" class="ds-bottom-nav__item ds-bottom-nav__item--active">
+     <nav class="ds-bottom-nav" aria-label="Bottom navigation">
+       <a href="/" class="ds-bottom-nav__item ds-bottom-nav__item--active" aria-current="page">
          <span class="ds-bottom-nav__icon">
            <svg>...</svg>
            <span class="ds-bottom-nav__badge">3</span>
          </span>
          <span class="ds-bottom-nav__label">Home</span>
        </a>
-       <button class="ds-bottom-nav__item ds-bottom-nav__item--create">
+       <button class="ds-bottom-nav__item ds-bottom-nav__item--create" aria-label="Create new">
          <span class="ds-bottom-nav__create-icon">+</span>
          <span class="ds-bottom-nav__label">New</span>
        </button>
@@ -7521,6 +7726,109 @@ tr:hover .ds-sortable__handle,
 }
 .group:hover .ds-grip {
   color: var(--ds-color-text);
+}
+
+/* ==========================================================================
+   Utilities: Accessibility
+   Screen-reader helpers, skip links, focus utilities, and motion control.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Screen Reader Only — visually hidden, available to assistive technology
+   --------------------------------------------------------------------------- */
+
+.ds-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Not Screen Reader Only — reset ds-sr-only when needed (e.g., responsive)
+   --------------------------------------------------------------------------- */
+
+.ds-not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* ---------------------------------------------------------------------------
+   Focus Visible Only — invisible by default, shown on keyboard focus
+   --------------------------------------------------------------------------- */
+
+.ds-focus-visible-only {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ds-focus-visible-only:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------------------------------------------------------------------------
+   Skip Link — skip to main content, visible only on focus
+   --------------------------------------------------------------------------- */
+
+.ds-skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.ds-skip-link:focus-visible {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: var(--ds-z-tooltip, 200);
+  width: auto;
+  height: auto;
+  padding: var(--ds-space-3) var(--ds-space-5);
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background-color: var(--ds-color-inverted);
+  color: var(--ds-color-on-inverted);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  border-radius: 0 0 var(--ds-radius-lg) 0;
+  box-shadow: var(--ds-shadow-lg);
+  text-decoration: none;
+  outline: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Reduce Motion — force reduced motion on a specific element
+   --------------------------------------------------------------------------- */
+
+.ds-reduce-motion,
+.ds-reduce-motion *,
+.ds-reduce-motion *::before,
+.ds-reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
 }
 
 

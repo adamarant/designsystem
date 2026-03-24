@@ -5,17 +5,26 @@
    full-screen overlay with a centered search dialog, grouped results,
    keyboard-navigable items, and a footer with shortcut hints.
 
+   ARIA requirements (consumer responsibility):
+   - Input: role="combobox", aria-expanded="true", aria-controls="[list-id]"
+   - Input: aria-activedescendant="[active-item-id]" for keyboard nav
+   - List: role="listbox", id matching aria-controls
+   - Items: role="option", id for aria-activedescendant
+   - Groups: role="group", aria-labelledby="[heading-id]"
+   - Overlay: role="dialog", aria-modal="true", aria-label="Command palette"
+   - Keyboard: ArrowUp/Down to navigate, Enter to select, Escape to close
+
    Usage:
-     <div class="ds-command ds-command--open">
+     <div class="ds-command ds-command--open" role="dialog" aria-modal="true" aria-label="Command palette">
        <div class="ds-command__content">
          <div class="ds-command__input-wrapper">
            <span class="ds-command__input-icon">...</span>
-           <input class="ds-command__input" placeholder="Search..." />
+           <input class="ds-command__input" role="combobox" placeholder="Search..." />
          </div>
-         <div class="ds-command__list">
+         <div class="ds-command__list" role="listbox">
            <div class="ds-command__group">
              <div class="ds-command__group-heading">Results</div>
-             <div class="ds-command__item ds-command__item--active">
+             <div class="ds-command__item ds-command__item--active" role="option">
                <span class="ds-command__item-icon">...</span>
                <span class="ds-command__item-label">Item</span>
                <span class="ds-command__item-shortcut">Ctrl+N</span>
@@ -148,6 +157,7 @@
 .ds-command__item:focus-visible {
   outline: none;
   box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* Item icon */

@@ -4,6 +4,12 @@
    A vertically stacked set of collapsible sections. Supports CSS-only
    open/close via the `.ds-accordion__item--open` modifier.
 
+   ARIA requirements (consumer responsibility):
+   - Trigger: <button> with aria-expanded="true|false"
+   - Trigger: aria-controls="[content-panel-id]"
+   - Content panel: id matching aria-controls, role="region", aria-labelledby="[trigger-id]"
+   - Keyboard: Enter/Space toggles section (native <button> handles this)
+
    Variants:
      --flush      – borderless, full-bleed style
      --separated  – visually detached items with individual borders
@@ -11,8 +17,8 @@
    Usage:
      <div class="ds-accordion">
        <div class="ds-accordion__item ds-accordion__item--open">
-         <button class="ds-accordion__trigger">Section</button>
-         <div class="ds-accordion__content">
+         <button class="ds-accordion__trigger" aria-expanded="true" aria-controls="panel-1">Section</button>
+         <div class="ds-accordion__content" id="panel-1" role="region">
            <div class="ds-accordion__body">…</div>
          </div>
        </div>
@@ -83,6 +89,7 @@
 .ds-accordion__trigger:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* Open state – rotate chevron */

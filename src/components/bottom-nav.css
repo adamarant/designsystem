@@ -3,16 +3,22 @@
    Mobile bottom navigation bar. Hidden on desktop, shown on mobile.
    Fixed to bottom with safe-area insets for notched devices.
 
+   ARIA requirements (consumer responsibility):
+   - Container: <nav aria-label="Bottom navigation">
+   - Active item: aria-current="page" on the current tab
+   - Badge: aria-label on badge parent (e.g., "Home, 3 notifications")
+   - Create button: aria-label="Create new"
+
    Usage:
-     <nav class="ds-bottom-nav">
-       <a href="/" class="ds-bottom-nav__item ds-bottom-nav__item--active">
+     <nav class="ds-bottom-nav" aria-label="Bottom navigation">
+       <a href="/" class="ds-bottom-nav__item ds-bottom-nav__item--active" aria-current="page">
          <span class="ds-bottom-nav__icon">
            <svg>...</svg>
            <span class="ds-bottom-nav__badge">3</span>
          </span>
          <span class="ds-bottom-nav__label">Home</span>
        </a>
-       <button class="ds-bottom-nav__item ds-bottom-nav__item--create">
+       <button class="ds-bottom-nav__item ds-bottom-nav__item--create" aria-label="Create new">
          <span class="ds-bottom-nav__create-icon">+</span>
          <span class="ds-bottom-nav__label">New</span>
        </button>

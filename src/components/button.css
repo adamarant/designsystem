@@ -1,6 +1,13 @@
 /* ==========================================================================
    Component: Button
    Inverted primary, rounded-full CTAs, refined sizing.
+
+   ARIA requirements (consumer responsibility):
+   - Use <button> or <a role="button"> elements
+   - Disabled: add aria-disabled="true" (supported by DS styles)
+   - Loading: add aria-busy="true" when --loading is applied
+   - Icon-only: add aria-label="[action]" for screen readers
+   - Button groups: wrap in role="group" with aria-label
    ========================================================================== */
 
 .ds-btn {
@@ -32,6 +39,7 @@
 .ds-btn:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-btn:disabled,

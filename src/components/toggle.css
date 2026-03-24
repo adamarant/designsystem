@@ -4,6 +4,12 @@
    A toggle (switch) control for binary on/off states.
    Supports aria-checked attribute and modifier-class driven states.
 
+   ARIA requirements (consumer responsibility):
+   - Element: <button role="switch" aria-checked="false|true">
+   - Label: pair with visible label via aria-labelledby or wrap in <label>
+   - Keyboard: Space toggles state (native <button> handles this)
+   - State: update aria-checked on toggle
+
    Usage:
      <button class="ds-toggle" role="switch" aria-checked="false"></button>
 
@@ -85,6 +91,7 @@
 .ds-toggle:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* ---------------------------------------------------------------------------
@@ -105,6 +112,7 @@
 .ds-toggle--sm {
   width: 2rem;
   height: 1.125rem;
+  min-height: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
 }
 
 .ds-toggle--sm::after {

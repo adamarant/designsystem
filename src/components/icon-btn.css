@@ -3,12 +3,17 @@
    Standalone icon button for actions, toolbar items, and table rows.
    A minimal interactive element that wraps a single icon.
 
+   ARIA requirements (consumer responsibility):
+   - Always add aria-label="[action]" (e.g., aria-label="Delete")
+   - Disabled: add aria-disabled="true"
+   - Toggle: use aria-pressed="true|false" for toggle icon buttons
+
    Usage:
-     <button class="ds-icon-btn">
+     <button class="ds-icon-btn" aria-label="Delete">
        <svg>...</svg>
      </button>
-     <button class="ds-icon-btn ds-icon-btn--sm">...</button>
-     <button class="ds-icon-btn ds-icon-btn--danger">...</button>
+     <button class="ds-icon-btn ds-icon-btn--sm" aria-label="Edit">...</button>
+     <button class="ds-icon-btn ds-icon-btn--danger" aria-label="Remove">...</button>
 
    Sizes:
      .ds-icon-btn--xs  — 24px (var(--ds-size-1))
@@ -47,6 +52,7 @@
 .ds-icon-btn:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-icon-btn:disabled,

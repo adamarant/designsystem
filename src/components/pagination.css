@@ -3,6 +3,13 @@
    ==========================================================================
    A row of page-number controls for navigating multi-page content.
 
+   ARIA requirements (consumer responsibility):
+   - Container: <nav aria-label="Pagination">
+   - Active page: aria-current="page"
+   - Prev/Next: aria-label="Previous page" / "Next page"
+   - Disabled: aria-disabled="true" on disabled prev/next buttons
+   - Page items: aria-label="Page [N]" (optional, number is visible)
+
    Usage:
      <nav class="ds-pagination" aria-label="Pagination">
        <button class="ds-pagination__prev" aria-label="Previous page">&lsaquo;</button>
@@ -59,6 +66,7 @@
 .ds-pagination__item:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* ---------------------------------------------------------------------------
@@ -118,6 +126,7 @@
 .ds-pagination__next:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-pagination__prev:disabled,

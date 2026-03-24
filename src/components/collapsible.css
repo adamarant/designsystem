@@ -1,6 +1,11 @@
 /* ==========================================================================
    Component: Collapsible
    Single collapsible section — a simplified, standalone accordion item.
+
+   ARIA requirements (consumer responsibility):
+   - Trigger: <button> with aria-expanded="true|false"
+   - Trigger: aria-controls="[content-panel-id]"
+   - Content: id matching aria-controls
    ========================================================================== */
 
 /* ---------------------------------------------------------------------------
@@ -42,6 +47,7 @@
 .ds-collapsible__trigger:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 /* ---------------------------------------------------------------------------

@@ -1,6 +1,14 @@
 /* ==========================================================================
    Component: Modal
    Backdrop blur, shadow-2xl, rounded-xl. Smooth scale transition.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="dialog", aria-modal="true", aria-labelledby="[title-id]"
+   - Close button: aria-label="Close"
+   - Focus: trap focus inside modal when open
+   - Keyboard: Escape closes modal
+   - On open: move focus to first focusable element or close button
+   - On close: return focus to the element that triggered the modal
    ========================================================================== */
 
 .ds-modal {
@@ -85,6 +93,7 @@
 .ds-modal__close:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-modal__body {

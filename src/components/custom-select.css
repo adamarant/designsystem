@@ -3,6 +3,14 @@
    Replaces native <select> with styled dropdown panel.
    Desktop: absolute positioned panel below trigger.
    Mobile: fullscreen overlay with header + search.
+
+   ARIA requirements (consumer responsibility):
+   - Trigger: role="combobox", aria-expanded="true|false", aria-haspopup="listbox"
+   - Trigger: aria-controls="[panel-list-id]", aria-labelledby="[label-id]"
+   - Panel list: role="listbox", id matching aria-controls
+   - Option: role="option", aria-selected="true|false"
+   - Multi-select: add aria-multiselectable="true" on listbox
+   - Keyboard: ArrowUp/Down to navigate, Enter/Space to select, Escape to close
    ========================================================================== */
 
 /* --- Wrapper --- */
@@ -41,6 +49,7 @@
   border-color: var(--ds-color-border-active);
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
 .ds-custom-select__trigger--open {
@@ -367,6 +376,8 @@
   justify-content: center;
   width: 1rem;
   height: 1rem;
+  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  min-height: 1.5rem;
   padding: 0;
   border: none;
   border-radius: var(--ds-radius-full);
