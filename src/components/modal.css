@@ -52,7 +52,7 @@
   align-items: flex-start;
   justify-content: space-between;
   padding: var(--ds-space-4) var(--ds-space-5);
-  border-bottom: 1px solid var(--ds-color-border);
+  border-block-end: 1px solid var(--ds-color-border);
 }
 
 .ds-modal__header h3 {
@@ -65,7 +65,7 @@
 .ds-modal__header p {
   font-size: var(--ds-text-sm);
   color: var(--ds-color-text-tertiary);
-  margin-top: var(--ds-space-1);
+  margin-block-start: var(--ds-space-1);
 }
 
 .ds-modal__close {
@@ -99,7 +99,7 @@
   justify-content: flex-end;
   gap: var(--ds-space-2);
   padding: var(--ds-space-4) var(--ds-space-5);
-  border-top: 1px solid var(--ds-color-border);
+  border-block-start: 1px solid var(--ds-color-border);
 }
 
 /* Size variants */
@@ -107,7 +107,7 @@
 .ds-modal--lg .ds-modal__content { max-width: var(--ds-container-lg); }
 
 /* Fullscreen on mobile */
-@media (max-width: 1023px) {
+@media (max-width: 1023px) /* below --ds-breakpoint-lg */ {
   .ds-modal--fullscreen-mobile .ds-modal__content {
     max-width: none;
     max-height: none;

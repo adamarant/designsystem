@@ -94,7 +94,7 @@
 .ds-drop-zone__hint {
   font-size: var(--ds-text-xs);
   color: var(--ds-color-text-tertiary);
-  margin-top: calc(-1 * var(--ds-space-1));
+  margin-block-start: calc(-1 * var(--ds-space-1));
 }
 
 /* ---------------------------------------------------------------------------

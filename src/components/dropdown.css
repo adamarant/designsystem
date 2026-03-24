@@ -17,8 +17,8 @@
 
 .ds-dropdown__menu {
   position: absolute;
-  top: calc(100% + var(--ds-space-1));
-  left: 0;
+  inset-block-start: calc(100% + var(--ds-space-1));
+  inset-inline-start: 0;
   z-index: var(--ds-z-dropdown);
   min-width: 12rem;
   padding-block: var(--ds-space-1-5);
@@ -48,14 +48,14 @@
 /* --- Alignment variants --- */
 
 .ds-dropdown__menu--right {
-  left: auto;
-  right: 0;
+  inset-inline-start: auto;
+  inset-inline-end: 0;
   transform-origin: top right;
 }
 
 .ds-dropdown__menu--up {
-  top: auto;
-  bottom: calc(100% + var(--ds-space-1));
+  inset-block-start: auto;
+  inset-block-end: calc(100% + var(--ds-space-1));
   transform-origin: bottom left;
 }
 
@@ -122,7 +122,7 @@
 }
 
 .ds-dropdown__item-shortcut {
-  margin-left: auto;
+  margin-inline-start: auto;
   font-size: var(--ds-text-xs);
   color: var(--ds-color-text-tertiary);
 }
@@ -132,7 +132,7 @@
 .ds-dropdown__divider {
   margin-block: var(--ds-space-1);
   border: 0;
-  border-top: 1px solid var(--ds-color-border);
+  border-block-start: 1px solid var(--ds-color-border);
 }
 
 /* --- Section header --- */

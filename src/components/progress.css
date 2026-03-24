@@ -43,7 +43,7 @@
   justify-content: space-between;
   font-size: var(--ds-text-xs);
   color: var(--ds-color-text-tertiary);
-  margin-bottom: var(--ds-space-1-5);
+  margin-block-end: var(--ds-space-1-5);
 }
 
 /* Track */
@@ -208,7 +208,7 @@
   height: 2rem;
   min-width: auto;
   margin-inline: 0;
-  margin-left: calc(1rem - 1px); /* center under the 2 rem indicator */
+  margin-inline-start: calc(1rem - 1px); /* center under the 2 rem indicator */
   margin-block: var(--ds-space-1);
   background-color: var(--ds-color-border-subtle);
 }

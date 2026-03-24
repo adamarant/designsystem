@@ -87,7 +87,7 @@
   justify-content: space-between;
   font-size: var(--ds-text-xs);
   color: var(--ds-color-text-tertiary);
-  margin-top: var(--ds-space-1);
+  margin-block-start: var(--ds-space-1);
 }
 
 /* Current value display */

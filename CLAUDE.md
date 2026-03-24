@@ -198,6 +198,21 @@ Theme switching is via `data-theme` attribute on `<html>`:
 
 Don't remove or modify existing components without explicit confirmation. Other projects depend on every class name.
 
+### 7. CSS Layers — `@layer tokens, base, components, utilities`
+
+The DS uses CSS `@layer` for cascade control. The layer order is: `tokens → base → components → utilities`. The build script preserves this structure in the dist bundle. All new code must respect the existing layer assignments — tokens in `tokens`, base resets in `base`, components in `components`, utilities in `utilities`.
+
+### 8. Logical Properties — No Physical Direction
+
+All new components MUST use logical properties:
+- `padding-inline` / `padding-block` (not `padding-left/right/top/bottom`)
+- `margin-inline` / `margin-block` (not `margin-left/right/top/bottom`)
+- `inset-inline-start/end` / `inset-block-start/end` (not `left/right/top/bottom`)
+- `border-inline-start/end` / `border-block-start/end` (not `border-left/right/top/bottom`)
+- `text-align: start/end` (not `text-align: left/right`)
+
+**Exceptions:** `transform: translateX/Y`, CSS arrow triangles (tooltip borders), spinner `border-top-color`, and divider `border-top/bottom` (intentionally physical).
+
 ---
 
 ## Architecture
@@ -364,7 +379,7 @@ Each consuming project may need CSS classes the DS doesn't cover (e.g., a hero o
 - Use a **project-specific prefix** (NOT `cx-*` — that prefix is local to the riccardo/CORTEX project)
 - Reference `--ds-*` tokens for all values (no hardcoded colors/spacing)
 
-**No `@layer` declarations:** This DS intentionally emits flat (unlayered) CSS. Consuming projects wrap the import in their own layer (e.g., `@import "designsystem" layer(ds)`), keeping full control over layer priority without nested-layer complexity.
+**CSS Layers:** The DS uses `@layer tokens, base, components, utilities` internally. Consuming projects can wrap the entire DS import in their own layer (e.g., `@import "designsystem" layer(ds)`) for additional cascade control.
 
 ---
 

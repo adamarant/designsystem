@@ -40,8 +40,8 @@
 .ds-toggle::after {
   content: "";
   position: absolute;
-  left: 2px;
-  top: 50%;
+  inset-inline-start: 2px;
+  inset-block-start: 50%;
   width: 1.25rem;
   height: 1.25rem;
   border-radius: var(--ds-radius-full);

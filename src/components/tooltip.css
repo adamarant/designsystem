@@ -62,8 +62,8 @@
 
 .ds-tooltip .ds-tooltip__content,
 .ds-tooltip--top .ds-tooltip__content {
-  bottom: calc(100% + var(--ds-offset-md));
-  left: 50%;
+  inset-block-end: calc(100% + var(--ds-offset-md));
+  inset-inline-start: 50%;
   transform: translateX(-50%) translateY(4px);
 }
 
@@ -75,8 +75,8 @@
 /* Arrow — points down */
 .ds-tooltip .ds-tooltip__content::after,
 .ds-tooltip--top .ds-tooltip__content::after {
-  top: 100%;
-  left: 50%;
+  inset-block-start: 100%;
+  inset-inline-start: 50%;
   transform: translateX(-50%);
   border-top-color: var(--ds-color-inverted);
 }
@@ -86,9 +86,9 @@
    ============================================= */
 
 .ds-tooltip--bottom .ds-tooltip__content {
-  top: calc(100% + var(--ds-offset-md));
-  bottom: auto;
-  left: 50%;
+  inset-block-start: calc(100% + var(--ds-offset-md));
+  inset-block-end: auto;
+  inset-inline-start: 50%;
   transform: translateX(-50%) translateY(-4px);
 }
 
@@ -98,9 +98,9 @@
 
 /* Arrow — points up */
 .ds-tooltip--bottom .ds-tooltip__content::after {
-  bottom: 100%;
-  top: auto;
-  left: 50%;
+  inset-block-end: 100%;
+  inset-block-start: auto;
+  inset-inline-start: 50%;
   transform: translateX(-50%);
   border-top-color: transparent;
   border-bottom-color: var(--ds-color-inverted);
@@ -111,10 +111,10 @@
    ============================================= */
 
 .ds-tooltip--left .ds-tooltip__content {
-  right: calc(100% + var(--ds-offset-md));
-  left: auto;
-  bottom: auto;
-  top: 50%;
+  inset-inline-end: calc(100% + var(--ds-offset-md));
+  inset-inline-start: auto;
+  inset-block-end: auto;
+  inset-block-start: 50%;
   transform: translateY(-50%) translateX(4px);
 }
 
@@ -124,13 +124,13 @@
 
 /* Arrow — points right */
 .ds-tooltip--left .ds-tooltip__content::after {
-  left: 100%;
-  top: 50%;
-  bottom: auto;
-  right: auto;
+  inset-inline-start: 100%;
+  inset-block-start: 50%;
+  inset-block-end: auto;
+  inset-inline-end: auto;
   transform: translateY(-50%);
   border-top-color: transparent;
-  border-left-color: var(--ds-color-inverted);
+  border-inline-start-color: var(--ds-color-inverted);
 }
 
 /* =============================================
@@ -138,10 +138,10 @@
    ============================================= */
 
 .ds-tooltip--right .ds-tooltip__content {
-  left: calc(100% + var(--ds-offset-md));
-  right: auto;
-  bottom: auto;
-  top: 50%;
+  inset-inline-start: calc(100% + var(--ds-offset-md));
+  inset-inline-end: auto;
+  inset-block-end: auto;
+  inset-block-start: 50%;
   transform: translateY(-50%) translateX(-4px);
 }
 
@@ -151,11 +151,11 @@
 
 /* Arrow — points left */
 .ds-tooltip--right .ds-tooltip__content::after {
-  right: 100%;
-  left: auto;
-  top: 50%;
-  bottom: auto;
+  inset-inline-end: 100%;
+  inset-inline-start: auto;
+  inset-block-start: 50%;
+  inset-block-end: auto;
   transform: translateY(-50%);
   border-top-color: transparent;
-  border-right-color: var(--ds-color-inverted);
+  border-inline-end-color: var(--ds-color-inverted);
 }

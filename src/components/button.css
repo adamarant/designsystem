@@ -164,7 +164,7 @@
 .ds-btn-group .ds-btn { border-radius: 0; }
 .ds-btn-group .ds-btn:first-child { border-radius: var(--ds-radius-lg) 0 0 var(--ds-radius-lg); }
 .ds-btn-group .ds-btn:last-child { border-radius: 0 var(--ds-radius-lg) var(--ds-radius-lg) 0; }
-.ds-btn-group .ds-btn + .ds-btn { margin-left: -1px; }
+.ds-btn-group .ds-btn + .ds-btn { margin-inline-start: -1px; }
 
 /* --- Loading spinner --- */
 .ds-btn--loading {
@@ -178,7 +178,7 @@
   width: 1em;
   height: 1em;
   border: 2px solid currentColor;
-  border-right-color: transparent;
+  border-inline-end-color: transparent;
   border-radius: var(--ds-radius-full);
   animation: ds-btn-spin 0.6s linear infinite;
   color: var(--ds-color-on-inverted);

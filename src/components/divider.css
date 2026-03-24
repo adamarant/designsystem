@@ -14,7 +14,7 @@
 
 .ds-divider--vertical {
   border-top: none;
-  border-left: 1px solid var(--ds-color-border);
+  border-inline-start: 1px solid var(--ds-color-border);
   display: inline-block;
   width: auto;
   height: auto;

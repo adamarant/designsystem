@@ -29,7 +29,7 @@
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-lg);
   cursor: pointer;
-  text-align: left;
+  text-align: start;
   transition: all var(--ds-duration-fast) var(--ds-ease-default);
 }
 
@@ -70,7 +70,7 @@
   flex-shrink: 0;
   width: 1rem;
   height: 1rem;
-  margin-left: var(--ds-space-2);
+  margin-inline-start: var(--ds-space-2);
   color: var(--ds-color-text-tertiary);
   transition: transform var(--ds-duration-fast) var(--ds-ease-default);
 }
@@ -145,13 +145,13 @@
 .ds-custom-select__search {
   position: relative;
   padding: var(--ds-space-2) var(--ds-space-3);
-  border-bottom: 1px solid var(--ds-color-border);
+  border-block-end: 1px solid var(--ds-color-border);
 }
 
 .ds-custom-select__search-icon {
   position: absolute;
-  left: calc(var(--ds-space-3) + var(--ds-space-2-5));
-  top: 50%;
+  inset-inline-start: calc(var(--ds-space-3) + var(--ds-space-2-5));
+  inset-block-start: 50%;
   transform: translateY(-50%);
   width: 1rem;
   height: 1rem;
@@ -255,7 +255,7 @@
   .ds-custom-select__panel {
     position: fixed;
     inset: 0;
-    top: auto;
+    inset-block-start: auto;
     z-index: var(--ds-z-modal);
     max-height: 85dvh;
     border-radius: var(--ds-radius-xl) var(--ds-radius-xl) 0 0;
@@ -279,7 +279,7 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--ds-space-4) var(--ds-space-4);
-    border-bottom: 1px solid var(--ds-color-border);
+    border-block-end: 1px solid var(--ds-color-border);
   }
 
   .ds-custom-select__header-title {

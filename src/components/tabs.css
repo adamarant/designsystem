@@ -7,14 +7,14 @@
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  border-bottom: 1px solid var(--ds-color-border);
+  border-block-end: 1px solid var(--ds-color-border);
   gap: var(--ds-space-0);
 }
 
 /* --- Pill variant --- */
 
 .ds-tabs--pills {
-  border-bottom: none;
+  border-block-end: none;
   gap: var(--ds-space-1);
   background-color: var(--ds-color-bg-elevated);
   border-radius: var(--ds-radius-lg);
@@ -22,7 +22,7 @@
 }
 
 .ds-tabs--pills .ds-tab {
-  border-bottom: none;
+  border-block-end: none;
   border-radius: var(--ds-radius-md);
   padding: var(--ds-space-1-5) var(--ds-space-3);
 }
@@ -35,28 +35,28 @@
   background-color: var(--ds-color-surface);
   color: var(--ds-color-text);
   box-shadow: var(--ds-shadow-sm);
-  border-bottom: none;
+  border-block-end: none;
 }
 
 /* --- Vertical variant --- */
 
 .ds-tabs--vertical {
   flex-direction: column;
-  border-bottom: none;
-  border-right: 1px solid var(--ds-color-border);
+  border-block-end: none;
+  border-inline-end: 1px solid var(--ds-color-border);
   gap: var(--ds-space-0-5);
 }
 
 .ds-tabs--vertical .ds-tab {
-  border-bottom: none;
-  border-right: 2px solid transparent;
+  border-block-end: none;
+  border-inline-end: 2px solid transparent;
   padding: var(--ds-space-2) var(--ds-space-4);
-  text-align: left;
+  text-align: start;
 }
 
 .ds-tabs--vertical .ds-tab--active {
-  border-bottom: none;
-  border-right-color: var(--ds-color-interactive);
+  border-block-end: none;
+  border-inline-end-color: var(--ds-color-interactive);
   color: var(--ds-color-text);
 }
 
@@ -91,14 +91,14 @@
   line-height: var(--ds-leading-snug);
   color: var(--ds-color-text-secondary);
   cursor: pointer;
-  border-bottom: 2px solid transparent;
+  border-block-end: 2px solid transparent;
   background: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  border-block-start: none;
+  border-inline-start: none;
+  border-inline-end: none;
   white-space: nowrap;
   transition: all var(--ds-duration-fast) var(--ds-ease-default);
-  margin-bottom: -1px;
+  margin-block-end: -1px;
 }
 
 .ds-tab:hover {
@@ -113,7 +113,7 @@
 
 .ds-tab--active {
   color: var(--ds-color-text);
-  border-bottom-color: var(--ds-color-interactive);
+  border-block-end-color: var(--ds-color-interactive);
 }
 
 .ds-tab:disabled,
@@ -159,5 +159,5 @@
 /* --- Tab Panel --- */
 
 .ds-tab-panel {
-  padding-top: var(--ds-space-5);
+  padding-block-start: var(--ds-space-5);
 }

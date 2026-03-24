@@ -54,8 +54,8 @@
 /* Placement: bottom (default) */
 .ds-popover__content,
 .ds-popover--bottom .ds-popover__content {
-  top: calc(100% + var(--ds-offset-md));
-  left: 50%;
+  inset-block-start: calc(100% + var(--ds-offset-md));
+  inset-inline-start: 50%;
   transform: translateX(-50%) scale(0.96);
 }
 
@@ -66,9 +66,9 @@
 
 /* Placement: top */
 .ds-popover--top .ds-popover__content {
-  bottom: calc(100% + var(--ds-offset-md));
-  top: auto;
-  left: 50%;
+  inset-block-end: calc(100% + var(--ds-offset-md));
+  inset-block-start: auto;
+  inset-inline-start: 50%;
   transform: translateX(-50%) scale(0.96);
 }
 
@@ -78,9 +78,9 @@
 
 /* Placement: left */
 .ds-popover--left .ds-popover__content {
-  right: calc(100% + var(--ds-offset-md));
-  top: 50%;
-  left: auto;
+  inset-inline-end: calc(100% + var(--ds-offset-md));
+  inset-block-start: 50%;
+  inset-inline-start: auto;
   transform: translateY(-50%) scale(0.96);
 }
 
@@ -90,8 +90,8 @@
 
 /* Placement: right */
 .ds-popover--right .ds-popover__content {
-  left: calc(100% + var(--ds-offset-md));
-  top: 50%;
+  inset-inline-start: calc(100% + var(--ds-offset-md));
+  inset-block-start: 50%;
   transform: translateY(-50%) scale(0.96);
 }
 

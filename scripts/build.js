@@ -21,13 +21,17 @@ function resolveImports(filePath, seen = new Set()) {
   const content = fs.readFileSync(filePath, 'utf-8');
   const dir = path.dirname(filePath);
 
-  return content.replace(/@import\s+['"](.+?)['"];/g, (match, importPath) => {
+  return content.replace(/@import\s+['"](.+?)['"]\s*(?:layer\((\w+)\))?\s*;/g, (match, importPath, layerName) => {
     const resolved = path.resolve(dir, importPath);
     if (!fs.existsSync(resolved)) {
       console.warn(`  Warning: ${importPath} not found (from ${filePath})`);
       return `/* Missing: ${importPath} */`;
     }
-    return resolveImports(resolved, seen);
+    const resolved_css = resolveImports(resolved, seen);
+    if (layerName) {
+      return `@layer ${layerName} {\n${resolved_css}\n}`;
+    }
+    return resolved_css;
   });
 }
 

@@ -16,28 +16,28 @@
   height: 1rem;
   width: 100%;
   border-radius: var(--ds-radius-sm);
-  margin-bottom: var(--ds-space-2);
+  margin-block-end: var(--ds-space-2);
 }
 
 .ds-skeleton--text-sm {
   height: 0.75rem;
   width: 100%;
   border-radius: var(--ds-radius-sm);
-  margin-bottom: var(--ds-space-2);
+  margin-block-end: var(--ds-space-2);
 }
 
 .ds-skeleton--text-lg {
   height: 1.5rem;
   width: 100%;
   border-radius: var(--ds-radius-sm);
-  margin-bottom: var(--ds-space-2);
+  margin-block-end: var(--ds-space-2);
 }
 
 .ds-skeleton--heading {
   height: 2rem;
   width: 60%;
   border-radius: var(--ds-radius-md);
-  margin-bottom: var(--ds-space-3);
+  margin-block-end: var(--ds-space-3);
 }
 
 /* --- Shape variants --- */

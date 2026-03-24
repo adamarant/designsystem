@@ -3,6 +3,13 @@
    Generous whitespace, responsive sections.
    ========================================================================== */
 
+/* Breakpoints (reference only — CSS cannot use vars in @media)
+   --ds-breakpoint-sm:  640px
+   --ds-breakpoint-md:  768px
+   --ds-breakpoint-lg:  1024px
+   --ds-breakpoint-xl:  1280px
+*/
+
 :root {
   /* --- Spacing Scale --- */
   --ds-space-0: 0;

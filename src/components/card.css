@@ -41,7 +41,7 @@
 
 .ds-card__header {
   padding: var(--ds-space-5);
-  border-bottom: 1px solid var(--ds-color-border);
+  border-block-end: 1px solid var(--ds-color-border);
 }
 
 .ds-card__header h3,
@@ -56,7 +56,7 @@
 .ds-card__description {
   font-size: var(--ds-text-sm);
   color: var(--ds-color-text-tertiary);
-  margin-top: var(--ds-space-1);
+  margin-block-start: var(--ds-space-1);
 }
 
 .ds-card__body {
@@ -65,7 +65,7 @@
 
 .ds-card__footer {
   padding: var(--ds-space-4) var(--ds-space-5);
-  border-top: 1px solid var(--ds-color-border);
+  border-block-start: 1px solid var(--ds-color-border);
   display: flex;
   align-items: center;
   gap: var(--ds-space-2);
@@ -89,8 +89,8 @@
 }
 
 /* Flush — no internal dividers */
-.ds-card--flush .ds-card__header { border-bottom: none; }
-.ds-card--flush .ds-card__footer { border-top: none; }
+.ds-card--flush .ds-card__header { border-block-end: none; }
+.ds-card--flush .ds-card__footer { border-block-start: none; }
 
 /* Stat card (like StatCard component) */
 .ds-stat-card {
@@ -110,13 +110,13 @@
   font-weight: var(--ds-font-display-weight);
   font-size: var(--ds-text-2xl);
   color: var(--ds-color-text);
-  margin-top: var(--ds-space-1);
+  margin-block-start: var(--ds-space-1);
 }
 
 .ds-stat-card__detail {
   font-size: var(--ds-text-xs);
   color: var(--ds-color-text-tertiary);
-  margin-top: var(--ds-space-0-5);
+  margin-block-start: var(--ds-space-0-5);
 }
 
 .ds-stat-card__icon {

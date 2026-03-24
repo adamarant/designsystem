@@ -30,7 +30,7 @@ p {
 }
 
 .ds-prose p + p {
-  margin-top: var(--ds-space-4);
+  margin-block-start: var(--ds-space-4);
 }
 
 small {
@@ -87,7 +87,7 @@ strong, b {
 @media (min-width: 768px) {
   .ds-hero-title { font-size: var(--ds-text-6xl); }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1024px) /* --ds-breakpoint-lg */ {
   .ds-hero-title { font-size: var(--ds-text-7xl); }
 }
 
@@ -116,8 +116,8 @@ pre code {
 }
 
 blockquote {
-  padding-left: var(--ds-space-4);
-  border-left: 2px solid var(--ds-color-border-hover);
+  padding-inline-start: var(--ds-space-4);
+  border-inline-start: 2px solid var(--ds-color-border-hover);
   color: var(--ds-color-text-secondary);
 }
 
@@ -140,9 +140,9 @@ hr {
 }
 
 .ds-prose ul, .ds-prose ol {
-  padding-left: var(--ds-space-6);
-  margin-top: var(--ds-space-2);
-  margin-bottom: var(--ds-space-2);
+  padding-inline-start: var(--ds-space-6);
+  margin-block-start: var(--ds-space-2);
+  margin-block-end: var(--ds-space-2);
 }
 .ds-prose ul { list-style-type: disc; }
 .ds-prose ol { list-style-type: decimal; }
@@ -152,7 +152,7 @@ hr {
   color: var(--ds-color-text-secondary);
 }
 .ds-prose li + li {
-  margin-top: var(--ds-space-1);
+  margin-block-start: var(--ds-space-1);
 }
 
 /* Tabular figures for numbers */

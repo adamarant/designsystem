@@ -77,19 +77,19 @@
 }
 
 .ds-avatar-group > .ds-avatar + .ds-avatar {
-  margin-left: -0.5rem;
+  margin-inline-start: -0.5rem;
 }
 
 .ds-avatar-group--sm > .ds-avatar + .ds-avatar {
-  margin-left: -0.375rem;
+  margin-inline-start: -0.375rem;
 }
 
 /* --- Status indicator --- */
 
 .ds-avatar__status {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  inset-block-end: 0;
+  inset-inline-end: 0;
   width: 0.625rem;
   height: 0.625rem;
   border-radius: var(--ds-radius-full);

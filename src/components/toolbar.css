@@ -166,7 +166,7 @@
 }
 
 /* Responsive: mobile */
-@media (max-width: 1023px) {
+@media (max-width: 1023px) /* below --ds-breakpoint-lg */ {
   .ds-toolbar__row {
     padding-inline: var(--ds-space-3);
     gap: var(--ds-space-2);

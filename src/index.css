@@ -13,7 +13,9 @@
    Your values always win. Nothing breaks.
    ========================================================================== */
 
-@import './tokens/index.css';
-@import './base/index.css';
-@import './components/index.css';
-@import './utilities/index.css';
+@layer tokens, base, components, utilities;
+
+@import './tokens/index.css' layer(tokens);
+@import './base/index.css' layer(base);
+@import './components/index.css' layer(components);
+@import './utilities/index.css' layer(utilities);
