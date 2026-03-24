@@ -1,0 +1,189 @@
+/* ==========================================================================
+   Component: Toolbar
+   Fixed bar with rows of actions: toolbar buttons, filter chips, segmented
+   controls, and scrollable groups. Common in data-heavy UIs below a header.
+
+   Usage:
+     <div class="ds-toolbar">
+       <div class="ds-toolbar__row">
+         <div class="ds-toolbar__group">...</div>
+         <div class="ds-toolbar__spacer"></div>
+         <div class="ds-toolbar__group">
+           <button class="ds-toolbar__btn ds-toolbar__btn--active">
+             <span>Filter</span>
+             <span class="ds-toolbar__badge">3</span>
+           </button>
+           <button class="ds-toolbar__btn">Sort</button>
+         </div>
+       </div>
+     </div>
+
+   Modifiers:
+     .ds-toolbar__row--scroll      — Horizontally scrollable row
+     .ds-toolbar__btn--active      — Active/toggled button
+     .ds-toolbar__group--scroll    — Scrollable group within a row
+
+   Segmented control:
+     <div class="ds-toolbar__segmented">
+       <button class="ds-toolbar__segmented-btn ds-toolbar__segmented-btn--active">Past</button>
+       <button class="ds-toolbar__segmented-btn">Future</button>
+     </div>
+   ========================================================================== */
+
+/* Row container */
+.ds-toolbar__row {
+  display: flex;
+  align-items: center;
+  height: var(--ds-toolbar-row-height, 2.5rem);
+  gap: var(--ds-space-3);
+  padding-inline: var(--ds-space-4);
+}
+
+.ds-toolbar__row--scroll {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ds-toolbar__row--scroll::-webkit-scrollbar { display: none; }
+
+/* Group (flex row of items) */
+.ds-toolbar__group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ds-toolbar__group--scroll {
+  flex-shrink: 1;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ds-toolbar__group--scroll::-webkit-scrollbar { display: none; }
+
+/* Spacer */
+.ds-toolbar__spacer {
+  flex: 1 1 0;
+}
+
+/* Toolbar button */
+.ds-toolbar__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-1-5);
+  padding: var(--ds-space-1) var(--ds-space-2-5);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  font-family: inherit;
+  color: var(--ds-color-text-tertiary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--ds-radius-md);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default),
+    border-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-toolbar__btn:hover {
+  color: var(--ds-color-text-secondary);
+  background: var(--ds-color-surface-hover);
+}
+
+.ds-toolbar__btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+}
+
+.ds-toolbar__btn--active {
+  color: var(--ds-color-text);
+  background: var(--ds-color-surface);
+  border-color: var(--ds-color-border);
+}
+
+/* Badge (count indicator inside button) */
+.ds-toolbar__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1rem;
+  height: 1rem;
+  padding: 0 0.25rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ds-color-on-inverted);
+  background: var(--ds-color-interactive);
+  border-radius: var(--ds-radius-full);
+}
+
+/* Eye toggle (visibility) */
+.ds-toolbar__eye {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-toolbar__eye:hover {
+  opacity: 1;
+}
+
+/* Segmented control */
+.ds-toolbar__segmented {
+  flex-shrink: 0;
+  display: flex;
+  background: var(--ds-color-surface);
+  border-radius: var(--ds-radius-md);
+  padding: 2px;
+}
+
+.ds-toolbar__segmented-btn {
+  padding: var(--ds-space-1) var(--ds-space-3);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text-tertiary);
+  border: none;
+  border-radius: var(--ds-radius-sm);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-toolbar__segmented-btn:hover {
+  color: var(--ds-color-text-secondary);
+}
+
+.ds-toolbar__segmented-btn--active {
+  background: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+}
+
+/* Responsive: mobile */
+@media (max-width: 1023px) {
+  .ds-toolbar__row {
+    padding-inline: var(--ds-space-3);
+    gap: var(--ds-space-2);
+  }
+
+  .ds-toolbar__btn-label { display: none; }
+
+  .ds-toolbar__btn {
+    padding: var(--ds-space-2);
+    min-width: var(--ds-size-2);
+    min-height: var(--ds-size-2);
+    justify-content: center;
+  }
+
+  .ds-toolbar__badge {
+    font-size: 0.5rem;
+    min-width: 0.875rem;
+    height: 0.875rem;
+  }
+}

@@ -1,0 +1,116 @@
+/* ==========================================================================
+   Utilities: Interactive
+   Hover states, reveal patterns, focus rings, and cursor utilities.
+   ========================================================================== */
+
+/* --- Hover Row (background elevation on hover) --- */
+.ds-hover-row {
+  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+.ds-hover-row:hover {
+  background-color: var(--ds-color-bg-elevated);
+}
+
+/* Subtle variant (semi-transparent) */
+.ds-hover-row--subtle {
+  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+.ds-hover-row--subtle:hover {
+  background-color: color-mix(in srgb, var(--ds-color-bg-elevated) 50%, transparent);
+}
+
+/* --- Group Reveal (children appear on parent hover) --- */
+.ds-reveal {
+  opacity: 0;
+  transition: opacity var(--ds-duration-fast) var(--ds-ease-default);
+}
+.group:hover > .ds-reveal,
+.group:hover .ds-reveal {
+  opacity: 1;
+}
+
+/* --- Editable Cell (pointer + bg on hover) --- */
+.ds-editable {
+  cursor: pointer;
+  border-radius: var(--ds-radius-default);
+  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+.ds-editable:hover {
+  background-color: var(--ds-color-surface-hover);
+}
+
+/* --- Hover Border --- */
+.ds-hover-border {
+  transition: border-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+.ds-hover-border:hover {
+  border-color: var(--ds-color-border-hover);
+}
+
+/* --- Hover Zoom (scale on hover) --- */
+.ds-hover-zoom {
+  transition: transform var(--ds-duration-fast) var(--ds-ease-default);
+}
+.ds-hover-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* --- Opacity Hover (dim → full on hover) --- */
+.ds-opacity-hover {
+  opacity: 0.5;
+  transition: opacity var(--ds-duration-fast) var(--ds-ease-default);
+}
+.ds-opacity-hover:hover {
+  opacity: 1;
+}
+
+/* --- Focus Ring (inset ring for custom inputs) --- */
+.ds-focus-ring:focus {
+  border-color: var(--ds-color-border-active);
+  box-shadow: inset 0 0 0 1px var(--ds-color-border-active);
+  outline: none;
+}
+
+/* --- Ring States --- */
+.ds-ring-active {
+  box-shadow: 0 0 0 2px var(--ds-color-border-active);
+}
+
+.ds-ring-selected {
+  box-shadow: 0 0 0 2px var(--ds-color-interactive), 0 0 0 3px var(--ds-color-surface);
+}
+
+/* --- Semi-transparent Backgrounds --- */
+.ds-bg-elevated-50 {
+  background-color: color-mix(in srgb, var(--ds-color-bg-elevated) 50%, transparent);
+}
+
+.ds-bg-base-50 {
+  background-color: color-mix(in srgb, var(--ds-color-bg-base) 50%, transparent);
+}
+
+/* --- Hover Color Variants --- */
+.ds-hover-text-error:hover {
+  color: var(--ds-color-error);
+}
+
+.ds-hover-bg-error:hover {
+  background-color: color-mix(in srgb, var(--ds-color-error) 10%, transparent);
+}
+
+/* --- Cursor Utilities --- */
+.ds-cursor-grab {
+  cursor: grab;
+}
+.ds-cursor-grab:active {
+  cursor: grabbing;
+}
+
+/* --- Grip Icon (secondary → primary on group hover) --- */
+.ds-grip {
+  color: var(--ds-color-text-secondary);
+  transition: color var(--ds-duration-fast) var(--ds-ease-default);
+}
+.group:hover .ds-grip {
+  color: var(--ds-color-text);
+}

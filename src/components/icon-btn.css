@@ -1,0 +1,96 @@
+/* ==========================================================================
+   Component: Icon Button
+   Standalone icon button for actions, toolbar items, and table rows.
+   A minimal interactive element that wraps a single icon.
+
+   Usage:
+     <button class="ds-icon-btn">
+       <svg>...</svg>
+     </button>
+     <button class="ds-icon-btn ds-icon-btn--sm">...</button>
+     <button class="ds-icon-btn ds-icon-btn--danger">...</button>
+
+   Sizes:
+     .ds-icon-btn--xs  — 24px (var(--ds-size-1))
+     .ds-icon-btn--sm  — 28px
+     (default)         — 32px (var(--ds-size-2))
+     .ds-icon-btn--lg  — 40px (var(--ds-size-3))
+
+   Modifiers:
+     .ds-icon-btn--danger  — Error color on hover
+     .ds-icon-btn--ghost   — No background change, color-only transition
+   ========================================================================== */
+
+.ds-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ds-size-2);
+  height: var(--ds-size-2);
+  padding: var(--ds-space-1-5);
+  border: none;
+  border-radius: var(--ds-radius-lg);
+  background: transparent;
+  color: var(--ds-color-text-tertiary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-icon-btn:hover {
+  background-color: var(--ds-color-surface-hover);
+  color: var(--ds-color-text-secondary);
+}
+
+.ds-icon-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+}
+
+.ds-icon-btn:disabled,
+.ds-icon-btn[aria-disabled="true"] {
+  opacity: var(--ds-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Sizes */
+.ds-icon-btn--xs {
+  width: var(--ds-size-1);
+  height: var(--ds-size-1);
+  padding: var(--ds-space-0-5);
+  border-radius: var(--ds-radius-md);
+}
+
+.ds-icon-btn--sm {
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: var(--ds-space-1);
+  border-radius: var(--ds-radius-md);
+}
+
+.ds-icon-btn--lg {
+  width: var(--ds-size-3);
+  height: var(--ds-size-3);
+  padding: var(--ds-space-2);
+}
+
+/* Danger variant */
+.ds-icon-btn--danger:hover {
+  color: var(--ds-color-error);
+  background-color: color-mix(in srgb, var(--ds-color-error) 10%, transparent);
+}
+
+/* Ghost variant (color only, no bg) */
+.ds-icon-btn--ghost {
+  padding: 0;
+  width: auto;
+  height: auto;
+}
+
+.ds-icon-btn--ghost:hover {
+  background: transparent;
+  color: var(--ds-color-text);
+}

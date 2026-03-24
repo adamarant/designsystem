@@ -1,0 +1,296 @@
+/* ==========================================================================
+   Component: Search
+   Inline search bar with dropdown results, keyboard navigation, and
+   responsive mobile expansion. Distinct from ds-command (modal overlay).
+
+   Usage:
+     <div class="ds-search">
+       <span class="ds-search__icon">...</span>
+       <input class="ds-search__input" placeholder="Search..." />
+       <kbd class="ds-search__shortcut">Ctrl+K</kbd>
+       <button class="ds-search__clear">...</button>
+     </div>
+     <div class="ds-search__dropdown">
+       <div class="ds-search__group">
+         <span class="ds-search__group-label">Pages</span>
+         <button class="ds-search__result ds-search__result--active">
+           <span class="ds-search__result-icon">...</span>
+           <div class="ds-search__result-content">
+             <span class="ds-search__result-title">Page name</span>
+             <span class="ds-search__result-meta">Database</span>
+           </div>
+         </button>
+       </div>
+       <div class="ds-search__empty">No results found.</div>
+     </div>
+
+   Modifiers:
+     .ds-search--mobile-expanded  — Fullscreen bar on mobile
+     .ds-search__dropdown--mobile — Fullscreen dropdown on mobile
+
+   Mobile:
+     .ds-search-mobile-trigger    — Icon button shown on mobile (hidden desktop)
+     .ds-search__close            — Close button inside expanded mobile bar
+   ========================================================================== */
+
+.ds-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  width: 100%;
+  padding: var(--ds-space-2) var(--ds-space-2-5);
+  background: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  transition:
+    border-color var(--ds-duration-fast) var(--ds-ease-default),
+    box-shadow var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-search:focus-within {
+  border-color: var(--ds-color-border-active);
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+}
+
+/* Icon */
+.ds-search__icon {
+  color: var(--ds-color-text-tertiary);
+  flex-shrink: 0;
+}
+
+/* Input */
+.ds-search__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--ds-color-text);
+  font-size: var(--ds-text-base);
+  font-family: inherit;
+  line-height: 1.25;
+}
+
+.ds-search__input::placeholder {
+  color: var(--ds-color-text-tertiary);
+}
+
+/* Keyboard shortcut hint */
+.ds-search__shortcut {
+  flex-shrink: 0;
+  padding: 0.125rem 0.375rem;
+  font-size: var(--ds-text-2xs);
+  font-family: inherit;
+  line-height: 1;
+  color: var(--ds-color-text-tertiary);
+  background: var(--ds-color-bg-elevated);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-sm);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Clear button */
+.ds-search__clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: none;
+  border-radius: var(--ds-radius-sm);
+  background: transparent;
+  color: var(--ds-color-text-tertiary);
+  cursor: pointer;
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-search__clear:hover {
+  background: var(--ds-color-surface-hover);
+  color: var(--ds-color-text-secondary);
+}
+
+/* Dropdown results panel */
+.ds-search__dropdown {
+  position: fixed;
+  max-height: min(22rem, calc(100dvh - 5rem));
+  overflow-y: auto;
+  background: var(--ds-color-bg-elevated);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  box-shadow: var(--ds-shadow-lg);
+  z-index: var(--ds-z-tooltip);
+  padding: var(--ds-space-1) 0;
+}
+
+/* Result groups */
+.ds-search__group {
+  padding: var(--ds-space-1) 0;
+}
+
+.ds-search__group + .ds-search__group {
+  border-top: 1px solid var(--ds-color-border);
+}
+
+.ds-search__group-label {
+  display: block;
+  padding: var(--ds-space-1) var(--ds-space-3);
+  font-size: var(--ds-text-2xs);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Individual result */
+.ds-search__result {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  width: 100%;
+  padding: var(--ds-space-2-5) var(--ds-space-3);
+  border: none;
+  background: transparent;
+  color: var(--ds-color-text);
+  font-size: var(--ds-text-sm);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-search__result:hover,
+.ds-search__result--active {
+  background: var(--ds-color-surface-hover);
+}
+
+.ds-search__result:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+}
+
+.ds-search__result-icon {
+  color: var(--ds-color-text-tertiary);
+  flex-shrink: 0;
+}
+
+.ds-search__result-db-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--ds-radius-md);
+  flex-shrink: 0;
+}
+
+.ds-search__result-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ds-search__result-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  line-height: var(--ds-leading-snug);
+}
+
+.ds-search__result-meta {
+  font-size: var(--ds-text-2xs);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Empty state */
+.ds-search__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-space-4) var(--ds-space-2);
+  color: var(--ds-color-text-tertiary);
+  font-size: var(--ds-text-sm);
+}
+
+/* Mobile trigger (hidden on desktop) */
+.ds-search-mobile-trigger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  border-radius: var(--ds-radius-md);
+  background: transparent;
+  color: var(--ds-color-text);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+@media (hover: hover) {
+  .ds-search-mobile-trigger:hover {
+    background-color: var(--ds-color-surface-hover);
+  }
+}
+
+/* Close button (mobile expanded) */
+.ds-search__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  border-radius: var(--ds-radius-md);
+  background: transparent;
+  color: var(--ds-color-text);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Responsive: mobile */
+@media (max-width: 1023px) {
+  .ds-search__shortcut { display: none; }
+  .ds-search-mobile-trigger { display: flex; }
+  .ds-search { display: none; }
+
+  .ds-search--mobile-expanded {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--ds-search-bar-height, 3.5rem);
+    z-index: var(--ds-z-dropdown);
+    border: none;
+    border-bottom: 1px solid var(--ds-color-border);
+    border-radius: 0;
+    padding: 0 var(--ds-space-3);
+    background: var(--ds-color-nav-bg);
+    backdrop-filter: blur(20px) saturate(1.5);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  }
+
+  .ds-search__dropdown--mobile {
+    left: 0 !important;
+    right: 0;
+    width: auto !important;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    max-height: calc(100dvh - var(--ds-search-bar-height, 3.5rem));
+    background: var(--ds-color-surface);
+    backdrop-filter: blur(20px) saturate(1.5);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  }
+}
