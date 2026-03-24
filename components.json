@@ -1156,6 +1156,194 @@
           "html": "<table class=\"ds-table\" style=\"max-width:24rem;\">\n  <thead><tr><th style=\"width:2rem\"></th><th>Name</th></tr></thead>\n  <tbody>\n    <tr>\n      <td><span class=\"ds-sortable__handle ds-sortable__handle--visible\">&#9776;</span></td>\n      <td>First item</td>\n    </tr>\n    <tr>\n      <td><span class=\"ds-sortable__handle ds-sortable__handle--visible\">&#9776;</span></td>\n      <td>Second item</td>\n    </tr>\n    <tr class=\"ds-sortable--over\">\n      <td><span class=\"ds-sortable__handle ds-sortable__handle--visible\">&#9776;</span></td>\n      <td>Drop target</td>\n    </tr>\n  </tbody>\n</table>"
         }
       ]
+    },
+    {
+      "name": "search",
+      "title": "Search",
+      "description": "Inline search bar with dropdown results, keyboard navigation, and mobile expansion.",
+      "category": "advanced",
+      "classes": [
+        ".ds-search"
+      ],
+      "elements": [
+        "__icon",
+        "__input",
+        "__shortcut",
+        "__clear",
+        "__dropdown",
+        "__group",
+        "__group-label",
+        "__result",
+        "__result-icon",
+        "__result-db-icon",
+        "__result-content",
+        "__result-title",
+        "__result-meta",
+        "__empty",
+        "__close"
+      ],
+      "variants": [],
+      "sizes": [],
+      "modifiers": [
+        "--mobile-expanded",
+        "__dropdown--mobile",
+        "__result--active"
+      ],
+      "examples": [
+        {
+          "title": "Basic Search",
+          "html": "<div class=\"ds-search\">\n  <svg class=\"ds-search__icon\" width=\"16\" height=\"16\"><use href=\"#icon-search\"/></svg>\n  <input class=\"ds-search__input\" placeholder=\"Search...\" />\n  <kbd class=\"ds-search__shortcut\">⌘K</kbd>\n</div>"
+        },
+        {
+          "title": "With Dropdown Results",
+          "html": "<div style=\"position:relative\">\n  <div class=\"ds-search\">\n    <svg class=\"ds-search__icon\" width=\"16\" height=\"16\"><use href=\"#icon-search\"/></svg>\n    <input class=\"ds-search__input\" placeholder=\"Search...\" value=\"project\" />\n    <button class=\"ds-search__clear\">&times;</button>\n  </div>\n  <div class=\"ds-search__dropdown\" style=\"position:relative;top:0.5rem\">\n    <div class=\"ds-search__group\">\n      <span class=\"ds-search__group-label\">Pages</span>\n      <button class=\"ds-search__result ds-search__result--active\">\n        <span class=\"ds-search__result-content\">\n          <span class=\"ds-search__result-title\">Project Alpha</span>\n          <span class=\"ds-search__result-meta\">Database • 3 records</span>\n        </span>\n      </button>\n      <button class=\"ds-search__result\">\n        <span class=\"ds-search__result-content\">\n          <span class=\"ds-search__result-title\">Project Beta</span>\n          <span class=\"ds-search__result-meta\">Database • 7 records</span>\n        </span>\n      </button>\n    </div>\n    <div class=\"ds-search__empty\" style=\"display:none\">No results found.</div>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "toolbar",
+      "title": "Toolbar",
+      "description": "Horizontal bar with action buttons, segmented controls, and scrollable groups.",
+      "category": "advanced",
+      "classes": [
+        ".ds-toolbar__row"
+      ],
+      "elements": [
+        "__group",
+        "__spacer",
+        "__btn",
+        "__badge",
+        "__eye",
+        "__segmented",
+        "__segmented-btn",
+        "__btn-label"
+      ],
+      "variants": [],
+      "sizes": [],
+      "modifiers": [
+        "__row--scroll",
+        "__group--scroll",
+        "__btn--active",
+        "__segmented-btn--active"
+      ],
+      "examples": [
+        {
+          "title": "Toolbar with Buttons",
+          "html": "<div class=\"ds-toolbar__row\" style=\"border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg)\">\n  <div class=\"ds-toolbar__group\">\n    <button class=\"ds-toolbar__btn ds-toolbar__btn--active\">Filter <span class=\"ds-toolbar__badge\">2</span></button>\n    <button class=\"ds-toolbar__btn\">Sort</button>\n    <button class=\"ds-toolbar__btn\">Style</button>\n  </div>\n  <div class=\"ds-toolbar__spacer\"></div>\n  <div class=\"ds-toolbar__segmented\">\n    <button class=\"ds-toolbar__segmented-btn ds-toolbar__segmented-btn--active\">Past</button>\n    <button class=\"ds-toolbar__segmented-btn\">Future</button>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "chip",
+      "title": "Chip",
+      "description": "Interactive filter/sort chips with optional remove button.",
+      "category": "common",
+      "classes": [
+        ".ds-chip"
+      ],
+      "elements": [
+        "__remove"
+      ],
+      "variants": [],
+      "sizes": [],
+      "modifiers": [
+        "--logic",
+        "--sort"
+      ],
+      "examples": [
+        {
+          "title": "Filter Chips",
+          "html": "<div class=\"ds-flex ds-items-center ds-gap-1\">\n  <span class=\"ds-chip\">Status: Active <button class=\"ds-chip__remove\">&times;</button></span>\n  <button class=\"ds-chip ds-chip--logic\">AND</button>\n  <span class=\"ds-chip ds-chip--sort\">Date ↑ <button class=\"ds-chip__remove\">&times;</button></span>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "icon-btn",
+      "title": "Icon Button",
+      "description": "Standalone icon button for actions, toolbars, and table rows.",
+      "category": "core",
+      "classes": [
+        ".ds-icon-btn"
+      ],
+      "elements": [],
+      "variants": [
+        "--danger",
+        "--ghost"
+      ],
+      "sizes": [
+        "--xs",
+        "--sm",
+        "--lg"
+      ],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Sizes",
+          "html": "<div class=\"ds-flex ds-items-center ds-gap-2\">\n  <button class=\"ds-icon-btn ds-icon-btn--xs\">✕</button>\n  <button class=\"ds-icon-btn ds-icon-btn--sm\">✕</button>\n  <button class=\"ds-icon-btn\">✕</button>\n  <button class=\"ds-icon-btn ds-icon-btn--lg\">✕</button>\n</div>"
+        },
+        {
+          "title": "Variants",
+          "html": "<div class=\"ds-flex ds-items-center ds-gap-2\">\n  <button class=\"ds-icon-btn\">Default</button>\n  <button class=\"ds-icon-btn ds-icon-btn--danger\">Danger</button>\n  <button class=\"ds-icon-btn ds-icon-btn--ghost\">Ghost</button>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "bottom-nav",
+      "title": "Bottom Nav",
+      "description": "Mobile bottom navigation bar, hidden on desktop.",
+      "category": "advanced",
+      "classes": [
+        ".ds-bottom-nav"
+      ],
+      "elements": [
+        "__item",
+        "__icon",
+        "__label",
+        "__badge",
+        "__create-icon"
+      ],
+      "variants": [],
+      "sizes": [],
+      "modifiers": [
+        "__item--active",
+        "__item--create"
+      ],
+      "examples": [
+        {
+          "title": "Mobile Bottom Navigation",
+          "html": "<nav class=\"ds-bottom-nav\" style=\"display:flex;position:relative\">\n  <a class=\"ds-bottom-nav__item ds-bottom-nav__item--active\">\n    <span class=\"ds-bottom-nav__icon\">⌂</span>\n    <span class=\"ds-bottom-nav__label\">Home</span>\n  </a>\n  <a class=\"ds-bottom-nav__item\">\n    <span class=\"ds-bottom-nav__icon\">\n      ✉\n      <span class=\"ds-bottom-nav__badge\">3</span>\n    </span>\n    <span class=\"ds-bottom-nav__label\">Inbox</span>\n  </a>\n  <button class=\"ds-bottom-nav__item ds-bottom-nav__item--create\">\n    <span class=\"ds-bottom-nav__create-icon\">+</span>\n    <span class=\"ds-bottom-nav__label\">New</span>\n  </button>\n  <a class=\"ds-bottom-nav__item\">\n    <span class=\"ds-bottom-nav__icon\">⚙</span>\n    <span class=\"ds-bottom-nav__label\">Settings</span>\n  </a>\n</nav>"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "title": "Spinner",
+      "description": "CSS-only loading spinner with size and color variants.",
+      "category": "essential",
+      "classes": [
+        ".ds-spinner"
+      ],
+      "elements": [],
+      "variants": [
+        "--muted",
+        "--light"
+      ],
+      "sizes": [
+        "--sm",
+        "--md",
+        "--lg"
+      ],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Sizes",
+          "html": "<div class=\"ds-flex ds-items-center ds-gap-4\">\n  <span class=\"ds-spinner ds-spinner--sm\"></span>\n  <span class=\"ds-spinner ds-spinner--md\"></span>\n  <span class=\"ds-spinner\"></span>\n  <span class=\"ds-spinner ds-spinner--lg\"></span>\n</div>"
+        },
+        {
+          "title": "Color Variants",
+          "html": "<div class=\"ds-flex ds-items-center ds-gap-4\">\n  <span class=\"ds-spinner\"></span>\n  <span style=\"background:var(--ds-color-inverted);padding:1rem;border-radius:var(--ds-radius-lg)\">\n    <span class=\"ds-spinner ds-spinner--muted\"></span>\n  </span>\n  <span style=\"background:var(--ds-color-interactive);padding:1rem;border-radius:var(--ds-radius-lg)\">\n    <span class=\"ds-spinner ds-spinner--light\"></span>\n  </span>\n</div>"
+        }
+      ]
     }
   ]
 }

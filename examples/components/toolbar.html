@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Navigation — Design System</title>
+  <title>Toolbar — Design System</title>
   <link rel="stylesheet" href="../../dist/designsystem.css">
   <link rel="stylesheet" href="../_shared/demo.css">
 </head>
@@ -26,7 +26,7 @@
         <a href="../components/card.html" class="demo-sidebar__link">Card</a>
         <a href="../components/input.html" class="demo-sidebar__link">Input</a>
         <a href="../components/badge.html" class="demo-sidebar__link">Badge</a>
-        <a href="../components/nav.html" class="demo-sidebar__link demo-sidebar__link--active">Navigation</a>
+        <a href="../components/nav.html" class="demo-sidebar__link">Navigation</a>
         <a href="../components/modal.html" class="demo-sidebar__link">Modal</a>
         <a href="../components/toast.html" class="demo-sidebar__link">Toast</a>
         <a href="../components/table.html" class="demo-sidebar__link">Table</a>
@@ -67,7 +67,7 @@
         <a href="../components/kbd.html" class="demo-sidebar__link">Kbd</a>
         <a href="../components/command.html" class="demo-sidebar__link">Command</a>
         <a href="../components/search.html" class="demo-sidebar__link">Search</a>
-        <a href="../components/toolbar.html" class="demo-sidebar__link">Toolbar</a>
+        <a href="../components/toolbar.html" class="demo-sidebar__link demo-sidebar__link--active">Toolbar</a>
         <a href="../components/bottom-nav.html" class="demo-sidebar__link">Bottom Nav</a>
       </div>
 
@@ -79,82 +79,45 @@
     <main class="demo-main">
 
       <header>
-        <h1>Navigation</h1>
-        <p>Fixed glass header, backdrop-blur, h-16. Clean links.</p>
+        <h1>Toolbar</h1>
+        <p>Horizontal bar with action buttons, segmented controls, and scrollable groups.</p>
         <div class="demo-meta">
-          <span class="ds-badge">Core</span>
-          <code>@import '@digiko-npm/designsystem/components/nav';</code>
+          <span class="ds-badge">Advanced</span>
+          <code>@import '@digiko-npm/designsystem/components/toolbar';</code>
         </div>
       </header>
 
 
     <section class="demo-example">
-      <h2>Top Navigation</h2>
+      <h2>Toolbar with Buttons</h2>
       <div class="demo-preview">
-        <nav class="ds-nav ds-nav--static">
-  <div class="ds-nav__inner">
-    <a class="ds-nav__brand" href="#">Acme Inc</a>
-    <div class="ds-nav__menu">
-      <a class="ds-nav__link ds-nav__link--active" href="#">Dashboard</a>
-      <a class="ds-nav__link" href="#">Projects</a>
-      <a class="ds-nav__link" href="#">Settings</a>
-    </div>
-    <div class="ds-nav__actions">
-      <button class="ds-nav__icon-btn" aria-label="Toggle theme">&#9790;</button>
-    </div>
+        <div class="ds-toolbar__row" style="border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg)">
+  <div class="ds-toolbar__group">
+    <button class="ds-toolbar__btn ds-toolbar__btn--active">Filter <span class="ds-toolbar__badge">2</span></button>
+    <button class="ds-toolbar__btn">Sort</button>
+    <button class="ds-toolbar__btn">Style</button>
   </div>
-</nav>
+  <div class="ds-toolbar__spacer"></div>
+  <div class="ds-toolbar__segmented">
+    <button class="ds-toolbar__segmented-btn ds-toolbar__segmented-btn--active">Past</button>
+    <button class="ds-toolbar__segmented-btn">Future</button>
+  </div>
+</div>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;nav class=&quot;ds-nav ds-nav--static&quot;&gt;
-  &lt;div class=&quot;ds-nav__inner&quot;&gt;
-    &lt;a class=&quot;ds-nav__brand&quot; href=&quot;#&quot;&gt;Acme Inc&lt;/a&gt;
-    &lt;div class=&quot;ds-nav__menu&quot;&gt;
-      &lt;a class=&quot;ds-nav__link ds-nav__link--active&quot; href=&quot;#&quot;&gt;Dashboard&lt;/a&gt;
-      &lt;a class=&quot;ds-nav__link&quot; href=&quot;#&quot;&gt;Projects&lt;/a&gt;
-      &lt;a class=&quot;ds-nav__link&quot; href=&quot;#&quot;&gt;Settings&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;ds-nav__actions&quot;&gt;
-      &lt;button class=&quot;ds-nav__icon-btn&quot; aria-label=&quot;Toggle theme&quot;&gt;&amp;#9790;&lt;/button&gt;
-    &lt;/div&gt;
+        <pre><code>&lt;div class=&quot;ds-toolbar__row&quot; style=&quot;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg)&quot;&gt;
+  &lt;div class=&quot;ds-toolbar__group&quot;&gt;
+    &lt;button class=&quot;ds-toolbar__btn ds-toolbar__btn--active&quot;&gt;Filter &lt;span class=&quot;ds-toolbar__badge&quot;&gt;2&lt;/span&gt;&lt;/button&gt;
+    &lt;button class=&quot;ds-toolbar__btn&quot;&gt;Sort&lt;/button&gt;
+    &lt;button class=&quot;ds-toolbar__btn&quot;&gt;Style&lt;/button&gt;
   &lt;/div&gt;
-&lt;/nav&gt;</code></pre>
-      </details>
-    </section>
-
-    <section class="demo-example">
-      <h2>Sidebar</h2>
-      <div class="demo-preview">
-        <aside class="ds-sidebar">
-  <div class="ds-sidebar__section">
-    <div class="ds-sidebar__title">Main</div>
-    <a class="ds-sidebar__link ds-sidebar__link--active" href="#">Dashboard</a>
-    <a class="ds-sidebar__link" href="#">Analytics</a>
-    <a class="ds-sidebar__link" href="#">Reports</a>
-  </div>
-  <div class="ds-sidebar__section">
-    <div class="ds-sidebar__title">Settings</div>
-    <a class="ds-sidebar__link" href="#">Profile</a>
-    <a class="ds-sidebar__link" href="#">Billing</a>
-  </div>
-</aside>
-      </div>
-      <details class="demo-code">
-        <summary>View Code</summary>
-        <pre><code>&lt;aside class=&quot;ds-sidebar&quot;&gt;
-  &lt;div class=&quot;ds-sidebar__section&quot;&gt;
-    &lt;div class=&quot;ds-sidebar__title&quot;&gt;Main&lt;/div&gt;
-    &lt;a class=&quot;ds-sidebar__link ds-sidebar__link--active&quot; href=&quot;#&quot;&gt;Dashboard&lt;/a&gt;
-    &lt;a class=&quot;ds-sidebar__link&quot; href=&quot;#&quot;&gt;Analytics&lt;/a&gt;
-    &lt;a class=&quot;ds-sidebar__link&quot; href=&quot;#&quot;&gt;Reports&lt;/a&gt;
+  &lt;div class=&quot;ds-toolbar__spacer&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;ds-toolbar__segmented&quot;&gt;
+    &lt;button class=&quot;ds-toolbar__segmented-btn ds-toolbar__segmented-btn--active&quot;&gt;Past&lt;/button&gt;
+    &lt;button class=&quot;ds-toolbar__segmented-btn&quot;&gt;Future&lt;/button&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;ds-sidebar__section&quot;&gt;
-    &lt;div class=&quot;ds-sidebar__title&quot;&gt;Settings&lt;/div&gt;
-    &lt;a class=&quot;ds-sidebar__link&quot; href=&quot;#&quot;&gt;Profile&lt;/a&gt;
-    &lt;a class=&quot;ds-sidebar__link&quot; href=&quot;#&quot;&gt;Billing&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/aside&gt;</code></pre>
+&lt;/div&gt;</code></pre>
       </details>
     </section>
 
@@ -162,23 +125,25 @@
       <h2>API</h2>
       <table class="ds-table">
         <thead><tr><th>Class</th><th>Type</th></tr></thead>
-        <tbody><tr><td><code>.ds-nav</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-sidebar</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-nav__inner</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-nav__brand</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-nav__menu</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-nav__link</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-nav__actions</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-nav__icon-btn</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-nav__mobile</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-nav__mobile-links</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-nav--static</code></td><td>Variant</td></tr></tbody>
+        <tbody><tr><td><code>.ds-toolbar__row</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-toolbar__row__group</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-toolbar__row__spacer</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-toolbar__row__btn</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-toolbar__row__badge</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-toolbar__row__eye</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-toolbar__row__segmented</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-toolbar__row__segmented-btn</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-toolbar__row__btn-label</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-toolbar__row__row--scroll</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-toolbar__row__group--scroll</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-toolbar__row__btn--active</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-toolbar__row__segmented-btn--active</code></td><td>Modifier</td></tr></tbody>
       </table>
     </section>
 
     <nav class="demo-nav-footer">
-      <a href="badge.html">&larr; Badge</a>
-      <a href="modal.html">Modal &rarr;</a>
+      <a href="search.html">&larr; Search</a>
+      <a href="chip.html">Chip &rarr;</a>
     </nav>
     </main>
   </div>

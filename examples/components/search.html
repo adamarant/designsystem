@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slider — Design System</title>
+  <title>Search — Design System</title>
   <link rel="stylesheet" href="../../dist/designsystem.css">
   <link rel="stylesheet" href="../_shared/demo.css">
 </head>
@@ -62,11 +62,11 @@
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Advanced</div>
         <a href="../components/popover.html" class="demo-sidebar__link">Popover</a>
-        <a href="../components/slider.html" class="demo-sidebar__link demo-sidebar__link--active">Slider</a>
+        <a href="../components/slider.html" class="demo-sidebar__link">Slider</a>
         <a href="../components/timeline.html" class="demo-sidebar__link">Timeline</a>
         <a href="../components/kbd.html" class="demo-sidebar__link">Kbd</a>
         <a href="../components/command.html" class="demo-sidebar__link">Command</a>
-        <a href="../components/search.html" class="demo-sidebar__link">Search</a>
+        <a href="../components/search.html" class="demo-sidebar__link demo-sidebar__link--active">Search</a>
         <a href="../components/toolbar.html" class="demo-sidebar__link">Toolbar</a>
         <a href="../components/bottom-nav.html" class="demo-sidebar__link">Bottom Nav</a>
       </div>
@@ -79,76 +79,89 @@
     <main class="demo-main">
 
       <header>
-        <h1>Slider</h1>
-        <p>Range slider input with customizable thumb and track styling.</p>
+        <h1>Search</h1>
+        <p>Inline search bar with dropdown results, keyboard navigation, and mobile expansion.</p>
         <div class="demo-meta">
           <span class="ds-badge">Advanced</span>
-          <code>@import '@digiko-npm/designsystem/components/slider';</code>
+          <code>@import '@digiko-npm/designsystem/components/search';</code>
         </div>
       </header>
 
 
     <section class="demo-example">
-      <h2>Basic Slider</h2>
+      <h2>Basic Search</h2>
       <div class="demo-preview">
-        <div class="ds-slider">
-  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="range" min="0" max="100" value="50" />
-  <div class="ds-slider__labels">
-    <span>0</span>
-    <span>100</span>
-  </div>
+        <div class="ds-search">
+  <svg class="ds-search__icon" width="16" height="16"><use href="#icon-search"/></svg>
+  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" class="ds-search__input" placeholder="Search..." />
+  <kbd class="ds-search__shortcut">⌘K</kbd>
 </div>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-slider&quot;&gt;
-  &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;50&quot; /&gt;
-  &lt;div class=&quot;ds-slider__labels&quot;&gt;
-    &lt;span&gt;0&lt;/span&gt;
-    &lt;span&gt;100&lt;/span&gt;
-  &lt;/div&gt;
+        <pre><code>&lt;div class=&quot;ds-search&quot;&gt;
+  &lt;svg class=&quot;ds-search__icon&quot; width=&quot;16&quot; height=&quot;16&quot;&gt;&lt;use href=&quot;#icon-search&quot;/&gt;&lt;/svg&gt;
+  &lt;input class=&quot;ds-search__input&quot; placeholder=&quot;Search...&quot; /&gt;
+  &lt;kbd class=&quot;ds-search__shortcut&quot;&gt;⌘K&lt;/kbd&gt;
 &lt;/div&gt;</code></pre>
       </details>
     </section>
 
     <section class="demo-example">
-      <h2>Slider with Value</h2>
+      <h2>With Dropdown Results</h2>
       <div class="demo-preview">
-        <div style="display:flex;align-items:center;gap:1rem;">
-  <div class="ds-slider" style="flex:1;">
-    <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="range" min="0" max="100" value="75" />
+        <div style="position:relative">
+  <div class="ds-search">
+    <svg class="ds-search__icon" width="16" height="16"><use href="#icon-search"/></svg>
+    <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" class="ds-search__input" placeholder="Search..." value="project" />
+    <button class="ds-search__clear">&times;</button>
   </div>
-  <span class="ds-slider__value">75%</span>
+  <div class="ds-search__dropdown" style="position:relative;top:0.5rem">
+    <div class="ds-search__group">
+      <span class="ds-search__group-label">Pages</span>
+      <button class="ds-search__result ds-search__result--active">
+        <span class="ds-search__result-content">
+          <span class="ds-search__result-title">Project Alpha</span>
+          <span class="ds-search__result-meta">Database • 3 records</span>
+        </span>
+      </button>
+      <button class="ds-search__result">
+        <span class="ds-search__result-content">
+          <span class="ds-search__result-title">Project Beta</span>
+          <span class="ds-search__result-meta">Database • 7 records</span>
+        </span>
+      </button>
+    </div>
+    <div class="ds-search__empty" style="display:none">No results found.</div>
+  </div>
 </div>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div style=&quot;display:flex;align-items:center;gap:1rem;&quot;&gt;
-  &lt;div class=&quot;ds-slider&quot; style=&quot;flex:1;&quot;&gt;
-    &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;75&quot; /&gt;
+        <pre><code>&lt;div style=&quot;position:relative&quot;&gt;
+  &lt;div class=&quot;ds-search&quot;&gt;
+    &lt;svg class=&quot;ds-search__icon&quot; width=&quot;16&quot; height=&quot;16&quot;&gt;&lt;use href=&quot;#icon-search&quot;/&gt;&lt;/svg&gt;
+    &lt;input class=&quot;ds-search__input&quot; placeholder=&quot;Search...&quot; value=&quot;project&quot; /&gt;
+    &lt;button class=&quot;ds-search__clear&quot;&gt;&amp;times;&lt;/button&gt;
   &lt;/div&gt;
-  &lt;span class=&quot;ds-slider__value&quot;&gt;75%&lt;/span&gt;
-&lt;/div&gt;</code></pre>
-      </details>
-    </section>
-
-    <section class="demo-example">
-      <h2>Sizes</h2>
-      <div class="demo-preview">
-        <div class="ds-slider ds-slider--sm" style="margin-bottom:1rem;">
-  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="range" min="0" max="100" value="40" />
-</div>
-<div class="ds-slider">
-  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="range" min="0" max="100" value="60" />
-</div>
-      </div>
-      <details class="demo-code">
-        <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-slider ds-slider--sm&quot; style=&quot;margin-bottom:1rem;&quot;&gt;
-  &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;40&quot; /&gt;
-&lt;/div&gt;
-&lt;div class=&quot;ds-slider&quot;&gt;
-  &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;60&quot; /&gt;
+  &lt;div class=&quot;ds-search__dropdown&quot; style=&quot;position:relative;top:0.5rem&quot;&gt;
+    &lt;div class=&quot;ds-search__group&quot;&gt;
+      &lt;span class=&quot;ds-search__group-label&quot;&gt;Pages&lt;/span&gt;
+      &lt;button class=&quot;ds-search__result ds-search__result--active&quot;&gt;
+        &lt;span class=&quot;ds-search__result-content&quot;&gt;
+          &lt;span class=&quot;ds-search__result-title&quot;&gt;Project Alpha&lt;/span&gt;
+          &lt;span class=&quot;ds-search__result-meta&quot;&gt;Database • 3 records&lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/button&gt;
+      &lt;button class=&quot;ds-search__result&quot;&gt;
+        &lt;span class=&quot;ds-search__result-content&quot;&gt;
+          &lt;span class=&quot;ds-search__result-title&quot;&gt;Project Beta&lt;/span&gt;
+          &lt;span class=&quot;ds-search__result-meta&quot;&gt;Database • 7 records&lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ds-search__empty&quot; style=&quot;display:none&quot;&gt;No results found.&lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
       </details>
     </section>
@@ -157,17 +170,31 @@
       <h2>API</h2>
       <table class="ds-table">
         <thead><tr><th>Class</th><th>Type</th></tr></thead>
-        <tbody><tr><td><code>.ds-slider</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-slider__labels</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-slider__value</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-slider--sm</code></td><td>Size</td></tr>
-          <tr><td><code>.ds-slider--disabled</code></td><td>Modifier</td></tr></tbody>
+        <tbody><tr><td><code>.ds-search</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-search__icon</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__input</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__shortcut</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__clear</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__dropdown</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__group</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__group-label</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__result</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__result-icon</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__result-db-icon</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__result-content</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__result-title</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__result-meta</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__empty</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search__close</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-search--mobile-expanded</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-search__dropdown--mobile</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-search__result--active</code></td><td>Modifier</td></tr></tbody>
       </table>
     </section>
 
     <nav class="demo-nav-footer">
-      <a href="popover.html">&larr; Popover</a>
-      <a href="timeline.html">Timeline &rarr;</a>
+      <a href="sortable.html">&larr; Sortable</a>
+      <a href="toolbar.html">Toolbar &rarr;</a>
     </nav>
     </main>
   </div>
