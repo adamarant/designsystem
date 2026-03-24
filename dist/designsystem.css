@@ -87,7 +87,7 @@
 }
 
 /* Dark theme */
-[data-theme="dark"], .dark {
+[data-theme="dark"] {
   /* --- Backgrounds — deep, refined zinc-900 palette --- */
   --ds-color-bg: #09090b;
   --ds-color-bg-subtle: #0f0f11;
@@ -185,7 +185,7 @@
 }
 
 /* Dark overrides for status/accent (brighter for contrast) */
-[data-theme="dark"], .dark {
+[data-theme="dark"] {
   --ds-color-success: #4ade80;
   --ds-color-success-subtle: rgba(74, 222, 128, 0.1);
   --ds-color-success-border: rgba(74, 222, 128, 0.2);
@@ -2471,8 +2471,8 @@ hr {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: var(--ds-size-3);
+  height: var(--ds-size-3);
   border-radius: var(--ds-radius-full);
   background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text-secondary);
@@ -2494,32 +2494,32 @@ hr {
 /* --- Sizes --- */
 
 .ds-avatar--xs {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: var(--ds-size-1);
+  height: var(--ds-size-1);
   font-size: var(--ds-text-xs);
 }
 
 .ds-avatar--sm {
-  width: 2rem;
-  height: 2rem;
+  width: var(--ds-size-2);
+  height: var(--ds-size-2);
   font-size: var(--ds-text-xs);
 }
 
 .ds-avatar--md {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: var(--ds-size-3);
+  height: var(--ds-size-3);
   font-size: var(--ds-text-sm);
 }
 
 .ds-avatar--lg {
-  width: 3rem;
-  height: 3rem;
+  width: var(--ds-size-4);
+  height: var(--ds-size-4);
   font-size: var(--ds-text-base);
 }
 
 .ds-avatar--xl {
-  width: 4rem;
-  height: 4rem;
+  width: var(--ds-space-16);
+  height: var(--ds-space-16);
   font-size: var(--ds-text-lg);
 }
 
@@ -4285,7 +4285,7 @@ button.ds-tag:focus-visible {
 }
 
 .ds-drop-zone:hover .ds-drop-zone__icon {
-  color: var(--ds-color-text-primary);
+  color: var(--ds-color-text);
 }
 
 /* ---------------------------------------------------------------------------
@@ -4295,7 +4295,7 @@ button.ds-tag:focus-visible {
 .ds-drop-zone__label {
   font-size: var(--ds-text-sm);
   font-weight: var(--ds-weight-medium);
-  color: var(--ds-color-text-primary);
+  color: var(--ds-color-text);
 }
 
 .ds-drop-zone__hint {
@@ -5876,7 +5876,7 @@ tr:hover .ds-sortable__handle,
 }
 
 .ds-chip--logic:hover {
-  background: var(--ds-color-surface-hover);
+  background: var(--ds-color-overlay-hover);
 }
 
 /* Sort chip (dashed border) */
@@ -5903,7 +5903,7 @@ tr:hover .ds-sortable__handle,
 
 .ds-chip__remove:hover {
   color: var(--ds-color-text);
-  background: var(--ds-color-surface-hover);
+  background: var(--ds-color-overlay-hover);
 }
 
 /* ==========================================================================
@@ -5973,9 +5973,9 @@ tr:hover .ds-sortable__handle,
 }
 
 .ds-icon-btn--sm {
-  width: 1.75rem;
-  height: 1.75rem;
-  padding: var(--ds-space-1);
+  width: var(--ds-size-2);
+  height: var(--ds-size-2);
+  padding: var(--ds-space-1-5);
   border-radius: var(--ds-radius-md);
 }
 
@@ -6086,25 +6086,25 @@ tr:hover .ds-sortable__handle,
 /* Notification badge */
 .ds-bottom-nav__badge {
   position: absolute;
-  top: -4px;
-  right: -8px;
-  min-width: 16px;
-  height: 16px;
-  padding: 0 4px;
+  top: calc(-1 * var(--ds-space-1));
+  right: calc(-1 * var(--ds-space-2));
+  min-width: var(--ds-space-4);
+  height: var(--ds-space-4);
+  padding: 0 var(--ds-space-1);
   border-radius: var(--ds-radius-full);
   background: var(--ds-color-error);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 600;
-  line-height: 16px;
+  color: var(--ds-color-on-inverted);
+  font-size: var(--ds-text-2xs);
+  font-weight: var(--ds-weight-semibold);
+  line-height: var(--ds-space-4);
   text-align: center;
 }
 
 /* Label */
 .ds-bottom-nav__label {
-  font-size: 10px;
+  font-size: var(--ds-text-2xs);
   font-weight: var(--ds-weight-medium);
-  letter-spacing: 0.02em;
+  letter-spacing: var(--ds-tracking-wide);
 }
 
 /* Create button — elevated center icon */

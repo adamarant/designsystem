@@ -41,7 +41,7 @@
 }
 
 .ds-chip--logic:hover {
-  background: var(--ds-color-surface-hover);
+  background: var(--ds-color-overlay-hover);
 }
 
 /* Sort chip (dashed border) */
@@ -68,5 +68,5 @@
 
 .ds-chip__remove:hover {
   color: var(--ds-color-text);
-  background: var(--ds-color-surface-hover);
+  background: var(--ds-color-overlay-hover);
 }

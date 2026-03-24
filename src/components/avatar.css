@@ -7,8 +7,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: var(--ds-size-3);
+  height: var(--ds-size-3);
   border-radius: var(--ds-radius-full);
   background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text-secondary);
@@ -30,32 +30,32 @@
 /* --- Sizes --- */
 
 .ds-avatar--xs {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: var(--ds-size-1);
+  height: var(--ds-size-1);
   font-size: var(--ds-text-xs);
 }
 
 .ds-avatar--sm {
-  width: 2rem;
-  height: 2rem;
+  width: var(--ds-size-2);
+  height: var(--ds-size-2);
   font-size: var(--ds-text-xs);
 }
 
 .ds-avatar--md {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: var(--ds-size-3);
+  height: var(--ds-size-3);
   font-size: var(--ds-text-sm);
 }
 
 .ds-avatar--lg {
-  width: 3rem;
-  height: 3rem;
+  width: var(--ds-size-4);
+  height: var(--ds-size-4);
   font-size: var(--ds-text-base);
 }
 
 .ds-avatar--xl {
-  width: 4rem;
-  height: 4rem;
+  width: var(--ds-space-16);
+  height: var(--ds-space-16);
   font-size: var(--ds-text-lg);
 }
 

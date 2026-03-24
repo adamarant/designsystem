@@ -78,7 +78,7 @@
 }
 
 .ds-drop-zone:hover .ds-drop-zone__icon {
-  color: var(--ds-color-text-primary);
+  color: var(--ds-color-text);
 }
 
 /* ---------------------------------------------------------------------------
@@ -88,7 +88,7 @@
 .ds-drop-zone__label {
   font-size: var(--ds-text-sm);
   font-weight: var(--ds-weight-medium);
-  color: var(--ds-color-text-primary);
+  color: var(--ds-color-text);
 }
 
 .ds-drop-zone__hint {
