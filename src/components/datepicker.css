@@ -73,8 +73,8 @@
   visibility: hidden;
   transform: scale(0.96);
   transition:
-    opacity var(--ds-duration-fast) var(--ds-ease),
-    visibility var(--ds-duration-fast) var(--ds-ease),
+    opacity var(--ds-duration-fast) var(--ds-ease-default),
+    visibility var(--ds-duration-fast) var(--ds-ease-default),
     transform var(--ds-duration-fast) var(--ds-ease-out-expo);
 }
 
@@ -95,7 +95,7 @@
 
 .ds-datepicker__title {
   font-size: var(--ds-text-sm);
-  font-weight: 600;
+  font-weight: var(--ds-weight-semibold);
   color: var(--ds-color-text);
   user-select: none;
 }
@@ -112,7 +112,7 @@
   color: var(--ds-color-text-secondary);
   cursor: pointer;
   font-size: var(--ds-text-base);
-  transition: all var(--ds-duration-fast) var(--ds-ease);
+  transition: all var(--ds-duration-fast) var(--ds-ease-default);
 }
 
 .ds-datepicker__nav:hover {
@@ -133,7 +133,7 @@
   text-align: center;
   padding: var(--ds-space-1) 0;
   user-select: none;
-  font-weight: 500;
+  font-weight: var(--ds-weight-medium);
 }
 
 /* Day grid */
@@ -155,7 +155,7 @@
   font-size: var(--ds-text-sm);
   color: var(--ds-color-text);
   cursor: pointer;
-  transition: all var(--ds-duration-fast) var(--ds-ease);
+  transition: all var(--ds-duration-fast) var(--ds-ease-default);
   padding: 0;
   line-height: 1;
   user-select: none;
@@ -168,14 +168,14 @@
 /* Today — subtle ring */
 .ds-datepicker__day--today {
   box-shadow: inset 0 0 0 1px var(--ds-color-border-active);
-  font-weight: 600;
+  font-weight: var(--ds-weight-semibold);
 }
 
 /* Selected — inverted fill */
 .ds-datepicker__day--selected {
   background-color: var(--ds-color-text);
   color: var(--ds-color-bg);
-  font-weight: 600;
+  font-weight: var(--ds-weight-semibold);
 }
 
 .ds-datepicker__day--selected:hover {
@@ -200,14 +200,14 @@
 
 .ds-datepicker__today {
   font-size: var(--ds-text-xs);
-  font-weight: 500;
+  font-weight: var(--ds-weight-medium);
   color: var(--ds-color-text-secondary);
   background: none;
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-full);
   padding: var(--ds-space-1) var(--ds-space-3);
   cursor: pointer;
-  transition: all var(--ds-duration-fast) var(--ds-ease);
+  transition: all var(--ds-duration-fast) var(--ds-ease-default);
 }
 
 .ds-datepicker__today:hover {
@@ -229,7 +229,7 @@
   color: var(--ds-color-text-tertiary);
   cursor: pointer;
   font-size: var(--ds-text-xs);
-  transition: all var(--ds-duration-fast) var(--ds-ease);
+  transition: all var(--ds-duration-fast) var(--ds-ease-default);
   padding: 0;
   flex-shrink: 0;
 }
@@ -256,7 +256,7 @@
 }
 
 .ds-datepicker--compact .ds-datepicker__weekday {
-  font-size: 0.625rem;
+  font-size: var(--ds-text-2xs);
 }
 
 .ds-datepicker--compact .ds-datepicker__day {
@@ -264,7 +264,7 @@
 }
 
 .ds-datepicker--compact .ds-datepicker__today {
-  font-size: 0.625rem;
+  font-size: var(--ds-text-2xs);
   padding: 2px var(--ds-space-2);
 }
 
