@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.3.34 */
+/* @ds/designsystem v0.4.0 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -711,8 +711,8 @@ hr {
 }
 
 .ds-btn:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 .ds-btn:disabled,
@@ -895,8 +895,11 @@ hr {
   transform: translateY(-4px);
 }
 .ds-card--interactive:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+}
+.ds-card--interactive:hover:focus-visible {
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color), var(--ds-shadow-lg);
 }
 
 /* Elevated card — visible shadow */
@@ -948,6 +951,9 @@ hr {
   object-fit: cover;
   background-color: var(--ds-color-bg-elevated);
 }
+.ds-card__media--square { aspect-ratio: 1; }
+.ds-card__media--video { aspect-ratio: 16/9; }
+.ds-card__media--auto { aspect-ratio: auto; }
 
 /* Compact */
 .ds-card--compact .ds-card__header,
@@ -1012,9 +1018,13 @@ hr {
 }
 
 .ds-input,
+.ds-textarea {
+  width: 100%;
+}
+
+.ds-input,
 .ds-textarea,
 .ds-select {
-  width: 100%;
   padding: 0 var(--ds-space-4);
   font-family: var(--ds-font-sans);
   font-size: var(--ds-text-base); /* 16px — prevents iOS auto-zoom on focus */
@@ -1128,6 +1138,50 @@ hr {
   background-repeat: no-repeat;
   background-position: right var(--ds-space-3) center;
   padding-right: var(--ds-space-8);
+}
+
+/* --- Layout Modifiers ---
+   Override default width/display/chrome assumptions. */
+
+/* Full width (opt-in for select, already default for input/textarea) */
+.ds-select--full {
+  width: 100%;
+}
+
+/* Flush — naked input inside a styled container.
+   No border, no background, no padding, no focus ring.
+   The container handles visual chrome. */
+.ds-input--flush {
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  height: auto;
+}
+.ds-input--flush:hover {
+  border-color: transparent;
+}
+.ds-input--flush:focus-visible {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* Inline — auto-width for use in flex rows */
+.ds-input--inline {
+  width: auto;
+  display: inline-flex;
+}
+
+/* --- Input Group: icon-right ---
+   Move icon to the right side, flip input padding. */
+.ds-input-group--icon-right .ds-input-group__icon {
+  left: auto;
+  right: var(--ds-space-3);
+}
+.ds-input-group--icon-right .ds-input {
+  padding-left: var(--ds-space-4);
+  padding-right: calc(var(--ds-space-3) + 1rem + var(--ds-space-2));
 }
 
 /* Help text */
@@ -1336,8 +1390,8 @@ hr {
 }
 
 .ds-nav__link:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 .ds-nav__link--active {
@@ -1370,8 +1424,8 @@ hr {
 }
 
 .ds-nav__icon-btn:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* --- Mobile nav overlay --- */
@@ -1449,8 +1503,8 @@ hr {
 }
 
 .ds-sidebar__link:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: calc(-1 * var(--ds-ring-offset));
+  outline: none;
+  box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 .ds-sidebar__link--active {
@@ -1543,8 +1597,8 @@ hr {
   color: var(--ds-color-text);
 }
 .ds-modal__close:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 .ds-modal__body {
@@ -1624,8 +1678,8 @@ hr {
   color: var(--ds-color-text);
 }
 .ds-toast__close:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 @keyframes ds-toast-in {
@@ -1805,8 +1859,8 @@ hr {
 }
 
 .ds-tab:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
   border-radius: var(--ds-radius-sm);
 }
 
@@ -1970,8 +2024,8 @@ hr {
 }
 
 .ds-alert__close:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* --- Compact Variant --- */
@@ -2144,6 +2198,11 @@ hr {
   transform-origin: bottom right;
 }
 
+/* --- Width variants --- */
+.ds-dropdown__menu--sm { min-width: 8rem; }
+.ds-dropdown__menu--lg { min-width: 20rem; }
+.ds-dropdown__menu--auto { min-width: auto; }
+
 /* --- Menu item --- */
 
 .ds-dropdown__item {
@@ -2167,8 +2226,8 @@ hr {
   color: var(--ds-color-text);
 }
 .ds-dropdown__item:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: calc(-1 * var(--ds-ring-offset));
+  outline: none;
+  box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 .ds-dropdown__item--active {
@@ -2666,6 +2725,12 @@ hr {
   border-radius: var(--ds-radius-xl);
 }
 
+/* --- Left-aligned variant --- */
+.ds-empty-state--left {
+  align-items: flex-start;
+  text-align: left;
+}
+
 
 /* === Tier 2 — Common === */
 /* ==========================================================================
@@ -2728,8 +2793,8 @@ hr {
 }
 
 .ds-datepicker__trigger:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* Calendar panel */
@@ -2795,8 +2860,8 @@ hr {
   color: var(--ds-color-text);
 }
 .ds-datepicker__nav:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: calc(-1 * var(--ds-ring-offset));
+  outline: none;
+  box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* Weekday header row */
@@ -2844,8 +2909,8 @@ hr {
   background-color: var(--ds-color-bg-elevated);
 }
 .ds-datepicker__day:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: calc(-1 * var(--ds-ring-offset));
+  outline: none;
+  box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* Today — subtle ring */
@@ -2899,8 +2964,8 @@ hr {
   border-color: var(--ds-color-border-hover);
 }
 .ds-datepicker__today:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* Step arrows — prev/next day buttons beside the date text */
@@ -2926,8 +2991,8 @@ hr {
   color: var(--ds-color-text);
 }
 .ds-datepicker__step:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: calc(-1 * var(--ds-ring-offset));
+  outline: none;
+  box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* Compact mode — for inline table cells */
@@ -3049,8 +3114,8 @@ hr {
    --------------------------------------------------------------------------- */
 
 .ds-toggle:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* ---------------------------------------------------------------------------
@@ -3169,8 +3234,8 @@ hr {
 }
 
 .ds-breadcrumb__link:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
   border-radius: var(--ds-radius-sm);
 }
 
@@ -3255,8 +3320,8 @@ hr {
 }
 
 .ds-pagination__item:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* ---------------------------------------------------------------------------
@@ -3314,8 +3379,8 @@ hr {
 
 .ds-pagination__prev:focus-visible,
 .ds-pagination__next:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 .ds-pagination__prev:disabled,
@@ -3407,6 +3472,7 @@ hr {
 /* Tags used as <button> for selection — no focus ring on click */
 button.ds-tag:focus-visible {
   outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* ---------------------------------------------------------------------------
@@ -3489,8 +3555,8 @@ button.ds-tag:focus-visible {
 }
 
 .ds-tag__remove:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
   opacity: 1;
 }
 
@@ -3611,8 +3677,8 @@ button.ds-tag:focus-visible {
   background-color: var(--ds-color-overlay);
 }
 .ds-accordion__trigger:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* Open state – rotate chevron */
@@ -3875,8 +3941,8 @@ button.ds-tag:focus-visible {
   color: var(--ds-color-text);
 }
 .ds-drawer__close:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* ==========================================================================
@@ -4163,8 +4229,8 @@ button.ds-tag:focus-visible {
     background-color var(--ds-duration-fast) var(--ds-ease-default);
 }
 .ds-drop-zone:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 :root:not(.dark) .ds-drop-zone {
@@ -4299,8 +4365,8 @@ button.ds-tag:focus-visible {
 
 .ds-custom-select__trigger:focus-visible {
   border-color: var(--ds-color-border-active);
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: -1px;
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 .ds-custom-select__trigger--open {
@@ -4467,8 +4533,8 @@ button.ds-tag:focus-visible {
   color: var(--ds-color-text);
 }
 .ds-custom-select__option:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: calc(-1 * var(--ds-ring-offset));
+  outline: none;
+  box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 .ds-custom-select__option--selected {
@@ -4619,6 +4685,12 @@ tr:hover .ds-sortable__handle,
 .ds-sortable-row:hover .ds-sortable__handle,
 .ds-sortable__handle:focus-visible {
   opacity: 1;
+}
+
+.ds-sortable__handle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  border-radius: var(--ds-radius-sm);
 }
 
 tr:hover .ds-sortable__handle,
@@ -4831,12 +4903,12 @@ tr:hover .ds-sortable__handle,
 /* Focus ring */
 .ds-slider input[type="range"]:focus-visible::-webkit-slider-thumb {
   outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline-offset: 0;
 }
 
 .ds-slider input[type="range"]:focus-visible::-moz-range-thumb {
   outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline-offset: 0;
 }
 
 /* Labels row */
@@ -5215,8 +5287,8 @@ tr:hover .ds-sortable__handle,
   color: var(--ds-color-text);
 }
 .ds-command__item:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: calc(-1 * var(--ds-ring-offset));
+  outline: none;
+  box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* Item icon */
