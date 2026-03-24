@@ -174,8 +174,8 @@
   }
 }
 
-/* Container query: hide page numbers when pagination is narrow, show only prev/next */
-@container (max-width: 320px) {
+/* Container query: hide page numbers when pagination is very narrow, show only prev/next + info */
+@container (max-width: 200px) {
   .ds-pagination__item,
   .ds-pagination__ellipsis {
     display: none;
@@ -184,5 +184,6 @@
   .ds-pagination__info {
     flex: 1;
     text-align: center;
+    white-space: nowrap;
   }
 }
