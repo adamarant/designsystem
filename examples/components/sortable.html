@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Card — Design System</title>
+  <title>Sortable — Design System</title>
   <link rel="stylesheet" href="../../dist/designsystem.css">
   <link rel="stylesheet" href="../_shared/demo.css">
 </head>
@@ -23,7 +23,7 @@
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Core</div>
         <a href="../components/button.html" class="demo-sidebar__link">Button</a>
-        <a href="../components/card.html" class="demo-sidebar__link demo-sidebar__link--active">Card</a>
+        <a href="../components/card.html" class="demo-sidebar__link">Card</a>
         <a href="../components/input.html" class="demo-sidebar__link">Input</a>
         <a href="../components/badge.html" class="demo-sidebar__link">Badge</a>
         <a href="../components/nav.html" class="demo-sidebar__link">Navigation</a>
@@ -53,7 +53,7 @@
         <a href="../components/progress.html" class="demo-sidebar__link">Progress</a>
         <a href="../components/drop-zone.html" class="demo-sidebar__link">Drop Zone</a>
         <a href="../components/custom-select.html" class="demo-sidebar__link">Custom Select</a>
-        <a href="../components/sortable.html" class="demo-sidebar__link">Sortable</a>
+        <a href="../components/sortable.html" class="demo-sidebar__link demo-sidebar__link--active">Sortable</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Advanced</div>
@@ -72,87 +72,55 @@
     <main class="demo-main">
 
       <header>
-        <h1>Card</h1>
-        <p>Surface + border, hover with shadow lift, rounded-xl.</p>
+        <h1>Sortable</h1>
+        <p>Drag-to-reorder styles for table rows or list items. Provides grip handle, dragging states, and drop zone indicators.</p>
         <div class="demo-meta">
-          <span class="ds-badge">Core</span>
-          <code>@import '@digiko-npm/designsystem/components/card';</code>
+          <span class="ds-badge">Common</span>
+          <code>@import '@digiko-npm/designsystem/components/sortable';</code>
         </div>
       </header>
 
 
     <section class="demo-example">
-      <h2>Basic Card</h2>
+      <h2>Sortable Table Rows</h2>
       <div class="demo-preview">
-        <div class="ds-card">
-  <div class="ds-card__header">
-    <h3 class="ds-card__title">Project Overview</h3>
-    <p class="ds-card__description">Summary of the current sprint progress</p>
-  </div>
-  <div class="ds-card__body">Content goes here</div>
-  <div class="ds-card__footer">
-    <button class="ds-btn ds-btn--sm ds-btn--secondary">Cancel</button>
-    <button class="ds-btn ds-btn--sm">Save</button>
-  </div>
-</div>
+        <table class="ds-table" style="max-width:24rem;">
+  <thead><tr><th style="width:2rem"></th><th>Name</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="ds-sortable__handle ds-sortable__handle--visible">&#9776;</span></td>
+      <td>First item</td>
+    </tr>
+    <tr>
+      <td><span class="ds-sortable__handle ds-sortable__handle--visible">&#9776;</span></td>
+      <td>Second item</td>
+    </tr>
+    <tr class="ds-sortable--over">
+      <td><span class="ds-sortable__handle ds-sortable__handle--visible">&#9776;</span></td>
+      <td>Drop target</td>
+    </tr>
+  </tbody>
+</table>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-card&quot;&gt;
-  &lt;div class=&quot;ds-card__header&quot;&gt;
-    &lt;h3 class=&quot;ds-card__title&quot;&gt;Project Overview&lt;/h3&gt;
-    &lt;p class=&quot;ds-card__description&quot;&gt;Summary of the current sprint progress&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-card__body&quot;&gt;Content goes here&lt;/div&gt;
-  &lt;div class=&quot;ds-card__footer&quot;&gt;
-    &lt;button class=&quot;ds-btn ds-btn--sm ds-btn--secondary&quot;&gt;Cancel&lt;/button&gt;
-    &lt;button class=&quot;ds-btn ds-btn--sm&quot;&gt;Save&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-      </details>
-    </section>
-
-    <section class="demo-example">
-      <h2>Stat Card</h2>
-      <div class="demo-preview">
-        <div class="ds-stat-card">
-  <div class="ds-stat-card__icon">&#128200;</div>
-  <div class="ds-stat-card__label">Total Revenue</div>
-  <div class="ds-stat-card__value">$45,231</div>
-  <div class="ds-stat-card__detail">+12.5% from last month</div>
-</div>
-      </div>
-      <details class="demo-code">
-        <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-stat-card&quot;&gt;
-  &lt;div class=&quot;ds-stat-card__icon&quot;&gt;&amp;#128200;&lt;/div&gt;
-  &lt;div class=&quot;ds-stat-card__label&quot;&gt;Total Revenue&lt;/div&gt;
-  &lt;div class=&quot;ds-stat-card__value&quot;&gt;$45,231&lt;/div&gt;
-  &lt;div class=&quot;ds-stat-card__detail&quot;&gt;+12.5% from last month&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-      </details>
-    </section>
-
-    <section class="demo-example">
-      <h2>Interactive Card</h2>
-      <div class="demo-preview">
-        <div class="ds-card ds-card--interactive">
-  <div class="ds-card__header">
-    <h3 class="ds-card__title">Design System</h3>
-    <p class="ds-card__description">CSS component library</p>
-  </div>
-  <div class="ds-card__body">Click to open project details</div>
-</div>
-      </div>
-      <details class="demo-code">
-        <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-card ds-card--interactive&quot;&gt;
-  &lt;div class=&quot;ds-card__header&quot;&gt;
-    &lt;h3 class=&quot;ds-card__title&quot;&gt;Design System&lt;/h3&gt;
-    &lt;p class=&quot;ds-card__description&quot;&gt;CSS component library&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-card__body&quot;&gt;Click to open project details&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+        <pre><code>&lt;table class=&quot;ds-table&quot; style=&quot;max-width:24rem;&quot;&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;width:2rem&quot;&gt;&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;span class=&quot;ds-sortable__handle ds-sortable__handle--visible&quot;&gt;&amp;#9776;&lt;/span&gt;&lt;/td&gt;
+      &lt;td&gt;First item&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;span class=&quot;ds-sortable__handle ds-sortable__handle--visible&quot;&gt;&amp;#9776;&lt;/span&gt;&lt;/td&gt;
+      &lt;td&gt;Second item&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr class=&quot;ds-sortable--over&quot;&gt;
+      &lt;td&gt;&lt;span class=&quot;ds-sortable__handle ds-sortable__handle--visible&quot;&gt;&amp;#9776;&lt;/span&gt;&lt;/td&gt;
+      &lt;td&gt;Drop target&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
       </details>
     </section>
 
@@ -160,25 +128,17 @@
       <h2>API</h2>
       <table class="ds-table">
         <thead><tr><th>Class</th><th>Type</th></tr></thead>
-        <tbody><tr><td><code>.ds-card</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-stat-card</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-card__header</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-card__title</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-card__description</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-card__body</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-card__footer</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-card__media</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-card--interactive</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-card--elevated</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-card--hover</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-card--compact</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-card--flush</code></td><td>Variant</td></tr></tbody>
+        <tbody><tr><td><code>.ds-sortable__handle</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-sortable-row</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-sortable__handle--visible</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-sortable__handle--dragging</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-sortable__handle--over</code></td><td>Modifier</td></tr></tbody>
       </table>
     </section>
 
     <nav class="demo-nav-footer">
-      <a href="button.html">&larr; Button</a>
-      <a href="input.html">Input &rarr;</a>
+      <a href="command.html">&larr; Command</a>
+      <span></span>
     </nav>
     </main>
   </div>
