@@ -30,8 +30,8 @@
 }
 
 .ds-btn:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 .ds-btn:disabled,

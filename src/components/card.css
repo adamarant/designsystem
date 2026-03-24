@@ -21,8 +21,11 @@
   transform: translateY(-4px);
 }
 .ds-card--interactive:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+}
+.ds-card--interactive:hover:focus-visible {
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color), var(--ds-shadow-lg);
 }
 
 /* Elevated card — visible shadow */
@@ -74,6 +77,9 @@
   object-fit: cover;
   background-color: var(--ds-color-bg-elevated);
 }
+.ds-card__media--square { aspect-ratio: 1; }
+.ds-card__media--video { aspect-ratio: 16/9; }
+.ds-card__media--auto { aspect-ratio: auto; }
 
 /* Compact */
 .ds-card--compact .ds-card__header,

@@ -42,6 +42,7 @@
 /* Tags used as <button> for selection — no focus ring on click */
 button.ds-tag:focus-visible {
   outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 /* ---------------------------------------------------------------------------
@@ -124,8 +125,8 @@ button.ds-tag:focus-visible {
 }
 
 .ds-tag__remove:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
   opacity: 1;
 }
 

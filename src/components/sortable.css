@@ -31,6 +31,12 @@ tr:hover .ds-sortable__handle,
   opacity: 1;
 }
 
+.ds-sortable__handle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  border-radius: var(--ds-radius-sm);
+}
+
 tr:hover .ds-sortable__handle,
 .ds-sortable-row:hover .ds-sortable__handle {
   color: var(--ds-color-text-secondary);

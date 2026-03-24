@@ -63,6 +63,11 @@
   transform-origin: bottom right;
 }
 
+/* --- Width variants --- */
+.ds-dropdown__menu--sm { min-width: 8rem; }
+.ds-dropdown__menu--lg { min-width: 20rem; }
+.ds-dropdown__menu--auto { min-width: auto; }
+
 /* --- Menu item --- */
 
 .ds-dropdown__item {
@@ -86,8 +91,8 @@
   color: var(--ds-color-text);
 }
 .ds-dropdown__item:focus-visible {
-  outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: calc(-1 * var(--ds-ring-offset));
+  outline: none;
+  box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
 .ds-dropdown__item--active {

@@ -73,12 +73,12 @@
 /* Focus ring */
 .ds-slider input[type="range"]:focus-visible::-webkit-slider-thumb {
   outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline-offset: 0;
 }
 
 .ds-slider input[type="range"]:focus-visible::-moz-range-thumb {
   outline: var(--ds-ring-width) solid var(--ds-ring-color);
-  outline-offset: var(--ds-ring-offset);
+  outline-offset: 0;
 }
 
 /* Labels row */
