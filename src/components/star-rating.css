@@ -1,0 +1,121 @@
+/* ==========================================================================
+   Component: Star Rating
+   Display or input star ratings. CSS-only styling with SVG/icon stars.
+
+   ARIA requirements (consumer responsibility):
+   - Display: aria-label="Rating: 4 out of 5"
+   - Input: role="radiogroup", aria-label="Rate this item"
+   - Each star input: role="radio", aria-checked="true|false", aria-label="[N] stars"
+   - Keyboard: ArrowLeft/Right to change rating
+
+   Usage (display):
+     <div class="ds-star-rating" aria-label="Rating: 4 out of 5">
+       <span class="ds-star-rating__star ds-star-rating__star--filled">★</span>
+       <span class="ds-star-rating__star ds-star-rating__star--filled">★</span>
+       <span class="ds-star-rating__star ds-star-rating__star--filled">★</span>
+       <span class="ds-star-rating__star ds-star-rating__star--filled">★</span>
+       <span class="ds-star-rating__star">★</span>
+     </div>
+
+   Usage (input):
+     <div class="ds-star-rating ds-star-rating--interactive" role="radiogroup">
+       <button class="ds-star-rating__star ds-star-rating__star--filled" role="radio">★</button>
+       ...
+     </div>
+
+   Modifiers:
+     .ds-star-rating--interactive   — Hoverable stars for input
+     .ds-star-rating--sm            — Smaller stars
+     .ds-star-rating--lg            — Larger stars
+   ========================================================================== */
+
+.ds-star-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-0-5);
+
+  &__star {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--ds-color-border);
+    font-size: var(--ds-text-lg);
+    line-height: 1;
+    border: none;
+    background: transparent;
+    padding: 0;
+    transition: color var(--ds-duration-fast) var(--ds-ease-default);
+
+    &--filled {
+      color: var(--ds-color-warning);
+    }
+
+    &--half {
+      position: relative;
+      color: var(--ds-color-border);
+
+      &::before {
+        content: "★";
+        position: absolute;
+        inset-inline-start: 0;
+        width: 50%;
+        overflow: hidden;
+        color: var(--ds-color-warning);
+      }
+    }
+  }
+
+  /* --- Interactive (input mode) --- */
+  &--interactive &__star {
+    cursor: pointer;
+
+    &:hover {
+      color: var(--ds-color-warning);
+      transform: scale(1.15);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+      border-radius: var(--ds-radius-sm);
+      scroll-margin-block: var(--ds-space-16, 4rem);
+    }
+  }
+
+  /* --- Small --- */
+  &--sm &__star {
+    width: 1rem;
+    height: 1rem;
+    font-size: var(--ds-text-sm);
+  }
+
+  &--sm {
+    gap: 0;
+  }
+
+  /* --- Large --- */
+  &--lg &__star {
+    width: 2rem;
+    height: 2rem;
+    font-size: var(--ds-text-2xl);
+  }
+
+  &--lg {
+    gap: var(--ds-space-1);
+  }
+
+  /* --- Value text --- */
+  &__value {
+    margin-inline-start: var(--ds-space-1-5);
+    font-size: var(--ds-text-sm);
+    font-weight: var(--ds-weight-medium);
+    color: var(--ds-color-text);
+  }
+
+  &__count {
+    font-size: var(--ds-text-xs);
+    color: var(--ds-color-text-tertiary);
+  }
+}

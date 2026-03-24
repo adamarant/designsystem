@@ -4259,6 +4259,100 @@ input.ds-combobox__input:focus {
   to { transform: rotate(360deg); }
 }
 
+/* ==========================================================================
+   Component: Segmented Control
+   Toggle between 2-5 mutually exclusive options. Compact alternative to tabs.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="radiogroup", aria-label="[description]"
+   - Each segment: role="radio", aria-checked="true|false"
+   - Keyboard: ArrowLeft/Right to navigate, Space/Enter to select
+
+   Usage:
+     <div class="ds-segmented" role="radiogroup" aria-label="View">
+       <button class="ds-segmented__item ds-segmented__item--active" role="radio" aria-checked="true">Grid</button>
+       <button class="ds-segmented__item" role="radio" aria-checked="false">List</button>
+       <button class="ds-segmented__item" role="radio" aria-checked="false">Board</button>
+     </div>
+
+   Modifiers:
+     .ds-segmented--sm      — Smaller size
+     .ds-segmented--full    — Full width (items stretch equally)
+   ========================================================================== */
+
+.ds-segmented {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-0-5);
+  padding: var(--ds-space-0-5);
+  background-color: var(--ds-color-bg-elevated);
+  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-color-border-subtle);
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ds-space-1-5);
+    padding: var(--ds-space-1-5) var(--ds-space-3);
+    font-family: var(--ds-font-sans);
+    font-size: var(--ds-text-sm);
+    font-weight: var(--ds-weight-medium);
+    line-height: var(--ds-leading-none);
+    color: var(--ds-color-text-secondary);
+    background: transparent;
+    border: none;
+    border-radius: var(--ds-radius-md);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--ds-duration-fast) var(--ds-ease-default);
+
+    &:hover {
+      color: var(--ds-color-text);
+      background-color: var(--ds-color-overlay-hover);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+      scroll-margin-block: var(--ds-space-16, 4rem);
+    }
+
+    &--active {
+      background-color: var(--ds-color-surface);
+      color: var(--ds-color-text);
+      box-shadow: var(--ds-shadow-sm);
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      opacity: var(--ds-opacity-disabled);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  /* --- Small variant --- */
+  &--sm {
+    padding: 2px;
+
+    & .ds-segmented__item {
+      padding: var(--ds-space-1) var(--ds-space-2);
+      font-size: var(--ds-text-xs);
+    }
+  }
+
+  /* --- Full width --- */
+  &--full {
+    display: flex;
+    width: 100%;
+
+    & .ds-segmented__item {
+      flex: 1;
+    }
+  }
+}
+
 
 /* === Tier 2 — Common === */
 /* ==========================================================================
@@ -7046,6 +7140,873 @@ tr:hover .ds-sortable__handle,
 .ds-pin-input--disabled .ds-pin-input__field {
   opacity: var(--ds-opacity-disabled);
   pointer-events: none;
+}
+
+/* ==========================================================================
+   Component: Copy Button
+   Icon button with clipboard feedback state (idle → copied).
+
+   ARIA requirements (consumer responsibility):
+   - Button: aria-label="Copy [description]"
+   - After copy: update aria-label to "Copied" temporarily
+   - Use role="status" or aria-live="polite" for screen reader feedback
+
+   Usage:
+     <button class="ds-copy-btn" aria-label="Copy address">
+       <svg class="ds-copy-btn__icon">...</svg>         <!-- copy icon -->
+       <svg class="ds-copy-btn__icon-check">...</svg>    <!-- check icon -->
+     </button>
+
+     <!-- Active state (after copy): -->
+     <button class="ds-copy-btn ds-copy-btn--copied" aria-label="Copied">...</button>
+
+   Modifiers:
+     .ds-copy-btn--copied  — Show check icon, hide copy icon
+     .ds-copy-btn--sm      — Smaller (24px)
+     .ds-copy-btn--lg      — Larger (40px)
+   ========================================================================== */
+
+.ds-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: var(--ds-size-2);
+  height: var(--ds-size-2);
+  padding: var(--ds-space-1-5);
+  border: none;
+  border-radius: var(--ds-radius-md);
+  background: transparent;
+  color: var(--ds-color-text-tertiary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+
+  &:hover {
+    background-color: var(--ds-color-surface-hover);
+    color: var(--ds-color-text-secondary);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    scroll-margin-block: var(--ds-space-16, 4rem);
+  }
+
+  /* --- Icons --- */
+  &__icon,
+  &__icon-check {
+    width: 1rem;
+    height: 1rem;
+    transition: opacity var(--ds-duration-fast) var(--ds-ease-default);
+  }
+
+  &__icon-check {
+    position: absolute;
+    opacity: 0;
+    color: var(--ds-color-success);
+  }
+
+  /* --- Copied state --- */
+  &--copied {
+    color: var(--ds-color-success);
+
+    & .ds-copy-btn__icon {
+      opacity: 0;
+    }
+
+    & .ds-copy-btn__icon-check {
+      opacity: 1;
+    }
+  }
+
+  /* --- Sizes --- */
+  &--sm {
+    width: var(--ds-size-1);
+    height: var(--ds-size-1);
+    padding: var(--ds-space-0-5);
+    border-radius: var(--ds-radius-sm);
+
+    & .ds-copy-btn__icon,
+    & .ds-copy-btn__icon-check {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+  }
+
+  &--lg {
+    width: var(--ds-size-3);
+    height: var(--ds-size-3);
+    padding: var(--ds-space-2);
+
+    & .ds-copy-btn__icon,
+    & .ds-copy-btn__icon-check {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+}
+
+/* ==========================================================================
+   Component: Scroll Area
+   Custom-styled scrollbar for overflow containers. Cross-browser.
+
+   Usage:
+     <div class="ds-scroll-area" style="max-height: 20rem;">
+       ...long content...
+     </div>
+
+   Modifiers:
+     .ds-scroll-area--horizontal  — Horizontal scroll
+     .ds-scroll-area--both        — Both directions
+     .ds-scroll-area--thin        — Thinner scrollbar
+   ========================================================================== */
+
+.ds-scroll-area {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--ds-scrollbar-thumb) transparent;
+
+  /* WebKit (Chrome, Safari, Edge) */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--ds-scrollbar-thumb);
+    border-radius: var(--ds-radius-full);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--ds-scrollbar-thumb-hover);
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* --- Horizontal --- */
+  &--horizontal {
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+
+  /* --- Both directions --- */
+  &--both {
+    overflow: auto;
+  }
+
+  /* --- Thin variant --- */
+  &--thin {
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: 1px solid transparent;
+    }
+  }
+}
+
+/* ==========================================================================
+   Component: Truncated Text
+   Display long text (hashes, addresses, IDs) with truncation from the middle
+   or end, with optional copy functionality styling.
+
+   Usage:
+     <!-- End truncation (CSS native) -->
+     <span class="ds-truncate">0x1a2b3c4d5e6f7890...</span>
+
+     <!-- Middle truncation (requires JS to split text) -->
+     <span class="ds-truncate ds-truncate--middle">
+       <span class="ds-truncate__start">0x1a2b3c</span>
+       <span class="ds-truncate__separator">...</span>
+       <span class="ds-truncate__end">7890abcd</span>
+     </span>
+
+     <!-- Hash display with copy button -->
+     <span class="ds-hash">
+       <span class="ds-hash__value">0x1a2b...7890</span>
+       <button class="ds-copy-btn ds-copy-btn--sm" aria-label="Copy address">...</button>
+     </span>
+
+   Modifiers:
+     .ds-truncate--middle   — Middle truncation layout
+   ========================================================================== */
+
+.ds-truncate {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+.ds-truncate--middle {
+  display: inline-flex;
+  align-items: baseline;
+  overflow: visible;
+  text-overflow: clip;
+
+  & .ds-truncate__start {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-shrink: 1;
+    min-width: 3ch;
+  }
+
+  & .ds-truncate__separator {
+    flex-shrink: 0;
+    color: var(--ds-color-text-tertiary);
+  }
+
+  & .ds-truncate__end {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
+/* --- Hash display (address/ID with copy) --- */
+.ds-hash {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+
+  &__value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* ==========================================================================
+   Component: Color Picker
+   Grid of color swatches for selection. CSS-only styling.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="radiogroup", aria-label="Color"
+   - Each swatch: role="radio", aria-checked="true|false", aria-label="[color name]"
+   - Keyboard: ArrowKeys to navigate, Space/Enter to select
+
+   Usage:
+     <div class="ds-color-picker" role="radiogroup" aria-label="Color">
+       <button class="ds-color-picker__swatch ds-color-picker__swatch--active"
+               role="radio" aria-checked="true" aria-label="Red"
+               style="--swatch-color: #ef4444"></button>
+       <button class="ds-color-picker__swatch"
+               role="radio" aria-checked="false" aria-label="Blue"
+               style="--swatch-color: #3b82f6"></button>
+     </div>
+
+   Modifiers:
+     .ds-color-picker--sm    — Smaller swatches
+     .ds-color-picker--lg    — Larger swatches
+   ========================================================================== */
+
+.ds-color-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-1-5);
+
+  &__swatch {
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--ds-radius-md);
+    border: 2px solid transparent;
+    background-color: var(--swatch-color);
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition:
+      border-color var(--ds-duration-fast) var(--ds-ease-default),
+      transform var(--ds-duration-fast) var(--ds-ease-default),
+      box-shadow var(--ds-duration-fast) var(--ds-ease-default);
+
+    &:hover {
+      transform: scale(1.1);
+      border-color: var(--ds-color-border);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+      scroll-margin-block: var(--ds-space-16, 4rem);
+    }
+
+    &--active {
+      border-color: var(--ds-color-text);
+      box-shadow: 0 0 0 2px var(--ds-color-surface), 0 0 0 4px var(--swatch-color);
+    }
+  }
+
+  /* --- Small variant --- */
+  &--sm &__swatch {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: var(--ds-radius-sm);
+  }
+
+  &--sm {
+    gap: var(--ds-space-1);
+  }
+
+  /* --- Large variant --- */
+  &--lg &__swatch {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--ds-radius-lg);
+  }
+
+  &--lg {
+    gap: var(--ds-space-2);
+  }
+}
+
+/* ==========================================================================
+   Component: Star Rating
+   Display or input star ratings. CSS-only styling with SVG/icon stars.
+
+   ARIA requirements (consumer responsibility):
+   - Display: aria-label="Rating: 4 out of 5"
+   - Input: role="radiogroup", aria-label="Rate this item"
+   - Each star input: role="radio", aria-checked="true|false", aria-label="[N] stars"
+   - Keyboard: ArrowLeft/Right to change rating
+
+   Usage (display):
+     <div class="ds-star-rating" aria-label="Rating: 4 out of 5">
+       <span class="ds-star-rating__star ds-star-rating__star--filled">★</span>
+       <span class="ds-star-rating__star ds-star-rating__star--filled">★</span>
+       <span class="ds-star-rating__star ds-star-rating__star--filled">★</span>
+       <span class="ds-star-rating__star ds-star-rating__star--filled">★</span>
+       <span class="ds-star-rating__star">★</span>
+     </div>
+
+   Usage (input):
+     <div class="ds-star-rating ds-star-rating--interactive" role="radiogroup">
+       <button class="ds-star-rating__star ds-star-rating__star--filled" role="radio">★</button>
+       ...
+     </div>
+
+   Modifiers:
+     .ds-star-rating--interactive   — Hoverable stars for input
+     .ds-star-rating--sm            — Smaller stars
+     .ds-star-rating--lg            — Larger stars
+   ========================================================================== */
+
+.ds-star-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-0-5);
+
+  &__star {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--ds-color-border);
+    font-size: var(--ds-text-lg);
+    line-height: 1;
+    border: none;
+    background: transparent;
+    padding: 0;
+    transition: color var(--ds-duration-fast) var(--ds-ease-default);
+
+    &--filled {
+      color: var(--ds-color-warning);
+    }
+
+    &--half {
+      position: relative;
+      color: var(--ds-color-border);
+
+      &::before {
+        content: "★";
+        position: absolute;
+        inset-inline-start: 0;
+        width: 50%;
+        overflow: hidden;
+        color: var(--ds-color-warning);
+      }
+    }
+  }
+
+  /* --- Interactive (input mode) --- */
+  &--interactive &__star {
+    cursor: pointer;
+
+    &:hover {
+      color: var(--ds-color-warning);
+      transform: scale(1.15);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+      border-radius: var(--ds-radius-sm);
+      scroll-margin-block: var(--ds-space-16, 4rem);
+    }
+  }
+
+  /* --- Small --- */
+  &--sm &__star {
+    width: 1rem;
+    height: 1rem;
+    font-size: var(--ds-text-sm);
+  }
+
+  &--sm {
+    gap: 0;
+  }
+
+  /* --- Large --- */
+  &--lg &__star {
+    width: 2rem;
+    height: 2rem;
+    font-size: var(--ds-text-2xl);
+  }
+
+  &--lg {
+    gap: var(--ds-space-1);
+  }
+
+  /* --- Value text --- */
+  &__value {
+    margin-inline-start: var(--ds-space-1-5);
+    font-size: var(--ds-text-sm);
+    font-weight: var(--ds-weight-medium);
+    color: var(--ds-color-text);
+  }
+
+  &__count {
+    font-size: var(--ds-text-xs);
+    color: var(--ds-color-text-tertiary);
+  }
+}
+
+/* ==========================================================================
+   Component: Gallery
+   Image gallery with main image, thumbnail strip, and lightbox overlay.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="region", aria-label="Image gallery"
+   - Thumbnails: role="tablist", individual thumbnails role="tab"
+   - Main image: role="img", alt text required
+   - Lightbox: role="dialog", aria-label="Image viewer"
+   - Lightbox close: aria-label="Close"
+   - Navigation: aria-label="Previous image" / "Next image"
+   - Keyboard: ArrowLeft/Right for navigation, Escape to close lightbox
+
+   Usage:
+     <div class="ds-gallery">
+       <div class="ds-gallery__main">
+         <img src="..." alt="..." />
+       </div>
+       <div class="ds-gallery__thumbs">
+         <button class="ds-gallery__thumb ds-gallery__thumb--active">
+           <img src="..." alt="Thumbnail 1" />
+         </button>
+         <button class="ds-gallery__thumb">
+           <img src="..." alt="Thumbnail 2" />
+         </button>
+         <button class="ds-gallery__thumb-more">+3</button>
+       </div>
+     </div>
+
+   Lightbox overlay:
+     <div class="ds-lightbox ds-lightbox--open">
+       <button class="ds-lightbox__close" aria-label="Close">&times;</button>
+       <button class="ds-lightbox__prev" aria-label="Previous">&lsaquo;</button>
+       <img class="ds-lightbox__image" src="..." alt="..." />
+       <button class="ds-lightbox__next" aria-label="Next">&rsaquo;</button>
+       <span class="ds-lightbox__counter">2 / 8</span>
+     </div>
+   ========================================================================== */
+
+/* ==========================================================================
+   Gallery (thumbnails)
+   ========================================================================== */
+
+.ds-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-2);
+
+  /* --- Main image --- */
+  &__main {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--ds-radius-xl);
+    background-color: var(--ds-color-bg-muted);
+    cursor: pointer;
+
+    & img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  /* --- Thumbnail strip --- */
+  &__thumbs {
+    display: flex;
+    gap: var(--ds-space-2);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  /* --- Individual thumbnail --- */
+  &__thumb {
+    flex-shrink: 0;
+    width: 4rem;
+    height: 4rem;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: var(--ds-radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--ds-color-bg-muted);
+    transition:
+      border-color var(--ds-duration-fast) var(--ds-ease-default),
+      opacity var(--ds-duration-fast) var(--ds-ease-default);
+
+    & img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &:hover {
+      border-color: var(--ds-color-border-hover);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+      scroll-margin-block: var(--ds-space-16, 4rem);
+    }
+
+    &--active {
+      border-color: var(--ds-color-interactive);
+    }
+  }
+
+  /* --- "+N more" button --- */
+  &__thumb-more {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid var(--ds-color-border);
+    border-radius: var(--ds-radius-md);
+    background-color: var(--ds-color-bg-elevated);
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-sm);
+    font-weight: var(--ds-weight-medium);
+    font-family: var(--ds-font-sans);
+    cursor: pointer;
+    transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+
+    &:hover {
+      background-color: var(--ds-color-surface-hover);
+    }
+  }
+}
+
+/* ==========================================================================
+   Lightbox (fullscreen overlay)
+   ========================================================================== */
+
+.ds-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-modal);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.9);
+
+  &--open {
+    display: flex;
+  }
+
+  /* --- Image --- */
+  &__image {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: var(--ds-radius-md);
+    user-select: none;
+  }
+
+  /* --- Close button --- */
+  &__close {
+    position: absolute;
+    inset-block-start: var(--ds-space-4);
+    inset-inline-end: var(--ds-space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--ds-size-3);
+    height: var(--ds-size-3);
+    border: none;
+    border-radius: var(--ds-radius-full);
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: var(--ds-text-xl);
+    cursor: pointer;
+    transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  /* --- Prev/Next navigation --- */
+  &__prev,
+  &__next {
+    position: absolute;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--ds-size-4);
+    height: var(--ds-size-4);
+    border: none;
+    border-radius: var(--ds-radius-full);
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: var(--ds-text-2xl);
+    cursor: pointer;
+    transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) rgba(255, 255, 255, 0.5);
+    }
+
+    &:disabled {
+      opacity: var(--ds-opacity-disabled);
+      pointer-events: none;
+    }
+  }
+
+  &__prev {
+    inset-inline-start: var(--ds-space-4);
+  }
+
+  &__next {
+    inset-inline-end: var(--ds-space-4);
+  }
+
+  /* --- Counter --- */
+  &__counter {
+    position: absolute;
+    inset-block-end: var(--ds-space-4);
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+    padding: var(--ds-space-1) var(--ds-space-3);
+    border-radius: var(--ds-radius-full);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: var(--ds-text-sm);
+    font-family: var(--ds-font-sans);
+    font-variant-numeric: tabular-nums;
+    user-select: none;
+  }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .ds-lightbox {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   Component: Bottom Sheet
+   Mobile overlay sliding up from the bottom. Alternative to dropdown on mobile.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="dialog", aria-label="[title]", aria-modal="true"
+   - Close button: aria-label="Close"
+   - Focus trap when open
+   - Keyboard: Escape to close
+
+   Usage:
+     <div class="ds-bottom-sheet ds-bottom-sheet--open">
+       <div class="ds-bottom-sheet__backdrop"></div>
+       <div class="ds-bottom-sheet__panel">
+         <div class="ds-bottom-sheet__handle"></div>
+         <div class="ds-bottom-sheet__header">
+           <h3 class="ds-bottom-sheet__title">Title</h3>
+           <button class="ds-bottom-sheet__close" aria-label="Close">&times;</button>
+         </div>
+         <div class="ds-bottom-sheet__body">
+           ...content...
+         </div>
+       </div>
+     </div>
+
+   Modifiers:
+     .ds-bottom-sheet--open    — Visible
+     .ds-bottom-sheet--full    — Full height (90dvh)
+   ========================================================================== */
+
+.ds-bottom-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-modal);
+  display: none;
+
+  &--open {
+    display: block;
+  }
+
+  /* --- Backdrop --- */
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: var(--ds-color-overlay);
+    animation: ds-bottom-sheet-backdrop-in var(--ds-duration-normal) var(--ds-ease-default) forwards;
+  }
+
+  /* --- Panel --- */
+  &__panel {
+    position: fixed;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    max-height: 75dvh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--ds-color-surface);
+    border-radius: var(--ds-radius-xl) var(--ds-radius-xl) 0 0;
+    box-shadow: var(--ds-shadow-lg);
+    overflow: hidden;
+    animation: ds-bottom-sheet-slide-up var(--ds-duration-normal) var(--ds-ease-out-expo) forwards;
+  }
+
+  /* --- Drag handle --- */
+  &__handle {
+    width: 2.5rem;
+    height: 4px;
+    margin: var(--ds-space-2) auto;
+    border-radius: var(--ds-radius-full);
+    background-color: var(--ds-color-bg-muted);
+    flex-shrink: 0;
+  }
+
+  /* --- Header --- */
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--ds-space-2) var(--ds-space-4) var(--ds-space-3);
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-family: var(--ds-font-display);
+    font-weight: var(--ds-weight-semibold);
+    font-size: var(--ds-text-lg);
+    color: var(--ds-color-text);
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--ds-size-2);
+    height: var(--ds-size-2);
+    border: none;
+    border-radius: var(--ds-radius-md);
+    background: transparent;
+    color: var(--ds-color-text-tertiary);
+    cursor: pointer;
+    transition: color var(--ds-duration-fast) var(--ds-ease-default);
+
+    &:hover {
+      color: var(--ds-color-text);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    }
+  }
+
+  /* --- Body --- */
+  &__body {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0 var(--ds-space-4) var(--ds-space-4);
+  }
+
+  /* --- Full height modifier --- */
+  &--full &__panel {
+    max-height: 90dvh;
+  }
+}
+
+@keyframes ds-bottom-sheet-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ds-bottom-sheet-slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-bottom-sheet__panel {
+    animation: none;
+  }
+  .ds-bottom-sheet__backdrop {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 

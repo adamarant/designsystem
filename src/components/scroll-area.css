@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Component: Scroll Area
+   Custom-styled scrollbar for overflow containers. Cross-browser.
+
+   Usage:
+     <div class="ds-scroll-area" style="max-height: 20rem;">
+       ...long content...
+     </div>
+
+   Modifiers:
+     .ds-scroll-area--horizontal  — Horizontal scroll
+     .ds-scroll-area--both        — Both directions
+     .ds-scroll-area--thin        — Thinner scrollbar
+   ========================================================================== */
+
+.ds-scroll-area {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--ds-scrollbar-thumb) transparent;
+
+  /* WebKit (Chrome, Safari, Edge) */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--ds-scrollbar-thumb);
+    border-radius: var(--ds-radius-full);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--ds-scrollbar-thumb-hover);
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* --- Horizontal --- */
+  &--horizontal {
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+
+  /* --- Both directions --- */
+  &--both {
+    overflow: auto;
+  }
+
+  /* --- Thin variant --- */
+  &--thin {
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: 1px solid transparent;
+    }
+  }
+}

@@ -1,0 +1,106 @@
+/* ==========================================================================
+   Component: Copy Button
+   Icon button with clipboard feedback state (idle → copied).
+
+   ARIA requirements (consumer responsibility):
+   - Button: aria-label="Copy [description]"
+   - After copy: update aria-label to "Copied" temporarily
+   - Use role="status" or aria-live="polite" for screen reader feedback
+
+   Usage:
+     <button class="ds-copy-btn" aria-label="Copy address">
+       <svg class="ds-copy-btn__icon">...</svg>         <!-- copy icon -->
+       <svg class="ds-copy-btn__icon-check">...</svg>    <!-- check icon -->
+     </button>
+
+     <!-- Active state (after copy): -->
+     <button class="ds-copy-btn ds-copy-btn--copied" aria-label="Copied">...</button>
+
+   Modifiers:
+     .ds-copy-btn--copied  — Show check icon, hide copy icon
+     .ds-copy-btn--sm      — Smaller (24px)
+     .ds-copy-btn--lg      — Larger (40px)
+   ========================================================================== */
+
+.ds-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: var(--ds-size-2);
+  height: var(--ds-size-2);
+  padding: var(--ds-space-1-5);
+  border: none;
+  border-radius: var(--ds-radius-md);
+  background: transparent;
+  color: var(--ds-color-text-tertiary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+
+  &:hover {
+    background-color: var(--ds-color-surface-hover);
+    color: var(--ds-color-text-secondary);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    scroll-margin-block: var(--ds-space-16, 4rem);
+  }
+
+  /* --- Icons --- */
+  &__icon,
+  &__icon-check {
+    width: 1rem;
+    height: 1rem;
+    transition: opacity var(--ds-duration-fast) var(--ds-ease-default);
+  }
+
+  &__icon-check {
+    position: absolute;
+    opacity: 0;
+    color: var(--ds-color-success);
+  }
+
+  /* --- Copied state --- */
+  &--copied {
+    color: var(--ds-color-success);
+
+    & .ds-copy-btn__icon {
+      opacity: 0;
+    }
+
+    & .ds-copy-btn__icon-check {
+      opacity: 1;
+    }
+  }
+
+  /* --- Sizes --- */
+  &--sm {
+    width: var(--ds-size-1);
+    height: var(--ds-size-1);
+    padding: var(--ds-space-0-5);
+    border-radius: var(--ds-radius-sm);
+
+    & .ds-copy-btn__icon,
+    & .ds-copy-btn__icon-check {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+  }
+
+  &--lg {
+    width: var(--ds-size-3);
+    height: var(--ds-size-3);
+    padding: var(--ds-space-2);
+
+    & .ds-copy-btn__icon,
+    & .ds-copy-btn__icon-check {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+}

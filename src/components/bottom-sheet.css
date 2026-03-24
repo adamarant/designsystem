@@ -1,0 +1,146 @@
+/* ==========================================================================
+   Component: Bottom Sheet
+   Mobile overlay sliding up from the bottom. Alternative to dropdown on mobile.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="dialog", aria-label="[title]", aria-modal="true"
+   - Close button: aria-label="Close"
+   - Focus trap when open
+   - Keyboard: Escape to close
+
+   Usage:
+     <div class="ds-bottom-sheet ds-bottom-sheet--open">
+       <div class="ds-bottom-sheet__backdrop"></div>
+       <div class="ds-bottom-sheet__panel">
+         <div class="ds-bottom-sheet__handle"></div>
+         <div class="ds-bottom-sheet__header">
+           <h3 class="ds-bottom-sheet__title">Title</h3>
+           <button class="ds-bottom-sheet__close" aria-label="Close">&times;</button>
+         </div>
+         <div class="ds-bottom-sheet__body">
+           ...content...
+         </div>
+       </div>
+     </div>
+
+   Modifiers:
+     .ds-bottom-sheet--open    — Visible
+     .ds-bottom-sheet--full    — Full height (90dvh)
+   ========================================================================== */
+
+.ds-bottom-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-modal);
+  display: none;
+
+  &--open {
+    display: block;
+  }
+
+  /* --- Backdrop --- */
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: var(--ds-color-overlay);
+    animation: ds-bottom-sheet-backdrop-in var(--ds-duration-normal) var(--ds-ease-default) forwards;
+  }
+
+  /* --- Panel --- */
+  &__panel {
+    position: fixed;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    max-height: 75dvh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--ds-color-surface);
+    border-radius: var(--ds-radius-xl) var(--ds-radius-xl) 0 0;
+    box-shadow: var(--ds-shadow-lg);
+    overflow: hidden;
+    animation: ds-bottom-sheet-slide-up var(--ds-duration-normal) var(--ds-ease-out-expo) forwards;
+  }
+
+  /* --- Drag handle --- */
+  &__handle {
+    width: 2.5rem;
+    height: 4px;
+    margin: var(--ds-space-2) auto;
+    border-radius: var(--ds-radius-full);
+    background-color: var(--ds-color-bg-muted);
+    flex-shrink: 0;
+  }
+
+  /* --- Header --- */
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--ds-space-2) var(--ds-space-4) var(--ds-space-3);
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-family: var(--ds-font-display);
+    font-weight: var(--ds-weight-semibold);
+    font-size: var(--ds-text-lg);
+    color: var(--ds-color-text);
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--ds-size-2);
+    height: var(--ds-size-2);
+    border: none;
+    border-radius: var(--ds-radius-md);
+    background: transparent;
+    color: var(--ds-color-text-tertiary);
+    cursor: pointer;
+    transition: color var(--ds-duration-fast) var(--ds-ease-default);
+
+    &:hover {
+      color: var(--ds-color-text);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    }
+  }
+
+  /* --- Body --- */
+  &__body {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0 var(--ds-space-4) var(--ds-space-4);
+  }
+
+  /* --- Full height modifier --- */
+  &--full &__panel {
+    max-height: 90dvh;
+  }
+}
+
+@keyframes ds-bottom-sheet-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ds-bottom-sheet-slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-bottom-sheet__panel {
+    animation: none;
+  }
+  .ds-bottom-sheet__backdrop {
+    animation: none;
+    opacity: 1;
+  }
+}

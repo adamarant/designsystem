@@ -1,0 +1,75 @@
+/* ==========================================================================
+   Component: Truncated Text
+   Display long text (hashes, addresses, IDs) with truncation from the middle
+   or end, with optional copy functionality styling.
+
+   Usage:
+     <!-- End truncation (CSS native) -->
+     <span class="ds-truncate">0x1a2b3c4d5e6f7890...</span>
+
+     <!-- Middle truncation (requires JS to split text) -->
+     <span class="ds-truncate ds-truncate--middle">
+       <span class="ds-truncate__start">0x1a2b3c</span>
+       <span class="ds-truncate__separator">...</span>
+       <span class="ds-truncate__end">7890abcd</span>
+     </span>
+
+     <!-- Hash display with copy button -->
+     <span class="ds-hash">
+       <span class="ds-hash__value">0x1a2b...7890</span>
+       <button class="ds-copy-btn ds-copy-btn--sm" aria-label="Copy address">...</button>
+     </span>
+
+   Modifiers:
+     .ds-truncate--middle   — Middle truncation layout
+   ========================================================================== */
+
+.ds-truncate {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+.ds-truncate--middle {
+  display: inline-flex;
+  align-items: baseline;
+  overflow: visible;
+  text-overflow: clip;
+
+  & .ds-truncate__start {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-shrink: 1;
+    min-width: 3ch;
+  }
+
+  & .ds-truncate__separator {
+    flex-shrink: 0;
+    color: var(--ds-color-text-tertiary);
+  }
+
+  & .ds-truncate__end {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
+/* --- Hash display (address/ID with copy) --- */
+.ds-hash {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+
+  &__value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

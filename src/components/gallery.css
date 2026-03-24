@@ -1,0 +1,257 @@
+/* ==========================================================================
+   Component: Gallery
+   Image gallery with main image, thumbnail strip, and lightbox overlay.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="region", aria-label="Image gallery"
+   - Thumbnails: role="tablist", individual thumbnails role="tab"
+   - Main image: role="img", alt text required
+   - Lightbox: role="dialog", aria-label="Image viewer"
+   - Lightbox close: aria-label="Close"
+   - Navigation: aria-label="Previous image" / "Next image"
+   - Keyboard: ArrowLeft/Right for navigation, Escape to close lightbox
+
+   Usage:
+     <div class="ds-gallery">
+       <div class="ds-gallery__main">
+         <img src="..." alt="..." />
+       </div>
+       <div class="ds-gallery__thumbs">
+         <button class="ds-gallery__thumb ds-gallery__thumb--active">
+           <img src="..." alt="Thumbnail 1" />
+         </button>
+         <button class="ds-gallery__thumb">
+           <img src="..." alt="Thumbnail 2" />
+         </button>
+         <button class="ds-gallery__thumb-more">+3</button>
+       </div>
+     </div>
+
+   Lightbox overlay:
+     <div class="ds-lightbox ds-lightbox--open">
+       <button class="ds-lightbox__close" aria-label="Close">&times;</button>
+       <button class="ds-lightbox__prev" aria-label="Previous">&lsaquo;</button>
+       <img class="ds-lightbox__image" src="..." alt="..." />
+       <button class="ds-lightbox__next" aria-label="Next">&rsaquo;</button>
+       <span class="ds-lightbox__counter">2 / 8</span>
+     </div>
+   ========================================================================== */
+
+/* ==========================================================================
+   Gallery (thumbnails)
+   ========================================================================== */
+
+.ds-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-2);
+
+  /* --- Main image --- */
+  &__main {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--ds-radius-xl);
+    background-color: var(--ds-color-bg-muted);
+    cursor: pointer;
+
+    & img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  /* --- Thumbnail strip --- */
+  &__thumbs {
+    display: flex;
+    gap: var(--ds-space-2);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  /* --- Individual thumbnail --- */
+  &__thumb {
+    flex-shrink: 0;
+    width: 4rem;
+    height: 4rem;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: var(--ds-radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--ds-color-bg-muted);
+    transition:
+      border-color var(--ds-duration-fast) var(--ds-ease-default),
+      opacity var(--ds-duration-fast) var(--ds-ease-default);
+
+    & img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &:hover {
+      border-color: var(--ds-color-border-hover);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+      scroll-margin-block: var(--ds-space-16, 4rem);
+    }
+
+    &--active {
+      border-color: var(--ds-color-interactive);
+    }
+  }
+
+  /* --- "+N more" button --- */
+  &__thumb-more {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid var(--ds-color-border);
+    border-radius: var(--ds-radius-md);
+    background-color: var(--ds-color-bg-elevated);
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-sm);
+    font-weight: var(--ds-weight-medium);
+    font-family: var(--ds-font-sans);
+    cursor: pointer;
+    transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+
+    &:hover {
+      background-color: var(--ds-color-surface-hover);
+    }
+  }
+}
+
+/* ==========================================================================
+   Lightbox (fullscreen overlay)
+   ========================================================================== */
+
+.ds-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-modal);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.9);
+
+  &--open {
+    display: flex;
+  }
+
+  /* --- Image --- */
+  &__image {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: var(--ds-radius-md);
+    user-select: none;
+  }
+
+  /* --- Close button --- */
+  &__close {
+    position: absolute;
+    inset-block-start: var(--ds-space-4);
+    inset-inline-end: var(--ds-space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--ds-size-3);
+    height: var(--ds-size-3);
+    border: none;
+    border-radius: var(--ds-radius-full);
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: var(--ds-text-xl);
+    cursor: pointer;
+    transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  /* --- Prev/Next navigation --- */
+  &__prev,
+  &__next {
+    position: absolute;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--ds-size-4);
+    height: var(--ds-size-4);
+    border: none;
+    border-radius: var(--ds-radius-full);
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: var(--ds-text-2xl);
+    cursor: pointer;
+    transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) rgba(255, 255, 255, 0.5);
+    }
+
+    &:disabled {
+      opacity: var(--ds-opacity-disabled);
+      pointer-events: none;
+    }
+  }
+
+  &__prev {
+    inset-inline-start: var(--ds-space-4);
+  }
+
+  &__next {
+    inset-inline-end: var(--ds-space-4);
+  }
+
+  /* --- Counter --- */
+  &__counter {
+    position: absolute;
+    inset-block-end: var(--ds-space-4);
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+    padding: var(--ds-space-1) var(--ds-space-3);
+    border-radius: var(--ds-radius-full);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: var(--ds-text-sm);
+    font-family: var(--ds-font-sans);
+    font-variant-numeric: tabular-nums;
+    user-select: none;
+  }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .ds-lightbox {
+    animation: none;
+  }
+}

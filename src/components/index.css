@@ -23,6 +23,7 @@
 @import './empty-state.css';
 @import './search.css';
 @import './spinner.css';
+@import './segmented-control.css';
 
 /* === Tier 2 — Common === */
 @import './datepicker.css';
@@ -41,6 +42,13 @@
 @import './sortable.css';
 @import './number-input.css';
 @import './pin-input.css';
+@import './copy-button.css';
+@import './scroll-area.css';
+@import './truncated-text.css';
+@import './color-picker.css';
+@import './star-rating.css';
+@import './gallery.css';
+@import './bottom-sheet.css';
 
 /* === Tier 3 — Advanced === */
 @import './popover.css';

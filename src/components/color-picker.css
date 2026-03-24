@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Component: Color Picker
+   Grid of color swatches for selection. CSS-only styling.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="radiogroup", aria-label="Color"
+   - Each swatch: role="radio", aria-checked="true|false", aria-label="[color name]"
+   - Keyboard: ArrowKeys to navigate, Space/Enter to select
+
+   Usage:
+     <div class="ds-color-picker" role="radiogroup" aria-label="Color">
+       <button class="ds-color-picker__swatch ds-color-picker__swatch--active"
+               role="radio" aria-checked="true" aria-label="Red"
+               style="--swatch-color: #ef4444"></button>
+       <button class="ds-color-picker__swatch"
+               role="radio" aria-checked="false" aria-label="Blue"
+               style="--swatch-color: #3b82f6"></button>
+     </div>
+
+   Modifiers:
+     .ds-color-picker--sm    — Smaller swatches
+     .ds-color-picker--lg    — Larger swatches
+   ========================================================================== */
+
+.ds-color-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-1-5);
+
+  &__swatch {
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--ds-radius-md);
+    border: 2px solid transparent;
+    background-color: var(--swatch-color);
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition:
+      border-color var(--ds-duration-fast) var(--ds-ease-default),
+      transform var(--ds-duration-fast) var(--ds-ease-default),
+      box-shadow var(--ds-duration-fast) var(--ds-ease-default);
+
+    &:hover {
+      transform: scale(1.1);
+      border-color: var(--ds-color-border);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+      scroll-margin-block: var(--ds-space-16, 4rem);
+    }
+
+    &--active {
+      border-color: var(--ds-color-text);
+      box-shadow: 0 0 0 2px var(--ds-color-surface), 0 0 0 4px var(--swatch-color);
+    }
+  }
+
+  /* --- Small variant --- */
+  &--sm &__swatch {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: var(--ds-radius-sm);
+  }
+
+  &--sm {
+    gap: var(--ds-space-1);
+  }
+
+  /* --- Large variant --- */
+  &--lg &__swatch {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--ds-radius-lg);
+  }
+
+  &--lg {
+    gap: var(--ds-space-2);
+  }
+}

@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Component: Segmented Control
+   Toggle between 2-5 mutually exclusive options. Compact alternative to tabs.
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="radiogroup", aria-label="[description]"
+   - Each segment: role="radio", aria-checked="true|false"
+   - Keyboard: ArrowLeft/Right to navigate, Space/Enter to select
+
+   Usage:
+     <div class="ds-segmented" role="radiogroup" aria-label="View">
+       <button class="ds-segmented__item ds-segmented__item--active" role="radio" aria-checked="true">Grid</button>
+       <button class="ds-segmented__item" role="radio" aria-checked="false">List</button>
+       <button class="ds-segmented__item" role="radio" aria-checked="false">Board</button>
+     </div>
+
+   Modifiers:
+     .ds-segmented--sm      — Smaller size
+     .ds-segmented--full    — Full width (items stretch equally)
+   ========================================================================== */
+
+.ds-segmented {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-0-5);
+  padding: var(--ds-space-0-5);
+  background-color: var(--ds-color-bg-elevated);
+  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-color-border-subtle);
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ds-space-1-5);
+    padding: var(--ds-space-1-5) var(--ds-space-3);
+    font-family: var(--ds-font-sans);
+    font-size: var(--ds-text-sm);
+    font-weight: var(--ds-weight-medium);
+    line-height: var(--ds-leading-none);
+    color: var(--ds-color-text-secondary);
+    background: transparent;
+    border: none;
+    border-radius: var(--ds-radius-md);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--ds-duration-fast) var(--ds-ease-default);
+
+    &:hover {
+      color: var(--ds-color-text);
+      background-color: var(--ds-color-overlay-hover);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+      scroll-margin-block: var(--ds-space-16, 4rem);
+    }
+
+    &--active {
+      background-color: var(--ds-color-surface);
+      color: var(--ds-color-text);
+      box-shadow: var(--ds-shadow-sm);
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      opacity: var(--ds-opacity-disabled);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  /* --- Small variant --- */
+  &--sm {
+    padding: 2px;
+
+    & .ds-segmented__item {
+      padding: var(--ds-space-1) var(--ds-space-2);
+      font-size: var(--ds-text-xs);
+    }
+  }
+
+  /* --- Full width --- */
+  &--full {
+    display: flex;
+    width: 100%;
+
+    & .ds-segmented__item {
+      flex: 1;
+    }
+  }
+}
