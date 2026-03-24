@@ -343,6 +343,8 @@ Components are **self-contained and fully styled by default**. This is the corre
 
 **Rule of thumb:** If you're adding more than 2-3 utility classes to a single element, check if a DS component already does what you need. Utilities are for **layout** (flex, grid, gap, margin between sections), not for **styling** individual elements.
 
+**Use DS size tiers for alignment.** When mixing elements (icons, text, buttons, inputs, etc.) in a flex row, use the same size tier (`--ds-size-1` through `--ds-size-4`) to ensure consistent heights. Don't reinvent heights with padding math.
+
 ### Token Overrides
 
 **Override any token** in the consuming project's CSS:
