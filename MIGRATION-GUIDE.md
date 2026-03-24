@@ -1,8 +1,91 @@
-# Migration Guide: v0.3.x → v0.4.0
+# Migration Guide
 
-## Breaking Changes
+## v0.6.0 → v0.7.0
 
-### `ds-select` default width changed from `100%` to `auto`
+### New Components
+
+| Component | Description |
+|---|---|
+| `ds-collapsible` | Expandable/collapsible content section |
+| `ds-description-list` | Key-value pair display |
+| `ds-field` | Form field wrapper (label + input + hint + error) |
+| `ds-result` | Success/error/empty result display |
+| `ds-stat-card` | Standalone stat card (separated from `ds-card`) |
+
+### New Features
+- **Multi-select** support for `ds-custom-select`
+- **WCAG 2.2 AA** hardening: minimum 24×24px target sizes, `scroll-margin-block` on focus-visible, ARIA docs in all component headers
+- New utility classes: `ds-sr-only`, `ds-skip-link`, `ds-focus-visible-only`, `ds-reduce-motion`
+
+### Breaking Changes
+None.
+
+### Actions Required
+- [ ] If you had a custom `.ds-stat-card` in your project, check for conflicts with the new DS component
+- [ ] Review ARIA docs in component headers and add missing ARIA attributes to your markup
+
+---
+
+## v0.5.x → v0.6.0
+
+### Breaking Changes
+
+#### CSS `@layer` cascade added
+
+All DS styles are now wrapped in `@layer tokens, base, components, utilities`. This changes specificity behavior if your project also uses `@layer`.
+
+**Action:** If you import the DS alongside your own `@layer` declarations, ensure the DS layers are ordered correctly:
+```css
+@layer tokens, base, components, utilities, app;
+@import '@digiko-npm/designsystem';
+/* your app styles in @layer app */
+```
+
+If you don't use `@layer` in your project, no action needed — unlayered styles always win over layered styles.
+
+#### Logical properties throughout
+
+All physical direction properties have been replaced with logical equivalents:
+- `padding-left/right` → `padding-inline-start/end`
+- `margin-left/right` → `margin-inline-start/end`
+- `text-align: left` → `text-align: start`
+
+**Action:** If you override DS component styles using physical properties, update them to logical equivalents for consistency. The DS components will still work with physical overrides, but mixing can cause unexpected results in RTL layouts.
+
+### Migration Checklist
+- [ ] **`@layer` ordering** — if you use `@layer`, declare DS layers before your app layer
+- [ ] **Custom overrides** — update physical property overrides to logical equivalents
+- [ ] **RTL testing** — if you support RTL, verify layout with the new logical properties
+
+---
+
+## v0.4.0 → v0.5.0
+
+### New Components
+
+| Component | Description |
+|---|---|
+| `ds-search` | Search input with icon and clear button |
+| `ds-toolbar` | Action toolbar with button groups |
+| `ds-chip` | Filterable/removable chip |
+| `ds-icon-btn` | Icon-only button |
+| `ds-bottom-nav` | Mobile bottom navigation bar |
+| `ds-spinner` | Loading spinner |
+
+### Breaking Changes
+- `--ds-ring-offset` token **removed** (was deprecated in v0.4.0)
+
+### Actions Required
+- [ ] Remove any `--ds-ring-offset` overrides from your CSS
+- [ ] Update component manifest usage if consuming `components.json`
+
+---
+
+## v0.3.x → v0.4.0
+
+### Breaking Changes
+
+#### `ds-select` default width changed from `100%` to `auto`
 
 **Before:** `<select class="ds-select">` was full-width by default.
 **After:** `ds-select` is now `width: auto` (content-sized). This matches how selects are most commonly used (inline filters, dropdowns in flex rows).
@@ -19,15 +102,9 @@
 
 **Search pattern:** grep for `ds-select` in your templates/JSX. If the select is inside a `ds-form` or form layout and should span the full width, add `ds-select--full`.
 
----
-
-## Visual Changes
-
-### Focus rings now use `box-shadow` instead of `outline`
+#### Focus rings now use `box-shadow` instead of `outline`
 
 All 32 components now use `box-shadow` for focus rings instead of `outline` with `outline-offset`. This eliminates the double-border gap that was visible on inputs, buttons, selects, and all interactive elements.
-
-**What changed visually:** The 2px gap between the element border and the focus ring is gone. The ring now hugs the element tightly.
 
 **Action if you have custom focus overrides:**
 - Remove any `outline` overrides on DS components — the DS now sets `outline: none` on all components
@@ -39,65 +116,64 @@ All 32 components now use `box-shadow` for focus rings instead of `outline` with
   ```
 - If you override `box-shadow` on DS components for focus, ensure it uses `var(--ds-ring-width)` and `var(--ds-ring-color)` tokens
 
-**Token deprecation:** `--ds-ring-offset` is no longer used by any component except the slider thumb (which can't use box-shadow on pseudo-elements). It will be removed in v0.5.0.
+**Token deprecation:** `--ds-ring-offset` is no longer used by any component. It will be removed in v0.5.0.
 
----
+### New Modifiers
 
-## New Modifiers
-
-### Input/Select Layout
+#### Input/Select Layout
 
 | Modifier | What it does |
 |---|---|
 | `ds-select--full` | `width: 100%` — opt-in full-width for selects in forms |
-| `ds-input--flush` | Strips all chrome: no border, no background, no padding, no focus ring. For naked inputs inside styled containers (e.g. swap amount fields) |
-| `ds-input--inline` | `width: auto; display: inline-flex` — for inputs used as inline filters in flex rows |
+| `ds-input--flush` | Strips all chrome: no border, no background, no padding, no focus ring |
+| `ds-input--inline` | `width: auto; display: inline-flex` — for inputs in flex rows |
 
-### Input Group
-
-| Modifier | What it does |
-|---|---|
-| `ds-input-group--icon-right` | Moves the icon to the right side and flips the input padding |
-
-### Dropdown Menu Width
+#### Input Group
 
 | Modifier | What it does |
 |---|---|
-| `ds-dropdown__menu--sm` | `min-width: 8rem` (narrower menus) |
-| `ds-dropdown__menu--lg` | `min-width: 20rem` (wider menus) |
-| `ds-dropdown__menu--auto` | `min-width: auto` (content-sized) |
+| `ds-input-group--icon-right` | Moves the icon to the right side |
 
-### Card Media Aspect Ratio
+#### Dropdown Menu Width
+
+| Modifier | What it does |
+|---|---|
+| `ds-dropdown__menu--sm` | `min-width: 8rem` |
+| `ds-dropdown__menu--lg` | `min-width: 20rem` |
+| `ds-dropdown__menu--auto` | `min-width: auto` |
+
+#### Card Media Aspect Ratio
 
 | Modifier | What it does |
 |---|---|
 | `ds-card__media--square` | `aspect-ratio: 1` |
 | `ds-card__media--video` | `aspect-ratio: 16/9` |
-| `ds-card__media--auto` | `aspect-ratio: auto` (height from content) |
+| `ds-card__media--auto` | `aspect-ratio: auto` |
 
-### Empty State Alignment
+#### Empty State Alignment
 
 | Modifier | What it does |
 |---|---|
-| `ds-empty-state--left` | Left-aligned text and content (default is centered) |
+| `ds-empty-state--left` | Left-aligned content |
 
----
+### Accessibility Fixes
+- `button.ds-tag` now has a visible focus ring
+- `.ds-sortable__handle` now has a visible focus ring
 
-## Accessibility Fixes
-
-- `button.ds-tag` now has a visible focus ring (was `outline: none` with no replacement)
-- `.ds-sortable__handle` now has a visible focus ring (had only `opacity: 1`)
-
----
-
-## Migration Checklist
-
-Run these searches on your project and fix each match:
+### Migration Checklist
 
 - [ ] **`ds-select` in forms** — Add `ds-select--full` where the select should be full-width
-- [ ] **`style={{ width` on DS components** — Replace with appropriate modifier (`--full`, `--inline`, `--sm`, `--lg`)
+- [ ] **`style={{ width` on DS components** — Replace with appropriate modifier
 - [ ] **`ds-bg-transparent ds-border-none` on inputs** — Replace with `ds-input--flush`
 - [ ] **`ds-w-auto` on selects** — Remove (select is auto by default now)
 - [ ] **Custom `outline` on DS components** — Remove (DS handles focus rings via box-shadow)
-- [ ] **Global `*:focus-visible` rules** — Scope to exclude DS components with `:not()` selectors
-- [ ] **`--ds-ring-offset` overrides** — Remove (token is deprecated, unused by most components)
+- [ ] **Global `*:focus-visible` rules** — Scope to exclude DS components with `:not()`
+- [ ] **`--ds-ring-offset` overrides** — Remove (deprecated, removed in v0.5.0)
+
+### Automated Migration
+
+Run the codemod to detect issues automatically:
+```bash
+node node_modules/@digiko-npm/designsystem/scripts/codemod.js ./src
+node node_modules/@digiko-npm/designsystem/scripts/codemod.js ./src --fix  # apply safe fixes
+```

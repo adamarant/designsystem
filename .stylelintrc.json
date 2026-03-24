@@ -1,0 +1,45 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "custom-property-pattern": ["^ds-", { "message": "Custom properties must use the --ds- prefix (found \"%s\")" }],
+    "declaration-no-important": [true, { "message": "!important is not allowed in DS components" }],
+    "color-named": "never",
+
+    "selector-class-pattern": null,
+    "no-descending-specificity": null,
+    "import-notation": null,
+    "media-feature-range-notation": null,
+    "declaration-block-single-line-max-declarations": null,
+    "comment-empty-line-before": null,
+    "rule-empty-line-before": null,
+    "at-rule-empty-line-before": null,
+    "property-no-vendor-prefix": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "custom-property-empty-line-before": null,
+    "color-function-notation": null,
+    "color-function-alias-notation": null,
+    "alpha-value-notation": null,
+    "shorthand-property-no-redundant-values": null,
+    "property-no-deprecated": null,
+    "length-zero-no-unit": null,
+    "number-max-precision": null,
+    "value-keyword-case": null,
+    "selector-pseudo-element-colon-notation": null,
+    "no-duplicate-selectors": null,
+    "color-hex-length": null
+  },
+  "overrides": [
+    {
+      "files": ["src/tokens/**/*.css"],
+      "rules": {
+        "custom-property-pattern": null
+      }
+    },
+    {
+      "files": ["src/base/reset.css", "src/utilities/a11y.css"],
+      "rules": {
+        "declaration-no-important": null
+      }
+    }
+  ]
+}

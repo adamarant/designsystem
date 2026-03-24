@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.7.1 */
+/* @ds/designsystem v0.7.2 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -917,6 +917,20 @@ hr {
   border-radius: var(--ds-radius-xl);
   overflow: hidden;
   transition: all var(--ds-duration-normal) var(--ds-ease-default);
+  container-type: inline-size;
+}
+
+/* Container query: stack body content when card is narrow */
+@container (max-width: 200px) {
+  .ds-card__body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ds-card__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 /* Interactive card — lifts on hover (like ProjectCard) */
@@ -6076,6 +6090,12 @@ tr:hover .ds-sortable__handle,
   transition:
     border-color var(--ds-duration-fast) var(--ds-ease-default),
     box-shadow var(--ds-duration-fast) var(--ds-ease-default);
+  container-type: inline-size;
+}
+
+/* Container query: hide shortcut hint when search is narrow */
+@container (max-width: 240px) {
+  .ds-search__shortcut { display: none; }
 }
 
 .ds-search:focus-within {
@@ -6359,6 +6379,22 @@ tr:hover .ds-sortable__handle,
        <button class="ds-toolbar__segmented-btn">Future</button>
      </div>
    ========================================================================== */
+
+/* Container query: collapse button labels when toolbar is narrow */
+.ds-toolbar {
+  container-type: inline-size;
+}
+
+@container (max-width: 480px) {
+  .ds-toolbar__btn-label { display: none; }
+
+  .ds-toolbar__btn {
+    padding: var(--ds-space-2);
+    min-width: var(--ds-size-2);
+    min-height: var(--ds-size-2);
+    justify-content: center;
+  }
+}
 
 /* Row container */
 .ds-toolbar__row {
@@ -6686,6 +6722,7 @@ tr:hover .ds-sortable__handle,
 /* Danger variant */
 .ds-icon-btn--danger:hover {
   color: var(--ds-color-error);
+  background-color: var(--ds-color-error-subtle); /* fallback for browsers without color-mix() */
   background-color: color-mix(in srgb, var(--ds-color-error) 10%, transparent);
 }
 

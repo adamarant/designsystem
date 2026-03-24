@@ -86,6 +86,7 @@
 /* Danger variant */
 .ds-icon-btn--danger:hover {
   color: var(--ds-color-error);
+  background-color: var(--ds-color-error-subtle); /* fallback for browsers without color-mix() */
   background-color: color-mix(in srgb, var(--ds-color-error) 10%, transparent);
 }
 

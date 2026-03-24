@@ -41,6 +41,12 @@
   transition:
     border-color var(--ds-duration-fast) var(--ds-ease-default),
     box-shadow var(--ds-duration-fast) var(--ds-ease-default);
+  container-type: inline-size;
+}
+
+/* Container query: hide shortcut hint when search is narrow */
+@container (max-width: 240px) {
+  .ds-search__shortcut { display: none; }
 }
 
 .ds-search:focus-within {

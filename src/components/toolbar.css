@@ -30,6 +30,22 @@
      </div>
    ========================================================================== */
 
+/* Container query: collapse button labels when toolbar is narrow */
+.ds-toolbar {
+  container-type: inline-size;
+}
+
+@container (max-width: 480px) {
+  .ds-toolbar__btn-label { display: none; }
+
+  .ds-toolbar__btn {
+    padding: var(--ds-space-2);
+    min-width: var(--ds-size-2);
+    min-height: var(--ds-size-2);
+    justify-content: center;
+  }
+}
+
 /* Row container */
 .ds-toolbar__row {
   display: flex;

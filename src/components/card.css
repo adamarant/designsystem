@@ -9,6 +9,20 @@
   border-radius: var(--ds-radius-xl);
   overflow: hidden;
   transition: all var(--ds-duration-normal) var(--ds-ease-default);
+  container-type: inline-size;
+}
+
+/* Container query: stack body content when card is narrow */
+@container (max-width: 200px) {
+  .ds-card__body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ds-card__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 /* Interactive card — lifts on hover (like ProjectCard) */

@@ -54,7 +54,8 @@
     "./components/toolbar": "./src/components/toolbar.css",
     "./components/tooltip": "./src/components/tooltip.css",
     "./utilities": "./src/utilities/index.css",
-    "./js": "./dist/designsystem.js"
+    "./js": "./dist/designsystem.js",
+    "./tokens/json": "./src/tokens/tokens.json"
   },
   "files": [
     "dist/",
@@ -63,6 +64,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "docs": "node scripts/generate-docs.js",
+    "lint": "stylelint 'src/**/*.css'",
     "dev": "node scripts/build.js --watch & node scripts/generate-docs.js && live-server --host=localhost --port=3000 --open=examples/ --watch=dist/,examples/ --wait=200 --no-browser"
   },
   "keywords": [
@@ -80,6 +82,8 @@
     "access": "public"
   },
   "devDependencies": {
-    "live-server": "^1.2.2"
+    "live-server": "^1.2.2",
+    "stylelint": "^17.5.0",
+    "stylelint-config-standard": "^40.0.0"
   }
 }
