@@ -31,7 +31,6 @@
   align-items: center;
   gap: var(--ds-space-1);
   font-family: var(--ds-font-sans);
-  container-type: inline-size;
 
   /* ---------------------------------------------------------------------------
      Item (page number)
@@ -174,16 +173,3 @@
   }
 }
 
-/* Container query: hide page numbers when pagination is very narrow, show only prev/next + info */
-@container (max-width: 200px) {
-  .ds-pagination__item,
-  .ds-pagination__ellipsis {
-    display: none;
-  }
-
-  .ds-pagination__info {
-    flex: 1;
-    text-align: center;
-    white-space: nowrap;
-  }
-}

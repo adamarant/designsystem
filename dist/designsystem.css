@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.8.0 */
+/* @ds/designsystem v0.8.1 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -1158,7 +1158,6 @@ hr {
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-xl);
   padding: var(--ds-space-5);
-  container-type: inline-size;
 
   
 
@@ -1198,20 +1197,6 @@ hr {
     background-color: var(--ds-color-bg-elevated);
     color: var(--ds-color-text-secondary);
   }
-
-
-/* Container query: compact when narrow */
-@container (max-width: 150px) {
-
-  .ds-stat-card__value {
-    font-size: var(--ds-text-lg);
-  }
-
-  .ds-stat-card__icon {
-    width: 2rem;
-    height: 2rem;
-  }
-}
 
 
 /* ==========================================================================
@@ -5680,7 +5665,6 @@ input.ds-combobox__input:focus {
   align-items: center;
   gap: var(--ds-space-1);
   font-family: var(--ds-font-sans);
-  container-type: inline-size;
 
   /* ---------------------------------------------------------------------------
      Item (page number)
@@ -5848,21 +5832,6 @@ input.ds-combobox__input:focus {
       font-size: var(--ds-text-xs);
     }
 
-
-/* Container query: hide page numbers when pagination is very narrow, show only prev/next + info */
-@container (max-width: 200px) {
-
-  .ds-pagination__item,
-  .ds-pagination__ellipsis {
-    display: none;
-  }
-
-  .ds-pagination__info {
-    flex: 1;
-    text-align: center;
-    white-space: nowrap;
-  }
-}
 
 
 /* ==========================================================================
