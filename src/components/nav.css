@@ -53,8 +53,10 @@
   transition: color var(--ds-duration-normal) var(--ds-ease-default);
 }
 
-.ds-nav__link:hover {
-  color: var(--ds-color-text);
+@media (hover: hover) {
+  .ds-nav__link:hover {
+    color: var(--ds-color-text);
+  }
 }
 
 .ds-nav__link--active {
@@ -79,9 +81,11 @@
   color: var(--ds-color-text-secondary);
   transition: all var(--ds-duration-normal) var(--ds-ease-default);
 }
-.ds-nav__icon-btn:hover {
-  color: var(--ds-color-text);
-  background-color: var(--ds-color-overlay-hover);
+@media (hover: hover) {
+  .ds-nav__icon-btn:hover {
+    color: var(--ds-color-text);
+    background-color: var(--ds-color-overlay-hover);
+  }
 }
 
 /* --- Mobile nav overlay --- */
@@ -151,9 +155,11 @@
   margin-top: var(--ds-space-1);
 }
 
-.ds-sidebar__link:hover {
-  color: var(--ds-color-text);
-  background-color: var(--ds-color-overlay-hover);
+@media (hover: hover) {
+  .ds-sidebar__link:hover {
+    color: var(--ds-color-text);
+    background-color: var(--ds-color-overlay-hover);
+  }
 }
 
 .ds-sidebar__link--active {
