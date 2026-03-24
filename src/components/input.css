@@ -12,9 +12,13 @@
 }
 
 .ds-input,
+.ds-textarea {
+  width: 100%;
+}
+
+.ds-input,
 .ds-textarea,
 .ds-select {
-  width: 100%;
   padding: 0 var(--ds-space-4);
   font-family: var(--ds-font-sans);
   font-size: var(--ds-text-base); /* 16px — prevents iOS auto-zoom on focus */
@@ -128,6 +132,50 @@
   background-repeat: no-repeat;
   background-position: right var(--ds-space-3) center;
   padding-right: var(--ds-space-8);
+}
+
+/* --- Layout Modifiers ---
+   Override default width/display/chrome assumptions. */
+
+/* Full width (opt-in for select, already default for input/textarea) */
+.ds-select--full {
+  width: 100%;
+}
+
+/* Flush — naked input inside a styled container.
+   No border, no background, no padding, no focus ring.
+   The container handles visual chrome. */
+.ds-input--flush {
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  height: auto;
+}
+.ds-input--flush:hover {
+  border-color: transparent;
+}
+.ds-input--flush:focus-visible {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* Inline — auto-width for use in flex rows */
+.ds-input--inline {
+  width: auto;
+  display: inline-flex;
+}
+
+/* --- Input Group: icon-right ---
+   Move icon to the right side, flip input padding. */
+.ds-input-group--icon-right .ds-input-group__icon {
+  left: auto;
+  right: var(--ds-space-3);
+}
+.ds-input-group--icon-right .ds-input {
+  padding-left: var(--ds-space-4);
+  padding-right: calc(var(--ds-space-3) + 1rem + var(--ds-space-2));
 }
 
 /* Help text */
