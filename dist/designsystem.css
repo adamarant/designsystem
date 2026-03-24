@@ -1894,14 +1894,57 @@ hr {
 
 /* ==========================================================================
    Component: Table
+   Data table with sorting, selection, sticky headers, striping, and
+   responsive stacking. Composes with ds-pagination, ds-skeleton, ds-checkbox,
+   ds-icon-btn, and ds-empty-state for a full data-table experience.
+
+   ARIA requirements (consumer responsibility):
+   - Use <table> with role="grid" for interactive tables
+   - Sort headers: <th aria-sort="ascending|descending|none"> + <button> inside
+   - Select-all checkbox: aria-label="Select all rows"
+   - Row checkbox: aria-label="Select row [identifier]"
+   - Expandable rows: aria-expanded="true|false" on trigger
+
+   Usage:
+     <div class="ds-table-wrapper">
+       <table class="ds-table">
+         <thead>
+           <tr>
+             <th class="ds-table__cell--checkbox"><input class="ds-checkbox" /></th>
+             <th><button class="ds-table__sort ds-table__sort--asc">Name</button></th>
+             <th>Email</th>
+             <th class="ds-table__cell--shrink">Actions</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr class="ds-table__row--selected">
+             <td class="ds-table__cell--checkbox"><input class="ds-checkbox" /></td>
+             <td>John</td>
+             <td>john@example.com</td>
+             <td class="ds-table__cell--shrink">...</td>
+           </tr>
+         </tbody>
+       </table>
+     </div>
+
+   Modifiers:
+     .ds-table--compact     — Reduced padding
+     .ds-table--dense       — Even more compact (minimal padding)
+     .ds-table--striped     — Alternating row backgrounds
+     .ds-table--bordered    — Cell borders
+     .ds-table--sticky-header — Sticky thead with backdrop blur
+     .ds-table--hoverable   — Explicit hover class (hover is on by default)
+     .ds-table--no-hover    — Disable row hover
    ========================================================================== */
 
 .ds-table {
   width: 100%;
   text-align: start;
   font-size: var(--ds-text-sm);
+  border-collapse: collapse;
 }
 
+/* --- Header cells --- */
 .ds-table th {
   padding: var(--ds-space-3) var(--ds-space-4);
   font-weight: var(--ds-weight-medium);
@@ -1910,28 +1953,210 @@ hr {
   text-transform: uppercase;
   letter-spacing: var(--ds-tracking-wide);
   border-block-end: 1px solid var(--ds-color-border);
+  text-align: start;
+  white-space: nowrap;
 }
 
+/* --- Body cells --- */
 .ds-table td {
   padding: var(--ds-space-3) var(--ds-space-4);
   color: var(--ds-color-text);
   border-block-end: 1px solid var(--ds-color-border-subtle);
+  vertical-align: middle;
 }
 
+/* --- Row hover (default on) --- */
 .ds-table tbody tr {
-  transition: background-color var(--ds-duration-normal) var(--ds-ease-default);
+  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
 }
 
 .ds-table tbody tr:hover {
   background-color: var(--ds-color-overlay-subtle);
 }
 
+.ds-table--no-hover tbody tr:hover {
+  background-color: transparent;
+}
+
+/* --- Selected row --- */
+.ds-table__row--selected {
+  background-color: var(--ds-color-overlay-subtle);
+}
+
+.ds-table__row--selected td {
+  border-block-end-color: var(--ds-color-border);
+}
+
+/* --- Sort header button --- */
+.ds-table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-table__sort:hover {
+  color: var(--ds-color-text-secondary);
+}
+
+.ds-table__sort:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  border-radius: var(--ds-radius-sm);
+  scroll-margin-block: var(--ds-space-16, 4rem);
+}
+
+/* Sort indicator — neutral chevron via ::after */
+.ds-table__sort::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-inline-start: 4px solid transparent;
+  border-inline-end: 4px solid transparent;
+  border-block-start: 4px solid currentColor;
+  opacity: 0.3;
+  transition: opacity var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-table__sort:hover::after {
+  opacity: 0.6;
+}
+
+/* Ascending */
+.ds-table__sort--asc {
+  color: var(--ds-color-text);
+}
+
+.ds-table__sort--asc::after {
+  border-block-start: none;
+  border-block-end: 4px solid currentColor;
+  opacity: 1;
+}
+
+/* Descending */
+.ds-table__sort--desc {
+  color: var(--ds-color-text);
+}
+
+.ds-table__sort--desc::after {
+  border-block-start: 4px solid currentColor;
+  border-block-end: none;
+  opacity: 1;
+}
+
+/* --- Special cell types --- */
+
+/* Shrink cell: action buttons, icons, checkboxes */
+.ds-table__cell--shrink {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* Number cell: right-aligned with tabular numbers */
+.ds-table__cell--number {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Checkbox cell: narrow centered */
+.ds-table__cell--checkbox {
+  width: 1%;
+  padding-inline-end: 0;
+  vertical-align: middle;
+}
+
+/* --- Empty state row --- */
+.ds-table__empty {
+  text-align: center;
+  padding: var(--ds-space-12) var(--ds-space-4);
+  color: var(--ds-color-text-tertiary);
+}
+
+.ds-table__empty td {
+  border-block-end: none;
+}
+
+/* --- Loading skeleton rows --- */
+.ds-table__loading td {
+  color: transparent;
+  position: relative;
+}
+
+.ds-table__loading td::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: var(--ds-space-4);
+  inset-inline-end: var(--ds-space-4);
+  height: 0.75rem;
+  transform: translateY(-50%);
+  background: var(--ds-color-bg-muted);
+  border-radius: var(--ds-radius-sm);
+  animation: ds-table-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes ds-table-skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* --- Compact modifier --- */
 .ds-table--compact th,
 .ds-table--compact td {
   padding: var(--ds-space-2) var(--ds-space-3);
-  font-size: var(--ds-text-sm);
 }
 
+/* --- Dense modifier --- */
+.ds-table--dense th,
+.ds-table--dense td {
+  padding: var(--ds-space-1-5) var(--ds-space-2);
+  font-size: var(--ds-text-xs);
+}
+
+/* --- Striped modifier --- */
+.ds-table--striped tbody tr:nth-child(even) {
+  background-color: var(--ds-color-overlay-subtle);
+}
+
+.ds-table--striped tbody tr:hover {
+  background-color: var(--ds-color-overlay-hover);
+}
+
+/* --- Bordered modifier --- */
+.ds-table--bordered th,
+.ds-table--bordered td {
+  border: 1px solid var(--ds-color-border-subtle);
+}
+
+.ds-table--bordered th {
+  border-block-end-color: var(--ds-color-border);
+}
+
+/* --- Sticky header modifier --- */
+.ds-table--sticky-header thead {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--ds-z-sticky);
+}
+
+.ds-table--sticky-header th {
+  background-color: var(--ds-color-surface);
+  backdrop-filter: blur(var(--ds-blur-md));
+  -webkit-backdrop-filter: blur(var(--ds-blur-md));
+}
+
+/* --- Table wrapper --- */
 .ds-table-wrapper {
   overflow-x: auto;
   border: 1px solid var(--ds-color-border);
@@ -1939,7 +2164,67 @@ hr {
   background-color: var(--ds-color-surface);
 }
 
-.ds-table-wrapper .ds-table { margin: 0; }
+.ds-table-wrapper .ds-table {
+  margin: 0;
+}
+
+/* Remove outer borders when inside wrapper (wrapper provides them) */
+.ds-table-wrapper .ds-table tr:last-child td {
+  border-block-end: none;
+}
+
+/* --- Table footer (pagination area) --- */
+.ds-table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-space-4);
+  padding: var(--ds-space-3) var(--ds-space-4);
+  border-block-start: 1px solid var(--ds-color-border);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-tertiary);
+}
+
+/* --- Responsive: card-style stacking on mobile --- */
+@media (max-width: 767px) {
+  .ds-table--stack thead {
+    display: none;
+  }
+
+  .ds-table--stack tbody tr {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-1);
+    padding: var(--ds-space-3) var(--ds-space-4);
+    border-block-end: 1px solid var(--ds-color-border);
+  }
+
+  .ds-table--stack td {
+    display: flex;
+    align-items: baseline;
+    gap: var(--ds-space-2);
+    padding: 0;
+    border: none;
+  }
+
+  .ds-table--stack td::before {
+    content: attr(data-label);
+    flex-shrink: 0;
+    min-width: 8rem;
+    font-size: var(--ds-text-xs);
+    font-weight: var(--ds-weight-medium);
+    color: var(--ds-color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: var(--ds-tracking-wide);
+  }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .ds-table__loading td::after {
+    animation: none;
+  }
+}
 
 /* ==========================================================================
    Component: Icon Button
