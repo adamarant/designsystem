@@ -9,6 +9,7 @@
 @import './modal.css';
 @import './toast.css';
 @import './table.css';
+@import './icon-btn.css';
 
 /* === Tier 1 — Essential === */
 @import './tabs.css';
@@ -19,6 +20,8 @@
 @import './avatar.css';
 @import './skeleton.css';
 @import './empty-state.css';
+@import './search.css';
+@import './spinner.css';
 
 /* === Tier 2 — Common === */
 @import './datepicker.css';
@@ -42,9 +45,6 @@
 @import './timeline.css';
 @import './kbd.css';
 @import './command.css';
-@import './search.css';
 @import './toolbar.css';
 @import './chip.css';
-@import './icon-btn.css';
 @import './bottom-nav.css';
-@import './spinner.css';

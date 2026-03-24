@@ -1941,6 +1941,110 @@ hr {
 
 .ds-table-wrapper .ds-table { margin: 0; }
 
+/* ==========================================================================
+   Component: Icon Button
+   Standalone icon button for actions, toolbar items, and table rows.
+   A minimal interactive element that wraps a single icon.
+
+   ARIA requirements (consumer responsibility):
+   - Always add aria-label="[action]" (e.g., aria-label="Delete")
+   - Disabled: add aria-disabled="true"
+   - Toggle: use aria-pressed="true|false" for toggle icon buttons
+
+   Usage:
+     <button class="ds-icon-btn" aria-label="Delete">
+       <svg>...</svg>
+     </button>
+     <button class="ds-icon-btn ds-icon-btn--sm" aria-label="Edit">...</button>
+     <button class="ds-icon-btn ds-icon-btn--danger" aria-label="Remove">...</button>
+
+   Sizes:
+     .ds-icon-btn--xs  — 24px (var(--ds-size-1))
+     .ds-icon-btn--sm  — 32px (var(--ds-size-2))
+     (default)         — 32px (var(--ds-size-2))
+     .ds-icon-btn--lg  — 40px (var(--ds-size-3))
+
+   Modifiers:
+     .ds-icon-btn--danger  — Error color on hover
+     .ds-icon-btn--ghost   — No background change, color-only transition
+   ========================================================================== */
+
+.ds-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ds-size-2);
+  height: var(--ds-size-2);
+  padding: var(--ds-space-1-5);
+  border: none;
+  border-radius: var(--ds-radius-lg);
+  background: transparent;
+  color: var(--ds-color-text-tertiary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-icon-btn:hover {
+  background-color: var(--ds-color-surface-hover);
+  color: var(--ds-color-text-secondary);
+}
+
+.ds-icon-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
+}
+
+.ds-icon-btn:disabled,
+.ds-icon-btn[aria-disabled="true"] {
+  opacity: var(--ds-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Sizes */
+.ds-icon-btn--xs {
+  width: var(--ds-size-1);
+  height: var(--ds-size-1);
+  padding: var(--ds-space-0-5);
+  border-radius: var(--ds-radius-md);
+}
+
+.ds-icon-btn--sm {
+  width: var(--ds-size-2);
+  height: var(--ds-size-2);
+  padding: var(--ds-space-1-5);
+  border-radius: var(--ds-radius-md);
+}
+
+.ds-icon-btn--lg {
+  width: var(--ds-size-3);
+  height: var(--ds-size-3);
+  padding: var(--ds-space-2);
+}
+
+/* Danger variant */
+.ds-icon-btn--danger:hover {
+  color: var(--ds-color-error);
+  background-color: var(--ds-color-error-subtle); /* fallback for browsers without color-mix() */
+  background-color: color-mix(in srgb, var(--ds-color-error) 10%, transparent);
+}
+
+/* Ghost variant (color only, no bg) */
+.ds-icon-btn--ghost {
+  padding: 0;
+  width: auto;
+  height: auto;
+}
+
+.ds-icon-btn--ghost:hover {
+  background: transparent;
+  color: var(--ds-color-text);
+}
+
 
 /* === Tier 1 — Essential === */
 /* ==========================================================================
@@ -2950,6 +3054,368 @@ hr {
 .ds-empty-state--left {
   align-items: flex-start;
   text-align: start;
+}
+
+/* ==========================================================================
+   Component: Search
+   Inline search bar with dropdown results, keyboard navigation, and
+   responsive mobile expansion. Distinct from ds-command (modal overlay).
+
+   ARIA requirements (consumer responsibility):
+   - Container: role="search" on wrapper or parent <form>
+   - Input: role="combobox", aria-expanded="true|false", aria-controls="[list-id]"
+   - Dropdown: role="listbox" with id matching aria-controls
+   - Results: role="option", aria-selected="true" on active result
+   - Clear button: aria-label="Clear search"
+   - Keyboard: ArrowUp/Down to navigate, Enter to select, Escape to close
+
+   Usage:
+     <div class="ds-search" role="search">
+       <span class="ds-search__icon">...</span>
+       <input class="ds-search__input" placeholder="Search..." />
+       <kbd class="ds-search__shortcut">Ctrl+K</kbd>
+       <button class="ds-search__clear" aria-label="Clear search">...</button>
+     </div>
+
+   Modifiers:
+     .ds-search--mobile-expanded  — Fullscreen bar on mobile
+     .ds-search__dropdown--mobile — Fullscreen dropdown on mobile
+
+   Mobile:
+     .ds-search-mobile-trigger    — Icon button shown on mobile (hidden desktop)
+     .ds-search__close            — Close button inside expanded mobile bar
+   ========================================================================== */
+
+.ds-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  width: 100%;
+  padding: var(--ds-space-2) var(--ds-space-2-5);
+  background: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  transition:
+    border-color var(--ds-duration-fast) var(--ds-ease-default),
+    box-shadow var(--ds-duration-fast) var(--ds-ease-default);
+  container-type: inline-size;
+}
+
+/* Container query: hide shortcut hint when search is narrow */
+@container (max-width: 240px) {
+  .ds-search__shortcut { display: none; }
+}
+
+.ds-search:focus-within {
+  border-color: var(--ds-color-border-active);
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+}
+
+/* Icon */
+.ds-search__icon {
+  color: var(--ds-color-text-tertiary);
+  flex-shrink: 0;
+}
+
+/* Input */
+.ds-search__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--ds-color-text);
+  font-size: var(--ds-text-base);
+  font-family: inherit;
+  line-height: 1.25;
+}
+
+.ds-search__input::placeholder {
+  color: var(--ds-color-text-tertiary);
+}
+
+/* Keyboard shortcut hint */
+.ds-search__shortcut {
+  flex-shrink: 0;
+  padding: 0.125rem 0.375rem;
+  font-size: var(--ds-text-2xs);
+  font-family: inherit;
+  line-height: 1;
+  color: var(--ds-color-text-tertiary);
+  background: var(--ds-color-bg-elevated);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-sm);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Clear button */
+.ds-search__clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+  min-height: 1.5rem;
+  border: none;
+  border-radius: var(--ds-radius-sm);
+  background: transparent;
+  color: var(--ds-color-text-tertiary);
+  cursor: pointer;
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-search__clear:hover {
+  background: var(--ds-color-surface-hover);
+  color: var(--ds-color-text-secondary);
+}
+
+/* Dropdown results panel */
+.ds-search__dropdown {
+  position: fixed;
+  max-height: min(22rem, calc(100dvh - 5rem));
+  overflow-y: auto;
+  background: var(--ds-color-bg-elevated);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  box-shadow: var(--ds-shadow-lg);
+  z-index: var(--ds-z-tooltip);
+  padding: var(--ds-space-1) 0;
+}
+
+/* Result groups */
+.ds-search__group {
+  padding: var(--ds-space-1) 0;
+}
+
+.ds-search__group + .ds-search__group {
+  border-block-start: 1px solid var(--ds-color-border);
+}
+
+.ds-search__group-label {
+  display: block;
+  padding: var(--ds-space-1) var(--ds-space-3);
+  font-size: var(--ds-text-2xs);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Individual result */
+.ds-search__result {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  width: 100%;
+  padding: var(--ds-space-2-5) var(--ds-space-3);
+  border: none;
+  background: transparent;
+  color: var(--ds-color-text);
+  font-size: var(--ds-text-sm);
+  font-family: inherit;
+  text-align: start;
+  cursor: pointer;
+  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-search__result:hover,
+.ds-search__result--active {
+  background: var(--ds-color-surface-hover);
+}
+
+.ds-search__result:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16, 4rem);
+}
+
+.ds-search__result-icon {
+  color: var(--ds-color-text-tertiary);
+  flex-shrink: 0;
+}
+
+.ds-search__result-db-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--ds-radius-md);
+  flex-shrink: 0;
+}
+
+.ds-search__result-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ds-search__result-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  line-height: var(--ds-leading-snug);
+}
+
+.ds-search__result-meta {
+  font-size: var(--ds-text-2xs);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Empty state */
+.ds-search__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-space-4) var(--ds-space-2);
+  color: var(--ds-color-text-tertiary);
+  font-size: var(--ds-text-sm);
+}
+
+/* Mobile trigger (hidden on desktop) */
+.ds-search-mobile-trigger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  border-radius: var(--ds-radius-md);
+  background: transparent;
+  color: var(--ds-color-text);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+@media (hover: hover) {
+  .ds-search-mobile-trigger:hover {
+    background-color: var(--ds-color-surface-hover);
+  }
+}
+
+/* Close button (mobile expanded) */
+.ds-search__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  border-radius: var(--ds-radius-md);
+  background: transparent;
+  color: var(--ds-color-text);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Responsive: mobile */
+@media (max-width: 1023px) /* below --ds-breakpoint-lg */ {
+  .ds-search__shortcut { display: none; }
+  .ds-search-mobile-trigger { display: flex; }
+  .ds-search { display: none; }
+
+  .ds-search--mobile-expanded {
+    display: flex;
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    height: var(--ds-search-bar-height, 3.5rem);
+    z-index: var(--ds-z-dropdown);
+    border: none;
+    border-block-end: 1px solid var(--ds-color-border);
+    border-radius: 0;
+    padding: 0 var(--ds-space-3);
+    background: var(--ds-color-nav-bg);
+    backdrop-filter: blur(var(--ds-blur-lg)) saturate(1.5);
+    -webkit-backdrop-filter: blur(var(--ds-blur-lg)) saturate(1.5);
+  }
+
+  .ds-search__dropdown--mobile {
+    inset-inline-start: 0 !important;
+    inset-inline-end: 0;
+    width: auto !important;
+    border-radius: 0;
+    border-inline-start: none;
+    border-inline-end: none;
+    max-height: calc(100dvh - var(--ds-search-bar-height, 3.5rem));
+    background: var(--ds-color-surface);
+    backdrop-filter: blur(var(--ds-blur-lg)) saturate(1.5);
+    -webkit-backdrop-filter: blur(var(--ds-blur-lg)) saturate(1.5);
+  }
+}
+
+/* ==========================================================================
+   Component: Spinner
+   CSS-only loading spinner using border animation.
+
+   Usage:
+     <span class="ds-spinner"></span>
+     <span class="ds-spinner ds-spinner--sm"></span>
+     <span class="ds-spinner ds-spinner--muted"></span>
+
+   Sizes:
+     .ds-spinner--sm  — 1.25rem (20px)
+     (default)        — 1.5rem (24px)
+     .ds-spinner--lg  — 2rem (32px)
+
+   Variants:
+     (default)          — Border + interactive top
+     .ds-spinner--muted — Inverted colors (for dark backgrounds)
+     .ds-spinner--light — Light colors (for inverted/colored backgrounds)
+   ========================================================================== */
+
+.ds-spinner {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--ds-color-border);
+  border-top-color: var(--ds-color-interactive);
+  border-radius: var(--ds-radius-full);
+  animation: ds-spin 0.8s linear infinite;
+}
+
+@keyframes ds-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Sizes */
+.ds-spinner--sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+.ds-spinner--md {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.ds-spinner--lg {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Color variants */
+.ds-spinner--muted {
+  border-color: var(--ds-color-inverted);
+  border-top-color: transparent;
+}
+
+.ds-spinner--light {
+  border-color: var(--ds-color-on-inverted);
+  border-top-color: transparent;
 }
 
 
@@ -6048,307 +6514,6 @@ tr:hover .ds-sortable__handle,
 }
 
 /* ==========================================================================
-   Component: Search
-   Inline search bar with dropdown results, keyboard navigation, and
-   responsive mobile expansion. Distinct from ds-command (modal overlay).
-
-   ARIA requirements (consumer responsibility):
-   - Container: role="search" on wrapper or parent <form>
-   - Input: role="combobox", aria-expanded="true|false", aria-controls="[list-id]"
-   - Dropdown: role="listbox" with id matching aria-controls
-   - Results: role="option", aria-selected="true" on active result
-   - Clear button: aria-label="Clear search"
-   - Keyboard: ArrowUp/Down to navigate, Enter to select, Escape to close
-
-   Usage:
-     <div class="ds-search" role="search">
-       <span class="ds-search__icon">...</span>
-       <input class="ds-search__input" placeholder="Search..." />
-       <kbd class="ds-search__shortcut">Ctrl+K</kbd>
-       <button class="ds-search__clear" aria-label="Clear search">...</button>
-     </div>
-
-   Modifiers:
-     .ds-search--mobile-expanded  — Fullscreen bar on mobile
-     .ds-search__dropdown--mobile — Fullscreen dropdown on mobile
-
-   Mobile:
-     .ds-search-mobile-trigger    — Icon button shown on mobile (hidden desktop)
-     .ds-search__close            — Close button inside expanded mobile bar
-   ========================================================================== */
-
-.ds-search {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--ds-space-1);
-  width: 100%;
-  padding: var(--ds-space-2) var(--ds-space-2-5);
-  background: var(--ds-color-surface);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-lg);
-  transition:
-    border-color var(--ds-duration-fast) var(--ds-ease-default),
-    box-shadow var(--ds-duration-fast) var(--ds-ease-default);
-  container-type: inline-size;
-}
-
-/* Container query: hide shortcut hint when search is narrow */
-@container (max-width: 240px) {
-  .ds-search__shortcut { display: none; }
-}
-
-.ds-search:focus-within {
-  border-color: var(--ds-color-border-active);
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
-}
-
-/* Icon */
-.ds-search__icon {
-  color: var(--ds-color-text-tertiary);
-  flex-shrink: 0;
-}
-
-/* Input */
-.ds-search__input {
-  flex: 1;
-  min-width: 0;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: var(--ds-color-text);
-  font-size: var(--ds-text-base);
-  font-family: inherit;
-  line-height: 1.25;
-}
-
-.ds-search__input::placeholder {
-  color: var(--ds-color-text-tertiary);
-}
-
-/* Keyboard shortcut hint */
-.ds-search__shortcut {
-  flex-shrink: 0;
-  padding: 0.125rem 0.375rem;
-  font-size: var(--ds-text-2xs);
-  font-family: inherit;
-  line-height: 1;
-  color: var(--ds-color-text-tertiary);
-  background: var(--ds-color-bg-elevated);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-sm);
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Clear button */
-.ds-search__clear {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 1.25rem;
-  height: 1.25rem;
-  min-width: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
-  min-height: 1.5rem;
-  border: none;
-  border-radius: var(--ds-radius-sm);
-  background: transparent;
-  color: var(--ds-color-text-tertiary);
-  cursor: pointer;
-  transition:
-    color var(--ds-duration-fast) var(--ds-ease-default),
-    background-color var(--ds-duration-fast) var(--ds-ease-default);
-}
-
-.ds-search__clear:hover {
-  background: var(--ds-color-surface-hover);
-  color: var(--ds-color-text-secondary);
-}
-
-/* Dropdown results panel */
-.ds-search__dropdown {
-  position: fixed;
-  max-height: min(22rem, calc(100dvh - 5rem));
-  overflow-y: auto;
-  background: var(--ds-color-bg-elevated);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-lg);
-  box-shadow: var(--ds-shadow-lg);
-  z-index: var(--ds-z-tooltip);
-  padding: var(--ds-space-1) 0;
-}
-
-/* Result groups */
-.ds-search__group {
-  padding: var(--ds-space-1) 0;
-}
-
-.ds-search__group + .ds-search__group {
-  border-block-start: 1px solid var(--ds-color-border);
-}
-
-.ds-search__group-label {
-  display: block;
-  padding: var(--ds-space-1) var(--ds-space-3);
-  font-size: var(--ds-text-2xs);
-  font-weight: var(--ds-weight-medium);
-  color: var(--ds-color-text-tertiary);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-/* Individual result */
-.ds-search__result {
-  display: flex;
-  align-items: center;
-  gap: var(--ds-space-2);
-  width: 100%;
-  padding: var(--ds-space-2-5) var(--ds-space-3);
-  border: none;
-  background: transparent;
-  color: var(--ds-color-text);
-  font-size: var(--ds-text-sm);
-  font-family: inherit;
-  text-align: start;
-  cursor: pointer;
-  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
-}
-
-.ds-search__result:hover,
-.ds-search__result--active {
-  background: var(--ds-color-surface-hover);
-}
-
-.ds-search__result:focus-visible {
-  outline: none;
-  box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
-  scroll-margin-block: var(--ds-space-16, 4rem);
-}
-
-.ds-search__result-icon {
-  color: var(--ds-color-text-tertiary);
-  flex-shrink: 0;
-}
-
-.ds-search__result-db-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: var(--ds-radius-md);
-  flex-shrink: 0;
-}
-
-.ds-search__result-content {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.ds-search__result-title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
-  line-height: var(--ds-leading-snug);
-}
-
-.ds-search__result-meta {
-  font-size: var(--ds-text-2xs);
-  line-height: var(--ds-leading-snug);
-  color: var(--ds-color-text-tertiary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Empty state */
-.ds-search__empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--ds-space-4) var(--ds-space-2);
-  color: var(--ds-color-text-tertiary);
-  font-size: var(--ds-text-sm);
-}
-
-/* Mobile trigger (hidden on desktop) */
-.ds-search-mobile-trigger {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border: none;
-  border-radius: var(--ds-radius-md);
-  background: transparent;
-  color: var(--ds-color-text);
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
-}
-
-@media (hover: hover) {
-  .ds-search-mobile-trigger:hover {
-    background-color: var(--ds-color-surface-hover);
-  }
-}
-
-/* Close button (mobile expanded) */
-.ds-search__close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border: none;
-  border-radius: var(--ds-radius-md);
-  background: transparent;
-  color: var(--ds-color-text);
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-/* Responsive: mobile */
-@media (max-width: 1023px) /* below --ds-breakpoint-lg */ {
-  .ds-search__shortcut { display: none; }
-  .ds-search-mobile-trigger { display: flex; }
-  .ds-search { display: none; }
-
-  .ds-search--mobile-expanded {
-    display: flex;
-    position: fixed;
-    inset-block-start: 0;
-    inset-inline-start: 0;
-    inset-inline-end: 0;
-    height: var(--ds-search-bar-height, 3.5rem);
-    z-index: var(--ds-z-dropdown);
-    border: none;
-    border-block-end: 1px solid var(--ds-color-border);
-    border-radius: 0;
-    padding: 0 var(--ds-space-3);
-    background: var(--ds-color-nav-bg);
-    backdrop-filter: blur(20px) saturate(1.5);
-    -webkit-backdrop-filter: blur(20px) saturate(1.5);
-  }
-
-  .ds-search__dropdown--mobile {
-    inset-inline-start: 0 !important;
-    inset-inline-end: 0;
-    width: auto !important;
-    border-radius: 0;
-    border-inline-start: none;
-    border-inline-end: none;
-    max-height: calc(100dvh - var(--ds-search-bar-height, 3.5rem));
-    background: var(--ds-color-surface);
-    backdrop-filter: blur(20px) saturate(1.5);
-    -webkit-backdrop-filter: blur(20px) saturate(1.5);
-  }
-}
-
-/* ==========================================================================
    Component: Toolbar
    Fixed bar with rows of actions: toolbar buttons, filter chips, segmented
    controls, and scrollable groups. Common in data-heavy UIs below a header.
@@ -6635,110 +6800,6 @@ tr:hover .ds-sortable__handle,
 }
 
 /* ==========================================================================
-   Component: Icon Button
-   Standalone icon button for actions, toolbar items, and table rows.
-   A minimal interactive element that wraps a single icon.
-
-   ARIA requirements (consumer responsibility):
-   - Always add aria-label="[action]" (e.g., aria-label="Delete")
-   - Disabled: add aria-disabled="true"
-   - Toggle: use aria-pressed="true|false" for toggle icon buttons
-
-   Usage:
-     <button class="ds-icon-btn" aria-label="Delete">
-       <svg>...</svg>
-     </button>
-     <button class="ds-icon-btn ds-icon-btn--sm" aria-label="Edit">...</button>
-     <button class="ds-icon-btn ds-icon-btn--danger" aria-label="Remove">...</button>
-
-   Sizes:
-     .ds-icon-btn--xs  — 24px (var(--ds-size-1))
-     .ds-icon-btn--sm  — 28px
-     (default)         — 32px (var(--ds-size-2))
-     .ds-icon-btn--lg  — 40px (var(--ds-size-3))
-
-   Modifiers:
-     .ds-icon-btn--danger  — Error color on hover
-     .ds-icon-btn--ghost   — No background change, color-only transition
-   ========================================================================== */
-
-.ds-icon-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--ds-size-2);
-  height: var(--ds-size-2);
-  padding: var(--ds-space-1-5);
-  border: none;
-  border-radius: var(--ds-radius-lg);
-  background: transparent;
-  color: var(--ds-color-text-tertiary);
-  cursor: pointer;
-  flex-shrink: 0;
-  transition:
-    color var(--ds-duration-fast) var(--ds-ease-default),
-    background-color var(--ds-duration-fast) var(--ds-ease-default);
-}
-
-.ds-icon-btn:hover {
-  background-color: var(--ds-color-surface-hover);
-  color: var(--ds-color-text-secondary);
-}
-
-.ds-icon-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
-  scroll-margin-block: var(--ds-space-16, 4rem);
-}
-
-.ds-icon-btn:disabled,
-.ds-icon-btn[aria-disabled="true"] {
-  opacity: var(--ds-opacity-disabled);
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-/* Sizes */
-.ds-icon-btn--xs {
-  width: var(--ds-size-1);
-  height: var(--ds-size-1);
-  padding: var(--ds-space-0-5);
-  border-radius: var(--ds-radius-md);
-}
-
-.ds-icon-btn--sm {
-  width: var(--ds-size-2);
-  height: var(--ds-size-2);
-  padding: var(--ds-space-1-5);
-  border-radius: var(--ds-radius-md);
-}
-
-.ds-icon-btn--lg {
-  width: var(--ds-size-3);
-  height: var(--ds-size-3);
-  padding: var(--ds-space-2);
-}
-
-/* Danger variant */
-.ds-icon-btn--danger:hover {
-  color: var(--ds-color-error);
-  background-color: var(--ds-color-error-subtle); /* fallback for browsers without color-mix() */
-  background-color: color-mix(in srgb, var(--ds-color-error) 10%, transparent);
-}
-
-/* Ghost variant (color only, no bg) */
-.ds-icon-btn--ghost {
-  padding: 0;
-  width: auto;
-  height: auto;
-}
-
-.ds-icon-btn--ghost:hover {
-  background: transparent;
-  color: var(--ds-color-text);
-}
-
-/* ==========================================================================
    Component: Bottom Nav
    Mobile bottom navigation bar. Hidden on desktop, shown on mobile.
    Fixed to bottom with safe-area insets for notched devices.
@@ -6862,67 +6923,6 @@ tr:hover .ds-sortable__handle,
 
 .ds-bottom-nav__item--create {
   color: var(--ds-color-text-tertiary);
-}
-
-/* ==========================================================================
-   Component: Spinner
-   CSS-only loading spinner using border animation.
-
-   Usage:
-     <span class="ds-spinner"></span>
-     <span class="ds-spinner ds-spinner--sm"></span>
-     <span class="ds-spinner ds-spinner--muted"></span>
-
-   Sizes:
-     .ds-spinner--sm  — 1.25rem (20px)
-     (default)        — 1.5rem (24px)
-     .ds-spinner--lg  — 2rem (32px)
-
-   Variants:
-     (default)          — Border + interactive top
-     .ds-spinner--muted — Inverted colors (for dark backgrounds)
-     .ds-spinner--light — Light colors (for inverted/colored backgrounds)
-   ========================================================================== */
-
-.ds-spinner {
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 2px solid var(--ds-color-border);
-  border-top-color: var(--ds-color-interactive);
-  border-radius: var(--ds-radius-full);
-  animation: ds-spin 0.8s linear infinite;
-}
-
-@keyframes ds-spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Sizes */
-.ds-spinner--sm {
-  width: 1rem;
-  height: 1rem;
-}
-
-.ds-spinner--md {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.ds-spinner--lg {
-  width: 2rem;
-  height: 2rem;
-}
-
-/* Color variants */
-.ds-spinner--muted {
-  border-color: var(--ds-color-inverted);
-  border-top-color: transparent;
-}
-
-.ds-spinner--light {
-  border-color: var(--ds-color-on-inverted);
-  border-top-color: transparent;
 }
 
 

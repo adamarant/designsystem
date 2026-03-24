@@ -17,7 +17,7 @@
 
    Sizes:
      .ds-icon-btn--xs  — 24px (var(--ds-size-1))
-     .ds-icon-btn--sm  — 28px
+     .ds-icon-btn--sm  — 32px (var(--ds-size-2))
      (default)         — 32px (var(--ds-size-2))
      .ds-icon-btn--lg  — 40px (var(--ds-size-3))
 
