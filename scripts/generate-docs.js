@@ -116,7 +116,7 @@ function pageShell(title, activeName, pathPrefix, cssPath, content) {
   <div class="demo-layout">
     <aside class="demo-sidebar">
       <a href="${pathPrefix}" class="demo-sidebar__brand">Design System</a>
-      <input class="ds-input ds-input--sm" id="componentSearch" placeholder="Search...">
+      <input class="ds-input" id="componentSearch" placeholder="Search...">
 ${buildSidebar(activeName, pathPrefix)}
       <div style="margin-top: auto; padding-top: var(--ds-space-4); border-top: 1px solid var(--ds-color-border-subtle);">
         <button class="ds-btn ds-btn--ghost ds-btn--sm" data-toggle-theme style="width: 100%;">Toggle Theme</button>

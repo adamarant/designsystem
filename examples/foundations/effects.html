@@ -12,7 +12,7 @@
   <div class="demo-layout">
     <aside class="demo-sidebar">
       <a href="../" class="demo-sidebar__brand">Design System</a>
-      <input class="ds-input ds-input--sm" id="componentSearch" placeholder="Search...">
+      <input class="ds-input" id="componentSearch" placeholder="Search...">
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Foundations</div>
         <a href="../foundations/colors.html" class="demo-sidebar__link">Colors</a>
@@ -120,6 +120,26 @@
           <div style="display: flex; align-items: center; gap: var(--ds-space-4);">
             <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">slower</code>
             <span style="font-size: var(--ds-text-sm);">800ms</span>
+            <div style="width: 40px; height: 40px; background: var(--ds-color-inverted); border-radius: var(--ds-radius-md); transition: transform var(--ds-duration-slower) var(--ds-ease-out); cursor: pointer;" onmouseenter="this.style.transform='scale(1.3)'" onmouseleave="this.style.transform='scale(1)'"></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-4);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">fast</code>
+            <span style="font-size: var(--ds-text-sm);">0s</span>
+            <div style="width: 40px; height: 40px; background: var(--ds-color-inverted); border-radius: var(--ds-radius-md); transition: transform var(--ds-duration-fast) var(--ds-ease-out); cursor: pointer;" onmouseenter="this.style.transform='scale(1.3)'" onmouseleave="this.style.transform='scale(1)'"></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-4);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">normal</code>
+            <span style="font-size: var(--ds-text-sm);">0s</span>
+            <div style="width: 40px; height: 40px; background: var(--ds-color-inverted); border-radius: var(--ds-radius-md); transition: transform var(--ds-duration-normal) var(--ds-ease-out); cursor: pointer;" onmouseenter="this.style.transform='scale(1.3)'" onmouseleave="this.style.transform='scale(1)'"></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-4);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">slow</code>
+            <span style="font-size: var(--ds-text-sm);">0s</span>
+            <div style="width: 40px; height: 40px; background: var(--ds-color-inverted); border-radius: var(--ds-radius-md); transition: transform var(--ds-duration-slow) var(--ds-ease-out); cursor: pointer;" onmouseenter="this.style.transform='scale(1.3)'" onmouseleave="this.style.transform='scale(1)'"></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--ds-space-4);">
+            <code style="font-family: var(--ds-font-mono); font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary); min-width: 80px;">slower</code>
+            <span style="font-size: var(--ds-text-sm);">0s</span>
             <div style="width: 40px; height: 40px; background: var(--ds-color-inverted); border-radius: var(--ds-radius-md); transition: transform var(--ds-duration-slower) var(--ds-ease-out); cursor: pointer;" onmouseenter="this.style.transform='scale(1.3)'" onmouseleave="this.style.transform='scale(1)'"></div>
           </div>
         </div>
