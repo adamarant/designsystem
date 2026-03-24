@@ -1512,6 +1512,217 @@
           "html": "<div class=\"ds-result ds-result--error\">\n  <div class=\"ds-result__icon\">&#10007;</div>\n  <h2 class=\"ds-result__title\">Something went wrong</h2>\n  <p class=\"ds-result__description\">We couldn't process your request. Please try again later.</p>\n  <div class=\"ds-result__actions\">\n    <button class=\"ds-btn ds-btn--danger\">Retry</button>\n  </div>\n</div>"
         }
       ]
+    },
+    {
+      "name": "combobox",
+      "title": "Combobox",
+      "description": "Text input with filterable dropdown results. Supports single/multi-select, inline creation, and keyboard navigation.",
+      "category": "core",
+      "classes": [".ds-combobox"],
+      "elements": ["__input-area", "__input", "__icon", "__clear", "__listbox", "__group", "__group-label", "__option", "__option-check", "__option-desc", "__create", "__empty", "__loading", "__tag", "__tag-remove"],
+      "variants": ["--error"],
+      "sizes": ["--xs", "--sm", "--lg"],
+      "modifiers": ["--open", "--multi"],
+      "examples": [
+        {
+          "title": "Basic Combobox",
+          "html": "<div class=\"ds-combobox\">\n  <input class=\"ds-combobox__input\" placeholder=\"Search...\" />\n  <div class=\"ds-combobox__listbox ds-combobox__listbox--open\">\n    <div class=\"ds-combobox__option ds-combobox__option--active\">Option 1</div>\n    <div class=\"ds-combobox__option\">Option 2</div>\n    <div class=\"ds-combobox__option ds-combobox__option--selected\">Option 3</div>\n  </div>\n</div>"
+        },
+        {
+          "title": "Multi-select with Tags",
+          "html": "<div class=\"ds-combobox ds-combobox--multi\">\n  <div class=\"ds-combobox__input-area\">\n    <span class=\"ds-combobox__tag\">React <button class=\"ds-combobox__tag-remove\">&times;</button></span>\n    <span class=\"ds-combobox__tag\">Vue <button class=\"ds-combobox__tag-remove\">&times;</button></span>\n    <input class=\"ds-combobox__input\" placeholder=\"Add more...\" />\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "number-input",
+      "title": "Number Input",
+      "description": "Numeric input with increment/decrement stepper buttons.",
+      "category": "common",
+      "classes": [".ds-number-input"],
+      "elements": ["__field", "__decrement", "__increment"],
+      "variants": [],
+      "sizes": ["--xs", "--sm", "--lg"],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Default",
+          "html": "<div class=\"ds-number-input\">\n  <button class=\"ds-number-input__decrement\">&minus;</button>\n  <input class=\"ds-number-input__field\" type=\"number\" value=\"1\" />\n  <button class=\"ds-number-input__increment\">+</button>\n</div>"
+        },
+        {
+          "title": "Sizes",
+          "html": "<div class=\"ds-number-input ds-number-input--sm\">\n  <button class=\"ds-number-input__decrement\">&minus;</button>\n  <input class=\"ds-number-input__field\" type=\"number\" value=\"5\" />\n  <button class=\"ds-number-input__increment\">+</button>\n</div>\n<div class=\"ds-number-input ds-number-input--lg\">\n  <button class=\"ds-number-input__decrement\">&minus;</button>\n  <input class=\"ds-number-input__field\" type=\"number\" value=\"10\" />\n  <button class=\"ds-number-input__increment\">+</button>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "pin-input",
+      "title": "Pin Input",
+      "description": "One-character-per-field input for OTP codes, PINs, and verification.",
+      "category": "common",
+      "classes": [".ds-pin-input"],
+      "elements": ["__field", "__separator"],
+      "variants": ["--error", "--success"],
+      "sizes": ["--sm", "--lg"],
+      "modifiers": ["--disabled"],
+      "examples": [
+        {
+          "title": "Default",
+          "html": "<div class=\"ds-pin-input\">\n  <input class=\"ds-pin-input__field\" maxlength=\"1\" />\n  <input class=\"ds-pin-input__field\" maxlength=\"1\" />\n  <input class=\"ds-pin-input__field\" maxlength=\"1\" />\n  <span class=\"ds-pin-input__separator\">&ndash;</span>\n  <input class=\"ds-pin-input__field\" maxlength=\"1\" />\n  <input class=\"ds-pin-input__field\" maxlength=\"1\" />\n  <input class=\"ds-pin-input__field\" maxlength=\"1\" />\n</div>"
+        },
+        {
+          "title": "Error State",
+          "html": "<div class=\"ds-pin-input ds-pin-input--error\">\n  <input class=\"ds-pin-input__field\" maxlength=\"1\" value=\"1\" />\n  <input class=\"ds-pin-input__field\" maxlength=\"1\" value=\"2\" />\n  <input class=\"ds-pin-input__field\" maxlength=\"1\" value=\"3\" />\n  <input class=\"ds-pin-input__field\" maxlength=\"1\" value=\"4\" />\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "segmented-control",
+      "title": "Segmented Control",
+      "description": "Toggle between 2-5 mutually exclusive options. Compact alternative to tabs.",
+      "category": "essential",
+      "classes": [".ds-segmented"],
+      "elements": ["__item"],
+      "variants": [],
+      "sizes": ["--sm"],
+      "modifiers": ["--full"],
+      "examples": [
+        {
+          "title": "Default",
+          "html": "<div class=\"ds-segmented\">\n  <button class=\"ds-segmented__item ds-segmented__item--active\">Grid</button>\n  <button class=\"ds-segmented__item\">List</button>\n  <button class=\"ds-segmented__item\">Board</button>\n</div>"
+        },
+        {
+          "title": "Full Width + Small",
+          "html": "<div class=\"ds-segmented ds-segmented--full ds-segmented--sm\">\n  <button class=\"ds-segmented__item ds-segmented__item--active\">Day</button>\n  <button class=\"ds-segmented__item\">Week</button>\n  <button class=\"ds-segmented__item\">Month</button>\n  <button class=\"ds-segmented__item\">Year</button>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "copy-button",
+      "title": "Copy Button",
+      "description": "Icon button with clipboard feedback state (idle → copied).",
+      "category": "common",
+      "classes": [".ds-copy-btn"],
+      "elements": ["__icon", "__icon-check"],
+      "variants": [],
+      "sizes": ["--sm", "--lg"],
+      "modifiers": ["--copied"],
+      "examples": [
+        {
+          "title": "Default & Copied",
+          "html": "<button class=\"ds-copy-btn\" aria-label=\"Copy\">&#128203;</button>\n<button class=\"ds-copy-btn ds-copy-btn--copied\" aria-label=\"Copied\">&#10003;</button>"
+        }
+      ]
+    },
+    {
+      "name": "gallery",
+      "title": "Gallery",
+      "description": "Image gallery with main image, thumbnail strip, and lightbox overlay.",
+      "category": "common",
+      "classes": [".ds-gallery", ".ds-lightbox"],
+      "elements": ["__main", "__thumbs", "__thumb", "__thumb-more", "__image", "__close", "__prev", "__next", "__counter"],
+      "variants": [],
+      "sizes": [],
+      "modifiers": ["--open"],
+      "examples": [
+        {
+          "title": "Thumbnail Strip",
+          "html": "<div class=\"ds-gallery\">\n  <div class=\"ds-gallery__main\" style=\"height:200px;background:var(--ds-color-bg-muted);border-radius:var(--ds-radius-xl);display:flex;align-items:center;justify-content:center;color:var(--ds-color-text-tertiary)\">Main Image</div>\n  <div class=\"ds-gallery__thumbs\">\n    <button class=\"ds-gallery__thumb ds-gallery__thumb--active\" style=\"background:var(--ds-color-bg-muted)\"></button>\n    <button class=\"ds-gallery__thumb\" style=\"background:var(--ds-color-bg-elevated)\"></button>\n    <button class=\"ds-gallery__thumb\" style=\"background:var(--ds-color-bg-elevated)\"></button>\n    <button class=\"ds-gallery__thumb-more\">+3</button>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "title": "Scroll Area",
+      "description": "Custom-styled scrollbar for overflow containers. Cross-browser.",
+      "category": "common",
+      "classes": [".ds-scroll-area"],
+      "elements": [],
+      "variants": [],
+      "sizes": [],
+      "modifiers": ["--horizontal", "--both", "--thin"],
+      "examples": [
+        {
+          "title": "Vertical Scroll",
+          "html": "<div class=\"ds-scroll-area\" style=\"max-height:8rem;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg);padding:var(--ds-space-3)\">\n  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>\n  <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>\n  <p>Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>\n  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "color-picker",
+      "title": "Color Picker",
+      "description": "Grid of color swatches for selection.",
+      "category": "common",
+      "classes": [".ds-color-picker"],
+      "elements": ["__swatch"],
+      "variants": [],
+      "sizes": ["--sm", "--lg"],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Default",
+          "html": "<div class=\"ds-color-picker\">\n  <button class=\"ds-color-picker__swatch ds-color-picker__swatch--active\" style=\"--swatch-color:#ef4444\"></button>\n  <button class=\"ds-color-picker__swatch\" style=\"--swatch-color:#f97316\"></button>\n  <button class=\"ds-color-picker__swatch\" style=\"--swatch-color:#eab308\"></button>\n  <button class=\"ds-color-picker__swatch\" style=\"--swatch-color:#22c55e\"></button>\n  <button class=\"ds-color-picker__swatch\" style=\"--swatch-color:#3b82f6\"></button>\n  <button class=\"ds-color-picker__swatch\" style=\"--swatch-color:#8b5cf6\"></button>\n  <button class=\"ds-color-picker__swatch\" style=\"--swatch-color:#ec4899\"></button>\n  <button class=\"ds-color-picker__swatch\" style=\"--swatch-color:#6b7280\"></button>\n  <button class=\"ds-color-picker__swatch\" style=\"--swatch-color:#18181b\"></button>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "truncated-text",
+      "title": "Truncated Text",
+      "description": "Display long text (hashes, addresses, IDs) with middle or end truncation.",
+      "category": "common",
+      "classes": [".ds-truncate", ".ds-hash"],
+      "elements": ["__start", "__separator", "__end", "__value"],
+      "variants": [],
+      "sizes": [],
+      "modifiers": ["--middle"],
+      "examples": [
+        {
+          "title": "End Truncation",
+          "html": "<span class=\"ds-truncate\" style=\"max-width:12rem\">0x1a2b3c4d5e6f7890abcdef1234567890abcdef</span>"
+        },
+        {
+          "title": "Hash Display",
+          "html": "<span class=\"ds-hash\">\n  <span class=\"ds-hash__value\">0x1a2b...cdef</span>\n  <button class=\"ds-copy-btn ds-copy-btn--sm\" aria-label=\"Copy\">&#128203;</button>\n</span>"
+        }
+      ]
+    },
+    {
+      "name": "bottom-sheet",
+      "title": "Bottom Sheet",
+      "description": "Mobile overlay sliding up from the bottom.",
+      "category": "common",
+      "classes": [".ds-bottom-sheet"],
+      "elements": ["__backdrop", "__panel", "__handle", "__header", "__title", "__close", "__body"],
+      "variants": [],
+      "sizes": [],
+      "modifiers": ["--open", "--full"],
+      "examples": [
+        {
+          "title": "Basic",
+          "html": "<div class=\"ds-bottom-sheet\" style=\"position:relative;display:block;height:16rem;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);overflow:hidden\">\n  <div style=\"position:absolute;inset:0;inset-block-start:auto;background:var(--ds-color-surface);border-radius:var(--ds-radius-xl) var(--ds-radius-xl) 0 0;padding:0\">\n    <div class=\"ds-bottom-sheet__handle\" style=\"margin-top:var(--ds-space-2)\"></div>\n    <div class=\"ds-bottom-sheet__header\">\n      <h3 class=\"ds-bottom-sheet__title\">Select Option</h3>\n    </div>\n    <div style=\"padding:0 var(--ds-space-4) var(--ds-space-4)\">\n      <p style=\"color:var(--ds-color-text-secondary);font-size:var(--ds-text-sm)\">Sheet content here</p>\n    </div>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "star-rating",
+      "title": "Star Rating",
+      "description": "Display or input star ratings with half-star support.",
+      "category": "common",
+      "classes": [".ds-star-rating"],
+      "elements": ["__star", "__value", "__count"],
+      "variants": [],
+      "sizes": ["--sm", "--lg"],
+      "modifiers": ["--interactive"],
+      "examples": [
+        {
+          "title": "Display",
+          "html": "<div class=\"ds-star-rating\">\n  <span class=\"ds-star-rating__star ds-star-rating__star--filled\">&#9733;</span>\n  <span class=\"ds-star-rating__star ds-star-rating__star--filled\">&#9733;</span>\n  <span class=\"ds-star-rating__star ds-star-rating__star--filled\">&#9733;</span>\n  <span class=\"ds-star-rating__star ds-star-rating__star--filled\">&#9733;</span>\n  <span class=\"ds-star-rating__star\">&#9733;</span>\n  <span class=\"ds-star-rating__value\">4.0</span>\n  <span class=\"ds-star-rating__count\">(128)</span>\n</div>"
+        },
+        {
+          "title": "Interactive",
+          "html": "<div class=\"ds-star-rating ds-star-rating--interactive\">\n  <button class=\"ds-star-rating__star ds-star-rating__star--filled\">&#9733;</button>\n  <button class=\"ds-star-rating__star ds-star-rating__star--filled\">&#9733;</button>\n  <button class=\"ds-star-rating__star ds-star-rating__star--filled\">&#9733;</button>\n  <button class=\"ds-star-rating__star\">&#9733;</button>\n  <button class=\"ds-star-rating__star\">&#9733;</button>\n</div>"
+        }
+      ]
     }
   ]
 }
