@@ -1,5 +1,64 @@
 # Migration Guide
 
+## v0.7.x → v0.8.0
+
+### New Components (11)
+
+| Component | Description |
+|---|---|
+| `ds-combobox` | Text input with filterable dropdown, single/multi-select, inline creation |
+| `ds-number-input` | Numeric stepper with +/- buttons |
+| `ds-pin-input` | OTP/PIN verification input (one-char-per-field) |
+| `ds-segmented-control` | Toggle between 2-5 options (compact tab alternative) |
+| `ds-gallery` + `ds-lightbox` | Image gallery with thumbnails + fullscreen overlay |
+| `ds-copy-button` | Clipboard copy with feedback state |
+| `ds-scroll-area` | Custom-styled scrollbar |
+| `ds-color-picker` | Color swatch grid |
+| `ds-truncated-text` + `ds-hash` | Text truncation + hash/address display |
+| `ds-bottom-sheet` | Mobile slide-up overlay |
+| `ds-star-rating` | Star ratings (display + input) |
+
+### New Package: `@digiko-npm/ds-hooks`
+
+Optional React hooks companion. Install separately:
+```bash
+npm install @digiko-npm/ds-hooks
+```
+
+8 hooks: `useClickOutside`, `useEscapeKey`, `useKeyboardNav`, `useDebouncedValue`, `useFocusTrap`, `useScrollLock`, `useClipboard`, `useMediaQuery`.
+
+### Enhanced Components
+
+- **Table**: sorting, selection, sticky headers, striped/bordered/dense, loading skeleton, responsive `--stack`
+- **Field**: `ds-field__error[data-animate]`, `ds-field__success`, `ds-field__counter`
+- **Pagination**: container query (hides pages when narrow)
+- **Stat Card**: container query (compact when narrow)
+
+### CSS Nesting
+
+All components now use **native CSS nesting**. This requires:
+- Chrome 112+, Firefox 117+, Safari 17.2+ (all 2024+)
+- If your build tool strips nesting, ensure it has a nesting plugin (PostCSS Nesting or Lightning CSS)
+- No changes needed if you use the pre-built `dist/designsystem.css` bundle
+
+### Tier Reorganization
+
+- `icon-btn` promoted from Tier 3 → **Core**
+- `search` promoted from Tier 3 → **Tier 1 Essential**
+- `spinner` promoted from Tier 3 → **Tier 1 Essential**
+
+### Breaking Changes
+None. All existing class names and tokens unchanged.
+
+### Migration Checklist
+- [ ] Update `@digiko-npm/designsystem` to `^0.8.0`
+- [ ] Optionally install `@digiko-npm/ds-hooks` and replace custom click-outside/escape/keyboard-nav implementations
+- [ ] Replace custom table pagination/sorting with DS table modifiers
+- [ ] Replace custom combobox/autocomplete with `ds-combobox`
+- [ ] Verify browser compatibility with CSS nesting (Chrome 112+, Firefox 117+, Safari 17.2+)
+
+---
+
 ## v0.6.0 → v0.7.0
 
 ### New Components

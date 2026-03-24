@@ -5,6 +5,51 @@ All notable changes to `@digiko-npm/designsystem` will be documented in this fil
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2026-03-24
+
+### Added — New Components (11)
+- `ds-combobox` — text input with filterable dropdown, single/multi-select, inline creation
+- `ds-number-input` — numeric stepper with +/- buttons
+- `ds-pin-input` — OTP/PIN verification input (one-char-per-field)
+- `ds-segmented-control` — toggle between 2-5 options (compact tab alternative)
+- `ds-gallery` — image gallery with thumbnails + `ds-lightbox` fullscreen overlay
+- `ds-copy-button` — clipboard copy with idle→copied feedback state
+- `ds-scroll-area` — custom-styled scrollbar (thin/horizontal variants)
+- `ds-color-picker` — swatch grid with selection ring
+- `ds-truncated-text` — middle/end truncation + `ds-hash` display
+- `ds-bottom-sheet` — mobile slide-up overlay with drag handle
+- `ds-star-rating` — display/input star ratings with half-star support
+
+### Added — `@digiko-npm/ds-hooks` companion package
+- `useClickOutside` — close dropdowns/modals on outside click
+- `useEscapeKey` — close overlays on Escape
+- `useKeyboardNav` — arrow key navigation for lists
+- `useDebouncedValue` — debounce search input values
+- `useFocusTrap` — trap Tab focus inside modals/drawers
+- `useScrollLock` — prevent body scroll with scrollbar compensation
+- `useClipboard` — copy to clipboard with timed feedback
+- `useMediaQuery` — reactive CSS media query matching
+
+### Enhanced
+- **Table**: sort headers, row selection, sticky headers, striped/bordered/dense modifiers, loading skeleton rows, responsive card-stacking (`--stack`), table footer area
+- **Field**: animated error appearance, success message, character counter with limit state
+- **Pagination**: container query (hides page numbers when narrow)
+- **Stat Card**: container query (compact sizing when narrow)
+
+### Changed
+- All 54 components converted to **native CSS nesting**
+- Tier reorganization: `icon-btn` promoted to Core, `search` + `spinner` promoted to Tier 1
+- `search.css`: hardcoded `blur(20px)` replaced with `var(--ds-blur-lg)`
+- `icon-btn.css`: fixed documentation claiming `--sm` was 28px (actual: 32px)
+
+### Added — Tooling
+- `scripts/validate-tokens.js` — validates all `var(--ds-*)` references exist in token files
+
+### Stats
+- 54 components (was 43)
+- 153KB minified (was 131KB)
+- 0 runtime dependencies (unchanged)
+
 ## [0.7.2] - 2026-03-24
 
 ### Fixed
