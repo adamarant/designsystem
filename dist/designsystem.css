@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.7.0 */
+/* @ds/designsystem v0.7.1 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -101,7 +101,7 @@
   --ds-color-bg: #09090b;
   --ds-color-bg-subtle: #0f0f11;
   --ds-color-bg-muted: #18181b;
-  --ds-color-bg-elevated: #27272a;
+  --ds-color-bg-elevated: #1c1c20;
 
   --ds-color-surface: #0f0f11;
   --ds-color-surface-hover: #18181b;
@@ -1645,7 +1645,8 @@ hr {
   scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
-.ds-sidebar__link--active {
+.ds-sidebar__link--active,
+.ds-sidebar__link--active:hover {
   color: var(--ds-color-text);
   background-color: var(--ds-color-bg-elevated);
 }
