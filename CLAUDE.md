@@ -233,67 +233,73 @@ src/
 ├── components/
 │   ├── index.css              # Imports all components
 │   │
-│   │  # Core (12)
-│   ├── button.css             # ds-btn, variants, sizes, groups, loading, pill
-│   ├── card.css               # ds-card, interactive, elevated
-│   ├── stat-card.css          # ds-stat-card, label/value/detail/icon
+│   │  # Form (12) — Inputs, selectors, and form controls
 │   ├── input.css              # ds-input, textarea, select, label, checkbox, radio
 │   ├── field.css              # ds-field, label/hint/error/success/counter
-│   ├── badge.css              # ds-badge, semantic colors, dot, outline, upper
-│   ├── nav.css                # ds-nav, sidebar, mobile nav, glass effect
-│   ├── modal.css              # ds-modal, backdrop blur, size variants
-│   ├── toast.css              # ds-toast, positions, enter/exit animations
-│   ├── table.css              # ds-table, sort/select/sticky/striped/stack
-│   ├── icon-btn.css           # ds-icon-btn, sizes, danger, ghost
-│   ├── combobox.css           # ds-combobox, filterable dropdown, multi-select
-│   │
-│   │  # Tier 1 — Essential (11)
-│   ├── tabs.css               # ds-tabs, pills, vertical, full-width
-│   ├── alert.css              # ds-alert, info/success/warning/error, banner
-│   ├── divider.css            # ds-divider, vertical, subtle, label
-│   ├── dropdown.css           # ds-dropdown, menu items, dividers, headers
-│   ├── tooltip.css            # ds-tooltip, 4 directions, CSS-only arrows
-│   ├── avatar.css             # ds-avatar, sizes, groups, status indicators
-│   ├── skeleton.css           # ds-skeleton, text/heading/circle/card/btn/input
-│   ├── empty-state.css        # ds-empty-state, icon/title/description/actions
-│   ├── search.css             # ds-search, dropdown results, mobile expansion
-│   ├── spinner.css            # ds-spinner, sizes, semantic colors
-│   ├── segmented-control.css  # ds-segmented, sm/full variants
-│   │
-│   │  # Tier 2 — Common (22)
-│   ├── datepicker.css         # ds-datepicker, calendar, month/year nav
 │   ├── toggle.css             # ds-toggle, switch with thumb, sizes, label
-│   ├── breadcrumb.css         # ds-breadcrumb, links, current, separator
-│   ├── pagination.css         # ds-pagination, items, prev/next, container query
-│   ├── tag.css                # ds-tag, removable, semantic colors, sizes
-│   ├── accordion.css          # ds-accordion, trigger/content, flush, separated
-│   ├── drawer.css             # ds-drawer, right/left/bottom, sizes
-│   ├── progress.css           # ds-progress bar + ds-steps indicator
-│   ├── drop-zone.css          # ds-drop-zone, file upload area
 │   ├── custom-select.css      # ds-custom-select, mobile fullscreen, multi
-│   ├── collapsible.css        # ds-collapsible, single expand/collapse
-│   ├── description-list.css   # ds-description-list, horizontal/bordered
-│   ├── result.css             # ds-result, success/error/empty
-│   ├── sortable.css           # ds-sortable, draggable list items
+│   ├── combobox.css           # ds-combobox, filterable dropdown, multi-select
 │   ├── number-input.css       # ds-number-input, +/- stepper
 │   ├── pin-input.css          # ds-pin-input, OTP/PIN verification
-│   ├── copy-button.css        # ds-copy-btn, clipboard feedback
-│   ├── scroll-area.css        # ds-scroll-area, custom scrollbar
-│   ├── truncated-text.css     # ds-truncate, ds-hash display
+│   ├── datepicker.css         # ds-datepicker, calendar, month/year nav
 │   ├── color-picker.css       # ds-color-picker, swatch grid
-│   ├── star-rating.css        # ds-star-rating, display/input
-│   ├── gallery.css            # ds-gallery + ds-lightbox
-│   ├── bottom-sheet.css       # ds-bottom-sheet, mobile overlay
-│   │
-│   │  # Tier 3 — Advanced (8)
-│   ├── popover.css            # ds-popover, 4 directions, size variants
 │   ├── slider.css             # ds-slider, custom range input, labels
-│   ├── timeline.css           # ds-timeline, vertical dots, states
-│   ├── kbd.css                # ds-kbd, 3D key effect, combos
-│   ├── command.css            # ds-command, cmd+k search overlay
-│   ├── toolbar.css            # ds-toolbar, floating action bar
+│   ├── drop-zone.css          # ds-drop-zone, file upload area
+│   ├── star-rating.css        # ds-star-rating, display/input
+│   │
+│   │  # Data Display (12) — Present information and status
+│   ├── badge.css              # ds-badge, semantic colors, dot, outline, upper
+│   ├── tag.css                # ds-tag, removable, semantic colors, sizes
 │   ├── chip.css               # ds-chip, logic/sort filters
-│   └── bottom-nav.css         # ds-bottom-nav, mobile navigation
+│   ├── avatar.css             # ds-avatar, sizes, groups, status indicators
+│   ├── stat-card.css          # ds-stat-card, label/value/detail/icon
+│   ├── table.css              # ds-table, sort/select/sticky/striped/stack
+│   ├── description-list.css   # ds-description-list, horizontal/bordered
+│   ├── timeline.css           # ds-timeline, vertical dots, states
+│   ├── progress.css           # ds-progress bar + ds-steps indicator
+│   ├── skeleton.css           # ds-skeleton, text/heading/circle/card/btn/input
+│   ├── result.css             # ds-result, success/error/empty
+│   ├── truncated-text.css     # ds-truncate, ds-hash display
+│   │
+│   │  # Navigation (7) — Wayfinding and page structure
+│   ├── nav.css                # ds-nav, sidebar, mobile nav, glass effect
+│   ├── breadcrumb.css         # ds-breadcrumb, links, current, separator
+│   ├── tabs.css               # ds-tabs, pills, vertical, full-width
+│   ├── pagination.css         # ds-pagination, items, prev/next, container query
+│   ├── segmented-control.css  # ds-segmented, sm/full variants
+│   ├── bottom-nav.css         # ds-bottom-nav, mobile navigation
+│   ├── toolbar.css            # ds-toolbar, floating action bar
+│   │
+│   │  # Feedback (5) — Communicate status and system messages
+│   ├── alert.css              # ds-alert, info/success/warning/error, banner
+│   ├── toast.css              # ds-toast, positions, enter/exit animations
+│   ├── spinner.css            # ds-spinner, sizes, semantic colors
+│   ├── empty-state.css        # ds-empty-state, icon/title/description/actions
+│   ├── tooltip.css            # ds-tooltip, 4 directions, CSS-only arrows
+│   │
+│   │  # Overlay (6) — Floating panels and dialogs
+│   ├── modal.css              # ds-modal, backdrop blur, size variants
+│   ├── drawer.css             # ds-drawer, right/left/bottom, sizes
+│   ├── dropdown.css           # ds-dropdown, menu items, dividers, headers
+│   ├── popover.css            # ds-popover, 4 directions, size variants
+│   ├── bottom-sheet.css       # ds-bottom-sheet, mobile overlay
+│   ├── command.css            # ds-command, cmd+k search overlay
+│   │
+│   │  # Layout (6) — Structure and organize content
+│   ├── card.css               # ds-card, interactive, elevated
+│   ├── divider.css            # ds-divider, vertical, subtle, label
+│   ├── accordion.css          # ds-accordion, trigger/content, flush, separated
+│   ├── collapsible.css        # ds-collapsible, single expand/collapse
+│   ├── scroll-area.css        # ds-scroll-area, custom scrollbar
+│   ├── gallery.css            # ds-gallery + ds-lightbox
+│   │
+│   │  # Action (6) — Trigger operations and commands
+│   ├── button.css             # ds-btn, variants, sizes, groups, loading, pill
+│   ├── icon-btn.css           # ds-icon-btn, sizes, danger, ghost
+│   ├── copy-button.css        # ds-copy-btn, clipboard feedback
+│   ├── kbd.css                # ds-kbd, 3D key effect, combos
+│   ├── search.css             # ds-search, dropdown results, mobile expansion
+│   └── sortable.css           # ds-sortable, draggable list items
 ├── utilities/
 │   ├── index.css              # Imports all utility files
 │   ├── layout.css             # Container, flex, grid, gap, display, position
