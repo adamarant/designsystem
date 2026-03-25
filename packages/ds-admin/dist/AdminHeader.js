@@ -1,0 +1,8 @@
+'use client';
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useSidebar } from './SidebarContext.js';
+export function AdminHeader({ left, center, right }) {
+    const { isMobileOpen, openMobile, closeMobile } = useSidebar();
+    return (_jsx("header", { className: "ds-admin__header", children: _jsxs("div", { className: "ds-admin__header-inner", children: [left && _jsx("div", { className: "ds-flex ds-items-center ds-gap-3 ds-flex-1 ds-min-w-0", children: left }), center && _jsx("div", { className: "ds-flex ds-items-center ds-flex-1 ds-justify-center", children: center }), right && _jsx("div", { className: "ds-flex ds-items-center ds-gap-3 ds-ml-auto", children: right }), _jsx("button", { onClick: isMobileOpen ? closeMobile : openMobile, className: "ds-nav__icon-btn ds-admin__header-toggle", "aria-label": "Toggle menu", children: isMobileOpen ? (_jsxs("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: [_jsx("line", { x1: "18", y1: "6", x2: "6", y2: "18" }), _jsx("line", { x1: "6", y1: "6", x2: "18", y2: "18" })] })) : (_jsxs("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: [_jsx("line", { x1: "3", y1: "12", x2: "21", y2: "12" }), _jsx("line", { x1: "3", y1: "6", x2: "21", y2: "6" }), _jsx("line", { x1: "3", y1: "18", x2: "21", y2: "18" })] })) })] }) }));
+}
+//# sourceMappingURL=AdminHeader.js.map

@@ -1,0 +1,51 @@
+{
+  "name": "@digiko-npm/ds-admin",
+  "version": "0.1.0",
+  "description": "React admin layout components for @digiko-npm/designsystem — sidebar, header, layout shell, and sidebar state management.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "next": ">=14.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "typescript": "^5.7.0"
+  },
+  "keywords": [
+    "react",
+    "admin-layout",
+    "design-system",
+    "sidebar",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digiko-dev/designsystem.git",
+    "directory": "packages/ds-admin"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
