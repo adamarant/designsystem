@@ -58,6 +58,7 @@
 @import './scroll-area.css';
 @import './gallery.css';
 @import './hero.css';
+@import './admin-layout.css';
 
 /* === Content — Rich text and prose === */
 @import './prose.css';

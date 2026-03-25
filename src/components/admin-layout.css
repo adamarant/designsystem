@@ -1,0 +1,369 @@
+/* ==========================================================================
+   Component: Admin Layout
+   Parent-driven sidebar + header + main content system for admin dashboards.
+
+   All width/offset decisions are controlled by a SINGLE class on .ds-admin:
+   - .ds-admin--expanded   → sidebar 16rem, offsets 16rem
+   - .ds-admin--collapsed  → sidebar 4rem, offsets 4rem
+
+   This guarantees sidebar, header, and main content transition in perfect sync.
+
+   Variants:
+     ds-admin--expanded     Sidebar open (16rem) — default on desktop
+     ds-admin--collapsed    Sidebar collapsed (4rem) — icons only
+
+   Usage:
+     <div class="ds-admin ds-admin--expanded">
+       <aside class="ds-admin__sidebar">
+         <div class="ds-admin__sidebar-header">Logo</div>
+         <nav class="ds-admin__nav">
+           <a class="ds-admin__nav-item ds-admin__nav-item--active">
+             <span class="ds-admin__nav-icon">...</span>
+             <span class="ds-admin__nav-label">Dashboard</span>
+           </a>
+           <div class="ds-admin__subnav">
+             <a class="ds-admin__subnav-item">Sub page</a>
+           </div>
+         </nav>
+         <div class="ds-admin__sidebar-footer">
+           <a class="ds-admin__footer-link">Settings</a>
+         </div>
+       </aside>
+       <header class="ds-admin__header">
+         <div class="ds-admin__header-inner">...</div>
+       </header>
+       <main class="ds-admin__main">
+         <div class="ds-admin__content">...</div>
+       </main>
+     </div>
+
+   Mobile: Sidebar is hidden. Use ds-drawer for mobile menu.
+   Toggle .ds-admin__overlay when mobile menu is open.
+
+   ARIA:
+     - <aside> should have role="navigation" or aria-label="Admin navigation"
+     - Active nav item: aria-current="page"
+     - Mobile toggle: aria-expanded, aria-controls
+   ========================================================================== */
+
+/* --- Layout Variables --- */
+.ds-admin {
+  --ds-admin-sidebar-w: 16rem;
+  --ds-admin-sidebar-w-collapsed: 4rem;
+  --ds-admin-header-h: var(--ds-size-4);
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+
+.ds-admin__sidebar {
+  display: none;
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: var(--ds-z-dropdown);
+  height: 100dvh;
+  flex-direction: column;
+  border-inline-end: 1px solid var(--ds-color-border);
+  background-color: var(--ds-color-surface);
+  transition: width var(--ds-duration-normal) var(--ds-ease-default);
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .ds-admin__sidebar {
+    display: flex;
+  }
+
+  .ds-admin--expanded .ds-admin__sidebar {
+    width: var(--ds-admin-sidebar-w);
+  }
+
+  .ds-admin--collapsed .ds-admin__sidebar {
+    width: var(--ds-admin-sidebar-w-collapsed);
+  }
+
+  /* Centered items in collapsed state */
+  .ds-admin--collapsed .ds-admin__nav-item {
+    justify-content: center;
+  }
+
+  .ds-admin--collapsed .ds-admin__footer-link {
+    justify-content: center;
+  }
+
+  /* Hide labels in collapsed state */
+  .ds-admin--collapsed .ds-admin__nav-label,
+  .ds-admin--collapsed .ds-admin__sidebar-badge {
+    display: none;
+  }
+
+  /* Hide subnav in collapsed state */
+  .ds-admin--collapsed .ds-admin__subnav {
+    display: none;
+  }
+}
+
+/* --- Sidebar Header (logo area) --- */
+.ds-admin__sidebar-header {
+  display: flex;
+  min-height: var(--ds-admin-header-h);
+  align-items: center;
+  gap: var(--ds-space-2);
+  border-block-end: 1px solid var(--ds-color-border);
+  padding: var(--ds-space-4);
+}
+
+.ds-admin--collapsed .ds-admin__sidebar-header {
+  justify-content: center;
+}
+
+/* --- Sidebar Badge (env indicator, version, etc.) --- */
+.ds-admin__sidebar-badge {
+  border-radius: var(--ds-radius-md);
+  border: 1px solid var(--ds-color-border);
+  background-color: var(--ds-color-bg-elevated);
+  padding: var(--ds-space-0-5) var(--ds-space-1-5);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text-secondary);
+}
+
+/* --- Navigation Area --- */
+.ds-admin__nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--ds-space-6) var(--ds-space-3);
+}
+
+.ds-admin__nav > * + * {
+  margin-block-start: var(--ds-space-1);
+}
+
+/* --- Nav Item --- */
+.ds-admin__nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+  border-radius: var(--ds-radius-xl);
+  padding: var(--ds-space-2-5) var(--ds-space-3);
+  color: var(--ds-color-text-secondary);
+  transition:
+    background-color var(--ds-duration-fast) var(--ds-ease-default),
+    color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-admin__nav-item:hover {
+  background-color: var(--ds-color-surface-hover);
+  color: var(--ds-color-text);
+}
+
+.ds-admin__nav-item--active {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+}
+
+/* --- Nav Icon (fixed size prevents reflow on collapse) --- */
+.ds-admin__nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* --- Nav Label --- */
+.ds-admin__nav-label {
+  white-space: nowrap;
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+}
+
+/* --- Sub-Navigation (nested under a parent item) --- */
+.ds-admin__subnav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-0-5);
+  margin-inline-start: 1.75rem;
+  padding-inline-start: var(--ds-space-3);
+  padding-block: var(--ds-space-1);
+  border-inline-start: 1px solid var(--ds-color-border);
+}
+
+.ds-admin__subnav-item {
+  display: block;
+  padding: var(--ds-space-1-5) var(--ds-space-3);
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text-tertiary);
+  border-radius: var(--ds-radius-lg);
+  transition:
+    background-color var(--ds-duration-fast) var(--ds-ease-default),
+    color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-admin__subnav-item:hover:not(.ds-admin__subnav-item--active) {
+  background-color: var(--ds-color-surface-hover);
+  color: var(--ds-color-text-secondary);
+}
+
+.ds-admin__subnav-item--active {
+  background-color: var(--ds-color-bg-elevated);
+  color: var(--ds-color-text);
+}
+
+/* --- Sidebar Footer --- */
+.ds-admin__sidebar-footer {
+  border-block-start: 1px solid var(--ds-color-border);
+  padding: var(--ds-space-3);
+}
+
+.ds-admin__sidebar-footer > * + * {
+  margin-block-start: var(--ds-space-1);
+}
+
+/* --- Footer Link --- */
+.ds-admin__footer-link {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: var(--ds-space-3);
+  border-radius: var(--ds-radius-xl);
+  padding: var(--ds-space-2-5) var(--ds-space-3);
+  color: var(--ds-color-text-secondary);
+  transition:
+    background-color var(--ds-duration-fast) var(--ds-ease-default),
+    color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-admin__footer-link:hover {
+  background-color: var(--ds-color-surface-hover);
+  color: var(--ds-color-text);
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.ds-admin__header {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-start: 0;
+  z-index: 40;
+  height: var(--ds-admin-header-h);
+  border-block-end: 1px solid var(--ds-color-border);
+  background-color: var(--ds-color-nav-bg);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+}
+
+.ds-admin__header-inner {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--ds-space-6);
+  margin-inline-start: 0;
+  transition: margin-inline-start var(--ds-duration-normal) var(--ds-ease-default);
+}
+
+/* Hide toggle on desktop */
+@media (min-width: 1024px) {
+  .ds-admin__header-toggle {
+    display: none;
+  }
+
+  .ds-admin--expanded .ds-admin__header-inner {
+    margin-inline-start: var(--ds-admin-sidebar-w);
+  }
+
+  .ds-admin--collapsed .ds-admin__header-inner {
+    margin-inline-start: var(--ds-admin-sidebar-w-collapsed);
+  }
+}
+
+/* ==========================================================================
+   Main Content
+   ========================================================================== */
+
+.ds-admin__main {
+  padding-block-start: var(--ds-admin-header-h);
+  margin-inline-start: 0;
+  transition: margin-inline-start var(--ds-duration-normal) var(--ds-ease-default);
+}
+
+@media (min-width: 1024px) {
+  .ds-admin--expanded .ds-admin__main {
+    margin-inline-start: var(--ds-admin-sidebar-w);
+  }
+
+  .ds-admin--collapsed .ds-admin__main {
+    margin-inline-start: var(--ds-admin-sidebar-w-collapsed);
+  }
+}
+
+.ds-admin__content {
+  min-height: 100dvh;
+  padding: var(--ds-space-8) var(--ds-space-6);
+}
+
+@media (min-width: 768px) {
+  .ds-admin__content {
+    padding-inline: var(--ds-space-8);
+  }
+}
+
+@media (min-width: 1024px) {
+  .ds-admin__content {
+    padding-inline: var(--ds-space-12);
+  }
+}
+
+.ds-admin__container {
+  max-width: 80rem;
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   Mobile Overlay
+   ========================================================================== */
+
+.ds-admin__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-overlay);
+  background-color: var(--ds-color-overlay);
+}
+
+@media (min-width: 1024px) {
+  .ds-admin__overlay {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Mobile Menu (fullscreen drawer, no animation — uses ds-drawer)
+   ========================================================================== */
+
+.ds-admin__mobile-menu {
+  transition: none;
+}
+
+.ds-admin__mobile-menu .ds-drawer__content {
+  width: 100vw;
+  max-width: 100vw;
+  transition: none;
+}
+
+.ds-admin__mobile-menu .ds-drawer__body {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .ds-admin__mobile-menu {
+    display: none !important;
+  }
+}

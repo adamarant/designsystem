@@ -1,6 +1,6 @@
 {
   "name": "@digiko-npm/designsystem",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Design system — installable, extensible, indestructible.",
   "main": "dist/designsystem.css",
   "style": "dist/designsystem.css",
@@ -11,6 +11,7 @@
     "./base": "./src/base/index.css",
     "./components": "./src/components/index.css",
     "./components/accordion": "./src/components/accordion.css",
+    "./components/admin-layout": "./src/components/admin-layout.css",
     "./components/alert": "./src/components/alert.css",
     "./components/avatar": "./src/components/avatar.css",
     "./components/badge": "./src/components/badge.css",
