@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.6 */
+/* @ds/designsystem v0.9.7 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -7802,6 +7802,8 @@ button.ds-tag:focus-visible {
     inset-inline-start: 0;
     z-index: var(--ds-z-dropdown);
     min-width: 12rem;
+    display: flex;
+    flex-direction: column;
     padding-block: var(--ds-space-1-5);
     background-color: var(--ds-color-surface);
     border: 1px solid var(--ds-color-border);
@@ -7860,11 +7862,7 @@ button.ds-tag:focus-visible {
 .ds-dropdown__menu--lg {
  min-width: 20rem; }
 .ds-dropdown__menu--full {
-
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-    }
+ width: 100%; }
 .ds-dropdown__menu--auto {
  min-width: auto; }
 .ds-dropdown__item {
