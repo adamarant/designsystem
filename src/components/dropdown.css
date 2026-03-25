@@ -79,7 +79,11 @@
     /* --- Width variants --- */
     &--sm { min-width: 8rem; }
     &--lg { min-width: 20rem; }
-    &--full { width: 100%; }
+    &--full {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
     &--auto { min-width: auto; }
   }
 
