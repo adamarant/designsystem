@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Description List — Design System</title>
+  <title>Truncated Text — Design System</title>
   <link rel="stylesheet" href="../../dist/designsystem.css">
   <link rel="stylesheet" href="../_shared/demo.css">
 </head>
@@ -63,7 +63,7 @@
         <a href="../components/sortable.html" class="demo-sidebar__link">Sortable</a>
         <a href="../components/chip.html" class="demo-sidebar__link">Chip</a>
         <a href="../components/collapsible.html" class="demo-sidebar__link">Collapsible</a>
-        <a href="../components/description-list.html" class="demo-sidebar__link demo-sidebar__link--active">Description List</a>
+        <a href="../components/description-list.html" class="demo-sidebar__link">Description List</a>
         <a href="../components/result.html" class="demo-sidebar__link">Result</a>
         <a href="../components/number-input.html" class="demo-sidebar__link">Number Input</a>
         <a href="../components/pin-input.html" class="demo-sidebar__link">Pin Input</a>
@@ -71,7 +71,7 @@
         <a href="../components/gallery.html" class="demo-sidebar__link">Gallery</a>
         <a href="../components/scroll-area.html" class="demo-sidebar__link">Scroll Area</a>
         <a href="../components/color-picker.html" class="demo-sidebar__link">Color Picker</a>
-        <a href="../components/truncated-text.html" class="demo-sidebar__link">Truncated Text</a>
+        <a href="../components/truncated-text.html" class="demo-sidebar__link demo-sidebar__link--active">Truncated Text</a>
         <a href="../components/bottom-sheet.html" class="demo-sidebar__link">Bottom Sheet</a>
         <a href="../components/star-rating.html" class="demo-sidebar__link">Star Rating</a>
       </div>
@@ -95,70 +95,40 @@
     <main class="demo-main">
 
       <header>
-        <h1>Description List</h1>
-        <p>Key-value pairs display with horizontal, vertical, bordered, and striped layouts.</p>
+        <h1>Truncated Text</h1>
+        <p>Display long text (hashes, addresses, IDs) with middle or end truncation.</p>
         <div class="demo-meta">
           <span class="ds-badge">Common</span>
-          <code>@import '@digiko-npm/designsystem/components/description-list';</code>
+          <code>@import '@digiko-npm/designsystem/components/truncated-text';</code>
         </div>
       </header>
 
 
     <section class="demo-example">
-      <h2>Vertical (Default)</h2>
+      <h2>End Truncation</h2>
       <div class="demo-preview">
-        <div class="ds-description-list">
-  <div class="ds-description-list__item">
-    <dt class="ds-description-list__term">Name</dt>
-    <dd class="ds-description-list__detail">John Doe</dd>
-  </div>
-  <div class="ds-description-list__item">
-    <dt class="ds-description-list__term">Email</dt>
-    <dd class="ds-description-list__detail">john@example.com</dd>
-  </div>
-</div>
+        <span class="ds-truncate" style="max-width:12rem">0x1a2b3c4d5e6f7890abcdef1234567890abcdef</span>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-description-list&quot;&gt;
-  &lt;div class=&quot;ds-description-list__item&quot;&gt;
-    &lt;dt class=&quot;ds-description-list__term&quot;&gt;Name&lt;/dt&gt;
-    &lt;dd class=&quot;ds-description-list__detail&quot;&gt;John Doe&lt;/dd&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-description-list__item&quot;&gt;
-    &lt;dt class=&quot;ds-description-list__term&quot;&gt;Email&lt;/dt&gt;
-    &lt;dd class=&quot;ds-description-list__detail&quot;&gt;john@example.com&lt;/dd&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+        <pre><code>&lt;span class=&quot;ds-truncate&quot; style=&quot;max-width:12rem&quot;&gt;0x1a2b3c4d5e6f7890abcdef1234567890abcdef&lt;/span&gt;</code></pre>
       </details>
     </section>
 
     <section class="demo-example">
-      <h2>Horizontal & Bordered</h2>
+      <h2>Hash Display</h2>
       <div class="demo-preview">
-        <div class="ds-description-list ds-description-list--horizontal ds-description-list--bordered">
-  <div class="ds-description-list__item">
-    <dt class="ds-description-list__term">Status</dt>
-    <dd class="ds-description-list__detail">Active</dd>
-  </div>
-  <div class="ds-description-list__item">
-    <dt class="ds-description-list__term">Role</dt>
-    <dd class="ds-description-list__detail">Administrator</dd>
-  </div>
-</div>
+        <span class="ds-hash">
+  <span class="ds-hash__value">0x1a2b...cdef</span>
+  <button class="ds-copy-btn ds-copy-btn--sm" aria-label="Copy">&#128203;</button>
+</span>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-description-list ds-description-list--horizontal ds-description-list--bordered&quot;&gt;
-  &lt;div class=&quot;ds-description-list__item&quot;&gt;
-    &lt;dt class=&quot;ds-description-list__term&quot;&gt;Status&lt;/dt&gt;
-    &lt;dd class=&quot;ds-description-list__detail&quot;&gt;Active&lt;/dd&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-description-list__item&quot;&gt;
-    &lt;dt class=&quot;ds-description-list__term&quot;&gt;Role&lt;/dt&gt;
-    &lt;dd class=&quot;ds-description-list__detail&quot;&gt;Administrator&lt;/dd&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+        <pre><code>&lt;span class=&quot;ds-hash&quot;&gt;
+  &lt;span class=&quot;ds-hash__value&quot;&gt;0x1a2b...cdef&lt;/span&gt;
+  &lt;button class=&quot;ds-copy-btn ds-copy-btn--sm&quot; aria-label=&quot;Copy&quot;&gt;&amp;#128203;&lt;/button&gt;
+&lt;/span&gt;</code></pre>
       </details>
     </section>
 
@@ -166,19 +136,19 @@
       <h2>API</h2>
       <table class="ds-table">
         <thead><tr><th>Class</th><th>Type</th></tr></thead>
-        <tbody><tr><td><code>.ds-description-list</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-description-list__item</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-description-list__term</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-description-list__detail</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-description-list--horizontal</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-description-list--bordered</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-description-list--striped</code></td><td>Variant</td></tr></tbody>
+        <tbody><tr><td><code>.ds-truncate</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-hash</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-truncate__start</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-truncate__separator</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-truncate__end</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-truncate__value</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-truncate--middle</code></td><td>Modifier</td></tr></tbody>
       </table>
     </section>
 
     <nav class="demo-nav-footer">
-      <a href="collapsible.html">&larr; Collapsible</a>
-      <a href="result.html">Result &rarr;</a>
+      <a href="color-picker.html">&larr; Color Picker</a>
+      <a href="bottom-sheet.html">Bottom Sheet &rarr;</a>
     </nav>
     </main>
   </div>

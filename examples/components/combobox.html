@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Description List — Design System</title>
+  <title>Combobox — Design System</title>
   <link rel="stylesheet" href="../../dist/designsystem.css">
   <link rel="stylesheet" href="../_shared/demo.css">
 </head>
@@ -33,7 +33,7 @@
         <a href="../components/icon-btn.html" class="demo-sidebar__link">Icon Button</a>
         <a href="../components/field.html" class="demo-sidebar__link">Field</a>
         <a href="../components/stat-card.html" class="demo-sidebar__link">Stat Card</a>
-        <a href="../components/combobox.html" class="demo-sidebar__link">Combobox</a>
+        <a href="../components/combobox.html" class="demo-sidebar__link demo-sidebar__link--active">Combobox</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Essential</div>
@@ -63,7 +63,7 @@
         <a href="../components/sortable.html" class="demo-sidebar__link">Sortable</a>
         <a href="../components/chip.html" class="demo-sidebar__link">Chip</a>
         <a href="../components/collapsible.html" class="demo-sidebar__link">Collapsible</a>
-        <a href="../components/description-list.html" class="demo-sidebar__link demo-sidebar__link--active">Description List</a>
+        <a href="../components/description-list.html" class="demo-sidebar__link">Description List</a>
         <a href="../components/result.html" class="demo-sidebar__link">Result</a>
         <a href="../components/number-input.html" class="demo-sidebar__link">Number Input</a>
         <a href="../components/pin-input.html" class="demo-sidebar__link">Pin Input</a>
@@ -95,68 +95,58 @@
     <main class="demo-main">
 
       <header>
-        <h1>Description List</h1>
-        <p>Key-value pairs display with horizontal, vertical, bordered, and striped layouts.</p>
+        <h1>Combobox</h1>
+        <p>Text input with filterable dropdown results. Supports single/multi-select, inline creation, and keyboard navigation.</p>
         <div class="demo-meta">
-          <span class="ds-badge">Common</span>
-          <code>@import '@digiko-npm/designsystem/components/description-list';</code>
+          <span class="ds-badge">Core</span>
+          <code>@import '@digiko-npm/designsystem/components/combobox';</code>
         </div>
       </header>
 
 
     <section class="demo-example">
-      <h2>Vertical (Default)</h2>
+      <h2>Basic Combobox</h2>
       <div class="demo-preview">
-        <div class="ds-description-list">
-  <div class="ds-description-list__item">
-    <dt class="ds-description-list__term">Name</dt>
-    <dd class="ds-description-list__detail">John Doe</dd>
-  </div>
-  <div class="ds-description-list__item">
-    <dt class="ds-description-list__term">Email</dt>
-    <dd class="ds-description-list__detail">john@example.com</dd>
+        <div class="ds-combobox">
+  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" class="ds-combobox__input" placeholder="Search..." />
+  <div class="ds-combobox__listbox ds-combobox__listbox--open">
+    <div class="ds-combobox__option ds-combobox__option--active">Option 1</div>
+    <div class="ds-combobox__option">Option 2</div>
+    <div class="ds-combobox__option ds-combobox__option--selected">Option 3</div>
   </div>
 </div>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-description-list&quot;&gt;
-  &lt;div class=&quot;ds-description-list__item&quot;&gt;
-    &lt;dt class=&quot;ds-description-list__term&quot;&gt;Name&lt;/dt&gt;
-    &lt;dd class=&quot;ds-description-list__detail&quot;&gt;John Doe&lt;/dd&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-description-list__item&quot;&gt;
-    &lt;dt class=&quot;ds-description-list__term&quot;&gt;Email&lt;/dt&gt;
-    &lt;dd class=&quot;ds-description-list__detail&quot;&gt;john@example.com&lt;/dd&gt;
+        <pre><code>&lt;div class=&quot;ds-combobox&quot;&gt;
+  &lt;input class=&quot;ds-combobox__input&quot; placeholder=&quot;Search...&quot; /&gt;
+  &lt;div class=&quot;ds-combobox__listbox ds-combobox__listbox--open&quot;&gt;
+    &lt;div class=&quot;ds-combobox__option ds-combobox__option--active&quot;&gt;Option 1&lt;/div&gt;
+    &lt;div class=&quot;ds-combobox__option&quot;&gt;Option 2&lt;/div&gt;
+    &lt;div class=&quot;ds-combobox__option ds-combobox__option--selected&quot;&gt;Option 3&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
       </details>
     </section>
 
     <section class="demo-example">
-      <h2>Horizontal & Bordered</h2>
+      <h2>Multi-select with Tags</h2>
       <div class="demo-preview">
-        <div class="ds-description-list ds-description-list--horizontal ds-description-list--bordered">
-  <div class="ds-description-list__item">
-    <dt class="ds-description-list__term">Status</dt>
-    <dd class="ds-description-list__detail">Active</dd>
-  </div>
-  <div class="ds-description-list__item">
-    <dt class="ds-description-list__term">Role</dt>
-    <dd class="ds-description-list__detail">Administrator</dd>
+        <div class="ds-combobox ds-combobox--multi">
+  <div class="ds-combobox__input-area">
+    <span class="ds-combobox__tag">React <button class="ds-combobox__tag-remove">&times;</button></span>
+    <span class="ds-combobox__tag">Vue <button class="ds-combobox__tag-remove">&times;</button></span>
+    <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" class="ds-combobox__input" placeholder="Add more..." />
   </div>
 </div>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-description-list ds-description-list--horizontal ds-description-list--bordered&quot;&gt;
-  &lt;div class=&quot;ds-description-list__item&quot;&gt;
-    &lt;dt class=&quot;ds-description-list__term&quot;&gt;Status&lt;/dt&gt;
-    &lt;dd class=&quot;ds-description-list__detail&quot;&gt;Active&lt;/dd&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-description-list__item&quot;&gt;
-    &lt;dt class=&quot;ds-description-list__term&quot;&gt;Role&lt;/dt&gt;
-    &lt;dd class=&quot;ds-description-list__detail&quot;&gt;Administrator&lt;/dd&gt;
+        <pre><code>&lt;div class=&quot;ds-combobox ds-combobox--multi&quot;&gt;
+  &lt;div class=&quot;ds-combobox__input-area&quot;&gt;
+    &lt;span class=&quot;ds-combobox__tag&quot;&gt;React &lt;button class=&quot;ds-combobox__tag-remove&quot;&gt;&amp;times;&lt;/button&gt;&lt;/span&gt;
+    &lt;span class=&quot;ds-combobox__tag&quot;&gt;Vue &lt;button class=&quot;ds-combobox__tag-remove&quot;&gt;&amp;times;&lt;/button&gt;&lt;/span&gt;
+    &lt;input class=&quot;ds-combobox__input&quot; placeholder=&quot;Add more...&quot; /&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
       </details>
@@ -166,19 +156,34 @@
       <h2>API</h2>
       <table class="ds-table">
         <thead><tr><th>Class</th><th>Type</th></tr></thead>
-        <tbody><tr><td><code>.ds-description-list</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-description-list__item</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-description-list__term</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-description-list__detail</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-description-list--horizontal</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-description-list--bordered</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-description-list--striped</code></td><td>Variant</td></tr></tbody>
+        <tbody><tr><td><code>.ds-combobox</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-combobox__input-area</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__input</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__icon</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__clear</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__listbox</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__group</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__group-label</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__option</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__option-check</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__option-desc</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__create</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__empty</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__loading</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__tag</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox__tag-remove</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-combobox--error</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-combobox--xs</code></td><td>Size</td></tr>
+          <tr><td><code>.ds-combobox--sm</code></td><td>Size</td></tr>
+          <tr><td><code>.ds-combobox--lg</code></td><td>Size</td></tr>
+          <tr><td><code>.ds-combobox--open</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-combobox--multi</code></td><td>Modifier</td></tr></tbody>
       </table>
     </section>
 
     <nav class="demo-nav-footer">
-      <a href="collapsible.html">&larr; Collapsible</a>
-      <a href="result.html">Result &rarr;</a>
+      <a href="result.html">&larr; Result</a>
+      <a href="number-input.html">Number Input &rarr;</a>
     </nav>
     </main>
   </div>

@@ -81,7 +81,7 @@
 }
 
 /* Stand-alone input (no input-area wrapper) */
-input.ds-combobox__input {
+.ds-combobox > .ds-combobox__input {
   width: 100%;
   min-height: var(--ds-size-3);
   padding: 0 var(--ds-space-3);
@@ -93,11 +93,11 @@ input.ds-combobox__input {
     box-shadow var(--ds-duration-fast) var(--ds-ease-default);
 }
 
-input.ds-combobox__input:hover {
+.ds-combobox > .ds-combobox__input:hover {
   border-color: var(--ds-color-border-hover);
 }
 
-input.ds-combobox__input:focus {
+.ds-combobox > .ds-combobox__input:focus {
   border-color: var(--ds-color-border-active);
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
@@ -355,39 +355,36 @@ input.ds-combobox__input:focus {
 
 /* XS */
 .ds-combobox--xs .ds-combobox__input-area,
-.ds-combobox--xs input.ds-combobox__input {
+.ds-combobox--xs > .ds-combobox__input {
   min-height: var(--ds-size-1);
   padding: 0 var(--ds-space-2);
   border-radius: var(--ds-radius-md);
 }
 
-.ds-combobox--xs .ds-combobox__input,
-.ds-combobox--xs input.ds-combobox__input {
+.ds-combobox--xs .ds-combobox__input {
   font-size: var(--ds-text-xs);
 }
 
 /* SM */
 .ds-combobox--sm .ds-combobox__input-area,
-.ds-combobox--sm input.ds-combobox__input {
+.ds-combobox--sm > .ds-combobox__input {
   min-height: var(--ds-size-2);
   padding: 0 var(--ds-space-2-5);
   border-radius: var(--ds-radius-md);
 }
 
-.ds-combobox--sm .ds-combobox__input,
-.ds-combobox--sm input.ds-combobox__input {
+.ds-combobox--sm .ds-combobox__input {
   font-size: var(--ds-text-sm);
 }
 
 /* LG */
 .ds-combobox--lg .ds-combobox__input-area,
-.ds-combobox--lg input.ds-combobox__input {
+.ds-combobox--lg > .ds-combobox__input {
   min-height: var(--ds-size-4);
   padding: 0 var(--ds-space-4);
 }
 
-.ds-combobox--lg .ds-combobox__input,
-.ds-combobox--lg input.ds-combobox__input {
+.ds-combobox--lg .ds-combobox__input {
   font-size: var(--ds-text-lg);
 }
 
@@ -396,12 +393,12 @@ input.ds-combobox__input:focus {
    ========================================================================== */
 
 .ds-combobox--error .ds-combobox__input-area,
-.ds-combobox--error input.ds-combobox__input {
+.ds-combobox--error > .ds-combobox__input {
   border-color: var(--ds-color-error);
 }
 
 .ds-combobox--error .ds-combobox__input-area:focus-within,
-.ds-combobox--error input.ds-combobox__input:focus {
+.ds-combobox--error > .ds-combobox__input:focus {
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-error);
 }
 

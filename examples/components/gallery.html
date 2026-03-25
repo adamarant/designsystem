@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Description List — Design System</title>
+  <title>Gallery — Design System</title>
   <link rel="stylesheet" href="../../dist/designsystem.css">
   <link rel="stylesheet" href="../_shared/demo.css">
 </head>
@@ -63,12 +63,12 @@
         <a href="../components/sortable.html" class="demo-sidebar__link">Sortable</a>
         <a href="../components/chip.html" class="demo-sidebar__link">Chip</a>
         <a href="../components/collapsible.html" class="demo-sidebar__link">Collapsible</a>
-        <a href="../components/description-list.html" class="demo-sidebar__link demo-sidebar__link--active">Description List</a>
+        <a href="../components/description-list.html" class="demo-sidebar__link">Description List</a>
         <a href="../components/result.html" class="demo-sidebar__link">Result</a>
         <a href="../components/number-input.html" class="demo-sidebar__link">Number Input</a>
         <a href="../components/pin-input.html" class="demo-sidebar__link">Pin Input</a>
         <a href="../components/copy-button.html" class="demo-sidebar__link">Copy Button</a>
-        <a href="../components/gallery.html" class="demo-sidebar__link">Gallery</a>
+        <a href="../components/gallery.html" class="demo-sidebar__link demo-sidebar__link--active">Gallery</a>
         <a href="../components/scroll-area.html" class="demo-sidebar__link">Scroll Area</a>
         <a href="../components/color-picker.html" class="demo-sidebar__link">Color Picker</a>
         <a href="../components/truncated-text.html" class="demo-sidebar__link">Truncated Text</a>
@@ -95,68 +95,37 @@
     <main class="demo-main">
 
       <header>
-        <h1>Description List</h1>
-        <p>Key-value pairs display with horizontal, vertical, bordered, and striped layouts.</p>
+        <h1>Gallery</h1>
+        <p>Image gallery with main image, thumbnail strip, and lightbox overlay.</p>
         <div class="demo-meta">
           <span class="ds-badge">Common</span>
-          <code>@import '@digiko-npm/designsystem/components/description-list';</code>
+          <code>@import '@digiko-npm/designsystem/components/gallery';</code>
         </div>
       </header>
 
 
     <section class="demo-example">
-      <h2>Vertical (Default)</h2>
+      <h2>Thumbnail Strip</h2>
       <div class="demo-preview">
-        <div class="ds-description-list">
-  <div class="ds-description-list__item">
-    <dt class="ds-description-list__term">Name</dt>
-    <dd class="ds-description-list__detail">John Doe</dd>
-  </div>
-  <div class="ds-description-list__item">
-    <dt class="ds-description-list__term">Email</dt>
-    <dd class="ds-description-list__detail">john@example.com</dd>
+        <div class="ds-gallery">
+  <div class="ds-gallery__main" style="height:200px;background:var(--ds-color-bg-muted);border-radius:var(--ds-radius-xl);display:flex;align-items:center;justify-content:center;color:var(--ds-color-text-tertiary)">Main Image</div>
+  <div class="ds-gallery__thumbs">
+    <button class="ds-gallery__thumb ds-gallery__thumb--active" style="background:var(--ds-color-bg-muted)"></button>
+    <button class="ds-gallery__thumb" style="background:var(--ds-color-bg-elevated)"></button>
+    <button class="ds-gallery__thumb" style="background:var(--ds-color-bg-elevated)"></button>
+    <button class="ds-gallery__thumb-more">+3</button>
   </div>
 </div>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-description-list&quot;&gt;
-  &lt;div class=&quot;ds-description-list__item&quot;&gt;
-    &lt;dt class=&quot;ds-description-list__term&quot;&gt;Name&lt;/dt&gt;
-    &lt;dd class=&quot;ds-description-list__detail&quot;&gt;John Doe&lt;/dd&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-description-list__item&quot;&gt;
-    &lt;dt class=&quot;ds-description-list__term&quot;&gt;Email&lt;/dt&gt;
-    &lt;dd class=&quot;ds-description-list__detail&quot;&gt;john@example.com&lt;/dd&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-      </details>
-    </section>
-
-    <section class="demo-example">
-      <h2>Horizontal & Bordered</h2>
-      <div class="demo-preview">
-        <div class="ds-description-list ds-description-list--horizontal ds-description-list--bordered">
-  <div class="ds-description-list__item">
-    <dt class="ds-description-list__term">Status</dt>
-    <dd class="ds-description-list__detail">Active</dd>
-  </div>
-  <div class="ds-description-list__item">
-    <dt class="ds-description-list__term">Role</dt>
-    <dd class="ds-description-list__detail">Administrator</dd>
-  </div>
-</div>
-      </div>
-      <details class="demo-code">
-        <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-description-list ds-description-list--horizontal ds-description-list--bordered&quot;&gt;
-  &lt;div class=&quot;ds-description-list__item&quot;&gt;
-    &lt;dt class=&quot;ds-description-list__term&quot;&gt;Status&lt;/dt&gt;
-    &lt;dd class=&quot;ds-description-list__detail&quot;&gt;Active&lt;/dd&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-description-list__item&quot;&gt;
-    &lt;dt class=&quot;ds-description-list__term&quot;&gt;Role&lt;/dt&gt;
-    &lt;dd class=&quot;ds-description-list__detail&quot;&gt;Administrator&lt;/dd&gt;
+        <pre><code>&lt;div class=&quot;ds-gallery&quot;&gt;
+  &lt;div class=&quot;ds-gallery__main&quot; style=&quot;height:200px;background:var(--ds-color-bg-muted);border-radius:var(--ds-radius-xl);display:flex;align-items:center;justify-content:center;color:var(--ds-color-text-tertiary)&quot;&gt;Main Image&lt;/div&gt;
+  &lt;div class=&quot;ds-gallery__thumbs&quot;&gt;
+    &lt;button class=&quot;ds-gallery__thumb ds-gallery__thumb--active&quot; style=&quot;background:var(--ds-color-bg-muted)&quot;&gt;&lt;/button&gt;
+    &lt;button class=&quot;ds-gallery__thumb&quot; style=&quot;background:var(--ds-color-bg-elevated)&quot;&gt;&lt;/button&gt;
+    &lt;button class=&quot;ds-gallery__thumb&quot; style=&quot;background:var(--ds-color-bg-elevated)&quot;&gt;&lt;/button&gt;
+    &lt;button class=&quot;ds-gallery__thumb-more&quot;&gt;+3&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
       </details>
@@ -166,19 +135,24 @@
       <h2>API</h2>
       <table class="ds-table">
         <thead><tr><th>Class</th><th>Type</th></tr></thead>
-        <tbody><tr><td><code>.ds-description-list</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-description-list__item</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-description-list__term</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-description-list__detail</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-description-list--horizontal</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-description-list--bordered</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-description-list--striped</code></td><td>Variant</td></tr></tbody>
+        <tbody><tr><td><code>.ds-gallery</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-lightbox</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-gallery__main</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-gallery__thumbs</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-gallery__thumb</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-gallery__thumb-more</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-gallery__image</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-gallery__close</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-gallery__prev</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-gallery__next</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-gallery__counter</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-gallery--open</code></td><td>Modifier</td></tr></tbody>
       </table>
     </section>
 
     <nav class="demo-nav-footer">
-      <a href="collapsible.html">&larr; Collapsible</a>
-      <a href="result.html">Result &rarr;</a>
+      <a href="copy-button.html">&larr; Copy Button</a>
+      <a href="scroll-area.html">Scroll Area &rarr;</a>
     </nav>
     </main>
   </div>
