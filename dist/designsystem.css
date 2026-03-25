@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.4 */
+/* @ds/designsystem v0.9.5 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -7860,7 +7860,7 @@ button.ds-tag:focus-visible {
 .ds-dropdown__menu--lg {
  min-width: 20rem; }
 .ds-dropdown__menu--full {
- min-width: 100%; }
+ width: 100%; }
 .ds-dropdown__menu--auto {
  min-width: auto; }
 .ds-dropdown__item {
