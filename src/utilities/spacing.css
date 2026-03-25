@@ -85,8 +85,15 @@
 
 .ds-mt-0\.5 { margin-block-start: var(--ds-space-0-5); }
 .ds-mt-3    { margin-block-start: var(--ds-space-3); }
+.ds-mt-10   { margin-block-start: var(--ds-space-10); }
+.ds-mt-12   { margin-block-start: var(--ds-space-12); }
+.ds-mt-16   { margin-block-start: var(--ds-space-16); }
 .ds-mb-0\.5 { margin-block-end: var(--ds-space-0-5); }
 .ds-mb-3    { margin-block-end: var(--ds-space-3); }
+.ds-mb-10   { margin-block-end: var(--ds-space-10); }
+.ds-mb-12   { margin-block-end: var(--ds-space-12); }
+.ds-mb-16   { margin-block-end: var(--ds-space-16); }
+.ds-mb-20   { margin-block-end: var(--ds-space-20); }
 
 /* --- Padding (granular) --- */
 .ds-p-0\.5 { padding: var(--ds-space-0-5); }
@@ -123,7 +130,19 @@
 .ds-space-y-6 > * + * { margin-block-start: var(--ds-space-6); }
 .ds-space-y-8 > * + * { margin-block-start: var(--ds-space-8); }
 
+/* --- Space-Y (fractional) --- */
+.ds-space-y-1\.5 > * + * { margin-block-start: var(--ds-space-1-5); }
+
 /* --- Responsive: Padding --- */
+@media (min-width: 640px) {
+  .ds-sm\:p-6   { padding: var(--ds-space-6); }
+  .ds-sm\:px-0  { padding-inline: var(--ds-space-0); }
+  .ds-sm\:px-3  { padding-inline: var(--ds-space-3); }
+  .ds-sm\:px-4  { padding-inline: var(--ds-space-4); }
+  .ds-sm\:px-6  { padding-inline: var(--ds-space-6); }
+  .ds-sm\:py-3  { padding-block: var(--ds-space-3); }
+}
+
 @media (min-width: 768px) {
   .ds-md\:px-4 { padding-inline: var(--ds-space-4); }
   .ds-md\:px-6 { padding-inline: var(--ds-space-6); }

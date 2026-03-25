@@ -57,6 +57,10 @@
 @import './collapsible.css';
 @import './scroll-area.css';
 @import './gallery.css';
+@import './hero.css';
+
+/* === Content — Rich text and prose === */
+@import './prose.css';
 
 /* === Action — Trigger operations and commands === */
 @import './button.css';

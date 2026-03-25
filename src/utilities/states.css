@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Utilities: State Variants
+   Hover, focus, active, focus-within, placeholder, and group-hover
+   modifiers for DS utility classes.
+   ========================================================================== */
+
+/* --- Group Marker (enables group-hover on descendants) ---
+   Supports both .group and .ds-group for compatibility. */
+.ds-group { /* marker — no styles */ }
+
+/* --- Hover: Background --- */
+.hover\:ds-bg-base:hover      { background-color: var(--ds-color-bg); }
+.hover\:ds-bg-elevated:hover  { background-color: var(--ds-color-bg-elevated); }
+.hover\:ds-bg-muted:hover     { background-color: var(--ds-color-bg-muted); }
+.hover\:ds-bg-subtle:hover    { background-color: var(--ds-color-bg-subtle); }
+.hover\:ds-bg-surface:hover   { background-color: var(--ds-color-surface); }
+.hover\:ds-bg-inverted:hover  { background-color: var(--ds-color-inverted); }
+.hover\:ds-bg-info:hover      { background-color: var(--ds-color-info); }
+
+/* --- Hover: Text --- */
+.hover\:ds-text-primary:hover     { color: var(--ds-color-text); }
+.hover\:ds-text-secondary:hover   { color: var(--ds-color-text-secondary); }
+.hover\:ds-text-interactive:hover { color: var(--ds-color-interactive); }
+
+/* --- Hover: Border --- */
+.hover\:ds-border-hover:hover       { border-color: var(--ds-color-border-hover); }
+.hover\:ds-border-interactive:hover { border-color: var(--ds-color-interactive); }
+
+/* --- Hover: Decoration --- */
+.hover\:ds-underline:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+/* --- Focus --- */
+.focus\:ds-outline-none:focus { outline: none; }
+.focus\:ds-ring-0:focus       { box-shadow: none; }
+.focus\:ds-ring-2:focus       { box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive); }
+
+/* --- Focus-Within --- */
+.focus-within\:ds-border-interactive:focus-within { border-color: var(--ds-color-interactive); }
+
+/* --- Active --- */
+.active\:ds-bg-elevated:active    { background-color: var(--ds-color-bg-elevated); }
+.active\:ds-text-secondary:active { color: var(--ds-color-text-secondary); }
+
+/* --- Placeholder --- */
+.placeholder\:ds-text-tertiary::placeholder { color: var(--ds-color-text-tertiary); }
+
+/* --- Group Hover (descendants of .group or .ds-group on hover) --- */
+.group:hover > .group-hover\:ds-text-interactive,
+.group:hover   .group-hover\:ds-text-interactive,
+.ds-group:hover > .group-hover\:ds-text-interactive,
+.ds-group:hover   .group-hover\:ds-text-interactive {
+  color: var(--ds-color-interactive);
+}
+
+.group:hover > .group-hover\:ds-scale-110,
+.group:hover   .group-hover\:ds-scale-110,
+.ds-group:hover > .group-hover\:ds-scale-110,
+.ds-group:hover   .group-hover\:ds-scale-110 {
+  transform: scale(1.1);
+}
+
+.group:hover > .group-hover\:ds-translate-x-1,
+.group:hover   .group-hover\:ds-translate-x-1,
+.ds-group:hover > .group-hover\:ds-translate-x-1,
+.ds-group:hover   .group-hover\:ds-translate-x-1 {
+  transform: translateX(0.25rem);
+}
+
+.group:hover > .group-hover\:ds-opacity-100,
+.group:hover   .group-hover\:ds-opacity-100,
+.ds-group:hover > .group-hover\:ds-opacity-100,
+.ds-group:hover   .group-hover\:ds-opacity-100 {
+  opacity: 1;
+}

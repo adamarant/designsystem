@@ -1,6 +1,6 @@
 {
   "name": "@digiko-npm/designsystem",
-  "version": "0.8.3",
+  "version": "0.9.0",
   "description": "Design system — installable, extensible, indestructible.",
   "main": "dist/designsystem.css",
   "style": "dist/designsystem.css",
@@ -35,6 +35,7 @@
     "./components/empty-state": "./src/components/empty-state.css",
     "./components/field": "./src/components/field.css",
     "./components/gallery": "./src/components/gallery.css",
+    "./components/hero": "./src/components/hero.css",
     "./components/icon-btn": "./src/components/icon-btn.css",
     "./components/input": "./src/components/input.css",
     "./components/kbd": "./src/components/kbd.css",
@@ -45,6 +46,7 @@
     "./components/pin-input": "./src/components/pin-input.css",
     "./components/popover": "./src/components/popover.css",
     "./components/progress": "./src/components/progress.css",
+    "./components/prose": "./src/components/prose.css",
     "./components/result": "./src/components/result.css",
     "./components/scroll-area": "./src/components/scroll-area.css",
     "./components/search": "./src/components/search.css",

@@ -1,0 +1,119 @@
+/* ==========================================================================
+   Component: Prose Block
+   Full markdown-rendered content styling. Use for CMS output, blog posts,
+   documentation, or any container with user-generated rich text.
+
+   Note: The lighter `.ds-prose` in base/typography.css handles simple
+   inline rich text (p + p spacing, links, lists). This component is for
+   comprehensive markdown rendering with headings, code blocks, blockquotes,
+   images, and horizontal rules.
+
+   Usage:
+     <div class="ds-prose-block">
+       <h2>Title</h2>
+       <p>Paragraph with <a href="#">link</a> and <code>code</code>.</p>
+       <pre><code>code block</code></pre>
+       <blockquote>Quote</blockquote>
+     </div>
+   ========================================================================== */
+
+.ds-prose-block {
+  line-height: var(--ds-leading-relaxed);
+}
+
+.ds-prose-block :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-font-display-weight);
+  letter-spacing: var(--ds-tracking-tight);
+  color: var(--ds-color-text);
+  margin-block-start: 1.5em;
+  margin-block-end: 0.5em;
+}
+
+.ds-prose-block :is(h1, h2, h3, h4, h5, h6):first-child {
+  margin-block-start: 0;
+}
+
+.ds-prose-block p {
+  color: var(--ds-color-text-secondary);
+  margin-block-end: 1em;
+}
+
+.ds-prose-block p:last-child {
+  margin-block-end: 0;
+}
+
+.ds-prose-block a {
+  color: var(--ds-color-interactive);
+  text-decoration: none;
+}
+
+.ds-prose-block a:hover {
+  text-decoration: underline;
+}
+
+.ds-prose-block strong {
+  color: var(--ds-color-text);
+  font-weight: var(--ds-weight-semibold);
+}
+
+.ds-prose-block code {
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  background-color: var(--ds-color-bg-elevated);
+  padding: 0.125em 0.375em;
+  border-radius: var(--ds-radius-sm);
+}
+
+.ds-prose-block pre {
+  background-color: var(--ds-color-bg-elevated);
+  padding: var(--ds-space-4);
+  border-radius: var(--ds-radius-lg);
+  overflow-x: auto;
+  margin-block-end: 1em;
+}
+
+.ds-prose-block pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.ds-prose-block ul,
+.ds-prose-block ol {
+  padding-inline-start: 1.5em;
+  margin-block-end: 1em;
+  color: var(--ds-color-text-secondary);
+}
+
+.ds-prose-block li {
+  margin-block-end: 0.25em;
+}
+
+.ds-prose-block ul {
+  list-style-type: disc;
+}
+
+.ds-prose-block ol {
+  list-style-type: decimal;
+}
+
+.ds-prose-block blockquote {
+  border-inline-start: 3px solid var(--ds-color-border);
+  padding-inline-start: var(--ds-space-4);
+  color: var(--ds-color-text-secondary);
+  font-style: italic;
+  margin-block-end: 1em;
+}
+
+.ds-prose-block hr {
+  border: none;
+  border-block-start: 1px solid var(--ds-color-border);
+  margin-block: var(--ds-space-6);
+}
+
+.ds-prose-block img {
+  max-width: 100%;
+  border-radius: var(--ds-radius-lg);
+  margin-block-end: 1em;
+}

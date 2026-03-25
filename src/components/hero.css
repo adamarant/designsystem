@@ -1,0 +1,113 @@
+/* ==========================================================================
+   Component: Hero
+   Full-width hero section with background image, gradient overlay,
+   and optional frosted glass backdrop.
+
+   Intentionally uses theme-independent colors for text on photo backgrounds.
+   The overlay uses color-mix() with --ds-color-bg for theme-aware darkening
+   while title/subtitle stay white for readability on any photo.
+
+   Usage:
+     <section class="ds-hero" style="background-image: url(...)">
+       <div class="ds-hero__overlay"></div>
+       <div class="ds-hero__content ds-container">
+         <div class="ds-hero__backdrop">
+           <h1 class="ds-hero__title ds-hero-title">Heading</h1>
+           <p class="ds-hero__subtitle">Subheading</p>
+         </div>
+       </div>
+     </section>
+
+   Variants:
+     ds-hero--full      Generous padding, auto height (no min-height)
+     ds-hero__overlay--subtle   Lighter overlay, photo shows through more
+
+   ARIA: role="banner" or within <header>. Background images are decorative
+   — add meaningful content in the markup, not in CSS.
+   ========================================================================== */
+
+.ds-hero {
+  position: relative;
+  min-height: 28rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+}
+
+/* --- Full variant (generous padding, no min-height) --- */
+.ds-hero--full {
+  min-height: auto;
+  padding-block: var(--ds-space-16);
+}
+
+@media (min-width: 768px) {
+  .ds-hero--full {
+    padding-block: var(--ds-space-20);
+  }
+}
+
+/* --- Gradient overlay (theme-aware darkening) --- */
+.ds-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--ds-color-bg) 70%, transparent),
+    color-mix(in srgb, var(--ds-color-bg) 92%, transparent)
+  );
+}
+
+.ds-hero__overlay--subtle {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--ds-color-bg) 20%, transparent),
+    color-mix(in srgb, var(--ds-color-bg) 40%, transparent)
+  );
+}
+
+[data-theme="dark"] .ds-hero__overlay {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--ds-color-bg) 80%, transparent),
+    color-mix(in srgb, var(--ds-color-bg) 95%, transparent)
+  );
+}
+
+[data-theme="dark"] .ds-hero__overlay--subtle {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--ds-color-bg) 30%, transparent),
+    color-mix(in srgb, var(--ds-color-bg) 50%, transparent)
+  );
+}
+
+/* --- Content wrapper (above overlay) --- */
+.ds-hero__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* --- Frosted glass backdrop --- */
+.ds-hero__backdrop {
+  display: block;
+  padding: var(--ds-space-8);
+  border-radius: var(--ds-radius-2xl);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(32px) saturate(1.6);
+  -webkit-backdrop-filter: blur(32px) saturate(1.6);
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+/* --- Title & subtitle (theme-independent white for photo readability) --- */
+.ds-hero__title {
+  color: #fff;
+}
+
+.ds-hero__subtitle {
+  color: rgba(255, 255, 255, 0.85);
+}

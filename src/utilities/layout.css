@@ -246,6 +246,27 @@
   .ds-xl\:grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
 }
 
+/* --- Responsive: Flex (extended) --- */
+@media (min-width: 640px) {
+  .ds-sm\:flex-none       { flex: none; }
+  .ds-sm\:items-center    { align-items: center; }
+  .ds-sm\:justify-between { justify-content: space-between; }
+  .ds-sm\:gap-4           { gap: var(--ds-space-4); }
+  .ds-sm\:gap-8           { gap: var(--ds-space-8); }
+  .ds-sm\:inline          { display: inline; }
+}
+
+@media (min-width: 768px) {
+  .ds-md\:grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+}
+
+@media (min-width: 1024px) /* --ds-breakpoint-lg */ {
+  .ds-lg\:flex-row { flex-direction: row; }
+  .ds-lg\:gap-4    { gap: var(--ds-space-4); }
+  .ds-lg\:gap-6    { gap: var(--ds-space-6); }
+  .ds-lg\:gap-8    { gap: var(--ds-space-8); }
+}
+
 /* --- Aspect Ratio --- */
 .ds-aspect-square { aspect-ratio: 1; }
 .ds-aspect-video  { aspect-ratio: 16/9; }
