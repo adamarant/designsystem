@@ -1,24 +1,39 @@
 {
   "categories": [
     {
-      "id": "core",
-      "label": "Core",
-      "description": "Foundational UI building blocks"
+      "id": "form",
+      "label": "Form",
+      "description": "Inputs, selectors, and form controls"
     },
     {
-      "id": "essential",
-      "label": "Essential",
-      "description": "Commonly needed interaction patterns"
+      "id": "data-display",
+      "label": "Data Display",
+      "description": "Present information and status"
     },
     {
-      "id": "common",
-      "label": "Common",
-      "description": "Frequently used data and navigation patterns"
+      "id": "navigation",
+      "label": "Navigation",
+      "description": "Wayfinding and page structure"
     },
     {
-      "id": "advanced",
-      "label": "Advanced",
-      "description": "Specialized and complex components"
+      "id": "feedback",
+      "label": "Feedback",
+      "description": "Communicate status and system messages"
+    },
+    {
+      "id": "overlay",
+      "label": "Overlay",
+      "description": "Floating panels and dialogs"
+    },
+    {
+      "id": "layout",
+      "label": "Layout",
+      "description": "Structure and organize content"
+    },
+    {
+      "id": "action",
+      "label": "Action",
+      "description": "Trigger operations and commands"
     }
   ],
   "components": [
@@ -26,7 +41,7 @@
       "name": "button",
       "title": "Button",
       "description": "Inverted primary, rounded-full CTAs, refined sizing.",
-      "category": "core",
+      "category": "action",
       "classes": [
         ".ds-btn",
         ".ds-btn-group"
@@ -69,7 +84,7 @@
       "name": "card",
       "title": "Card",
       "description": "Surface + border, hover with shadow lift, rounded-xl.",
-      "category": "core",
+      "category": "layout",
       "classes": [
         ".ds-card"
       ],
@@ -109,7 +124,7 @@
       "name": "input",
       "title": "Input",
       "description": "Form inputs with surface bg, clean borders, focus ring.",
-      "category": "core",
+      "category": "form",
       "classes": [
         ".ds-input",
         ".ds-textarea",
@@ -154,7 +169,7 @@
       "name": "badge",
       "title": "Badge",
       "description": "Pill shape, border + subtle bg, clean and refined.",
-      "category": "core",
+      "category": "data-display",
       "classes": [
         ".ds-badge"
       ],
@@ -188,7 +203,7 @@
       "name": "nav",
       "title": "Navigation",
       "description": "Fixed glass header, backdrop-blur, h-16. Clean links.",
-      "category": "core",
+      "category": "navigation",
       "classes": [
         ".ds-nav",
         ".ds-sidebar"
@@ -223,7 +238,7 @@
       "name": "modal",
       "title": "Modal",
       "description": "Backdrop blur, shadow-2xl, rounded-xl. Smooth scale transition.",
-      "category": "core",
+      "category": "overlay",
       "classes": [
         ".ds-modal"
       ],
@@ -257,7 +272,7 @@
       "name": "toast",
       "title": "Toast",
       "description": "Notification toasts with positions and enter/exit animations.",
-      "category": "core",
+      "category": "feedback",
       "classes": [
         ".ds-toast",
         ".ds-toast-container"
@@ -287,7 +302,7 @@
       "name": "table",
       "title": "Table",
       "description": "Data table with compact variant and scrollable wrapper.",
-      "category": "core",
+      "category": "data-display",
       "classes": [
         ".ds-table",
         ".ds-table-wrapper"
@@ -313,7 +328,7 @@
       "name": "tabs",
       "title": "Tabs",
       "description": "Horizontal/vertical tab navigation with pill, small, and full-width variants.",
-      "category": "essential",
+      "category": "navigation",
       "classes": [
         ".ds-tabs",
         ".ds-tab",
@@ -357,7 +372,7 @@
       "name": "alert",
       "title": "Alert",
       "description": "Contextual feedback banners with semantic variants and dismissibility.",
-      "category": "essential",
+      "category": "feedback",
       "classes": [
         ".ds-alert"
       ],
@@ -393,7 +408,7 @@
       "name": "divider",
       "title": "Divider",
       "description": "Horizontal and vertical separators with optional centered label.",
-      "category": "essential",
+      "category": "layout",
       "classes": [
         ".ds-divider"
       ],
@@ -421,7 +436,7 @@
       "name": "dropdown",
       "title": "Dropdown",
       "description": "Floating menu with surface bg, scale transition, keyboard-friendly items.",
-      "category": "essential",
+      "category": "overlay",
       "classes": [
         ".ds-dropdown"
       ],
@@ -451,7 +466,7 @@
       "name": "tooltip",
       "title": "Tooltip",
       "description": "Inverted bubble with arrow, positioned via modifier classes.",
-      "category": "essential",
+      "category": "feedback",
       "classes": [
         ".ds-tooltip"
       ],
@@ -479,7 +494,7 @@
       "name": "avatar",
       "title": "Avatar",
       "description": "User photos, token images, initials. Stackable in groups.",
-      "category": "essential",
+      "category": "data-display",
       "classes": [
         ".ds-avatar",
         ".ds-avatar-group"
@@ -518,7 +533,7 @@
       "name": "skeleton",
       "title": "Skeleton",
       "description": "Loading placeholders with a subtle pulse animation.",
-      "category": "essential",
+      "category": "data-display",
       "classes": [
         ".ds-skeleton"
       ],
@@ -555,7 +570,7 @@
       "name": "empty-state",
       "title": "Empty State",
       "description": "Centered message for when there's no data to display.",
-      "category": "essential",
+      "category": "feedback",
       "classes": [
         ".ds-empty-state"
       ],
@@ -586,7 +601,7 @@
       "name": "toggle",
       "title": "Toggle",
       "description": "A toggle (switch) control for binary on/off states.",
-      "category": "common",
+      "category": "form",
       "classes": [
         ".ds-toggle",
         ".ds-toggle-label"
@@ -621,7 +636,7 @@
       "name": "breadcrumb",
       "title": "Breadcrumb",
       "description": "A horizontal breadcrumb trail for hierarchical navigation.",
-      "category": "common",
+      "category": "navigation",
       "classes": [
         ".ds-breadcrumb"
       ],
@@ -650,7 +665,7 @@
       "name": "pagination",
       "title": "Pagination",
       "description": "A row of page-number controls for navigating multi-page content.",
-      "category": "common",
+      "category": "navigation",
       "classes": [
         ".ds-pagination"
       ],
@@ -684,7 +699,7 @@
       "name": "tag",
       "title": "Tag",
       "description": "Interactive, optionally removable tag for categorisation and filtering.",
-      "category": "common",
+      "category": "data-display",
       "classes": [
         ".ds-tag"
       ],
@@ -726,7 +741,7 @@
       "name": "accordion",
       "title": "Accordion",
       "description": "A vertically stacked set of collapsible sections. CSS-only open/close via modifier.",
-      "category": "common",
+      "category": "layout",
       "classes": [
         ".ds-accordion"
       ],
@@ -759,7 +774,7 @@
       "name": "drawer",
       "title": "Drawer",
       "description": "A sliding overlay panel anchored to the edge of the viewport.",
-      "category": "common",
+      "category": "overlay",
       "classes": [
         ".ds-drawer"
       ],
@@ -797,7 +812,7 @@
       "name": "progress",
       "title": "Progress",
       "description": "Progress bar with label row and step indicator for multi-step flows.",
-      "category": "common",
+      "category": "data-display",
       "classes": [
         ".ds-progress",
         ".ds-steps",
@@ -847,7 +862,7 @@
       "name": "datepicker",
       "title": "Datepicker",
       "description": "Calendar dropdown for date selection. Popover positioning with scale animation. Supports compact mode for inline/table usage.",
-      "category": "common",
+      "category": "form",
       "classes": [
         ".ds-datepicker"
       ],
@@ -890,7 +905,7 @@
       "name": "drop-zone",
       "title": "Drop Zone",
       "description": "Dashed-border upload area with icon, label, hint, and progress states.",
-      "category": "common",
+      "category": "form",
       "classes": [
         ".ds-drop-zone"
       ],
@@ -923,7 +938,7 @@
       "name": "custom-select",
       "title": "Custom Select",
       "description": "Styled select dropdown replacing native <select>. Desktop: absolute panel. Mobile: fullscreen sheet with search. Supports multi-select with tags.",
-      "category": "common",
+      "category": "form",
       "classes": [
         ".ds-custom-select"
       ],
@@ -975,7 +990,7 @@
       "name": "popover",
       "title": "Popover",
       "description": "Flexible popover for displaying complex content anchored to a trigger element.",
-      "category": "advanced",
+      "category": "overlay",
       "classes": [
         ".ds-popover"
       ],
@@ -1010,7 +1025,7 @@
       "name": "slider",
       "title": "Slider",
       "description": "Range slider input with customizable thumb and track styling.",
-      "category": "advanced",
+      "category": "form",
       "classes": [
         ".ds-slider"
       ],
@@ -1044,7 +1059,7 @@
       "name": "timeline",
       "title": "Timeline",
       "description": "Vertical timeline for roadmaps, activity feeds, and step-based flows.",
-      "category": "advanced",
+      "category": "data-display",
       "classes": [
         ".ds-timeline"
       ],
@@ -1076,7 +1091,7 @@
       "name": "kbd",
       "title": "Kbd",
       "description": "Keyboard shortcut display with a raised 3D key appearance.",
-      "category": "advanced",
+      "category": "action",
       "classes": [
         ".ds-kbd",
         ".ds-kbd-group"
@@ -1108,7 +1123,7 @@
       "name": "command",
       "title": "Command",
       "description": "Command palette / search overlay following the Cmd+K pattern.",
-      "category": "advanced",
+      "category": "overlay",
       "classes": [
         ".ds-command"
       ],
@@ -1144,7 +1159,7 @@
       "name": "sortable",
       "title": "Sortable",
       "description": "Drag-to-reorder styles for table rows or list items. Provides grip handle, dragging states, and drop zone indicators.",
-      "category": "common",
+      "category": "action",
       "classes": [
         ".ds-sortable__handle",
         ".ds-sortable-row"
@@ -1169,7 +1184,7 @@
       "name": "search",
       "title": "Search",
       "description": "Inline search bar with dropdown results, keyboard navigation, and mobile expansion.",
-      "category": "advanced",
+      "category": "action",
       "classes": [
         ".ds-search"
       ],
@@ -1212,7 +1227,7 @@
       "name": "toolbar",
       "title": "Toolbar",
       "description": "Horizontal bar with action buttons, segmented controls, and scrollable groups.",
-      "category": "advanced",
+      "category": "navigation",
       "classes": [
         ".ds-toolbar__row"
       ],
@@ -1245,7 +1260,7 @@
       "name": "chip",
       "title": "Chip",
       "description": "Interactive filter/sort chips with optional remove button.",
-      "category": "common",
+      "category": "data-display",
       "classes": [
         ".ds-chip"
       ],
@@ -1269,7 +1284,7 @@
       "name": "icon-btn",
       "title": "Icon Button",
       "description": "Standalone icon button for actions, toolbars, and table rows.",
-      "category": "core",
+      "category": "action",
       "classes": [
         ".ds-icon-btn"
       ],
@@ -1299,7 +1314,7 @@
       "name": "bottom-nav",
       "title": "Bottom Nav",
       "description": "Mobile bottom navigation bar, hidden on desktop.",
-      "category": "advanced",
+      "category": "navigation",
       "classes": [
         ".ds-bottom-nav"
       ],
@@ -1327,7 +1342,7 @@
       "name": "spinner",
       "title": "Spinner",
       "description": "CSS-only loading spinner with size and color variants.",
-      "category": "essential",
+      "category": "feedback",
       "classes": [
         ".ds-spinner"
       ],
@@ -1357,7 +1372,7 @@
       "name": "field",
       "title": "Field",
       "description": "Unified wrapper for form fields — label + input slot + hint + error.",
-      "category": "core",
+      "category": "form",
       "classes": [
         ".ds-field"
       ],
@@ -1392,7 +1407,7 @@
       "name": "stat-card",
       "title": "Stat Card",
       "description": "Compact metric display with label, value, detail, and optional icon.",
-      "category": "core",
+      "category": "data-display",
       "classes": [
         ".ds-stat-card"
       ],
@@ -1420,7 +1435,7 @@
       "name": "collapsible",
       "title": "Collapsible",
       "description": "Single collapsible section — a standalone, simplified accordion item.",
-      "category": "common",
+      "category": "layout",
       "classes": [
         ".ds-collapsible"
       ],
@@ -1453,7 +1468,7 @@
       "name": "description-list",
       "title": "Description List",
       "description": "Key-value pairs display with horizontal, vertical, bordered, and striped layouts.",
-      "category": "common",
+      "category": "data-display",
       "classes": [
         ".ds-description-list"
       ],
@@ -1484,7 +1499,7 @@
       "name": "result",
       "title": "Result",
       "description": "Feedback page for success, error, 404, or informational outcomes.",
-      "category": "common",
+      "category": "data-display",
       "classes": [
         ".ds-result"
       ],
@@ -1517,12 +1532,39 @@
       "name": "combobox",
       "title": "Combobox",
       "description": "Text input with filterable dropdown results. Supports single/multi-select, inline creation, and keyboard navigation.",
-      "category": "core",
-      "classes": [".ds-combobox"],
-      "elements": ["__input-area", "__input", "__icon", "__clear", "__listbox", "__group", "__group-label", "__option", "__option-check", "__option-desc", "__create", "__empty", "__loading", "__tag", "__tag-remove"],
-      "variants": ["--error"],
-      "sizes": ["--xs", "--sm", "--lg"],
-      "modifiers": ["--open", "--multi"],
+      "category": "form",
+      "classes": [
+        ".ds-combobox"
+      ],
+      "elements": [
+        "__input-area",
+        "__input",
+        "__icon",
+        "__clear",
+        "__listbox",
+        "__group",
+        "__group-label",
+        "__option",
+        "__option-check",
+        "__option-desc",
+        "__create",
+        "__empty",
+        "__loading",
+        "__tag",
+        "__tag-remove"
+      ],
+      "variants": [
+        "--error"
+      ],
+      "sizes": [
+        "--xs",
+        "--sm",
+        "--lg"
+      ],
+      "modifiers": [
+        "--open",
+        "--multi"
+      ],
       "examples": [
         {
           "title": "Basic Combobox",
@@ -1538,11 +1580,21 @@
       "name": "number-input",
       "title": "Number Input",
       "description": "Numeric input with increment/decrement stepper buttons.",
-      "category": "common",
-      "classes": [".ds-number-input"],
-      "elements": ["__field", "__decrement", "__increment"],
+      "category": "form",
+      "classes": [
+        ".ds-number-input"
+      ],
+      "elements": [
+        "__field",
+        "__decrement",
+        "__increment"
+      ],
       "variants": [],
-      "sizes": ["--xs", "--sm", "--lg"],
+      "sizes": [
+        "--xs",
+        "--sm",
+        "--lg"
+      ],
       "modifiers": [],
       "examples": [
         {
@@ -1559,12 +1611,25 @@
       "name": "pin-input",
       "title": "Pin Input",
       "description": "One-character-per-field input for OTP codes, PINs, and verification.",
-      "category": "common",
-      "classes": [".ds-pin-input"],
-      "elements": ["__field", "__separator"],
-      "variants": ["--error", "--success"],
-      "sizes": ["--sm", "--lg"],
-      "modifiers": ["--disabled"],
+      "category": "form",
+      "classes": [
+        ".ds-pin-input"
+      ],
+      "elements": [
+        "__field",
+        "__separator"
+      ],
+      "variants": [
+        "--error",
+        "--success"
+      ],
+      "sizes": [
+        "--sm",
+        "--lg"
+      ],
+      "modifiers": [
+        "--disabled"
+      ],
       "examples": [
         {
           "title": "Default",
@@ -1580,12 +1645,20 @@
       "name": "segmented-control",
       "title": "Segmented Control",
       "description": "Toggle between 2-5 mutually exclusive options. Compact alternative to tabs.",
-      "category": "essential",
-      "classes": [".ds-segmented"],
-      "elements": ["__item"],
+      "category": "navigation",
+      "classes": [
+        ".ds-segmented"
+      ],
+      "elements": [
+        "__item"
+      ],
       "variants": [],
-      "sizes": ["--sm"],
-      "modifiers": ["--full"],
+      "sizes": [
+        "--sm"
+      ],
+      "modifiers": [
+        "--full"
+      ],
       "examples": [
         {
           "title": "Default",
@@ -1601,12 +1674,22 @@
       "name": "copy-button",
       "title": "Copy Button",
       "description": "Icon button with clipboard feedback state (idle → copied).",
-      "category": "common",
-      "classes": [".ds-copy-btn"],
-      "elements": ["__icon", "__icon-check"],
+      "category": "action",
+      "classes": [
+        ".ds-copy-btn"
+      ],
+      "elements": [
+        "__icon",
+        "__icon-check"
+      ],
       "variants": [],
-      "sizes": ["--sm", "--lg"],
-      "modifiers": ["--copied"],
+      "sizes": [
+        "--sm",
+        "--lg"
+      ],
+      "modifiers": [
+        "--copied"
+      ],
       "examples": [
         {
           "title": "Default & Copied",
@@ -1618,12 +1701,27 @@
       "name": "gallery",
       "title": "Gallery",
       "description": "Image gallery with main image, thumbnail strip, and lightbox overlay.",
-      "category": "common",
-      "classes": [".ds-gallery", ".ds-lightbox"],
-      "elements": ["__main", "__thumbs", "__thumb", "__thumb-more", "__image", "__close", "__prev", "__next", "__counter"],
+      "category": "layout",
+      "classes": [
+        ".ds-gallery",
+        ".ds-lightbox"
+      ],
+      "elements": [
+        "__main",
+        "__thumbs",
+        "__thumb",
+        "__thumb-more",
+        "__image",
+        "__close",
+        "__prev",
+        "__next",
+        "__counter"
+      ],
       "variants": [],
       "sizes": [],
-      "modifiers": ["--open"],
+      "modifiers": [
+        "--open"
+      ],
       "examples": [
         {
           "title": "Thumbnail Strip",
@@ -1635,12 +1733,18 @@
       "name": "scroll-area",
       "title": "Scroll Area",
       "description": "Custom-styled scrollbar for overflow containers. Cross-browser.",
-      "category": "common",
-      "classes": [".ds-scroll-area"],
+      "category": "layout",
+      "classes": [
+        ".ds-scroll-area"
+      ],
       "elements": [],
       "variants": [],
       "sizes": [],
-      "modifiers": ["--horizontal", "--both", "--thin"],
+      "modifiers": [
+        "--horizontal",
+        "--both",
+        "--thin"
+      ],
       "examples": [
         {
           "title": "Vertical Scroll",
@@ -1652,11 +1756,18 @@
       "name": "color-picker",
       "title": "Color Picker",
       "description": "Grid of color swatches for selection.",
-      "category": "common",
-      "classes": [".ds-color-picker"],
-      "elements": ["__swatch"],
+      "category": "form",
+      "classes": [
+        ".ds-color-picker"
+      ],
+      "elements": [
+        "__swatch"
+      ],
       "variants": [],
-      "sizes": ["--sm", "--lg"],
+      "sizes": [
+        "--sm",
+        "--lg"
+      ],
       "modifiers": [],
       "examples": [
         {
@@ -1669,12 +1780,22 @@
       "name": "truncated-text",
       "title": "Truncated Text",
       "description": "Display long text (hashes, addresses, IDs) with middle or end truncation.",
-      "category": "common",
-      "classes": [".ds-truncate", ".ds-hash"],
-      "elements": ["__start", "__separator", "__end", "__value"],
+      "category": "data-display",
+      "classes": [
+        ".ds-truncate",
+        ".ds-hash"
+      ],
+      "elements": [
+        "__start",
+        "__separator",
+        "__end",
+        "__value"
+      ],
       "variants": [],
       "sizes": [],
-      "modifiers": ["--middle"],
+      "modifiers": [
+        "--middle"
+      ],
       "examples": [
         {
           "title": "End Truncation",
@@ -1690,12 +1811,25 @@
       "name": "bottom-sheet",
       "title": "Bottom Sheet",
       "description": "Mobile overlay sliding up from the bottom.",
-      "category": "common",
-      "classes": [".ds-bottom-sheet"],
-      "elements": ["__backdrop", "__panel", "__handle", "__header", "__title", "__close", "__body"],
+      "category": "overlay",
+      "classes": [
+        ".ds-bottom-sheet"
+      ],
+      "elements": [
+        "__backdrop",
+        "__panel",
+        "__handle",
+        "__header",
+        "__title",
+        "__close",
+        "__body"
+      ],
       "variants": [],
       "sizes": [],
-      "modifiers": ["--open", "--full"],
+      "modifiers": [
+        "--open",
+        "--full"
+      ],
       "examples": [
         {
           "title": "Basic",
@@ -1707,12 +1841,23 @@
       "name": "star-rating",
       "title": "Star Rating",
       "description": "Display or input star ratings with half-star support.",
-      "category": "common",
-      "classes": [".ds-star-rating"],
-      "elements": ["__star", "__value", "__count"],
+      "category": "form",
+      "classes": [
+        ".ds-star-rating"
+      ],
+      "elements": [
+        "__star",
+        "__value",
+        "__count"
+      ],
       "variants": [],
-      "sizes": ["--sm", "--lg"],
-      "modifiers": ["--interactive"],
+      "sizes": [
+        "--sm",
+        "--lg"
+      ],
+      "modifiers": [
+        "--interactive"
+      ],
       "examples": [
         {
           "title": "Display",

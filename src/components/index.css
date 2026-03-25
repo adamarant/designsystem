@@ -1,61 +1,67 @@
-/* === Core === */
-@import './button.css';
-@import './card.css';
-@import './stat-card.css';
+/* === Form — Inputs, selectors, and form controls === */
 @import './input.css';
 @import './field.css';
-@import './badge.css';
-@import './nav.css';
-@import './modal.css';
-@import './toast.css';
-@import './table.css';
-@import './icon-btn.css';
-@import './combobox.css';
-
-/* === Tier 1 — Essential === */
-@import './tabs.css';
-@import './alert.css';
-@import './divider.css';
-@import './dropdown.css';
-@import './tooltip.css';
-@import './avatar.css';
-@import './skeleton.css';
-@import './empty-state.css';
-@import './search.css';
-@import './spinner.css';
-@import './segmented-control.css';
-
-/* === Tier 2 — Common === */
-@import './datepicker.css';
 @import './toggle.css';
-@import './breadcrumb.css';
-@import './pagination.css';
-@import './tag.css';
-@import './accordion.css';
-@import './drawer.css';
-@import './progress.css';
-@import './drop-zone.css';
 @import './custom-select.css';
-@import './collapsible.css';
-@import './description-list.css';
-@import './result.css';
-@import './sortable.css';
+@import './combobox.css';
 @import './number-input.css';
 @import './pin-input.css';
-@import './copy-button.css';
-@import './scroll-area.css';
-@import './truncated-text.css';
+@import './datepicker.css';
 @import './color-picker.css';
-@import './star-rating.css';
-@import './gallery.css';
-@import './bottom-sheet.css';
-
-/* === Tier 3 — Advanced === */
-@import './popover.css';
 @import './slider.css';
-@import './timeline.css';
-@import './kbd.css';
-@import './command.css';
-@import './toolbar.css';
+@import './drop-zone.css';
+@import './star-rating.css';
+
+/* === Data Display — Present information and status === */
+@import './badge.css';
+@import './tag.css';
 @import './chip.css';
+@import './avatar.css';
+@import './stat-card.css';
+@import './table.css';
+@import './description-list.css';
+@import './timeline.css';
+@import './progress.css';
+@import './skeleton.css';
+@import './result.css';
+@import './truncated-text.css';
+
+/* === Navigation — Wayfinding and page structure === */
+@import './nav.css';
+@import './breadcrumb.css';
+@import './tabs.css';
+@import './pagination.css';
+@import './segmented-control.css';
 @import './bottom-nav.css';
+@import './toolbar.css';
+
+/* === Feedback — Communicate status and system messages === */
+@import './alert.css';
+@import './toast.css';
+@import './spinner.css';
+@import './empty-state.css';
+@import './tooltip.css';
+
+/* === Overlay — Floating panels and dialogs === */
+@import './modal.css';
+@import './drawer.css';
+@import './dropdown.css';
+@import './popover.css';
+@import './bottom-sheet.css';
+@import './command.css';
+
+/* === Layout — Structure and organize content === */
+@import './card.css';
+@import './divider.css';
+@import './accordion.css';
+@import './collapsible.css';
+@import './scroll-area.css';
+@import './gallery.css';
+
+/* === Action — Trigger operations and commands === */
+@import './button.css';
+@import './icon-btn.css';
+@import './copy-button.css';
+@import './kbd.css';
+@import './search.css';
+@import './sortable.css';

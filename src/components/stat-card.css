@@ -4,6 +4,9 @@
    ========================================================================== */
 
 .ds-stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-1);
   background-color: var(--ds-color-surface);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-xl);
