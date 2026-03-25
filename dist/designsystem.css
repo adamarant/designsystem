@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.1 */
+/* @ds/designsystem v0.9.2 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -12003,13 +12003,13 @@ tr:hover .ds-sortable__handle,
   background-color: color-mix(in srgb, var(--ds-color-bg-elevated) 50%, transparent);
 }
 
-/* --- Group Reveal (children appear on parent hover) --- */
-.ds-reveal {
+/* --- Group Reveal (children appear on parent hover) — .ds-group-reveal --- */
+.ds-group-reveal {
   opacity: 0;
   transition: opacity var(--ds-duration-fast) var(--ds-ease-default);
 }
-.group:hover > .ds-reveal,
-.group:hover .ds-reveal {
+.group:hover > .ds-group-reveal,
+.group:hover .ds-group-reveal {
   opacity: 1;
 }
 

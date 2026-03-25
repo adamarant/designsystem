@@ -176,6 +176,26 @@ duration: fast (100ms), normal (200ms), slow (400ms), slower (800ms)
 ease: default, out, out-expo, bounce
 ```
 
+### State Variant Utilities (v0.9.0+)
+
+The DS provides state variant utility classes for hover, focus, active, and group-hover:
+
+```css
+/* Hover */
+hover:ds-bg-elevated, hover:ds-text-interactive, hover:ds-border-hover, hover:ds-underline
+
+/* Focus */
+focus:ds-outline-none, focus:ds-ring-0, focus:ds-ring-2
+
+/* Active */
+active:ds-bg-elevated
+
+/* Group Hover (parent needs .group or .ds-group) */
+group-hover:ds-text-interactive, group-hover:ds-scale-110, group-hover:ds-translate-x-1
+```
+
+These eliminate the need for project-specific state variant CSS.
+
 ### 4. Light/Dark Mode — Automatic
 
 Colors are defined per-theme in `tokens/colors.css`. Components never need `@media (prefers-color-scheme)` or `.dark` classes — they just use tokens and both themes work automatically.
@@ -292,6 +312,11 @@ src/
 │   ├── collapsible.css        # ds-collapsible, single expand/collapse
 │   ├── scroll-area.css        # ds-scroll-area, custom scrollbar
 │   ├── gallery.css            # ds-gallery + ds-lightbox
+│   ├── hero.css               # ds-hero, overlay, backdrop, frosted glass
+│   ├── admin-layout.css       # ds-admin, sidebar, header, nav, collapsible
+│   │
+│   │  # Content (1) — Rich text rendering
+│   ├── prose.css              # ds-prose-block, full markdown styling
 │   │
 │   │  # Action (6) — Trigger operations and commands
 │   ├── button.css             # ds-btn, variants, sizes, groups, loading, pill
@@ -304,7 +329,9 @@ src/
 │   ├── index.css              # Imports all utility files
 │   ├── layout.css             # Container, flex, grid, gap, display, position
 │   ├── text.css               # Text size/weight/color, bg, border, radius, shadow, animations
-│   └── spacing.css            # Padding + margin utilities
+│   ├── spacing.css            # Padding + margin utilities
+│   ├── sizing.css             # Width, height, min/max constraints
+│   └── states.css             # Hover, focus, active, group-hover modifiers
 ├── js/
 │   └── theme.js               # Light/dark toggle with localStorage
 ├── dist/
@@ -445,7 +472,7 @@ Watch:          node scripts/build.js --watch
 Validate:       node scripts/validate-tokens.js
 Source:         src/
 Compiled:       dist/designsystem.css
-Components:     src/components/ (54 files)
+Components:     src/components/ (57 files)
 Tokens:         src/tokens/ (4 files)
 Hooks:          packages/ds-hooks/ (8 React hooks, separate package)
 Examples:       examples/index.html (open in browser)

@@ -1868,6 +1868,98 @@
           "html": "<div class=\"ds-star-rating ds-star-rating--interactive\">\n  <button class=\"ds-star-rating__star ds-star-rating__star--filled\">&#9733;</button>\n  <button class=\"ds-star-rating__star ds-star-rating__star--filled\">&#9733;</button>\n  <button class=\"ds-star-rating__star ds-star-rating__star--filled\">&#9733;</button>\n  <button class=\"ds-star-rating__star\">&#9733;</button>\n  <button class=\"ds-star-rating__star\">&#9733;</button>\n</div>"
         }
       ]
+    },
+    {
+      "name": "hero",
+      "title": "Hero",
+      "description": "Full-width hero section with background image, gradient overlay, and optional frosted glass backdrop.",
+      "category": "layout",
+      "classes": [
+        ".ds-hero"
+      ],
+      "elements": [
+        "__overlay",
+        "__content",
+        "__backdrop",
+        "__title",
+        "__subtitle"
+      ],
+      "variants": [
+        "--full"
+      ],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Basic Hero",
+          "html": "<section class=\"ds-hero\" style=\"background-image: url(https://picsum.photos/1200/600)\">\n  <div class=\"ds-hero__overlay\"></div>\n  <div class=\"ds-hero__content ds-container\">\n    <div class=\"ds-hero__backdrop\">\n      <h1 class=\"ds-hero__title ds-hero-title\">Welcome</h1>\n      <p class=\"ds-hero__subtitle\">A beautiful hero section</p>\n    </div>\n  </div>\n</section>"
+        },
+        {
+          "title": "Full Variant",
+          "html": "<section class=\"ds-hero ds-hero--full\" style=\"background-image: url(https://picsum.photos/1200/600)\">\n  <div class=\"ds-hero__overlay ds-hero__overlay--subtle\"></div>\n  <div class=\"ds-hero__content ds-container\">\n    <div class=\"ds-hero__backdrop\">\n      <h1 class=\"ds-hero__title ds-hero-title\">Full Hero</h1>\n      <p class=\"ds-hero__subtitle\">With subtle overlay</p>\n    </div>\n  </div>\n</section>"
+        }
+      ]
+    },
+    {
+      "name": "prose",
+      "title": "Prose Block",
+      "description": "Full markdown-rendered content styling for CMS output, blog posts, and documentation.",
+      "category": "layout",
+      "classes": [
+        ".ds-prose-block"
+      ],
+      "elements": [],
+      "variants": [],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Rich Text",
+          "html": "<div class=\"ds-prose-block\">\n  <h2>Heading</h2>\n  <p>Paragraph with <a href=\"#\">link</a> and <code>inline code</code>.</p>\n  <pre><code>const x = 42;</code></pre>\n  <blockquote>A blockquote</blockquote>\n  <ul><li>List item one</li><li>List item two</li></ul>\n</div>"
+        }
+      ]
+    },
+    {
+      "name": "admin-layout",
+      "title": "Admin Layout",
+      "description": "Sidebar + header + main content system for admin dashboards with collapsible sidebar.",
+      "category": "layout",
+      "classes": [
+        ".ds-admin"
+      ],
+      "elements": [
+        "__sidebar",
+        "__sidebar-header",
+        "__sidebar-badge",
+        "__sidebar-footer",
+        "__nav",
+        "__nav-item",
+        "__nav-icon",
+        "__nav-label",
+        "__subnav",
+        "__subnav-item",
+        "__footer-link",
+        "__header",
+        "__header-inner",
+        "__header-toggle",
+        "__main",
+        "__content",
+        "__container",
+        "__overlay",
+        "__mobile-menu"
+      ],
+      "variants": [
+        "--expanded",
+        "--collapsed"
+      ],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Expanded Sidebar",
+          "html": "<div class=\"ds-admin ds-admin--expanded\">\n  <aside class=\"ds-admin__sidebar\">\n    <div class=\"ds-admin__sidebar-header\">Logo</div>\n    <nav class=\"ds-admin__nav\">\n      <a class=\"ds-admin__nav-item ds-admin__nav-item--active\">\n        <span class=\"ds-admin__nav-icon\">&#9776;</span>\n        <span class=\"ds-admin__nav-label\">Dashboard</span>\n      </a>\n    </nav>\n  </aside>\n  <header class=\"ds-admin__header\">\n    <div class=\"ds-admin__header-inner\">Header</div>\n  </header>\n  <main class=\"ds-admin__main\">\n    <div class=\"ds-admin__content\">Content</div>\n  </main>\n</div>"
+        }
+      ]
     }
   ]
 }
