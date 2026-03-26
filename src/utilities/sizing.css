@@ -69,3 +69,13 @@
   .ds-sm\:h-12   { height: var(--ds-space-12); }
   .ds-sm\:h-32   { height: var(--ds-space-32); }
 }
+
+/* --- Decimal sizing --- */
+.ds-w-0\.5  { width: 0.125rem; }
+.ds-w-1\.5  { width: 0.375rem; }
+.ds-w-2\.5  { width: 0.625rem; }
+.ds-w-3\.5  { width: 0.875rem; }
+.ds-h-0\.5  { height: 0.125rem; }
+.ds-h-1\.5  { height: 0.375rem; }
+.ds-h-2\.5  { height: 0.625rem; }
+.ds-h-3\.5  { height: 0.875rem; }

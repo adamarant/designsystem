@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.8 */
+/* @ds/designsystem v0.9.9 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -11548,6 +11548,53 @@ tr:hover .ds-sortable__handle,
 }
 
 
+/* --- Space-X (horizontal gap between children) --- */
+.ds-space-x-1 > * + * { margin-inline-start: var(--ds-space-1); }
+.ds-space-x-2 > * + * { margin-inline-start: var(--ds-space-2); }
+.ds-space-x-3 > * + * { margin-inline-start: var(--ds-space-3); }
+.ds-space-x-4 > * + * { margin-inline-start: var(--ds-space-4); }
+
+/* --- Decimal spacing (0.5 = 0.125rem, 1.5 = 0.375rem, 2.5 = 0.625rem) --- */
+.ds-gap-0\.5 { gap: 0.125rem; }
+.ds-gap-1\.5 { gap: 0.375rem; }
+.ds-gap-2\.5 { gap: 0.625rem; }
+.ds-p-0\.5 { padding: 0.125rem; }
+.ds-p-1\.5 { padding: 0.375rem; }
+.ds-px-0\.5 { padding-inline: 0.125rem; }
+.ds-px-1\.5 { padding-inline: 0.375rem; }
+.ds-py-0\.5 { padding-inline: 0.125rem; }
+.ds-py-1\.5 { padding-block: 0.375rem; }
+.ds-mt-0\.5 { margin-block-start: 0.125rem; }
+.ds-mb-0\.5 { margin-block-end: 0.125rem; }
+.ds-space-y-0\.5 > * + * { margin-block-start: 0.125rem; }
+.ds-space-y-1\.5 > * + * { margin-block-start: 0.375rem; }
+.ds-space-x-0\.5 > * + * { margin-inline-start: 0.125rem; }
+.ds-space-x-1\.5 > * + * { margin-inline-start: 0.375rem; }
+
+/* --- Responsive: md (768px) — all-sides padding --- */
+@media (min-width: 768px) {
+
+  .ds-md\:p-2 { padding: var(--ds-space-2); }
+  .ds-md\:p-3 { padding: var(--ds-space-3); }
+  .ds-md\:p-4 { padding: var(--ds-space-4); }
+  .ds-md\:p-5 { padding: var(--ds-space-5); }
+  .ds-md\:p-6 { padding: var(--ds-space-6); }
+  .ds-md\:p-8 { padding: var(--ds-space-8); }
+  .ds-md\:p-10 { padding: var(--ds-space-10); }
+  .ds-md\:p-12 { padding: var(--ds-space-12); }
+}
+
+
+/* --- Responsive: lg (1024px) — all-sides padding --- */
+@media (min-width: 1024px) {
+
+  .ds-lg\:p-6 { padding: var(--ds-space-6); }
+  .ds-lg\:p-8 { padding: var(--ds-space-8); }
+  .ds-lg\:p-10 { padding: var(--ds-space-10); }
+  .ds-lg\:p-12 { padding: var(--ds-space-12); }
+}
+
+
 /* ==========================================================================
    Utilities: Sizing
    Width, height, min/max constraints.
@@ -11621,6 +11668,16 @@ tr:hover .ds-sortable__handle,
   .ds-sm\:h-32 { height: var(--ds-space-32); }
 }
 
+
+/* --- Decimal sizing --- */
+.ds-w-0\.5 { width: 0.125rem; }
+.ds-w-1\.5 { width: 0.375rem; }
+.ds-w-2\.5 { width: 0.625rem; }
+.ds-w-3\.5 { width: 0.875rem; }
+.ds-h-0\.5 { height: 0.125rem; }
+.ds-h-1\.5 { height: 0.375rem; }
+.ds-h-2\.5 { height: 0.625rem; }
+.ds-h-3\.5 { height: 0.875rem; }
 
 /* ==========================================================================
    Utilities: Text, Visual & style helpers
@@ -12002,6 +12059,16 @@ tr:hover .ds-sortable__handle,
   border-width: 0;
 }
 
+/* --- Responsive: md (768px) — small text sizes --- */
+@media (min-width: 768px) {
+
+  .ds-md\:text-xs { font-size: var(--ds-text-xs); }
+  .ds-md\:text-sm { font-size: var(--ds-text-sm); }
+  .ds-md\:text-base { font-size: var(--ds-text-base); }
+  .ds-md\:text-5xl { font-size: var(--ds-text-5xl); }
+}
+
+
 /* ==========================================================================
    Utilities: Interactive
    Hover states, reveal patterns, focus rings, and cursor utilities.
@@ -12119,80 +12186,193 @@ tr:hover .ds-sortable__handle,
   color: var(--ds-color-text);
 }
 
+/* --- Backdrop Blur (extended) --- */
+.ds-backdrop-blur-lg { backdrop-filter: blur(16px); }
+.ds-backdrop-blur-xl { backdrop-filter: blur(24px); }
+.ds-backdrop-blur-2xl { backdrop-filter: blur(40px); }
+
 /* ==========================================================================
    Utilities: State Variants
-   Hover, focus, active, focus-within, placeholder, and group-hover
-   modifiers for DS utility classes.
+   Comprehensive hover, focus, active, disabled, focus-within, placeholder,
+   and group-hover modifiers for DS utility classes.
+
+   Pattern: {state}\:ds-{utility}:{pseudo} { property: value; }
+   Usage:   <div class="ds-bg-surface hover:ds-bg-hover">
+
+   Only semantic DS tokens are used — no hardcoded values.
    ========================================================================== */
 
 /* --- Group Marker (enables group-hover on descendants) ---
    Supports both .group and .ds-group for compatibility. */
 .ds-group { /* marker — no styles */ }
 
+/* ==========================================================================
+   HOVER
+   ========================================================================== */
+
 /* --- Hover: Background --- */
 .hover\:ds-bg-base:hover { background-color: var(--ds-color-bg); }
-.hover\:ds-bg-elevated:hover { background-color: var(--ds-color-bg-elevated); }
-.hover\:ds-bg-muted:hover { background-color: var(--ds-color-bg-muted); }
 .hover\:ds-bg-subtle:hover { background-color: var(--ds-color-bg-subtle); }
+.hover\:ds-bg-muted:hover { background-color: var(--ds-color-bg-muted); }
+.hover\:ds-bg-elevated:hover { background-color: var(--ds-color-bg-elevated); }
 .hover\:ds-bg-surface:hover { background-color: var(--ds-color-surface); }
+.hover\:ds-bg-hover:hover { background-color: var(--ds-color-surface-hover); }
 .hover\:ds-bg-inverted:hover { background-color: var(--ds-color-inverted); }
+.hover\:ds-bg-overlay:hover { background-color: var(--ds-color-overlay-hover); }
+.hover\:ds-bg-success:hover { background-color: var(--ds-color-success); }
+.hover\:ds-bg-success-subtle:hover { background-color: var(--ds-color-success-subtle); }
+.hover\:ds-bg-error:hover { background-color: var(--ds-color-error); }
+.hover\:ds-bg-error-subtle:hover { background-color: var(--ds-color-error-subtle); }
+.hover\:ds-bg-warning:hover { background-color: var(--ds-color-warning); }
+.hover\:ds-bg-warning-subtle:hover { background-color: var(--ds-color-warning-subtle); }
 .hover\:ds-bg-info:hover { background-color: var(--ds-color-info); }
+.hover\:ds-bg-info-subtle:hover { background-color: var(--ds-color-info-subtle); }
+.hover\:ds-bg-accent-blue:hover { background-color: var(--ds-color-accent-blue); }
+.hover\:ds-bg-accent-blue-subtle:hover { background-color: var(--ds-color-accent-blue-subtle); }
+.hover\:ds-bg-accent-purple:hover { background-color: var(--ds-color-accent-purple); }
+.hover\:ds-bg-accent-purple-subtle:hover { background-color: var(--ds-color-accent-purple-subtle); }
 
 /* --- Hover: Text --- */
 .hover\:ds-text-primary:hover { color: var(--ds-color-text); }
 .hover\:ds-text-secondary:hover { color: var(--ds-color-text-secondary); }
-.hover\:ds-text-interactive:hover { color: var(--ds-color-interactive); }
+.hover\:ds-text-tertiary:hover { color: var(--ds-color-text-tertiary); }
+.hover\:ds-text-on-inverted:hover { color: var(--ds-color-on-inverted); }
+.hover\:ds-text-interactive:hover { color: var(--ds-color-interactive-hover); }
+.hover\:ds-text-success:hover { color: var(--ds-color-success); }
+.hover\:ds-text-error:hover { color: var(--ds-color-error); }
+.hover\:ds-text-warning:hover { color: var(--ds-color-warning); }
+.hover\:ds-text-info:hover { color: var(--ds-color-info); }
 
 /* --- Hover: Border --- */
+.hover\:ds-border-default:hover { border-color: var(--ds-color-border); }
 .hover\:ds-border-hover:hover { border-color: var(--ds-color-border-hover); }
+.hover\:ds-border-active:hover { border-color: var(--ds-color-border-active); }
 .hover\:ds-border-interactive:hover { border-color: var(--ds-color-interactive); }
+.hover\:ds-border-success:hover { border-color: var(--ds-color-success); }
+.hover\:ds-border-error:hover { border-color: var(--ds-color-error); }
+.hover\:ds-border-info:hover { border-color: var(--ds-color-info); }
+
+/* --- Hover: Opacity --- */
+.hover\:ds-opacity-0:hover { opacity: 0; }
+.hover\:ds-opacity-50:hover { opacity: 0.5; }
+.hover\:ds-opacity-75:hover { opacity: 0.75; }
+.hover\:ds-opacity-100:hover { opacity: 1; }
+
+/* --- Hover: Transform --- */
+.hover\:ds-scale-105:hover { transform: scale(1.05); }
+.hover\:ds-scale-110:hover { transform: scale(1.10); }
 
 /* --- Hover: Decoration --- */
 .hover\:ds-underline:hover { text-decoration: underline; text-underline-offset: 2px; }
+.hover\:ds-no-underline:hover { text-decoration: none; }
 
-/* --- Focus --- */
+/* --- Hover: Shadow --- */
+.hover\:ds-shadow:hover { box-shadow: var(--ds-shadow-md); }
+.hover\:ds-shadow-lg:hover { box-shadow: var(--ds-shadow-lg); }
+.hover\:ds-shadow-none:hover { box-shadow: none; }
+
+/* ==========================================================================
+   FOCUS
+   ========================================================================== */
+
 .focus\:ds-outline-none:focus { outline: none; }
 .focus\:ds-ring-0:focus { box-shadow: none; }
-.focus\:ds-ring-2:focus { box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive); }
+.focus\:ds-ring-2:focus { box-shadow: 0 0 0 var(--ds-ring-width, 2px) var(--ds-color-interactive); }
+.focus\:ds-border-interactive:focus { border-color: var(--ds-color-interactive); }
+
+/* --- Focus-Visible (keyboard only) --- */
+.focus-visible\:ds-outline-none:focus-visible { outline: none; }
+.focus-visible\:ds-ring-2:focus-visible { box-shadow: 0 0 0 var(--ds-ring-width, 2px) var(--ds-color-interactive); }
 
 /* --- Focus-Within --- */
 .focus-within\:ds-border-interactive:focus-within { border-color: var(--ds-color-interactive); }
+.focus-within\:ds-border-error:focus-within { border-color: var(--ds-color-error); }
 
-/* --- Active --- */
+/* ==========================================================================
+   ACTIVE
+   ========================================================================== */
+
+.active\:ds-bg-hover:active { background-color: var(--ds-color-surface-hover); }
+.active\:ds-bg-muted:active { background-color: var(--ds-color-bg-muted); }
 .active\:ds-bg-elevated:active { background-color: var(--ds-color-bg-elevated); }
-.active\:ds-text-secondary:active { color: var(--ds-color-text-secondary); }
+.active\:ds-scale-95:active { transform: scale(0.95); }
+.active\:ds-scale-98:active { transform: scale(0.98); }
 
-/* --- Placeholder --- */
+/* ==========================================================================
+   DISABLED
+   ========================================================================== */
+
+.disabled\:ds-opacity-30:disabled,
+.disabled\:ds-opacity-30[aria-disabled="true"] { opacity: 0.3; }
+
+.disabled\:ds-opacity-50:disabled,
+.disabled\:ds-opacity-50[aria-disabled="true"] { opacity: 0.5; }
+
+.disabled\:ds-cursor-not-allowed:disabled,
+.disabled\:ds-cursor-not-allowed[aria-disabled="true"] { cursor: not-allowed; }
+
+.disabled\:ds-bg-subtle:disabled,
+.disabled\:ds-bg-subtle[aria-disabled="true"] { background-color: var(--ds-color-bg-subtle); }
+
+.disabled\:ds-pointer-events-none:disabled,
+.disabled\:ds-pointer-events-none[aria-disabled="true"] { pointer-events: none; }
+
+/* ==========================================================================
+   PLACEHOLDER
+   ========================================================================== */
+
 .placeholder\:ds-text-tertiary::placeholder { color: var(--ds-color-text-tertiary); }
+.placeholder\:ds-text-secondary::placeholder { color: var(--ds-color-text-secondary); }
 
-/* --- Group Hover (descendants of .group or .ds-group on hover) --- */
-.group:hover > .group-hover\:ds-text-interactive,
-.group:hover   .group-hover\:ds-text-interactive,
-.ds-group:hover > .group-hover\:ds-text-interactive,
-.ds-group:hover   .group-hover\:ds-text-interactive {
-  color: var(--ds-color-interactive);
-}
+/* ==========================================================================
+   GROUP-HOVER
+   Descendants of .group or .ds-group, activated on parent hover.
+   Uses both direct-child and any-descendant for flexibility.
+   ========================================================================== */
 
-.group:hover > .group-hover\:ds-scale-110,
-.group:hover   .group-hover\:ds-scale-110,
-.ds-group:hover > .group-hover\:ds-scale-110,
-.ds-group:hover   .group-hover\:ds-scale-110 {
-  transform: scale(1.1);
-}
+/* Text */
+.group:hover .group-hover\:ds-text-primary,
+.ds-group:hover .group-hover\:ds-text-primary { color: var(--ds-color-text); }
 
-.group:hover > .group-hover\:ds-translate-x-1,
-.group:hover   .group-hover\:ds-translate-x-1,
-.ds-group:hover > .group-hover\:ds-translate-x-1,
-.ds-group:hover   .group-hover\:ds-translate-x-1 {
-  transform: translateX(0.25rem);
-}
+.group:hover .group-hover\:ds-text-secondary,
+.ds-group:hover .group-hover\:ds-text-secondary { color: var(--ds-color-text-secondary); }
 
-.group:hover > .group-hover\:ds-opacity-100,
-.group:hover   .group-hover\:ds-opacity-100,
-.ds-group:hover > .group-hover\:ds-opacity-100,
-.ds-group:hover   .group-hover\:ds-opacity-100 {
-  opacity: 1;
-}
+.group:hover .group-hover\:ds-text-interactive,
+.ds-group:hover .group-hover\:ds-text-interactive { color: var(--ds-color-interactive-hover); }
+
+.group:hover .group-hover\:ds-text-success,
+.ds-group:hover .group-hover\:ds-text-success { color: var(--ds-color-success); }
+
+.group:hover .group-hover\:ds-text-info,
+.ds-group:hover .group-hover\:ds-text-info { color: var(--ds-color-info); }
+
+/* Opacity */
+.group:hover .group-hover\:ds-opacity-100,
+.ds-group:hover .group-hover\:ds-opacity-100 { opacity: 1; }
+
+.group:hover .group-hover\:ds-opacity-0,
+.ds-group:hover .group-hover\:ds-opacity-0 { opacity: 0; }
+
+/* Transform */
+.group:hover .group-hover\:ds-scale-105,
+.ds-group:hover .group-hover\:ds-scale-105 { transform: scale(1.05); }
+
+.group:hover .group-hover\:ds-scale-110,
+.ds-group:hover .group-hover\:ds-scale-110 { transform: scale(1.10); }
+
+.group:hover .group-hover\:ds-translate-x-1,
+.ds-group:hover .group-hover\:ds-translate-x-1 { transform: translateX(0.25rem); }
+
+.group:hover .group-hover\:ds-translate-y-0,
+.ds-group:hover .group-hover\:ds-translate-y-0 { transform: translateY(0); }
+
+/* Border */
+.group:hover .group-hover\:ds-border-active,
+.ds-group:hover .group-hover\:ds-border-active { border-color: var(--ds-color-border-active); }
+
+/* Visibility */
+.group:hover .group-hover\:ds-visible,
+.ds-group:hover .group-hover\:ds-visible { visibility: visible; }
 
 /* ==========================================================================
    Utilities: Accessibility

@@ -371,3 +371,11 @@
   white-space: nowrap;
   border-width: 0;
 }
+
+/* --- Responsive: md (768px) — small text sizes --- */
+@media (min-width: 768px) {
+  .ds-md\:text-xs   { font-size: var(--ds-text-xs); }
+  .ds-md\:text-sm   { font-size: var(--ds-text-sm); }
+  .ds-md\:text-base { font-size: var(--ds-text-base); }
+  .ds-md\:text-5xl  { font-size: var(--ds-text-5xl); }
+}
