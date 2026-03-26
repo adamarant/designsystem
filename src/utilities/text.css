@@ -63,6 +63,10 @@
 .ds-text-interactive { color: var(--ds-color-interactive); }
 .ds-text-on-inverted { color: var(--ds-color-on-inverted); }
 
+/* --- Theme-independent colors (ignore light/dark toggle) --- */
+.ds-text-always-white { color: var(--ds-color-static-white); }
+.ds-text-always-black { color: var(--ds-color-static-black); }
+
 /* --- Background Color --- */
 .ds-bg-base     { background-color: var(--ds-color-bg); }
 .ds-bg-surface  { background-color: var(--ds-color-surface); }

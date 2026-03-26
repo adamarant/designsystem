@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.7 */
+/* @ds/designsystem v0.9.8 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -68,6 +68,8 @@
   /* --- Interactive --- */
   --ds-color-interactive: #3f3f46;
   --ds-color-interactive-hover: #27272a;
+  --ds-color-interactive-subtle: rgba(63, 63, 70, 0.1);
+  --ds-color-interactive-border: rgba(63, 63, 70, 0.2);
 
   /* --- Overlays --- */
   --ds-color-overlay: rgba(0, 0, 0, 0.5);
@@ -132,6 +134,8 @@
   /* --- Interactive --- */
   --ds-color-interactive: #d4d4d8;
   --ds-color-interactive-hover: #fafafa;
+  --ds-color-interactive-subtle: rgba(212, 212, 216, 0.1);
+  --ds-color-interactive-border: rgba(212, 212, 216, 0.2);
 
   /* --- Overlays --- */
   --ds-color-overlay: rgba(0, 0, 0, 0.7);
@@ -161,6 +165,10 @@
 
 /* Shared tokens (same in both themes) */
 :root {
+  /* --- Static (theme-independent, never change between light/dark) --- */
+  --ds-color-static-white: #fafafa;
+  --ds-color-static-black: #09090b;
+
   /* --- Semantic Status --- */
   --ds-color-success: #16a34a;
   --ds-color-success-subtle: rgba(22, 163, 74, 0.1);
@@ -330,6 +338,10 @@
   --ds-size-2: 2rem;
   --ds-size-3: 2.5rem;
   --ds-size-4: 3rem;
+
+  /* --- Component-Specific Heights --- */
+  --ds-search-bar-height: 3.5rem;
+  --ds-toolbar-row-height: 2.5rem;
 
   /* --- Section Padding (responsive, generous) --- */
   --ds-section-padding: clamp(80px, 12vw, 160px);
@@ -2857,7 +2869,7 @@ hr {
     height: 1.25rem;
     border: none;
     background: none;
-    border-radius: var(--ds-radius-default);
+    border-radius: var(--ds-radius-md);
     color: var(--ds-color-text-tertiary);
     cursor: pointer;
     font-size: var(--ds-text-xs);
@@ -3099,7 +3111,7 @@ hr {
       border: 2px solid var(--ds-color-surface);
       box-shadow: var(--ds-shadow-sm);
       cursor: pointer;
-      transition: transform var(--ds-duration-fast) var(--ds-ease);
+      transition: transform var(--ds-duration-fast) var(--ds-ease-default);
     }
 .ds-slider input[type="range"]::-moz-range-thumb {
 
@@ -3110,7 +3122,7 @@ hr {
       border: 2px solid var(--ds-color-surface);
       box-shadow: var(--ds-shadow-sm);
       cursor: pointer;
-      transition: transform var(--ds-duration-fast) var(--ds-ease);
+      transition: transform var(--ds-duration-fast) var(--ds-ease-default);
     }
 .ds-slider input[type="range"]:hover::-webkit-slider-thumb {
 
@@ -3723,9 +3735,9 @@ hr {
   }
 .ds-tag--purple {
 
-    background-color: var(--ds-color-purple-subtle, var(--ds-color-bg-elevated));
-    color: var(--ds-color-purple, var(--ds-color-interactive));
-    border-color: var(--ds-color-purple-border, var(--ds-color-purple, var(--ds-color-interactive)));
+    background-color: var(--ds-color-accent-purple-subtle, var(--ds-color-bg-elevated));
+    color: var(--ds-color-accent-purple, var(--ds-color-interactive));
+    border-color: var(--ds-color-accent-purple-border, var(--ds-color-accent-purple, var(--ds-color-interactive)));
   }
 .ds-tag--removable {
 
@@ -3799,7 +3811,7 @@ hr {
 
 
 /* Tags used as <button> for selection — no focus ring on click */
-button.ds-tag:focus-visible {
+.ds-tag:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
   scroll-margin-block: var(--ds-space-16, 4rem);
@@ -3854,7 +3866,7 @@ button.ds-tag:focus-visible {
 .ds-chip--logic {
 
     cursor: pointer;
-    font-weight: 600;
+    font-weight: var(--ds-weight-semibold);
     color: var(--ds-color-text-tertiary);
     background: transparent;
     border-color: var(--ds-color-border);
@@ -6317,7 +6329,7 @@ button.ds-tag:focus-visible {
     height: 2.25rem;
     border-radius: var(--ds-radius-full);
     background: var(--ds-color-text);
-    color: var(--ds-color-bg-base);
+    color: var(--ds-color-bg);
   }
 
 
@@ -6490,7 +6502,7 @@ button.ds-tag:focus-visible {
     height: 1rem;
     padding: 0 0.25rem;
     font-size: 0.625rem;
-    font-weight: 600;
+    font-weight: var(--ds-weight-semibold);
     line-height: 1;
     color: var(--ds-color-on-inverted);
     background: var(--ds-color-interactive);
@@ -8017,8 +8029,8 @@ button.ds-tag:focus-visible {
     visibility: hidden;
     transform: scale(0.96);
     transition:
-      opacity var(--ds-duration-fast) var(--ds-ease),
-      visibility var(--ds-duration-fast) var(--ds-ease),
+      opacity var(--ds-duration-fast) var(--ds-ease-default),
+      visibility var(--ds-duration-fast) var(--ds-ease-default),
       transform var(--ds-duration-fast) var(--ds-ease-out-expo);
 
     /* Size: small */
@@ -8317,8 +8329,8 @@ button.ds-tag:focus-visible {
   opacity: 0;
   visibility: hidden;
   transition:
-    opacity var(--ds-duration-fast) var(--ds-ease),
-    visibility var(--ds-duration-fast) var(--ds-ease);
+    opacity var(--ds-duration-fast) var(--ds-ease-default),
+    visibility var(--ds-duration-fast) var(--ds-ease-default);
 
   /* Open state */
   
@@ -8445,8 +8457,8 @@ button.ds-tag:focus-visible {
     font-size: var(--ds-text-sm);
     color: var(--ds-color-text-secondary);
     transition:
-      background-color var(--ds-duration-fast) var(--ds-ease),
-      color var(--ds-duration-fast) var(--ds-ease);
+      background-color var(--ds-duration-fast) var(--ds-ease-default),
+      color var(--ds-duration-fast) var(--ds-ease-default);
 
     /* Item hover & active states */
     
@@ -9390,7 +9402,7 @@ button.ds-tag:focus-visible {
     border: none;
     border-radius: var(--ds-radius-full);
     background-color: rgba(255, 255, 255, 0.15);
-    color: #fff;
+    color: var(--ds-color-on-inverted);
     font-size: var(--ds-text-xl);
     cursor: pointer;
     transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
@@ -9422,7 +9434,7 @@ button.ds-tag:focus-visible {
     border: none;
     border-radius: var(--ds-radius-full);
     background-color: rgba(255, 255, 255, 0.15);
-    color: #fff;
+    color: var(--ds-color-on-inverted);
     font-size: var(--ds-text-2xl);
     cursor: pointer;
     transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
@@ -9467,7 +9479,7 @@ button.ds-tag:focus-visible {
     padding: var(--ds-space-1) var(--ds-space-3);
     border-radius: var(--ds-radius-full);
     background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
+    color: var(--ds-color-on-inverted);
     font-size: var(--ds-text-sm);
     font-family: var(--ds-font-sans);
     font-variant-numeric: tabular-nums;
@@ -9489,17 +9501,17 @@ button.ds-tag:focus-visible {
    Full-width hero section with background image, gradient overlay,
    and optional frosted glass backdrop.
 
-   Intentionally uses theme-independent colors for text on photo backgrounds.
-   The overlay uses color-mix() with --ds-color-bg for theme-aware darkening
-   while title/subtitle stay white for readability on any photo.
+   The overlay uses color-mix() with --ds-color-bg for theme-aware darkening.
+   Text color is NOT forced — use ds-text-always-white or ds-text-primary
+   depending on your background.
 
    Usage:
      <section class="ds-hero" style="background-image: url(...)">
        <div class="ds-hero__overlay"></div>
        <div class="ds-hero__content ds-container">
          <div class="ds-hero__backdrop">
-           <h1 class="ds-hero__title ds-hero-title">Heading</h1>
-           <p class="ds-hero__subtitle">Subheading</p>
+           <h1 class="ds-hero__title ds-hero-title ds-text-always-white">Heading</h1>
+           <p class="ds-hero__subtitle ds-text-always-white">Subheading</p>
          </div>
        </div>
      </section>
@@ -9591,13 +9603,11 @@ button.ds-tag:focus-visible {
   margin-inline: auto;
 }
 
-/* --- Title & subtitle (theme-independent white for photo readability) --- */
-.ds-hero__title {
-  color: #fff;
-}
-
+/* --- Title & subtitle (no forced color — use ds-text-always-white or
+   ds-text-primary depending on your overlay/backdrop) --- */
+.ds-hero__title,
 .ds-hero__subtitle {
-  color: rgba(255, 255, 255, 0.85);
+  color: inherit;
 }
 
 /* ==========================================================================
@@ -11683,6 +11693,10 @@ tr:hover .ds-sortable__handle,
 .ds-text-interactive { color: var(--ds-color-interactive); }
 .ds-text-on-inverted { color: var(--ds-color-on-inverted); }
 
+/* --- Theme-independent colors (ignore light/dark toggle) --- */
+.ds-text-always-white { color: var(--ds-color-static-white); }
+.ds-text-always-black { color: var(--ds-color-static-black); }
+
 /* --- Background Color --- */
 .ds-bg-base { background-color: var(--ds-color-bg); }
 .ds-bg-surface { background-color: var(--ds-color-surface); }
@@ -12022,7 +12036,7 @@ tr:hover .ds-sortable__handle,
 /* --- Editable Cell (pointer + bg on hover) --- */
 .ds-editable {
   cursor: pointer;
-  border-radius: var(--ds-radius-default);
+  border-radius: var(--ds-radius-md);
   transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
 }
 .ds-editable:hover {
@@ -12076,7 +12090,7 @@ tr:hover .ds-sortable__handle,
 }
 
 .ds-bg-base-50 {
-  background-color: color-mix(in srgb, var(--ds-color-bg-base) 50%, transparent);
+  background-color: color-mix(in srgb, var(--ds-color-bg) 50%, transparent);
 }
 
 /* --- Hover Color Variants --- */

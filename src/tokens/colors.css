@@ -139,6 +139,10 @@
 
 /* Shared tokens (same in both themes) */
 :root {
+  /* --- Static (theme-independent, never change between light/dark) --- */
+  --ds-color-static-white: #fafafa;
+  --ds-color-static-black: #09090b;
+
   /* --- Semantic Status --- */
   --ds-color-success: #16a34a;
   --ds-color-success-subtle: rgba(22, 163, 74, 0.1);

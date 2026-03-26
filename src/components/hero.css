@@ -3,17 +3,17 @@
    Full-width hero section with background image, gradient overlay,
    and optional frosted glass backdrop.
 
-   Intentionally uses theme-independent colors for text on photo backgrounds.
-   The overlay uses color-mix() with --ds-color-bg for theme-aware darkening
-   while title/subtitle stay white for readability on any photo.
+   The overlay uses color-mix() with --ds-color-bg for theme-aware darkening.
+   Text color is NOT forced — use ds-text-always-white or ds-text-primary
+   depending on your background.
 
    Usage:
      <section class="ds-hero" style="background-image: url(...)">
        <div class="ds-hero__overlay"></div>
        <div class="ds-hero__content ds-container">
          <div class="ds-hero__backdrop">
-           <h1 class="ds-hero__title ds-hero-title">Heading</h1>
-           <p class="ds-hero__subtitle">Subheading</p>
+           <h1 class="ds-hero__title ds-hero-title ds-text-always-white">Heading</h1>
+           <p class="ds-hero__subtitle ds-text-always-white">Subheading</p>
          </div>
        </div>
      </section>
@@ -103,11 +103,9 @@
   margin-inline: auto;
 }
 
-/* --- Title & subtitle (theme-independent white for photo readability) --- */
-.ds-hero__title {
-  color: var(--ds-color-on-inverted);
-}
-
+/* --- Title & subtitle (no forced color — use ds-text-always-white or
+   ds-text-primary depending on your overlay/backdrop) --- */
+.ds-hero__title,
 .ds-hero__subtitle {
-  color: rgba(255, 255, 255, 0.85);
+  color: inherit;
 }
