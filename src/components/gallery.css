@@ -175,7 +175,7 @@
     border: none;
     border-radius: var(--ds-radius-full);
     background-color: rgba(255, 255, 255, 0.15);
-    color: #fff;
+    color: var(--ds-color-on-inverted);
     font-size: var(--ds-text-xl);
     cursor: pointer;
     transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
@@ -204,7 +204,7 @@
     border: none;
     border-radius: var(--ds-radius-full);
     background-color: rgba(255, 255, 255, 0.15);
-    color: #fff;
+    color: var(--ds-color-on-inverted);
     font-size: var(--ds-text-2xl);
     cursor: pointer;
     transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
@@ -241,7 +241,7 @@
     padding: var(--ds-space-1) var(--ds-space-3);
     border-radius: var(--ds-radius-full);
     background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
+    color: var(--ds-color-on-inverted);
     font-size: var(--ds-text-sm);
     font-family: var(--ds-font-sans);
     font-variant-numeric: tabular-nums;

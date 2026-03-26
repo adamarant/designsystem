@@ -38,8 +38,8 @@
     visibility: hidden;
     transform: scale(0.96);
     transition:
-      opacity var(--ds-duration-fast) var(--ds-ease),
-      visibility var(--ds-duration-fast) var(--ds-ease),
+      opacity var(--ds-duration-fast) var(--ds-ease-default),
+      visibility var(--ds-duration-fast) var(--ds-ease-default),
       transform var(--ds-duration-fast) var(--ds-ease-out-expo);
 
     /* Size: small */

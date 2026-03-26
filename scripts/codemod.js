@@ -126,6 +126,156 @@ function scanFile(filePath) {
         });
       }
     }
+
+    // ── NEW CHECKS (v0.9.7+) ──────────────────────────────────────────────
+
+    // 6. Deprecated DS classes (renamed in v0.7.0)
+    if (/ds-form-group/.test(line)) {
+      results.manual.push({
+        file: filePath, line: lineNum,
+        message: 'ds-form-group is deprecated. Use ds-field instead (v0.7.0 rename).',
+        original: line.trim(),
+      });
+    }
+    if (/ds-help(?!-)/.test(line) || /ds-help--error/.test(line)) {
+      results.manual.push({
+        file: filePath, line: lineNum,
+        message: 'ds-help / ds-help--error are deprecated. Use ds-field__hint / ds-field__error (v0.7.0).',
+        original: line.trim(),
+      });
+    }
+
+    // 7. Unprefixed component classes in TSX/JSX
+    if (!isCss) {
+      const unprefixed = line.match(/className=["'][^"']*\b(btn|badge|spinner|icon-btn|input-base|select-base|dropdown-menu|modal-overlay)\b/);
+      if (unprefixed) {
+        results.manual.push({
+          file: filePath, line: lineNum,
+          message: `Unprefixed class "${unprefixed[1]}" — use ds-${unprefixed[1].replace('-', '-')} instead.`,
+          original: line.trim(),
+        });
+      }
+    }
+
+    // 8. Hardcoded colors in consumer CSS
+    if (isCss) {
+      const colorMatch = line.match(/:\s*(#fff|#000|#ffffff|#000000|white|black)\s*[;}]/i);
+      if (colorMatch && !/\/\*/.test(line) && !/var\(/.test(line)) {
+        results.info.push({
+          file: filePath, line: lineNum,
+          message: `Hardcoded color "${colorMatch[1]}" — use DS token (--ds-color-inverted, --ds-color-text, etc.).`,
+          original: line.trim(),
+        });
+      }
+    }
+
+    // 9. style={{ width: 'auto' }} on ds-select (redundant since v0.4.0)
+    if (/ds-select/.test(line) && /style=\{\{[^}]*width\s*:\s*['"]auto['"]/.test(line)) {
+      results.info.push({
+        file: filePath, line: lineNum,
+        message: 'style={{ width: "auto" }} on ds-select is redundant — ds-select is auto by default since v0.4.0.',
+        original: line.trim(),
+      });
+    }
+
+    // 10. outline: none on DS components in consumer CSS
+    if (isCss && /outline\s*:\s*none/.test(line)) {
+      // Check if in a .ds-* context (within 5 lines)
+      const context = lines.slice(Math.max(0, i - 5), i + 1).join('\n');
+      if (/\.ds-/.test(context)) {
+        results.manual.push({
+          file: filePath, line: lineNum,
+          message: 'outline: none on DS component blocks the box-shadow focus ring. Remove this override.',
+          original: line.trim(),
+        });
+      }
+    }
+
+    // 11. Phantom tokens in consumer CSS
+    if (isCss) {
+      const tokenRefs = line.matchAll(/var\((--ds-[\w-]+)/g);
+      for (const m of tokenRefs) {
+        const token = m[1];
+        // Known phantom tokens from audit
+        const phantoms = ['--ds-color-danger', '--ds-color-text-primary', '--ds-color-surface-hover', '--ds-ring-offset'];
+        if (phantoms.includes(token)) {
+          results.manual.push({
+            file: filePath, line: lineNum,
+            message: `Phantom token ${token} — this token does not exist in the DS. Check tokens reference in CLAUDE.md.`,
+            original: line.trim(),
+          });
+        }
+      }
+    }
+
+    // 12. <select> native in dark mode projects
+    if (!isCss && /<select\b/.test(line) && !/<select.*className/.test(line)) {
+      // Only flag if not already a DS component
+      if (!/ds-custom-select/.test(line) && !/ds-select/.test(line)) {
+        results.info.push({
+          file: filePath, line: lineNum,
+          message: 'Native <select> element — browser dropdown is not styleable in dark mode. Consider ds-dropdown or ds-custom-select.',
+          original: line.trim(),
+        });
+      }
+    }
+
+    // 13. Wrong element-class pairing
+    if (!isCss) {
+      if (/<textarea[^>]*className=["'][^"']*ds-input(?!-)/.test(line)) {
+        results.manual.push({
+          file: filePath, line: lineNum,
+          message: '<textarea> with ds-input — use ds-textarea instead.',
+          original: line.trim(),
+        });
+      }
+    }
+
+    // 14. Utility soup (4+ ds-* utility classes on one element)
+    if (!isCss) {
+      const classMatch = line.match(/className=["']([^"']+)["']/);
+      if (classMatch) {
+        const classes = classMatch[1].split(/\s+/);
+        const dsUtilities = classes.filter(c => /^ds-(flex|grid|gap|items|justify|p-|px-|py-|m-|mx-|my-|mb-|mt-|ml-|mr-|w-|h-|text-|bg-|border|rounded|shadow|block|hidden|inline|relative|absolute|fixed|sticky|overflow|z-|opacity)/.test(c));
+        if (dsUtilities.length >= 4) {
+          results.info.push({
+            file: filePath, line: lineNum,
+            message: `Utility soup (${dsUtilities.length} utilities) — check if a DS component covers this pattern.`,
+            original: line.trim().substring(0, 120),
+          });
+        }
+      }
+    }
+
+    // 15. cx-* classes (should be zero everywhere)
+    if (/\bcx-[\w-]+/.test(line)) {
+      results.manual.push({
+        file: filePath, line: lineNum,
+        message: 'cx-* prefix is deprecated. Migrate to ds-* (DS component) or unprefixed BEM (project-specific).',
+        original: line.trim(),
+      });
+    }
+
+    // 16. :root.dark or .dark selector in consumer CSS
+    if (isCss && /:root\.dark/.test(line)) {
+      results.auto.push({
+        file: filePath, line: lineNum,
+        message: ':root.dark → [data-theme="dark"]',
+        original: line.trim(),
+      });
+      if (applyFix) {
+        modified = modified.replace(/:root\.dark/g, '[data-theme="dark"]');
+      }
+    }
+
+    // 17. border-left/right/top/bottom in consumer CSS
+    if (isCss && /border-(left|right)\s*:/.test(line) && !/\/\*/.test(line)) {
+      results.info.push({
+        file: filePath, line: lineNum,
+        message: 'Physical border property — use border-inline-start/end for RTL support.',
+        original: line.trim(),
+      });
+    }
   });
 
   if (applyFix && modified !== content) {

@@ -105,7 +105,7 @@
 
 /* --- Title & subtitle (theme-independent white for photo readability) --- */
 .ds-hero__title {
-  color: #fff;
+  color: var(--ds-color-on-inverted);
 }
 
 .ds-hero__subtitle {

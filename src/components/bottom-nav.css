@@ -108,7 +108,7 @@
     height: 2.25rem;
     border-radius: var(--ds-radius-full);
     background: var(--ds-color-text);
-    color: var(--ds-color-bg-base);
+    color: var(--ds-color-bg);
   }
 }
 

@@ -44,6 +44,10 @@
   --ds-size-3: 2.5rem;
   --ds-size-4: 3rem;
 
+  /* --- Component-Specific Heights --- */
+  --ds-search-bar-height: 3.5rem;
+  --ds-toolbar-row-height: 2.5rem;
+
   /* --- Section Padding (responsive, generous) --- */
   --ds-section-padding: clamp(80px, 12vw, 160px);
 

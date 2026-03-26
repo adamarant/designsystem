@@ -50,7 +50,7 @@
       border: 2px solid var(--ds-color-surface);
       box-shadow: var(--ds-shadow-sm);
       cursor: pointer;
-      transition: transform var(--ds-duration-fast) var(--ds-ease);
+      transition: transform var(--ds-duration-fast) var(--ds-ease-default);
     }
 
     /* Firefox thumb */
@@ -62,7 +62,7 @@
       border: 2px solid var(--ds-color-surface);
       box-shadow: var(--ds-shadow-sm);
       cursor: pointer;
-      transition: transform var(--ds-duration-fast) var(--ds-ease);
+      transition: transform var(--ds-duration-fast) var(--ds-ease-default);
     }
 
     /* Hover: scale up thumb */

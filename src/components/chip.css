@@ -37,7 +37,7 @@
   /* Logic chip (AND/OR toggle) */
   &--logic {
     cursor: pointer;
-    font-weight: 600;
+    font-weight: var(--ds-weight-semibold);
     color: var(--ds-color-text-tertiary);
     background: transparent;
     border-color: var(--ds-color-border);

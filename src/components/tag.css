@@ -78,9 +78,9 @@
   }
 
   &--purple {
-    background-color: var(--ds-color-purple-subtle, var(--ds-color-bg-elevated));
-    color: var(--ds-color-purple, var(--ds-color-interactive));
-    border-color: var(--ds-color-purple-border, var(--ds-color-purple, var(--ds-color-interactive)));
+    background-color: var(--ds-color-accent-purple-subtle, var(--ds-color-bg-elevated));
+    color: var(--ds-color-accent-purple, var(--ds-color-interactive));
+    border-color: var(--ds-color-accent-purple-border, var(--ds-color-accent-purple, var(--ds-color-interactive)));
   }
 
   /* ---------------------------------------------------------------------------
@@ -166,7 +166,7 @@
 }
 
 /* Tags used as <button> for selection — no focus ring on click */
-button.ds-tag:focus-visible {
+.ds-tag:focus-visible {
   outline: none;
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
   scroll-margin-block: var(--ds-space-16, 4rem);

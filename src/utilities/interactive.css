@@ -32,7 +32,7 @@
 /* --- Editable Cell (pointer + bg on hover) --- */
 .ds-editable {
   cursor: pointer;
-  border-radius: var(--ds-radius-default);
+  border-radius: var(--ds-radius-md);
   transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
 }
 .ds-editable:hover {
@@ -86,7 +86,7 @@
 }
 
 .ds-bg-base-50 {
-  background-color: color-mix(in srgb, var(--ds-color-bg-base) 50%, transparent);
+  background-color: color-mix(in srgb, var(--ds-color-bg) 50%, transparent);
 }
 
 /* --- Hover Color Variants --- */

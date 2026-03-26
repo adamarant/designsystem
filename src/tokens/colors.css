@@ -42,6 +42,8 @@
   /* --- Interactive --- */
   --ds-color-interactive: #3f3f46;
   --ds-color-interactive-hover: #27272a;
+  --ds-color-interactive-subtle: rgba(63, 63, 70, 0.1);
+  --ds-color-interactive-border: rgba(63, 63, 70, 0.2);
 
   /* --- Overlays --- */
   --ds-color-overlay: rgba(0, 0, 0, 0.5);
@@ -106,6 +108,8 @@
   /* --- Interactive --- */
   --ds-color-interactive: #d4d4d8;
   --ds-color-interactive-hover: #fafafa;
+  --ds-color-interactive-subtle: rgba(212, 212, 216, 0.1);
+  --ds-color-interactive-border: rgba(212, 212, 216, 0.2);
 
   /* --- Overlays --- */
   --ds-color-overlay: rgba(0, 0, 0, 0.7);

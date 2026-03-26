@@ -1,5 +1,35 @@
 # CLAUDE.md — Design System Guidelines
 
+## DS Health → [/Projects/DS_HEALTH.md](/Projects/DS_HEALTH.md)
+
+Metriche, azioni aperte, QUARANTINE rules generali, regole DS per tutti i progetti: centralizzate in DS_HEALTH.md.
+
+## 🔒 QUARANTINE — Regole Specifiche per il DS Source
+
+Il DS è in fase di consolidamento. Queste regole si aggiungono a quelle generali in DS_HEALTH.md.
+
+### BLOCCATO — Non fare MAI senza approvazione esplicita dell'utente:
+- Aggiungere nuovi componenti CSS
+- Modificare API di componenti esistenti (classi, modifier, varianti)
+- Cambiare valori token in `src/tokens/`
+- Aggiungere breaking changes
+- Pubblicare nuove major/minor version (solo patch per bugfix)
+
+### CONSENTITO senza chiedere:
+- Bug fix su componenti esistenti (es. phantom tokens, hardcoded values)
+- Migliorare documentazione (ARIA docs, examples, header comments)
+- Aggiungere check al `scripts/validate.js`
+- Fixare violazioni trovate dal validate (`npm run validate`)
+- Migliorare build/tooling/codemod
+- Rimuovere codice morto o ridondante
+
+### Se pensi di dover aggiungere qualcosa:
+1. STOP — non farlo
+2. Chiedi all'utente: "Serve davvero un nuovo componente/modifier/token, o posso comporre con quelli esistenti?"
+3. Solo l'utente può sbloccare QUARANTINE per una modifica specifica
+
+---
+
 ## Project Overview
 
 CSS-only design system. Zero dependencies. Install anywhere, override tokens, nothing breaks.
@@ -7,6 +37,7 @@ CSS-only design system. Zero dependencies. Install anywhere, override tokens, no
 **Package:** `@digiko-npm/designsystem`
 **Stack:** Pure CSS + CSS Custom Properties
 **Build:** `node scripts/build.js` (concatenates all CSS into `dist/designsystem.css`)
+**Validate:** `node scripts/validate.js` (40 automated checks — run before every publish)
 **Theme:** Light default, dark via `[data-theme="dark"]`
 **Typography:** Clash Display (headings) + Switzer (body) + Geist Mono (code) — overridable
 

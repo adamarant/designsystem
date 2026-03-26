@@ -458,6 +458,18 @@ build();
 updateExportsMap();
 validateManifest();
 
+// Run validation (non-blocking in build, just report)
+if (!process.argv.includes('--watch')) {
+  try {
+    require('child_process').execSync('node scripts/validate.js', {
+      cwd: path.join(__dirname, '..'),
+      stdio: 'inherit',
+    });
+  } catch (e) {
+    console.warn('  ⚠️  Validation found issues — run `npm run validate` for details');
+  }
+}
+
 // Watch mode
 if (process.argv.includes('--watch')) {
   console.log('  Watching for changes...\n');
