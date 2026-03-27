@@ -151,6 +151,12 @@
     &--active {
       background-color: var(--ds-color-bg-elevated);
       color: var(--ds-color-text);
+
+      & .ds-command__item-icon,
+      & .ds-command__item-label,
+      & .ds-command__item-shortcut {
+        color: inherit;
+      }
     }
 
     &:focus-visible {
