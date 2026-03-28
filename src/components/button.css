@@ -109,6 +109,16 @@
     }
   }
 
+  &--success-solid {
+    background-color: var(--ds-color-success);
+    color: var(--ds-color-on-inverted);
+    border-color: transparent;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
   /* --- Sizes --- */
 
   &--xs {
@@ -134,6 +144,20 @@
     border-radius: var(--ds-radius-lg);
   }
 
+  &--xl {
+    height: var(--ds-size-5);
+    padding: 0 var(--ds-space-8);
+    font-size: var(--ds-text-base);
+    border-radius: var(--ds-radius-lg);
+  }
+
+  &--2xl {
+    height: var(--ds-size-6);
+    padding: 0 var(--ds-space-8);
+    font-size: var(--ds-text-lg);
+    border-radius: var(--ds-radius-xl);
+  }
+
   /* --- Pill (rounded-full, like hero CTAs) --- */
   &--pill {
     border-radius: var(--ds-radius-full);
@@ -145,6 +169,14 @@
 
     &.ds-btn--sm {
       padding: 0 var(--ds-space-5);
+    }
+
+    &.ds-btn--xl {
+      padding: 0 var(--ds-space-8);
+    }
+
+    &.ds-btn--2xl {
+      padding: 0 var(--ds-space-10);
     }
   }
 
@@ -166,6 +198,16 @@
     &.ds-btn--sm {
       width: var(--ds-size-2);
       height: var(--ds-size-2);
+    }
+
+    &.ds-btn--xl {
+      width: var(--ds-size-5);
+      height: var(--ds-size-5);
+    }
+
+    &.ds-btn--2xl {
+      width: var(--ds-size-6);
+      height: var(--ds-size-6);
     }
   }
 

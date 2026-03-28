@@ -52,12 +52,15 @@
         "--outline",
         "--ghost",
         "--danger",
-        "--success"
+        "--success",
+        "--success-solid"
       ],
       "sizes": [
         "--xs",
         "--sm",
-        "--lg"
+        "--lg",
+        "--xl",
+        "--2xl"
       ],
       "modifiers": [
         "--pill",
