@@ -31,8 +31,10 @@
       border-radius: var(--ds-radius-md);
       padding: var(--ds-space-1-5) var(--ds-space-3);
 
-      &:hover {
-        background-color: var(--ds-color-overlay-hover);
+      @media (hover: hover) {
+        &:hover {
+          background-color: var(--ds-color-overlay-hover);
+        }
       }
 
       &--active {
@@ -107,8 +109,10 @@
   transition: all var(--ds-duration-fast) var(--ds-ease-default);
   margin-block-end: -1px;
 
-  &:hover {
-    color: var(--ds-color-text);
+  @media (hover: hover) {
+    &:hover {
+      color: var(--ds-color-text);
+    }
   }
 
   &:focus-visible {

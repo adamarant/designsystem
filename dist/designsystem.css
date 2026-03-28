@@ -5736,9 +5736,13 @@ hr {
 
       
     }
-.ds-tabs--pills .ds-tab:hover {
+@media (hover: hover) {
 
-        background-color: var(--ds-color-overlay-hover);
+        .ds-tabs--pills .ds-tab:hover {
+
+          background-color: var(--ds-color-overlay-hover);
+        }
+
       }
 .ds-tabs--pills .ds-tab--active {
 
@@ -5830,9 +5834,13 @@ hr {
 
   
 }
-.ds-tab:hover {
+@media (hover: hover) {
 
-    color: var(--ds-color-text);
+    .ds-tab:hover {
+
+      color: var(--ds-color-text);
+    }
+
   }
 .ds-tab:focus-visible {
 
