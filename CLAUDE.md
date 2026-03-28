@@ -8,11 +8,27 @@ Metriche, azioni aperte, QUARANTINE rules generali, regole DS per tutti i proget
 
 Il DS è in fase di consolidamento. Queste regole si aggiungono a quelle generali in DS_HEALTH.md.
 
+### ⛔ REGOLA FONDAMENTALE — Backward Compatibility
+
+**Le classi DS pubblicate NON si cancellano e NON si rinominano. Mai.**
+
+9 progetti consumer dipendono da queste classi. Rinominare o rimuovere una classe rompe silenziosamente le UI senza errori in console — il bug peggiore possibile.
+
+Se una classe deve cambiare:
+1. **Depreca** — aggiungi commento `/* @deprecated — use .ds-new-name instead */` e mantieni la vecchia classe funzionante
+2. **Aggiungi la nuova** — la nuova classe coesiste con la vecchia
+3. **Comunica** — documenta in DS_HEALTH.md sezione "Deprecazioni" con deadline di rimozione
+4. **Aspetta** — i consumer hanno almeno 2 versioni minor per migrare
+5. **Solo dopo** — rimuovi la vecchia classe in una major version
+
+Stesso principio per i token (`--ds-*`): non rinominare, non rimuovere. Aggiungi il nuovo, depreca il vecchio.
+
 ### BLOCCATO — Non fare MAI senza approvazione esplicita dell'utente:
 - Aggiungere nuovi componenti CSS
 - Modificare API di componenti esistenti (classi, modifier, varianti)
 - Cambiare valori token in `src/tokens/`
 - Aggiungere breaking changes
+- Cancellare o rinominare classi/token esistenti
 - Pubblicare nuove major/minor version (solo patch per bugfix)
 
 ### CONSENTITO senza chiedere:
@@ -21,7 +37,7 @@ Il DS è in fase di consolidamento. Queste regole si aggiungono a quelle general
 - Aggiungere check al `scripts/validate.js`
 - Fixare violazioni trovate dal validate (`npm run validate`)
 - Migliorare build/tooling/codemod
-- Rimuovere codice morto o ridondante
+- Rimuovere codice morto o ridondante (ma MAI classi pubbliche — vedi regola sopra)
 
 ### Se pensi di dover aggiungere qualcosa:
 1. STOP — non farlo

@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.10 */
+/* @ds/designsystem v0.9.13 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -333,11 +333,15 @@
        --ds-size-1: 24px — xs (btn--xs, input--xs)
        --ds-size-2: 32px — sm (btn--sm, input--sm)
        --ds-size-3: 40px — md (btn, input — default)
-       --ds-size-4: 48px — lg (btn--lg, input--lg) */
+       --ds-size-4: 48px — lg (btn--lg, input--lg)
+       --ds-size-5: 56px — xl (btn--xl)
+       --ds-size-6: 64px — 2xl (btn--2xl) */
   --ds-size-1: 1.5rem;
   --ds-size-2: 2rem;
   --ds-size-3: 2.5rem;
   --ds-size-4: 3rem;
+  --ds-size-5: 3.5rem;
+  --ds-size-6: 4rem;
 
   /* --- Component-Specific Heights --- */
   --ds-search-bar-height: 3.5rem;
@@ -10182,7 +10186,13 @@ hr {
 
   
 
+  
+
   /* --- Sizes --- */
+
+  
+
+  
 
   
 
@@ -10288,6 +10298,18 @@ hr {
       color: var(--ds-color-on-inverted);
       opacity: 1;
     }
+.ds-btn--success-solid {
+
+    background-color: var(--ds-color-success);
+    color: var(--ds-color-on-inverted);
+    border-color: transparent;
+
+    
+  }
+.ds-btn--success-solid:hover {
+
+      opacity: 0.85;
+    }
 .ds-btn--xs {
 
     height: var(--ds-size-1);
@@ -10311,10 +10333,28 @@ hr {
     font-size: var(--ds-text-base);
     border-radius: var(--ds-radius-lg);
   }
+.ds-btn--xl {
+
+    height: var(--ds-size-5);
+    padding: 0 var(--ds-space-8);
+    font-size: var(--ds-text-base);
+    border-radius: var(--ds-radius-lg);
+  }
+.ds-btn--2xl {
+
+    height: var(--ds-size-6);
+    padding: 0 var(--ds-space-8);
+    font-size: var(--ds-text-lg);
+    border-radius: var(--ds-radius-xl);
+  }
 .ds-btn--pill {
 
     border-radius: var(--ds-radius-full);
     padding: 0 var(--ds-space-6);
+
+    
+
+    
 
     
 
@@ -10328,6 +10368,14 @@ hr {
 
       padding: 0 var(--ds-space-5);
     }
+.ds-btn--pill.ds-btn--xl {
+
+      padding: 0 var(--ds-space-8);
+    }
+.ds-btn--pill.ds-btn--2xl {
+
+      padding: 0 var(--ds-space-10);
+    }
 .ds-btn--full {
  width: 100%; }
 .ds-btn--icon {
@@ -10336,6 +10384,10 @@ hr {
     width: var(--ds-size-3);
     height: var(--ds-size-3);
     border-radius: var(--ds-radius-md);
+
+    
+
+    
 
     
 
@@ -10350,6 +10402,16 @@ hr {
 
       width: var(--ds-size-2);
       height: var(--ds-size-2);
+    }
+.ds-btn--icon.ds-btn--xl {
+
+      width: var(--ds-size-5);
+      height: var(--ds-size-5);
+    }
+.ds-btn--icon.ds-btn--2xl {
+
+      width: var(--ds-size-6);
+      height: var(--ds-size-6);
     }
 .ds-btn--loading {
 
