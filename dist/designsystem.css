@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.13 */
+/* @ds/designsystem v0.9.14 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -5712,6 +5712,10 @@ hr {
 
   
 
+  /* --- Large variant --- */
+
+  
+
   /* --- Full width variant --- */
 
   
@@ -5779,6 +5783,11 @@ hr {
 
     padding: var(--ds-space-1-5) var(--ds-space-3);
     font-size: var(--ds-text-xs);
+  }
+.ds-tabs--lg .ds-tab {
+
+    padding: var(--ds-space-3) var(--ds-space-5);
+    font-size: var(--ds-text-base);
   }
 .ds-tabs--full {
 

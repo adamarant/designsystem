@@ -75,6 +75,13 @@
     font-size: var(--ds-text-xs);
   }
 
+  /* --- Large variant --- */
+
+  &--lg .ds-tab {
+    padding: var(--ds-space-3) var(--ds-space-5);
+    font-size: var(--ds-text-base);
+  }
+
   /* --- Full width variant --- */
 
   &--full {

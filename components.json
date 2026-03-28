@@ -347,7 +347,8 @@
         "--full"
       ],
       "sizes": [
-        "--sm"
+        "--sm",
+        "--lg"
       ],
       "modifiers": [
         "--active"
