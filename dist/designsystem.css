@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.21 */
+/* @ds/designsystem v0.9.22 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -5760,7 +5760,7 @@ hr {
       }
 .ds-tabs--pills .ds-tab--active {
 
-        background-color: var(--ds-color-surface);
+        background-color: var(--ds-color-bg-elevated);
         color: var(--ds-color-text);
         box-shadow: var(--ds-shadow-sm);
         border-block-end: none;
@@ -5794,7 +5794,7 @@ hr {
       }
 .ds-tabs--pills-flat .ds-tab--active {
 
-        background-color: var(--ds-color-surface);
+        background-color: var(--ds-color-bg-elevated);
         color: var(--ds-color-text);
         box-shadow: var(--ds-shadow-sm);
         border-block-end: none;
@@ -6233,7 +6233,7 @@ hr {
     }
 .ds-segmented__item--active {
 
-      background-color: var(--ds-color-surface);
+      background-color: var(--ds-color-bg-elevated);
       color: var(--ds-color-text);
       box-shadow: var(--ds-shadow-sm);
     }
@@ -6555,7 +6555,7 @@ hr {
 .ds-toolbar__btn--active {
 
       color: var(--ds-color-text);
-      background: var(--ds-color-surface);
+      background: var(--ds-color-bg-elevated);
       border-color: var(--ds-color-border);
     }
 .ds-toolbar__badge {
@@ -6619,7 +6619,7 @@ hr {
     }
 .ds-toolbar__segmented-btn--active {
 
-      background: var(--ds-color-bg-muted);
+      background: var(--ds-color-bg-elevated);
       color: var(--ds-color-text);
     }
 
@@ -10885,6 +10885,15 @@ hr {
   border-color: var(--ds-color-border-active);
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
+
+@media (hover: hover) {
+
+  .ds-search:hover:not(:focus-within) {
+    background: var(--ds-color-surface-hover);
+    border-color: var(--ds-color-border-hover);
+  }
+}
+
 
 /* Icon */
 .ds-search__icon {

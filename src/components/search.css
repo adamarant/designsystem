@@ -54,6 +54,13 @@
   box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
+@media (hover: hover) {
+  .ds-search:hover:not(:focus-within) {
+    background: var(--ds-color-surface-hover);
+    border-color: var(--ds-color-border-hover);
+  }
+}
+
 /* Icon */
 .ds-search__icon {
   color: var(--ds-color-text-tertiary);

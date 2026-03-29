@@ -103,7 +103,7 @@
 
     &--active {
       color: var(--ds-color-text);
-      background: var(--ds-color-surface);
+      background: var(--ds-color-bg-elevated);
       border-color: var(--ds-color-border);
     }
   }
@@ -164,7 +164,7 @@
     }
 
     &--active {
-      background: var(--ds-color-bg-muted);
+      background: var(--ds-color-bg-elevated);
       color: var(--ds-color-text);
     }
   }
