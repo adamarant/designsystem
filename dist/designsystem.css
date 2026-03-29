@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.22 */
+/* @ds/designsystem v0.9.23 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -1536,7 +1536,7 @@ hr {
 .ds-custom-select__panel {
   position: fixed;
   z-index: var(--ds-z-dropdown);
-  background-color: var(--ds-color-surface);
+  background-color: var(--ds-color-bg-elevated);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-xl);
   box-shadow: var(--ds-shadow-lg);
@@ -2012,7 +2012,7 @@ hr {
   max-height: 16rem;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background-color: var(--ds-color-surface);
+  background-color: var(--ds-color-bg-elevated);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-xl);
   box-shadow: var(--ds-shadow-lg);
@@ -2689,7 +2689,7 @@ hr {
     z-index: var(--ds-z-dropdown);
     inset-block-start: calc(100% + var(--ds-offset-sm));
     inset-inline-start: 0;
-    background-color: var(--ds-color-surface);
+    background-color: var(--ds-color-bg-elevated);
     border: 1px solid var(--ds-color-border);
     border-radius: var(--ds-radius-xl);
     box-shadow: var(--ds-shadow-lg);
@@ -5794,7 +5794,7 @@ hr {
       }
 .ds-tabs--pills-flat .ds-tab--active {
 
-        background-color: var(--ds-color-bg-elevated);
+        background-color: var(--ds-color-surface);
         color: var(--ds-color-text);
         box-shadow: var(--ds-shadow-sm);
         border-block-end: none;
@@ -7882,7 +7882,7 @@ hr {
     display: flex;
     flex-direction: column;
     padding-block: var(--ds-space-1-5);
-    background-color: var(--ds-color-surface);
+    background-color: var(--ds-color-bg-elevated);
     border: 1px solid var(--ds-color-border);
     border-radius: var(--ds-radius-xl);
     box-shadow: var(--ds-shadow-lg);
@@ -8084,7 +8084,7 @@ hr {
 
     position: absolute;
     z-index: var(--ds-z-dropdown);
-    background-color: var(--ds-color-surface);
+    background-color: var(--ds-color-bg-elevated);
     border: 1px solid var(--ds-color-border);
     border-radius: var(--ds-radius-xl);
     box-shadow: var(--ds-shadow-lg);
@@ -8452,7 +8452,7 @@ hr {
     }
 .ds-command__content {
 
-    background-color: var(--ds-color-surface);
+    background-color: var(--ds-color-bg-elevated);
     border: 1px solid var(--ds-color-border);
     border-radius: var(--ds-radius-xl);
     box-shadow: var(--ds-shadow-lg);
@@ -11140,7 +11140,7 @@ hr {
     border-inline-start: none;
     border-inline-end: none;
     max-height: calc(100dvh - var(--ds-search-bar-height, 3.5rem));
-    background: var(--ds-color-surface);
+    background: var(--ds-color-bg-elevated);
     backdrop-filter: blur(var(--ds-blur-lg)) saturate(1.5);
     -webkit-backdrop-filter: blur(var(--ds-blur-lg)) saturate(1.5);
   }

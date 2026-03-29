@@ -66,7 +66,7 @@
       }
 
       &--active {
-        background-color: var(--ds-color-bg-elevated);
+        background-color: var(--ds-color-surface);
         color: var(--ds-color-text);
         box-shadow: var(--ds-shadow-sm);
         border-block-end: none;

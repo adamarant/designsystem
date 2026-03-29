@@ -68,7 +68,7 @@
 
   /* Content panel */
   &__content {
-    background-color: var(--ds-color-surface);
+    background-color: var(--ds-color-bg-elevated);
     border: 1px solid var(--ds-color-border);
     border-radius: var(--ds-radius-xl);
     box-shadow: var(--ds-shadow-lg);
