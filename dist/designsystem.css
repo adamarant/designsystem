@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.23 */
+/* @ds/designsystem v0.9.24 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -11222,9 +11222,12 @@ hr {
     }
 
 
-/* Show handle on row hover */
+/* Show handle on row hover or any hovered interactive parent */
 tr:hover .ds-sortable__handle,
-.ds-sortable-row:hover .ds-sortable__handle {
+.ds-sortable-row:hover .ds-sortable__handle,
+button:hover .ds-sortable__handle,
+a:hover .ds-sortable__handle,
+[role="button"]:hover .ds-sortable__handle {
   opacity: 1;
   color: var(--ds-color-text-secondary);
 }
