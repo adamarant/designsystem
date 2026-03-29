@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slider — Design System</title>
+  <title>Hero — Design System</title>
   <link rel="stylesheet" href="../../dist/designsystem.css">
   <link rel="stylesheet" href="../_shared/demo.css">
 </head>
@@ -27,7 +27,7 @@
         <a href="../components/datepicker.html" class="demo-sidebar__link">Datepicker</a>
         <a href="../components/drop-zone.html" class="demo-sidebar__link">Drop Zone</a>
         <a href="../components/custom-select.html" class="demo-sidebar__link">Custom Select</a>
-        <a href="../components/slider.html" class="demo-sidebar__link demo-sidebar__link--active">Slider</a>
+        <a href="../components/slider.html" class="demo-sidebar__link">Slider</a>
         <a href="../components/field.html" class="demo-sidebar__link">Field</a>
         <a href="../components/combobox.html" class="demo-sidebar__link">Combobox</a>
         <a href="../components/number-input.html" class="demo-sidebar__link">Number Input</a>
@@ -85,7 +85,7 @@
         <a href="../components/collapsible.html" class="demo-sidebar__link">Collapsible</a>
         <a href="../components/gallery.html" class="demo-sidebar__link">Gallery</a>
         <a href="../components/scroll-area.html" class="demo-sidebar__link">Scroll Area</a>
-        <a href="../components/hero.html" class="demo-sidebar__link">Hero</a>
+        <a href="../components/hero.html" class="demo-sidebar__link demo-sidebar__link--active">Hero</a>
         <a href="../components/prose.html" class="demo-sidebar__link">Prose Block</a>
         <a href="../components/admin-layout.html" class="demo-sidebar__link">Admin Layout</a>
       </div>
@@ -107,77 +107,66 @@
     <main class="demo-main">
 
       <header>
-        <h1>Slider</h1>
-        <p>Range slider input with customizable thumb and track styling.</p>
+        <h1>Hero</h1>
+        <p>Full-width hero section with background image, gradient overlay, and optional frosted glass backdrop.</p>
         <div class="demo-meta">
-          <span class="ds-badge">Form</span>
-          <code>@import '@digiko-npm/designsystem/components/slider';</code>
+          <span class="ds-badge">Layout</span>
+          <code>@import '@digiko-npm/designsystem/components/hero';</code>
         </div>
       </header>
 
 
     <section class="demo-example">
-      <h2>Basic Slider</h2>
+      <h2>Basic Hero</h2>
       <div class="demo-preview">
-        <div class="ds-slider">
-  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="range" min="0" max="100" value="50" />
-  <div class="ds-slider__labels">
-    <span>0</span>
-    <span>100</span>
+        <section class="ds-hero" style="background-image: url(https://picsum.photos/1200/600)">
+  <div class="ds-hero__overlay"></div>
+  <div class="ds-hero__content ds-container">
+    <div class="ds-hero__backdrop">
+      <h1 class="ds-hero__title ds-hero-title">Welcome</h1>
+      <p class="ds-hero__subtitle">A beautiful hero section</p>
+    </div>
   </div>
-</div>
+</section>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-slider&quot;&gt;
-  &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;50&quot; /&gt;
-  &lt;div class=&quot;ds-slider__labels&quot;&gt;
-    &lt;span&gt;0&lt;/span&gt;
-    &lt;span&gt;100&lt;/span&gt;
+        <pre><code>&lt;section class=&quot;ds-hero&quot; style=&quot;background-image: url(https://picsum.photos/1200/600)&quot;&gt;
+  &lt;div class=&quot;ds-hero__overlay&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;ds-hero__content ds-container&quot;&gt;
+    &lt;div class=&quot;ds-hero__backdrop&quot;&gt;
+      &lt;h1 class=&quot;ds-hero__title ds-hero-title&quot;&gt;Welcome&lt;/h1&gt;
+      &lt;p class=&quot;ds-hero__subtitle&quot;&gt;A beautiful hero section&lt;/p&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/section&gt;</code></pre>
       </details>
     </section>
 
     <section class="demo-example">
-      <h2>Slider with Value</h2>
+      <h2>Full Variant</h2>
       <div class="demo-preview">
-        <div style="display:flex;align-items:center;gap:1rem;">
-  <div class="ds-slider" style="flex:1;">
-    <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="range" min="0" max="100" value="75" />
+        <section class="ds-hero ds-hero--full" style="background-image: url(https://picsum.photos/1200/600)">
+  <div class="ds-hero__overlay ds-hero__overlay--subtle"></div>
+  <div class="ds-hero__content ds-container">
+    <div class="ds-hero__backdrop">
+      <h1 class="ds-hero__title ds-hero-title">Full Hero</h1>
+      <p class="ds-hero__subtitle">With subtle overlay</p>
+    </div>
   </div>
-  <span class="ds-slider__value">75%</span>
-</div>
+</section>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div style=&quot;display:flex;align-items:center;gap:1rem;&quot;&gt;
-  &lt;div class=&quot;ds-slider&quot; style=&quot;flex:1;&quot;&gt;
-    &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;75&quot; /&gt;
+        <pre><code>&lt;section class=&quot;ds-hero ds-hero--full&quot; style=&quot;background-image: url(https://picsum.photos/1200/600)&quot;&gt;
+  &lt;div class=&quot;ds-hero__overlay ds-hero__overlay--subtle&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;ds-hero__content ds-container&quot;&gt;
+    &lt;div class=&quot;ds-hero__backdrop&quot;&gt;
+      &lt;h1 class=&quot;ds-hero__title ds-hero-title&quot;&gt;Full Hero&lt;/h1&gt;
+      &lt;p class=&quot;ds-hero__subtitle&quot;&gt;With subtle overlay&lt;/p&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
-  &lt;span class=&quot;ds-slider__value&quot;&gt;75%&lt;/span&gt;
-&lt;/div&gt;</code></pre>
-      </details>
-    </section>
-
-    <section class="demo-example">
-      <h2>Sizes</h2>
-      <div class="demo-preview">
-        <div class="ds-slider ds-slider--sm" style="margin-bottom:1rem;">
-  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="range" min="0" max="100" value="40" />
-</div>
-<div class="ds-slider">
-  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="range" min="0" max="100" value="60" />
-</div>
-      </div>
-      <details class="demo-code">
-        <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-slider ds-slider--sm&quot; style=&quot;margin-bottom:1rem;&quot;&gt;
-  &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;40&quot; /&gt;
-&lt;/div&gt;
-&lt;div class=&quot;ds-slider&quot;&gt;
-  &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;60&quot; /&gt;
-&lt;/div&gt;</code></pre>
+&lt;/section&gt;</code></pre>
       </details>
     </section>
 
@@ -185,17 +174,19 @@
       <h2>API</h2>
       <table class="ds-table">
         <thead><tr><th>Class</th><th>Type</th></tr></thead>
-        <tbody><tr><td><code>.ds-slider</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-slider__labels</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-slider__value</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-slider--sm</code></td><td>Size</td></tr>
-          <tr><td><code>.ds-slider--disabled</code></td><td>Modifier</td></tr></tbody>
+        <tbody><tr><td><code>.ds-hero</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-hero__overlay</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-hero__content</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-hero__backdrop</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-hero__title</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-hero__subtitle</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-hero--full</code></td><td>Variant</td></tr></tbody>
       </table>
     </section>
 
     <nav class="demo-nav-footer">
-      <a href="popover.html">&larr; Popover</a>
-      <a href="timeline.html">Timeline &rarr;</a>
+      <a href="star-rating.html">&larr; Star Rating</a>
+      <a href="prose.html">Prose Block &rarr;</a>
     </nav>
     </main>
   </div>

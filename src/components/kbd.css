@@ -25,7 +25,7 @@
   padding: var(--ds-space-0-5) var(--ds-space-1-5);
   font-family: var(--ds-font-mono);
   font-size: var(--ds-text-xs);
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-bg-muted);
   border: 1px solid var(--ds-color-border);
   border-block-end-width: 2px;
   border-radius: var(--ds-radius-sm);

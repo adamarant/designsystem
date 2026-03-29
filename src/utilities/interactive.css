@@ -8,7 +8,7 @@
   transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
 }
 .ds-hover-row:hover {
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-surface-hover);
 }
 
 /* Subtle variant (semi-transparent) */
@@ -16,7 +16,7 @@
   transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
 }
 .ds-hover-row--subtle:hover {
-  background-color: color-mix(in srgb, var(--ds-color-bg-elevated) 50%, transparent);
+  background-color: color-mix(in srgb, var(--ds-color-surface-hover) 50%, transparent);
 }
 
 /* --- Group Reveal (children appear on parent hover) — .ds-group-reveal --- */
@@ -82,7 +82,7 @@
 
 /* --- Semi-transparent Backgrounds --- */
 .ds-bg-elevated-50 {
-  background-color: color-mix(in srgb, var(--ds-color-bg-elevated) 50%, transparent);
+  background-color: color-mix(in srgb, var(--ds-color-surface-hover) 50%, transparent);
 }
 
 .ds-bg-base-50 {

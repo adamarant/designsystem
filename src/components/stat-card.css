@@ -38,7 +38,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     color: var(--ds-color-text-secondary);
   }
 }

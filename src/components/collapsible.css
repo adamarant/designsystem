@@ -35,7 +35,7 @@
     transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
 
     &:hover {
-      background-color: var(--ds-color-overlay);
+      background-color: var(--ds-color-overlay-hover);
     }
 
     &:focus-visible {

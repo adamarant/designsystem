@@ -164,7 +164,7 @@
     }
 
     &--active {
-      background: var(--ds-color-bg-elevated);
+      background: var(--ds-color-bg-muted);
       color: var(--ds-color-text);
     }
   }

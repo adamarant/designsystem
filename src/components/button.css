@@ -80,7 +80,7 @@
 
     &:hover {
       color: var(--ds-color-text);
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-overlay-hover);
       opacity: 1;
     }
   }

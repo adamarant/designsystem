@@ -46,7 +46,7 @@
 
   /* Elevated card — visible shadow */
   &--elevated {
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     box-shadow: var(--ds-shadow-lg);
   }
 
@@ -91,7 +91,7 @@
     width: 100%;
     aspect-ratio: 16/10;
     object-fit: cover;
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
 
     &--square { aspect-ratio: 1; }
     &--video { aspect-ratio: 16/9; }

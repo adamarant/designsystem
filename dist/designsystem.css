@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.15 */
+/* @ds/designsystem v0.9.18 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -37,7 +37,10 @@
   --ds-color-bg: #fafafa;
   --ds-color-bg-subtle: #ffffff;
   --ds-color-bg-muted: #e4e4e7;
+  --ds-color-bg-muted-hover: #d4d4d8;
+  --ds-color-bg-muted-active: #a1a1aa;
   --ds-color-bg-elevated: #f4f4f5;
+  --ds-color-bg-elevated-hover: #e4e4e7;
 
   --ds-color-surface: #ffffff;
   --ds-color-surface-hover: #fafafa;
@@ -74,8 +77,8 @@
   /* --- Overlays --- */
   --ds-color-overlay: rgba(0, 0, 0, 0.5);
   --ds-color-overlay-subtle: rgba(0, 0, 0, 0.02);
-  --ds-color-overlay-hover: rgba(0, 0, 0, 0.04);
-  --ds-color-overlay-active: rgba(0, 0, 0, 0.08);
+  --ds-color-overlay-hover: rgba(0, 0, 0, 0.08);
+  --ds-color-overlay-active: rgba(0, 0, 0, 0.12);
 
   /* --- Navigation (glass effect) --- */
   --ds-color-nav-bg: rgba(250, 250, 250, 0.8);
@@ -103,7 +106,10 @@
   --ds-color-bg: #09090b;
   --ds-color-bg-subtle: #0f0f11;
   --ds-color-bg-muted: #18181b;
+  --ds-color-bg-muted-hover: #27272a;
+  --ds-color-bg-muted-active: #3f3f46;
   --ds-color-bg-elevated: #27272a;
+  --ds-color-bg-elevated-hover: #3f3f46;
 
   --ds-color-surface: #0f0f11;
   --ds-color-surface-hover: #18181b;
@@ -140,8 +146,8 @@
   /* --- Overlays --- */
   --ds-color-overlay: rgba(0, 0, 0, 0.7);
   --ds-color-overlay-subtle: rgba(255, 255, 255, 0.03);
-  --ds-color-overlay-hover: rgba(255, 255, 255, 0.06);
-  --ds-color-overlay-active: rgba(255, 255, 255, 0.1);
+  --ds-color-overlay-hover: rgba(255, 255, 255, 0.1);
+  --ds-color-overlay-active: rgba(255, 255, 255, 0.15);
 
   /* --- Navigation --- */
   --ds-color-nav-bg: rgba(9, 9, 11, 0.8);
@@ -2738,7 +2744,7 @@ hr {
   }
 .ds-datepicker__nav:hover {
 
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-overlay-hover);
       color: var(--ds-color-text);
     }
 .ds-datepicker__nav:focus-visible {
@@ -2799,7 +2805,7 @@ hr {
   }
 .ds-datepicker__day:hover {
 
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-overlay-hover);
     }
 .ds-datepicker__day:focus-visible {
 
@@ -2855,7 +2861,7 @@ hr {
   }
 .ds-datepicker__today:hover {
 
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-overlay-hover);
       color: var(--ds-color-text);
       border-color: var(--ds-color-border-hover);
     }
@@ -2887,7 +2893,7 @@ hr {
   }
 .ds-datepicker__step:hover {
 
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-overlay-hover);
       color: var(--ds-color-text);
     }
 .ds-datepicker__step:focus-visible {
@@ -3529,7 +3535,7 @@ hr {
   border-radius: var(--ds-radius-full);
   white-space: nowrap;
   border: 1px solid var(--ds-color-border);
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-bg-muted);
   color: var(--ds-color-text-secondary);
 
   /* Semantic variants — subtle bg + bright text + subtle border */
@@ -3647,7 +3653,7 @@ hr {
   font-family: var(--ds-font-sans);
   line-height: var(--ds-leading-none);
   border-radius: var(--ds-radius-full);
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-bg-muted);
   border: 1px solid var(--ds-color-border);
   color: var(--ds-color-text-secondary);
   white-space: nowrap;
@@ -3709,37 +3715,37 @@ hr {
   }
 .ds-tag--primary {
 
-    background-color: var(--ds-color-interactive-subtle, var(--ds-color-bg-elevated));
+    background-color: var(--ds-color-interactive-subtle, var(--ds-color-bg-muted));
     color: var(--ds-color-interactive);
     border-color: var(--ds-color-interactive-border, var(--ds-color-interactive));
   }
 .ds-tag--success {
 
-    background-color: var(--ds-color-success-subtle, var(--ds-color-bg-elevated));
+    background-color: var(--ds-color-success-subtle, var(--ds-color-bg-muted));
     color: var(--ds-color-success);
     border-color: var(--ds-color-success-border, var(--ds-color-success));
   }
 .ds-tag--warning {
 
-    background-color: var(--ds-color-warning-subtle, var(--ds-color-bg-elevated));
+    background-color: var(--ds-color-warning-subtle, var(--ds-color-bg-muted));
     color: var(--ds-color-warning);
     border-color: var(--ds-color-warning-border, var(--ds-color-warning));
   }
 .ds-tag--error {
 
-    background-color: var(--ds-color-error-subtle, var(--ds-color-bg-elevated));
+    background-color: var(--ds-color-error-subtle, var(--ds-color-bg-muted));
     color: var(--ds-color-error);
     border-color: var(--ds-color-error-border, var(--ds-color-error));
   }
 .ds-tag--info {
 
-    background-color: var(--ds-color-info-subtle, var(--ds-color-bg-elevated));
+    background-color: var(--ds-color-info-subtle, var(--ds-color-bg-muted));
     color: var(--ds-color-info);
     border-color: var(--ds-color-info-border, var(--ds-color-info));
   }
 .ds-tag--purple {
 
-    background-color: var(--ds-color-accent-purple-subtle, var(--ds-color-bg-elevated));
+    background-color: var(--ds-color-accent-purple-subtle, var(--ds-color-bg-muted));
     color: var(--ds-color-accent-purple, var(--ds-color-interactive));
     border-color: var(--ds-color-accent-purple-border, var(--ds-color-accent-purple, var(--ds-color-interactive)));
   }
@@ -3853,7 +3859,7 @@ hr {
   font-size: var(--ds-text-xs);
   font-family: inherit;
   color: var(--ds-color-text-secondary);
-  background: var(--ds-color-bg-elevated);
+  background: var(--ds-color-bg-muted);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-full);
   white-space: nowrap;
@@ -3926,7 +3932,7 @@ hr {
   width: var(--ds-size-3);
   height: var(--ds-size-3);
   border-radius: var(--ds-radius-full);
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-bg-muted);
   color: var(--ds-color-text-secondary);
   font-family: var(--ds-font-sans);
   font-size: var(--ds-text-sm);
@@ -4105,7 +4111,7 @@ hr {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     color: var(--ds-color-text-secondary);
   }
 
@@ -4670,7 +4676,7 @@ hr {
     width: 1rem;
     height: 1rem;
     border-radius: var(--ds-radius-full);
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     border: 2px solid var(--ds-color-border);
     z-index: 1;
   }
@@ -5555,7 +5561,7 @@ hr {
 .ds-sidebar__link--active:hover {
 
       color: var(--ds-color-text);
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-surface-hover);
     }
 
 
@@ -5704,6 +5710,10 @@ hr {
 
   
 
+  /* --- Pills flat variant (pills without container background) --- */
+
+  
+
   /* --- Vertical variant --- */
 
   
@@ -5724,7 +5734,7 @@ hr {
 
     border-block-end: none;
     gap: var(--ds-space-1);
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     border-radius: var(--ds-radius-lg);
     padding: var(--ds-space-1);
 
@@ -5749,6 +5759,40 @@ hr {
 
       }
 .ds-tabs--pills .ds-tab--active {
+
+        background-color: var(--ds-color-surface);
+        color: var(--ds-color-text);
+        box-shadow: var(--ds-shadow-sm);
+        border-block-end: none;
+      }
+.ds-tabs--pills-flat {
+
+    border-block-end: none;
+    gap: var(--ds-space-1);
+    background: none;
+    padding: 0;
+
+    
+  }
+.ds-tabs--pills-flat .ds-tab {
+
+      border-block-end: none;
+      border-radius: var(--ds-radius-md);
+      padding: var(--ds-space-1-5) var(--ds-space-3);
+
+      
+
+      
+    }
+@media (hover: hover) {
+
+        .ds-tabs--pills-flat .ds-tab:hover {
+
+          background-color: var(--ds-color-overlay-hover);
+        }
+
+      }
+.ds-tabs--pills-flat .ds-tab--active {
 
         background-color: var(--ds-color-surface);
         color: var(--ds-color-text);
@@ -5890,7 +5934,7 @@ hr {
     font-weight: var(--ds-weight-medium);
     line-height: var(--ds-leading-snug);
     color: var(--ds-color-text-tertiary);
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     border-radius: var(--ds-radius-full);
     min-width: 1.25rem;
   }
@@ -6011,7 +6055,7 @@ hr {
   }
 .ds-pagination__item:hover {
 
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-overlay-hover);
       color: var(--ds-color-text);
     }
 .ds-pagination__item:focus-visible {
@@ -6064,7 +6108,7 @@ hr {
 .ds-pagination__prev:hover,
 .ds-pagination__next:hover {
 
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-overlay-hover);
       color: var(--ds-color-text);
     }
 .ds-pagination__prev:focus-visible,
@@ -6137,7 +6181,7 @@ hr {
   align-items: center;
   gap: var(--ds-space-0-5);
   padding: var(--ds-space-0-5);
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-bg-muted);
   border-radius: var(--ds-radius-lg);
   border: 1px solid var(--ds-color-border-subtle);
 
@@ -6575,7 +6619,7 @@ hr {
     }
 .ds-toolbar__segmented-btn--active {
 
-      background: var(--ds-color-bg-elevated);
+      background: var(--ds-color-bg-muted);
       color: var(--ds-color-text);
     }
 
@@ -7926,7 +7970,7 @@ hr {
   }
 .ds-dropdown__item:hover {
 
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-overlay-hover);
       color: var(--ds-color-text);
     }
 .ds-dropdown__item:focus-visible {
@@ -7937,7 +7981,7 @@ hr {
     }
 .ds-dropdown__item--active {
 
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-overlay-active);
       color: var(--ds-color-text);
     }
 .ds-dropdown__item--danger:hover {
@@ -8489,7 +8533,7 @@ hr {
 .ds-command__item:hover,
 .ds-command__item--active {
 
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-overlay-hover);
       color: var(--ds-color-text);
 
       
@@ -8630,7 +8674,7 @@ hr {
     }
 .ds-card--elevated {
 
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     box-shadow: var(--ds-shadow-lg);
   }
 .ds-card--hover:hover {
@@ -8676,7 +8720,7 @@ hr {
     width: 100%;
     aspect-ratio: 16/10;
     object-fit: cover;
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
 
     
     
@@ -8919,7 +8963,7 @@ hr {
     }
 .ds-accordion__trigger:hover {
 
-      background-color: var(--ds-color-overlay);
+      background-color: var(--ds-color-overlay-hover);
     }
 .ds-accordion__trigger:focus-visible {
 
@@ -9064,7 +9108,7 @@ hr {
   }
 .ds-collapsible__trigger:hover {
 
-      background-color: var(--ds-color-overlay);
+      background-color: var(--ds-color-overlay-hover);
     }
 .ds-collapsible__trigger:focus-visible {
 
@@ -9770,7 +9814,7 @@ hr {
 .ds-admin__sidebar-badge {
   border-radius: var(--ds-radius-md);
   border: 1px solid var(--ds-color-border);
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-bg-muted);
   padding: var(--ds-space-0-5) var(--ds-space-1-5);
   font-size: var(--ds-text-xs);
   font-weight: var(--ds-weight-medium);
@@ -9807,7 +9851,7 @@ hr {
 }
 
 .ds-admin__nav-item--active {
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-surface-hover);
   color: var(--ds-color-text);
 }
 
@@ -9857,7 +9901,7 @@ hr {
 }
 
 .ds-admin__subnav-item--active {
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-surface-hover);
   color: var(--ds-color-text);
 }
 
@@ -10091,13 +10135,13 @@ hr {
 .ds-prose-block code {
   font-family: var(--ds-font-mono);
   font-size: var(--ds-text-sm);
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-bg-muted);
   padding: 0.125em 0.375em;
   border-radius: var(--ds-radius-sm);
 }
 
 .ds-prose-block pre {
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-bg-muted);
   padding: var(--ds-space-4);
   border-radius: var(--ds-radius-lg);
   overflow-x: auto;
@@ -10284,7 +10328,7 @@ hr {
 .ds-btn--ghost:hover {
 
       color: var(--ds-color-text);
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-overlay-hover);
       opacity: 1;
     }
 .ds-btn--danger {
@@ -10745,7 +10789,7 @@ hr {
   padding: var(--ds-space-0-5) var(--ds-space-1-5);
   font-family: var(--ds-font-mono);
   font-size: var(--ds-text-xs);
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-bg-muted);
   border: 1px solid var(--ds-color-border);
   border-block-end-width: 2px;
   border-radius: var(--ds-radius-sm);
@@ -12169,7 +12213,7 @@ tr:hover .ds-sortable__handle,
   transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
 }
 .ds-hover-row:hover {
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-surface-hover);
 }
 
 /* Subtle variant (semi-transparent) */
@@ -12177,7 +12221,7 @@ tr:hover .ds-sortable__handle,
   transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
 }
 .ds-hover-row--subtle:hover {
-  background-color: color-mix(in srgb, var(--ds-color-bg-elevated) 50%, transparent);
+  background-color: color-mix(in srgb, var(--ds-color-surface-hover) 50%, transparent);
 }
 
 /* --- Group Reveal (children appear on parent hover) — .ds-group-reveal --- */
@@ -12243,7 +12287,7 @@ tr:hover .ds-sortable__handle,
 
 /* --- Semi-transparent Backgrounds --- */
 .ds-bg-elevated-50 {
-  background-color: color-mix(in srgb, var(--ds-color-bg-elevated) 50%, transparent);
+  background-color: color-mix(in srgb, var(--ds-color-surface-hover) 50%, transparent);
 }
 
 .ds-bg-base-50 {

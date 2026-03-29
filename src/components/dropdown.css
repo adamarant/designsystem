@@ -103,7 +103,7 @@
       background-color var(--ds-duration-fast) var(--ds-ease-default);
 
     &:hover {
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-overlay-hover);
       color: var(--ds-color-text);
     }
 
@@ -114,7 +114,7 @@
     }
 
     &--active {
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-overlay-active);
       color: var(--ds-color-text);
     }
 
