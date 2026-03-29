@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.18 */
+/* @ds/designsystem v0.9.19 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -9850,8 +9850,9 @@ hr {
   color: var(--ds-color-text);
 }
 
-.ds-admin__nav-item--active {
-  background-color: var(--ds-color-surface-hover);
+.ds-admin__nav-item--active,
+.ds-admin__nav-item--active:hover {
+  background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
 }
 
