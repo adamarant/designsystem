@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.25 */
+/* @ds/designsystem v0.9.26 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -5769,6 +5769,7 @@ hr {
 .ds-tabs--pills-flat {
 
     border-block-end: none;
+    align-items: center;
     gap: var(--ds-space-1);
     background: none;
     padding: 0;

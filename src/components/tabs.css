@@ -51,6 +51,7 @@
 
   &--pills-flat {
     border-block-end: none;
+    align-items: center;
     gap: var(--ds-space-1);
     background: none;
     padding: 0;
