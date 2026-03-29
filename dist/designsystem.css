@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.20 */
+/* @ds/designsystem v0.9.21 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -8529,18 +8529,21 @@ hr {
     
 
     
+
+    
   }
-.ds-command__item:hover,
-.ds-command__item--active {
+.ds-command__item:hover {
 
       background-color: var(--ds-color-overlay-hover);
+      color: var(--ds-color-text);
+    }
+.ds-command__item--active {
+
+      background-color: var(--ds-color-overlay-active);
       color: var(--ds-color-text);
 
       
     }
-.ds-command__item:hover .ds-command__item-icon,
-.ds-command__item:hover .ds-command__item-label,
-.ds-command__item:hover .ds-command__item-shortcut,
 .ds-command__item--active .ds-command__item-icon,
 .ds-command__item--active .ds-command__item-label,
 .ds-command__item--active .ds-command__item-shortcut {
@@ -9902,7 +9905,7 @@ hr {
 }
 
 .ds-admin__subnav-item--active {
-  background-color: var(--ds-color-surface-hover);
+  background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
 }
 
@@ -10995,9 +10998,12 @@ hr {
   transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
 }
 
-.ds-search__result:hover,
-.ds-search__result--active {
+.ds-search__result:hover {
   background: var(--ds-color-surface-hover);
+}
+
+.ds-search__result--active {
+  background: var(--ds-color-overlay-active);
 }
 
 .ds-search__result:focus-visible {

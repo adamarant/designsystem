@@ -166,9 +166,12 @@
   transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
 }
 
-.ds-search__result:hover,
-.ds-search__result--active {
+.ds-search__result:hover {
   background: var(--ds-color-surface-hover);
+}
+
+.ds-search__result--active {
+  background: var(--ds-color-overlay-active);
 }
 
 .ds-search__result:focus-visible {

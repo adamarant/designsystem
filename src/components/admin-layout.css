@@ -212,7 +212,7 @@
 }
 
 .ds-admin__subnav-item--active {
-  background-color: var(--ds-color-surface-hover);
+  background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
 }
 

@@ -147,9 +147,13 @@
       color var(--ds-duration-fast) var(--ds-ease-default);
 
     /* Item hover & active states */
-    &:hover,
-    &--active {
+    &:hover {
       background-color: var(--ds-color-overlay-hover);
+      color: var(--ds-color-text);
+    }
+
+    &--active {
+      background-color: var(--ds-color-overlay-active);
       color: var(--ds-color-text);
 
       & .ds-command__item-icon,
