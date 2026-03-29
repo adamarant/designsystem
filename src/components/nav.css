@@ -190,7 +190,7 @@
     &--active,
     &--active:hover {
       color: var(--ds-color-text);
-      background-color: var(--ds-color-surface-hover);
+      background-color: var(--ds-color-bg-elevated);
     }
   }
 }

@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.19 */
+/* @ds/designsystem v0.9.20 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -5561,7 +5561,7 @@ hr {
 .ds-sidebar__link--active:hover {
 
       color: var(--ds-color-text);
-      background-color: var(--ds-color-surface-hover);
+      background-color: var(--ds-color-bg-elevated);
     }
 
 
