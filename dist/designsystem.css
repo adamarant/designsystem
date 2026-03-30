@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.26 */
+/* @ds/designsystem v0.9.27 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -1536,7 +1536,7 @@ hr {
 .ds-custom-select__panel {
   position: fixed;
   z-index: var(--ds-z-dropdown);
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-bg-muted);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-xl);
   box-shadow: var(--ds-shadow-lg);
@@ -1625,7 +1625,7 @@ hr {
 }
 
 .ds-custom-select__option:hover {
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-surface-hover);
   color: var(--ds-color-text);
 }
 .ds-custom-select__option:focus-visible {
@@ -1779,7 +1779,7 @@ hr {
   font-family: var(--ds-font-sans);
   line-height: var(--ds-leading-none);
   border-radius: var(--ds-radius-full);
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-bg-muted);
   border: 1px solid var(--ds-color-border);
   color: var(--ds-color-text-secondary);
   white-space: nowrap;
@@ -2012,7 +2012,7 @@ hr {
   max-height: 16rem;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-bg-muted);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-xl);
   box-shadow: var(--ds-shadow-lg);
@@ -2080,7 +2080,11 @@ hr {
     background-color var(--ds-duration-fast) var(--ds-ease-default);
 }
 
-.ds-combobox__option:hover,
+.ds-combobox__option:hover {
+  background-color: var(--ds-color-surface-hover);
+  color: var(--ds-color-text);
+}
+
 .ds-combobox__option--active {
   background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
@@ -2136,7 +2140,7 @@ hr {
 
 .ds-combobox__create:hover,
 .ds-combobox__create:focus-visible {
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-surface-hover);
 }
 
 /* --- Empty state --- */
@@ -2182,7 +2186,7 @@ hr {
   font-family: var(--ds-font-sans);
   line-height: var(--ds-leading-none);
   border-radius: var(--ds-radius-full);
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-bg-muted);
   border: 1px solid var(--ds-color-border);
   color: var(--ds-color-text-secondary);
   white-space: nowrap;
@@ -2689,7 +2693,7 @@ hr {
     z-index: var(--ds-z-dropdown);
     inset-block-start: calc(100% + var(--ds-offset-sm));
     inset-inline-start: 0;
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     border: 1px solid var(--ds-color-border);
     border-radius: var(--ds-radius-xl);
     box-shadow: var(--ds-shadow-lg);
@@ -3301,7 +3305,7 @@ hr {
   }
 .ds-drop-zone:hover {
 
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-surface-hover);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%233f3f46' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
   }
 .ds-drop-zone__icon {
@@ -3312,7 +3316,7 @@ hr {
     width: 3rem;
     height: 3rem;
     border-radius: var(--ds-radius-xl);
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     color: var(--ds-color-text-secondary);
     transition: color var(--ds-duration-fast) var(--ds-ease-default);
   }
@@ -3334,7 +3338,7 @@ hr {
   }
 .ds-drop-zone--active {
 
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-surface-hover);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%2352525b' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
   }
 .ds-drop-zone--uploading {
@@ -7885,7 +7889,7 @@ hr {
     display: flex;
     flex-direction: column;
     padding-block: var(--ds-space-1-5);
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     border: 1px solid var(--ds-color-border);
     border-radius: var(--ds-radius-xl);
     box-shadow: var(--ds-shadow-lg);
@@ -8087,7 +8091,7 @@ hr {
 
     position: absolute;
     z-index: var(--ds-z-dropdown);
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     border: 1px solid var(--ds-color-border);
     border-radius: var(--ds-radius-xl);
     box-shadow: var(--ds-shadow-lg);
@@ -8455,7 +8459,7 @@ hr {
     }
 .ds-command__content {
 
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     border: 1px solid var(--ds-color-border);
     border-radius: var(--ds-radius-xl);
     box-shadow: var(--ds-shadow-lg);
@@ -9411,7 +9415,7 @@ hr {
     height: 4rem;
     border: 1px solid var(--ds-color-border);
     border-radius: var(--ds-radius-md);
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     color: var(--ds-color-text-secondary);
     font-size: var(--ds-text-sm);
     font-weight: var(--ds-weight-medium);
@@ -10299,7 +10303,7 @@ hr {
   }
 .ds-btn--secondary {
 
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     color: var(--ds-color-text);
     border-color: var(--ds-color-border);
 
@@ -10308,7 +10312,7 @@ hr {
 .ds-btn--secondary:hover {
 
       border-color: var(--ds-color-border-hover);
-      background-color: var(--ds-color-surface);
+      background-color: var(--ds-color-bg-muted-hover);
       opacity: 1;
     }
 .ds-btn--outline {
@@ -10929,7 +10933,7 @@ hr {
   font-family: inherit;
   line-height: 1;
   color: var(--ds-color-text-tertiary);
-  background: var(--ds-color-bg-elevated);
+  background: var(--ds-color-bg-muted);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-sm);
   pointer-events: none;
@@ -10966,7 +10970,7 @@ hr {
   position: fixed;
   max-height: min(22rem, calc(100dvh - 5rem));
   overflow-y: auto;
-  background: var(--ds-color-bg-elevated);
+  background: var(--ds-color-bg-muted);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-lg);
   box-shadow: var(--ds-shadow-lg);
@@ -11143,7 +11147,7 @@ hr {
     border-inline-start: none;
     border-inline-end: none;
     max-height: calc(100dvh - var(--ds-search-bar-height, 3.5rem));
-    background: var(--ds-color-bg-elevated);
+    background: var(--ds-color-bg-muted);
     backdrop-filter: blur(var(--ds-blur-lg)) saturate(1.5);
     -webkit-backdrop-filter: blur(var(--ds-blur-lg)) saturate(1.5);
   }

@@ -51,13 +51,13 @@
   /* --- Variants --- */
 
   &--secondary {
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     color: var(--ds-color-text);
     border-color: var(--ds-color-border);
 
     &:hover {
       border-color: var(--ds-color-border-hover);
-      background-color: var(--ds-color-surface);
+      background-color: var(--ds-color-bg-muted-hover);
       opacity: 1;
     }
   }

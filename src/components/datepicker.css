@@ -67,7 +67,7 @@
     z-index: var(--ds-z-dropdown);
     inset-block-start: calc(100% + var(--ds-offset-sm));
     inset-inline-start: 0;
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-bg-muted);
     border: 1px solid var(--ds-color-border);
     border-radius: var(--ds-radius-xl);
     box-shadow: var(--ds-shadow-lg);
