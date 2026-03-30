@@ -4,11 +4,11 @@
 
 Metriche, azioni aperte, QUARANTINE rules generali, regole DS per tutti i progetti: centralizzate in DS_HEALTH.md.
 
-## 🔒 QUARANTINE — Regole Specifiche per il DS Source
+## QUARANTINE — Regole Specifiche per il DS Source
 
-Il DS è in fase di consolidamento. Queste regole si aggiungono a quelle generali in DS_HEALTH.md.
+Il DS e in fase di consolidamento. Queste regole si aggiungono a quelle generali in DS_HEALTH.md.
 
-### ⛔ REGOLA FONDAMENTALE — Backward Compatibility
+### Regola Fondamentale — Backward Compatibility
 
 **Le classi DS pubblicate NON si cancellano e NON si rinominano. Mai.**
 
@@ -42,7 +42,7 @@ Stesso principio per i token (`--ds-*`): non rinominare, non rimuovere. Aggiungi
 ### Se pensi di dover aggiungere qualcosa:
 1. STOP — non farlo
 2. Chiedi all'utente: "Serve davvero un nuovo componente/modifier/token, o posso comporre con quelli esistenti?"
-3. Solo l'utente può sbloccare QUARANTINE per una modifica specifica
+3. Solo l'utente puo sbloccare QUARANTINE per una modifica specifica
 
 ---
 
@@ -53,9 +53,8 @@ CSS-only design system. Zero dependencies. Install anywhere, override tokens, no
 **Package:** `@digiko-npm/designsystem`
 **Stack:** Pure CSS + CSS Custom Properties
 **Build:** `node scripts/build.js` (concatenates all CSS into `dist/designsystem.css`)
-**Validate:** `node scripts/validate.js` (40 automated checks — run before every publish)
+**Validate:** `node scripts/validate.js` (automated checks — run before every publish)
 **Theme:** Light default, dark via `[data-theme="dark"]`
-**Typography:** Clash Display (headings) + Switzer (body) + Geist Mono (code) — overridable
 
 ---
 
@@ -65,58 +64,11 @@ CSS-only design system. Zero dependencies. Install anywhere, override tokens, no
 
 **Every value in every component must come from a `--ds-*` token.** If you're typing a literal color, spacing, font, radius, shadow, z-index, duration, or easing — you're doing it wrong.
 
-The token files are the single source of truth:
-
-| Token file | What it defines |
-|-----------|-----------------|
-| `src/tokens/colors.css` | All colors (bg, surface, text, border, status, accent) per theme |
-| `src/tokens/typography.css` | Font families, sizes, weights, line-heights, letter-spacing |
-| `src/tokens/spacing.css` | Spacing scale, container sizes, border-radius, z-index |
-| `src/tokens/shadows.css` | Focus ring, transitions, easing, opacity |
-
-#### Absolute Prohibitions
-
-```css
-/* FORBIDDEN — Hardcoded color */
-color: #52525b;
-background-color: rgba(0, 0, 0, 0.5);
-border-color: rgb(39, 39, 42);
-
-/* REQUIRED — Token reference */
-color: var(--ds-color-text-secondary);
-background-color: var(--ds-color-overlay);
-border-color: var(--ds-color-border);
-
-/* FORBIDDEN — Hardcoded spacing */
-padding: 12px 20px;
-gap: 8px;
-margin-bottom: 24px;
-
-/* REQUIRED — Spacing tokens */
-padding: var(--ds-space-3) var(--ds-space-5);
-gap: var(--ds-space-2);
-margin-bottom: var(--ds-space-6);
-
-/* FORBIDDEN — Hardcoded typography */
-font-family: "Inter", sans-serif;
-font-size: 14px;
-font-weight: 500;
-
-/* REQUIRED — Typography tokens */
-font-family: var(--ds-font-sans);
-font-size: var(--ds-text-sm);
-font-weight: var(--ds-weight-medium);
-
-/* FORBIDDEN — Hardcoded radius/shadow/timing */
-border-radius: 12px;
-box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-transition: all 200ms ease;
-
-/* REQUIRED — Effect tokens */
-border-radius: var(--ds-radius-lg);
-box-shadow: var(--ds-shadow-md);
-transition: all var(--ds-duration-normal) var(--ds-ease-default);
-```
+**Where to find tokens:** Read the source files directly — they are the single source of truth:
+- `src/tokens/colors.css` — All colors per theme
+- `src/tokens/typography.css` — Font families, sizes, weights, line-heights
+- `src/tokens/spacing.css` — Spacing scale, containers, radius, z-index
+- `src/tokens/shadows.css` — Focus ring, transitions, easing, opacity
 
 **Only acceptable hardcoded values:** structural geometry that can't be tokenized (`2px` border on toggle thumb, `::after` arrow borders, `100%`, `50%`, `0`, `1fr`, `none`, `auto`).
 
@@ -154,94 +106,23 @@ Every component file must follow this exact pattern:
 **Semantic variants:** `--success`, `--warning`, `--error`, `--info`
 **Visual variants:** `--outline`, `--ghost`, `--compact`, `--flush`
 
-### 3. Available Token Reference
+### 3. Token Reference — Read the Source
 
-Before writing any value, check if a token exists:
+**Non mantenere liste di token in questo file.** I token cambiano — la lista qui diventa stale.
 
-**Colors** — `var(--ds-color-*)`
-```
-bg, bg-subtle, bg-muted, bg-elevated
-surface, surface-hover, surface-active
-text, text-secondary, text-tertiary, text-disabled
-inverted, on-inverted
-border, border-hover, border-active, border-subtle
-interactive, interactive-hover
-overlay, overlay-subtle, overlay-hover, overlay-active
-nav-bg, nav-border
-selection-bg, selection-text
-success, success-subtle, success-border
-warning, warning-subtle, warning-border
-error, error-subtle, error-border
-info, info-subtle, info-border
-accent-blue, accent-purple, accent-green, accent-orange (+ -subtle variants)
-```
+Per sapere quali token esistono, leggi direttamente:
+- `src/tokens/colors.css` per i colori
+- `src/tokens/typography.css` per font size, weight, leading, tracking
+- `src/tokens/spacing.css` per spacing, radius, z-index, container
+- `src/tokens/shadows.css` per shadow, duration, easing
 
-**Spacing** — `var(--ds-space-*)`
-```
-0, 0-5, 1, 1-5, 2, 2-5, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32
-```
+**Component Heights (size tiers):** Le 4 tier sono stabili:
+- `--ds-size-1`: 1.5rem (24px) — tier xs
+- `--ds-size-2`: 2rem (32px) — tier sm
+- `--ds-size-3`: 2.5rem (40px) — tier md (default)
+- `--ds-size-4`: 3rem (48px) — tier lg
 
-**Component Heights** — `var(--ds-size-*)`
-```
-1: 1.5rem (24px) — xs: btn--xs, input--xs
-2: 2rem  (32px) — sm: btn--sm, input--sm
-3: 2.5rem (40px) — md: btn, input (default)
-4: 3rem  (48px) — lg: btn--lg, input--lg
-```
 Inline components at the same size tier MUST share the same height.
-Button XS + Input XS = both 24px. Always.
-Applied via explicit `height` + flexbox centering (not via padding math).
-Textarea is exempt (multi-line, uses `height: auto`).
-
-**Typography** — `var(--ds-text-*)`, `var(--ds-weight-*)`, `var(--ds-leading-*)`, `var(--ds-tracking-*)`
-```
-text: 2xs, xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl
-weight: light, normal, medium, semibold, bold
-leading: none, tight, snug, normal, relaxed, loose
-tracking: tighter, tight, normal, wide
-font: display, sans, mono
-```
-
-**Radius** — `var(--ds-radius-*)`
-```
-none, sm, md, lg, xl, 2xl, full
-```
-
-**Shadows** — `var(--ds-shadow-*)`
-```
-sm, md, lg (defined per-theme in colors.css)
-```
-
-**Z-Index** — `var(--ds-z-*)`
-```
-base: 0, dropdown: 50, sticky: 60, overlay: 80, modal: 100, toast: 150, tooltip: 200
-```
-
-**Transitions** — `var(--ds-duration-*)`, `var(--ds-ease-*)`
-```
-duration: fast (100ms), normal (200ms), slow (400ms), slower (800ms)
-ease: default, out, out-expo, bounce
-```
-
-### State Variant Utilities (v0.9.0+)
-
-The DS provides state variant utility classes for hover, focus, active, and group-hover:
-
-```css
-/* Hover */
-hover:ds-bg-elevated, hover:ds-text-interactive, hover:ds-border-hover, hover:ds-underline
-
-/* Focus */
-focus:ds-outline-none, focus:ds-ring-0, focus:ds-ring-2
-
-/* Active */
-active:ds-bg-elevated
-
-/* Group Hover (parent needs .group or .ds-group) */
-group-hover:ds-text-interactive, group-hover:ds-scale-110, group-hover:ds-translate-x-1
-```
-
-These eliminate the need for project-specific state variant CSS.
 
 ### 4. Light/Dark Mode — Automatic
 
@@ -254,11 +135,11 @@ Theme switching is via `data-theme` attribute on `<html>`:
 
 ### 5. Adding a New Component
 
-1. Create `src/components/component-name.css` (with header comment in detailed format — see `accordion.css`)
+1. Create `src/components/component-name.css` (with header comment — see `accordion.css` for format)
 2. Add `@import './component-name.css';` to `src/components/index.css` (in the right tier section)
 3. Add entry to `components.json` with classes, variants, sizes, modifiers, and HTML examples
 4. Run `npm run build` — auto-updates exports map, validates manifest, builds CSS + minified
-5. Run `npm run docs` — generates the component demo page at `examples/components/component-name.html`
+5. Run `npm run docs` — generates the component demo page
 6. Verify at `localhost:3000` with `npm run dev`
 
 ### 6. Code Integrity
@@ -267,7 +148,7 @@ Don't remove or modify existing components without explicit confirmation. Other 
 
 ### 7. CSS Layers — `@layer tokens, base, components, utilities`
 
-The DS uses CSS `@layer` for cascade control. The layer order is: `tokens → base → components → utilities`. The build script preserves this structure in the dist bundle. All new code must respect the existing layer assignments — tokens in `tokens`, base resets in `base`, components in `components`, utilities in `utilities`.
+The DS uses CSS `@layer` for cascade control. The layer order is: `tokens -> base -> components -> utilities`. The build script preserves this structure in the dist bundle. All new code must respect the existing layer assignments.
 
 ### 8. Logical Properties — No Physical Direction
 
@@ -284,131 +165,39 @@ All new components MUST use logical properties:
 
 ## Architecture
 
+**Non elencare i componenti qui.** Per la lista corrente, leggi `src/components/index.css` (importa tutto) o `components.json` (metadati).
+
 ```
 src/
 ├── index.css                  # Entry point — imports all layers
-├── tokens/
-│   ├── index.css              # Imports all token files
-│   ├── colors.css             # Light + dark color tokens
-│   ├── typography.css         # Font families, sizes, weights, line-heights
-│   ├── spacing.css            # Spacing scale, containers, radius, z-index
-│   └── shadows.css            # Focus ring, transitions, easing, opacity
-├── base/
-│   ├── index.css              # Imports reset + typography
-│   ├── reset.css              # Modern CSS reset
-│   └── typography.css         # Heading hierarchy, prose, overline, hero
-├── components/
-│   ├── index.css              # Imports all components
-│   │
-│   │  # Form (12) — Inputs, selectors, and form controls
-│   ├── input.css              # ds-input, textarea, select, label, checkbox, radio
-│   ├── field.css              # ds-field, label/hint/error/success/counter
-│   ├── toggle.css             # ds-toggle, switch with thumb, sizes, label
-│   ├── custom-select.css      # ds-custom-select, mobile fullscreen, multi
-│   ├── combobox.css           # ds-combobox, filterable dropdown, multi-select
-│   ├── number-input.css       # ds-number-input, +/- stepper
-│   ├── pin-input.css          # ds-pin-input, OTP/PIN verification
-│   ├── datepicker.css         # ds-datepicker, calendar, month/year nav
-│   ├── color-picker.css       # ds-color-picker, swatch grid
-│   ├── slider.css             # ds-slider, custom range input, labels
-│   ├── drop-zone.css          # ds-drop-zone, file upload area
-│   ├── star-rating.css        # ds-star-rating, display/input
-│   │
-│   │  # Data Display (12) — Present information and status
-│   ├── badge.css              # ds-badge, semantic colors, dot, outline, upper
-│   ├── tag.css                # ds-tag, removable, semantic colors, sizes
-│   ├── chip.css               # ds-chip, logic/sort filters
-│   ├── avatar.css             # ds-avatar, sizes, groups, status indicators
-│   ├── stat-card.css          # ds-stat-card, label/value/detail/icon
-│   ├── table.css              # ds-table, sort/select/sticky/striped/stack
-│   ├── description-list.css   # ds-description-list, horizontal/bordered
-│   ├── timeline.css           # ds-timeline, vertical dots, states
-│   ├── progress.css           # ds-progress bar + ds-steps indicator
-│   ├── skeleton.css           # ds-skeleton, text/heading/circle/card/btn/input
-│   ├── result.css             # ds-result, success/error/empty
-│   ├── truncated-text.css     # ds-truncate, ds-hash display
-│   │
-│   │  # Navigation (7) — Wayfinding and page structure
-│   ├── nav.css                # ds-nav, sidebar, mobile nav, glass effect
-│   ├── breadcrumb.css         # ds-breadcrumb, links, current, separator
-│   ├── tabs.css               # ds-tabs, pills, vertical, full-width
-│   ├── pagination.css         # ds-pagination, items, prev/next, container query
-│   ├── segmented-control.css  # ds-segmented, sm/full variants
-│   ├── bottom-nav.css         # ds-bottom-nav, mobile navigation
-│   ├── toolbar.css            # ds-toolbar, floating action bar
-│   │
-│   │  # Feedback (5) — Communicate status and system messages
-│   ├── alert.css              # ds-alert, info/success/warning/error, banner
-│   ├── toast.css              # ds-toast, positions, enter/exit animations
-│   ├── spinner.css            # ds-spinner, sizes, semantic colors
-│   ├── empty-state.css        # ds-empty-state, icon/title/description/actions
-│   ├── tooltip.css            # ds-tooltip, 4 directions, CSS-only arrows
-│   │
-│   │  # Overlay (6) — Floating panels and dialogs
-│   ├── modal.css              # ds-modal, backdrop blur, size variants
-│   ├── drawer.css             # ds-drawer, right/left/bottom, sizes
-│   ├── dropdown.css           # ds-dropdown, menu items, dividers, headers
-│   ├── popover.css            # ds-popover, 4 directions, size variants
-│   ├── bottom-sheet.css       # ds-bottom-sheet, mobile overlay
-│   ├── command.css            # ds-command, cmd+k search overlay
-│   │
-│   │  # Layout (6) — Structure and organize content
-│   ├── card.css               # ds-card, interactive, elevated
-│   ├── divider.css            # ds-divider, vertical, subtle, label
-│   ├── accordion.css          # ds-accordion, trigger/content, flush, separated
-│   ├── collapsible.css        # ds-collapsible, single expand/collapse
-│   ├── scroll-area.css        # ds-scroll-area, custom scrollbar
-│   ├── gallery.css            # ds-gallery + ds-lightbox
-│   ├── hero.css               # ds-hero, overlay, backdrop, frosted glass
-│   ├── admin-layout.css       # ds-admin, sidebar, header, nav, collapsible
-│   │
-│   │  # Content (1) — Rich text rendering
-│   ├── prose.css              # ds-prose-block, full markdown styling
-│   │
-│   │  # Action (6) — Trigger operations and commands
-│   ├── button.css             # ds-btn, variants, sizes, groups, loading, pill
-│   ├── icon-btn.css           # ds-icon-btn, sizes, danger, ghost
-│   ├── copy-button.css        # ds-copy-btn, clipboard feedback
-│   ├── kbd.css                # ds-kbd, 3D key effect, combos
-│   ├── search.css             # ds-search, dropdown results, mobile expansion
-│   └── sortable.css           # ds-sortable, draggable list items
-├── utilities/
-│   ├── index.css              # Imports all utility files
-│   ├── layout.css             # Container, flex, grid, gap, display, position
-│   ├── text.css               # Text size/weight/color, bg, border, radius, shadow, animations
-│   ├── spacing.css            # Padding + margin utilities
-│   ├── sizing.css             # Width, height, min/max constraints
-│   └── states.css             # Hover, focus, active, group-hover modifiers
+├── tokens/                    # CSS custom properties (colors, typography, spacing, shadows)
+├── base/                      # CSS reset + typography hierarchy
+├── components/                # All DS components (see index.css for current list)
+│   └── index.css              # Imports all components, organized by category
+├── utilities/                 # Layout, text, spacing, sizing, state utilities
+│   └── index.css              # Imports all utility files
 ├── js/
 │   └── theme.js               # Light/dark toggle with localStorage
 ├── dist/
 │   ├── designsystem.css       # Compiled bundle (all-in-one)
 │   └── designsystem.js        # Theme manager
-└── examples/
-    └── index.html             # Live demo of all components
+└── examples/                  # Generated demo pages (npm run docs)
 ```
 
 ### 9. Accessibility (WCAG 2.2 AA)
 
-**Target Sizes:** All interactive components meet the WCAG 2.5.8 minimum of 24×24 CSS pixels. This is enforced via explicit `min-width`/`min-height: 1.5rem` on small interactive elements (tag remove buttons, chip remove, checkbox/radio inputs, slider thumbs, sortable handles, search clear buttons).
+**Target Sizes:** All interactive components meet the WCAG 2.5.8 minimum of 24x24 CSS pixels via explicit `min-width`/`min-height: 1.5rem`.
 
-**Focus Not Obscured:** All focusable components include `scroll-margin-block: var(--ds-space-16, 4rem)` on `:focus-visible`, preventing sticky headers from covering focused elements during keyboard navigation.
+**Focus Not Obscured:** All focusable components include `scroll-margin-block` on `:focus-visible`.
 
 **Color Contrast:**
-- `--ds-color-text` and `--ds-color-text-secondary` pass WCAG AAA (≥7:1) in both themes
-- `--ds-color-text-tertiary` does NOT meet 4.5:1 — use only for decorative/supplementary text, never as the sole carrier of information
-- `--ds-color-text-disabled` is exempt per WCAG 1.4.3 (disabled elements)
+- `--ds-color-text` and `--ds-color-text-secondary` pass WCAG AAA in both themes
+- `--ds-color-text-tertiary` does NOT meet 4.5:1 — use only for decorative/supplementary text
+- `--ds-color-text-disabled` is exempt per WCAG 1.4.3
 
-**ARIA Reference:** Every component CSS file includes an ARIA requirements block in its header comment. These are the consumer's responsibility — the DS is CSS-only and cannot add ARIA attributes. Check the component file header for the exact attributes needed.
+**ARIA Reference:** Every component CSS file includes an ARIA requirements block in its header comment. Check the component file header for the exact attributes needed.
 
-**Utility Classes:**
-- `.ds-sr-only` — visually hidden, available to screen readers
-- `.ds-not-sr-only` — reset sr-only
-- `.ds-focus-visible-only` — invisible by default, shown on keyboard focus
-- `.ds-skip-link` — skip to content link (sr-only, visible on focus, position fixed)
-- `.ds-reduce-motion` — force reduced motion on an element and its children
-
-**Motion:** Components with animations include `@media (prefers-reduced-motion: reduce)` blocks. Use `.ds-reduce-motion` for per-element control.
+**Motion:** Components with animations include `@media (prefers-reduced-motion: reduce)` blocks.
 
 ---
 
@@ -422,92 +211,36 @@ npm install @digiko-npm/designsystem
 # Import in CSS (all-in-one)
 @import '@digiko-npm/designsystem';
 
-# Or import individual layers
-@import '@digiko-npm/designsystem/tokens';
-@import '@digiko-npm/designsystem/components';
-
-# Or cherry-pick single components (tokens + base required)
-@import '@digiko-npm/designsystem/tokens';
-@import '@digiko-npm/designsystem/base';
-@import '@digiko-npm/designsystem/components/button';
-@import '@digiko-npm/designsystem/components/card';
-
-# Minified bundle
-@import '@digiko-npm/designsystem/min';
+# Or with layer control
+@import '@digiko-npm/designsystem' layer(ds);
 ```
 
 ### Component-First Hierarchy (CRITICAL)
 
-Components are **self-contained and fully styled by default**. This is the correct priority order:
+Components are **self-contained and fully styled by default**. Priority order:
 
-**1. Use DS components first** — they work out of the box, no extra classes needed:
-```html
-<input class="ds-input" />                    <!-- fully styled -->
-<button class="ds-btn">Save</button>          <!-- fully styled -->
-<div class="ds-card"><div class="ds-card__body">Content</div></div>
-```
+1. **DS components first** — they work out of the box
+2. **BEM modifiers for variants** — size, state, visual style
+3. **Utilities ONLY for layout** — arranging components in flex/grid containers
 
-**2. Use BEM modifiers for variants** — size, state, visual style:
-```html
-<input class="ds-input ds-input--lg" />
-<input class="ds-input ds-input--error" />
-<button class="ds-btn ds-btn--secondary ds-btn--sm">Cancel</button>
-```
-
-**3. Use utilities ONLY for layout composition** — arranging components within a container:
-```html
-<div class="ds-flex ds-gap-4">
-  <input class="ds-input" />
-  <button class="ds-btn">Search</button>
-</div>
-```
-
-### Anti-Patterns — Do NOT Do This
-
-```html
-<!-- WRONG: Using utilities to style what a component already handles -->
-<input class="ds-bg-surface ds-border ds-rounded-xl ds-p-4 ds-text-sm" />
-
-<!-- RIGHT: The component handles all of that -->
-<input class="ds-input" />
-
-<!-- WRONG: Utility soup to build a card -->
-<div class="ds-bg-surface ds-border ds-rounded-xl ds-p-6 ds-shadow-md">
-
-<!-- RIGHT: Use the component -->
-<div class="ds-card"><div class="ds-card__body">
-
-<!-- WRONG: Mixing utilities that duplicate component styles -->
-<button class="ds-btn ds-bg-surface ds-border ds-rounded-lg ds-p-3">
-
-<!-- RIGHT: Use the modifier -->
-<button class="ds-btn ds-btn--secondary">
-```
-
-**Rule of thumb:** If you're adding more than 2-3 utility classes to a single element, check if a DS component already does what you need. Utilities are for **layout** (flex, grid, gap, margin between sections), not for **styling** individual elements.
-
-**Use DS size tiers for alignment.** When mixing elements (icons, text, buttons, inputs, etc.) in a flex row, use the same size tier (`--ds-size-1` through `--ds-size-4`) to ensure consistent heights. Don't reinvent heights with padding math.
+**Rule of thumb:** If you're adding more than 2-3 utility classes to a single element, check if a DS component already does what you need. Utilities are for **layout**, not for **styling** individual elements.
 
 ### Token Overrides
 
-**Override any token** in the consuming project's CSS:
+Override any token in the consuming project's CSS:
 ```css
 :root {
   --ds-font-display: "Inter", sans-serif;
   --ds-radius-xl: 24px;
-  --ds-container-max: 1400px;
-  --ds-color-inverted: #2563eb;  /* blue primary buttons */
 }
 ```
 
 ### Project-Specific CSS
 
-Each consuming project may need CSS classes the DS doesn't cover (e.g., a hero overlay, admin sidebar, page-specific patterns). These should:
 - Live in `src/styles/components.css`
-- Use a **project-specific prefix** (NOT `cx-*` — that prefix is local to the riccardo/CORTEX project)
-- Reference `--ds-*` tokens for all values (no hardcoded colors/spacing)
-
-**CSS Layers:** The DS uses `@layer tokens, base, components, utilities` internally. Consuming projects can wrap the entire DS import in their own layer (e.g., `@import "designsystem" layer(ds)`) for additional cascade control.
+- Use **unprefixed BEM** (NOT `ds-` prefix — that's reserved for the DS)
+- Reference `--ds-*` tokens for all values
+- Wrap the DS import in a layer: `@import "designsystem" layer(ds)`
 
 ---
 
@@ -516,72 +249,40 @@ Each consuming project may need CSS classes the DS doesn't cover (e.g., a hero o
 ```
 Build:          node scripts/build.js
 Watch:          node scripts/build.js --watch
-Validate:       node scripts/validate-tokens.js
+Validate:       node scripts/validate.js
+Docs:           node scripts/generate-docs.js
 Source:         src/
 Compiled:       dist/designsystem.css
-Components:     src/components/ (57 files)
-Tokens:         src/tokens/ (4 files)
-Hooks:          packages/ds-hooks/ (8 React hooks, separate package)
-Examples:       examples/index.html (open in browser)
 ```
 
-## End-of-Session Checklist
+### Living Registry
 
-After every modification session, run through this before closing:
-
-### Code Quality
-- [ ] **No utility soup** — if an element has 3+ `ds-*` utility classes, check if a DS component (`ds-input`, `ds-card`, `ds-btn`, etc.) already covers it. Utilities are for layout, not styling.
-- [ ] **No hardcoded values** — grep all touched files for hex colors (`#`), `px` values in spacing/font-size, raw font names, hardcoded rgba. Every value must be a `--ds-*` token.
-- [ ] **BEM naming correct** — all new classes follow `ds-component__element--modifier`. No typos, no camelCase, no missing prefix.
-- [ ] **File header present** — every new/modified component file has the `/* === Component: Name ... === */` comment block.
-- [ ] **index.css updated** — new components are imported in `src/components/index.css`, in the right tier section.
-- [ ] **No breaking changes** — existing class names unchanged. No removed selectors. No renamed tokens.
-
-### Build & Verify
-- [ ] **Build passes** — run `node scripts/build.js` and confirm no warnings. Check output size is reasonable.
-- [ ] **dist committed** — `dist/designsystem.css` is rebuilt and included in the commit.
-- [ ] **Light + dark work** — visually verify new components render correctly in both themes (open `examples/index.html`, toggle theme).
-- [ ] **examples/index.html updated** — if a new component was added, it has a usage example in the demo page.
-
-### Git & Publish
-- [ ] **Commit per component** — each new component gets its own `feat:` commit. Index + dist get a separate `chore:` commit at the end.
-- [ ] **Bump version** — if publishing to npm, update `version` in `package.json` following semver (patch for fixes, minor for new components, major for breaking changes).
-- [ ] **README up to date** — if new components or features were added, update `README.md` (this is the npm package page).
-- [ ] **Push to origin** — `git push origin master`.
-- [ ] **Publish to npm** — `npm publish --access public`. Requires a valid granular access token with "Bypass 2FA" and "Read and write" permissions (create at npmjs.com > Settings > Access Tokens).
-
-### npm Publishing Quick Reference
-
-```bash
-# Build, bump, publish
-node scripts/build.js
-npm version patch          # or minor / major
-npm publish --access public
-
-# If token expired, generate a new one at:
-# https://www.npmjs.com/settings/digiko-npm/tokens
-# Then: npm config set //registry.npmjs.org/:_authToken <token>
-```
-
-### Quick one-liners to catch violations
-
-```bash
-# Find hardcoded colors in component files
-grep -rn '#[0-9a-fA-F]\{3,8\}' src/components/ --include="*.css" | grep -v '/\*'
-
-# Find hardcoded px spacing (ignore 0px, 1px, 2px structural)
-grep -rn '[3-9]px\|[0-9][0-9]px' src/components/ --include="*.css" | grep -v '/\*'
-
-# Find missing ds- prefix
-grep -rn '^\.' src/components/ --include="*.css" | grep -v '\.ds-' | grep -v '/\*' | grep -v '::' | grep -v '@'
-```
+- `ds.manifest.json` nella root del progetto traccia versione DS, override, e ultima sessione
+- A chiusura sessione, aggiornare `last_session` (data) e `last_session_summary` (1 riga su cosa e stato fatto)
+- Per rigenerare i conteggi override: `node ~/Projects/generate-manifest.js`
+- Per stato ecosistema: `node ~/Projects/ds-registry.js`
+- Il manifest va committato in git
 
 ---
 
-## Commit Convention
+## End-of-Session Checklist
 
-```
-feat: Add new feature       fix: Bug fix
-style: Styling changes      refactor: Code refactoring
-docs: Documentation         chore: Build, deps, config
+For DS-wide checklist (QUARANTINE, compliance, build, git) → [DS_HEALTH.md](/Projects/DS_HEALTH.md)
+
+### DS Source-Specific
+- [ ] **No hardcoded values** — grep touched files for hex colors, px spacing, raw font names
+- [ ] **BEM naming correct** — `ds-component__element--modifier`
+- [ ] **File header present** — every new/modified component file has the header comment
+- [ ] **index.css updated** — new components imported in the right tier section
+- [ ] **No breaking changes** — existing class names unchanged, no removed selectors
+- [ ] **Build passes** — `node scripts/build.js` + `dist/` committed
+- [ ] **Light + dark work** — verify in both themes
+- [ ] **`npm run validate`** — zero errors before publish
+
+### npm Publishing
+
+```bash
+node scripts/build.js
+npm version patch          # or minor / major
+npm publish --access public
 ```
