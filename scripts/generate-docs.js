@@ -101,7 +101,10 @@ ${components.map(c => {
   return html;
 }
 
-function pageShell(title, activeName, pathPrefix, cssPath, content) {
+function pageShell(title, activeName, pathPrefix, cssPath, content, extraScripts) {
+  const demoScripts = (extraScripts || [])
+    .map(s => `  <script src="${pathPrefix}_shared/demos/${s}.js"></script>`)
+    .join('\n');
   return `<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -129,6 +132,7 @@ ${content}
   </div>
 
   <script src="${pathPrefix}_shared/demo.js"></script>
+${demoScripts}
 </body>
 </html>
 `;
@@ -496,6 +500,15 @@ function buildNavFooter(index) {
     </nav>`;
 }
 
+// Discover which components have demo scripts in _shared/demos/
+const DEMOS_DIR = path.join(EXAMPLES, '_shared', 'demos');
+const availableDemos = new Set();
+if (fs.existsSync(DEMOS_DIR)) {
+  for (const f of fs.readdirSync(DEMOS_DIR)) {
+    if (f.endsWith('.js')) availableDemos.add(f.replace('.js', ''));
+  }
+}
+
 let generated = 0;
 let skipped = 0;
 
@@ -522,7 +535,9 @@ ${buildExamples(comp)}
 ${buildAPI(comp)}
 ${buildNavFooter(i)}`;
 
-  fs.writeFileSync(outputPath, pageShell(comp.title, comp.name, '../', '../../dist/designsystem.css', content));
+  // Include component-specific demo script if it exists
+  const scripts = availableDemos.has(comp.name) ? [comp.name] : [];
+  fs.writeFileSync(outputPath, pageShell(comp.title, comp.name, '../', '../../dist/designsystem.css', content, scripts));
   generated++;
 }
 
