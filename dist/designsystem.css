@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.29 */
+/* @ds/designsystem v0.9.30 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -2748,7 +2748,7 @@ hr {
   }
 .ds-datepicker__nav:hover {
 
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-bg-muted-hover);
       color: var(--ds-color-text);
     }
 .ds-datepicker__nav:focus-visible {
@@ -2809,7 +2809,7 @@ hr {
   }
 .ds-datepicker__day:hover {
 
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-bg-muted-hover);
     }
 .ds-datepicker__day:focus-visible {
 
@@ -2865,7 +2865,7 @@ hr {
   }
 .ds-datepicker__today:hover {
 
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-bg-muted-hover);
       color: var(--ds-color-text);
       border-color: var(--ds-color-border-hover);
     }
@@ -2897,7 +2897,7 @@ hr {
   }
 .ds-datepicker__step:hover {
 
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-bg-muted-hover);
       color: var(--ds-color-text);
     }
 .ds-datepicker__step:focus-visible {
@@ -3788,7 +3788,7 @@ hr {
 .ds-tag__remove:hover {
 
       opacity: 1;
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-surface-hover);
     }
 .ds-tag__remove:focus-visible {
 
@@ -3890,7 +3890,7 @@ hr {
   }
 .ds-chip--logic:hover {
 
-      background: var(--ds-color-overlay-hover);
+      background: var(--ds-color-surface-hover);
     }
 .ds-chip--sort {
 
@@ -3919,7 +3919,7 @@ hr {
 .ds-chip__remove:hover {
 
       color: var(--ds-color-text);
-      background: var(--ds-color-overlay-hover);
+      background: var(--ds-color-surface-hover);
     }
 
 
@@ -4358,7 +4358,7 @@ hr {
 }
 
 .ds-table--striped tbody tr:hover {
-  background-color: var(--ds-color-overlay-hover);
+  background-color: var(--ds-color-surface-hover);
 }
 
 /* --- Bordered modifier --- */
@@ -5449,7 +5449,7 @@ hr {
       .ds-nav__icon-btn:hover {
 
         color: var(--ds-color-text);
-        background-color: var(--ds-color-overlay-hover);
+        background-color: var(--ds-color-surface-hover);
       }
 
     }
@@ -5759,7 +5759,7 @@ hr {
 
         .ds-tabs--pills .ds-tab:hover {
 
-          background-color: var(--ds-color-overlay-hover);
+          background-color: var(--ds-color-surface-hover);
         }
 
       }
@@ -5795,7 +5795,7 @@ hr {
 
         .ds-tabs--pills-flat .ds-tab:hover {
 
-          background-color: var(--ds-color-overlay-hover);
+          background-color: var(--ds-color-surface-hover);
         }
 
       }
@@ -5948,7 +5948,7 @@ hr {
 .ds-tab--active .ds-tab__count {
 
     color: var(--ds-color-text-secondary);
-    background-color: var(--ds-color-overlay-active);
+    background-color: var(--ds-color-bg-elevated);
   }
 
 
@@ -6062,7 +6062,7 @@ hr {
   }
 .ds-pagination__item:hover {
 
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-surface-hover);
       color: var(--ds-color-text);
     }
 .ds-pagination__item:focus-visible {
@@ -6115,7 +6115,7 @@ hr {
 .ds-pagination__prev:hover,
 .ds-pagination__next:hover {
 
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-surface-hover);
       color: var(--ds-color-text);
     }
 .ds-pagination__prev:focus-visible,
@@ -6230,7 +6230,7 @@ hr {
 .ds-segmented__item:hover {
 
       color: var(--ds-color-text);
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-surface-hover);
     }
 .ds-segmented__item:focus-visible {
 
@@ -7977,7 +7977,7 @@ hr {
   }
 .ds-dropdown__item:hover {
 
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-bg-muted-hover);
       color: var(--ds-color-text);
     }
 .ds-dropdown__item:focus-visible {
@@ -7988,7 +7988,7 @@ hr {
     }
 .ds-dropdown__item--active {
 
-      background-color: var(--ds-color-overlay-active);
+      background-color: var(--ds-color-bg-elevated);
       color: var(--ds-color-text);
     }
 .ds-dropdown__item--danger:hover {
@@ -8541,12 +8541,12 @@ hr {
   }
 .ds-command__item:hover {
 
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-bg-muted-hover);
       color: var(--ds-color-text);
     }
 .ds-command__item--active {
 
-      background-color: var(--ds-color-overlay-active);
+      background-color: var(--ds-color-bg-elevated);
       color: var(--ds-color-text);
 
       
@@ -8973,7 +8973,7 @@ hr {
     }
 .ds-accordion__trigger:hover {
 
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-surface-hover);
     }
 .ds-accordion__trigger:focus-visible {
 
@@ -9118,7 +9118,7 @@ hr {
   }
 .ds-collapsible__trigger:hover {
 
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-surface-hover);
     }
 .ds-collapsible__trigger:focus-visible {
 
@@ -10339,7 +10339,7 @@ hr {
 .ds-btn--ghost:hover {
 
       color: var(--ds-color-text);
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-surface-hover);
       opacity: 1;
     }
 .ds-btn--danger {
@@ -11019,7 +11019,7 @@ hr {
 }
 
 .ds-search__result--active {
-  background: var(--ds-color-overlay-active);
+  background: var(--ds-color-bg-elevated);
 }
 
 .ds-search__result:focus-visible {

@@ -44,7 +44,7 @@
     transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
 
     &:hover {
-      background: var(--ds-color-overlay-hover);
+      background: var(--ds-color-surface-hover);
     }
   }
 
@@ -73,7 +73,7 @@
 
     &:hover {
       color: var(--ds-color-text);
-      background: var(--ds-color-overlay-hover);
+      background: var(--ds-color-surface-hover);
     }
   }
 }

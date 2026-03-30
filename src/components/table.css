@@ -236,7 +236,7 @@
 }
 
 .ds-table--striped tbody tr:hover {
-  background-color: var(--ds-color-overlay-hover);
+  background-color: var(--ds-color-surface-hover);
 }
 
 /* --- Bordered modifier --- */

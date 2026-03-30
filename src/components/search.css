@@ -178,7 +178,7 @@
 }
 
 .ds-search__result--active {
-  background: var(--ds-color-overlay-active);
+  background: var(--ds-color-bg-elevated);
 }
 
 .ds-search__result:focus-visible {

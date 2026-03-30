@@ -34,7 +34,7 @@
 
       @media (hover: hover) {
         &:hover {
-          background-color: var(--ds-color-overlay-hover);
+          background-color: var(--ds-color-surface-hover);
         }
       }
 
@@ -64,7 +64,7 @@
 
       @media (hover: hover) {
         &:hover {
-          background-color: var(--ds-color-overlay-hover);
+          background-color: var(--ds-color-surface-hover);
         }
       }
 
@@ -202,7 +202,7 @@
 
   &--active &__count {
     color: var(--ds-color-text-secondary);
-    background-color: var(--ds-color-overlay-active);
+    background-color: var(--ds-color-bg-elevated);
   }
 }
 

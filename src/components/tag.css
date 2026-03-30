@@ -120,7 +120,7 @@
 
     &:hover {
       opacity: 1;
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-surface-hover);
     }
 
     &:focus-visible {

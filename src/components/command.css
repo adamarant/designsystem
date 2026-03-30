@@ -148,12 +148,12 @@
 
     /* Item hover & active states */
     &:hover {
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-bg-muted-hover);
       color: var(--ds-color-text);
     }
 
     &--active {
-      background-color: var(--ds-color-overlay-active);
+      background-color: var(--ds-color-bg-elevated);
       color: var(--ds-color-text);
 
       & .ds-command__item-icon,

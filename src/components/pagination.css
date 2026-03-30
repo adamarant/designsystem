@@ -57,7 +57,7 @@
     appearance: none;
 
     &:hover {
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-surface-hover);
       color: var(--ds-color-text);
     }
 
@@ -115,7 +115,7 @@
     appearance: none;
 
     &:hover {
-      background-color: var(--ds-color-overlay-hover);
+      background-color: var(--ds-color-surface-hover);
       color: var(--ds-color-text);
     }
 

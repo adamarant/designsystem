@@ -96,7 +96,7 @@
     @media (hover: hover) {
       &:hover {
         color: var(--ds-color-text);
-        background-color: var(--ds-color-overlay-hover);
+        background-color: var(--ds-color-surface-hover);
       }
     }
 
