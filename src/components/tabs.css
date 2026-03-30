@@ -38,7 +38,8 @@
         }
       }
 
-      &--active {
+      &--active,
+      &--active:hover {
         background-color: var(--ds-color-bg-elevated);
         color: var(--ds-color-text);
         box-shadow: var(--ds-shadow-sm);
@@ -68,7 +69,8 @@
         }
       }
 
-      &--active {
+      &--active,
+      &--active:hover {
         background-color: var(--ds-color-surface);
         color: var(--ds-color-text);
         box-shadow: var(--ds-shadow-sm);

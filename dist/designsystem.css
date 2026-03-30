@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.34 */
+/* @ds/designsystem v0.9.35 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -5765,7 +5765,8 @@ hr {
         }
 
       }
-.ds-tabs--pills .ds-tab--active {
+.ds-tabs--pills .ds-tab--active,
+.ds-tabs--pills .ds-tab--active:hover {
 
         background-color: var(--ds-color-bg-elevated);
         color: var(--ds-color-text);
@@ -5801,7 +5802,8 @@ hr {
         }
 
       }
-.ds-tabs--pills-flat .ds-tab--active {
+.ds-tabs--pills-flat .ds-tab--active,
+.ds-tabs--pills-flat .ds-tab--active:hover {
 
         background-color: var(--ds-color-surface);
         color: var(--ds-color-text);
