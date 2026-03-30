@@ -222,7 +222,8 @@
   color: var(--ds-color-text);
 }
 
-.ds-combobox__option--active {
+.ds-combobox__option--active,
+.ds-combobox__option--active:hover {
   background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
 }

@@ -177,7 +177,8 @@
   background: var(--ds-color-surface-hover);
 }
 
-.ds-search__result--active {
+.ds-search__result--active,
+.ds-search__result--active:hover {
   background: var(--ds-color-bg-elevated);
 }
 

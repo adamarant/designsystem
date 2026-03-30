@@ -220,7 +220,8 @@
   box-shadow: inset 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
 }
 
-.ds-custom-select__option--selected {
+.ds-custom-select__option--selected,
+.ds-custom-select__option--selected:hover {
   background-color: var(--ds-color-bg-elevated);
   color: var(--ds-color-text);
   font-weight: var(--ds-weight-medium);

@@ -101,7 +101,8 @@
       box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
     }
 
-    &--active {
+    &--active,
+    &--active:hover {
       color: var(--ds-color-text);
       background: var(--ds-color-bg-elevated);
       border-color: var(--ds-color-border);

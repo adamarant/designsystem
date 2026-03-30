@@ -113,7 +113,8 @@
       scroll-margin-block: var(--ds-space-16, 4rem);
     }
 
-    &--active {
+    &--active,
+    &--active:hover {
       background-color: var(--ds-color-bg-elevated);
       color: var(--ds-color-text);
     }

@@ -152,7 +152,8 @@
       color: var(--ds-color-text);
     }
 
-    &--active {
+    &--active,
+      &--active:hover {
       background-color: var(--ds-color-bg-elevated);
       color: var(--ds-color-text);
 
