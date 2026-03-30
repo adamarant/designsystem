@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.31 */
+/* @ds/designsystem v0.9.32 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -108,8 +108,8 @@
   --ds-color-bg-muted: #18181b;
   --ds-color-bg-muted-hover: #1e1e21;
   --ds-color-bg-muted-active: #3f3f46;
-  --ds-color-bg-elevated: #27272a;
-  --ds-color-bg-elevated-hover: #3f3f46;
+  --ds-color-bg-elevated: #2d2d31;
+  --ds-color-bg-elevated-hover: #3a3a40;
 
   --ds-color-surface: #0f0f11;
   --ds-color-surface-hover: #18181b;
