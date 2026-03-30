@@ -27,8 +27,23 @@
 - Token validation script
 - Tier reorganization (icon-btn → Core, search/spinner → Tier 1)
 
-## Next (v0.9.0)
-- Fix remaining token reference warnings (--ds-ease → --ds-ease-default, etc.)
+## Done (v0.9.x)
+- Fix all token reference warnings (zero phantom tokens, zero hardcoded values)
+- Comprehensive state variant utilities (hover, focus, active, group-hover)
+- Admin Layout component (`ds-admin-layout`)
+- `@digiko-npm/ds-admin` React layout components
+- Prose & Hero components
+- Sizing utilities + responsive utilities expansion
+- Button sizes `--xl` (56px), `--2xl` (64px) + `--success-solid` variant
+- Tabs `--lg` size variant
+- Dropdown `--full` width variant
+- Semantic token audit (bg-elevated, surface-hover, overlay corrections)
+- Interactive demos + recommended JS for all components
+- Component categories reorganized by function
+- Dark theme token tuning (bg-muted-hover / bg-elevated contrast)
+- Hover/active state fixes across all components
+
+## Next (v1.0.0)
 - Figma token sync via Style Dictionary + DTCG
 - Visual regression testing (Playwright + screenshot comparison)
 - Documentation site (Astro/11ty)
