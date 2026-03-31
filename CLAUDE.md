@@ -269,20 +269,29 @@ Compiled:       dist/designsystem.css
 
 For DS-wide checklist (QUARANTINE, compliance, build, git) → [DS_HEALTH.md](/Projects/DS_HEALTH.md)
 
-### DS Source-Specific
+**Questa checklist include commit, push, e publish. Eseguire tutti gli step in ordine.**
+
+### 1. Verifica Codice
 - [ ] **No hardcoded values** — grep touched files for hex colors, px spacing, raw font names
 - [ ] **BEM naming correct** — `ds-component__element--modifier`
 - [ ] **File header present** — every new/modified component file has the header comment
 - [ ] **index.css updated** — new components imported in the right tier section
 - [ ] **No breaking changes** — existing class names unchanged, no removed selectors
-- [ ] **Build passes** — `node scripts/build.js` + `dist/` committed
-- [ ] **Light + dark work** — verify in both themes
-- [ ] **`npm run validate`** — zero errors before publish
+- [ ] **`npm run validate`** — zero errors
 
-### npm Publishing
+### 2. Build
+- [ ] `node scripts/build.js` — zero errori, dist/ aggiornato
+- [ ] **Light + dark work** — verificare componenti toccati in entrambi i temi
 
-```bash
-node scripts/build.js
-npm version patch          # or minor / major
-npm publish --access public
-```
+### 3. Commit & Push
+- [ ] Commit per modifica logica (non commit unico)
+- [ ] `git push origin master`
+
+### 4. Publish
+- [ ] `npm version patch` (o minor/major se appropriato)
+- [ ] `npm publish --access public`
+- [ ] Verificare su npmjs.com che la versione sia live
+
+### 5. Living Registry
+- [ ] Aggiornare `ds.manifest.json`: `last_session` e `last_session_summary`
+- [ ] `node ~/Projects/ds-registry.js` per verificare stato ecosistema
