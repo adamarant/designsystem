@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.36 */
+/* @ds/designsystem v0.9.37 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -63,9 +63,9 @@
   --ds-color-on-inverted: #fafafa;
 
   /* --- Borders — solid zinc --- */
-  --ds-color-border: #d4d4d8;
-  --ds-color-border-hover: #a1a1aa;
-  --ds-color-border-active: #71717a;
+  --ds-color-border: #e4e4e7;
+  --ds-color-border-hover: #d4d4d8;
+  --ds-color-border-active: #a1a1aa;
   --ds-color-border-subtle: #f4f4f5;
 
   /* --- Interactive --- */
@@ -132,9 +132,9 @@
   --ds-color-on-inverted: #09090b;
 
   /* --- Borders --- */
-  --ds-color-border: #3f3f46;
-  --ds-color-border-hover: #52525b;
-  --ds-color-border-active: #71717a;
+  --ds-color-border: #27272a;
+  --ds-color-border-hover: #3f3f46;
+  --ds-color-border-active: #52525b;
   --ds-color-border-subtle: #18181b;
 
   /* --- Interactive --- */
