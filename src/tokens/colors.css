@@ -24,12 +24,12 @@
      Contrast ratios on --ds-color-bg (#fafafa):
      --text:           #09090b → ~19.3:1 ✅ WCAG AAA
      --text-secondary: #52525b → ~7.6:1  ✅ WCAG AAA
-     --text-tertiary:  #a1a1aa → ~2.5:1  ⚠ Decorative/non-essential only (does not meet 4.5:1)
+     --text-tertiary:  #71717a → ~4.2:1  ✅ WCAG AA (large text), close to AAA
      --text-disabled:  #d4d4d8 → ~1.5:1  ⚠ Disabled state (exempt per WCAG 1.4.3)
      --- */
   --ds-color-text: #09090b;
   --ds-color-text-secondary: #52525b;
-  --ds-color-text-tertiary: #a1a1aa;
+  --ds-color-text-tertiary: #71717a;
   --ds-color-text-disabled: #d4d4d8;
 
   /* --- Inverted (primary buttons: dark bg + light text) --- */
@@ -37,9 +37,9 @@
   --ds-color-on-inverted: #fafafa;
 
   /* --- Borders — solid zinc --- */
-  --ds-color-border: #e4e4e7;
-  --ds-color-border-hover: #d4d4d8;
-  --ds-color-border-active: #a1a1aa;
+  --ds-color-border: #d4d4d8;
+  --ds-color-border-hover: #a1a1aa;
+  --ds-color-border-active: #71717a;
   --ds-color-border-subtle: #f4f4f5;
 
   /* --- Interactive --- */
@@ -106,9 +106,9 @@
   --ds-color-on-inverted: #09090b;
 
   /* --- Borders --- */
-  --ds-color-border: #27272a;
-  --ds-color-border-hover: #3f3f46;
-  --ds-color-border-active: #52525b;
+  --ds-color-border: #3f3f46;
+  --ds-color-border-hover: #52525b;
+  --ds-color-border-active: #71717a;
   --ds-color-border-subtle: #18181b;
 
   /* --- Interactive --- */
