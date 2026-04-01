@@ -48,6 +48,13 @@
   --ds-color-interactive-subtle: rgba(63, 63, 70, 0.1);
   --ds-color-interactive-border: rgba(63, 63, 70, 0.2);
 
+  /* --- Brand (override per-project to match your identity) --- */
+  --ds-color-brand: #2563eb;
+  --ds-color-brand-hover: #1d4ed8;
+  --ds-color-brand-subtle: rgba(37, 99, 235, 0.1);
+  --ds-color-brand-border: rgba(37, 99, 235, 0.2);
+  --ds-color-on-brand: #ffffff;
+
   /* --- Overlays --- */
   --ds-color-overlay: rgba(0, 0, 0, 0.5);
   --ds-color-overlay-subtle: rgba(0, 0, 0, 0.02);
@@ -116,6 +123,13 @@
   --ds-color-interactive-hover: #fafafa;
   --ds-color-interactive-subtle: rgba(212, 212, 216, 0.1);
   --ds-color-interactive-border: rgba(212, 212, 216, 0.2);
+
+  /* --- Brand --- */
+  --ds-color-brand: #3b82f6;
+  --ds-color-brand-hover: #60a5fa;
+  --ds-color-brand-subtle: rgba(59, 130, 246, 0.1);
+  --ds-color-brand-border: rgba(59, 130, 246, 0.2);
+  --ds-color-on-brand: #ffffff;
 
   /* --- Overlays --- */
   --ds-color-overlay: rgba(0, 0, 0, 0.7);

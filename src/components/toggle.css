@@ -26,14 +26,16 @@
 .ds-toggle {
   display: inline-flex;
   position: relative;
-  width: 2.75rem;
-  height: 1.5rem;
-  padding: 2px;
+  width: 4.5rem;
+  height: 2rem;
+  padding: 3px;
   border: none;
   border-radius: var(--ds-radius-full);
   background-color: var(--ds-color-bg-muted);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
   cursor: pointer;
-  transition: background-color var(--ds-duration-normal) var(--ds-ease-out);
+  transition: background-color var(--ds-duration-normal) var(--ds-ease-out),
+              box-shadow var(--ds-duration-normal) var(--ds-ease-out);
   -webkit-appearance: none;
   appearance: none;
   flex-shrink: 0;
@@ -45,13 +47,15 @@
   &::after {
     content: "";
     position: absolute;
-    inset-inline-start: 2px;
+    inset-inline-start: 3px;
     inset-block-start: 50%;
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 2.625rem;
+    height: 1.625rem;
     border-radius: var(--ds-radius-full);
-    background-color: var(--ds-color-surface);
-    box-shadow: var(--ds-shadow-sm);
+    background: linear-gradient(to bottom, var(--ds-color-static-white), var(--ds-color-surface));
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.15),
+      0 0 0 0.5px rgba(0, 0, 0, 0.04);
     transform: translateY(-50%);
     transition: transform var(--ds-duration-normal) var(--ds-ease-out);
   }
@@ -62,25 +66,27 @@
 
   &[aria-checked="true"],
   &--checked {
-    background-color: var(--ds-color-interactive);
+    background-color: var(--ds-color-brand);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 
   &[aria-checked="true"]::after,
   &--checked::after {
-    transform: translateX(1.25rem) translateY(-50%);
+    transform: translateX(1.5rem) translateY(-50%);
   }
+
 
   /* ---------------------------------------------------------------------------
      Hover
      --------------------------------------------------------------------------- */
 
   &:hover {
-    background-color: var(--ds-color-border-hover);
+    background-color: var(--ds-color-bg-muted-hover);
   }
 
   &[aria-checked="true"]:hover,
   &--checked:hover {
-    background-color: var(--ds-color-interactive-hover);
+    background-color: var(--ds-color-brand-hover);
   }
 
   /* ---------------------------------------------------------------------------
@@ -89,7 +95,8 @@
 
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12),
+                0 0 0 var(--ds-ring-width) var(--ds-ring-color);
     scroll-margin-block: var(--ds-space-16, 4rem);
   }
 
@@ -109,18 +116,40 @@
      --------------------------------------------------------------------------- */
 
   &--sm {
-    width: 2rem;
-    height: 1.125rem;
-    min-height: 1.5rem; /* WCAG 2.5.8: minimum 24px target */
+    width: 3.375rem;
+    height: 1.5rem;
+    padding: 2px;
 
     &::after {
-      width: 0.875rem;
-      height: 0.875rem;
+      inset-inline-start: 2px;
+      width: 2rem;
+      height: 1.25rem;
     }
 
     &[aria-checked="true"]::after,
     &.ds-toggle--checked::after {
-      transform: translateX(0.875rem) translateY(-50%);
+      transform: translateX(1.125rem) translateY(-50%);
+    }
+  }
+
+  /* ---------------------------------------------------------------------------
+     Size: Large
+     --------------------------------------------------------------------------- */
+
+  &--lg {
+    width: 5.5rem;
+    height: 2.5rem;
+    padding: 4px;
+
+    &::after {
+      inset-inline-start: 4px;
+      width: 3.25rem;
+      height: 2rem;
+    }
+
+    &[aria-checked="true"]::after,
+    &.ds-toggle--checked::after {
+      transform: translateX(1.875rem) translateY(-50%);
     }
   }
 }
