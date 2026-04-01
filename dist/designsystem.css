@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.38 */
+/* @ds/designsystem v0.9.39 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -1354,7 +1354,7 @@ hr {
     width: 2.625rem;
     height: 1.625rem;
     border-radius: var(--ds-radius-full);
-    background: linear-gradient(to bottom, var(--ds-color-static-white), var(--ds-color-surface));
+    background-color: var(--ds-color-static-white);
     box-shadow:
       0 1px 3px rgba(0, 0, 0, 0.15),
       0 0 0 0.5px rgba(0, 0, 0, 0.04);
