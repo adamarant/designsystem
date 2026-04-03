@@ -28,23 +28,62 @@
 | 6 | Tag | Component | A/C | 2026-04-03 | Tag.Remove con auto aria-label. 7 varianti, 3 size, removable |
 | 7 | Avatar | Component | A | 2026-04-03 | Avatar.Status (online/offline/busy), AvatarGroup. 5 size |
 | 8 | Spinner | Component | A | 2026-04-03 | 4 size, 3 varianti. Auto role="status" + aria-label="Loading" |
+| 9 | Modal | Component | C | 2026-04-03 | Portal, escape, scroll lock, backdrop click. Auto role="dialog" + aria-modal |
+| 10 | Tabs | Component | C | 2026-04-03 | Context, keyboard nav, auto aria-selected/controls/labelledby. 4 variants |
+| 11 | Dropdown | Component | C | 2026-04-03 | Context, click outside, escape, arrow nav. Auto aria-haspopup/expanded |
+| 12 | Tooltip | Component | C | 2026-04-03 | CSS hover + JS focus-within. 4 placements, delay |
+| 13 | Toggle | Component | C | 2026-04-03 | Controlled switch, auto role="switch" + aria-checked. 3 size, label |
+| 14 | Table | Component | B | 2026-04-03 | Table.Wrapper/Sort/Footer. Auto aria-sort. 7 modifier flags |
+| 15 | Accordion | Component | C | 2026-04-03 | Context, single/multiple mode. Auto aria-expanded/controls/labelledby |
+| 16 | StatCard | Component | B | 2026-04-03 | StatCard.Label/Value/Detail/Icon |
+| 17 | Chip | Component | A | 2026-04-03 | Simple wrapper |
+| 18 | Divider | Component | A | 2026-04-03 | Horizontal/vertical, 3 variants |
+| 19 | Progress | Component | B | 2026-04-03 | Auto role="progressbar" + aria-value. Progress.Bar |
+| 20 | Skeleton | Component | A | 2026-04-03 | Circle variant |
+| 21 | EmptyState | Component | B | 2026-04-03 | EmptyState.Icon/Title/Description/Actions |
+| 22 | Breadcrumb | Component | B | 2026-04-03 | Breadcrumb.List/Item/Separator. Auto aria-label |
+| 23 | Pagination | Component | B | 2026-04-03 | Pagination.List/Item. Auto aria-current |
+| 24 | Kbd | Component | A | 2026-04-03 | Keyboard shortcut display |
+| 25 | Search | Component | B | 2026-04-03 | Search.Input with sizes |
+| 26 | IconBtn | Component | A | 2026-04-03 | 3 variants, 4 sizes |
 
 ---
 
-## Coda — ordine per diffusione nei consumer
+## Coda — componenti CSS restanti
 
-| # | Componente | Cat | Effort | Classi CSS | Note |
-|---|-----------|-----|--------|-----------|------|
-| 9 | Modal | C | Large | ds-modal, __content, __header, __close, __body, __footer | Primo consumer di ds-hooks (useEscapeKey, useFocusTrap, useScrollLock). Portal. |
-| 10 | Tabs | C | Large | ds-tabs, ds-tab, __icon, __count, ds-tab-panel | Keyboard nav (useKeyboardNav). Active state management. Pills/vertical/full variants |
-| 11 | Dropdown | C | Large | ds-dropdown, __trigger, __menu, __item, __divider, __header | Il piu complesso. useClickOutside + useEscapeKey + useKeyboardNav + positioning |
-| 12 | Tooltip | C | Medium | ds-tooltip, __content | Show/hide su hover/focus. Placement (top/bottom/left/right) |
-| 13 | Table | B | Large | ds-table, ds-table-wrapper, __sort, __cell-*, __row-*, ds-table-footer | Molti modifier (compact/dense/striped/bordered/sticky-header). Sort indicators |
-| 14 | Toggle | C | Small | ds-toggle | Checked state, aria-checked |
-| 15 | Accordion | B | Medium | ds-accordion, __item, __trigger, __content | Open/close state per item |
-| 16 | Stat Card | B | Small | ds-stat-card, __label, __value, __trend, __icon | Compound presentational |
-| 17 | Chip | A | Small | ds-chip | Simile a Badge/Tag |
-| 18+ | Remaining | — | — | — | breadcrumb, pagination, nav, divider, progress, skeleton, empty-state, toast, popover, drawer, bottom-sheet, command, etc. — da prioritizzare man mano |
+| Componente | Note |
+|-----------|------|
+| nav | Navigation bar |
+| toast | Notification toast |
+| drawer | Side panel |
+| popover | Floating panel |
+| bottom-sheet | Mobile sheet |
+| command | Command palette |
+| collapsible | Simple collapse |
+| copy-button | Copy to clipboard |
+| custom-select | Styled select |
+| combobox | Autocomplete |
+| datepicker | Date picker |
+| drop-zone | File drop area |
+| slider | Range slider |
+| field | Form field wrapper |
+| number-input | Numeric input |
+| pin-input | PIN/OTP input |
+| color-picker | Color selector |
+| star-rating | Rating stars |
+| segmented-control | Segmented toggle |
+| timeline | Event timeline |
+| description-list | Key-value list |
+| result | Result/success page |
+| truncated-text | Text with ellipsis |
+| sortable | Drag and drop |
+| toolbar | Toolbar bar |
+| bottom-nav | Mobile bottom nav |
+| gallery | Image gallery |
+| scroll-area | Scrollable container |
+| hero | Hero section |
+| prose | Long-form text |
+| admin-layout | Admin dashboard shell |
 
 ---
 
@@ -143,4 +182,7 @@ Solo i componenti Cat C importano da `@digiko-npm/ds-hooks`. Il package.json lo 
 
 | Data | Componenti | Note |
 |------|-----------|------|
-| 2026-04-03 | Button, Badge, Input, Card, Alert, Tag, Avatar, Spinner | 8 CSS components wrappati. Cat A/B completate. Compound pattern (Object.assign) stabilito con Card e Alert. |
+| 2026-04-03 | Button, Badge, Input, Card, Alert, Tag, Avatar, Spinner | 8 CSS components wrappati. Compound pattern stabilito. |
+| 2026-04-03 | Modal, Tabs, Dropdown, Tooltip, Toggle | 5 Cat C interattivi con stato, keyboard nav, portal. |
+| 2026-04-03 | Table, Accordion, StatCard, Chip, Divider, Progress, Skeleton, EmptyState, Breadcrumb, Pagination, Kbd, Search, IconBtn | 13 componenti in batch. Totale: 26 React components. |
+| 2026-04-03 | Docs app Next.js | 57 pagine componenti + 4 foundations. Generatore da components.json. Search sidebar. Font DS. designsystem.test via Caddy. |
