@@ -1,0 +1,92 @@
+{
+  "name": "@digiko-npm/ds-react",
+  "version": "0.2.0",
+  "description": "React layout primitives for @digiko-npm/designsystem — Flex, Stack, Grid, Text, Center. Props map to ds-* classes, zero logic.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./Flex": {
+      "types": "./dist/primitives/Flex.d.ts",
+      "import": "./dist/primitives/Flex.js"
+    },
+    "./Stack": {
+      "types": "./dist/primitives/Stack.d.ts",
+      "import": "./dist/primitives/Stack.js"
+    },
+    "./Grid": {
+      "types": "./dist/primitives/Grid.d.ts",
+      "import": "./dist/primitives/Grid.js"
+    },
+    "./Text": {
+      "types": "./dist/primitives/Text.d.ts",
+      "import": "./dist/primitives/Text.js"
+    },
+    "./Center": {
+      "types": "./dist/primitives/Center.d.ts",
+      "import": "./dist/primitives/Center.js"
+    },
+    "./Label": {
+      "types": "./dist/components/Label.d.ts",
+      "import": "./dist/components/Label.js"
+    },
+    "./Button": {
+      "types": "./dist/components/Button.d.ts",
+      "import": "./dist/components/Button.js"
+    },
+    "./Badge": {
+      "types": "./dist/components/Badge.d.ts",
+      "import": "./dist/components/Badge.js"
+    },
+    "./Input": {
+      "types": "./dist/components/Input.d.ts",
+      "import": "./dist/components/Input.js"
+    },
+    "./Card": {
+      "types": "./dist/components/Card.d.ts",
+      "import": "./dist/components/Card.js"
+    }
+  },
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "clsx": "^2.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "typescript": "^5.7.0"
+  },
+  "keywords": [
+    "react",
+    "design-system",
+    "layout-primitives",
+    "css-classes",
+    "flex",
+    "grid",
+    "text"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digiko-dev/designsystem.git",
+    "directory": "packages/ds-react"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
