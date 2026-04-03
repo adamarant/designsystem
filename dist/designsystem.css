@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.39 */
+/* @ds/designsystem v0.9.40 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -11887,6 +11887,12 @@ a:hover .ds-sortable__handle,
   .ds-sm\:w-auto { width: auto; }
   .ds-sm\:h-12 { height: var(--ds-space-12); }
   .ds-sm\:h-32 { height: var(--ds-space-32); }
+}
+
+
+@media (min-width: 768px) {
+
+  .ds-md\:w-auto { width: auto; }
 }
 
 
