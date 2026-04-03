@@ -36,6 +36,14 @@
   border-block-end: 1px solid var(--ds-color-border);
 }
 
+.demo-sidebar__search {
+  margin-block-end: var(--ds-space-5);
+}
+
+.demo-sidebar__empty {
+  padding: var(--ds-space-4) var(--ds-space-2);
+}
+
 .demo-sidebar__group {
   margin-block-end: var(--ds-space-4);
 }

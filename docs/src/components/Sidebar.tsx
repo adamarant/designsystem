@@ -25,13 +25,15 @@ export function Sidebar() {
       <Link href="/" className="demo-sidebar__brand">
         Design System
       </Link>
-      <input
-        className="ds-input ds-input--sm"
-        placeholder="Search components..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        autoComplete="off"
-      />
+      <div className="demo-sidebar__search">
+        <input
+          className="ds-input ds-input--sm"
+          placeholder="Search components..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          autoComplete="off"
+        />
+      </div>
       {filteredNav.map((group) => (
         <div key={group.label} className="demo-sidebar__group">
           <div className="demo-sidebar__label">{group.label}</div>
@@ -47,7 +49,7 @@ export function Sidebar() {
         </div>
       ))}
       {filteredNav.length === 0 && (
-        <p className="ds-text-xs ds-text-tertiary ds-p-4">
+        <p className="ds-text-xs ds-text-tertiary demo-sidebar__empty">
           No results for &ldquo;{query}&rdquo;
         </p>
       )}
