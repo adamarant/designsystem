@@ -50,6 +50,22 @@
     "./Card": {
       "types": "./dist/components/Card.d.ts",
       "import": "./dist/components/Card.js"
+    },
+    "./Alert": {
+      "types": "./dist/components/Alert.d.ts",
+      "import": "./dist/components/Alert.js"
+    },
+    "./Tag": {
+      "types": "./dist/components/Tag.d.ts",
+      "import": "./dist/components/Tag.js"
+    },
+    "./Avatar": {
+      "types": "./dist/components/Avatar.d.ts",
+      "import": "./dist/components/Avatar.js"
+    },
+    "./Spinner": {
+      "types": "./dist/components/Spinner.d.ts",
+      "import": "./dist/components/Spinner.js"
     }
   },
   "files": [

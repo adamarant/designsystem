@@ -44,3 +44,29 @@ export {
   type CardFooterProps,
   type CardMediaProps,
 } from "./components/Card";
+
+export {
+  Alert,
+  type AlertProps,
+  type AlertIconProps,
+  type AlertContentProps,
+  type AlertTitleProps,
+  type AlertDescriptionProps,
+  type AlertCloseProps,
+} from "./components/Alert";
+
+export {
+  Tag,
+  type TagProps,
+  type TagRemoveProps,
+} from "./components/Tag";
+
+export {
+  Avatar,
+  AvatarGroup,
+  type AvatarProps,
+  type AvatarStatusProps,
+  type AvatarGroupProps,
+} from "./components/Avatar";
+
+export { Spinner, type SpinnerProps } from "./components/Spinner";
