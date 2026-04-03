@@ -1,0 +1,1 @@
+{"version":3,"file":"TruncatedText.d.ts","sourceRoot":"","sources":["../../src/components/TruncatedText.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,wBAAwB,EAAc,MAAM,OAAO,CAAC;AAGlE,MAAM,WAAW,kBAAmB,SAAQ,wBAAwB,CAAC,KAAK,CAAC;IACzE,KAAK,CAAC,EAAE,MAAM,CAAC;IACf,SAAS,CAAC,EAAE,MAAM,CAAC;CACpB;AAED,eAAO,MAAM,aAAa,+GAIzB,CAAC"}
