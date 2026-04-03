@@ -22,6 +22,12 @@
 | — | Label | Composite | A | 2026-04-01 | Form label |
 | 1 | Button | Component | C | 2026-04-03 | 7 varianti, 6 size, loading/disabled, ButtonGroup |
 | 2 | Badge | Component | A | 2026-04-03 | 7 varianti, dot, upper |
+| 3 | Input | Component | C | 2026-04-03 | Input, Textarea, Select, InputGroup, InputGroupIcon, Help, Checkbox, Radio. Omit<size> per conflitto HTML |
+| 4 | Card | Component | B | 2026-04-03 | Primo compound. Card.Header/Title/Description/Body/Footer/Media |
+| 5 | Alert | Component | B | 2026-04-03 | Alert.Icon/Content/Title/Description/Close. Auto role="alert" |
+| 6 | Tag | Component | A/C | 2026-04-03 | Tag.Remove con auto aria-label. 7 varianti, 3 size, removable |
+| 7 | Avatar | Component | A | 2026-04-03 | Avatar.Status (online/offline/busy), AvatarGroup. 5 size |
+| 8 | Spinner | Component | A | 2026-04-03 | 4 size, 3 varianti. Auto role="status" + aria-label="Loading" |
 
 ---
 
@@ -29,12 +35,6 @@
 
 | # | Componente | Cat | Effort | Classi CSS | Note |
 |---|-----------|-----|--------|-----------|------|
-| 3 | Input | C | Large | ds-input, ds-textarea, ds-select, ds-label, ds-help, ds-form-group, ds-checkbox, ds-radio, ds-input-group | Umbrella form. Validation states (error/success). Potrebbe diventare Input + Textarea + Select + Checkbox + Radio come export separati |
-| 4 | Card | B | Medium | ds-card, __header, __title, __description, __body, __footer, __media | Primo compound. Pattern `Object.assign` per dot notation (`Card.Header`, `Card.Body`, etc.) |
-| 5 | Alert | B | Medium | ds-alert, __icon, __content, __title, __description, __close | Compound con varianti semantiche (info/success/warning/error), compact, banner |
-| 6 | Tag | A/C | Small | ds-tag, __remove | Simile a Badge. La variant `removable` aggiunge `onRemove` callback |
-| 7 | Avatar | A | Small | ds-avatar, __status, ds-avatar-group | 5 size, square/bordered, status indicator (online/offline/busy) |
-| 8 | Spinner | A | Small | ds-spinner | Puro presentational, size |
 | 9 | Modal | C | Large | ds-modal, __content, __header, __close, __body, __footer | Primo consumer di ds-hooks (useEscapeKey, useFocusTrap, useScrollLock). Portal. |
 | 10 | Tabs | C | Large | ds-tabs, ds-tab, __icon, __count, ds-tab-panel | Keyboard nav (useKeyboardNav). Active state management. Pills/vertical/full variants |
 | 11 | Dropdown | C | Large | ds-dropdown, __trigger, __menu, __item, __divider, __header | Il piu complesso. useClickOutside + useEscapeKey + useKeyboardNav + positioning |
@@ -143,4 +143,4 @@ Solo i componenti Cat C importano da `@digiko-npm/ds-hooks`. Il package.json lo 
 
 | Data | Componenti | Note |
 |------|-----------|------|
-| 2026-04-03 | Button, Badge | Primi 2 CSS components wrappati. Pattern stabilito. |
+| 2026-04-03 | Button, Badge, Input, Card, Alert, Tag, Avatar, Spinner | 8 CSS components wrappati. Cat A/B completate. Compound pattern (Object.assign) stabilito con Card e Alert. |
