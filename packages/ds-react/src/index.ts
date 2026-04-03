@@ -126,3 +126,12 @@ export {
   type TableSortProps,
   type TableFooterProps,
 } from "./components/Table";
+
+export {
+  Accordion,
+  type AccordionProps,
+  type AccordionItemProps,
+  type AccordionTriggerProps,
+  type AccordionContentProps,
+  type AccordionBodyProps,
+} from "./components/Accordion";

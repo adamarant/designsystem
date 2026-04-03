@@ -18,4 +18,5 @@ export { Dropdown, type DropdownProps, type DropdownTriggerProps, type DropdownM
 export { Tooltip, type TooltipProps, type TooltipContentProps, } from "./components/Tooltip";
 export { Toggle, type ToggleProps, type ToggleLabelProps, type ToggleLabelTextProps, } from "./components/Toggle";
 export { Table, type TableProps, type TableWrapperProps, type TableSortProps, type TableFooterProps, } from "./components/Table";
+export { Accordion, type AccordionProps, type AccordionItemProps, type AccordionTriggerProps, type AccordionContentProps, type AccordionBodyProps, } from "./components/Accordion";
 //# sourceMappingURL=index.d.ts.map

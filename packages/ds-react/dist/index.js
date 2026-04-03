@@ -19,4 +19,5 @@ export { Dropdown, } from "./components/Dropdown";
 export { Tooltip, } from "./components/Tooltip";
 export { Toggle, } from "./components/Toggle";
 export { Table, } from "./components/Table";
+export { Accordion, } from "./components/Accordion";
 //# sourceMappingURL=index.js.map
