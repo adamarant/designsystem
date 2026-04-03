@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev -p 3001 --webpack",
-    "build": "next build",
-    "start": "next start -p 3001"
+    "dev": "next dev -p 3000 --webpack",
+    "build": "next build --webpack",
+    "start": "next start -p 3000"
   },
   "dependencies": {
     "@digiko-npm/designsystem": "^0.9.41",

@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Basic",
+    "code": "const [on, setOn] = useState(false);\n\n<Toggle checked={on} onCheckedChange={setOn} />"
+  },
+  {
+    "title": "Sizes",
+    "code": "<Toggle size=\"sm\" checked={on} onCheckedChange={setOn} />\n<Toggle checked={on} onCheckedChange={setOn} />\n<Toggle size=\"lg\" checked={on} onCheckedChange={setOn} />"
+  },
+  {
+    "title": "With Label",
+    "code": "<Toggle.Label>\n  <Toggle checked={dark} onCheckedChange={setDark} />\n  <Toggle.LabelText>Dark mode</Toggle.LabelText>\n</Toggle.Label>"
+  }
+]

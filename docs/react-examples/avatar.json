@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Sizes",
+    "code": "<Avatar size=\"xs\">XS</Avatar>\n<Avatar size=\"sm\">SM</Avatar>\n<Avatar>MD</Avatar>\n<Avatar size=\"lg\">LG</Avatar>\n<Avatar size=\"xl\">XL</Avatar>"
+  },
+  {
+    "title": "With Status",
+    "code": "<Avatar>\n  RM\n  <Avatar.Status variant=\"online\" />\n</Avatar>\n<Avatar>AB<Avatar.Status variant=\"busy\" /></Avatar>"
+  },
+  {
+    "title": "Avatar Group",
+    "code": "<AvatarGroup>\n  <Avatar size=\"sm\" bordered>A</Avatar>\n  <Avatar size=\"sm\" bordered>B</Avatar>\n  <Avatar size=\"sm\" bordered>+3</Avatar>\n</AvatarGroup>"
+  }
+]

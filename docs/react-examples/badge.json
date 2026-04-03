@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Variants",
+    "code": "<Badge>Default</Badge>\n<Badge variant=\"primary\">Primary</Badge>\n<Badge variant=\"success\">Success</Badge>\n<Badge variant=\"warning\">Warning</Badge>\n<Badge variant=\"error\">Error</Badge>\n<Badge variant=\"info\">Info</Badge>\n<Badge variant=\"purple\">Purple</Badge>\n<Badge variant=\"outline\">Outline</Badge>"
+  },
+  {
+    "title": "Modifiers",
+    "code": "<Badge variant=\"success\" dot>Online</Badge>\n<Badge variant=\"error\" dot>Offline</Badge>\n<Badge variant=\"primary\" upper>New</Badge>\n<Badge variant=\"purple\" upper>Beta</Badge>"
+  }
+]

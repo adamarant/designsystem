@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Variants",
+    "code": "<Button>Primary</Button>\n<Button variant=\"secondary\">Secondary</Button>\n<Button variant=\"outline\">Outline</Button>\n<Button variant=\"ghost\">Ghost</Button>\n<Button variant=\"danger\">Danger</Button>\n<Button variant=\"success\">Success</Button>\n<Button variant=\"success-solid\">Success Solid</Button>"
+  },
+  {
+    "title": "Sizes",
+    "code": "<Button size=\"xs\">XS</Button>\n<Button size=\"sm\">Small</Button>\n<Button>Medium</Button>\n<Button size=\"lg\">Large</Button>\n<Button size=\"xl\">XL</Button>\n<Button size=\"2xl\">2XL</Button>"
+  },
+  {
+    "title": "Modifiers",
+    "code": "<Button pill>Pill</Button>\n<Button icon aria-label=\"Settings\">⚙</Button>\n<Button loading>Loading</Button>\n<Button full>Full Width</Button>"
+  }
+]

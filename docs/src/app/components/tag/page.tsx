@@ -1,6 +1,3 @@
-import { Tag } from "@digiko-npm/ds-react";
-import { DemoSection } from "@/components/DemoSection";
-
 export default function TagPage() {
   return (
     <>
@@ -9,35 +6,116 @@ export default function TagPage() {
         <p>Interactive, optionally removable tag for categorisation and filtering.</p>
       </div>
 
-      <DemoSection title="Variants" code={`<Tag>Default</Tag>
-<Tag variant="primary">Primary</Tag>
-<Tag variant="success">Success</Tag>`}>
-        <Tag>Default</Tag>
-        <Tag variant="primary">Primary</Tag>
-        <Tag variant="success">Success</Tag>
-        <Tag variant="warning">Warning</Tag>
-        <Tag variant="error">Error</Tag>
-        <Tag variant="info">Info</Tag>
-        <Tag variant="purple">Purple</Tag>
-        <Tag variant="outline">Outline</Tag>
-      </DemoSection>
+      <section className="demo-section">
+        <h2 className="demo-section__title">Variants</h2>
+        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<span class="ds-tag">Default</span>
+<span class="ds-tag ds-tag--primary">Primary</span>
+<span class="ds-tag ds-tag--success">Approved</span>
+<span class="ds-tag ds-tag--warning">Pending</span>
+<span class="ds-tag ds-tag--error">Rejected</span>
+<span class="ds-tag ds-tag--info">Info</span>
+<span class="ds-tag ds-tag--purple">Feature</span>` }} />
+        <details className="demo-code">
+          <summary>View React Code</summary>
+          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;Tag&gt;Default&lt;/Tag&gt;
+&lt;Tag variant=&quot;primary&quot;&gt;Primary&lt;/Tag&gt;
+&lt;Tag variant=&quot;success&quot;&gt;Success&lt;/Tag&gt;
+&lt;Tag variant=&quot;warning&quot;&gt;Warning&lt;/Tag&gt;
+&lt;Tag variant=&quot;error&quot;&gt;Error&lt;/Tag&gt;
+&lt;Tag variant=&quot;outline&quot;&gt;Outline&lt;/Tag&gt;` }} /></pre>
+        </details>
+      </section>
 
-      <DemoSection title="Sizes" code={`<Tag size="sm">Small</Tag>
-<Tag>Medium</Tag>
-<Tag size="lg">Large</Tag>`}>
-        <Tag size="sm">Small</Tag>
-        <Tag>Medium</Tag>
-        <Tag size="lg">Large</Tag>
-      </DemoSection>
+      <section className="demo-section">
+        <h2 className="demo-section__title">Sizes</h2>
+        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<span class="ds-tag ds-tag--removable ds-tag--primary">React <button class="ds-tag__remove" aria-label="Remove">&times;</button></span>
+<span class="ds-tag ds-tag--removable ds-tag--success">TypeScript <button class="ds-tag__remove" aria-label="Remove">&times;</button></span>
+<span class="ds-tag ds-tag--removable">CSS <button class="ds-tag__remove" aria-label="Remove">&times;</button></span>` }} />
+        <details className="demo-code">
+          <summary>View React Code</summary>
+          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;Tag size=&quot;sm&quot;&gt;Small&lt;/Tag&gt;
+&lt;Tag&gt;Medium&lt;/Tag&gt;
+&lt;Tag size=&quot;lg&quot;&gt;Large&lt;/Tag&gt;` }} /></pre>
+        </details>
+      </section>
 
-      <DemoSection title="Removable" code={`<Tag variant="primary" removable>
+      <section className="demo-section">
+        <h2 className="demo-section__title">Removable</h2>
+        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<span class="ds-tag ds-tag--sm">Small</span>
+<span class="ds-tag">Default</span>
+<span class="ds-tag ds-tag--lg">Large</span>` }} />
+        <details className="demo-code">
+          <summary>View React Code</summary>
+          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;Tag variant=&quot;primary&quot; removable&gt;
   React
-  <Tag.Remove onClick={() => {}} />
-</Tag>`}>
-        <Tag variant="primary" removable>React<Tag.Remove /></Tag>
-        <Tag variant="success" removable>TypeScript<Tag.Remove /></Tag>
-        <Tag variant="purple" removable>Design System<Tag.Remove /></Tag>
-      </DemoSection>
+  &lt;Tag.Remove onClick={() =&gt; onRemove(id)} /&gt;
+&lt;/Tag&gt;` }} /></pre>
+        </details>
+      </section>
+
+      <section className="demo-section">
+        <h2 className="demo-section__title">API Reference</h2>
+        <div className="ds-table-wrapper">
+          <table className="ds-table ds-table--compact">
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>.ds-tag</code></td>
+                <td>Base</td>
+              </tr>
+              <tr>
+                <td><code>__remove</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
+                <td><code>--primary</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--success</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--warning</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--error</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--info</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--purple</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--outline</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--sm</code></td>
+                <td>Size</td>
+              </tr>
+              <tr>
+                <td><code>--lg</code></td>
+                <td>Size</td>
+              </tr>
+              <tr>
+                <td><code>--removable</code></td>
+                <td>Modifier</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </>
   );
 }

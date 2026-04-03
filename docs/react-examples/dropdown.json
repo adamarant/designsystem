@@ -1,0 +1,6 @@
+[
+  {
+    "title": "Basic Dropdown",
+    "code": "const [open, setOpen] = useState(false);\n\n<Dropdown open={open} onOpenChange={setOpen}>\n  <Dropdown.Trigger>Actions</Dropdown.Trigger>\n  <Dropdown.Menu>\n    <Dropdown.Header>File</Dropdown.Header>\n    <Dropdown.Item onClick={handleNew}>New</Dropdown.Item>\n    <Dropdown.Item onClick={handleOpen}>Open</Dropdown.Item>\n    <Dropdown.Divider />\n    <Dropdown.Item danger onClick={handleDelete}>Delete</Dropdown.Item>\n  </Dropdown.Menu>\n</Dropdown>"
+  }
+]

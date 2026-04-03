@@ -2,37 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const NAV = [
-  {
-    label: "Components",
-    items: [
-      { name: "Button", href: "/components/button" },
-      { name: "Badge", href: "/components/badge" },
-      { name: "Input", href: "/components/input" },
-      { name: "Card", href: "/components/card" },
-      { name: "Alert", href: "/components/alert" },
-      { name: "Tag", href: "/components/tag" },
-      { name: "Avatar", href: "/components/avatar" },
-      { name: "Spinner", href: "/components/spinner" },
-      { name: "Toggle", href: "/components/toggle" },
-    ],
-  },
-  {
-    label: "Overlay",
-    items: [
-      { name: "Modal", href: "/components/modal" },
-      { name: "Dropdown", href: "/components/dropdown" },
-      { name: "Tooltip", href: "/components/tooltip" },
-    ],
-  },
-  {
-    label: "Navigation",
-    items: [
-      { name: "Tabs", href: "/components/tabs" },
-    ],
-  },
-];
+import { NAV } from "./nav-data";
 
 export function Sidebar() {
   const pathname = usePathname();

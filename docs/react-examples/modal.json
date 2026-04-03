@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Basic Modal",
+    "code": "const [open, setOpen] = useState(false);\n\n<Button onClick={() => setOpen(true)}>Open</Button>\n<Modal open={open} onClose={() => setOpen(false)}>\n  <Modal.Content>\n    <Modal.Header>\n      <h3>Confirm</h3>\n      <Modal.Close onClick={() => setOpen(false)} />\n    </Modal.Header>\n    <Modal.Body>Are you sure?</Modal.Body>\n    <Modal.Footer>\n      <Button variant=\"ghost\" onClick={() => setOpen(false)}>Cancel</Button>\n      <Button onClick={() => setOpen(false)}>Confirm</Button>\n    </Modal.Footer>\n  </Modal.Content>\n</Modal>"
+  },
+  {
+    "title": "Size Variants",
+    "code": "<Modal open={open} onClose={close} size=\"md\">...</Modal>\n<Modal open={open} onClose={close} size=\"lg\">...</Modal>\n<Modal open={open} onClose={close} fullscreenMobile>...</Modal>"
+  }
+]

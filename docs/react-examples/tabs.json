@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Default",
+    "code": "const [tab, setTab] = useState(\"overview\");\n\n<Tabs value={tab} onValueChange={setTab}>\n  <Tabs.List aria-label=\"Sections\">\n    <Tabs.Tab value=\"overview\">Overview</Tabs.Tab>\n    <Tabs.Tab value=\"tasks\">Tasks</Tabs.Tab>\n  </Tabs.List>\n  <Tabs.Panel value=\"overview\">Overview content</Tabs.Panel>\n  <Tabs.Panel value=\"tasks\">Tasks content</Tabs.Panel>\n</Tabs>"
+  },
+  {
+    "title": "Pills",
+    "code": "<Tabs.List variant=\"pills\">...</Tabs.List>"
+  },
+  {
+    "title": "Vertical",
+    "code": "<Tabs.List variant=\"vertical\">...</Tabs.List>"
+  },
+  {
+    "title": "Full Width",
+    "code": "<Tabs.List full>...</Tabs.List>"
+  }
+]

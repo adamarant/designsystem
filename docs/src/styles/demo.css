@@ -151,3 +151,24 @@
   font-size: var(--ds-text-base);
   color: var(--ds-color-text-secondary);
 }
+
+/* Component index links */
+
+.demo-component-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ds-space-2) 0;
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.demo-component-link__name {
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text);
+}
+
+.demo-component-link__cat {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}

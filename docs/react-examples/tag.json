@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Variants",
+    "code": "<Tag>Default</Tag>\n<Tag variant=\"primary\">Primary</Tag>\n<Tag variant=\"success\">Success</Tag>\n<Tag variant=\"warning\">Warning</Tag>\n<Tag variant=\"error\">Error</Tag>\n<Tag variant=\"outline\">Outline</Tag>"
+  },
+  {
+    "title": "Sizes",
+    "code": "<Tag size=\"sm\">Small</Tag>\n<Tag>Medium</Tag>\n<Tag size=\"lg\">Large</Tag>"
+  },
+  {
+    "title": "Removable",
+    "code": "<Tag variant=\"primary\" removable>\n  React\n  <Tag.Remove onClick={() => onRemove(id)} />\n</Tag>"
+  }
+]

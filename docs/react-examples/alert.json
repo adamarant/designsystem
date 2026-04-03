@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Variants",
+    "code": "<Alert variant=\"info\">\n  <Alert.Content><Alert.Title>Info</Alert.Title></Alert.Content>\n</Alert>\n<Alert variant=\"success\">\n  <Alert.Content><Alert.Title>Success</Alert.Title></Alert.Content>\n</Alert>\n<Alert variant=\"warning\">\n  <Alert.Content><Alert.Title>Warning</Alert.Title></Alert.Content>\n</Alert>\n<Alert variant=\"error\">\n  <Alert.Content><Alert.Title>Error</Alert.Title></Alert.Content>\n</Alert>"
+  },
+  {
+    "title": "Dismissible",
+    "code": "<Alert variant=\"info\">\n  <Alert.Content>\n    <Alert.Title>Update available</Alert.Title>\n    <Alert.Description>A new version is ready.</Alert.Description>\n  </Alert.Content>\n  <Alert.Close onClick={dismiss} />\n</Alert>"
+  }
+]

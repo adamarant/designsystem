@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Basic",
+    "code": "<Card>\n  <Card.Header>\n    <Card.Title>Project Alpha</Card.Title>\n    <Card.Description>A short description</Card.Description>\n  </Card.Header>\n  <Card.Body>Card content goes here.</Card.Body>\n  <Card.Footer>\n    <Button variant=\"ghost\" size=\"sm\">Cancel</Button>\n    <Button size=\"sm\">Save</Button>\n  </Card.Footer>\n</Card>"
+  },
+  {
+    "title": "Variants",
+    "code": "<Card variant=\"interactive\">Hover lift</Card>\n<Card variant=\"elevated\">Shadow</Card>\n<Card variant=\"hover\">Border highlight</Card>"
+  },
+  {
+    "title": "Compact & Flush",
+    "code": "<Card compact>Reduced padding</Card>\n<Card flush>No internal dividers</Card>"
+  }
+]

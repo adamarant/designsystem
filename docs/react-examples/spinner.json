@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Sizes",
+    "code": "<Spinner size=\"sm\" />\n<Spinner size=\"md\" />\n<Spinner />\n<Spinner size=\"lg\" />"
+  },
+  {
+    "title": "Variants",
+    "code": "<Spinner />\n<Spinner variant=\"muted\" />\n<Spinner variant=\"light\" />"
+  }
+]

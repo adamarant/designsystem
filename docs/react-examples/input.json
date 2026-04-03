@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Input",
+    "code": "<Label htmlFor=\"name\">Name</Label>\n<Input id=\"name\" placeholder=\"Enter your name\" />\n\n<Label htmlFor=\"email\">Email</Label>\n<Input id=\"email\" state=\"error\" placeholder=\"Invalid\" />\n<Help variant=\"error\">Please enter a valid email</Help>"
+  },
+  {
+    "title": "Sizes",
+    "code": "<Input size=\"xs\" placeholder=\"XS\" />\n<Input size=\"sm\" placeholder=\"SM\" />\n<Input placeholder=\"MD (default)\" />\n<Input size=\"lg\" placeholder=\"LG\" />"
+  },
+  {
+    "title": "Textarea",
+    "code": "<Textarea placeholder=\"Write something...\" />\n<Textarea state=\"error\" placeholder=\"Error state\" />"
+  },
+  {
+    "title": "Select & Checkbox",
+    "code": "<Select>\n  <option>Choose...</option>\n  <option>Option A</option>\n</Select>\n\n<Checkbox><input type=\"checkbox\" /> Remember me</Checkbox>\n<Radio><input type=\"radio\" name=\"opt\" /> Option A</Radio>"
+  }
+]

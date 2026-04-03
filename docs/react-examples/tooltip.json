@@ -1,0 +1,6 @@
+[
+  {
+    "title": "Placements",
+    "code": "<Tooltip placement=\"top\">\n  <Button variant=\"outline\">Top</Button>\n  <Tooltip.Content>Tooltip on top</Tooltip.Content>\n</Tooltip>\n\n<Tooltip placement=\"bottom\">\n  <Button variant=\"outline\">Bottom</Button>\n  <Tooltip.Content>Tooltip on bottom</Tooltip.Content>\n</Tooltip>"
+  }
+]

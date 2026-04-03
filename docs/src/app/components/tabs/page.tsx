@@ -1,14 +1,4 @@
-"use client";
-
-import { useState } from "react";
-import { Tabs } from "@digiko-npm/ds-react";
-import { DemoSection, DemoSectionCol } from "@/components/DemoSection";
-
 export default function TabsPage() {
-  const [tab1, setTab1] = useState("overview");
-  const [tab2, setTab2] = useState("a");
-  const [tab3, setTab3] = useState("a");
-
   return (
     <>
       <div className="demo-page-header">
@@ -16,51 +6,130 @@ export default function TabsPage() {
         <p>Horizontal/vertical tab navigation with pill, small, and full-width variants.</p>
       </div>
 
-      <DemoSectionCol title="Default (underline)" code={`<Tabs value={tab} onValueChange={setTab}>
-  <Tabs.List aria-label="Sections">
-    <Tabs.Tab value="overview">Overview</Tabs.Tab>
-    <Tabs.Tab value="tasks">Tasks</Tabs.Tab>
-    <Tabs.Tab value="settings">Settings</Tabs.Tab>
-  </Tabs.List>
-  <Tabs.Panel value="overview">Overview content</Tabs.Panel>
-  <Tabs.Panel value="tasks">Tasks content</Tabs.Panel>
-</Tabs>`}>
-        <Tabs value={tab1} onValueChange={setTab1}>
-          <Tabs.List aria-label="Project sections">
-            <Tabs.Tab value="overview">Overview</Tabs.Tab>
-            <Tabs.Tab value="tasks">Tasks</Tabs.Tab>
-            <Tabs.Tab value="settings" disabled>Settings</Tabs.Tab>
-          </Tabs.List>
-          <Tabs.Panel value="overview">Overview content here.</Tabs.Panel>
-          <Tabs.Panel value="tasks">Tasks content here.</Tabs.Panel>
-        </Tabs>
-      </DemoSectionCol>
+      <section className="demo-section">
+        <h2 className="demo-section__title">Default</h2>
+        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-tabs">
+  <button class="ds-tab ds-tab--active">Overview</button>
+  <button class="ds-tab">Analytics</button>
+  <button class="ds-tab">Reports</button>
+  <button class="ds-tab" disabled>Settings</button>
+</div>` }} />
+        <details className="demo-code">
+          <summary>View React Code</summary>
+          <pre><code dangerouslySetInnerHTML={{ __html: `const [tab, setTab] = useState(&quot;overview&quot;);
 
-      <DemoSectionCol title="Pills" code={`<Tabs.List variant="pills">...</Tabs.List>`}>
-        <Tabs value={tab2} onValueChange={setTab2}>
-          <Tabs.List variant="pills" aria-label="Options">
-            <Tabs.Tab value="a">Alpha</Tabs.Tab>
-            <Tabs.Tab value="b">Beta</Tabs.Tab>
-            <Tabs.Tab value="c">Gamma</Tabs.Tab>
-          </Tabs.List>
-          <Tabs.Panel value="a">Alpha panel</Tabs.Panel>
-          <Tabs.Panel value="b">Beta panel</Tabs.Panel>
-          <Tabs.Panel value="c">Gamma panel</Tabs.Panel>
-        </Tabs>
-      </DemoSectionCol>
+&lt;Tabs value={tab} onValueChange={setTab}&gt;
+  &lt;Tabs.List aria-label=&quot;Sections&quot;&gt;
+    &lt;Tabs.Tab value=&quot;overview&quot;&gt;Overview&lt;/Tabs.Tab&gt;
+    &lt;Tabs.Tab value=&quot;tasks&quot;&gt;Tasks&lt;/Tabs.Tab&gt;
+  &lt;/Tabs.List&gt;
+  &lt;Tabs.Panel value=&quot;overview&quot;&gt;Overview content&lt;/Tabs.Panel&gt;
+  &lt;Tabs.Panel value=&quot;tasks&quot;&gt;Tasks content&lt;/Tabs.Panel&gt;
+&lt;/Tabs&gt;` }} /></pre>
+        </details>
+      </section>
 
-      <DemoSectionCol title="Full Width" code={`<Tabs.List full>...</Tabs.List>`}>
-        <Tabs value={tab3} onValueChange={setTab3}>
-          <Tabs.List full aria-label="Stretch">
-            <Tabs.Tab value="a">Left</Tabs.Tab>
-            <Tabs.Tab value="b">Center</Tabs.Tab>
-            <Tabs.Tab value="c">Right</Tabs.Tab>
-          </Tabs.List>
-          <Tabs.Panel value="a">Left panel</Tabs.Panel>
-          <Tabs.Panel value="b">Center panel</Tabs.Panel>
-          <Tabs.Panel value="c">Right panel</Tabs.Panel>
-        </Tabs>
-      </DemoSectionCol>
+      <section className="demo-section">
+        <h2 className="demo-section__title">Pills</h2>
+        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-tabs ds-tabs--pills">
+  <button class="ds-tab ds-tab--active">All</button>
+  <button class="ds-tab">Active</button>
+  <button class="ds-tab">Archived</button>
+</div>` }} />
+        <details className="demo-code">
+          <summary>View React Code</summary>
+          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;Tabs.List variant=&quot;pills&quot;&gt;...&lt;/Tabs.List&gt;` }} /></pre>
+        </details>
+      </section>
+
+      <section className="demo-section">
+        <h2 className="demo-section__title">Vertical</h2>
+        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-tabs">
+  <button class="ds-tab ds-tab--active">Issues <span class="ds-tab__count">24</span></button>
+  <button class="ds-tab">Pull Requests <span class="ds-tab__count">8</span></button>
+  <button class="ds-tab">Discussions <span class="ds-tab__count">3</span></button>
+</div>` }} />
+        <details className="demo-code">
+          <summary>View React Code</summary>
+          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;Tabs.List variant=&quot;vertical&quot;&gt;...&lt;/Tabs.List&gt;` }} /></pre>
+        </details>
+      </section>
+
+      <section className="demo-section">
+        <h2 className="demo-section__title">Full Width</h2>
+        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-tabs ds-tabs--sm" style="margin-bottom:1rem;">
+  <button class="ds-tab ds-tab--active">Small</button>
+  <button class="ds-tab">Tabs</button>
+</div>
+<div class="ds-tabs">
+  <button class="ds-tab ds-tab--active">Default</button>
+  <button class="ds-tab">Tabs</button>
+</div>` }} />
+        <details className="demo-code">
+          <summary>View React Code</summary>
+          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;Tabs.List full&gt;...&lt;/Tabs.List&gt;` }} /></pre>
+        </details>
+      </section>
+
+      <section className="demo-section">
+        <h2 className="demo-section__title">API Reference</h2>
+        <div className="ds-table-wrapper">
+          <table className="ds-table ds-table--compact">
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>.ds-tabs</code></td>
+                <td>Base</td>
+              </tr>
+              <tr>
+                <td><code>.ds-tab</code></td>
+                <td>Base</td>
+              </tr>
+              <tr>
+                <td><code>.ds-tab-panel</code></td>
+                <td>Base</td>
+              </tr>
+              <tr>
+                <td><code>__icon</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
+                <td><code>__count</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
+                <td><code>--pills</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--vertical</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--full</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--sm</code></td>
+                <td>Size</td>
+              </tr>
+              <tr>
+                <td><code>--lg</code></td>
+                <td>Size</td>
+              </tr>
+              <tr>
+                <td><code>--active</code></td>
+                <td>Modifier</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </>
   );
 }
