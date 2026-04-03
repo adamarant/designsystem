@@ -1,3 +1,5 @@
+"use client";
+
 export { Flex, type FlexProps } from "./primitives/Flex";
 export { Stack, type StackProps } from "./primitives/Stack";
 export { Grid, type GridProps } from "./primitives/Grid";
