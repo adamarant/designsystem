@@ -20,4 +20,6 @@ export { Tooltip, } from "./components/Tooltip";
 export { Toggle, } from "./components/Toggle";
 export { Table, } from "./components/Table";
 export { Accordion, } from "./components/Accordion";
+export { StatCard, } from "./components/StatCard";
+export { Chip } from "./components/Chip";
 //# sourceMappingURL=index.js.map

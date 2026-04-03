@@ -19,4 +19,6 @@ export { Tooltip, type TooltipProps, type TooltipContentProps, } from "./compone
 export { Toggle, type ToggleProps, type ToggleLabelProps, type ToggleLabelTextProps, } from "./components/Toggle";
 export { Table, type TableProps, type TableWrapperProps, type TableSortProps, type TableFooterProps, } from "./components/Table";
 export { Accordion, type AccordionProps, type AccordionItemProps, type AccordionTriggerProps, type AccordionContentProps, type AccordionBodyProps, } from "./components/Accordion";
+export { StatCard, type StatCardProps, type StatCardLabelProps, type StatCardValueProps, type StatCardDetailProps, type StatCardIconProps, } from "./components/StatCard";
+export { Chip, type ChipProps } from "./components/Chip";
 //# sourceMappingURL=index.d.ts.map

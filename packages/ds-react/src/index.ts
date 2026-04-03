@@ -135,3 +135,14 @@ export {
   type AccordionContentProps,
   type AccordionBodyProps,
 } from "./components/Accordion";
+
+export {
+  StatCard,
+  type StatCardProps,
+  type StatCardLabelProps,
+  type StatCardValueProps,
+  type StatCardDetailProps,
+  type StatCardIconProps,
+} from "./components/StatCard";
+
+export { Chip, type ChipProps } from "./components/Chip";
