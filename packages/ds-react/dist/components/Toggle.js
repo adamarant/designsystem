@@ -1,0 +1,36 @@
+import { jsx as _jsx } from "react/jsx-runtime";
+import { forwardRef } from "react";
+import { cn } from "../utils/cn";
+/* ================================================================== */
+/*  Maps                                                               */
+/* ================================================================== */
+const sizeMap = {
+    sm: "ds-toggle--sm",
+    md: "",
+    lg: "ds-toggle--lg",
+};
+/* ================================================================== */
+/*  Sub-components                                                     */
+/* ================================================================== */
+const ToggleLabel = forwardRef(function ToggleLabel({ className, ...rest }, ref) {
+    return (_jsx("label", { ref: ref, className: cn("ds-toggle-label", className), ...rest }));
+});
+const ToggleLabelText = forwardRef(function ToggleLabelText({ className, ...rest }, ref) {
+    return (_jsx("span", { ref: ref, className: cn("ds-toggle-label__text", className), ...rest }));
+});
+/* ================================================================== */
+/*  Toggle (root + dot notation)                                       */
+/* ================================================================== */
+const ToggleRoot = forwardRef(function Toggle({ checked, onCheckedChange, size = "md", disabled, className, onClick, ...rest }, ref) {
+    const handleClick = (e) => {
+        if (!disabled)
+            onCheckedChange(!checked);
+        onClick?.(e);
+    };
+    return (_jsx("button", { ref: ref, type: "button", role: "switch", "aria-checked": checked, disabled: disabled, onClick: handleClick, className: cn("ds-toggle", sizeMap[size], className), ...rest }));
+});
+export const Toggle = Object.assign(ToggleRoot, {
+    Label: ToggleLabel,
+    LabelText: ToggleLabelText,
+});
+//# sourceMappingURL=Toggle.js.map
