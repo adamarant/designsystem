@@ -12,4 +12,9 @@ export { Alert, type AlertProps, type AlertIconProps, type AlertContentProps, ty
 export { Tag, type TagProps, type TagRemoveProps, } from "./components/Tag";
 export { Avatar, AvatarGroup, type AvatarProps, type AvatarStatusProps, type AvatarGroupProps, } from "./components/Avatar";
 export { Spinner, type SpinnerProps } from "./components/Spinner";
+export { Modal, type ModalProps, type ModalContentProps, type ModalHeaderProps, type ModalCloseProps, type ModalBodyProps, type ModalFooterProps, } from "./components/Modal";
+export { Tabs, type TabsProps, type TabsListProps, type TabsTabProps, type TabsIconProps, type TabsCountProps, type TabsPanelProps, } from "./components/Tabs";
+export { Dropdown, type DropdownProps, type DropdownTriggerProps, type DropdownMenuProps, type DropdownItemProps, type DropdownItemIconProps, type DropdownItemLabelProps, type DropdownItemShortcutProps, type DropdownDividerProps, type DropdownHeaderProps, } from "./components/Dropdown";
+export { Tooltip, type TooltipProps, type TooltipContentProps, } from "./components/Tooltip";
+export { Toggle, type ToggleProps, type ToggleLabelProps, type ToggleLabelTextProps, } from "./components/Toggle";
 //# sourceMappingURL=index.d.ts.map

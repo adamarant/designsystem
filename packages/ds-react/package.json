@@ -66,6 +66,26 @@
     "./Spinner": {
       "types": "./dist/components/Spinner.d.ts",
       "import": "./dist/components/Spinner.js"
+    },
+    "./Modal": {
+      "types": "./dist/components/Modal.d.ts",
+      "import": "./dist/components/Modal.js"
+    },
+    "./Tabs": {
+      "types": "./dist/components/Tabs.d.ts",
+      "import": "./dist/components/Tabs.js"
+    },
+    "./Dropdown": {
+      "types": "./dist/components/Dropdown.d.ts",
+      "import": "./dist/components/Dropdown.js"
+    },
+    "./Tooltip": {
+      "types": "./dist/components/Tooltip.d.ts",
+      "import": "./dist/components/Tooltip.js"
+    },
+    "./Toggle": {
+      "types": "./dist/components/Toggle.d.ts",
+      "import": "./dist/components/Toggle.js"
     }
   },
   "files": [
@@ -84,6 +104,7 @@
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.2.3",
     "react": "^19.0.0",
     "typescript": "^5.7.0"
   },

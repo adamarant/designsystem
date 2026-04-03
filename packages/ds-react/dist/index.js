@@ -12,4 +12,9 @@ export { Alert, } from "./components/Alert";
 export { Tag, } from "./components/Tag";
 export { Avatar, AvatarGroup, } from "./components/Avatar";
 export { Spinner } from "./components/Spinner";
+export { Modal, } from "./components/Modal";
+export { Tabs, } from "./components/Tabs";
+export { Dropdown, } from "./components/Dropdown";
+export { Tooltip, } from "./components/Tooltip";
+export { Toggle, } from "./components/Toggle";
 //# sourceMappingURL=index.js.map
