@@ -18,4 +18,5 @@ export { Tabs, } from "./components/Tabs";
 export { Dropdown, } from "./components/Dropdown";
 export { Tooltip, } from "./components/Tooltip";
 export { Toggle, } from "./components/Toggle";
+export { Table, } from "./components/Table";
 //# sourceMappingURL=index.js.map

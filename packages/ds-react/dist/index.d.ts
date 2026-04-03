@@ -17,4 +17,5 @@ export { Tabs, type TabsProps, type TabsListProps, type TabsTabProps, type TabsI
 export { Dropdown, type DropdownProps, type DropdownTriggerProps, type DropdownMenuProps, type DropdownItemProps, type DropdownItemIconProps, type DropdownItemLabelProps, type DropdownItemShortcutProps, type DropdownDividerProps, type DropdownHeaderProps, } from "./components/Dropdown";
 export { Tooltip, type TooltipProps, type TooltipContentProps, } from "./components/Tooltip";
 export { Toggle, type ToggleProps, type ToggleLabelProps, type ToggleLabelTextProps, } from "./components/Toggle";
+export { Table, type TableProps, type TableWrapperProps, type TableSortProps, type TableFooterProps, } from "./components/Table";
 //# sourceMappingURL=index.d.ts.map

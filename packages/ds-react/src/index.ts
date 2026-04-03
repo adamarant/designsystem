@@ -118,3 +118,11 @@ export {
   type ToggleLabelProps,
   type ToggleLabelTextProps,
 } from "./components/Toggle";
+
+export {
+  Table,
+  type TableProps,
+  type TableWrapperProps,
+  type TableSortProps,
+  type TableFooterProps,
+} from "./components/Table";
