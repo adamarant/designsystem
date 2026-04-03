@@ -80,8 +80,13 @@
     "validate": "node scripts/validate.js",
     "docs": "node scripts/generate-docs.js",
     "lint": "stylelint 'src/**/*.css'",
-    "dev": "node scripts/build.js --watch & node scripts/generate-docs.js && live-server --host=localhost --port=3000 --open=examples/ --watch=dist/,examples/ --wait=200 --no-browser"
+    "dev": "node scripts/build.js --watch & npm run dev --workspace=docs",
+    "dev:legacy": "node scripts/build.js --watch & node scripts/generate-docs.js && live-server --host=localhost --port=3000 --open=examples/ --watch=dist/,examples/ --wait=200 --no-browser"
   },
+  "workspaces": [
+    "packages/*",
+    "docs"
+  ],
   "keywords": [
     "design-system",
     "css",
