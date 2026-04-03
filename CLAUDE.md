@@ -2,9 +2,9 @@
 
 ## DS Health → [/Projects/DS_HEALTH.md](/Projects/DS_HEALTH.md)
 
-Metriche, azioni aperte, QUARANTINE rules generali, regole DS per tutti i progetti: centralizzate in DS_HEALTH.md.
+Metriche, azioni aperte, CONTROLLED MODE rules generali, regole DS per tutti i progetti: centralizzate in DS_HEALTH.md.
 
-## QUARANTINE — Regole Specifiche per il DS Source
+## CONTROLLED MODE — Regole Specifiche per il DS Source
 
 Il DS e in fase di consolidamento. Queste regole si aggiungono a quelle generali in DS_HEALTH.md.
 
@@ -42,7 +42,7 @@ Stesso principio per i token (`--ds-*`): non rinominare, non rimuovere. Aggiungi
 ### Se pensi di dover aggiungere qualcosa:
 1. STOP — non farlo
 2. Chiedi all'utente: "Serve davvero un nuovo componente/modifier/token, o posso comporre con quelli esistenti?"
-3. Solo l'utente puo sbloccare QUARANTINE per una modifica specifica
+3. Solo l'utente puo sbloccare CONTROLLED MODE per una modifica specifica
 
 ---
 
@@ -267,7 +267,7 @@ Compiled:       dist/designsystem.css
 
 ## End-of-Session Checklist
 
-For DS-wide checklist (QUARANTINE, compliance, build, git) → [DS_HEALTH.md](/Projects/DS_HEALTH.md)
+For DS-wide checklist (CONTROLLED MODE, compliance, build, git) → [DS_HEALTH.md](/Projects/DS_HEALTH.md)
 
 **Questa checklist include commit, push, e publish. Eseguire tutti gli step in ordine.**
 
