@@ -1,3 +1,10 @@
+/* Map next/font CSS variables to DS font tokens */
+:root {
+  --ds-font-display: var(--font-display), system-ui, sans-serif;
+  --ds-font-sans: var(--font-sans), system-ui, sans-serif;
+  --ds-font-mono: var(--font-mono), ui-monospace, monospace;
+}
+
 /* Demo site layout — NOT part of the design system */
 
 .demo-layout {
