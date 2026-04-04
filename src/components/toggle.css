@@ -29,7 +29,7 @@
   width: 3.25rem;
   height: 1.5rem;
   padding: 2px;
-  border: none;
+  border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-full);
   background-color: var(--ds-color-bg-elevated);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
@@ -49,7 +49,7 @@
     position: absolute;
     inset-inline-start: 2px;
     inset-block-start: 50%;
-    width: 1.5rem;
+    width: 1.75rem;
     height: 1.25rem;
     border-radius: var(--ds-radius-full);
     background-color: var(--ds-color-static-white);
@@ -72,7 +72,7 @@
 
   &[aria-checked="true"]::after,
   &--checked::after {
-    transform: translateX(1.5rem) translateY(-50%);
+    transform: translateX(1.25rem) translateY(-50%);
   }
 
 
@@ -122,13 +122,13 @@
 
     &::after {
       inset-inline-start: 2px;
-      width: 1.25rem;
+      width: 1.5rem;
       height: 1rem;
     }
 
     &[aria-checked="true"]::after,
     &.ds-toggle--checked::after {
-      transform: translateX(1.25rem) translateY(-50%);
+      transform: translateX(1rem) translateY(-50%);
     }
   }
 
@@ -143,13 +143,13 @@
 
     &::after {
       inset-inline-start: 2px;
-      width: 1.75rem;
+      width: 2rem;
       height: 1.5rem;
     }
 
     &[aria-checked="true"]::after,
     &.ds-toggle--checked::after {
-      transform: translateX(1.75rem) translateY(-50%);
+      transform: translateX(1.5rem) translateY(-50%);
     }
   }
 }
