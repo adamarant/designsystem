@@ -1,6 +1,6 @@
 {
   "name": "@digiko-npm/ds-react",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "React layout primitives for @digiko-npm/designsystem — Flex, Stack, Grid, Text, Center. Props map to ds-* classes, zero logic.",
   "type": "module",
   "main": "./dist/index.js",
