@@ -7,23 +7,17 @@ export default function ColorsPage() {
       </div>
 
       <section className="demo-section">
-        <h2 className="demo-section__title">Backgrounds</h2>
+        <h2 className="demo-section__title">Background</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--ds-space-3);">
             ${[
-              ["color-bg", "Base background"],
-              ["color-bg-subtle", "Subtle background"],
-              ["color-bg-muted", "Muted background"],
-              ["color-bg-muted-hover", "Muted hover"],
-              ["color-bg-muted-active", "Muted active"],
-              ["color-bg-elevated", "Elevated (active state)"],
-              ["color-bg-elevated-hover", "Elevated hover"],
-            ].map(([token, label]) => `
+              ["color-bg", "Page background", "The only bg token. Everything else is surface."],
+            ].map(([token, label, note]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
                 <div>
                   <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
-                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}</div>
+                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label} &mdash; ${note}</div>
                 </div>
               </div>
             `).join("")}
@@ -34,17 +28,21 @@ export default function ColorsPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Surface</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--ds-space-3);">
             ${[
-              ["color-surface", "Card / panel surface"],
-              ["color-surface-hover", "Surface hover"],
-              ["color-surface-active", "Surface active"],
-            ].map(([token, label]) => `
+              ["color-surface", "Card, panel, input", "Base surface"],
+              ["color-surface-hover", "Surface hover state", ""],
+              ["color-surface-muted", "Badge, chip, kbd, toggle off", "Neutral component fill"],
+              ["color-surface-muted-hover", "Hover of muted", ""],
+              ["color-surface-elevated", "Raised above muted", "Visual layer above muted"],
+              ["color-surface-elevated-hover", "Hover of elevated", ""],
+              ["color-surface-active", "Sidebar active, tab selected", "Same value as elevated, different semantics"],
+            ].map(([token, label, note]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
                 <div>
                   <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
-                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}</div>
+                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}${note ? ` &mdash; ${note}` : ""}</div>
                 </div>
               </div>
             `).join("")}
@@ -78,20 +76,18 @@ export default function ColorsPage() {
         <h2 className="demo-section__title">Inverted</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--ds-space-3);">
-            <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
-              <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-inverted);"></div>
-              <div>
-                <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-inverted</div>
-                <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">Primary button bg</div>
+            ${[
+              ["color-inverted", "Primary button bg"],
+              ["color-on-inverted", "Text on inverted bg"],
+            ].map(([token, label]) => `
+              <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+                <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
+                <div>
+                  <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
+                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}</div>
+                </div>
               </div>
-            </div>
-            <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
-              <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-color-on-inverted);"></div>
-              <div>
-                <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">color-on-inverted</div>
-                <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">Text on inverted bg</div>
-              </div>
-            </div>
+            `).join("")}
           </div>
         ` }} />
       </section>
@@ -121,18 +117,18 @@ export default function ColorsPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Interactive</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--ds-space-3);">
             ${[
-              ["color-interactive", "Interactive default"],
-              ["color-interactive-hover", "Interactive hover"],
-              ["color-interactive-subtle", "Interactive subtle bg"],
-              ["color-interactive-border", "Interactive border"],
-            ].map(([token, label]) => `
+              ["color-interactive", "Links, focus ring, tab indicator", "Neutral (not blue)"],
+              ["color-interactive-hover", "Interactive hover", ""],
+              ["color-interactive-subtle", "Interactive subtle bg", ""],
+              ["color-interactive-border", "Interactive border", ""],
+            ].map(([token, label, note]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
                 <div>
                   <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
-                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}</div>
+                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}${note ? ` &mdash; ${note}` : ""}</div>
                 </div>
               </div>
             `).join("")}
@@ -143,41 +139,19 @@ export default function ColorsPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Brand</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--ds-space-3);">
             ${[
-              ["color-brand", "Brand primary"],
-              ["color-brand-hover", "Brand hover"],
-              ["color-brand-subtle", "Brand subtle bg"],
-              ["color-brand-border", "Brand border"],
-              ["color-on-brand", "Text on brand"],
-            ].map(([token, label]) => `
+              ["color-brand", "Project identity color", "Override per-project"],
+              ["color-brand-hover", "Brand hover", ""],
+              ["color-brand-subtle", "Brand subtle bg", ""],
+              ["color-brand-border", "Brand border", ""],
+              ["color-on-brand", "Text on brand bg", ""],
+            ].map(([token, label, note]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
                 <div>
                   <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
-                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}</div>
-                </div>
-              </div>
-            `).join("")}
-          </div>
-        ` }} />
-      </section>
-
-      <section className="demo-section">
-        <h2 className="demo-section__title">Status</h2>
-        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--ds-space-3);">
-            ${["success", "warning", "error", "info"].flatMap((status) => [
-              [`color-${status}`, `${status.charAt(0).toUpperCase() + status.slice(1)} base`],
-              [`color-${status}-subtle`, `${status.charAt(0).toUpperCase() + status.slice(1)} subtle bg`],
-              [`color-${status}-border`, `${status.charAt(0).toUpperCase() + status.slice(1)} border`],
-              [`color-${status}-solid`, `${status.charAt(0).toUpperCase() + status.slice(1)} solid fill`],
-            ]).map(([token, label]) => `
-              <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
-                <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
-                <div>
-                  <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
-                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}</div>
+                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}${note ? ` &mdash; ${note}` : ""}</div>
                 </div>
               </div>
             `).join("")}
@@ -190,15 +164,37 @@ export default function ColorsPage() {
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--ds-space-3);">
             ${["blue", "purple", "green", "orange"].flatMap((c) => [
-              [`color-accent-${c}`, `Accent ${c}`],
-              [`color-accent-${c}-subtle`, `Accent ${c} subtle`],
-              [`color-accent-${c}-border`, `Accent ${c} border`],
-            ]).map(([token, label]) => `
+              [`color-accent-${c}`, `Accent ${c}`, "Decorative — badges, categories"],
+              [`color-accent-${c}-subtle`, `Accent ${c} subtle`, ""],
+              [`color-accent-${c}-border`, `Accent ${c} border`, ""],
+            ]).map(([token, label, note]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
                 <div>
                   <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
-                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}</div>
+                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}${note ? ` &mdash; ${note}` : ""}</div>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        ` }} />
+      </section>
+
+      <section className="demo-section">
+        <h2 className="demo-section__title">Status</h2>
+        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--ds-space-3);">
+            ${["success", "warning", "error", "info"].flatMap((s) => [
+              [`color-${s}`, `${s.charAt(0).toUpperCase() + s.slice(1)}`, "Text / icon color"],
+              [`color-${s}-subtle`, `${s.charAt(0).toUpperCase() + s.slice(1)} subtle`, "Background fill"],
+              [`color-${s}-border`, `${s.charAt(0).toUpperCase() + s.slice(1)} border`, ""],
+              [`color-${s}-solid`, `${s.charAt(0).toUpperCase() + s.slice(1)} solid`, "Full bg with white text"],
+            ]).map(([token, label, note]) => `
+              <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+                <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
+                <div>
+                  <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
+                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}${note ? ` &mdash; ${note}` : ""}</div>
                 </div>
               </div>
             `).join("")}
@@ -211,8 +207,8 @@ export default function ColorsPage() {
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--ds-space-3);">
             ${[
-              ["color-overlay", "Modal overlay"],
-              ["color-overlay-subtle", "Subtle overlay"],
+              ["color-overlay", "Modal / drawer backdrop"],
+              ["color-overlay-subtle", "Subtle overlay (table row)"],
               ["color-overlay-hover", "Overlay hover"],
               ["color-overlay-active", "Overlay active"],
             ].map(([token, label]) => `
@@ -231,20 +227,44 @@ export default function ColorsPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Static &amp; Selection</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--ds-space-3);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--ds-space-3);">
             ${[
-              ["color-static-white", "Static white (never changes)"],
-              ["color-static-black", "Static black (never changes)"],
-              ["color-selection-bg", "Selection background"],
-              ["color-selection-text", "Selection text"],
-              ["color-nav-bg", "Navigation glass bg"],
-              ["color-nav-border", "Navigation border"],
-            ].map(([token, label]) => `
+              ["color-static-white", "Always white", "Never changes between themes"],
+              ["color-static-black", "Always black", "Never changes between themes"],
+              ["color-selection-bg", "Text selection bg", "::selection"],
+              ["color-selection-text", "Text selection color", "::selection"],
+              ["color-nav-bg", "Navigation glass bg", "Translucent"],
+              ["color-nav-border", "Navigation border", "Translucent"],
+            ].map(([token, label, note]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
                 <div>
                   <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
-                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}</div>
+                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label} &mdash; ${note}</div>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        ` }} />
+      </section>
+
+      <section className="demo-section">
+        <h2 className="demo-section__title">Deprecated (do not use)</h2>
+        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--ds-space-3); opacity: 0.5;">
+            ${[
+              ["color-bg-subtle", "color-bg"],
+              ["color-bg-muted", "color-surface-muted"],
+              ["color-bg-muted-hover", "color-surface-muted-hover"],
+              ["color-bg-muted-active", "eliminated"],
+              ["color-bg-elevated", "color-surface-elevated"],
+              ["color-bg-elevated-hover", "color-surface-elevated-hover"],
+            ].map(([token, replacement]) => `
+              <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+                <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px dashed var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
+                <div>
+                  <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono); text-decoration: line-through;">${token}</div>
+                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">Use ${replacement} instead</div>
                 </div>
               </div>
             `).join("")}
