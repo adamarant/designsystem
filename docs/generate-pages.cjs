@@ -127,9 +127,20 @@ function generateSidebarData() {
 
 let generated = 0;
 
+// Components with hand-written interactive pages — never overwrite
+const CUSTOM_PAGES = new Set(
+  fs.existsSync(path.join(DOCS, "src/app/components/.custom"))
+    ? fs.readFileSync(path.join(DOCS, "src/app/components/.custom"), "utf-8").trim().split("\n").filter(Boolean)
+    : []
+);
+
 manifest.components.forEach(comp => {
   const dir = path.join(COMPONENTS_DIR, comp.name);
   fs.mkdirSync(dir, { recursive: true });
+  if (CUSTOM_PAGES.has(comp.name)) {
+    console.log("  SKIP (custom): " + comp.name);
+    return;
+  }
   const content = generatePage(comp);
   fs.writeFileSync(path.join(dir, "page.tsx"), content);
   generated++;

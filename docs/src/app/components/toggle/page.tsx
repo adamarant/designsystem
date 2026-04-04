@@ -1,4 +1,14 @@
+"use client";
+
+import { useState } from "react";
+import { Toggle } from "@digiko-npm/ds-react";
+import { DemoSection } from "@/components/DemoSection";
+
 export default function TogglePage() {
+  const [on1, setOn1] = useState(false);
+  const [on2, setOn2] = useState(true);
+  const [on3, setOn3] = useState(false);
+
   return (
     <>
       <div className="demo-page-header">
@@ -6,89 +16,32 @@ export default function TogglePage() {
         <p>A toggle (switch) control for binary on/off states.</p>
       </div>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Basic</h2>
-        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<button class="ds-toggle" role="switch" aria-checked="false"></button>
-<button class="ds-toggle" role="switch" aria-checked="true"></button>
-<button class="ds-toggle ds-toggle--sm" role="switch" aria-checked="true"></button>` }} />
-        <details className="demo-code">
-          <summary>View React Code</summary>
-          <pre><code dangerouslySetInnerHTML={{ __html: `const [on, setOn] = useState(false);
+      <DemoSection title="Basic" code={`const [on, setOn] = useState(false);\n\n<Toggle checked={on} onCheckedChange={setOn} />`}>
+        <Toggle checked={on1} onCheckedChange={setOn1} />
+        <Toggle checked={on2} onCheckedChange={setOn2} />
+      </DemoSection>
 
-&lt;Toggle checked={on} onCheckedChange={setOn} /&gt;` }} /></pre>
-        </details>
-      </section>
+      <DemoSection title="Sizes" code={`<Toggle size="sm" .../>\n<Toggle .../>\n<Toggle size="lg" .../>`}>
+        <Toggle size="sm" checked={on3} onCheckedChange={setOn3} />
+        <Toggle checked={on1} onCheckedChange={setOn1} />
+        <Toggle size="lg" checked={on2} onCheckedChange={setOn2} />
+      </DemoSection>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Sizes</h2>
-        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<label class="ds-toggle-label">
-  <button class="ds-toggle" role="switch" aria-checked="true"></button>
-  <span class="ds-toggle-label__text">Dark mode</span>
-</label>
-<label class="ds-toggle-label">
-  <button class="ds-toggle" role="switch" aria-checked="false"></button>
-  <span class="ds-toggle-label__text">Notifications</span>
-</label>` }} />
-        <details className="demo-code">
-          <summary>View React Code</summary>
-          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;Toggle size=&quot;sm&quot; checked={on} onCheckedChange={setOn} /&gt;
-&lt;Toggle checked={on} onCheckedChange={setOn} /&gt;
-&lt;Toggle size=&quot;lg&quot; checked={on} onCheckedChange={setOn} /&gt;` }} /></pre>
-        </details>
-      </section>
+      <DemoSection title="With Label" code={`<Toggle.Label>\n  <Toggle checked={on} onCheckedChange={setOn} />\n  <Toggle.LabelText>Dark mode</Toggle.LabelText>\n</Toggle.Label>`}>
+        <Toggle.Label>
+          <Toggle checked={on1} onCheckedChange={setOn1} />
+          <Toggle.LabelText>Notifications</Toggle.LabelText>
+        </Toggle.Label>
+        <Toggle.Label>
+          <Toggle checked={on2} onCheckedChange={setOn2} />
+          <Toggle.LabelText>Dark mode</Toggle.LabelText>
+        </Toggle.Label>
+      </DemoSection>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">With Label</h2>
-        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<button class="ds-toggle ds-toggle--sm" role="switch" aria-checked="true"></button>
-<button class="ds-toggle" role="switch" aria-checked="true"></button>` }} />
-        <details className="demo-code">
-          <summary>View React Code</summary>
-          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;Toggle.Label&gt;
-  &lt;Toggle checked={dark} onCheckedChange={setDark} /&gt;
-  &lt;Toggle.LabelText&gt;Dark mode&lt;/Toggle.LabelText&gt;
-&lt;/Toggle.Label&gt;` }} /></pre>
-        </details>
-      </section>
-
-      <section className="demo-section">
-        <h2 className="demo-section__title">API Reference</h2>
-        <div className="ds-table-wrapper">
-          <table className="ds-table ds-table--compact">
-            <thead>
-              <tr>
-                <th>Class</th>
-                <th>Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>.ds-toggle</code></td>
-                <td>Base</td>
-              </tr>
-              <tr>
-                <td><code>.ds-toggle-label</code></td>
-                <td>Base</td>
-              </tr>
-              <tr>
-                <td><code>__text</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>--sm</code></td>
-                <td>Size</td>
-              </tr>
-              <tr>
-                <td><code>--checked</code></td>
-                <td>Modifier</td>
-              </tr>
-              <tr>
-                <td><code>--disabled</code></td>
-                <td>Modifier</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+      <DemoSection title="Disabled" code={`<Toggle checked={false} onCheckedChange={() => {}} disabled />`}>
+        <Toggle checked={false} onCheckedChange={() => {}} disabled />
+        <Toggle checked={true} onCheckedChange={() => {}} disabled />
+      </DemoSection>
     </>
   );
 }
