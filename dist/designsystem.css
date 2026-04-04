@@ -33,18 +33,26 @@
 /* Light theme (default) */
 :root,
 [data-theme="light"] {
-  /* --- Backgrounds — clean whites, warm grays --- */
+  /* --- Background — page-level only --- */
   --ds-color-bg: #fafafa;
+
+  /* --- Surface — everything on top of bg --- */
+  --ds-color-surface: #ffffff;
+  --ds-color-surface-hover: #fafafa;
+  --ds-color-surface-muted: #e4e4e7;
+  --ds-color-surface-muted-hover: #d4d4d8;
+  --ds-color-surface-elevated: #f4f4f5;
+  --ds-color-surface-elevated-hover: #e4e4e7;
+  --ds-color-surface-active: #f4f4f5; /* same value as elevated, different semantics — selected/active state */
+
+  /* @deprecated — use surface-* instead. Will be removed in a future major.
+     Kept for backward compatibility with consumer projects. */
   --ds-color-bg-subtle: #ffffff;
   --ds-color-bg-muted: #e4e4e7;
   --ds-color-bg-muted-hover: #d4d4d8;
   --ds-color-bg-muted-active: #a1a1aa;
   --ds-color-bg-elevated: #f4f4f5;
   --ds-color-bg-elevated-hover: #e4e4e7;
-
-  --ds-color-surface: #ffffff;
-  --ds-color-surface-hover: #fafafa;
-  --ds-color-surface-active: #f4f4f5;
 
   /* --- Text — zinc hierarchy ---
      Contrast ratios on --ds-color-bg (#fafafa):
@@ -109,18 +117,25 @@
 
 /* Dark theme */
 [data-theme="dark"] {
-  /* --- Backgrounds — deep, refined zinc-900 palette --- */
+  /* --- Background — page-level only --- */
   --ds-color-bg: #09090b;
+
+  /* --- Surface --- */
+  --ds-color-surface: #0f0f11;
+  --ds-color-surface-hover: #18181b;
+  --ds-color-surface-muted: #18181b;
+  --ds-color-surface-muted-hover: #212124;
+  --ds-color-surface-elevated: #2d2d31;
+  --ds-color-surface-elevated-hover: #3a3a40;
+  --ds-color-surface-active: #27272a;
+
+  /* @deprecated */
   --ds-color-bg-subtle: #0f0f11;
   --ds-color-bg-muted: #18181b;
   --ds-color-bg-muted-hover: #212124;
   --ds-color-bg-muted-active: #3f3f46;
   --ds-color-bg-elevated: #2d2d31;
   --ds-color-bg-elevated-hover: #3a3a40;
-
-  --ds-color-surface: #0f0f11;
-  --ds-color-surface-hover: #18181b;
-  --ds-color-surface-active: #27272a;
 
   /* --- Text ---
      Contrast ratios on --ds-color-bg (#09090b):
