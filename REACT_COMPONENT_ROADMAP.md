@@ -2,7 +2,6 @@
 
 > Piano componente-per-componente per wrappare i 58 CSS components come React.
 > Per la strategia generale (fasi, audit soup, touch-and-improve) → [`~/Projects/DS_REACT_PLAN.md`](~/Projects/DS_REACT_PLAN.md)
-> Per le regole d'uso nei consumer → [`~/Projects/DS_REACT_RULES.md`](~/Projects/DS_REACT_RULES.md)
 
 ---
 
