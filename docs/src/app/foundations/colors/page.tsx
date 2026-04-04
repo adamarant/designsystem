@@ -185,10 +185,9 @@ export default function ColorsPage() {
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--ds-space-3);">
             ${["success", "warning", "error", "info"].flatMap((s) => [
-              [`color-${s}`, `${s.charAt(0).toUpperCase() + s.slice(1)}`, "Text / icon color"],
+              [`color-${s}`, `${s.charAt(0).toUpperCase() + s.slice(1)}`, "Text / icon / solid fill"],
               [`color-${s}-subtle`, `${s.charAt(0).toUpperCase() + s.slice(1)} subtle`, "Background fill"],
               [`color-${s}-border`, `${s.charAt(0).toUpperCase() + s.slice(1)} border`, ""],
-              [`color-${s}-solid`, `${s.charAt(0).toUpperCase() + s.slice(1)} solid`, "Full bg with white text"],
             ]).map(([token, label, note]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
@@ -259,6 +258,10 @@ export default function ColorsPage() {
               ["color-bg-muted-active", "eliminated"],
               ["color-bg-elevated", "color-surface-elevated"],
               ["color-bg-elevated-hover", "color-surface-elevated-hover"],
+              ["color-success-solid", "color-success"],
+              ["color-warning-solid", "color-warning"],
+              ["color-error-solid", "color-error"],
+              ["color-info-solid", "color-info"],
             ].map(([token, replacement]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px dashed var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
