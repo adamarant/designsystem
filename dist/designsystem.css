@@ -1286,6 +1286,7 @@ hr {
   position: relative;
   width: 3.25rem;
   height: 1.5rem;
+  /* Proportions locked: track 2.2:1, thumb 59%w 80%h of track */
   padding: 2px;
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-full);
@@ -1351,7 +1352,7 @@ hr {
     position: absolute;
     inset-inline-start: 2px;
     inset-block-start: 50%;
-    width: 1.75rem;
+    width: 1.875rem;
     height: 1.25rem;
     border-radius: var(--ds-radius-full);
     background-color: var(--ds-color-static-white);
@@ -1370,7 +1371,7 @@ hr {
 .ds-toggle[aria-checked="true"]::after,
 .ds-toggle--checked::after {
 
-    transform: translateX(1.25rem) translateY(-50%);
+    transform: translateX(1.125rem) translateY(-50%);
   }
 .ds-toggle:hover {
 
@@ -1408,13 +1409,13 @@ hr {
 .ds-toggle--sm::after {
 
       inset-inline-start: 2px;
-      width: 1.5rem;
+      width: 1.625rem;
       height: 1rem;
     }
 .ds-toggle--sm[aria-checked="true"]::after,
 .ds-toggle--sm.ds-toggle--checked::after {
 
-      transform: translateX(1rem) translateY(-50%);
+      transform: translateX(0.875rem) translateY(-50%);
     }
 .ds-toggle--lg {
 
@@ -1429,13 +1430,13 @@ hr {
 .ds-toggle--lg::after {
 
       inset-inline-start: 2px;
-      width: 2rem;
-      height: 1.5rem;
+      width: 2.25rem;
+      height: 1.4rem;
     }
 .ds-toggle--lg[aria-checked="true"]::after,
 .ds-toggle--lg.ds-toggle--checked::after {
 
-      transform: translateX(1.5rem) translateY(-50%);
+      transform: translateX(1.25rem) translateY(-50%);
     }
 
 
