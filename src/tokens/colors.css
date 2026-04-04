@@ -195,7 +195,9 @@
   --ds-color-info-subtle: rgba(37, 99, 235, 0.1);
   --ds-color-info-border: rgba(37, 99, 235, 0.2);
 
-  /* --- Solid fills (theme-stable, always pair with white text) --- */
+  /* @deprecated — use color-success/warning/error/info directly.
+     The -solid variant was identical in value and confusing in name.
+     Kept for backward compatibility. */
   --ds-color-success-solid: #16a34a;
   --ds-color-warning-solid: #d97706;
   --ds-color-error-solid: #dc2626;
