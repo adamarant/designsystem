@@ -1,4 +1,4 @@
-import "@digiko-npm/designsystem";
+import "../../dist/designsystem.css";
 import "@/styles/demo.css";
 import localFont from "next/font/local";
 import { GeistMono } from "geist/font/mono";
