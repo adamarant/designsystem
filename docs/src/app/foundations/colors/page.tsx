@@ -209,9 +209,7 @@ export default function ColorsPage() {
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--ds-space-3);">
             ${[
               ["color-overlay", "Modal / drawer backdrop"],
-              ["color-overlay-subtle", "Subtle overlay (table row)"],
-              ["color-overlay-hover", "Overlay hover"],
-              ["color-overlay-active", "Overlay active"],
+              ["color-overlay-subtle", "Subtle tint (table row highlight)"],
             ].map(([token, label]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token}); background-image: linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%); background-size: 8px 8px; background-position: 0 0, 0 4px, 4px -4px, -4px 0px;"></div>
@@ -262,6 +260,8 @@ export default function ColorsPage() {
               ["color-info-solid", "color-info"],
               ["color-nav-bg", "color-surface"],
               ["color-nav-border", "color-border"],
+              ["color-overlay-hover", "surface-hover"],
+              ["color-overlay-active", "surface-active"],
             ].map(([token, replacement]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px dashed var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>

@@ -92,6 +92,8 @@
   /* --- Overlays --- */
   --ds-color-overlay: rgba(0, 0, 0, 0.5);
   --ds-color-overlay-subtle: rgba(0, 0, 0, 0.02);
+
+  /* @deprecated — use surface-hover / surface-active instead */
   --ds-color-overlay-hover: rgba(0, 0, 0, 0.08);
   --ds-color-overlay-active: rgba(0, 0, 0, 0.12);
 
@@ -176,6 +178,8 @@
   /* --- Overlays --- */
   --ds-color-overlay: rgba(0, 0, 0, 0.7);
   --ds-color-overlay-subtle: rgba(255, 255, 255, 0.03);
+
+  /* @deprecated */
   --ds-color-overlay-hover: rgba(255, 255, 255, 0.1);
   --ds-color-overlay-active: rgba(255, 255, 255, 0.15);
 
