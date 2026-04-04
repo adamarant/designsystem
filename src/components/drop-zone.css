@@ -71,7 +71,7 @@
     width: 3rem;
     height: 3rem;
     border-radius: var(--ds-radius-xl);
-    background-color: var(--ds-color-bg-muted);
+    background-color: var(--ds-color-surface-muted);
     color: var(--ds-color-text-secondary);
     transition: color var(--ds-duration-fast) var(--ds-ease-default);
   }

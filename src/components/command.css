@@ -68,7 +68,7 @@
 
   /* Content panel */
   &__content {
-    background-color: var(--ds-color-bg-muted);
+    background-color: var(--ds-color-surface-muted);
     border: 1px solid var(--ds-color-border);
     border-radius: var(--ds-radius-xl);
     box-shadow: var(--ds-shadow-lg);
@@ -148,13 +148,13 @@
 
     /* Item hover & active states */
     &:hover {
-      background-color: var(--ds-color-bg-muted-hover);
+      background-color: var(--ds-color-surface-muted-hover);
       color: var(--ds-color-text);
     }
 
     &--active,
       &--active:hover {
-      background-color: var(--ds-color-bg-elevated);
+      background-color: var(--ds-color-surface-elevated);
       color: var(--ds-color-text);
 
       & .ds-command__item-icon,

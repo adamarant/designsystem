@@ -22,7 +22,7 @@
   &--pills {
     border-block-end: none;
     gap: var(--ds-space-1);
-    background-color: var(--ds-color-bg-muted);
+    background-color: var(--ds-color-surface-muted);
     border-radius: var(--ds-radius-lg);
     padding: var(--ds-space-1);
 
@@ -40,7 +40,7 @@
 
       &--active,
       &--active:hover {
-        background-color: var(--ds-color-bg-elevated);
+        background-color: var(--ds-color-surface-elevated);
         color: var(--ds-color-text);
         box-shadow: var(--ds-shadow-sm);
         border-block-end: none;
@@ -197,14 +197,14 @@
     font-weight: var(--ds-weight-medium);
     line-height: var(--ds-leading-snug);
     color: var(--ds-color-text-tertiary);
-    background-color: var(--ds-color-bg-muted);
+    background-color: var(--ds-color-surface-muted);
     border-radius: var(--ds-radius-full);
     min-width: 1.25rem;
   }
 
   &--active &__count {
     color: var(--ds-color-text-secondary);
-    background-color: var(--ds-color-bg-elevated);
+    background-color: var(--ds-color-surface-elevated);
   }
 }
 

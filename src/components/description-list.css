@@ -92,7 +92,7 @@
 
   &--striped {
     & .ds-description-list__item:nth-child(odd) {
-      background-color: var(--ds-color-bg-subtle);
+      background-color: var(--ds-color-surface);
       padding-inline: var(--ds-space-3);
       border-radius: var(--ds-radius-md);
     }

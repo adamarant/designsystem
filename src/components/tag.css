@@ -31,7 +31,7 @@
   font-family: var(--ds-font-sans);
   line-height: var(--ds-leading-none);
   border-radius: var(--ds-radius-full);
-  background-color: var(--ds-color-bg-muted);
+  background-color: var(--ds-color-surface-muted);
   border: 1px solid var(--ds-color-border);
   color: var(--ds-color-text-secondary);
   white-space: nowrap;
@@ -48,37 +48,37 @@
      --------------------------------------------------------------------------- */
 
   &--primary {
-    background-color: var(--ds-color-interactive-subtle, var(--ds-color-bg-muted));
+    background-color: var(--ds-color-interactive-subtle, var(--ds-color-surface-muted));
     color: var(--ds-color-interactive);
     border-color: var(--ds-color-interactive-border, var(--ds-color-interactive));
   }
 
   &--success {
-    background-color: var(--ds-color-success-subtle, var(--ds-color-bg-muted));
+    background-color: var(--ds-color-success-subtle, var(--ds-color-surface-muted));
     color: var(--ds-color-success);
     border-color: var(--ds-color-success-border, var(--ds-color-success));
   }
 
   &--warning {
-    background-color: var(--ds-color-warning-subtle, var(--ds-color-bg-muted));
+    background-color: var(--ds-color-warning-subtle, var(--ds-color-surface-muted));
     color: var(--ds-color-warning);
     border-color: var(--ds-color-warning-border, var(--ds-color-warning));
   }
 
   &--error {
-    background-color: var(--ds-color-error-subtle, var(--ds-color-bg-muted));
+    background-color: var(--ds-color-error-subtle, var(--ds-color-surface-muted));
     color: var(--ds-color-error);
     border-color: var(--ds-color-error-border, var(--ds-color-error));
   }
 
   &--info {
-    background-color: var(--ds-color-info-subtle, var(--ds-color-bg-muted));
+    background-color: var(--ds-color-info-subtle, var(--ds-color-surface-muted));
     color: var(--ds-color-info);
     border-color: var(--ds-color-info-border, var(--ds-color-info));
   }
 
   &--purple {
-    background-color: var(--ds-color-accent-purple-subtle, var(--ds-color-bg-muted));
+    background-color: var(--ds-color-accent-purple-subtle, var(--ds-color-surface-muted));
     color: var(--ds-color-accent-purple, var(--ds-color-interactive));
     border-color: var(--ds-color-accent-purple-border, var(--ds-color-accent-purple, var(--ds-color-interactive)));
   }

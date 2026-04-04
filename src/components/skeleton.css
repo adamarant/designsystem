@@ -5,7 +5,7 @@
 
 .ds-skeleton {
   display: block;
-  background-color: var(--ds-color-bg-muted);
+  background-color: var(--ds-color-surface-muted);
   border-radius: var(--ds-radius-md);
   animation: ds-skeleton-pulse var(--ds-duration-slower) var(--ds-ease-default) infinite;
 

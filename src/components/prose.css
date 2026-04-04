@@ -60,13 +60,13 @@
 .ds-prose-block code {
   font-family: var(--ds-font-mono);
   font-size: var(--ds-text-sm);
-  background-color: var(--ds-color-bg-muted);
+  background-color: var(--ds-color-surface-muted);
   padding: 0.125em 0.375em;
   border-radius: var(--ds-radius-sm);
 }
 
 .ds-prose-block pre {
-  background-color: var(--ds-color-bg-muted);
+  background-color: var(--ds-color-surface-muted);
   padding: var(--ds-space-4);
   border-radius: var(--ds-radius-lg);
   overflow-x: auto;

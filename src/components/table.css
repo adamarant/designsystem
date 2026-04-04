@@ -207,7 +207,7 @@
   inset-inline-end: var(--ds-space-4);
   height: 0.75rem;
   transform: translateY(-50%);
-  background: var(--ds-color-bg-muted);
+  background: var(--ds-color-surface-muted);
   border-radius: var(--ds-radius-sm);
   animation: ds-table-skeleton-pulse 1.5s ease-in-out infinite;
 }

@@ -104,7 +104,7 @@
     &--active,
     &--active:hover {
       color: var(--ds-color-text);
-      background: var(--ds-color-bg-elevated);
+      background: var(--ds-color-surface-elevated);
       border-color: var(--ds-color-border);
     }
   }
@@ -165,7 +165,7 @@
     }
 
     &--active {
-      background: var(--ds-color-bg-elevated);
+      background: var(--ds-color-surface-elevated);
       color: var(--ds-color-text);
     }
   }

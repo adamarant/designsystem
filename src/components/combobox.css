@@ -149,7 +149,7 @@
   max-height: 16rem;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background-color: var(--ds-color-bg-muted);
+  background-color: var(--ds-color-surface-muted);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-xl);
   box-shadow: var(--ds-shadow-lg);
@@ -224,7 +224,7 @@
 
 .ds-combobox__option--active,
 .ds-combobox__option--active:hover {
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-surface-elevated);
   color: var(--ds-color-text);
 }
 
@@ -324,7 +324,7 @@
   font-family: var(--ds-font-sans);
   line-height: var(--ds-leading-none);
   border-radius: var(--ds-radius-full);
-  background-color: var(--ds-color-bg-muted);
+  background-color: var(--ds-color-surface-muted);
   border: 1px solid var(--ds-color-border);
   color: var(--ds-color-text-secondary);
   white-space: nowrap;

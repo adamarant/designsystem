@@ -70,11 +70,11 @@
 /* --- Background Color --- */
 .ds-bg-base     { background-color: var(--ds-color-bg); }
 .ds-bg-surface  { background-color: var(--ds-color-surface); }
-.ds-bg-subtle   { background-color: var(--ds-color-bg-subtle); }
-.ds-bg-elevated { background-color: var(--ds-color-bg-elevated); }
+.ds-bg-subtle   { background-color: var(--ds-color-surface); }
+.ds-bg-elevated { background-color: var(--ds-color-surface-elevated); }
 .ds-bg-inverted { background-color: var(--ds-color-inverted); color: var(--ds-color-on-inverted); }
 .ds-bg-hover    { background-color: var(--ds-color-surface-hover); }
-.ds-bg-muted    { background-color: var(--ds-color-bg-muted); }
+.ds-bg-muted    { background-color: var(--ds-color-surface-muted); }
 .ds-bg-overlay  { background-color: var(--ds-color-overlay); }
 .ds-bg-nav      { background-color: var(--ds-color-nav-bg); }
 

@@ -67,7 +67,7 @@
     z-index: var(--ds-z-dropdown);
     inset-block-start: calc(100% + var(--ds-offset-sm));
     inset-inline-start: 0;
-    background-color: var(--ds-color-bg-muted);
+    background-color: var(--ds-color-surface-muted);
     border: 1px solid var(--ds-color-border);
     border-radius: var(--ds-radius-xl);
     box-shadow: var(--ds-shadow-lg);
@@ -119,7 +119,7 @@
     transition: all var(--ds-duration-fast) var(--ds-ease-default);
 
     &:hover {
-      background-color: var(--ds-color-bg-muted-hover);
+      background-color: var(--ds-color-surface-muted-hover);
       color: var(--ds-color-text);
     }
 
@@ -170,7 +170,7 @@
     user-select: none;
 
     &:hover {
-      background-color: var(--ds-color-bg-muted-hover);
+      background-color: var(--ds-color-surface-muted-hover);
     }
 
     &:focus-visible {
@@ -224,7 +224,7 @@
     transition: all var(--ds-duration-fast) var(--ds-ease-default);
 
     &:hover {
-      background-color: var(--ds-color-bg-muted-hover);
+      background-color: var(--ds-color-surface-muted-hover);
       color: var(--ds-color-text);
       border-color: var(--ds-color-border-hover);
     }
@@ -253,7 +253,7 @@
     flex-shrink: 0;
 
     &:hover {
-      background-color: var(--ds-color-bg-muted-hover);
+      background-color: var(--ds-color-surface-muted-hover);
       color: var(--ds-color-text);
     }
 

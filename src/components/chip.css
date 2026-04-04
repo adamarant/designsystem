@@ -29,7 +29,7 @@
   font-size: var(--ds-text-xs);
   font-family: inherit;
   color: var(--ds-color-text-secondary);
-  background: var(--ds-color-bg-muted);
+  background: var(--ds-color-surface-muted);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-full);
   white-space: nowrap;

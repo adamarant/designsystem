@@ -68,7 +68,7 @@
     height: 4px;
     margin: var(--ds-space-2) auto;
     border-radius: var(--ds-radius-full);
-    background-color: var(--ds-color-bg-muted);
+    background-color: var(--ds-color-surface-muted);
     flex-shrink: 0;
   }
 

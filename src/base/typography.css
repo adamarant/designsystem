@@ -94,7 +94,7 @@ strong, b {
 code, kbd, samp {
   font-family: var(--ds-font-mono);
   font-size: 0.9em;
-  background-color: var(--ds-color-bg-elevated);
+  background-color: var(--ds-color-surface-elevated);
   padding: 2px 6px;
   border-radius: var(--ds-radius-sm);
 }
