@@ -59,6 +59,8 @@ export default function ColorsPage() {
               ["color-text-secondary", "Secondary text", "AAA in both themes"],
               ["color-text-tertiary", "Tertiary text", "Decorative only"],
               ["color-text-disabled", "Disabled text", "Exempt per WCAG"],
+              ["color-selection-text", "Text selection color", "Applied to ::selection"],
+              ["color-selection-bg", "Text selection background", "Applied to ::selection"],
             ].map(([token, label, note]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
@@ -224,16 +226,12 @@ export default function ColorsPage() {
       </section>
 
       <section className="demo-section">
-        <h2 className="demo-section__title">Static &amp; Selection</h2>
+        <h2 className="demo-section__title">Static</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--ds-space-3);">
             ${[
-              ["color-static-white", "Always white", "Never changes between themes"],
-              ["color-static-black", "Always black", "Never changes between themes"],
-              ["color-selection-bg", "Text selection bg", "::selection"],
-              ["color-selection-text", "Text selection color", "::selection"],
-              ["color-nav-bg", "Navigation glass bg", "Translucent"],
-              ["color-nav-border", "Navigation border", "Translucent"],
+              ["color-static-white", "Always white", "Never changes between themes. Text on photos, dark overlays."],
+              ["color-static-black", "Always black", "Never changes between themes. Text on light overlays."],
             ].map(([token, label, note]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
@@ -262,6 +260,8 @@ export default function ColorsPage() {
               ["color-warning-solid", "color-warning"],
               ["color-error-solid", "color-error"],
               ["color-info-solid", "color-info"],
+              ["color-nav-bg", "color-surface"],
+              ["color-nav-border", "color-border"],
             ].map(([token, replacement]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px dashed var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
