@@ -146,13 +146,50 @@ const foundations = {
     { name: "Effects", href: "/foundations/effects" },
   ]
 };
-// Category display order — essential UI first
-const CATEGORY_ORDER = ["action", "form", "layout", "data-display", "navigation", "feedback", "overlay"];
-const orderedGroups = CATEGORY_ORDER
-  .map(id => sidebarData[id])
-  .filter(Boolean);
+// Custom sidebar grouping — by what you're building, not by technical category
+const SIDEBAR_GROUPS = [
+  {
+    label: "General",
+    names: ["button", "icon-btn", "badge", "tag", "chip", "kbd", "copy-button", "spinner"],
+  },
+  {
+    label: "Form",
+    names: ["input", "toggle", "field", "custom-select", "combobox", "datepicker", "slider", "number-input", "pin-input", "color-picker", "star-rating", "drop-zone", "search"],
+  },
+  {
+    label: "Layout",
+    names: ["card", "divider", "accordion", "collapsible", "hero", "prose", "gallery", "scroll-area", "admin-layout", "sortable"],
+  },
+  {
+    label: "Data",
+    names: ["table", "avatar", "stat-card", "progress", "skeleton", "timeline", "description-list", "truncated-text", "result"],
+  },
+  {
+    label: "Navigation",
+    names: ["tabs", "nav", "breadcrumb", "pagination", "segmented-control", "toolbar", "bottom-nav"],
+  },
+  {
+    label: "Feedback",
+    names: ["alert", "toast", "empty-state", "tooltip"],
+  },
+  {
+    label: "Overlay",
+    names: ["modal", "dropdown", "drawer", "popover", "command", "bottom-sheet"],
+  },
+];
 
-const allNav = [foundations, ...orderedGroups];
+// Build lookup from manifest
+const compByName = {};
+manifest.components.forEach(c => { compByName[c.name] = c; });
+
+const customGroups = SIDEBAR_GROUPS.map(group => ({
+  label: group.label,
+  items: group.names
+    .filter(n => compByName[n])
+    .map(n => ({ name: compByName[n].title, href: `/components/${n}` })),
+}));
+
+const allNav = [foundations, ...customGroups];
 const sidebarContent = `// Auto-generated from components.json — do not edit manually
 export const NAV = ${JSON.stringify(allNav, null, 2)};
 `;

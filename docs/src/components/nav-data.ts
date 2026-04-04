@@ -22,31 +22,39 @@ export const NAV = [
     ]
   },
   {
-    "label": "Action",
+    "label": "General",
     "items": [
       {
         "name": "Button",
         "href": "/components/button"
       },
       {
-        "name": "Kbd",
-        "href": "/components/kbd"
-      },
-      {
-        "name": "Sortable",
-        "href": "/components/sortable"
-      },
-      {
-        "name": "Search",
-        "href": "/components/search"
-      },
-      {
         "name": "Icon Button",
         "href": "/components/icon-btn"
       },
       {
+        "name": "Badge",
+        "href": "/components/badge"
+      },
+      {
+        "name": "Tag",
+        "href": "/components/tag"
+      },
+      {
+        "name": "Chip",
+        "href": "/components/chip"
+      },
+      {
+        "name": "Kbd",
+        "href": "/components/kbd"
+      },
+      {
         "name": "Copy Button",
         "href": "/components/copy-button"
+      },
+      {
+        "name": "Spinner",
+        "href": "/components/spinner"
       }
     ]
   },
@@ -62,28 +70,24 @@ export const NAV = [
         "href": "/components/toggle"
       },
       {
-        "name": "Datepicker",
-        "href": "/components/datepicker"
-      },
-      {
-        "name": "Drop Zone",
-        "href": "/components/drop-zone"
+        "name": "Field",
+        "href": "/components/field"
       },
       {
         "name": "Custom Select",
         "href": "/components/custom-select"
       },
       {
-        "name": "Slider",
-        "href": "/components/slider"
-      },
-      {
-        "name": "Field",
-        "href": "/components/field"
-      },
-      {
         "name": "Combobox",
         "href": "/components/combobox"
+      },
+      {
+        "name": "Datepicker",
+        "href": "/components/datepicker"
+      },
+      {
+        "name": "Slider",
+        "href": "/components/slider"
       },
       {
         "name": "Number Input",
@@ -100,6 +104,14 @@ export const NAV = [
       {
         "name": "Star Rating",
         "href": "/components/star-rating"
+      },
+      {
+        "name": "Drop Zone",
+        "href": "/components/drop-zone"
+      },
+      {
+        "name": "Search",
+        "href": "/components/search"
       }
     ]
   },
@@ -123,14 +135,6 @@ export const NAV = [
         "href": "/components/collapsible"
       },
       {
-        "name": "Gallery",
-        "href": "/components/gallery"
-      },
-      {
-        "name": "Scroll Area",
-        "href": "/components/scroll-area"
-      },
-      {
         "name": "Hero",
         "href": "/components/hero"
       },
@@ -139,18 +143,26 @@ export const NAV = [
         "href": "/components/prose"
       },
       {
+        "name": "Gallery",
+        "href": "/components/gallery"
+      },
+      {
+        "name": "Scroll Area",
+        "href": "/components/scroll-area"
+      },
+      {
         "name": "Admin Layout",
         "href": "/components/admin-layout"
+      },
+      {
+        "name": "Sortable",
+        "href": "/components/sortable"
       }
     ]
   },
   {
-    "label": "Data Display",
+    "label": "Data",
     "items": [
-      {
-        "name": "Badge",
-        "href": "/components/badge"
-      },
       {
         "name": "Table",
         "href": "/components/table"
@@ -160,40 +172,32 @@ export const NAV = [
         "href": "/components/avatar"
       },
       {
-        "name": "Skeleton",
-        "href": "/components/skeleton"
-      },
-      {
-        "name": "Tag",
-        "href": "/components/tag"
+        "name": "Stat Card",
+        "href": "/components/stat-card"
       },
       {
         "name": "Progress",
         "href": "/components/progress"
       },
       {
+        "name": "Skeleton",
+        "href": "/components/skeleton"
+      },
+      {
         "name": "Timeline",
         "href": "/components/timeline"
-      },
-      {
-        "name": "Chip",
-        "href": "/components/chip"
-      },
-      {
-        "name": "Stat Card",
-        "href": "/components/stat-card"
       },
       {
         "name": "Description List",
         "href": "/components/description-list"
       },
       {
-        "name": "Result",
-        "href": "/components/result"
-      },
-      {
         "name": "Truncated Text",
         "href": "/components/truncated-text"
+      },
+      {
+        "name": "Result",
+        "href": "/components/result"
       }
     ]
   },
@@ -201,12 +205,12 @@ export const NAV = [
     "label": "Navigation",
     "items": [
       {
-        "name": "Navigation",
-        "href": "/components/nav"
-      },
-      {
         "name": "Tabs",
         "href": "/components/tabs"
+      },
+      {
+        "name": "Navigation",
+        "href": "/components/nav"
       },
       {
         "name": "Breadcrumb",
@@ -217,16 +221,16 @@ export const NAV = [
         "href": "/components/pagination"
       },
       {
+        "name": "Segmented Control",
+        "href": "/components/segmented-control"
+      },
+      {
         "name": "Toolbar",
         "href": "/components/toolbar"
       },
       {
         "name": "Bottom Nav",
         "href": "/components/bottom-nav"
-      },
-      {
-        "name": "Segmented Control",
-        "href": "/components/segmented-control"
       }
     ]
   },
@@ -234,24 +238,20 @@ export const NAV = [
     "label": "Feedback",
     "items": [
       {
-        "name": "Toast",
-        "href": "/components/toast"
-      },
-      {
         "name": "Alert",
         "href": "/components/alert"
       },
       {
-        "name": "Tooltip",
-        "href": "/components/tooltip"
+        "name": "Toast",
+        "href": "/components/toast"
       },
       {
         "name": "Empty State",
         "href": "/components/empty-state"
       },
       {
-        "name": "Spinner",
-        "href": "/components/spinner"
+        "name": "Tooltip",
+        "href": "/components/tooltip"
       }
     ]
   },
