@@ -1,6 +1,6 @@
 {
   "name": "@digiko-npm/ds-react",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "React layout primitives for @digiko-npm/designsystem — Flex, Stack, Grid, Text, Center. Props map to ds-* classes, zero logic.",
   "type": "module",
   "main": "./dist/index.js",
@@ -86,6 +86,10 @@
     "./Toggle": {
       "types": "./dist/components/Toggle.d.ts",
       "import": "./dist/components/Toggle.js"
+    },
+    "./TurnstileWidget": {
+      "types": "./dist/components/TurnstileWidget.d.ts",
+      "import": "./dist/components/TurnstileWidget.js"
     }
   },
   "files": [
