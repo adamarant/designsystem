@@ -1,6 +1,6 @@
 # CLAUDE.md — Design System Guidelines
 
-## DS Health → [/Projects/DS_HEALTH.md](/Projects/DS_HEALTH.md)
+## DS Health → [/Projects/infra/DS_HEALTH.md](/Projects/infra/DS_HEALTH.md)
 
 Metriche, azioni aperte, CONTROLLED MODE rules generali, regole DS per tutti i progetti: centralizzate in DS_HEALTH.md.
 
