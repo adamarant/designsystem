@@ -312,6 +312,15 @@
   --ds-text-6xl: 3.75rem;     /* 60px */
   --ds-text-7xl: 4.5rem;      /* 72px */
 
+  /* --- Editorial long-form fluid sizes ---
+       Promoted from esys/blog.css on 12 Apr 2026 after the blog incident.
+       These target magazine-style article reading, between the functional
+       UI scale (ds-text-*) and the display scale (ds-hero-title). Used by
+       .ds-editorial-title and .ds-editorial-lede in components/prose.css. */
+  --ds-text-editorial-title: clamp(2.5rem, 4vw + 1.5rem, 4.5rem);  /* 40 → 72px */
+  --ds-text-editorial-lede: clamp(1.125rem, 0.5vw + 1rem, 1.375rem); /* 18 → 22px */
+  --ds-text-editorial-body: 1.0625rem; /* 17px fixed — sweet spot for long-form body */
+
   /* --- Font Weights --- */
   --ds-weight-light: 300;
   --ds-weight-normal: 400;
@@ -10285,6 +10294,153 @@ hr {
   max-width: 100%;
   border-radius: var(--ds-radius-lg);
   margin-block-end: 1em;
+}
+
+/* ==========================================================================
+   Editorial long-form typography (promoted from esys blog — 12 Apr 2026)
+
+   Three classes that together make an article page look like a magazine
+   instead of a dashboard. They fill the gap between .ds-hero-title (too
+   big for articles) and .ds-prose-block (whose h2 is 4xl — too heavy for
+   reading rhythm).
+
+   Usage:
+     <h1 class="ds-editorial-title">The title of the article</h1>
+     <p class="ds-editorial-lede">The lead paragraph, larger than body.</p>
+     <div class="ds-editorial-body">
+       <h2>Section</h2>
+       <p>Body text at 17px, line-height loose, with proper h2/h3 scale.</p>
+     </div>
+
+   Designed for: blog posts, long-form articles, editorial landing, magazine
+   layouts. NOT for admin UI, dashboards, or functional copy — use
+   .ds-heading-ui / .ds-section-title / .ds-prose-block for those.
+   ========================================================================== */
+
+.ds-editorial-title {
+  font-family: var(--ds-font-display);
+  font-size: var(--ds-text-editorial-title);
+  font-weight: var(--ds-font-display-weight);
+  line-height: var(--ds-leading-tight);
+  letter-spacing: var(--ds-tracking-tight);
+  color: var(--ds-color-text);
+  margin: 0;
+}
+
+.ds-editorial-lede {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-editorial-lede);
+  line-height: var(--ds-leading-normal);
+  color: var(--ds-color-text-secondary);
+  margin: 0;
+  max-width: 600px;
+}
+
+.ds-editorial-body {
+  color: var(--ds-color-text);
+  font-size: var(--ds-text-editorial-body);
+  line-height: var(--ds-leading-loose);
+}
+
+.ds-editorial-body > * + * {
+  margin-block-start: var(--ds-space-4);
+}
+
+.ds-editorial-body h2 {
+  font-family: var(--ds-font-display);
+  font-size: var(--ds-text-2xl);
+  font-weight: var(--ds-font-display-weight);
+  line-height: var(--ds-leading-tight);
+  letter-spacing: var(--ds-tracking-tight);
+  color: var(--ds-color-text);
+  margin-block-start: var(--ds-space-8);
+  margin-block-end: 0;
+}
+
+.ds-editorial-body h3 {
+  font-family: var(--ds-font-display);
+  font-size: var(--ds-text-xl);
+  font-weight: var(--ds-font-display-weight);
+  line-height: var(--ds-leading-snug);
+  letter-spacing: var(--ds-tracking-tight);
+  color: var(--ds-color-text);
+  margin-block-start: var(--ds-space-6);
+  margin-block-end: 0;
+}
+
+.ds-editorial-body h4 {
+  font-family: var(--ds-font-display);
+  font-size: var(--ds-text-lg);
+  font-weight: var(--ds-font-display-weight);
+  color: var(--ds-color-text);
+  margin-block-start: var(--ds-space-5);
+  margin-block-end: 0;
+}
+
+.ds-editorial-body a {
+  color: var(--ds-color-interactive);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ds-editorial-body a:hover {
+  text-decoration: none;
+}
+
+.ds-editorial-body strong {
+  color: var(--ds-color-text);
+  font-weight: var(--ds-weight-semibold);
+}
+
+.ds-editorial-body ul,
+.ds-editorial-body ol {
+  padding-inline-start: var(--ds-space-6);
+}
+
+.ds-editorial-body ul { list-style-type: disc; }
+.ds-editorial-body ol { list-style-type: decimal; }
+
+.ds-editorial-body li + li {
+  margin-block-start: var(--ds-space-2);
+}
+
+.ds-editorial-body blockquote {
+  border-inline-start: 3px solid var(--ds-color-border-hover);
+  padding-inline-start: var(--ds-space-4);
+  color: var(--ds-color-text-secondary);
+  font-style: italic;
+}
+
+.ds-editorial-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--ds-radius-md);
+}
+
+.ds-editorial-body hr {
+  border: none;
+  border-block-start: 1px solid var(--ds-color-border);
+  margin-block: var(--ds-space-6);
+}
+
+.ds-editorial-body pre {
+  background: var(--ds-color-surface-muted);
+  padding: var(--ds-space-4);
+  border-radius: var(--ds-radius-md);
+  overflow-x: auto;
+}
+
+.ds-editorial-body code {
+  background: var(--ds-color-surface-muted);
+  padding: 0.125em 0.375em;
+  border-radius: var(--ds-radius-sm);
+  font-family: var(--ds-font-mono);
+  font-size: 0.9em;
+}
+
+.ds-editorial-body pre code {
+  background: transparent;
+  padding: 0;
 }
 
 

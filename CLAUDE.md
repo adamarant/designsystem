@@ -257,9 +257,9 @@ Compiled:       dist/designsystem.css
 
 ### Living Registry
 
-- `ds.manifest.json` nella root del progetto traccia versione DS, override, e ultima sessione
-- A chiusura sessione, aggiornare `last_session` (data) e `last_session_summary` (1 riga su cosa e stato fatto)
-- Per rigenerare i conteggi override: `node ~/Projects/generate-manifest.js`
+- `ds.manifest.json` nella root del progetto traccia versione DS, override strutturali, metriche (NON più la narrativa di sessione)
+- A chiusura sessione: `node ~/Projects/generate-manifest.js` rigenera conteggi e `last_session` automaticamente
+- **Note**: il campo `last_session_summary` è stato rimosso dallo schema (v2, 12 Apr 2026, sottrazione A). La narrativa vive in `git log` + `DS_HEALTH.md` quando emerge una lezione cross-project
 - Per stato ecosistema: `node ~/Projects/ds-registry.js`
 - Il manifest va committato in git
 
@@ -293,5 +293,5 @@ For DS-wide checklist (CONTROLLED MODE, compliance, build, git) → [DS_HEALTH.m
 - [ ] Verificare su npmjs.com che la versione sia live
 
 ### 5. Living Registry
-- [ ] Aggiornare `ds.manifest.json`: `last_session` e `last_session_summary`
+- [ ] `node ~/Projects/generate-manifest.js` per rigenerare `ds.manifest.json` (aggiorna `last_session` e metriche)
 - [ ] `node ~/Projects/ds-registry.js` per verificare stato ecosistema

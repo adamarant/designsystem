@@ -1906,11 +1906,14 @@
     },
     {
       "name": "prose",
-      "title": "Prose Block",
-      "description": "Full markdown-rendered content styling for CMS output, blog posts, and documentation.",
+      "title": "Prose & Editorial",
+      "description": "Long-form reading typography. ds-prose-block is a full markdown-rendered container (functional / docs / CMS output). ds-editorial-title, ds-editorial-lede and ds-editorial-body are the editorial long-form family for articles, blog posts and magazine layouts (promoted from esys blog 12 Apr 2026 — fills the gap between ds-hero-title which is too big and ds-prose-block whose h2 is too heavy for article rhythm).",
       "category": "layout",
       "classes": [
-        ".ds-prose-block"
+        ".ds-prose-block",
+        ".ds-editorial-title",
+        ".ds-editorial-lede",
+        ".ds-editorial-body"
       ],
       "elements": [],
       "variants": [],
@@ -1918,8 +1921,12 @@
       "modifiers": [],
       "examples": [
         {
-          "title": "Rich Text",
+          "title": "Rich Text (docs / CMS output)",
           "html": "<div class=\"ds-prose-block\">\n  <h2>Heading</h2>\n  <p>Paragraph with <a href=\"#\">link</a> and <code>inline code</code>.</p>\n  <pre><code>const x = 42;</code></pre>\n  <blockquote>A blockquote</blockquote>\n  <ul><li>List item one</li><li>List item two</li></ul>\n</div>"
+        },
+        {
+          "title": "Editorial Article (blog / magazine)",
+          "html": "<article>\n  <header>\n    <span class=\"ds-overline\">Journal</span>\n    <h1 class=\"ds-editorial-title\">The title of the article, fluid from 40 to 72px</h1>\n    <p class=\"ds-editorial-lede\">The lead paragraph sits between the title and the body, larger than body text, guiding the reader in.</p>\n  </header>\n  <div class=\"ds-editorial-body\">\n    <p>Body text at 17px with generous line-height for comfortable long-form reading.</p>\n    <h2>A section heading</h2>\n    <p>More body text follows. The <strong>h2 is 24px</strong>, not 36px — reading rhythm preserved.</p>\n    <h3>A subsection</h3>\n    <p>h3 is 20px. Never use <code>ds-prose-block</code> for article bodies — its h2 is too heavy.</p>\n  </div>\n</article>"
         }
       ]
     },
