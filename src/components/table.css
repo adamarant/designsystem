@@ -19,7 +19,7 @@
              <th class="ds-table__cell--checkbox"><input class="ds-checkbox" /></th>
              <th><button class="ds-table__sort ds-table__sort--asc">Name</button></th>
              <th>Email</th>
-             <th class="ds-table__cell--truncate">City</th>
+             <th class="ds-table__cell--truncate"><span>City</span></th>
              <th class="ds-table__cell--shrink">Actions</th>
            </tr>
          </thead>
@@ -164,9 +164,16 @@
 /* --- Special cell types --- */
 
 /* Truncate cell: long text with ellipsis (city names, categories, etc.)
-   Default max-width is 12rem. Override per cell via inline --_cell-max. */
+   Usage: <td class="ds-table__cell--truncate"><span>Long text here</span></td>
+   The child element (span, a, div) gets the truncation. This works with
+   table-layout: auto because max-width applies to the inner block, not the td.
+   Default max-width is 12rem. Override per cell via --_cell-max. */
 .ds-table__cell--truncate {
   --_cell-max: 12rem;
+}
+
+.ds-table__cell--truncate > * {
+  display: block;
   max-width: var(--_cell-max);
   overflow: hidden;
   text-overflow: ellipsis;
