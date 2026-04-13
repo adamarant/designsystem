@@ -19,6 +19,7 @@
              <th class="ds-table__cell--checkbox"><input class="ds-checkbox" /></th>
              <th><button class="ds-table__sort ds-table__sort--asc">Name</button></th>
              <th>Email</th>
+             <th class="ds-table__cell--truncate">City</th>
              <th class="ds-table__cell--shrink">Actions</th>
            </tr>
          </thead>
@@ -161,6 +162,16 @@
 }
 
 /* --- Special cell types --- */
+
+/* Truncate cell: long text with ellipsis (city names, categories, etc.)
+   Default max-width is 12rem. Override per cell via inline --_cell-max. */
+.ds-table__cell--truncate {
+  --_cell-max: 12rem;
+  max-width: var(--_cell-max);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 /* Shrink cell: action buttons, icons, checkboxes */
 .ds-table__cell--shrink {

@@ -304,15 +304,33 @@
     {
       "name": "table",
       "title": "Table",
-      "description": "Data table with compact variant and scrollable wrapper.",
+      "description": "Data table with sorting, selection, sticky headers, striping, and responsive stacking.",
       "category": "data-display",
       "classes": [
         ".ds-table",
-        ".ds-table-wrapper"
+        ".ds-table-wrapper",
+        ".ds-table-footer"
       ],
-      "elements": [],
+      "elements": [
+        ".ds-table__cell--shrink",
+        ".ds-table__cell--number",
+        ".ds-table__cell--checkbox",
+        ".ds-table__cell--truncate",
+        ".ds-table__row--selected",
+        ".ds-table__sort",
+        ".ds-table__sort--asc",
+        ".ds-table__sort--desc",
+        ".ds-table__empty",
+        ".ds-table__loading"
+      ],
       "variants": [
-        "--compact"
+        "--compact",
+        "--dense",
+        "--striped",
+        "--bordered",
+        "--sticky-header",
+        "--no-hover",
+        "--stack"
       ],
       "sizes": [],
       "modifiers": [],
