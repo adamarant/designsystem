@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.46 */
+/* @ds/designsystem v0.9.47 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -4374,7 +4374,7 @@ hr {
    table-layout: auto because max-width applies to the inner block, not the td.
    Default max-width is 12rem. Override per cell via --_cell-max. */
 .ds-table__cell--truncate {
-  --_cell-max: 8rem;
+  --_cell-max: 12rem;
 }
 
 .ds-table__cell--truncate > * {
