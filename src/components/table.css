@@ -180,6 +180,14 @@
   white-space: nowrap;
 }
 
+/* Primary cell: the main identifier column (title, name). Gets min-width
+   so it never compresses when other columns claim space.
+   Default min-width is 16rem. Override per cell via --_cell-min. */
+.ds-table__cell--primary {
+  --_cell-min: 16rem;
+  min-width: var(--_cell-min);
+}
+
 /* Shrink cell: action buttons, icons, checkboxes */
 .ds-table__cell--shrink {
   width: 1%;
