@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.9.47 */
+/* @ds/designsystem v0.9.48 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -10199,6 +10199,197 @@ hr {
   }
 }
 
+
+/* ==========================================================================
+   Component: Media Library
+   Composable classes for media management UI: grid items, selection toolbar,
+   detail panel, and folder sidebar. Used by CMS MediaLibrary component.
+
+   Classes:
+     ds-media-item              Grid thumbnail card (border, transition)
+     ds-media-item--selected    Selected state (interactive ring)
+     ds-media-item__thumb       Thumbnail area (surface-muted background)
+     ds-media-item__check       Selection check indicator (absolute, top-right)
+     ds-media-item__info        File name + size footer
+     ds-media-toolbar           Sticky selection toolbar bar
+     ds-media-toolbar__count    Selected items counter text
+     ds-media-toolbar__spacer   Flex spacer between left/right actions
+     ds-media-detail            Detail/edit sidebar panel (sticky, fixed width)
+     ds-media-detail__preview   Preview container (surface-muted, aspect-video)
+     ds-media-folder            Folder sidebar container (responsive, hidden < md)
+     ds-media-folder__item      Folder list button
+     ds-media-folder__item--active  Active folder state
+     ds-media-folder__actions   Rename/delete buttons (visible on interaction)
+
+   ARIA:
+     - Grid items: <button type="button"> with aria-selected for state
+     - Toolbar: role="toolbar" with aria-label
+     - Bulk delete: aria-live="polite" for confirmation state change
+     - Folder sidebar: <nav> with aria-label
+   ========================================================================== */
+
+
+/* ─── Media Item ─────────────────────────────────────────────────────────── */
+
+.ds-media-item {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-color-border);
+  background-color: var(--ds-color-surface);
+  transition:
+    border-color var(--ds-duration-fast) var(--ds-ease-default),
+    box-shadow var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-media-item:hover {
+  border-color: var(--ds-color-border-hover);
+}
+
+.ds-media-item--selected {
+  border-color: var(--ds-color-interactive);
+  box-shadow: 0 0 0 1px var(--ds-color-interactive);
+}
+
+.ds-media-item__thumb {
+  background-color: var(--ds-color-surface-muted);
+}
+
+.ds-media-item__check {
+  position: absolute;
+  inset-block-start: var(--ds-space-1-5);
+  inset-inline-end: var(--ds-space-1-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-interactive);
+  color: var(--ds-color-static-white);
+  pointer-events: none;
+}
+
+.ds-media-item__info {
+  padding: var(--ds-space-2);
+}
+
+
+/* ─── Media Toolbar ──────────────────────────────────────────────────────── */
+
+.ds-media-toolbar {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--ds-z-sticky);
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+  padding: var(--ds-space-3) var(--ds-space-4);
+  margin-block-end: var(--ds-space-3);
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-md);
+  box-shadow: var(--ds-shadow-sm);
+}
+
+.ds-media-toolbar__count {
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text);
+}
+
+.ds-media-toolbar__spacer {
+  flex: 1;
+}
+
+
+/* ─── Media Detail ───────────────────────────────────────────────────────── */
+
+.ds-media-detail {
+  width: 17.5rem;
+  flex-shrink: 0;
+  position: sticky;
+  inset-block-start: var(--ds-space-4);
+  align-self: flex-start;
+}
+
+.ds-media-detail__preview {
+  background-color: var(--ds-color-surface-muted);
+}
+
+
+/* ─── Media Folder Sidebar ───────────────────────────────────────────────── */
+
+.ds-media-folder {
+  display: none;
+  width: 12rem;
+  flex-shrink: 0;
+  flex-direction: column;
+  border-radius: var(--ds-radius-xl);
+  border: 1px solid var(--ds-color-border);
+  background-color: var(--ds-color-surface);
+  padding: var(--ds-space-3);
+}
+
+@media (min-width: 768px) {
+
+  .ds-media-folder {
+    display: flex;
+  }
+}
+
+
+
+/* ─── Folder item — base + transient interaction ─────────────────────────── */
+
+.ds-media-folder__item {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  width: 100%;
+  padding: var(--ds-space-1-5) var(--ds-space-2);
+  border-radius: var(--ds-radius-md);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition:
+    background-color var(--ds-duration-fast) var(--ds-ease-default),
+    color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-media-folder__item:hover {
+  background-color: var(--ds-color-surface-hover);
+  color: var(--ds-color-text);
+}
+
+.ds-media-folder__item:hover .ds-media-folder__actions {
+  display: flex;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Folder item — persistent selection state
+   Separated to avoid semantic token hook window overlap.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ds-media-folder__item--active {
+  background-color: var(--ds-color-surface-active);
+  color: var(--ds-color-text);
+  font-weight: var(--ds-weight-medium);
+}
+
+
+/* ─── Folder actions (visible on parent interaction) ─────────────────────── */
+
+.ds-media-folder__actions {
+  display: none;
+  align-items: center;
+  gap: var(--ds-space-0-5);
+  margin-inline-start: auto;
+}
 
 
 /* === Content — Rich text and prose === */

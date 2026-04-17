@@ -59,6 +59,7 @@
 @import './gallery.css';
 @import './hero.css';
 @import './admin-layout.css';
+@import './media-library.css';
 
 /* === Content — Rich text and prose === */
 @import './prose.css';

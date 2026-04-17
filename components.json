@@ -1989,6 +1989,40 @@
           "html": "<div class=\"ds-admin ds-admin--expanded\">\n  <aside class=\"ds-admin__sidebar\">\n    <div class=\"ds-admin__sidebar-header\">Logo</div>\n    <nav class=\"ds-admin__nav\">\n      <a class=\"ds-admin__nav-item ds-admin__nav-item--active\">\n        <span class=\"ds-admin__nav-icon\">&#9776;</span>\n        <span class=\"ds-admin__nav-label\">Dashboard</span>\n      </a>\n    </nav>\n  </aside>\n  <header class=\"ds-admin__header\">\n    <div class=\"ds-admin__header-inner\">Header</div>\n  </header>\n  <main class=\"ds-admin__main\">\n    <div class=\"ds-admin__content\">Content</div>\n  </main>\n</div>"
         }
       ]
+    },
+    {
+      "name": "media-library",
+      "title": "Media Library",
+      "description": "Grid items, selection toolbar, detail panel, and folder sidebar for media management UI.",
+      "category": "layout",
+      "classes": [
+        ".ds-media-item",
+        ".ds-media-toolbar",
+        ".ds-media-detail",
+        ".ds-media-folder"
+      ],
+      "elements": [
+        "__thumb",
+        "__check",
+        "__info",
+        "__count",
+        "__spacer",
+        "__preview",
+        "__item",
+        "__actions"
+      ],
+      "variants": [
+        "--selected",
+        "--active"
+      ],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Media Item (selected)",
+          "html": "<button class=\"ds-media-item ds-media-item--selected\" aria-selected=\"true\"><div class=\"ds-media-item__thumb ds-aspect-square\"><img src=\"#\" class=\"ds-w-full ds-h-full ds-object-cover\" alt=\"\" /></div><div class=\"ds-media-item__check\">✓</div><div class=\"ds-media-item__info\"><p class=\"ds-text-xs ds-text-primary ds-truncate\">photo.jpg</p><p class=\"ds-text-xs ds-text-tertiary\">1.2 MB</p></div></button>"
+        }
+      ]
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "@digiko-npm/designsystem",
-  "version": "0.9.48",
+  "version": "0.10.0",
   "description": "Design system — installable, extensible, indestructible.",
   "main": "dist/designsystem.css",
   "style": "dist/designsystem.css",
@@ -40,6 +40,7 @@
     "./components/icon-btn": "./src/components/icon-btn.css",
     "./components/input": "./src/components/input.css",
     "./components/kbd": "./src/components/kbd.css",
+    "./components/media-library": "./src/components/media-library.css",
     "./components/modal": "./src/components/modal.css",
     "./components/nav": "./src/components/nav.css",
     "./components/number-input": "./src/components/number-input.css",
