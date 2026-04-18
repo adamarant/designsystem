@@ -158,13 +158,24 @@
   max-width: 600px;
 }
 
+/* Editorial header rhythm — when overline / title / lede appear in sequence,
+   apply natural top margins so a consumer does not need to hand-space them.
+   Promoted from esys + studio consumer rules (v0.10.2). */
+.ds-overline + .ds-editorial-title {
+  margin-block-start: var(--ds-space-3);
+}
+.ds-editorial-title + .ds-editorial-lede {
+  margin-block-start: var(--ds-space-4);
+}
+
 .ds-editorial-body {
-  color: var(--ds-color-text);
+  color: var(--ds-color-text-secondary);
   font-size: var(--ds-text-editorial-body);
   line-height: var(--ds-leading-relaxed);
 }
 
-/* Override base p { color: text-secondary } — editorial paragraphs use primary text */
+/* Paragraphs inherit from the wrapper (previously forced to primary in v0.10.1).
+   Editorial long-form uses secondary for calmer reading colour (v0.10.2). */
 .ds-editorial-body p {
   color: inherit;
 }
