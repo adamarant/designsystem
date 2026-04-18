@@ -6,11 +6,22 @@
 
 :root {
   /* --- Font Families ---
-       Override these in your project to use your own fonts.
-       The DS provides the architecture; you bring the typeface. */
-  --ds-font-display: "Clash Display", system-ui, sans-serif;
-  --ds-font-sans: "Switzer", system-ui, -apple-system, sans-serif;
-  --ds-font-mono: "Geist Mono", ui-monospace, "SF Mono", monospace;
+       Convention over configuration: if the consumer loads its typefaces via
+       `next/font/local` using `variable: '--font-display'` / '--font-sans' /
+       '--font-geist-mono' (the default names used by next/font/local and the
+       `geist` package), the DS picks them up with zero extra wiring.
+
+       Want a different typeface? Override --ds-font-display / --ds-font-sans
+       at consumer level and you are done (digiko used Manrope this way).
+
+       The quoted-string fallbacks ("Clash Display", "Switzer", "Geist Mono")
+       only fire in environments without next/font (e.g. Storybook, plain HTML
+       demos) and rely on the font being installed locally or loaded by
+       @font-face elsewhere. In production Next.js they are essentially dead
+       weight — the `var(--font-*)` branch wins. */
+  --ds-font-display: var(--font-display, "Clash Display"), system-ui, sans-serif;
+  --ds-font-sans: var(--font-sans, "Switzer"), system-ui, -apple-system, sans-serif;
+  --ds-font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, "SF Mono", monospace;
 
   /* --- Display Font Weight (Clash Display looks best at 400) --- */
   --ds-font-display-weight: 400;
