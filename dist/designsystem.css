@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.10.3 */
+/* @ds/designsystem v0.10.4 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -289,22 +289,28 @@
 
 :root {
   /* --- Font Families ---
-       Convention over configuration: if the consumer loads its typefaces via
-       `next/font/local` using `variable: '--font-display'` / '--font-sans' /
-       '--font-geist-mono' (the default names used by next/font/local and the
-       `geist` package), the DS picks them up with zero extra wiring.
+       Convention over configuration. If the consumer loads its typefaces via
+       `next/font/local` (or the `geist` package) using the conventional
+       variable names --font-display / --font-sans / --font-geist-mono, the DS
+       picks them up with zero extra wiring.
+
+       Why these are declared BOTH at :root and on body:
+       next/font injects --font-* on the <body> element (via className), not on
+       :root. If var(--font-*, fallback) were only resolved at :root, the
+       fallback literal would always win (the Next variable is not in scope
+       there). The body-level declaration below re-evaluates the token where
+       --font-* is actually set, so Next's internal font name resolves.
+
+       Root-level keeps the literal fallbacks so the DS still works in
+       environments without next/font (Storybook, plain HTML, etc.) — there
+       the quoted "Clash Display" / "Switzer" / "Geist Mono" need to be
+       loadable (e.g. locally installed or loaded via @font-face elsewhere).
 
        Want a different typeface? Override --ds-font-display / --ds-font-sans
-       at consumer level and you are done (digiko used Manrope this way).
-
-       The quoted-string fallbacks ("Clash Display", "Switzer", "Geist Mono")
-       only fire in environments without next/font (e.g. Storybook, plain HTML
-       demos) and rely on the font being installed locally or loaded by
-       @font-face elsewhere. In production Next.js they are essentially dead
-       weight — the `var(--font-*)` branch wins. */
-  --ds-font-display: var(--font-display, "Clash Display"), system-ui, sans-serif;
-  --ds-font-sans: var(--font-sans, "Switzer"), system-ui, -apple-system, sans-serif;
-  --ds-font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, "SF Mono", monospace;
+       at consumer body scope and you are done (digiko used Manrope this way). */
+  --ds-font-display: "Clash Display", system-ui, sans-serif;
+  --ds-font-sans: "Switzer", system-ui, -apple-system, sans-serif;
+  --ds-font-mono: "Geist Mono", ui-monospace, "SF Mono", monospace;
 
   /* --- Display Font Weight (Clash Display looks best at 400) --- */
   --ds-font-display-weight: 400;
@@ -353,6 +359,16 @@
   --ds-tracking-normal: 0;
   --ds-tracking-wide: 0.05em;
   --ds-tracking-wider: 0.1em;
+}
+
+/* Body-scope re-declaration of the font tokens so they resolve against the
+   --font-* variables that next/font injects on <body> (see :root comment
+   above). Without this, the var(--font-*, fallback) would always hit the
+   fallback because --font-* is not in scope at :root. */
+body {
+  --ds-font-display: var(--font-display, "Clash Display"), system-ui, sans-serif;
+  --ds-font-sans: var(--font-sans, "Switzer"), system-ui, -apple-system, sans-serif;
+  --ds-font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, "SF Mono", monospace;
 }
 
 /* ==========================================================================
