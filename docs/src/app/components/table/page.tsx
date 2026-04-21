@@ -3,7 +3,7 @@ export default function TablePage() {
     <>
       <div className="demo-page-header">
         <h1>Table</h1>
-        <p>Data table with compact variant and scrollable wrapper.</p>
+        <p>Data table with sorting, selection, sticky headers, striping, and responsive stacking.</p>
       </div>
 
       <section className="demo-section">
@@ -120,7 +120,75 @@ export default function TablePage() {
                 <td>Base</td>
               </tr>
               <tr>
+                <td><code>.ds-table-footer</code></td>
+                <td>Base</td>
+              </tr>
+              <tr>
+                <td><code>.ds-table__cell--shrink</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
+                <td><code>.ds-table__cell--number</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
+                <td><code>.ds-table__cell--checkbox</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
+                <td><code>.ds-table__cell--truncate</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
+                <td><code>.ds-table__row--selected</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
+                <td><code>.ds-table__sort</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
+                <td><code>.ds-table__sort--asc</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
+                <td><code>.ds-table__sort--desc</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
+                <td><code>.ds-table__empty</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
+                <td><code>.ds-table__loading</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
                 <td><code>--compact</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--dense</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--striped</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--bordered</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--sticky-header</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--no-hover</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--stack</code></td>
                 <td>Variant</td>
               </tr>
             </tbody>
