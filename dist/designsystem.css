@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.10.4 */
+/* @ds/designsystem v0.10.5 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -552,10 +552,19 @@ body {
   background-color: var(--ds-color-bg);
 }
 
-img, picture, video, canvas, svg {
+img, picture, video, canvas {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+/* SVG icons: keep block, but respect explicit width/height attributes
+   (icon libraries like Phosphor/Lucide set size via attrs). The previous
+   `max-width: 100%; height: auto` was collapsing SVGs to 0 inside table
+   cells with fixed widths. Consumers that use SVG as fluid artwork can
+   opt in with their own sizing classes. */
+svg {
+  display: block;
 }
 
 input, button, textarea, select {
