@@ -191,6 +191,16 @@ export { Sortable, type SortableProps } from "./components/Sortable";
 export { AdminLayout, type AdminLayoutProps } from "./components/AdminLayout";
 
 export {
+  useContextMenu,
+  type UseContextMenuOptions,
+  type UseContextMenuReturn,
+  type ContextMenuItem,
+  type ContextMenuAction,
+  type ContextMenuDivider,
+  type ContextMenuLabel,
+} from "./components/ContextMenu";
+
+export {
   TurnstileWidget,
   type TurnstileWidgetProps,
   type TurnstileWidgetHandle,

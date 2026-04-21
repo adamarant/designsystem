@@ -61,5 +61,6 @@ export { ColorPicker, type ColorPickerProps } from "./components/ColorPicker";
 export { StarRating, type StarRatingProps } from "./components/StarRating";
 export { Sortable, type SortableProps } from "./components/Sortable";
 export { AdminLayout, type AdminLayoutProps } from "./components/AdminLayout";
+export { useContextMenu, type UseContextMenuOptions, type UseContextMenuReturn, type ContextMenuItem, type ContextMenuAction, type ContextMenuDivider, type ContextMenuLabel, } from "./components/ContextMenu";
 export { TurnstileWidget, type TurnstileWidgetProps, type TurnstileWidgetHandle, } from "./components/TurnstileWidget";
 //# sourceMappingURL=index.d.ts.map

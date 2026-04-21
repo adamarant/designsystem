@@ -62,5 +62,6 @@ export { ColorPicker } from "./components/ColorPicker";
 export { StarRating } from "./components/StarRating";
 export { Sortable } from "./components/Sortable";
 export { AdminLayout } from "./components/AdminLayout";
+export { useContextMenu, } from "./components/ContextMenu";
 export { TurnstileWidget, } from "./components/TurnstileWidget";
 //# sourceMappingURL=index.js.map

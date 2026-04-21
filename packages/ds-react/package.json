@@ -79,6 +79,10 @@
       "types": "./dist/components/Dropdown.d.ts",
       "import": "./dist/components/Dropdown.js"
     },
+    "./ContextMenu": {
+      "types": "./dist/components/ContextMenu.d.ts",
+      "import": "./dist/components/ContextMenu.js"
+    },
     "./Tooltip": {
       "types": "./dist/components/Tooltip.d.ts",
       "import": "./dist/components/Tooltip.js"
