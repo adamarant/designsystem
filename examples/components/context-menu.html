@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Avatar — Design System</title>
+  <title>Context Menu — Design System</title>
   <link rel="stylesheet" href="../../dist/designsystem.css">
   <link rel="stylesheet" href="../_shared/demo.css">
 </head>
@@ -39,7 +39,7 @@
         <div class="demo-sidebar__label">Data Display</div>
         <a href="../components/badge.html" class="demo-sidebar__link">Badge</a>
         <a href="../components/table.html" class="demo-sidebar__link">Table</a>
-        <a href="../components/avatar.html" class="demo-sidebar__link demo-sidebar__link--active">Avatar</a>
+        <a href="../components/avatar.html" class="demo-sidebar__link">Avatar</a>
         <a href="../components/skeleton.html" class="demo-sidebar__link">Skeleton</a>
         <a href="../components/tag.html" class="demo-sidebar__link">Tag</a>
         <a href="../components/progress.html" class="demo-sidebar__link">Progress</a>
@@ -72,7 +72,7 @@
         <div class="demo-sidebar__label">Overlay</div>
         <a href="../components/modal.html" class="demo-sidebar__link">Modal</a>
         <a href="../components/dropdown.html" class="demo-sidebar__link">Dropdown</a>
-        <a href="../components/context-menu.html" class="demo-sidebar__link">Context Menu</a>
+        <a href="../components/context-menu.html" class="demo-sidebar__link demo-sidebar__link--active">Context Menu</a>
         <a href="../components/drawer.html" class="demo-sidebar__link">Drawer</a>
         <a href="../components/popover.html" class="demo-sidebar__link">Popover</a>
         <a href="../components/command.html" class="demo-sidebar__link">Command</a>
@@ -109,85 +109,69 @@
     <main class="demo-main">
 
       <header>
-        <h1>Avatar</h1>
-        <p>User photos, token images, initials. Stackable in groups.</p>
+        <h1>Context Menu</h1>
+        <p>Cursor-anchored floating menu for right-click contextual actions. Position is set at runtime by a JS wrapper.</p>
         <div class="demo-meta">
-          <span class="ds-badge">Data Display</span>
-          <code>@import '@digiko-npm/designsystem/components/avatar';</code>
+          <span class="ds-badge">Overlay</span>
+          <code>@import '@digiko-npm/designsystem/components/context-menu';</code>
         </div>
       </header>
 
 
     <section class="demo-example">
-      <h2>Sizes</h2>
+      <h2>Context Menu</h2>
       <div class="demo-preview">
-        <span class="ds-avatar ds-avatar--xs">XS</span>
-<span class="ds-avatar ds-avatar--sm">SM</span>
-<span class="ds-avatar">MD</span>
-<span class="ds-avatar ds-avatar--lg">LG</span>
-<span class="ds-avatar ds-avatar--xl">XL</span>
-      </div>
-      <details class="demo-code">
-        <summary>View Code</summary>
-        <pre><code>&lt;span class=&quot;ds-avatar ds-avatar--xs&quot;&gt;XS&lt;/span&gt;
-&lt;span class=&quot;ds-avatar ds-avatar--sm&quot;&gt;SM&lt;/span&gt;
-&lt;span class=&quot;ds-avatar&quot;&gt;MD&lt;/span&gt;
-&lt;span class=&quot;ds-avatar ds-avatar--lg&quot;&gt;LG&lt;/span&gt;
-&lt;span class=&quot;ds-avatar ds-avatar--xl&quot;&gt;XL&lt;/span&gt;</code></pre>
-      </details>
-    </section>
-
-    <section class="demo-example">
-      <h2>Avatar Group with Status</h2>
-      <div class="demo-preview">
-        <div class="ds-avatar-group">
-  <span class="ds-avatar ds-avatar--bordered">AB</span>
-  <span class="ds-avatar ds-avatar--bordered">CD</span>
-  <span class="ds-avatar ds-avatar--bordered">EF</span>
-  <span class="ds-avatar ds-avatar--bordered">+3</span>
+        <div class="ds-context-menu" role="menu" style="position:relative;top:auto;inset-inline-start:auto;animation:none;">
+  <div class="ds-context-menu__label">Record</div>
+  <button type="button" class="ds-context-menu__item" role="menuitem">
+    <span class="ds-context-menu__item-label">Open</span>
+    <span class="ds-context-menu__item-shortcut">↵</span>
+  </button>
+  <button type="button" class="ds-context-menu__item" role="menuitem">
+    <span class="ds-context-menu__item-label">Duplicate</span>
+  </button>
+  <button type="button" class="ds-context-menu__item" role="menuitem">
+    <span class="ds-context-menu__item-label">Copy link</span>
+  </button>
+  <button type="button" class="ds-context-menu__item ds-context-menu__item--disabled" role="menuitem" aria-disabled="true">
+    <span class="ds-context-menu__item-label">Move to…</span>
+  </button>
+  <hr class="ds-context-menu__divider" />
+  <button type="button" class="ds-context-menu__item" role="menuitem">
+    <span class="ds-context-menu__item-label">Archive</span>
+  </button>
+  <button type="button" class="ds-context-menu__item ds-context-menu__item--danger" role="menuitem">
+    <span class="ds-context-menu__item-label">Delete</span>
+    <span class="ds-context-menu__item-shortcut">⌫</span>
+  </button>
 </div>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-avatar-group&quot;&gt;
-  &lt;span class=&quot;ds-avatar ds-avatar--bordered&quot;&gt;AB&lt;/span&gt;
-  &lt;span class=&quot;ds-avatar ds-avatar--bordered&quot;&gt;CD&lt;/span&gt;
-  &lt;span class=&quot;ds-avatar ds-avatar--bordered&quot;&gt;EF&lt;/span&gt;
-  &lt;span class=&quot;ds-avatar ds-avatar--bordered&quot;&gt;+3&lt;/span&gt;
+        <pre><code>&lt;div class=&quot;ds-context-menu&quot; role=&quot;menu&quot; style=&quot;position:relative;top:auto;inset-inline-start:auto;animation:none;&quot;&gt;
+  &lt;div class=&quot;ds-context-menu__label&quot;&gt;Record&lt;/div&gt;
+  &lt;button type=&quot;button&quot; class=&quot;ds-context-menu__item&quot; role=&quot;menuitem&quot;&gt;
+    &lt;span class=&quot;ds-context-menu__item-label&quot;&gt;Open&lt;/span&gt;
+    &lt;span class=&quot;ds-context-menu__item-shortcut&quot;&gt;↵&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;ds-context-menu__item&quot; role=&quot;menuitem&quot;&gt;
+    &lt;span class=&quot;ds-context-menu__item-label&quot;&gt;Duplicate&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;ds-context-menu__item&quot; role=&quot;menuitem&quot;&gt;
+    &lt;span class=&quot;ds-context-menu__item-label&quot;&gt;Copy link&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;ds-context-menu__item ds-context-menu__item--disabled&quot; role=&quot;menuitem&quot; aria-disabled=&quot;true&quot;&gt;
+    &lt;span class=&quot;ds-context-menu__item-label&quot;&gt;Move to…&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;hr class=&quot;ds-context-menu__divider&quot; /&gt;
+  &lt;button type=&quot;button&quot; class=&quot;ds-context-menu__item&quot; role=&quot;menuitem&quot;&gt;
+    &lt;span class=&quot;ds-context-menu__item-label&quot;&gt;Archive&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;ds-context-menu__item ds-context-menu__item--danger&quot; role=&quot;menuitem&quot;&gt;
+    &lt;span class=&quot;ds-context-menu__item-label&quot;&gt;Delete&lt;/span&gt;
+    &lt;span class=&quot;ds-context-menu__item-shortcut&quot;&gt;⌫&lt;/span&gt;
+  &lt;/button&gt;
 &lt;/div&gt;</code></pre>
-      </details>
-    </section>
-
-    <section class="demo-example">
-      <h2>Status Indicators</h2>
-      <div class="demo-preview">
-        <span class="ds-avatar">
-  JD
-  <span class="ds-avatar__status ds-avatar__status--online"></span>
-</span>
-<span class="ds-avatar">
-  AK
-  <span class="ds-avatar__status ds-avatar__status--busy"></span>
-</span>
-<span class="ds-avatar">
-  MR
-  <span class="ds-avatar__status ds-avatar__status--offline"></span>
-</span>
-      </div>
-      <details class="demo-code">
-        <summary>View Code</summary>
-        <pre><code>&lt;span class=&quot;ds-avatar&quot;&gt;
-  JD
-  &lt;span class=&quot;ds-avatar__status ds-avatar__status--online&quot;&gt;&lt;/span&gt;
-&lt;/span&gt;
-&lt;span class=&quot;ds-avatar&quot;&gt;
-  AK
-  &lt;span class=&quot;ds-avatar__status ds-avatar__status--busy&quot;&gt;&lt;/span&gt;
-&lt;/span&gt;
-&lt;span class=&quot;ds-avatar&quot;&gt;
-  MR
-  &lt;span class=&quot;ds-avatar__status ds-avatar__status--offline&quot;&gt;&lt;/span&gt;
-&lt;/span&gt;</code></pre>
       </details>
     </section>
 
@@ -195,22 +179,21 @@
       <h2>API</h2>
       <table class="ds-table">
         <thead><tr><th>Class</th><th>Type</th></tr></thead>
-        <tbody><tr><td><code>.ds-avatar</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-avatar-group</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-avatar__status</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-avatar--square</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-avatar--bordered</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-avatar--xs</code></td><td>Size</td></tr>
-          <tr><td><code>.ds-avatar--sm</code></td><td>Size</td></tr>
-          <tr><td><code>.ds-avatar--md</code></td><td>Size</td></tr>
-          <tr><td><code>.ds-avatar--lg</code></td><td>Size</td></tr>
-          <tr><td><code>.ds-avatar--xl</code></td><td>Size</td></tr></tbody>
+        <tbody><tr><td><code>.ds-context-menu</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-context-menu__item</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-context-menu__item-icon</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-context-menu__item-label</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-context-menu__item-shortcut</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-context-menu__divider</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-context-menu__label</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-context-menu--flip-x</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-context-menu--flip-y</code></td><td>Modifier</td></tr></tbody>
       </table>
     </section>
 
     <nav class="demo-nav-footer">
-      <a href="tooltip.html">&larr; Tooltip</a>
-      <a href="skeleton.html">Skeleton &rarr;</a>
+      <a href="dropdown.html">&larr; Dropdown</a>
+      <a href="tooltip.html">Tooltip &rarr;</a>
     </nav>
     </main>
   </div>

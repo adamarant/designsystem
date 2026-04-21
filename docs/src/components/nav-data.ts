@@ -139,7 +139,7 @@ export const NAV = [
         "href": "/components/hero"
       },
       {
-        "name": "Prose Block",
+        "name": "Prose & Editorial",
         "href": "/components/prose"
       },
       {

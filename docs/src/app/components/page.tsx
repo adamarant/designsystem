@@ -49,7 +49,7 @@ const COMPONENTS = [
     "name": "Table",
     "href": "/components/table",
     "cat": "Data Display",
-    "description": "Data table with compact variant and scrollable wrapper."
+    "description": "Data table with sorting, selection, sticky headers, striping, and responsive stacking."
   },
   {
     "name": "Tabs",
@@ -74,6 +74,12 @@ const COMPONENTS = [
     "href": "/components/dropdown",
     "cat": "Overlay",
     "description": "Floating menu with surface bg, scale transition, keyboard-friendly items."
+  },
+  {
+    "name": "Context Menu",
+    "href": "/components/context-menu",
+    "cat": "Overlay",
+    "description": "Cursor-anchored floating menu for right-click contextual actions. Position is set at runtime by a JS wrapper."
   },
   {
     "name": "Tooltip",
@@ -334,16 +340,22 @@ const COMPONENTS = [
     "description": "Full-width hero section with background image, gradient overlay, and optional frosted glass backdrop."
   },
   {
-    "name": "Prose Block",
+    "name": "Prose & Editorial",
     "href": "/components/prose",
     "cat": "Layout",
-    "description": "Full markdown-rendered content styling for CMS output, blog posts, and documentation."
+    "description": "Long-form reading typography. ds-prose-block is a full markdown-rendered container (functional / docs / CMS output). ds-editorial-title, ds-editorial-lede and ds-editorial-body are the editorial long-form family for articles, blog posts and magazine layouts (promoted from esys blog 12 Apr 2026 — fills the gap between ds-hero-title which is too big and ds-prose-block whose h2 is too heavy for article rhythm)."
   },
   {
     "name": "Admin Layout",
     "href": "/components/admin-layout",
     "cat": "Layout",
     "description": "Sidebar + header + main content system for admin dashboards with collapsible sidebar."
+  },
+  {
+    "name": "Media Library",
+    "href": "/components/media-library",
+    "cat": "Layout",
+    "description": "Grid items, selection toolbar, detail panel, and folder sidebar for media management UI."
   }
 ];
 
@@ -352,7 +364,7 @@ export default function ComponentsIndex() {
     <>
       <div className="demo-page-header">
         <h1>Components</h1>
-        <p>All 57 components in the design system.</p>
+        <p>All 59 components in the design system.</p>
       </div>
       <div className="demo-preview demo-preview--col">
         {COMPONENTS.map((c) => (

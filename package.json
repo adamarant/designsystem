@@ -25,6 +25,7 @@
     "./components/color-picker": "./src/components/color-picker.css",
     "./components/combobox": "./src/components/combobox.css",
     "./components/command": "./src/components/command.css",
+    "./components/context-menu": "./src/components/context-menu.css",
     "./components/copy-button": "./src/components/copy-button.css",
     "./components/custom-select": "./src/components/custom-select.css",
     "./components/datepicker": "./src/components/datepicker.css",
