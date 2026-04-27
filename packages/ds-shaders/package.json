@@ -1,0 +1,71 @@
+{
+  "name": "@digiko-npm/ds-shaders",
+  "version": "0.1.0",
+  "description": "WebGL shaders for @digiko-npm/designsystem — opinionated React wrappers around @paper-design/shaders-react with DS token palettes.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./effects": {
+      "types": "./dist/effects/index.d.ts",
+      "import": "./dist/effects/index.js"
+    },
+    "./filters": {
+      "types": "./dist/filters/index.d.ts",
+      "import": "./dist/filters/index.js"
+    },
+    "./logos": {
+      "types": "./dist/logos/index.d.ts",
+      "import": "./dist/logos/index.js"
+    },
+    "./tokens": {
+      "types": "./dist/lib/use-ds-colors.d.ts",
+      "import": "./dist/lib/use-ds-colors.js"
+    }
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "LICENSE",
+    "REQUIRED-NOTICES.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@paper-design/shaders-react": "^0.0.76"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "typescript": "^5.7.0"
+  },
+  "keywords": [
+    "design-system",
+    "shaders",
+    "webgl",
+    "react",
+    "framer",
+    "paper-design"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digiko-dev/designsystem.git",
+    "directory": "packages/ds-shaders"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
