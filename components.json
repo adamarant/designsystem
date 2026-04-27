@@ -2037,12 +2037,14 @@
         "__count",
         "__spacer",
         "__preview",
+        "__action",
         "__item",
         "__actions"
       ],
       "variants": [
         "--selected",
-        "--active"
+        "--active",
+        "--danger"
       ],
       "sizes": [],
       "modifiers": [],

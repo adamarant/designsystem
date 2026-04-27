@@ -12,8 +12,10 @@
      ds-media-toolbar           Sticky selection toolbar bar
      ds-media-toolbar__count    Selected items counter text
      ds-media-toolbar__spacer   Flex spacer between left/right actions
-     ds-media-detail            Detail/edit sidebar panel (sticky, fixed width)
+     ds-media-detail            Detail/edit sidebar panel (sticky, surface card with padding)
      ds-media-detail__preview   Preview container (surface-muted, aspect-video)
+     ds-media-detail__action    Sidebar action button (Copy / Open / Delete)
+     ds-media-detail__action--danger  Destructive variant (Delete)
      ds-media-folder            Folder sidebar container (responsive, hidden < md)
      ds-media-folder__item      Folder list button
      ds-media-folder__item--active  Active folder state
@@ -110,10 +112,45 @@
   position: sticky;
   inset-block-start: var(--ds-space-4);
   align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-4);
+  padding: var(--ds-space-4);
+  border-radius: var(--ds-radius-xl);
+  border: 1px solid var(--ds-color-border);
+  background-color: var(--ds-color-surface);
 }
 
 .ds-media-detail__preview {
   background-color: var(--ds-color-surface-muted);
+}
+
+.ds-media-detail__action {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  width: 100%;
+  padding: var(--ds-space-2) var(--ds-space-3);
+  border-radius: var(--ds-radius-md);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: start;
+  transition:
+    background-color var(--ds-duration-fast) var(--ds-ease-default),
+    color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-media-detail__action:hover {
+  background-color: var(--ds-color-surface-hover);
+  color: var(--ds-color-text);
+}
+
+.ds-media-detail__action--danger:hover,
+.ds-media-detail__action--danger:focus-visible {
+  color: var(--ds-color-error);
 }
 
 
