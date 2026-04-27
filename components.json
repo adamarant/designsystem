@@ -2027,6 +2027,7 @@
       "classes": [
         ".ds-media-item",
         ".ds-media-toolbar",
+        ".ds-media-detail-slot",
         ".ds-media-detail",
         ".ds-media-folder"
       ],
