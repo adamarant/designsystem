@@ -41,9 +41,14 @@
   text-align: center;
   cursor: pointer;
   background-color: transparent;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%2327272a' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
   transition:
     background-color var(--ds-duration-fast) var(--ds-ease-default);
+
+  /* The dashed border is rendered as an inline SVG background-image because
+     CSS dashed borders don't anti-alias well around border-radius. SVG in
+     data: URLs can't reference CSS custom properties, so the stroke colors
+     are inlined per theme below — they MUST stay in sync with
+     --ds-color-border / --ds-color-border-hover / --ds-color-border-active. */
 
   &:focus-visible {
     outline: none;
@@ -52,12 +57,11 @@
   }
 
   /* ---------------------------------------------------------------------------
-     Hover
+     Hover background only — stroke handled per theme below
      --------------------------------------------------------------------------- */
 
   &:hover {
     background-color: var(--ds-color-surface-hover);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%233f3f46' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
   }
 
   /* ---------------------------------------------------------------------------
@@ -100,10 +104,9 @@
      States
      --------------------------------------------------------------------------- */
 
-  /* Active — drag-over */
+  /* Active — drag-over: bg only, stroke handled per theme below */
   &--active {
-    background-color: var(--ds-color-surface-hover);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%2352525b' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
+    background-color: var(--ds-color-surface-active);
   }
 
   /* Uploading */
@@ -131,14 +134,33 @@
   }
 }
 
-:root:not(.dark) .ds-drop-zone {
+/* ===========================================================================
+   Theme-scoped dashed border strokes — hex values mirror the border tokens
+   exactly so the drop zone reads as a tinted variant of the standard border.
+   =========================================================================== */
+
+/* Light theme — mirrors --ds-color-border / -hover / -active in colors.css */
+[data-theme="light"] .ds-drop-zone {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
+}
+
+[data-theme="light"] .ds-drop-zone:hover {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%23d4d4d8' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
 }
 
-:root:not(.dark) .ds-drop-zone:hover {
+[data-theme="light"] .ds-drop-zone--active {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
 }
 
-:root:not(.dark) .ds-drop-zone--active {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%2371717a' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
+/* Dark theme — mirrors --ds-color-border / -hover / -active in colors.css */
+[data-theme="dark"] .ds-drop-zone {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%2327272a' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] .ds-drop-zone:hover {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%233f3f46' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] .ds-drop-zone--active {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect x='1' y='1' width='99%25' height='99%25' rx='16' ry='16' fill='none' stroke='%2352525b' stroke-width='2' stroke-dasharray='10 8'/%3E%3C/svg%3E");
 }
