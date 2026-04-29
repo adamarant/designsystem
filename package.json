@@ -1,6 +1,6 @@
 {
   "name": "@digiko-npm/designsystem",
-  "version": "0.10.9",
+  "version": "0.10.10",
   "description": "Design system — installable, extensible, indestructible.",
   "main": "dist/designsystem.css",
   "style": "dist/designsystem.css",
