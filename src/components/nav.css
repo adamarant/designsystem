@@ -117,8 +117,10 @@
     transition: all var(--ds-duration-slow) var(--ds-ease-out-expo);
 
     &--open {
-      max-height: 16rem;
+      max-height: calc(100dvh - 4rem);
       border-block-end-width: 1px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
     }
   }
 

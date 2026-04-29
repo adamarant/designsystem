@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.10.8 */
+/* @ds/designsystem v0.10.9 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -5639,8 +5639,10 @@ hr {
   }
 .ds-nav__mobile--open {
 
-      max-height: 16rem;
+      max-height: calc(100dvh - 4rem);
       border-block-end-width: 1px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
     }
 .ds-nav__mobile-links {
 
