@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.10.10 */
+/* @ds/designsystem v0.10.11 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -704,6 +704,7 @@ strong, b {
   font-size: var(--ds-text-3xl);
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
+  text-wrap: balance;
 }
 
 @media (min-width: 640px) {
@@ -720,6 +721,7 @@ strong, b {
   line-height: var(--ds-leading-tight);
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
+  text-wrap: balance;
 }
 
 @media (min-width: 640px) {
@@ -10839,6 +10841,7 @@ hr {
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
   margin: 0;
+  text-wrap: balance;
 }
 
 .ds-editorial-lede {

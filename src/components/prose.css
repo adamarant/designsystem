@@ -147,6 +147,7 @@
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
   margin: 0;
+  text-wrap: balance;
 }
 
 .ds-editorial-lede {

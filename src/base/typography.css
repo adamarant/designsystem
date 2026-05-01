@@ -65,6 +65,7 @@ strong, b {
   font-size: var(--ds-text-3xl);
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
+  text-wrap: balance;
 }
 
 @media (min-width: 640px) {
@@ -79,6 +80,7 @@ strong, b {
   line-height: var(--ds-leading-tight);
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
+  text-wrap: balance;
 }
 
 @media (min-width: 640px) {
