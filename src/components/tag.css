@@ -139,6 +139,21 @@
   }
 
   /* ---------------------------------------------------------------------------
+     Variant: Inverted — uses the theme-swapping inverted token pair so the
+     tag reads as dark-on-light in light mode and light-on-dark in dark mode.
+     --------------------------------------------------------------------------- */
+
+  &--inverted {
+    background-color: var(--ds-color-inverted);
+    color: var(--ds-color-on-inverted);
+    border-color: var(--ds-color-inverted);
+
+    &:hover {
+      border-color: var(--ds-color-inverted);
+    }
+  }
+
+  /* ---------------------------------------------------------------------------
      Size: Small
      --------------------------------------------------------------------------- */
 

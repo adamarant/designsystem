@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.10.11 */
+/* @ds/designsystem v0.11.0 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -3845,6 +3845,13 @@ hr {
   
 
   /* ---------------------------------------------------------------------------
+     Variant: Inverted — uses the theme-swapping inverted token pair so the
+     tag reads as dark-on-light in light mode and light-on-dark in dark mode.
+     --------------------------------------------------------------------------- */
+
+  
+
+  /* ---------------------------------------------------------------------------
      Size: Small
      --------------------------------------------------------------------------- */
 
@@ -3943,6 +3950,18 @@ hr {
 
     background-color: transparent;
   }
+.ds-tag--inverted {
+
+    background-color: var(--ds-color-inverted);
+    color: var(--ds-color-on-inverted);
+    border-color: var(--ds-color-inverted);
+
+    
+  }
+.ds-tag--inverted:hover {
+
+      border-color: var(--ds-color-inverted);
+    }
 .ds-tag--sm {
 
     padding: var(--ds-space-0-5, 0.125rem) var(--ds-space-2, 0.5rem);
