@@ -12,7 +12,7 @@ Il DS e in fase di consolidamento. Queste regole si aggiungono a quelle generali
 
 **Le classi DS pubblicate NON si cancellano e NON si rinominano. Mai.**
 
-9 progetti consumer dipendono da queste classi. Rinominare o rimuovere una classe rompe silenziosamente le UI senza errori in console — il bug peggiore possibile.
+Tutti i progetti consumer dipendono da queste classi. Rinominare o rimuovere una classe rompe silenziosamente le UI senza errori in console — il bug peggiore possibile.
 
 Se una classe deve cambiare:
 1. **Depreca** — aggiungi commento `/* @deprecated — use .ds-new-name instead */` e mantieni la vecchia classe funzionante
