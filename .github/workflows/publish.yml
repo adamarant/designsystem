@@ -17,7 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org
+      # NB: no registry-url — it writes an .npmrc with _authToken=${NODE_AUTH_TOKEN}
+      # which short-circuits OIDC and causes a 404/403 on publish. OIDC needs NO token.
       - run: npm install -g npm@latest   # npm >= 11.5.1 required by OIDC
       - run: npm ci
       - run: npm run build               # no prepublishOnly here, build explicitly
