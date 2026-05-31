@@ -287,10 +287,12 @@ For DS-wide checklist (CONTROLLED MODE, compliance, build, git) → [DS_HEALTH.m
 - [ ] Commit per modifica logica (non commit unico)
 - [ ] `git push origin master`
 
-### 4. Publish
-- [ ] `npm version patch` (o minor/major se appropriato)
-- [ ] `npm publish --access public`
-- [ ] Verificare su npmjs.com che la versione sia live
+### 4. Publish (OIDC trusted publishing — nessun token)
+- [ ] `npm version patch` (o minor/major) — crea commit + tag `vX.Y.Z`
+- [ ] `git push origin master --follow-tags` — il push del tag fa partire la GitHub Action (`.github/workflows/publish.yml`) che builda e pubblica via OIDC, con provenance firmata
+- [ ] Verificare run verde (`gh run watch`) e versione live su npm
+- [ ] **Workspace** (ds-react/ds-shaders/ds-admin): `npm version patch --workspace=packages/<pkg> --no-git-tag-version` → commit → `git tag ds-<pkg>-vX.Y.Z` → `git push origin master ds-<pkg>-vX.Y.Z`
+- Mai `npm publish` locale: pubblica la CI. Setup, schema tag per-package e gotcha in `infra/DEV_CONVENTIONS.md`.
 
 ### 5. Living Registry
 - [ ] `node ~/Projects/generate-manifest.js` per rigenerare `ds.manifest.json` (aggiorna `last_session` e metriche)
