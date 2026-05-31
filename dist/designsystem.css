@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.11.0 */
+/* @ds/designsystem v0.11.1 */
 /* ==========================================================================
    @digiko-npm/designsystem
 
@@ -339,6 +339,7 @@
   --ds-text-editorial-body: 1.125rem; /* 18px — editorial reading standard (was 17px pre-Apr 2026) */
 
   /* --- Font Weights --- */
+  --ds-weight-extralight: 200;
   --ds-weight-light: 300;
   --ds-weight-normal: 400;
   --ds-weight-medium: 500;
