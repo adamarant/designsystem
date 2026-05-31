@@ -28,4 +28,4 @@ jobs:
           echo "npm path: $(which npm)"
           echo "OIDC request url present: ${ACTIONS_ID_TOKEN_REQUEST_URL:+YES}"
           echo "registry: $(npm config get registry)"
-      - run: npm publish                 # no NODE_AUTH_TOKEN: OIDC mints it
+      - run: npm publish --loglevel verbose   # no NODE_AUTH_TOKEN: OIDC mints it
