@@ -118,6 +118,29 @@
   margin-block-end: 1em;
 }
 
+.ds-prose-block table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block-end: 1em;
+  font-size: var(--ds-text-sm);
+}
+
+.ds-prose-block :is(th, td) {
+  padding: var(--ds-space-3);
+  text-align: start;
+  vertical-align: top;
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.ds-prose-block th {
+  color: var(--ds-color-text);
+  font-weight: var(--ds-weight-semibold);
+}
+
+.ds-prose-block td {
+  color: var(--ds-color-text-secondary);
+}
+
 /* ==========================================================================
    Editorial long-form typography (promoted from esys blog — 12 Apr 2026)
 
@@ -280,4 +303,35 @@
 .ds-editorial-body pre code {
   background: transparent;
   padding: 0;
+}
+
+.ds-editorial-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--ds-text-sm);
+  line-height: var(--ds-leading-normal);
+}
+
+.ds-editorial-body :is(th, td) {
+  padding: var(--ds-space-3);
+  text-align: start;
+  vertical-align: top;
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.ds-editorial-body th {
+  color: var(--ds-color-text);
+  font-weight: var(--ds-weight-semibold);
+}
+
+.ds-editorial-body thead th {
+  border-block-end-color: var(--ds-color-border-hover);
+}
+
+.ds-editorial-body td {
+  color: var(--ds-color-text-secondary);
+}
+
+.ds-editorial-body tbody tr:last-child :is(th, td) {
+  border-block-end: none;
 }
