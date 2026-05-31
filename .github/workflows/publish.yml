@@ -1,9 +1,27 @@
 name: publish
 
+# Monorepo publish via OIDC trusted publishing (no token). Per-package tags:
+#   v*            -> @digiko-npm/designsystem (root)
+#   ds-react-v*   -> @digiko-npm/ds-react      (packages/ds-react)
+#   ds-shaders-v* -> @digiko-npm/ds-shaders    (packages/ds-shaders)
+#   ds-admin-v*   -> @digiko-npm/ds-admin      (packages/ds-admin)
+#   ds-hooks-v*   -> @digiko-npm/ds-hooks      (packages/ds-hooks, not yet on npm)
+# Each package needs its OWN trusted-publisher config on npmjs.com pointing at
+# repo digiko-dev/designsystem + workflow filename publish.yml.
+
 on:
   push:
-    tags: ['v*']
+    tags:
+      - 'v*'
+      - 'ds-react-v*'
+      - 'ds-shaders-v*'
+      - 'ds-admin-v*'
+      - 'ds-hooks-v*'
   workflow_dispatch:
+    inputs:
+      target:
+        description: 'root | ds-react | ds-shaders | ds-admin | ds-hooks'
+        default: root
 
 permissions:
   contents: read
@@ -21,5 +39,29 @@ jobs:
       # which short-circuits OIDC and causes a 404/403 on publish. OIDC needs NO token.
       - run: npm install -g npm@latest   # npm >= 11.5.1 required by OIDC
       - run: npm ci
-      - run: npm run build               # no prepublishOnly here, build explicitly
-      - run: npm publish                 # no NODE_AUTH_TOKEN: OIDC mints it
+      - name: Resolve target workspace
+        id: t
+        run: |
+          REF="${{ github.event.inputs.target }}"
+          [ -z "$REF" ] && REF="${{ github.ref_name }}"
+          case "$REF" in
+            ds-react-v*|ds-react)     WS="packages/ds-react" ;;
+            ds-shaders-v*|ds-shaders) WS="packages/ds-shaders" ;;
+            ds-admin-v*|ds-admin)     WS="packages/ds-admin" ;;
+            ds-hooks-v*|ds-hooks)     WS="packages/ds-hooks" ;;
+            *)                        WS="" ;;   # root designsystem
+          esac
+          echo "ref=$REF -> target=${WS:-root}"
+          echo "ws=$WS" >> "$GITHUB_OUTPUT"
+      - name: Build + publish
+        run: |
+          WS="${{ steps.t.outputs.ws }}"
+          if [ -n "$WS" ]; then
+            echo "Publishing workspace $WS"
+            npm run build --workspace="$WS" --if-present
+            npm publish  --workspace="$WS"
+          else
+            echo "Publishing root @digiko-npm/designsystem"
+            npm run build
+            npm publish
+          fi
