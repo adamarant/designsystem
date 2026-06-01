@@ -7,7 +7,7 @@ name: publish
 #   ds-admin-v*   -> @digiko-npm/ds-admin      (packages/ds-admin)
 #   ds-hooks-v*   -> @digiko-npm/ds-hooks      (packages/ds-hooks, not yet on npm)
 # Each package needs its OWN trusted-publisher config on npmjs.com pointing at
-# repo digiko-dev/designsystem + workflow filename publish.yml.
+# repo adamarant/designsystem + workflow filename publish.yml.
 
 on:
   push:

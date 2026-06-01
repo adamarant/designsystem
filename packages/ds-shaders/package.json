@@ -62,7 +62,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/digiko-dev/designsystem.git",
+    "url": "git+https://github.com/adamarant/designsystem.git",
     "directory": "packages/ds-shaders"
   },
   "publishConfig": {

@@ -128,7 +128,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/digiko-dev/designsystem.git",
+    "url": "git+https://github.com/adamarant/designsystem.git",
     "directory": "packages/ds-react"
   },
   "publishConfig": {
