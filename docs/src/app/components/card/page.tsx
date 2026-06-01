@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Button } from "@digiko-npm/ds-react";
+import { Card, Button } from "@adamarant/ds-react";
 import { DemoSection } from "@/components/DemoSection";
 
 export default function CardPage() {

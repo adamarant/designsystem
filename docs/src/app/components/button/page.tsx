@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, ButtonGroup } from "@digiko-npm/ds-react";
+import { Button, ButtonGroup } from "@adamarant/ds-react";
 import { DemoSection } from "@/components/DemoSection";
 
 export default function ButtonPage() {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Modal, Button } from "@digiko-npm/ds-react";
+import { Modal, Button } from "@adamarant/ds-react";
 import { DemoSection } from "@/components/DemoSection";
 
 export default function ModalPage() {

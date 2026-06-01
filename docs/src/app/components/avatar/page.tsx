@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, AvatarGroup } from "@digiko-npm/ds-react";
+import { Avatar, AvatarGroup } from "@adamarant/ds-react";
 import { DemoSection } from "@/components/DemoSection";
 
 export default function AvatarPage() {

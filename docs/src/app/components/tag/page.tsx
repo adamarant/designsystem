@@ -1,6 +1,6 @@
 "use client";
 
-import { Tag } from "@digiko-npm/ds-react";
+import { Tag } from "@adamarant/ds-react";
 import { DemoSection } from "@/components/DemoSection";
 
 export default function TagPage() {

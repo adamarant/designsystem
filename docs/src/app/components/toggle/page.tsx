@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Toggle } from "@digiko-npm/ds-react";
+import { Toggle } from "@adamarant/ds-react";
 import { DemoSection } from "@/components/DemoSection";
 
 export default function TogglePage() {

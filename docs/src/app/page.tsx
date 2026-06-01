@@ -1,6 +1,6 @@
 "use client";
 
-import { Badge } from "@digiko-npm/ds-react";
+import { Badge } from "@adamarant/ds-react";
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
         <h2 className="demo-section__title">Quick Start</h2>
         <div className="demo-preview demo-preview--col">
           <code className="ds-font-mono ds-text-sm ds-text-secondary">
-            npm install @digiko-npm/designsystem @digiko-npm/ds-react
+            npm install @adamarant/designsystem @adamarant/ds-react
           </code>
         </div>
       </section>

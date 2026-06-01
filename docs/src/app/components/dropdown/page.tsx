@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Dropdown, Button } from "@digiko-npm/ds-react";
+import { Dropdown, Button } from "@adamarant/ds-react";
 import { DemoSection } from "@/components/DemoSection";
 
 export default function DropdownPage() {

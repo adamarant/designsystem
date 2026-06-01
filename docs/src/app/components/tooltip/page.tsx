@@ -1,6 +1,6 @@
 "use client";
 
-import { Tooltip, Button } from "@digiko-npm/ds-react";
+import { Tooltip, Button } from "@adamarant/ds-react";
 import { DemoSection } from "@/components/DemoSection";
 
 export default function TooltipPage() {

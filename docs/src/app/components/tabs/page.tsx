@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Tabs } from "@digiko-npm/ds-react";
+import { Tabs } from "@adamarant/ds-react";
 import { DemoSectionCol } from "@/components/DemoSection";
 
 export default function TabsPage() {

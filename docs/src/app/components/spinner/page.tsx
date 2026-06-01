@@ -1,6 +1,6 @@
 "use client";
 
-import { Spinner } from "@digiko-npm/ds-react";
+import { Spinner } from "@adamarant/ds-react";
 import { DemoSection } from "@/components/DemoSection";
 
 export default function SpinnerPage() {

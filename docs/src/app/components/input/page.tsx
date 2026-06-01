@@ -1,6 +1,6 @@
 "use client";
 
-import { Input, Textarea, Select, InputGroup, InputGroupIcon, Help, Checkbox, Radio, Label } from "@digiko-npm/ds-react";
+import { Input, Textarea, Select, InputGroup, InputGroupIcon, Help, Checkbox, Radio, Label } from "@adamarant/ds-react";
 import { DemoSection, DemoSectionCol } from "@/components/DemoSection";
 
 export default function InputPage() {

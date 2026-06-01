@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { Button } from "@digiko-npm/ds-react";
+import { Button } from "@adamarant/ds-react";
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
