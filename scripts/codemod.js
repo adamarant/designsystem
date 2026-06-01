@@ -4,11 +4,11 @@
  * Design System Migration Codemod
  *
  * Scans a consumer project for patterns that need updating when upgrading
- * the @digiko-npm/designsystem package.
+ * the @adamarant/designsystem package.
  *
  * Usage:
- *   node node_modules/@digiko-npm/designsystem/scripts/codemod.js ./src
- *   node node_modules/@digiko-npm/designsystem/scripts/codemod.js ./src --fix
+ *   node node_modules/@adamarant/designsystem/scripts/codemod.js ./src
+ *   node node_modules/@adamarant/designsystem/scripts/codemod.js ./src --fix
  */
 
 const fs = require("fs");

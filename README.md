@@ -1,33 +1,33 @@
-# @digiko-npm/designsystem
+# @adamarant/designsystem
 
 CSS-only design system. Zero dependencies. Install anywhere, override tokens, nothing breaks.
 
 ## Install
 
 ```bash
-npm install @digiko-npm/designsystem
+npm install @adamarant/designsystem
 ```
 
 ## Usage
 
 ```css
 /* Everything */
-@import '@digiko-npm/designsystem';
+@import '@adamarant/designsystem';
 
 /* Or individual layers */
-@import '@digiko-npm/designsystem/tokens';
-@import '@digiko-npm/designsystem/base';
-@import '@digiko-npm/designsystem/components';
-@import '@digiko-npm/designsystem/utilities';
+@import '@adamarant/designsystem/tokens';
+@import '@adamarant/designsystem/base';
+@import '@adamarant/designsystem/components';
+@import '@adamarant/designsystem/utilities';
 
 /* Or cherry-pick single components (tokens + base required) */
-@import '@digiko-npm/designsystem/tokens';
-@import '@digiko-npm/designsystem/base';
-@import '@digiko-npm/designsystem/components/button';
-@import '@digiko-npm/designsystem/components/card';
+@import '@adamarant/designsystem/tokens';
+@import '@adamarant/designsystem/base';
+@import '@adamarant/designsystem/components/button';
+@import '@adamarant/designsystem/components/card';
 
 /* Minified bundle */
-@import '@digiko-npm/designsystem/min';
+@import '@adamarant/designsystem/min';
 ```
 
 ```html
@@ -82,7 +82,7 @@ Built-in light/dark themes via `data-theme` attribute:
 ```
 
 ```js
-import { theme } from '@digiko-npm/designsystem/js';
+import { theme } from '@adamarant/designsystem/js';
 theme.toggle(); // Toggles light/dark with localStorage persistence
 ```
 

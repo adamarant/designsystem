@@ -1,7 +1,7 @@
 {
-  "name": "@digiko-npm/ds-admin",
+  "name": "@adamarant/ds-admin",
   "version": "0.1.2",
-  "description": "React admin layout components for @digiko-npm/designsystem — sidebar, header, layout shell, and sidebar state management.",
+  "description": "React admin layout components for @adamarant/designsystem — sidebar, header, layout shell, and sidebar state management.",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

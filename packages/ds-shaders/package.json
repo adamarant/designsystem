@@ -1,7 +1,7 @@
 {
-  "name": "@digiko-npm/ds-shaders",
+  "name": "@adamarant/ds-shaders",
   "version": "0.1.1",
-  "description": "WebGL shaders for @digiko-npm/designsystem — opinionated React wrappers around @paper-design/shaders-react with DS token palettes.",
+  "description": "WebGL shaders for @adamarant/designsystem — opinionated React wrappers around @paper-design/shaders-react with DS token palettes.",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

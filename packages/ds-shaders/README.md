@@ -1,11 +1,11 @@
-# @digiko-npm/ds-shaders
+# @adamarant/ds-shaders
 
 WebGL shaders for the Digiko Design System. Opinionated React wrappers around [`@paper-design/shaders-react`](https://github.com/paper-design/shaders) that read DS color tokens at runtime and react to theme changes.
 
 ## Install
 
 ```bash
-npm install @digiko-npm/ds-shaders
+npm install @adamarant/ds-shaders
 ```
 
 Peer dep: `react >= 18`.
@@ -16,7 +16,7 @@ All components are client components. Add `"use client"` to the parent file when
 
 ```tsx
 "use client";
-import { MeshGradient } from "@digiko-npm/ds-shaders/effects";
+import { MeshGradient } from "@adamarant/ds-shaders/effects";
 
 export function Hero() {
   return (
@@ -51,9 +51,9 @@ You can always override with explicit color props:
 ## Categories
 
 ```ts
-import { /* 20 components */ } from "@digiko-npm/ds-shaders/effects";
-import { /* 6 components */ } from "@digiko-npm/ds-shaders/filters";
-import { /* 3 components */ } from "@digiko-npm/ds-shaders/logos";
+import { /* 20 components */ } from "@adamarant/ds-shaders/effects";
+import { /* 6 components */ } from "@adamarant/ds-shaders/filters";
+import { /* 3 components */ } from "@adamarant/ds-shaders/logos";
 ```
 
 **Effects** (background, no input): `MeshGradient`, `StaticMeshGradient`, `StaticRadialGradient`, `SmokeRing`, `NeuroNoise`, `PerlinNoise`, `SimplexNoise`, `DotOrbit`, `DotGrid`, `Metaballs`, `Waves`, `Voronoi`, `Warp`, `GodRays`, `Spiral`, `Swirl`, `Dithering`, `GrainGradient`, `PulsingBorder`, `ColorPanels`.

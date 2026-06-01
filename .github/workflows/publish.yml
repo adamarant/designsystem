@@ -1,11 +1,11 @@
 name: publish
 
 # Monorepo publish via OIDC trusted publishing (no token). Per-package tags:
-#   v*            -> @digiko-npm/designsystem (root)
-#   ds-react-v*   -> @digiko-npm/ds-react      (packages/ds-react)
-#   ds-shaders-v* -> @digiko-npm/ds-shaders    (packages/ds-shaders)
-#   ds-admin-v*   -> @digiko-npm/ds-admin      (packages/ds-admin)
-#   ds-hooks-v*   -> @digiko-npm/ds-hooks      (packages/ds-hooks, not yet on npm)
+#   v*            -> @adamarant/designsystem (root)
+#   ds-react-v*   -> @adamarant/ds-react      (packages/ds-react)
+#   ds-shaders-v* -> @adamarant/ds-shaders    (packages/ds-shaders)
+#   ds-admin-v*   -> @adamarant/ds-admin      (packages/ds-admin)
+#   ds-hooks-v*   -> @adamarant/ds-hooks      (packages/ds-hooks, not yet on npm)
 # Each package needs its OWN trusted-publisher config on npmjs.com pointing at
 # repo adamarant/designsystem + workflow filename publish.yml.
 
@@ -61,7 +61,7 @@ jobs:
             npm run build --workspace="$WS" --if-present
             npm publish  --workspace="$WS"
           else
-            echo "Publishing root @digiko-npm/designsystem"
+            echo "Publishing root @adamarant/designsystem"
             npm run build
             npm publish
           fi

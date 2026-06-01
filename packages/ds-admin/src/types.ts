@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 /* ==========================================================================
-   Shared types for @digiko-npm/ds-admin
+   Shared types for @adamarant/ds-admin
    ========================================================================== */
 
 export interface NavItem {

@@ -8,7 +8,7 @@ import { forwardRef, useEffect, useImperativeHandle, useRef, useState, } from "r
  * Thin React wrapper around the Cloudflare Turnstile client script.
  *
  * This component is presentational — it does NOT verify tokens. Pair it
- * with server-side `verifyTurnstileToken` from `@digiko-npm/cms/captcha`.
+ * with server-side `verifyTurnstileToken` from `@adamarant/cms/captcha`.
  *
  * The widget itself is rendered inside an iframe by Cloudflare's script,
  * so no DS CSS is required. Style the wrapper via the `className` prop

@@ -18,11 +18,11 @@
 | `ds-bottom-sheet` | Mobile slide-up overlay |
 | `ds-star-rating` | Star ratings (display + input) |
 
-### New Package: `@digiko-npm/ds-hooks`
+### New Package: `@adamarant/ds-hooks`
 
 Optional React hooks companion. Install separately:
 ```bash
-npm install @digiko-npm/ds-hooks
+npm install @adamarant/ds-hooks
 ```
 
 8 hooks: `useClickOutside`, `useEscapeKey`, `useKeyboardNav`, `useDebouncedValue`, `useFocusTrap`, `useScrollLock`, `useClipboard`, `useMediaQuery`.
@@ -51,8 +51,8 @@ All components now use **native CSS nesting**. This requires:
 None. All existing class names and tokens unchanged.
 
 ### Migration Checklist
-- [ ] Update `@digiko-npm/designsystem` to `^0.8.0`
-- [ ] Optionally install `@digiko-npm/ds-hooks` and replace custom click-outside/escape/keyboard-nav implementations
+- [ ] Update `@adamarant/designsystem` to `^0.8.0`
+- [ ] Optionally install `@adamarant/ds-hooks` and replace custom click-outside/escape/keyboard-nav implementations
 - [ ] Replace custom table pagination/sorting with DS table modifiers
 - [ ] Replace custom combobox/autocomplete with `ds-combobox`
 - [ ] Verify browser compatibility with CSS nesting (Chrome 112+, Firefox 117+, Safari 17.2+)
@@ -96,7 +96,7 @@ All DS styles are now wrapped in `@layer tokens, base, components, utilities`. T
 **Action:** If you import the DS alongside your own `@layer` declarations, ensure the DS layers are ordered correctly:
 ```css
 @layer tokens, base, components, utilities, app;
-@import '@digiko-npm/designsystem';
+@import '@adamarant/designsystem';
 /* your app styles in @layer app */
 ```
 
@@ -233,6 +233,6 @@ All 32 components now use `box-shadow` for focus rings instead of `outline` with
 
 Run the codemod to detect issues automatically:
 ```bash
-node node_modules/@digiko-npm/designsystem/scripts/codemod.js ./src
-node node_modules/@digiko-npm/designsystem/scripts/codemod.js ./src --fix  # apply safe fixes
+node node_modules/@adamarant/designsystem/scripts/codemod.js ./src
+node node_modules/@adamarant/designsystem/scripts/codemod.js ./src --fix  # apply safe fixes
 ```

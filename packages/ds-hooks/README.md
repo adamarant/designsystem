@@ -1,11 +1,11 @@
-# @digiko-npm/ds-hooks
+# @adamarant/ds-hooks
 
-React hooks companion for `@digiko-npm/designsystem`. Optional — the CSS design system works without this package.
+React hooks companion for `@adamarant/designsystem`. Optional — the CSS design system works without this package.
 
 ## Install
 
 ```bash
-npm install @digiko-npm/ds-hooks
+npm install @adamarant/ds-hooks
 ```
 
 ## Hooks
@@ -24,10 +24,10 @@ npm install @digiko-npm/ds-hooks
 ## Usage
 
 ```tsx
-import { useClickOutside, useEscapeKey } from "@digiko-npm/ds-hooks";
+import { useClickOutside, useEscapeKey } from "@adamarant/ds-hooks";
 
 // Or cherry-pick individual hooks
-import { useClickOutside } from "@digiko-npm/ds-hooks/useClickOutside";
+import { useClickOutside } from "@adamarant/ds-hooks/useClickOutside";
 ```
 
 ### useClickOutside

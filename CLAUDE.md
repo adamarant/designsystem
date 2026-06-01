@@ -50,7 +50,7 @@ Stesso principio per i token (`--ds-*`): non rinominare, non rimuovere. Aggiungi
 
 CSS-only design system. Zero dependencies. Install anywhere, override tokens, nothing breaks.
 
-**Package:** `@digiko-npm/designsystem`
+**Package:** `@adamarant/designsystem`
 **Stack:** Pure CSS + CSS Custom Properties
 **Build:** `node scripts/build.js` (concatenates all CSS into `dist/designsystem.css`)
 **Validate:** `node scripts/validate.js` (automated checks — run before every publish)
@@ -206,13 +206,13 @@ src/
 ### Installation
 
 ```bash
-npm install @digiko-npm/designsystem
+npm install @adamarant/designsystem
 
 # Import in CSS (all-in-one)
-@import '@digiko-npm/designsystem';
+@import '@adamarant/designsystem';
 
 # Or with layer control
-@import '@digiko-npm/designsystem' layer(ds);
+@import '@adamarant/designsystem' layer(ds);
 ```
 
 ### Component-First Hierarchy (CRITICAL)

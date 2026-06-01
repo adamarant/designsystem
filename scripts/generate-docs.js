@@ -195,7 +195,7 @@ function generateColorsContent() {
         <p>Background, surface, text, border, status, and accent color tokens. All adapt automatically to light/dark theme.</p>
         <div class="demo-meta">
           <span class="ds-badge">Foundation</span>
-          <code>@import '@digiko-npm/designsystem/tokens';</code>
+          <code>@import '@adamarant/designsystem/tokens';</code>
         </div>
       </header>
 ${sections}`;
@@ -216,7 +216,7 @@ function generateTypographyContent() {
         <p>Font families, sizes, weights, line heights, and letter spacing.</p>
         <div class="demo-meta">
           <span class="ds-badge">Foundation</span>
-          <code>@import '@digiko-npm/designsystem/tokens';</code>
+          <code>@import '@adamarant/designsystem/tokens';</code>
         </div>
       </header>
 
@@ -297,7 +297,7 @@ function generateSpacingContent() {
         <p>Spacing scale, border radius, z-index layers, and container sizes.</p>
         <div class="demo-meta">
           <span class="ds-badge">Foundation</span>
-          <code>@import '@digiko-npm/designsystem/tokens';</code>
+          <code>@import '@adamarant/designsystem/tokens';</code>
         </div>
       </header>
 
@@ -377,7 +377,7 @@ function generateEffectsContent() {
         <p>Shadows, transition durations, and easing curves. Shadows adapt per theme.</p>
         <div class="demo-meta">
           <span class="ds-badge">Foundation</span>
-          <code>@import '@digiko-npm/designsystem/tokens';</code>
+          <code>@import '@adamarant/designsystem/tokens';</code>
         </div>
       </header>
 
@@ -527,7 +527,7 @@ for (let i = 0; i < allComponents.length; i++) {
         <p>${comp.description}</p>
         <div class="demo-meta">
           <span class="ds-badge">${getCategoryLabel(comp.category)}</span>
-          <code>@import '@digiko-npm/designsystem/components/${comp.name}';</code>
+          <code>@import '@adamarant/designsystem/components/${comp.name}';</code>
         </div>
       </header>
 
@@ -573,7 +573,7 @@ const homepageContent = `
         <h1>Design System</h1>
         <p>CSS-only design system. ${allComponents.length} components, zero dependencies. Install anywhere, override tokens, nothing breaks.</p>
         <div class="demo-meta">
-          <code>npm install @digiko-npm/designsystem</code>
+          <code>npm install @adamarant/designsystem</code>
         </div>
       </header>
 

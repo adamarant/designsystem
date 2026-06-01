@@ -23,7 +23,7 @@
 - Copy Button, Color Picker, Scroll Area, Truncated Text
 - Table enhancement (sorting, selection, sticky headers, responsive stacking)
 - Field enhancement (animated errors, success, counter)
-- `@digiko-npm/ds-hooks` companion package (8 React hooks)
+- `@adamarant/ds-hooks` companion package (8 React hooks)
 - Token validation script
 - Tier reorganization (icon-btn → Core, search/spinner → Tier 1)
 
@@ -31,7 +31,7 @@
 - Fix all token reference warnings (zero phantom tokens, zero hardcoded values)
 - Comprehensive state variant utilities (hover, focus, active, group-hover)
 - Admin Layout component (`ds-admin-layout`)
-- `@digiko-npm/ds-admin` React layout components
+- `@adamarant/ds-admin` React layout components
 - Prose & Hero components
 - Sizing utilities + responsive utilities expansion
 - Button sizes `--xl` (56px), `--2xl` (64px) + `--success-solid` variant

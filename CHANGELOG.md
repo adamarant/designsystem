@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `@digiko-npm/designsystem` will be documented in this file.
+All notable changes to `@adamarant/designsystem` will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ds-bottom-sheet` — mobile slide-up overlay with drag handle
 - `ds-star-rating` — display/input star ratings with half-star support
 
-### Added — `@digiko-npm/ds-hooks` companion package
+### Added — `@adamarant/ds-hooks` companion package
 - `useClickOutside` — close dropdowns/modals on outside click
 - `useEscapeKey` — close overlays on Escape
 - `useKeyboardNav` — arrow key navigation for lists
