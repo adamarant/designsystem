@@ -332,10 +332,20 @@
 /* --- Scroll Reveal --- */
 .ds-reveal {
   opacity: 0;
-  transform: translateY(32px);
+  transform: translateY(20px);
+  /* Opacity resolves before the rise settles, so content is solid while it
+     glides into place. Plain ease-out (not expo) over a shorter movement so
+     the motion reads across the whole duration instead of snapping then
+     crawling a long dead tail. */
   transition:
-    opacity var(--ds-duration-slower) var(--ds-ease-out-expo),
-    transform var(--ds-duration-slower) var(--ds-ease-out-expo);
+    opacity var(--ds-duration-normal) var(--ds-ease-out),
+    transform var(--ds-duration-slow) var(--ds-ease-out);
+}
+
+/* Promote only while pending; the hint is released once revealed so we don't
+   leave a standing compositor layer on every revealed node. */
+.ds-reveal:not(.ds-visible) {
+  will-change: opacity, transform;
 }
 
 .ds-reveal.ds-visible {
@@ -343,10 +353,10 @@
   transform: translateY(0);
 }
 
-.ds-reveal-delay-1 { transition-delay: 100ms; }
-.ds-reveal-delay-2 { transition-delay: 200ms; }
-.ds-reveal-delay-3 { transition-delay: 300ms; }
-.ds-reveal-delay-4 { transition-delay: 400ms; }
+.ds-reveal-delay-1 { transition-delay: 70ms; }
+.ds-reveal-delay-2 { transition-delay: 140ms; }
+.ds-reveal-delay-3 { transition-delay: 210ms; }
+.ds-reveal-delay-4 { transition-delay: 280ms; }
 
 /* --- Grain Overlay (optional) --- */
 .ds-grain::before {
