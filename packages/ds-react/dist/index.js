@@ -64,4 +64,5 @@ export { Sortable } from "./components/Sortable";
 export { AdminLayout } from "./components/AdminLayout";
 export { useContextMenu, } from "./components/ContextMenu";
 export { TurnstileWidget, } from "./components/TurnstileWidget";
+export { ClipReveal } from "./components/ClipReveal";
 //# sourceMappingURL=index.js.map
