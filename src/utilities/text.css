@@ -360,25 +360,27 @@
 
 /* --- Clip Reveal (image curtain, opt-in) ---
    A top-to-bottom clip-path wipe and nothing else (no opacity / scale / blur).
-   Pair with the <ClipReveal> component in @adamarant/ds-react: it adds
-   `data-clip-shown` only once the inner image has DECODED and scrolled into
-   view, so the curtain never plays over a not-yet-painted image. The clip is on
-   the WRAPPER (not the <img>), so the image's own transforms (hover-zoom, etc.)
-   are left untouched. Duration/curve are overridable per consumer via the two
-   custom properties. No-JS: the element ships hidden — add a <noscript> rule to
-   un-clip if disabled-JS must be supported. */
-.ds-clip-reveal {
+   Pair with the <ClipReveal> component in @adamarant/ds-react.
+
+   FAIL-SAFE DEFAULT: the element is VISIBLE unless the component has armed it
+   (`data-clip-armed`, set on mount only for elements that start off-screen). So
+   if the JS never runs or fails to hydrate, covers stay visible instead of being
+   clipped away forever. The component then adds `data-clip-shown` to play the
+   wipe once the image has decoded and scrolled in. Clip is on the WRAPPER (not
+   the <img>), leaving the image's own transforms (hover-zoom, etc.) untouched.
+   Duration/curve overridable per consumer via the two custom properties. */
+.ds-clip-reveal[data-clip-armed] {
   clip-path: inset(0 0 100% 0);
   transition: clip-path
     var(--clip-reveal-duration, var(--ds-duration-slower))
     var(--clip-reveal-ease, var(--ds-ease-in-out));
 }
-.ds-clip-reveal[data-clip-shown] {
+.ds-clip-reveal[data-clip-armed][data-clip-shown] {
   clip-path: inset(0 0 0 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ds-clip-reveal {
+  .ds-clip-reveal[data-clip-armed] {
     clip-path: none;
     transition: none;
   }
