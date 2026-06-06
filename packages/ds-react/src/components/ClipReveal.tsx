@@ -5,31 +5,35 @@ import {
   forwardRef,
   useEffect,
   useRef,
-  useState,
 } from "react";
 import { cn } from "../utils/cn";
 
 export interface ClipRevealProps extends ComponentPropsWithoutRef<"div"> {
   /**
-   * Reveal once and stay revealed (default), or re-arm on every viewport
-   * entry/exit so the curtain replays each time it scrolls back into view.
-   */
-  once?: boolean;
-  /**
-   * IntersectionObserver `rootMargin`. Default `"0px 0px -8% 0px"` triggers
-   * once the wrapper is a little past the bottom edge of the viewport.
+   * IntersectionObserver `rootMargin`. Default `"0px 0px -8% 0px"` triggers a
+   * little before the wrapper reaches the bottom edge of the viewport.
    */
   rootMargin?: string;
+  /**
+   * Hard cap (ms) after entering view by which the content reveals no matter
+   * what, so a flaky decode/load can never strand it clipped. Default 1200.
+   */
+  revealTimeout?: number;
   className?: string;
 }
 
 /**
  * Reveals its content with a top-to-bottom clip-path wipe (the `.ds-clip-reveal`
- * utility) — but only once the inner <img> has actually DECODED **and** scrolled
- * into view. Gating on `img.decode()` rather than the `load` event guarantees
- * the pixels are paint-ready, so the curtain never animates over a blank,
- * not-yet-painted image. With no inner image it falls back to an in-view trigger.
- * Honors `prefers-reduced-motion` (handled in the CSS).
+ * utility).
+ *
+ * FAIL-SAFE BY DESIGN: the content is visible by default. On mount the component
+ * only *arms* (hides, via `data-clip-armed`) wrappers that start OFF-screen, then
+ * plays the wipe (`data-clip-shown`) when they scroll in and the image has
+ * painted. Wrappers already in view at mount are left visible (no wipe — you
+ * don't animate what's already on screen). If the JS never runs, never hydrates,
+ * or the image errors, the content simply stays visible: it cannot be hidden by
+ * a failed reveal. `revealTimeout` is the last-resort guarantee against a stuck
+ * clip. Honors `prefers-reduced-motion` via the CSS.
  *
  * Usage:
  *   <ClipReveal className="ds-absolute ds-inset-0">
@@ -38,63 +42,70 @@ export interface ClipRevealProps extends ComponentPropsWithoutRef<"div"> {
  */
 export const ClipReveal = forwardRef<HTMLDivElement, ClipRevealProps>(
   function ClipReveal(
-    { once = true, rootMargin = "0px 0px -8% 0px", className, children, ...rest },
+    {
+      rootMargin = "0px 0px -8% 0px",
+      revealTimeout = 1200,
+      className,
+      children,
+      ...rest
+    },
     ref,
   ) {
     const elRef = useRef<HTMLDivElement | null>(null);
-    const [shown, setShown] = useState(false);
 
     useEffect(() => {
       const el = elRef.current;
       if (!el) return;
 
       const img = el.querySelector("img");
-      let inView = false;
-      let ready = false;
+      let armed = false;
       let done = false;
+      let timer: ReturnType<typeof setTimeout> | undefined;
 
-      const sync = () => {
-        if (inView && ready) {
-          setShown(true);
-          if (once) {
-            done = true;
-            observer.disconnect();
-          }
-        } else if (!once) {
-          setShown(false);
+      const reveal = () => {
+        if (done) return;
+        done = true;
+        if (timer) clearTimeout(timer);
+        // Visually a no-op unless the element was armed; armed -> plays the wipe.
+        el.setAttribute("data-clip-shown", "");
+        observer.disconnect();
+      };
+
+      const revealWhenPainted = () => {
+        if (!img || (img.complete && img.naturalWidth > 0)) {
+          reveal();
+          return;
         }
+        img.addEventListener("load", reveal, { once: true });
+        img.addEventListener("error", reveal, { once: true }); // never hide a broken image
+        if (typeof img.decode === "function") img.decode().then(reveal).catch(() => {});
       };
 
       const observer = new IntersectionObserver(
         (entries) => {
           if (done) return;
-          for (const entry of entries) inView = entry.isIntersecting;
-          sync();
+          const entry = entries[entries.length - 1];
+          if (entry.isIntersecting) {
+            if (armed) {
+              revealWhenPainted();
+              timer = setTimeout(reveal, revealTimeout); // last-resort guarantee
+            } else {
+              reveal(); // visible at mount: keep it visible, no wipe
+            }
+          } else if (!armed) {
+            armed = true;
+            el.setAttribute("data-clip-armed", ""); // off-screen: arm to wipe on entry
+          }
         },
         { rootMargin },
       );
       observer.observe(el);
 
-      const markReady = () => {
-        ready = true;
-        sync();
+      return () => {
+        observer.disconnect();
+        if (timer) clearTimeout(timer);
       };
-
-      if (!img) {
-        markReady();
-      } else if (img.complete && img.naturalWidth > 0) {
-        markReady();
-      } else if (typeof img.decode === "function") {
-        img
-          .decode()
-          .then(markReady)
-          .catch(() => img.addEventListener("load", markReady, { once: true }));
-      } else {
-        img.addEventListener("load", markReady, { once: true });
-      }
-
-      return () => observer.disconnect();
-    }, [once, rootMargin]);
+    }, [rootMargin, revealTimeout]);
 
     return (
       <div
@@ -104,7 +115,6 @@ export const ClipReveal = forwardRef<HTMLDivElement, ClipRevealProps>(
           else if (ref) ref.current = node;
         }}
         className={cn("ds-clip-reveal", className)}
-        data-clip-shown={shown ? "" : undefined}
         {...rest}
       >
         {children}

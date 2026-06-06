@@ -1,24 +1,29 @@
 import { type ComponentPropsWithoutRef } from "react";
 export interface ClipRevealProps extends ComponentPropsWithoutRef<"div"> {
     /**
-     * Reveal once and stay revealed (default), or re-arm on every viewport
-     * entry/exit so the curtain replays each time it scrolls back into view.
-     */
-    once?: boolean;
-    /**
-     * IntersectionObserver `rootMargin`. Default `"0px 0px -8% 0px"` triggers
-     * once the wrapper is a little past the bottom edge of the viewport.
+     * IntersectionObserver `rootMargin`. Default `"0px 0px -8% 0px"` triggers a
+     * little before the wrapper reaches the bottom edge of the viewport.
      */
     rootMargin?: string;
+    /**
+     * Hard cap (ms) after entering view by which the content reveals no matter
+     * what, so a flaky decode/load can never strand it clipped. Default 1200.
+     */
+    revealTimeout?: number;
     className?: string;
 }
 /**
  * Reveals its content with a top-to-bottom clip-path wipe (the `.ds-clip-reveal`
- * utility) — but only once the inner <img> has actually DECODED **and** scrolled
- * into view. Gating on `img.decode()` rather than the `load` event guarantees
- * the pixels are paint-ready, so the curtain never animates over a blank,
- * not-yet-painted image. With no inner image it falls back to an in-view trigger.
- * Honors `prefers-reduced-motion` (handled in the CSS).
+ * utility).
+ *
+ * FAIL-SAFE BY DESIGN: the content is visible by default. On mount the component
+ * only *arms* (hides, via `data-clip-armed`) wrappers that start OFF-screen, then
+ * plays the wipe (`data-clip-shown`) when they scroll in and the image has
+ * painted. Wrappers already in view at mount are left visible (no wipe — you
+ * don't animate what's already on screen). If the JS never runs, never hydrates,
+ * or the image errors, the content simply stays visible: it cannot be hidden by
+ * a failed reveal. `revealTimeout` is the last-resort guarantee against a stuck
+ * clip. Honors `prefers-reduced-motion` via the CSS.
  *
  * Usage:
  *   <ClipReveal className="ds-absolute ds-inset-0">
