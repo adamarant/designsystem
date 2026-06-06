@@ -1,3 +1,8 @@
 node_modules/
 .DS_Store
 .npmrc
+
+# Nested workspace lockfiles are cruft: npm workspaces use the single root
+# package-lock.json. Keep an `npm install` accidentally run inside a package
+# from re-tracking one.
+packages/*/package-lock.json
