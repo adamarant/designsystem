@@ -94,6 +94,10 @@
     "./TurnstileWidget": {
       "types": "./dist/components/TurnstileWidget.d.ts",
       "import": "./dist/components/TurnstileWidget.js"
+    },
+    "./ClipReveal": {
+      "types": "./dist/components/ClipReveal.d.ts",
+      "import": "./dist/components/ClipReveal.js"
     }
   },
   "files": [

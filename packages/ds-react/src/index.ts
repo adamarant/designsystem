@@ -205,3 +205,5 @@ export {
   type TurnstileWidgetProps,
   type TurnstileWidgetHandle,
 } from "./components/TurnstileWidget";
+
+export { ClipReveal, type ClipRevealProps } from "./components/ClipReveal";
