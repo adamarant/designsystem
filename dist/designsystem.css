@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.12.0 */
+/* @ds/designsystem v0.12.1 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -12387,6 +12387,9 @@ a:hover .ds-sortable__handle,
 .ds-aspect-square { aspect-ratio: 1; }
 .ds-aspect-video { aspect-ratio: 16/9; }
 .ds-aspect-card { aspect-ratio: 16/10; }
+.ds-aspect-4-3 { aspect-ratio: 4/3; }
+.ds-aspect-3-4 { aspect-ratio: 3/4; }
+.ds-aspect-9-16 { aspect-ratio: 9/16; }
 
 /* ==========================================================================
    Utilities: Spacing (margin & padding)
