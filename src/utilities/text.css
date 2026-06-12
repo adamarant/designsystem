@@ -358,7 +358,10 @@
 .ds-reveal-delay-3 { transition-delay: 210ms; }
 .ds-reveal-delay-4 { transition-delay: 280ms; }
 
-/* --- Clip Reveal (image curtain, opt-in) ---
+/* --- Clip Reveal (image curtain, opt-in) [DEPRECATED 2026-06-12] ---
+   DEPRECATED: retired for delaying first paint; no consumer uses it anymore.
+   No replacement, render images directly. Kept functional (fail-safe: visible
+   unless armed) for backward-compat; remove in the next DS major. See DS_HEALTH.md.
    A top-to-bottom clip-path wipe and nothing else (no opacity / scale / blur).
    Pair with the <ClipReveal> component in @adamarant/ds-react.
 
