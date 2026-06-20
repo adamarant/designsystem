@@ -1,6 +1,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { cn } from "../utils/cn";
+import { ignorePasswordManagers } from "../utils/passwordManager";
 const inputStateMap = {
     default: "",
     error: "ds-input--error",
@@ -12,15 +13,15 @@ const inputSizeMap = {
     md: "",
     lg: "ds-input--lg",
 };
-export const Input = forwardRef(function Input({ state = "default", size = "md", flush, inline, className, ...rest }, ref) {
-    return (_jsx("input", { ref: ref, "aria-invalid": state === "error" || undefined, className: cn("ds-input", inputStateMap[state], inputSizeMap[size], flush && "ds-input--flush", inline && "ds-input--inline", className), ...rest }));
+export const Input = forwardRef(function Input({ state = "default", size = "md", flush, inline, allowPasswordManager, className, ...rest }, ref) {
+    return (_jsx("input", { ref: ref, "aria-invalid": state === "error" || undefined, ...(allowPasswordManager ? {} : ignorePasswordManagers), className: cn("ds-input", inputStateMap[state], inputSizeMap[size], flush && "ds-input--flush", inline && "ds-input--inline", className), ...rest }));
 });
 const textareaStateMap = {
     default: "",
     error: "ds-textarea--error",
 };
-export const Textarea = forwardRef(function Textarea({ state = "default", className, ...rest }, ref) {
-    return (_jsx("textarea", { ref: ref, "aria-invalid": state === "error" || undefined, className: cn("ds-textarea", textareaStateMap[state], className), ...rest }));
+export const Textarea = forwardRef(function Textarea({ state = "default", allowPasswordManager, className, ...rest }, ref) {
+    return (_jsx("textarea", { ref: ref, "aria-invalid": state === "error" || undefined, ...(allowPasswordManager ? {} : ignorePasswordManagers), className: cn("ds-textarea", textareaStateMap[state], className), ...rest }));
 });
 const selectSizeMap = {
     xs: "ds-select--xs",

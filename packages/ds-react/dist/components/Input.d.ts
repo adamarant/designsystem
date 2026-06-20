@@ -10,6 +10,13 @@ export interface InputProps extends Omit<ComponentPropsWithoutRef<"input">, "siz
     flush?: boolean;
     /** Inline — auto-width for flex rows. */
     inline?: boolean;
+    /**
+     * Allow password managers (1Password, etc.) to offer autofill on this field.
+     * Default false: the manager overlay is suppressed. Set true ONLY on real
+     * sign-in fields, and pass the matching autoComplete
+     * (e.g. "username" / "current-password").
+     */
+    allowPasswordManager?: boolean;
     /** Additional className */
     className?: string;
 }
@@ -18,6 +25,8 @@ type TextareaState = "default" | "error";
 export interface TextareaProps extends ComponentPropsWithoutRef<"textarea"> {
     /** Validation state. Default: "default" */
     state?: TextareaState;
+    /** Allow password managers to offer autofill. Default false: suppressed. */
+    allowPasswordManager?: boolean;
     /** Additional className */
     className?: string;
 }

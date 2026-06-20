@@ -1,17 +1,28 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils/cn";
+import { ignorePasswordManagers } from "../utils/passwordManager";
 
 export interface SearchProps extends ComponentPropsWithoutRef<"div"> { className?: string; }
 export interface SearchInputProps extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
   size?: "sm" | "md" | "lg";
+  /** Allow password managers (1Password, etc.) to offer autofill. Default false: suppressed. */
+  allowPasswordManager?: boolean;
   className?: string;
 }
 
 const sizeMap: Record<string, string> = { sm: "ds-search__input--sm", md: "", lg: "ds-search__input--lg" };
 
 const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
-  function SearchInput({ size = "md", className, ...rest }, ref) {
-    return <input ref={ref} type="search" className={cn("ds-search__input", sizeMap[size], className)} {...rest} />;
+  function SearchInput({ size = "md", allowPasswordManager, className, ...rest }, ref) {
+    return (
+      <input
+        ref={ref}
+        type="search"
+        {...(allowPasswordManager ? {} : ignorePasswordManagers)}
+        className={cn("ds-search__input", sizeMap[size], className)}
+        {...rest}
+      />
+    );
   },
 );
 

@@ -1,5 +1,6 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils/cn";
+import { ignorePasswordManagers } from "../utils/passwordManager";
 
 /* ================================================================== */
 /*  Shared types                                                       */
@@ -22,6 +23,13 @@ export interface InputProps
   flush?: boolean;
   /** Inline — auto-width for flex rows. */
   inline?: boolean;
+  /**
+   * Allow password managers (1Password, etc.) to offer autofill on this field.
+   * Default false: the manager overlay is suppressed. Set true ONLY on real
+   * sign-in fields, and pass the matching autoComplete
+   * (e.g. "username" / "current-password").
+   */
+  allowPasswordManager?: boolean;
   /** Additional className */
   className?: string;
 }
@@ -41,13 +49,22 @@ const inputSizeMap: Record<InputSize, string> = {
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   function Input(
-    { state = "default", size = "md", flush, inline, className, ...rest },
+    {
+      state = "default",
+      size = "md",
+      flush,
+      inline,
+      allowPasswordManager,
+      className,
+      ...rest
+    },
     ref,
   ) {
     return (
       <input
         ref={ref}
         aria-invalid={state === "error" || undefined}
+        {...(allowPasswordManager ? {} : ignorePasswordManagers)}
         className={cn(
           "ds-input",
           inputStateMap[state],
@@ -71,6 +88,8 @@ type TextareaState = "default" | "error";
 export interface TextareaProps extends ComponentPropsWithoutRef<"textarea"> {
   /** Validation state. Default: "default" */
   state?: TextareaState;
+  /** Allow password managers to offer autofill. Default false: suppressed. */
+  allowPasswordManager?: boolean;
   /** Additional className */
   className?: string;
 }
@@ -81,11 +100,15 @@ const textareaStateMap: Record<TextareaState, string> = {
 };
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  function Textarea({ state = "default", className, ...rest }, ref) {
+  function Textarea(
+    { state = "default", allowPasswordManager, className, ...rest },
+    ref,
+  ) {
     return (
       <textarea
         ref={ref}
         aria-invalid={state === "error" || undefined}
+        {...(allowPasswordManager ? {} : ignorePasswordManagers)}
         className={cn("ds-textarea", textareaStateMap[state], className)}
         {...rest}
       />
