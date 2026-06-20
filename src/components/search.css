@@ -51,7 +51,7 @@
 
 .ds-search:focus-within {
   border-color: var(--ds-color-interactive);
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
+  box-shadow: none;
 }
 
 @media (hover: hover) {
