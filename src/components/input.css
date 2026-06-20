@@ -32,8 +32,8 @@
   line-height: var(--ds-leading-normal);
   color: var(--ds-color-text);
   background-color: var(--ds-color-surface);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-color-border-hover);
+  border-radius: var(--ds-radius-md);
   outline: none;
   transition:
     border-color var(--ds-duration-fast) var(--ds-ease-default),
@@ -49,7 +49,7 @@
 .ds-input {
   /* Hover */
   &:hover {
-    border-color: var(--ds-color-border-hover);
+    border-color: var(--ds-color-border-active);
   }
 
   /* Focus — box-shadow ring instead of outline.
@@ -57,8 +57,8 @@
      so outline creates unavoidable double-border with offset.
      box-shadow follows border-radius perfectly and has no gap. */
   &:focus-visible {
-    border-color: var(--ds-ring-color);
-    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    border-color: var(--ds-color-interactive);
+    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
     scroll-margin-block: var(--ds-space-16, 4rem);
   }
 
@@ -148,12 +148,12 @@
 
 .ds-textarea {
   &:hover {
-    border-color: var(--ds-color-border-hover);
+    border-color: var(--ds-color-border-active);
   }
 
   &:focus-visible {
-    border-color: var(--ds-ring-color);
-    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    border-color: var(--ds-color-interactive);
+    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
     scroll-margin-block: var(--ds-space-16, 4rem);
   }
 
@@ -184,12 +184,12 @@
 
 .ds-select {
   &:hover {
-    border-color: var(--ds-color-border-hover);
+    border-color: var(--ds-color-border-active);
   }
 
   &:focus-visible {
-    border-color: var(--ds-ring-color);
-    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    border-color: var(--ds-color-interactive);
+    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
     scroll-margin-block: var(--ds-space-16, 4rem);
   }
 
