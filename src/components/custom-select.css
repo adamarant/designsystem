@@ -48,7 +48,7 @@
 .ds-custom-select__trigger:focus-visible {
   border-color: var(--ds-color-interactive);
   outline: none;
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
+  box-shadow: none;
   scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
