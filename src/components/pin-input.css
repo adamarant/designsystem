@@ -36,8 +36,8 @@
   width: var(--ds-size-3);
   height: var(--ds-size-3);
   padding: 0;
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-color-border-hover);
+  border-radius: var(--ds-radius-md);
   background-color: var(--ds-color-surface);
   color: var(--ds-color-text);
   font-family: var(--ds-font-mono);
@@ -63,13 +63,13 @@
 }
 
 .ds-pin-input__field:hover {
-  border-color: var(--ds-color-border-hover);
+  border-color: var(--ds-color-border-active);
 }
 
 .ds-pin-input__field:focus {
   outline: none;
-  border-color: var(--ds-color-border-active);
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  border-color: var(--ds-color-interactive);
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
 }
 
 /* --- Separator (dash between groups) --- */

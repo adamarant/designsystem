@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.13.0 */
+/* @ds/designsystem v0.13.1 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -858,8 +858,8 @@ hr {
   line-height: var(--ds-leading-normal);
   color: var(--ds-color-text);
   background-color: var(--ds-color-surface);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-color-border-hover);
+  border-radius: var(--ds-radius-md);
   outline: none;
   transition:
     border-color var(--ds-duration-fast) var(--ds-ease-default),
@@ -911,12 +911,12 @@ hr {
 }
 .ds-input:hover {
 
-    border-color: var(--ds-color-border-hover);
+    border-color: var(--ds-color-border-active);
   }
 .ds-input:focus-visible {
 
-    border-color: var(--ds-ring-color);
-    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    border-color: var(--ds-color-interactive);
+    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
     scroll-margin-block: var(--ds-space-16, 4rem);
   }
 .ds-input::placeholder {
@@ -1025,12 +1025,12 @@ hr {
 }
 .ds-textarea:hover {
 
-    border-color: var(--ds-color-border-hover);
+    border-color: var(--ds-color-border-active);
   }
 .ds-textarea:focus-visible {
 
-    border-color: var(--ds-ring-color);
-    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    border-color: var(--ds-color-interactive);
+    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
     scroll-margin-block: var(--ds-space-16, 4rem);
   }
 .ds-textarea::placeholder {
@@ -1081,12 +1081,12 @@ hr {
 }
 .ds-select:hover {
 
-    border-color: var(--ds-color-border-hover);
+    border-color: var(--ds-color-border-active);
   }
 .ds-select:focus-visible {
 
-    border-color: var(--ds-ring-color);
-    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    border-color: var(--ds-color-interactive);
+    box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
     scroll-margin-block: var(--ds-space-16, 4rem);
   }
 .ds-select--xs {
@@ -1568,21 +1568,21 @@ hr {
   line-height: var(--ds-leading-normal);
   color: var(--ds-color-text);
   background-color: var(--ds-color-surface);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-color-border-hover);
+  border-radius: var(--ds-radius-md);
   cursor: pointer;
   text-align: start;
   transition: all var(--ds-duration-fast) var(--ds-ease-default);
 }
 
 .ds-custom-select__trigger:hover {
-  border-color: var(--ds-color-border-hover);
+  border-color: var(--ds-color-border-active);
 }
 
 .ds-custom-select__trigger:focus-visible {
-  border-color: var(--ds-color-border-active);
+  border-color: var(--ds-color-interactive);
   outline: none;
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
   scroll-margin-block: var(--ds-space-16, 4rem);
 }
 
@@ -2430,8 +2430,8 @@ hr {
 .ds-number-input {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-color-border-hover);
+  border-radius: var(--ds-radius-md);
   background-color: var(--ds-color-surface);
   overflow: hidden;
   transition:
@@ -2440,8 +2440,8 @@ hr {
 }
 
 .ds-number-input:focus-within {
-  border-color: var(--ds-color-border-active);
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  border-color: var(--ds-color-interactive);
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
 }
 
 /* --- Field --- */
@@ -2608,8 +2608,8 @@ hr {
   width: var(--ds-size-3);
   height: var(--ds-size-3);
   padding: 0;
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-color-border-hover);
+  border-radius: var(--ds-radius-md);
   background-color: var(--ds-color-surface);
   color: var(--ds-color-text);
   font-family: var(--ds-font-mono);
@@ -2635,13 +2635,13 @@ hr {
 }
 
 .ds-pin-input__field:hover {
-  border-color: var(--ds-color-border-hover);
+  border-color: var(--ds-color-border-active);
 }
 
 .ds-pin-input__field:focus {
   outline: none;
-  border-color: var(--ds-color-border-active);
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  border-color: var(--ds-color-interactive);
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
 }
 
 /* --- Separator (dash between groups) --- */
@@ -11720,8 +11720,8 @@ hr {
   width: 100%;
   padding: var(--ds-space-2) var(--ds-space-2-5);
   background: var(--ds-color-surface);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-color-border-hover);
+  border-radius: var(--ds-radius-md);
   transition:
     border-color var(--ds-duration-fast) var(--ds-ease-default),
     box-shadow var(--ds-duration-fast) var(--ds-ease-default);
@@ -11736,15 +11736,15 @@ hr {
 
 
 .ds-search:focus-within {
-  border-color: var(--ds-color-border-active);
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  border-color: var(--ds-color-interactive);
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
 }
 
 @media (hover: hover) {
 
   .ds-search:hover:not(:focus-within) {
     background: var(--ds-color-surface-hover);
-    border-color: var(--ds-color-border-hover);
+    border-color: var(--ds-color-border-active);
   }
 }
 

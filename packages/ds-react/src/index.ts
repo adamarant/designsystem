@@ -36,6 +36,8 @@ export {
   type RadioProps,
 } from "./components/Input";
 
+export { ignorePasswordManagers } from "./utils/passwordManager";
+
 export {
   Card,
   type CardProps,

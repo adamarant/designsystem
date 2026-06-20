@@ -22,8 +22,8 @@
 .ds-number-input {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-color-border-hover);
+  border-radius: var(--ds-radius-md);
   background-color: var(--ds-color-surface);
   overflow: hidden;
   transition:
@@ -32,8 +32,8 @@
 }
 
 .ds-number-input:focus-within {
-  border-color: var(--ds-color-border-active);
-  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  border-color: var(--ds-color-interactive);
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-color-interactive);
 }
 
 /* --- Field --- */

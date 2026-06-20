@@ -5,6 +5,6 @@ export interface FieldProps extends ComponentPropsWithoutRef<"div"> { className?
 
 export const Field = forwardRef<HTMLDivElement, FieldProps>(
   function Field({ className, ...rest }, ref) {
-    return <div ref={ref} className={cn("ds-LField", className)} {...rest} />;
+    return <div ref={ref} className={cn("ds-field", className)} {...rest} />;
   },
 );

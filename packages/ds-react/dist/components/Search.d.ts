@@ -4,6 +4,8 @@ export interface SearchProps extends ComponentPropsWithoutRef<"div"> {
 }
 export interface SearchInputProps extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
     size?: "sm" | "md" | "lg";
+    /** Allow password managers (1Password, etc.) to offer autofill. Default false: suppressed. */
+    allowPasswordManager?: boolean;
     className?: string;
 }
 export declare const Search: import("react").ForwardRefExoticComponent<SearchProps & import("react").RefAttributes<HTMLDivElement>> & {
