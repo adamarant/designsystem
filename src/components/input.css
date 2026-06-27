@@ -316,7 +316,7 @@
     margin: 0;
     inline-size: 1rem;
     block-size: 1rem;
-    border: 1px solid var(--ds-color-border-active);
+    border: 1px solid var(--ds-color-border-hover);
     border-radius: var(--ds-radius-sm);
     background-color: var(--ds-color-surface);
     background-repeat: no-repeat;
@@ -327,7 +327,7 @@
   }
 
   & input:hover {
-    border-color: var(--ds-color-brand);
+    border-color: var(--ds-color-border-active);
   }
 
   & input:focus-visible {
