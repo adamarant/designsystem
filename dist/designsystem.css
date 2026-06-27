@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.14.3 */
+/* @ds/designsystem v0.15.0 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -1196,27 +1196,86 @@ hr {
   display: inline-flex;
   align-items: center;
   gap: var(--ds-space-2);
-  /* WCAG 2.5.8: vertical hit-target only — never inflate the inline size, or a
-     bare glyph gets phantom space beside it. Horizontal is covered by the
-     spacing exception (checkboxes in forms/lists are amply spaced). */
+  /* WCAG 2.5.8: vertical hit-target via min-block-size; horizontal target is
+     enlarged below with padding + negative margin so it never inflates layout
+     or the gap to adjacent text. */
   min-block-size: 1.5rem;
+  padding-inline: var(--ds-space-1);
+  margin-inline: calc(-1 * var(--ds-space-1));
   cursor: pointer;
   font-size: var(--ds-text-sm);
   color: var(--ds-color-text-secondary);
+
+  /* Custom-drawn box — native rendering is inconsistent across themes
+     (color-scheme fill, no hover, non-pointer cursor). */
+  
+
+  
+
+  
+
+  
 
   
 }
 .ds-checkbox input,
 .ds-radio input {
 
-    accent-color: var(--ds-color-interactive);
-    /* visual glyph at 16px, flush to its label edge */
+    appearance: none;
+    -webkit-appearance: none;
+    flex: none;
+    margin: 0;
     inline-size: 1rem;
     block-size: 1rem;
-    flex: none; /* don't let flex stretch the glyph to the label height */
-    margin: 0;
+    border: 1px solid var(--ds-color-border);
+    border-radius: var(--ds-radius-sm);
+    background-color: var(--ds-color-surface);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: background-color var(--ds-duration-fast) var(--ds-ease-default),
+                border-color var(--ds-duration-fast) var(--ds-ease-default);
+  }
+.ds-checkbox input:hover,
+.ds-radio input:hover {
+
+    border-color: var(--ds-color-brand);
+  }
+.ds-checkbox input:focus-visible,
+.ds-radio input:focus-visible {
+
+    outline: var(--ds-ring-width) solid var(--ds-ring-color);
+    outline-offset: var(--ds-ring-offset);
+  }
+.ds-checkbox input:checked,
+.ds-radio input:checked {
+
+    background-color: var(--ds-color-brand);
+    border-color: var(--ds-color-brand);
+  }
+.ds-checkbox input:disabled,
+.ds-radio input:disabled {
+
+    opacity: var(--ds-opacity-disabled);
+    cursor: not-allowed;
   }
 
+
+/* Checkmark glyph (checkbox only) */
+.ds-checkbox input:checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-6'/%3E%3C/svg%3E");
+  background-size: 70%;
+}
+
+/* Radio: round box + centered dot */
+.ds-radio input {
+  border-radius: var(--ds-radius-full);
+}
+
+.ds-radio input:checked {
+  background-image: radial-gradient(circle, white 0 38%, transparent 42%);
+  background-size: 100%;
+}
 
 /* Checkbox / Radio — size scale (md = default above, 16px glyph + text-sm).
    Glyph dimensions are structural geometry; label font scales with it. */
