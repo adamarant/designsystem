@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.14.2 */
+/* @ds/designsystem v0.14.3 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -1218,6 +1218,40 @@ hr {
   }
 
 
+/* Checkbox / Radio — size scale (md = default above, 16px glyph + text-sm).
+   Glyph dimensions are structural geometry; label font scales with it. */
+.ds-checkbox--sm,
+.ds-radio--sm {
+
+  font-size: var(--ds-text-xs);
+  min-block-size: 1.25rem;
+
+  
+}
+.ds-checkbox--sm input,
+.ds-radio--sm input {
+
+    inline-size: 0.875rem;
+    block-size: 0.875rem;
+  }
+
+
+.ds-checkbox--lg,
+.ds-radio--lg {
+
+  font-size: var(--ds-text-base);
+  min-block-size: 1.75rem;
+
+  
+}
+.ds-checkbox--lg input,
+.ds-radio--lg input {
+
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+  }
+
+
 /* ==========================================================================
    Component: Field
    Unified wrapper for form fields — label + input + hint + error.
@@ -1411,6 +1445,12 @@ hr {
   
 
   /* ---------------------------------------------------------------------------
+     Size: Extra small
+     --------------------------------------------------------------------------- */
+
+  
+
+  /* ---------------------------------------------------------------------------
      Size: Small
      --------------------------------------------------------------------------- */
 
@@ -1472,6 +1512,27 @@ hr {
     cursor: not-allowed;
     pointer-events: none;
   }
+.ds-toggle--xs {
+
+    width: 2.25rem;
+    height: 1rem;
+    padding: 2px;
+
+    
+
+    
+  }
+.ds-toggle--xs::after {
+
+      inset-inline-start: 2px;
+      width: 1.125rem;
+      height: 0.75rem;
+    }
+.ds-toggle--xs[aria-checked="true"]::after,
+.ds-toggle--xs.ds-toggle--checked::after {
+
+      transform: translateX(0.875rem) translateY(-50%);
+    }
 .ds-toggle--sm {
 
     width: 2.75rem;
@@ -3192,6 +3253,7 @@ hr {
 
    Modifiers:
      .ds-slider--sm        — Smaller track and thumb
+     .ds-slider--lg        — Larger track and thumb
      .ds-slider--disabled  — Reduced opacity, no interaction
    ========================================================================== */
 
@@ -3209,6 +3271,9 @@ hr {
   
 
   /* Size: small */
+  
+
+  /* Size: large */
   
 
   /* Disabled state */
@@ -3316,6 +3381,24 @@ hr {
 
         width: 1rem;
         height: 1rem;
+      }
+.ds-slider--lg input[type="range"] {
+
+      height: 0.5rem;
+
+      
+
+      
+    }
+.ds-slider--lg input[type="range"]::-webkit-slider-thumb {
+
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+.ds-slider--lg input[type="range"]::-moz-range-thumb {
+
+        width: 1.75rem;
+        height: 1.75rem;
       }
 .ds-slider--disabled {
 
@@ -6378,6 +6461,7 @@ hr {
 
    Modifiers:
      .ds-segmented--sm      — Smaller size
+     .ds-segmented--lg      — Larger size
      .ds-segmented--full    — Full width (items stretch equally)
    ========================================================================== */
 
@@ -6394,6 +6478,9 @@ hr {
   
 
   /* --- Small variant --- */
+  
+
+  /* --- Large variant --- */
   
 
   /* --- Full width --- */
@@ -6461,6 +6548,17 @@ hr {
 
       padding: var(--ds-space-1) var(--ds-space-2);
       font-size: var(--ds-text-xs);
+    }
+.ds-segmented--lg {
+
+    padding: var(--ds-space-1);
+
+    
+  }
+.ds-segmented--lg .ds-segmented__item {
+
+      padding: var(--ds-space-2) var(--ds-space-4);
+      font-size: var(--ds-text-base);
     }
 .ds-segmented--full {
 

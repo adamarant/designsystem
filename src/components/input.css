@@ -314,3 +314,27 @@
     margin: 0;
   }
 }
+
+/* Checkbox / Radio — size scale (md = default above, 16px glyph + text-sm).
+   Glyph dimensions are structural geometry; label font scales with it. */
+.ds-checkbox--sm,
+.ds-radio--sm {
+  font-size: var(--ds-text-xs);
+  min-block-size: 1.25rem;
+
+  & input {
+    inline-size: 0.875rem;
+    block-size: 0.875rem;
+  }
+}
+
+.ds-checkbox--lg,
+.ds-radio--lg {
+  font-size: var(--ds-text-base);
+  min-block-size: 1.75rem;
+
+  & input {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+  }
+}

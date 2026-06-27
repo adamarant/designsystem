@@ -509,7 +509,7 @@
       "examples": [
         {
           "title": "Context Menu",
-          "html": "<div class=\"ds-context-menu\" role=\"menu\" style=\"position:relative;top:auto;inset-inline-start:auto;animation:none;\">\n  <div class=\"ds-context-menu__label\">Record</div>\n  <button type=\"button\" class=\"ds-context-menu__item\" role=\"menuitem\">\n    <span class=\"ds-context-menu__item-label\">Open</span>\n    <span class=\"ds-context-menu__item-shortcut\">\u21B5</span>\n  </button>\n  <button type=\"button\" class=\"ds-context-menu__item\" role=\"menuitem\">\n    <span class=\"ds-context-menu__item-label\">Duplicate</span>\n  </button>\n  <button type=\"button\" class=\"ds-context-menu__item\" role=\"menuitem\">\n    <span class=\"ds-context-menu__item-label\">Copy link</span>\n  </button>\n  <button type=\"button\" class=\"ds-context-menu__item ds-context-menu__item--disabled\" role=\"menuitem\" aria-disabled=\"true\">\n    <span class=\"ds-context-menu__item-label\">Move to\u2026</span>\n  </button>\n  <hr class=\"ds-context-menu__divider\" />\n  <button type=\"button\" class=\"ds-context-menu__item\" role=\"menuitem\">\n    <span class=\"ds-context-menu__item-label\">Archive</span>\n  </button>\n  <button type=\"button\" class=\"ds-context-menu__item ds-context-menu__item--danger\" role=\"menuitem\">\n    <span class=\"ds-context-menu__item-label\">Delete</span>\n    <span class=\"ds-context-menu__item-shortcut\">\u232B</span>\n  </button>\n</div>"
+          "html": "<div class=\"ds-context-menu\" role=\"menu\" style=\"position:relative;top:auto;inset-inline-start:auto;animation:none;\">\n  <div class=\"ds-context-menu__label\">Record</div>\n  <button type=\"button\" class=\"ds-context-menu__item\" role=\"menuitem\">\n    <span class=\"ds-context-menu__item-label\">Open</span>\n    <span class=\"ds-context-menu__item-shortcut\">↵</span>\n  </button>\n  <button type=\"button\" class=\"ds-context-menu__item\" role=\"menuitem\">\n    <span class=\"ds-context-menu__item-label\">Duplicate</span>\n  </button>\n  <button type=\"button\" class=\"ds-context-menu__item\" role=\"menuitem\">\n    <span class=\"ds-context-menu__item-label\">Copy link</span>\n  </button>\n  <button type=\"button\" class=\"ds-context-menu__item ds-context-menu__item--disabled\" role=\"menuitem\" aria-disabled=\"true\">\n    <span class=\"ds-context-menu__item-label\">Move to…</span>\n  </button>\n  <hr class=\"ds-context-menu__divider\" />\n  <button type=\"button\" class=\"ds-context-menu__item\" role=\"menuitem\">\n    <span class=\"ds-context-menu__item-label\">Archive</span>\n  </button>\n  <button type=\"button\" class=\"ds-context-menu__item ds-context-menu__item--danger\" role=\"menuitem\">\n    <span class=\"ds-context-menu__item-label\">Delete</span>\n    <span class=\"ds-context-menu__item-shortcut\">⌫</span>\n  </button>\n</div>"
         }
       ]
     },
@@ -662,7 +662,9 @@
       ],
       "variants": [],
       "sizes": [
-        "--sm"
+        "--xs",
+        "--sm",
+        "--lg"
       ],
       "modifiers": [
         "--checked",
@@ -1086,7 +1088,8 @@
       ],
       "variants": [],
       "sizes": [
-        "--sm"
+        "--sm",
+        "--lg"
       ],
       "modifiers": [
         "--disabled"
@@ -1705,7 +1708,8 @@
       ],
       "variants": [],
       "sizes": [
-        "--sm"
+        "--sm",
+        "--lg"
       ],
       "modifiers": [
         "--full"
