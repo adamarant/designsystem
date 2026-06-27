@@ -296,10 +296,10 @@
 .ds-radio {
   display: inline-flex;
   align-items: center;
-  justify-content: center; /* center the glyph within the 24px target when unlabelled */
   gap: var(--ds-space-2);
-  /* WCAG 2.5.8: 24px hit-target lives on the clickable label, not the glyph */
-  min-inline-size: 1.5rem;
+  /* WCAG 2.5.8: vertical hit-target only — never inflate the inline size, or a
+     bare glyph gets phantom space beside it. Horizontal is covered by the
+     spacing exception (checkboxes in forms/lists are amply spaced). */
   min-block-size: 1.5rem;
   cursor: pointer;
   font-size: var(--ds-text-sm);
@@ -307,7 +307,7 @@
 
   & input {
     accent-color: var(--ds-color-interactive);
-    /* visual glyph stays 16px; the label provides the WCAG target */
+    /* visual glyph at 16px, flush to its label edge */
     inline-size: 1rem;
     block-size: 1rem;
     flex: none; /* don't let flex stretch the glyph to the label height */
