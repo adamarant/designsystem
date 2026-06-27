@@ -16,6 +16,7 @@
 
    Modifiers:
      .ds-segmented--sm      — Smaller size
+     .ds-segmented--lg      — Larger size
      .ds-segmented--full    — Full width (items stretch equally)
    ========================================================================== */
 
@@ -79,6 +80,16 @@
     & .ds-segmented__item {
       padding: var(--ds-space-1) var(--ds-space-2);
       font-size: var(--ds-text-xs);
+    }
+  }
+
+  /* --- Large variant --- */
+  &--lg {
+    padding: var(--ds-space-1);
+
+    & .ds-segmented__item {
+      padding: var(--ds-space-2) var(--ds-space-4);
+      font-size: var(--ds-text-base);
     }
   }
 
