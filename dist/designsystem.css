@@ -1274,7 +1274,8 @@ hr {
 .ds-checkbox--sm {
 
   font-size: var(--ds-text-xs);
-  min-block-size: 1.25rem;
+  /* WCAG 2.5.8: target stays at 24px even though the glyph shrinks to 14px. */
+  min-block-size: 1.5rem;
 
   
 }
@@ -1304,7 +1305,7 @@ hr {
 .ds-checkbox__content {
   display: flex;
   flex-direction: column;
-  gap: var(--ds-space-0-5);
+  line-height: var(--ds-leading-snug);
 }
 
 .ds-checkbox__label {
@@ -1328,6 +1329,18 @@ hr {
     margin-block-start: var(--ds-space-0-5);
   }
 
+
+/* Disabled — the whole control reads as disabled: not-allowed cursor across
+   the label (incl. the text) and dimmed text color. */
+.ds-checkbox:has(input:disabled) {
+  cursor: not-allowed;
+  color: var(--ds-color-text-disabled);
+}
+
+.ds-checkbox:has(input:disabled) .ds-checkbox__label,
+.ds-checkbox:has(input:disabled) .ds-checkbox__description {
+  color: var(--ds-color-text-disabled);
+}
 
 /* ==========================================================================
    Component: Radio
@@ -1415,7 +1428,8 @@ hr {
 .ds-radio--sm {
 
   font-size: var(--ds-text-xs);
-  min-block-size: 1.25rem;
+  /* WCAG 2.5.8: target stays at 24px even though the glyph shrinks to 14px. */
+  min-block-size: 1.5rem;
 
   
 }
@@ -1445,7 +1459,7 @@ hr {
 .ds-radio__content {
   display: flex;
   flex-direction: column;
-  gap: var(--ds-space-0-5);
+  line-height: var(--ds-leading-snug);
 }
 
 .ds-radio__label {
@@ -1469,6 +1483,18 @@ hr {
     margin-block-start: var(--ds-space-0-5);
   }
 
+
+/* Disabled — the whole control reads as disabled: not-allowed cursor across
+   the label (incl. the text) and dimmed text color. */
+.ds-radio:has(input:disabled) {
+  cursor: not-allowed;
+  color: var(--ds-color-text-disabled);
+}
+
+.ds-radio:has(input:disabled) .ds-radio__label,
+.ds-radio:has(input:disabled) .ds-radio__description {
+  color: var(--ds-color-text-disabled);
+}
 
 /* ==========================================================================
    Component: Field

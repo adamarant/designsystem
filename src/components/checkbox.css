@@ -71,7 +71,8 @@
    Glyph dimensions are structural geometry; label font scales with it. */
 .ds-checkbox--sm {
   font-size: var(--ds-text-xs);
-  min-block-size: 1.25rem;
+  /* WCAG 2.5.8: target stays at 24px even though the glyph shrinks to 14px. */
+  min-block-size: 1.5rem;
 
   & input {
     inline-size: 0.875rem;
@@ -94,7 +95,7 @@
 .ds-checkbox__content {
   display: flex;
   flex-direction: column;
-  gap: var(--ds-space-0-5);
+  line-height: var(--ds-leading-snug);
 }
 
 .ds-checkbox__label {
@@ -113,4 +114,16 @@
   & input {
     margin-block-start: var(--ds-space-0-5);
   }
+}
+
+/* Disabled — the whole control reads as disabled: not-allowed cursor across
+   the label (incl. the text) and dimmed text color. */
+.ds-checkbox:has(input:disabled) {
+  cursor: not-allowed;
+  color: var(--ds-color-text-disabled);
+}
+
+.ds-checkbox:has(input:disabled) .ds-checkbox__label,
+.ds-checkbox:has(input:disabled) .ds-checkbox__description {
+  color: var(--ds-color-text-disabled);
 }
