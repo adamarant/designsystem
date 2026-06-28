@@ -1,5 +1,7 @@
 /* === Form — Inputs, selectors, and form controls === */
 @import './input.css';
+@import './checkbox.css';
+@import './radio.css';
 @import './field.css';
 @import './toggle.css';
 @import './custom-select.css';

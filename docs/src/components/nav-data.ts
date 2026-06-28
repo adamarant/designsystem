@@ -66,6 +66,14 @@ export const NAV = [
         "href": "/components/input"
       },
       {
+        "name": "Checkbox",
+        "href": "/components/checkbox"
+      },
+      {
+        "name": "Radio",
+        "href": "/components/radio"
+      },
+      {
         "name": "Toggle",
         "href": "/components/toggle"
       },

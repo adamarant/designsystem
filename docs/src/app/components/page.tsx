@@ -22,6 +22,18 @@ const COMPONENTS = [
     "description": "Form inputs with surface bg, clean borders, focus ring."
   },
   {
+    "name": "Checkbox",
+    "href": "/components/checkbox",
+    "cat": "Form",
+    "description": "Custom-drawn checkbox: a native input restyled inside a label wrapper."
+  },
+  {
+    "name": "Radio",
+    "href": "/components/radio",
+    "cat": "Form",
+    "description": "Custom-drawn radio: a native input restyled inside a label wrapper."
+  },
+  {
     "name": "Badge",
     "href": "/components/badge",
     "cat": "Data Display",
@@ -364,7 +376,7 @@ export default function ComponentsIndex() {
     <>
       <div className="demo-page-header">
         <h1>Components</h1>
-        <p>All 59 components in the design system.</p>
+        <p>All 61 components in the design system.</p>
       </div>
       <div className="demo-preview demo-preview--col">
         {COMPONENTS.map((c) => (

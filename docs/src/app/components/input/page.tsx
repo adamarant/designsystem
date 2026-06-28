@@ -1,6 +1,6 @@
 "use client";
 
-import { Input, Textarea, Select, InputGroup, InputGroupIcon, Help, Checkbox, Radio, Label } from "@adamarant/ds-react";
+import { Input, Textarea, Select, InputGroup, InputGroupIcon, Help, Label } from "@adamarant/ds-react";
 import { DemoSection, DemoSectionCol } from "@/components/DemoSection";
 
 export default function InputPage() {
@@ -8,7 +8,7 @@ export default function InputPage() {
     <>
       <div className="demo-page-header">
         <h1>Input</h1>
-        <p>Surface bg, clean borders, focus ring. Includes Input, Textarea, Select, Checkbox, Radio.</p>
+        <p>Surface bg, clean borders, focus ring. Includes Input, Textarea, and Select.</p>
       </div>
 
       <DemoSectionCol title="Input" code={`<Label htmlFor="name">Name</Label>\n<Input id="name" placeholder="Enter your name" />\n\n<Label htmlFor="email">Email</Label>\n<Input id="email" state="error" placeholder="Invalid" />\n<Help variant="error">Please enter a valid email</Help>`}>
@@ -48,12 +48,6 @@ export default function InputPage() {
         <Select size="sm">
           <option>Small</option>
         </Select>
-      </DemoSection>
-
-      <DemoSection title="Checkbox & Radio" code={`<Checkbox><input type="checkbox" /> Remember me</Checkbox>\n<Radio><input type="radio" name="opt" /> Option A</Radio>`}>
-        <Checkbox><input type="checkbox" /> Remember me</Checkbox>
-        <Radio><input type="radio" name="opt" defaultChecked /> Option A</Radio>
-        <Radio><input type="radio" name="opt" /> Option B</Radio>
       </DemoSection>
     </>
   );

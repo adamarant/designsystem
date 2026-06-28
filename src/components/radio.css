@@ -1,0 +1,116 @@
+/* ==========================================================================
+   Component: Radio
+   Custom-drawn radio: a native input restyled inside a <label> wrapper.
+
+   ARIA requirements (consumer responsibility):
+   - Use a native <input type="radio" name="..."> inside <label class="ds-radio">
+   - Group radios by a shared name attribute for single-select semantics
+   - The wrapping label text is the accessible name
+   - Disabled: use the native disabled attribute on the input
+   ========================================================================== */
+
+.ds-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  /* WCAG 2.5.8: vertical hit-target via min-block-size; horizontal target is
+     enlarged below with padding + negative margin so it never inflates layout
+     or the gap to adjacent text. */
+  min-block-size: 1.5rem;
+  padding-inline: var(--ds-space-1);
+  margin-inline: calc(-1 * var(--ds-space-1));
+  cursor: pointer;
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text);
+
+  /* Custom-drawn box — native rendering is inconsistent across themes
+     (color-scheme fill, no hover, non-pointer cursor). */
+  & input {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: none;
+    margin: 0;
+    inline-size: 1rem;
+    block-size: 1rem;
+    border: 1px solid var(--ds-color-border-hover);
+    border-radius: var(--ds-radius-full);
+    background-color: var(--ds-color-surface);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: background-color var(--ds-duration-fast) var(--ds-ease-default),
+                border-color var(--ds-duration-fast) var(--ds-ease-default);
+  }
+
+  & input:hover {
+    border-color: var(--ds-color-border-active);
+  }
+
+  & input:focus-visible {
+    outline: var(--ds-ring-width) solid var(--ds-ring-color);
+    outline-offset: var(--ds-ring-offset);
+  }
+
+  & input:checked {
+    background-color: var(--ds-color-brand);
+    border-color: var(--ds-color-brand);
+  }
+
+  & input:disabled {
+    opacity: var(--ds-opacity-disabled);
+    cursor: not-allowed;
+  }
+}
+
+/* Centered dot (checked) */
+.ds-radio input:checked {
+  background-image: radial-gradient(circle, white 0 38%, transparent 42%);
+  background-size: 100%;
+}
+
+/* Size scale (md = default above). */
+.ds-radio--sm {
+  font-size: var(--ds-text-xs);
+  min-block-size: 1.25rem;
+
+  & input {
+    inline-size: 0.875rem;
+    block-size: 0.875rem;
+  }
+}
+
+.ds-radio--lg {
+  font-size: var(--ds-text-base);
+  min-block-size: 1.75rem;
+
+  & input {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+  }
+}
+
+/* Title + description. Hierarchy is carried by color (primary vs secondary)
+   and weight (medium vs normal), NOT size — both lines share the label size. */
+.ds-radio__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-0-5);
+}
+
+.ds-radio__label {
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text);
+}
+
+.ds-radio__description {
+  color: var(--ds-color-text-secondary);
+}
+
+/* With a description the box top-aligns to the title's first line. */
+.ds-radio:has(.ds-radio__description) {
+  align-items: flex-start;
+
+  & input {
+    margin-block-start: var(--ds-space-0-5);
+  }
+}
