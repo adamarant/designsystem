@@ -165,7 +165,7 @@ const SIDEBAR_GROUPS = [
   },
   {
     label: "Form",
-    names: ["input", "toggle", "field", "custom-select", "combobox", "datepicker", "slider", "number-input", "pin-input", "color-picker", "star-rating", "drop-zone", "search"],
+    names: ["input", "checkbox", "radio", "toggle", "field", "custom-select", "combobox", "datepicker", "slider", "number-input", "pin-input", "color-picker", "star-rating", "drop-zone", "search"],
   },
   {
     label: "Layout",

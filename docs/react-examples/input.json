@@ -12,7 +12,7 @@
     "code": "<Textarea placeholder=\"Write something...\" />\n<Textarea state=\"error\" placeholder=\"Error state\" />"
   },
   {
-    "title": "Select & Checkbox",
-    "code": "<Select>\n  <option>Choose...</option>\n  <option>Option A</option>\n</Select>\n\n<Checkbox><input type=\"checkbox\" /> Remember me</Checkbox>\n<Radio><input type=\"radio\" name=\"opt\" /> Option A</Radio>"
+    "title": "Select",
+    "code": "<Select>\n  <option>Choose...</option>\n  <option>Option A</option>\n</Select>"
   }
 ]

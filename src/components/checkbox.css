@@ -1,0 +1,116 @@
+/* ==========================================================================
+   Component: Checkbox
+   Custom-drawn checkbox: a native input restyled inside a <label> wrapper.
+
+   ARIA requirements (consumer responsibility):
+   - Use a native <input type="checkbox"> inside <label class="ds-checkbox">
+   - The wrapping label text is the accessible name
+   - Disabled: use the native disabled attribute on the input
+   ========================================================================== */
+
+.ds-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  /* WCAG 2.5.8: vertical hit-target via min-block-size; horizontal target is
+     enlarged below with padding + negative margin so it never inflates layout
+     or the gap to adjacent text. */
+  min-block-size: 1.5rem;
+  padding-inline: var(--ds-space-1);
+  margin-inline: calc(-1 * var(--ds-space-1));
+  cursor: pointer;
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text);
+
+  /* Custom-drawn box — native rendering is inconsistent across themes
+     (color-scheme fill, no hover, non-pointer cursor). */
+  & input {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: none;
+    margin: 0;
+    inline-size: 1rem;
+    block-size: 1rem;
+    border: 1px solid var(--ds-color-border-hover);
+    border-radius: var(--ds-radius-sm);
+    background-color: var(--ds-color-surface);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: background-color var(--ds-duration-fast) var(--ds-ease-default),
+                border-color var(--ds-duration-fast) var(--ds-ease-default);
+  }
+
+  & input:hover {
+    border-color: var(--ds-color-border-active);
+  }
+
+  & input:focus-visible {
+    outline: var(--ds-ring-width) solid var(--ds-ring-color);
+    outline-offset: var(--ds-ring-offset);
+  }
+
+  & input:checked {
+    background-color: var(--ds-color-brand);
+    border-color: var(--ds-color-brand);
+  }
+
+  & input:disabled {
+    opacity: var(--ds-opacity-disabled);
+    cursor: not-allowed;
+  }
+}
+
+/* Checkmark glyph */
+.ds-checkbox input:checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-6'/%3E%3C/svg%3E");
+  background-size: 70%;
+}
+
+/* Size scale (md = default above, 16px glyph + text-sm).
+   Glyph dimensions are structural geometry; label font scales with it. */
+.ds-checkbox--sm {
+  font-size: var(--ds-text-xs);
+  min-block-size: 1.25rem;
+
+  & input {
+    inline-size: 0.875rem;
+    block-size: 0.875rem;
+  }
+}
+
+.ds-checkbox--lg {
+  font-size: var(--ds-text-base);
+  min-block-size: 1.75rem;
+
+  & input {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+  }
+}
+
+/* Title + description. Hierarchy is carried by color (primary vs secondary)
+   and weight (medium vs normal), NOT size — both lines share the label size. */
+.ds-checkbox__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-0-5);
+}
+
+.ds-checkbox__label {
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text);
+}
+
+.ds-checkbox__description {
+  color: var(--ds-color-text-secondary);
+}
+
+/* With a description the box top-aligns to the title's first line. */
+.ds-checkbox:has(.ds-checkbox__description) {
+  align-items: flex-start;
+
+  & input {
+    margin-block-start: var(--ds-space-0-5);
+  }
+}

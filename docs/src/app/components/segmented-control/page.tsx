@@ -66,6 +66,10 @@ export default function SegmentedControlPage() {
                 <td>Size</td>
               </tr>
               <tr>
+                <td><code>--lg</code></td>
+                <td>Size</td>
+              </tr>
+              <tr>
                 <td><code>--full</code></td>
                 <td>Modifier</td>
               </tr>
