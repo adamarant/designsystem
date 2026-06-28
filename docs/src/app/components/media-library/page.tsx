@@ -35,6 +35,10 @@ export default function MediaLibraryPage() {
                 <td>Base</td>
               </tr>
               <tr>
+                <td><code>.ds-media-detail-slot</code></td>
+                <td>Base</td>
+              </tr>
+              <tr>
                 <td><code>.ds-media-detail</code></td>
                 <td>Base</td>
               </tr>
@@ -67,6 +71,10 @@ export default function MediaLibraryPage() {
                 <td>Element</td>
               </tr>
               <tr>
+                <td><code>__action</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
                 <td><code>__item</code></td>
                 <td>Element</td>
               </tr>
@@ -80,6 +88,10 @@ export default function MediaLibraryPage() {
               </tr>
               <tr>
                 <td><code>--active</code></td>
+                <td>Variant</td>
+              </tr>
+              <tr>
+                <td><code>--danger</code></td>
                 <td>Variant</td>
               </tr>
             </tbody>
