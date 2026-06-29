@@ -3,6 +3,12 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef, useEffect, useRef, } from "react";
 import { cn } from "../utils/cn";
 /**
+ * @deprecated 2026-06-12. The image clip-reveal is being retired: it delays the
+ * first paint and adds a per-image IntersectionObserver for a non-essential
+ * flourish. No replacement, render images directly. Kept functional for
+ * backward-compat; slated for removal in the next DS major. Tracked in
+ * infra/DS_HEALTH.md.
+ *
  * Reveals its content with a top-to-bottom clip-path wipe (the `.ds-clip-reveal`
  * utility).
  *

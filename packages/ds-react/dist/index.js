@@ -56,7 +56,7 @@ export { DropZone } from "./components/DropZone";
 export { CustomSelect } from "./components/CustomSelect";
 export { Slider } from "./components/Slider";
 export { Field } from "./components/Field";
-export { Combobox } from "./components/Combobox";
+export { Combobox, } from "./components/Combobox";
 export { NumberInput } from "./components/NumberInput";
 export { PinInput } from "./components/PinInput";
 export { ColorPicker } from "./components/ColorPicker";

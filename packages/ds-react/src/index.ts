@@ -184,7 +184,11 @@ export { DropZone, type DropZoneProps } from "./components/DropZone";
 export { CustomSelect, type CustomSelectProps } from "./components/CustomSelect";
 export { Slider, type SliderProps } from "./components/Slider";
 export { Field, type FieldProps } from "./components/Field";
-export { Combobox, type ComboboxProps } from "./components/Combobox";
+export {
+  Combobox,
+  type ComboboxProps,
+  type ComboboxOption,
+} from "./components/Combobox";
 export { NumberInput, type NumberInputProps } from "./components/NumberInput";
 export { PinInput, type PinInputProps } from "./components/PinInput";
 export { ColorPicker, type ColorPickerProps } from "./components/ColorPicker";
