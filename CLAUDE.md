@@ -191,13 +191,30 @@ src/
 **Focus Not Obscured:** All focusable components include `scroll-margin-block` on `:focus-visible`.
 
 **Color Contrast:**
-- `--ds-color-text` and `--ds-color-text-secondary` pass WCAG AAA in both themes
+- `--ds-color-text` (primary) and `--ds-color-text-secondary` both pass WCAG AAA in both themes — but **AAA-pass is not a licence to use secondary as the default text colour.** See "Text Colour Hierarchy" (§10) below: primary is the default for body and content; secondary is reserved for the subordinate member of a pair.
 - `--ds-color-text-tertiary` does NOT meet 4.5:1 — use only for decorative/supplementary text
 - `--ds-color-text-disabled` is exempt per WCAG 1.4.3
 
 **ARIA Reference:** Every component CSS file includes an ARIA requirements block in its header comment. Check the component file header for the exact attributes needed.
 
 **Motion:** Components with animations include `@media (prefers-reduced-motion: reduce)` blocks.
+
+---
+
+### 10. Text Colour Hierarchy
+
+**Primary is the default text colour. Secondary is the exception, never the rule.**
+
+A surface whose text is mostly secondary reads as washed-out and loses concreteness. This is the single most common way DS-built pages go flat, so the law is explicit:
+
+- **Body, content, labels, values, list items, card body, the active nav item → `--ds-color-text` (primary)**, or no colour class at all (text inherits primary from `body`). When in doubt, primary.
+- **`--ds-color-text-secondary` is only for a genuinely subordinate sibling sitting next to a primary element in the same group** — a description under a primary title, a caption under a value. It is the *lesser of a pair*; it must always have a primary companion nearby. Secondary alone, with nothing primary above it, is the wrong colour.
+- **Secondary must never be the dominant text colour of a surface.** If you are reaching for secondary on most elements of a card, section, or page, the correct colour is primary.
+- **`--ds-color-text-tertiary`** is decorative/supplementary only (timestamps, counts, copyright) and does not meet 4.5:1 — never for content.
+- **Icons follow the same law.** An icon that carries meaning is foreground/primary, not secondary. Secondary icons only when paired with, and subordinate to, a primary element.
+- **Menus / nav are the one place an all-secondary block is correct** — inactive items in secondary, the active item in primary. But express that with the nav component's own state classes (`.ds-nav__item` active state, `--ds-color-surface-active`), not by hand-stacking `ds-text-secondary` / `ds-text-primary`. Footers are the same low-emphasis exception.
+
+The reflex "this is sub-text, so secondary" over-generalises into "most text is secondary." Resist it: sub-text means *subordinate within a pair*, not *any text that isn't a heading*.
 
 ---
 
