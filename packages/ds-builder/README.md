@@ -5,8 +5,8 @@ non-technical admin edit pages — change text and images, reorder sections — 
 every output stays DS-compliant, because blocks are typed sections that developers
 author once and the admin only fills in.
 
-> **Status: 0.0.0 — Phase 0 spike (not published).** Core model validated; editor
-> and Supabase persistence land in later phases. See the roadmap below.
+> **Status: 0.0.0 — Phases 0–1 done (not published).** Core model + content store
+> validated; the editor UI lands in later phases. See the roadmap below.
 
 ## Why block-based (not free-form)
 
@@ -25,6 +25,13 @@ admin inside typed, DS-composed sections: preview and production render from the
   `blocks`, each with `data`. Localized fields hold `{ [locale]: value }` maps.
 - **`PageRenderer`** (from `@adamarant/ds-builder/render`) — renders a document to
   React. Server-safe and lightweight; the only piece a public site ships.
+- **`validateDocument(registry, doc)`** — validates content against the registry
+  (unknown blocks, per-field type/required/select/localized checks). Run it before
+  saving so blocks only ever receive well-formed data.
+- **Page store** (from `@adamarant/ds-builder/server`) — service-role Supabase CRUD:
+  `listPages`, `getDraft`, `getPublished`, `createPage`, `saveDraft`, `publishPage`,
+  `deletePage`. Draft and published content live side by side; publishing snapshots
+  the draft into a versions table and bumps the counter. Schema in [`sql/schema.sql`](sql/schema.sql).
 
 ### i18n
 
@@ -57,7 +64,7 @@ npm run smoke --workspace=packages/ds-builder   # JSON → HTML, i18n, fallback,
 | Phase | Scope |
 |---|---|
 | 0 ✅ | Core primitives, crash-safe renderer, i18n, Hero spike |
-| 1 | Supabase content model (`<prefix>_pages` + versions, RLS), server CRUD, data validation |
+| 1 ✅ | Supabase content model (`<prefix>_pages` + versions, RLS), server CRUD, data validation |
 | 2 | Editor MVP: admin shell + canvas + auto-generated property panels + MediaPicker + draft/publish |
 | 3 | Composition: dnd-kit reorder, block palette (add/remove), undo/redo |
 | 4 | Pilot: migrate a real consumer page (esys home) |

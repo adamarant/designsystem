@@ -3,4 +3,6 @@
 export { defineBlock } from './registry/defineBlock.js';
 export { createRegistry } from './registry/createRegistry.js';
 export { resolveData } from './schema/resolve.js';
+export { validateDocument } from './validate/validateDocument.js';
+export { validateFields } from './validate/validateFields.js';
 //# sourceMappingURL=index.js.map

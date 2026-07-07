@@ -5,8 +5,9 @@
 // Run after `npm run build`: `node smoke.mjs`.
 import { createElement } from 'react'
 import { renderToReadableStream } from 'react-dom/server'
-import { createRegistry } from './dist/index.js'
+import { createRegistry, validateDocument } from './dist/index.js'
 import { PageRenderer } from './dist/render/index.js'
+import { buildPublish } from './dist/server/index.js'
 import { HeroBlock } from './dist/demo/HeroBlock.js'
 import { samplePage } from './dist/demo/sample-page.js'
 
@@ -70,6 +71,45 @@ const boomHtml = await render(
 )
 check('throwing block is isolated, page survives', boomHtml.includes('Build pages, safely'))
 check('throwing block shows error fallback', boomHtml.includes('[error]'))
+
+// 5. Validation — a well-formed document passes.
+const okValidation = validateDocument(registry, samplePage)
+check('valid document passes validation', okValidation.valid && okValidation.issues.length === 0)
+
+// 6. Validation — catches unknown block, wrong scalar type, bad select, missing required.
+const badDoc = {
+  ...samplePage,
+  blocks: [
+    { id: 'u', type: 'ghost', version: 1, data: {} },
+    {
+      id: 'bad',
+      type: 'hero',
+      version: 1,
+      data: {
+        // title (required, localized) missing
+        align: 'diagonal', // not an allowed option
+        cta: { label: 'no href' }, // link missing href
+        subtitle: { en: 42 }, // localized text but number
+      },
+    },
+  ],
+}
+const badValidation = validateDocument(registry, badDoc)
+const msgs = badValidation.issues.map((i) => `${i.blockType}:${i.path}:${i.message}`)
+console.log('\nvalidation issues:\n' + msgs.map((m) => '  - ' + m).join('\n') + '\n')
+check('invalid document fails validation', !badValidation.valid)
+check('catches unknown block type', msgs.some((m) => m.includes('unknown block type')))
+check('catches missing required (title)', msgs.some((m) => m.startsWith('hero:title:required')))
+check('catches bad select value (align)', msgs.some((m) => m.includes('hero:align:expected one of')))
+check('catches bad link (cta.href)', msgs.some((m) => m.includes('hero:cta:expected link')))
+check('catches wrong scalar in locale map (subtitle.en)', msgs.some((m) => m.includes('hero:subtitle.en:expected string')))
+
+// 7. Publish logic — bumps version and snapshots the current draft.
+const p1 = buildPublish({ draft_content: samplePage, current_version: 0 })
+const p2 = buildPublish({ draft_content: samplePage, current_version: 4 })
+check('first publish is version 1', p1.version === 1)
+check('publish bumps from current version', p2.version === 5)
+check('publish snapshots the draft content', p1.content === samplePage)
 
 console.log(`\n${failures === 0 ? '✅ all checks passed' : `❌ ${failures} check(s) failed`}`)
 process.exit(failures === 0 ? 0 : 1)

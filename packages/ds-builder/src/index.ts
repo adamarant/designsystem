@@ -7,6 +7,11 @@ export type { Registry } from './registry/createRegistry.js'
 
 export { resolveData } from './schema/resolve.js'
 
+export { validateDocument } from './validate/validateDocument.js'
+export { validateFields } from './validate/validateFields.js'
+export type { ValidationIssue } from './validate/validateFields.js'
+export type { DocumentValidation, BlockIssue } from './validate/validateDocument.js'
+
 export type { BlockDefinition, BlockRenderProps } from './types/block.js'
 export type { PageDocument, BlockInstance } from './types/page.js'
 
