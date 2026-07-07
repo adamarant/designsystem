@@ -1,0 +1,140 @@
+/*
+ * @adamarant/ds-builder — editor chrome styles.
+ * Namespaced `dsb-` (never `ds-`) so this lives outside the design-system class
+ * surface. Colours/spacing pull from DS tokens so the editor matches the theme.
+ * Import in your admin: `@import "@adamarant/ds-builder/styles/editor";`
+ */
+
+.dsb-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: var(--ds-color-bg);
+  color: var(--ds-color-text);
+}
+
+.dsb-toolbar {
+  padding: var(--ds-space-3) var(--ds-space-4);
+  border-bottom: 1px solid var(--ds-color-border);
+  background: var(--ds-color-surface);
+}
+
+.dsb-toolbar__locale {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+}
+
+.dsb-toolbar__locale-label {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+}
+
+.dsb-toolbar__status {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  min-width: 5rem;
+  text-align: right;
+}
+
+.dsb-toolbar__status[data-status='error'] {
+  color: var(--ds-color-error);
+}
+
+.dsb-editor__body {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 340px);
+  flex: 1;
+  min-height: 0;
+}
+
+/* --- canvas --- */
+
+.dsb-canvas {
+  overflow-y: auto;
+  padding: var(--ds-space-4);
+  background: var(--ds-color-surface-muted);
+}
+
+.dsb-canvas__empty {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: var(--ds-color-text-tertiary);
+  font-size: var(--ds-text-sm);
+}
+
+.dsb-selectable {
+  position: relative;
+  cursor: pointer;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  transition: outline-color var(--ds-duration-fast) var(--ds-ease-out);
+}
+
+.dsb-selectable:hover {
+  outline-color: var(--ds-color-border-hover);
+}
+
+.dsb-selectable--selected {
+  outline-color: var(--ds-color-brand);
+}
+
+.dsb-selectable__tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 2px var(--ds-space-2);
+  font-size: var(--ds-text-2xs);
+  color: var(--ds-color-on-brand);
+  background: var(--ds-color-brand);
+  opacity: 0;
+  transition: opacity var(--ds-duration-fast) var(--ds-ease-out);
+}
+
+.dsb-selectable:hover .dsb-selectable__tag,
+.dsb-selectable--selected .dsb-selectable__tag {
+  opacity: 1;
+}
+
+.dsb-block-error {
+  padding: var(--ds-space-4);
+  color: var(--ds-color-text-secondary);
+  border: 1px dashed var(--ds-color-border);
+  font-size: var(--ds-text-sm);
+}
+
+/* --- property panel --- */
+
+.dsb-panel {
+  overflow-y: auto;
+  padding: var(--ds-space-4);
+  border-left: 1px solid var(--ds-color-border);
+  background: var(--ds-color-surface);
+}
+
+.dsb-panel--empty {
+  display: grid;
+  place-items: center;
+  color: var(--ds-color-text-tertiary);
+  font-size: var(--ds-text-sm);
+  text-align: center;
+}
+
+.dsb-panel__header {
+  margin-bottom: var(--ds-space-4);
+  font-weight: var(--ds-weight-semibold);
+  font-size: var(--ds-text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-wide);
+  color: var(--ds-color-text-secondary);
+}
+
+.dsb-field__thumb {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--ds-radius-md);
+  border: 1px solid var(--ds-color-border);
+}

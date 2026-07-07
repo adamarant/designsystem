@@ -8,6 +8,7 @@ import { renderToReadableStream } from 'react-dom/server'
 import { createRegistry, validateDocument } from './dist/index.js'
 import { PageRenderer } from './dist/render/index.js'
 import { buildPublish } from './dist/server/index.js'
+import { editorReducer, initEditorState } from './dist/editor/reducer.js'
 import { HeroBlock } from './dist/demo/HeroBlock.js'
 import { samplePage } from './dist/demo/sample-page.js'
 
@@ -110,6 +111,33 @@ const p2 = buildPublish({ draft_content: samplePage, current_version: 4 })
 check('first publish is version 1', p1.version === 1)
 check('publish bumps from current version', p2.version === 5)
 check('publish snapshots the draft content', p1.content === samplePage)
+
+// 8. Editor reducer — the pure state logic behind the (headless-untestable) UI.
+const s0 = initEditorState(samplePage)
+check('init picks default locale', s0.locale === 'en' && s0.selectedId === null && !s0.dirty)
+
+const sSel = editorReducer(s0, { type: 'select', id: 'b1' })
+check('select sets selectedId', sSel.selectedId === 'b1')
+
+// non-localized field write
+const sAlign = editorReducer(sSel, { type: 'updateField', blockId: 'b1', key: 'align', value: 'left', localized: false })
+check('non-localized update writes value + sets dirty', sAlign.document.blocks[0].data.align === 'left' && sAlign.dirty)
+
+// localized field write goes into the active locale's map, preserving others
+const sTitleEn = editorReducer(sAlign, { type: 'updateField', blockId: 'b1', key: 'title', value: 'New EN', localized: true })
+check('localized update writes into active locale', sTitleEn.document.blocks[0].data.title.en === 'New EN')
+check('localized update preserves other locales', sTitleEn.document.blocks[0].data.title.ja === '安全にページを構築')
+
+// switching locale then writing targets the new locale
+const sJa = editorReducer(sTitleEn, { type: 'setLocale', locale: 'ja' })
+const sTitleJa = editorReducer(sJa, { type: 'updateField', blockId: 'b1', key: 'title', value: 'New JA', localized: true })
+check('locale switch retargets writes', sTitleJa.document.blocks[0].data.title.ja === 'New JA' && sTitleJa.document.blocks[0].data.title.en === 'New EN')
+
+// immutability — original document untouched
+check('reducer does not mutate the original document', samplePage.blocks[0].data.align === 'center')
+
+// markSaved clears dirty
+check('markSaved clears dirty flag', !editorReducer(sAlign, { type: 'markSaved' }).dirty)
 
 console.log(`\n${failures === 0 ? '✅ all checks passed' : `❌ ${failures} check(s) failed`}`)
 process.exit(failures === 0 ? 0 : 1)
