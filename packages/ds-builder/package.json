@@ -1,0 +1,62 @@
+{
+  "name": "@adamarant/ds-builder",
+  "version": "0.0.0",
+  "description": "Block-based visual page builder for @adamarant/designsystem consumers — typed section registry, crash-safe renderer, admin editor.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./render": {
+      "types": "./dist/render/index.d.ts",
+      "import": "./dist/render/index.js",
+      "default": "./dist/render/index.js"
+    }
+  },
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "smoke": "node smoke.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "next": ">=14.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.7.0"
+  },
+  "keywords": [
+    "page-builder",
+    "cms",
+    "design-system",
+    "blocks",
+    "editor"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamarant/designsystem.git",
+    "directory": "packages/ds-builder"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

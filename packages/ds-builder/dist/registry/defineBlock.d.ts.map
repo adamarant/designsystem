@@ -1,0 +1,1 @@
+{"version":3,"file":"defineBlock.d.ts","sourceRoot":"","sources":["../../src/registry/defineBlock.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,MAAM,EAAE,MAAM,qBAAqB,CAAA;AACjD,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAA;AAExD;;;;;;;;;;;;GAYG;AACH,wBAAgB,WAAW,CAAC,KAAK,CAAC,CAAC,SAAS,MAAM,EAChD,GAAG,EAAE,eAAe,CAAC,CAAC,CAAC,GACtB,eAAe,CAAC,CAAC,CAAC,CAEpB"}
