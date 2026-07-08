@@ -5,8 +5,8 @@ non-technical admin edit pages — change text and images, reorder sections — 
 every output stays DS-compliant, because blocks are typed sections that developers
 author once and the admin only fills in.
 
-> **Status: 0.0.0 — Phases 0–2 done (not published).** Core model, content store,
-> and the editor MVP are in; drag-reorder + the real pilot come next. See the roadmap.
+> **Status: 0.1.0 — Phases 0–2 done, ready for first publish.** Core model, content
+> store, and the editor MVP are in; drag-reorder + the real pilot come next. See the roadmap.
 
 ## Why block-based (not free-form)
 
