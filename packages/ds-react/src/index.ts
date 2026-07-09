@@ -122,6 +122,11 @@ export {
 } from "./components/Toggle";
 
 export {
+  ThemeToggle,
+  type ThemeToggleProps,
+} from "./components/ThemeToggle";
+
+export {
   Table,
   type TableProps,
   type TableWrapperProps,

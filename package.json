@@ -1,6 +1,6 @@
 {
   "name": "@adamarant/designsystem",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "description": "Design system — installable, extensible, indestructible.",
   "main": "dist/designsystem.css",
   "style": "dist/designsystem.css",
@@ -65,6 +65,7 @@
     "./components/table": "./src/components/table.css",
     "./components/tabs": "./src/components/tabs.css",
     "./components/tag": "./src/components/tag.css",
+    "./components/theme-toggle": "./src/components/theme-toggle.css",
     "./components/timeline": "./src/components/timeline.css",
     "./components/toast": "./src/components/toast.css",
     "./components/toggle": "./src/components/toggle.css",

@@ -760,6 +760,37 @@
       ]
     },
     {
+      "name": "theme-toggle",
+      "title": "Theme Toggle",
+      "description": "A modern light/dark switch that shows both icons (sun + moon) at once, so the current and available theme are always visible. aria-checked=\"true\" means dark mode.",
+      "category": "action",
+      "classes": [
+        ".ds-theme-toggle"
+      ],
+      "elements": [
+        "__thumb",
+        "__icon"
+      ],
+      "variants": [],
+      "sizes": [
+        "--sm"
+      ],
+      "modifiers": [
+        "--checked",
+        "--disabled"
+      ],
+      "examples": [
+        {
+          "title": "Theme Toggle States",
+          "html": "<button class=\"ds-theme-toggle\" role=\"switch\" aria-checked=\"false\" aria-label=\"Switch to dark mode\">\n  <span class=\"ds-theme-toggle__thumb\"></span>\n  <span class=\"ds-theme-toggle__icon ds-theme-toggle__icon--sun\"></span>\n  <span class=\"ds-theme-toggle__icon ds-theme-toggle__icon--moon\"></span>\n</button>\n<button class=\"ds-theme-toggle\" role=\"switch\" aria-checked=\"true\" aria-label=\"Switch to light mode\">\n  <span class=\"ds-theme-toggle__thumb\"></span>\n  <span class=\"ds-theme-toggle__icon ds-theme-toggle__icon--sun\"></span>\n  <span class=\"ds-theme-toggle__icon ds-theme-toggle__icon--moon\"></span>\n</button>"
+        },
+        {
+          "title": "Small",
+          "html": "<button class=\"ds-theme-toggle ds-theme-toggle--sm\" role=\"switch\" aria-checked=\"true\" aria-label=\"Switch to light mode\">\n  <span class=\"ds-theme-toggle__thumb\"></span>\n  <span class=\"ds-theme-toggle__icon ds-theme-toggle__icon--sun\"></span>\n  <span class=\"ds-theme-toggle__icon ds-theme-toggle__icon--moon\"></span>\n</button>"
+        }
+      ]
+    },
+    {
       "name": "breadcrumb",
       "title": "Breadcrumb",
       "description": "A horizontal breadcrumb trail for hierarchical navigation.",
