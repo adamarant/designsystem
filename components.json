@@ -773,7 +773,8 @@
       ],
       "variants": [],
       "sizes": [
-        "--sm"
+        "--sm",
+        "--lg"
       ],
       "modifiers": [
         "--checked",

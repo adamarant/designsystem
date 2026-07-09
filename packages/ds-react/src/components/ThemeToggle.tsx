@@ -10,7 +10,7 @@ import { cn } from "../utils/cn";
 /* ================================================================== */
 
 type Theme = "light" | "dark";
-type ThemeToggleSize = "sm" | "md";
+type ThemeToggleSize = "sm" | "md" | "lg";
 
 export interface ThemeToggleProps
   extends Omit<
@@ -34,6 +34,7 @@ export interface ThemeToggleProps
 const sizeMap: Record<ThemeToggleSize, string> = {
   sm: "ds-theme-toggle--sm",
   md: "",
+  lg: "ds-theme-toggle--lg",
 };
 
 /* ================================================================== */

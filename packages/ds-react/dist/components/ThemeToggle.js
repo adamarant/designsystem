@@ -7,6 +7,7 @@ import { cn } from "../utils/cn";
 const sizeMap = {
     sm: "ds-theme-toggle--sm",
     md: "",
+    lg: "ds-theme-toggle--lg",
 };
 /* ================================================================== */
 /*  Icons (self-contained — no icon-library dependency)                */
