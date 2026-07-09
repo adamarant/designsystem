@@ -19,6 +19,7 @@ export { Tabs, } from "./components/Tabs";
 export { Dropdown, } from "./components/Dropdown";
 export { Tooltip, } from "./components/Tooltip";
 export { Toggle, } from "./components/Toggle";
+export { ThemeToggle, } from "./components/ThemeToggle";
 export { Table, } from "./components/Table";
 export { Accordion, } from "./components/Accordion";
 export { StatCard, } from "./components/StatCard";

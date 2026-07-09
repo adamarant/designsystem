@@ -18,6 +18,7 @@ export { Tabs, type TabsProps, type TabsListProps, type TabsTabProps, type TabsI
 export { Dropdown, type DropdownProps, type DropdownTriggerProps, type DropdownMenuProps, type DropdownItemProps, type DropdownItemIconProps, type DropdownItemLabelProps, type DropdownItemShortcutProps, type DropdownDividerProps, type DropdownHeaderProps, } from "./components/Dropdown";
 export { Tooltip, type TooltipProps, type TooltipContentProps, } from "./components/Tooltip";
 export { Toggle, type ToggleProps, type ToggleLabelProps, type ToggleLabelTextProps, } from "./components/Toggle";
+export { ThemeToggle, type ThemeToggleProps, } from "./components/ThemeToggle";
 export { Table, type TableProps, type TableWrapperProps, type TableSortProps, type TableFooterProps, } from "./components/Table";
 export { Accordion, type AccordionProps, type AccordionItemProps, type AccordionTriggerProps, type AccordionContentProps, type AccordionBodyProps, } from "./components/Accordion";
 export { StatCard, type StatCardProps, type StatCardLabelProps, type StatCardValueProps, type StatCardDetailProps, type StatCardIconProps, } from "./components/StatCard";
