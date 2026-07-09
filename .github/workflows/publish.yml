@@ -37,7 +37,10 @@ jobs:
           node-version: 24
       # NB: no registry-url — it writes an .npmrc with _authToken=${NODE_AUTH_TOKEN}
       # which short-circuits OIDC and causes a 404/403 on publish. OIDC needs NO token.
-      - run: npm install -g npm@latest   # npm >= 11.5.1 required by OIDC
+      # Pin to the 11.x line: npm@latest jumped to 12.0.0 (2026-07), whose
+      # global install ships a broken provenance path ("Cannot find module
+      # 'sigstore'") and fails OIDC publish. 11.x satisfies the >= 11.5.1 floor.
+      - run: npm install -g npm@11   # npm >= 11.5.1 required by OIDC
       - run: npm ci
       - name: Resolve target workspace
         id: t
