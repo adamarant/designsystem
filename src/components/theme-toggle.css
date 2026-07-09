@@ -177,7 +177,38 @@
       transform: translateX(1.25rem) translateY(-50%);
     }
   }
+
+  /* -------------------------------------------------------------------------
+     Size: Large - matches a 2.25rem icon-button row (e.g. nav actions)
+     ------------------------------------------------------------------------- */
+
+  &--lg {
+    width: 4.5rem;
+    height: 2.25rem;
+    padding-inline: 0.5rem;
+
+    & .ds-theme-toggle__thumb,
+    & .ds-theme-toggle__icon {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
+    & .ds-theme-toggle__thumb {
+      inset-inline-start: 0.5rem;
+    }
+
+    & .ds-theme-toggle__icon > svg {
+      width: 1.125rem;
+      height: 1.125rem;
+    }
+
+    &[aria-checked="true"] .ds-theme-toggle__thumb,
+    &.ds-theme-toggle--checked .ds-theme-toggle__thumb {
+      transform: translateX(1.75rem) translateY(-50%);
+    }
+  }
 }
+
 
 @media (prefers-reduced-motion: reduce) {
   .ds-theme-toggle,
