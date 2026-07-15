@@ -18,5 +18,12 @@ export const defaultLabels = {
     linkLabel: 'Label',
     addItem: 'Add item',
     remove: 'Remove',
+    addSection: 'Add section',
+    blockPalette: 'Add a section',
+    moveUp: 'Move up',
+    moveDown: 'Move down',
+    deleteBlock: 'Delete section',
+    undo: 'Undo',
+    redo: 'Redo',
 };
 //# sourceMappingURL=labels.js.map

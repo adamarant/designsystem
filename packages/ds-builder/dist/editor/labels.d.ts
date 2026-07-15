@@ -19,6 +19,13 @@ export interface EditorLabels {
     linkLabel: string;
     addItem: string;
     remove: string;
+    addSection: string;
+    blockPalette: string;
+    moveUp: string;
+    moveDown: string;
+    deleteBlock: string;
+    undo: string;
+    redo: string;
 }
 export declare const defaultLabels: EditorLabels;
 //# sourceMappingURL=labels.d.ts.map

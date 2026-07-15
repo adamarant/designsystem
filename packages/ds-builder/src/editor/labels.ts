@@ -19,6 +19,13 @@ export interface EditorLabels {
   linkLabel: string
   addItem: string
   remove: string
+  addSection: string
+  blockPalette: string
+  moveUp: string
+  moveDown: string
+  deleteBlock: string
+  undo: string
+  redo: string
 }
 
 export const defaultLabels: EditorLabels = {
@@ -41,4 +48,11 @@ export const defaultLabels: EditorLabels = {
   linkLabel: 'Label',
   addItem: 'Add item',
   remove: 'Remove',
+  addSection: 'Add section',
+  blockPalette: 'Add a section',
+  moveUp: 'Move up',
+  moveDown: 'Move down',
+  deleteBlock: 'Delete section',
+  undo: 'Undo',
+  redo: 'Redo',
 }

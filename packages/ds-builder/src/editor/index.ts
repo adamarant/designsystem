@@ -4,7 +4,9 @@ export { defaultLabels, type EditorLabels } from './labels.js'
 export {
   editorReducer,
   initEditorState,
+  MAX_HISTORY,
   type EditorState,
   type EditorAction,
   type SaveStatus,
 } from './reducer.js'
+export { createBlockInstance } from './blockInstance.js'

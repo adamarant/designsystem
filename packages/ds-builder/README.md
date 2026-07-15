@@ -6,7 +6,7 @@ every output stays DS-compliant, because blocks are typed sections that develope
 author once and the admin only fills in.
 
 > **Status: 0.1.0 — Phases 0–2 done, ready for first publish.** Core model, content
-> store, and the editor MVP are in; drag-reorder + the real pilot come next. See the roadmap.
+> store, the editor MVP, and composition (palette, reorder, undo/redo) are in; the real pilot comes next. See the roadmap.
 
 ## Why block-based (not free-form)
 
@@ -107,6 +107,6 @@ npm run smoke --workspace=packages/ds-builder   # JSON → HTML, i18n, fallback,
 | 0 ✅ | Core primitives, crash-safe renderer, i18n, Hero spike |
 | 1 ✅ | Supabase content model (`<prefix>_pages` + versions, RLS), server CRUD, data validation |
 | 2 ✅ | Editor MVP: canvas + auto-generated property panels + injected media picker + draft autosave + validated publish |
-| 3 | Composition: dnd-kit reorder, block palette (add/remove), undo/redo |
+| 3 ✅ | Composition: block palette (add), per-block reorder + delete controls, undo/redo (coalesced field edits). Reorder ships button/keyboard-first — drag (dnd-kit) deferred to keep the package dependency-free |
 | 4 | Pilot: migrate a real consumer page (esys home) |
 | 5 | Docs, authoring guide, versioning guide, snapshot tests |
