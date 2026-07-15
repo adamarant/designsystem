@@ -3,6 +3,11 @@
  * it decides which blocks exist. Duplicate types throw immediately so a
  * copy-paste mistake fails loud at startup, not silently at render.
  */
+// Param is BlockDefinition<any>[] (not BlockDefinition<Fields>[]): a block's
+// `render` prop makes BlockDefinition invariant in its field shape, so
+// specifically-typed blocks from defineBlock aren't assignable to the general
+// type. Accepting <any> lets consumers pass their typed blocks without a cast.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function createRegistry(blocks) {
     const map = new Map();
     for (const block of blocks) {

@@ -13,5 +13,5 @@ export interface Registry {
  * it decides which blocks exist. Duplicate types throw immediately so a
  * copy-paste mistake fails loud at startup, not silently at render.
  */
-export declare function createRegistry(blocks: BlockDefinition[]): Registry;
+export declare function createRegistry(blocks: readonly BlockDefinition<any>[]): Registry;
 //# sourceMappingURL=createRegistry.d.ts.map
