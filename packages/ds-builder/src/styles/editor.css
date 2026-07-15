@@ -1,0 +1,216 @@
+/*
+ * @adamarant/ds-builder — editor chrome styles.
+ * Namespaced `dsb-` (never `ds-`) so this lives outside the design-system class
+ * surface. Colours/spacing pull from DS tokens so the editor matches the theme.
+ * Import in your admin: `@import "@adamarant/ds-builder/styles/editor";`
+ */
+
+.dsb-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: var(--ds-color-bg);
+  color: var(--ds-color-text);
+}
+
+.dsb-toolbar {
+  padding: var(--ds-space-3) var(--ds-space-4);
+  border-bottom: 1px solid var(--ds-color-border);
+  background: var(--ds-color-surface);
+}
+
+.dsb-toolbar__locale {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+}
+
+.dsb-toolbar__locale-label {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+}
+
+.dsb-toolbar__status {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  min-width: 5rem;
+  text-align: right;
+}
+
+.dsb-toolbar__status[data-status='error'] {
+  color: var(--ds-color-error);
+}
+
+/* --- add-section + palette --- */
+
+.dsb-toolbar__add {
+  position: relative;
+}
+
+.dsb-palette__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+}
+
+.dsb-palette {
+  position: absolute;
+  top: calc(100% + var(--ds-space-2));
+  left: 0;
+  z-index: 21;
+  min-width: 220px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: var(--ds-space-2);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-md);
+  background: var(--ds-color-surface);
+  box-shadow: var(--ds-shadow-lg);
+}
+
+.dsb-palette__title {
+  padding: var(--ds-space-2);
+  font-size: var(--ds-text-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-wide);
+  color: var(--ds-color-text-secondary);
+}
+
+.dsb-palette__category {
+  padding: var(--ds-space-2) var(--ds-space-2) var(--ds-space-1);
+  font-size: var(--ds-text-2xs);
+  color: var(--ds-color-text-tertiary);
+}
+
+.dsb-palette__item {
+  display: block;
+  width: 100%;
+  padding: var(--ds-space-2) var(--ds-space-3);
+  border: none;
+  border-radius: var(--ds-radius-sm);
+  background: transparent;
+  color: var(--ds-color-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dsb-palette__item:hover {
+  background: var(--ds-color-surface-muted);
+}
+
+.dsb-editor__body {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 340px);
+  flex: 1;
+  min-height: 0;
+}
+
+/* --- canvas --- */
+
+.dsb-canvas {
+  overflow-y: auto;
+  padding: var(--ds-space-4);
+  background: var(--ds-color-surface-muted);
+}
+
+.dsb-canvas__empty {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: var(--ds-color-text-tertiary);
+  font-size: var(--ds-text-sm);
+}
+
+.dsb-selectable {
+  position: relative;
+  cursor: pointer;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  transition: outline-color var(--ds-duration-fast) var(--ds-ease-out);
+}
+
+.dsb-selectable:hover {
+  outline-color: var(--ds-color-border-hover);
+}
+
+.dsb-selectable--selected {
+  outline-color: var(--ds-color-brand);
+}
+
+.dsb-selectable__tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 2px var(--ds-space-2);
+  font-size: var(--ds-text-2xs);
+  color: var(--ds-color-on-brand);
+  background: var(--ds-color-brand);
+  opacity: 0;
+  transition: opacity var(--ds-duration-fast) var(--ds-ease-out);
+}
+
+.dsb-selectable__controls {
+  position: absolute;
+  top: var(--ds-space-2);
+  right: var(--ds-space-2);
+  z-index: 2;
+  display: flex;
+  gap: var(--ds-space-1);
+  padding: var(--ds-space-1);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-md);
+  background: var(--ds-color-surface);
+  box-shadow: var(--ds-shadow-sm);
+  opacity: 0;
+  transition: opacity var(--ds-duration-fast) var(--ds-ease-out);
+}
+
+.dsb-selectable:hover .dsb-selectable__tag,
+.dsb-selectable--selected .dsb-selectable__tag,
+.dsb-selectable:hover .dsb-selectable__controls,
+.dsb-selectable--selected .dsb-selectable__controls {
+  opacity: 1;
+}
+
+.dsb-block-error {
+  padding: var(--ds-space-4);
+  color: var(--ds-color-text-secondary);
+  border: 1px dashed var(--ds-color-border);
+  font-size: var(--ds-text-sm);
+}
+
+/* --- property panel --- */
+
+.dsb-panel {
+  overflow-y: auto;
+  padding: var(--ds-space-4);
+  border-left: 1px solid var(--ds-color-border);
+  background: var(--ds-color-surface);
+}
+
+.dsb-panel--empty {
+  display: grid;
+  place-items: center;
+  color: var(--ds-color-text-tertiary);
+  font-size: var(--ds-text-sm);
+  text-align: center;
+}
+
+.dsb-panel__header {
+  margin-bottom: var(--ds-space-4);
+  font-weight: var(--ds-weight-semibold);
+  font-size: var(--ds-text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-wide);
+  color: var(--ds-color-text-secondary);
+}
+
+.dsb-field__thumb {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--ds-radius-md);
+  border: 1px solid var(--ds-color-border);
+}

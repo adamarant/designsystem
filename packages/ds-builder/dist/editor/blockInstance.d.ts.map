@@ -1,0 +1,1 @@
+{"version":3,"file":"blockInstance.d.ts","sourceRoot":"","sources":["../../src/editor/blockInstance.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAA;AACxD,OAAO,KAAK,EAAE,aAAa,EAAE,MAAM,kBAAkB,CAAA;AAYrD;;;;;GAKG;AACH,wBAAgB,mBAAmB,CAAC,GAAG,EAAE,eAAe,GAAG,aAAa,CAEvE"}

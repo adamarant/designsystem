@@ -1,0 +1,84 @@
+{
+  "name": "@adamarant/ds-builder",
+  "version": "0.1.0",
+  "description": "Block-based visual page builder for @adamarant/designsystem consumers — typed section registry, crash-safe renderer, admin editor.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./render": {
+      "types": "./dist/render/index.d.ts",
+      "import": "./dist/render/index.js",
+      "default": "./dist/render/index.js"
+    },
+    "./server": {
+      "types": "./dist/server/index.d.ts",
+      "import": "./dist/server/index.js",
+      "default": "./dist/server/index.js"
+    },
+    "./editor": {
+      "types": "./dist/editor/index.d.ts",
+      "import": "./dist/editor/index.js",
+      "default": "./dist/editor/index.js"
+    },
+    "./styles/editor": "./src/styles/editor.css"
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "sql/"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "smoke": "node smoke.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "next": ">=14.0.0",
+    "@supabase/supabase-js": ">=2.0.0",
+    "@adamarant/ds-react": ">=0.8.0"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    },
+    "@supabase/supabase-js": {
+      "optional": true
+    },
+    "@adamarant/ds-react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@adamarant/ds-react": "^0.8.0",
+    "@supabase/supabase-js": "^2.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.7.0"
+  },
+  "keywords": [
+    "page-builder",
+    "cms",
+    "design-system",
+    "blocks",
+    "editor"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamarant/designsystem.git",
+    "directory": "packages/ds-builder"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

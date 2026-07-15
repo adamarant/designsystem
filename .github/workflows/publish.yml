@@ -6,6 +6,7 @@ name: publish
 #   ds-shaders-v* -> @adamarant/ds-shaders    (packages/ds-shaders)
 #   ds-admin-v*   -> @adamarant/ds-admin      (packages/ds-admin)
 #   ds-hooks-v*   -> @adamarant/ds-hooks      (packages/ds-hooks, not yet on npm)
+#   ds-builder-v* -> @adamarant/ds-builder    (packages/ds-builder, not yet on npm)
 # Each package needs its OWN trusted-publisher config on npmjs.com pointing at
 # repo adamarant/designsystem + workflow filename publish.yml.
 
@@ -17,10 +18,11 @@ on:
       - 'ds-shaders-v*'
       - 'ds-admin-v*'
       - 'ds-hooks-v*'
+      - 'ds-builder-v*'
   workflow_dispatch:
     inputs:
       target:
-        description: 'root | ds-react | ds-shaders | ds-admin | ds-hooks'
+        description: 'root | ds-react | ds-shaders | ds-admin | ds-hooks | ds-builder'
         default: root
 
 permissions:
@@ -52,6 +54,7 @@ jobs:
             ds-shaders-v*|ds-shaders) WS="packages/ds-shaders" ;;
             ds-admin-v*|ds-admin)     WS="packages/ds-admin" ;;
             ds-hooks-v*|ds-hooks)     WS="packages/ds-hooks" ;;
+            ds-builder-v*|ds-builder) WS="packages/ds-builder" ;;
             *)                        WS="" ;;   # root designsystem
           esac
           echo "ref=$REF -> target=${WS:-root}"
