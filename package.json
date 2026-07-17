@@ -11,6 +11,7 @@
     "./base": "./src/base/index.css",
     "./components": "./src/components/index.css",
     "./components/accordion": "./src/components/accordion.css",
+    "./components/admin-form": "./src/components/admin-form.css",
     "./components/admin-layout": "./src/components/admin-layout.css",
     "./components/alert": "./src/components/alert.css",
     "./components/avatar": "./src/components/avatar.css",
