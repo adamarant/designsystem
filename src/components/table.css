@@ -94,18 +94,27 @@
   border-block-end-color: var(--ds-color-border);
 }
 
-/* --- Sort header button --- */
+/* --- Sort header button ---
+   The button fills the whole header cell so the entire cell is the click
+   target, not just the label. The th drops its padding (below) and the button
+   carries it. */
+.ds-table th:has(.ds-table__sort) {
+  padding: 0;
+}
+
 .ds-table__sort {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: var(--ds-space-1);
-  padding: 0;
+  width: 100%;
+  padding: var(--ds-space-3) var(--ds-space-4);
   border: none;
   background: transparent;
   color: inherit;
   font: inherit;
   text-transform: inherit;
   letter-spacing: inherit;
+  text-align: inherit;
   cursor: pointer;
   white-space: nowrap;
   transition: color var(--ds-duration-fast) var(--ds-ease-default);
