@@ -67,6 +67,18 @@ export declare const sharedBlocks: (import("../index.js").BlockDefinition<{
         readonly default: "";
     };
 }> | import("../index.js").BlockDefinition<{
+    readonly overline: {
+        readonly type: "text";
+        readonly label: "Overline";
+        readonly localized: true;
+        readonly default: "";
+    };
+    readonly title: {
+        readonly type: "text";
+        readonly label: "Titolo";
+        readonly localized: true;
+        readonly default: "";
+    };
     readonly content: {
         readonly type: "richtext";
         readonly label: "Contenuto";
