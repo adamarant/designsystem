@@ -214,3 +214,23 @@
   border-radius: var(--ds-radius-md);
   border: 1px solid var(--ds-color-border);
 }
+
+/* Object sub-fields: a subtle grouped indent so a nested form reads as one unit. */
+.dsb-fieldgroup {
+  padding-inline-start: var(--ds-space-3);
+  border-inline-start: 2px solid var(--ds-color-border);
+}
+
+/* One entry of a list-of-object repeater: a bordered card with its controls on top. */
+.dsb-listitem {
+  padding: var(--ds-space-3);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-md);
+  background: var(--ds-color-surface);
+}
+
+.dsb-listitem__idx {
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-semibold);
+  color: var(--ds-color-text-secondary);
+}

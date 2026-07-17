@@ -58,6 +58,54 @@ const HeroBlock = defineBlock({
     ),
 })
 
+// --- demo block with a list-of-object field (the "cards" pattern) ---
+const CardsBlock = defineBlock({
+  type: 'cards',
+  version: 1,
+  label: 'Cards',
+  fields: {
+    heading: { type: 'text', label: 'Heading', localized: true, default: '' },
+    items: {
+      type: 'list',
+      label: 'Items',
+      of: {
+        type: 'object',
+        fields: {
+          title: { type: 'text', label: 'Title', localized: true, required: true, default: '' },
+          time: { type: 'text', label: 'Time', default: 'TBA' },
+        },
+      },
+    },
+  },
+  render: ({ data }) =>
+    h('section', { className: 'ds-section' },
+      h('div', { className: 'ds-container' }, [
+        data.heading ? h('h2', { key: 'h' }, data.heading) : null,
+        h('ul', { key: 'l' }, data.items.map((it, i) => h('li', { key: i }, `${it.title} @ ${it.time}`))),
+      ]),
+    ),
+})
+
+const cardsPage = {
+  schemaVersion: 1,
+  defaultLocale: 'en',
+  locales: ['en', 'ja'],
+  blocks: [
+    {
+      id: 'c1',
+      type: 'cards',
+      version: 1,
+      data: {
+        heading: { en: 'Schedule', ja: '番組表' },
+        items: [
+          { title: { en: 'The Voice', ja: 'ザ・ボイス' }, time: '18:30' },
+          { title: { en: 'The Opinion', ja: 'オピニオン' } }, // time omitted → default 'TBA'
+        ],
+      },
+    },
+  ],
+}
+
 const samplePage = {
   schemaVersion: 1,
   defaultLocale: 'en',
@@ -82,7 +130,7 @@ const samplePage = {
   ],
 }
 
-const registry = createRegistry([HeroBlock])
+const registry = createRegistry([HeroBlock, CardsBlock])
 
 // 1. Localized render — same document, two locales.
 const en = await render(h(PageRenderer, { document: samplePage, registry, locale: 'en' }))
@@ -218,6 +266,37 @@ check('selection breaks the coalesce run', e3.past.length === 2)
 check('undo after coalesced edits jumps past the whole run', editorReducer(e2, { type: 'undo' }).document.blocks[0].data.title.en === 'Build pages, safely')
 const branched = editorReducer(editorReducer(u2, { type: 'undo' }), { type: 'addBlock', block: { id: 'b4', type: 'hero', version: 1, data: {} } })
 check('a new edit after undo clears the redo stack', branched.future.length === 0)
+
+// 11. Object-list — repeater of structured items with localized sub-fields.
+const cardsEn = await render(h(PageRenderer, { document: cardsPage, registry, locale: 'en' }))
+const cardsJa = await render(h(PageRenderer, { document: cardsPage, registry, locale: 'ja' }))
+check('object-list renders each item (en)', cardsEn.includes('The Voice @ 18:30') && cardsEn.includes('The Opinion @ TBA'))
+check('object-list localizes sub-fields (ja)', cardsJa.includes('ザ・ボイス @ 18:30') && cardsJa.includes('番組表'))
+check('object-list item default fills omitted sub-field', cardsEn.includes('@ TBA'))
+check('object-list locale is isolated (no ja in en)', !cardsEn.includes('ザ・ボイス'))
+check('valid object-list document passes validation', validateDocument(registry, cardsPage).valid)
+
+// 12. Object-list validation — required sub-field + wrong nested scalar type.
+const badCards = {
+  ...cardsPage,
+  blocks: [
+    {
+      id: 'c2',
+      type: 'cards',
+      version: 1,
+      data: {
+        items: [
+          { time: '18:30' }, // missing required title
+          { title: { en: 99 }, time: 42 }, // wrong scalar types
+        ],
+      },
+    },
+  ],
+}
+const badCardsMsgs = validateDocument(registry, badCards).issues.map((i) => `${i.blockType}:${i.path}:${i.message}`)
+check('object-list catches missing required sub-field', badCardsMsgs.some((m) => m.startsWith('cards:items[0].title:required')))
+check('object-list catches wrong nested localized scalar', badCardsMsgs.some((m) => m.includes('cards:items[1].title.en:expected string')))
+check('object-list catches wrong nested scalar', badCardsMsgs.some((m) => m.includes('cards:items[1].time:expected string')))
 
 console.log(`\n${failures === 0 ? '✅ all checks passed' : `❌ ${failures} check(s) failed`}`)
 process.exit(failures === 0 ? 0 : 1)
