@@ -57,6 +57,7 @@ export function AdminTable<Row>({
   onReorder,
   editingKey,
   appendRow,
+  rowClassName,
   className,
 }: AdminTableProps<Row>) {
   const getKey = (row: Row, i: number): string =>
@@ -110,11 +111,11 @@ export function AdminTable<Row>({
     }
   }
 
-  function rowClass(key: string): string | undefined {
-    if (!reorderable) return undefined
+  function rowClass(key: string, row: Row): string | undefined {
     return [
-      draggedKey === key ? 'ds-sortable--dragging' : '',
-      overKey === key ? 'ds-sortable--over' : '',
+      reorderable && draggedKey === key ? 'ds-sortable--dragging' : '',
+      reorderable && overKey === key ? 'ds-sortable--over' : '',
+      rowClassName?.(row) ?? '',
     ]
       .filter(Boolean)
       .join(' ') || undefined
@@ -168,7 +169,7 @@ export function AdminTable<Row>({
               const editing = editingKey != null && editingKey === key
               const ctx = { editing }
               return (
-                <tr key={key} className={rowClass(key)} {...(editing ? {} : dragProps(key))}>
+                <tr key={key} className={rowClass(key, row)} {...(editing ? {} : dragProps(key))}>
                   {reorderable && (
                     <td>
                       {!editing && (
