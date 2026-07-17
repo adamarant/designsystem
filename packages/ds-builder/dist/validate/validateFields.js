@@ -36,12 +36,23 @@ function validateValue(field, value, path, issues) {
                 issues.push({ path, message: 'expected link { href }' });
             }
             break;
+        case 'object':
+            if (!isPlainObject(value)) {
+                issues.push({ path, message: 'expected object' });
+                break;
+            }
+            for (const key of Object.keys(field.fields)) {
+                validateField(field.fields[key], value[key], `${path}.${key}`, issues);
+            }
+            break;
         case 'list':
             if (!Array.isArray(value)) {
                 issues.push({ path, message: 'expected array' });
                 break;
             }
-            value.forEach((item, i) => validateValue(field.of, item, `${path}[${i}]`, issues));
+            // Items go through validateField so an object `of` honours its sub-fields'
+            // required + localized rules (a scalar `of` collapses to validateValue).
+            value.forEach((item, i) => validateField(field.of, item, `${path}[${i}]`, issues));
             break;
     }
 }

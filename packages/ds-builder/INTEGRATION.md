@@ -43,6 +43,54 @@ A custom block is a `defineBlock({ type, version, label, fields, render })`; the
 property panel in the editor is **auto-generated from `fields`**. See the shared
 blocks in this package (`src/blocks/*.tsx`) for the pattern.
 
+### Repeating structured items — `object` inside `list` (0.3.0+)
+
+For sections built from repeated "cards" (a schedule of shows, a timeline of
+awards, a list of links with labels) wrap an `object` field in a `list`. The
+editor renders an add/remove/reorder repeater, each item being a mini-form of the
+object's sub-fields; `data` is fully typed as an array of objects. Sub-fields may
+be `localized` and `required` individually.
+
+```tsx
+export const PalinsestoBlock = defineBlock({
+  type: 'palinsesto',
+  version: 1,
+  label: 'Palinsesto',
+  fields: {
+    heading: { type: 'text', label: 'Titolo', localized: true, default: '' },
+    shows: {
+      type: 'list',
+      label: 'Trasmissioni',
+      of: {
+        type: 'object',
+        fields: {
+          nome: { type: 'text', label: 'Nome', localized: true, required: true, default: '' },
+          orario: { type: 'text', label: 'Orario', default: '' },
+          canale: { type: 'text', label: 'Canale', default: '' },
+        },
+      },
+    },
+  },
+  // data.shows: Array<{ nome: string; orario: string; canale: string }>
+  render: ({ data }) => (
+    <section className="ds-section">
+      <div className="ds-container">
+        {data.heading ? <h2 className="ds-section-title">{data.heading}</h2> : null}
+        {data.shows.map((s, i) => (
+          <article key={i} className="ds-card ds-card__body">
+            <h3 className="ds-card__title">{s.nome}</h3>
+            <p>{s.orario} · {s.canale}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  ),
+})
+```
+
+A bare `object` (not wrapped in a list) is also valid — it renders as one grouped
+sub-form, useful for a compound field like an address.
+
 ## 3. Store config — `src/lib/pageStore.ts`
 
 ```ts

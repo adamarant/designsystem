@@ -1,7 +1,11 @@
 import type { Field, Fields } from './fields.js'
 
-/** The value a field falls back to when stored data is missing. */
-function fieldDefault(field: Field): unknown {
+function isPlainObject(v: unknown): v is Record<string, unknown> {
+  return typeof v === 'object' && v !== null && !Array.isArray(v)
+}
+
+/** The value a leaf field falls back to when stored data is missing. */
+function scalarDefault(field: Field): unknown {
   if ('default' in field && field.default !== undefined) return field.default
   switch (field.type) {
     case 'text':
@@ -25,34 +29,53 @@ function fieldDefault(field: Field): unknown {
 }
 
 /**
- * Collapse a possibly-localized stored value to the active locale.
- * A localized field stores `{ [locale]: value }`; we pick the active locale,
- * fall back to the document's default locale, then to the field default.
- * Non-localized values pass through untouched.
+ * Resolve one field's stored value into render-ready, single-locale data.
+ * Containers recurse: an `object` resolves each sub-field; a `list` resolves
+ * each item against `of`. Localized leaves are collapsed to the active locale
+ * (falling back to the default locale, then the field default). Containers are
+ * never localized themselves — localization lives on their leaves — so a nested
+ * localized leaf is collapsed exactly like a top-level one.
  */
-function resolveValue(
+function resolveField(
   field: Field,
   raw: unknown,
   locale: string,
   defaultLocale: string,
 ): unknown {
-  if (raw === null) return null
-  if (raw === undefined) return fieldDefault(field)
-
-  if (field.localized && typeof raw === 'object' && !Array.isArray(raw)) {
-    const map = raw as Record<string, unknown>
-    const picked = map[locale] ?? map[defaultLocale]
-    return picked === undefined ? fieldDefault(field) : picked
+  if (field.type === 'object') {
+    const src = isPlainObject(raw)
+      ? raw
+      : isPlainObject(field.default)
+        ? field.default
+        : {}
+    const out: Record<string, unknown> = {}
+    for (const key of Object.keys(field.fields)) {
+      out[key] = resolveField(field.fields[key], src[key], locale, defaultLocale)
+    }
+    return out
   }
 
+  if (field.type === 'list') {
+    const arr = Array.isArray(raw) ? raw : Array.isArray(field.default) ? field.default : []
+    return arr.map((item) => resolveField(field.of, item, locale, defaultLocale))
+  }
+
+  // Leaf.
+  if (raw === null) return null
+  if (raw === undefined) return scalarDefault(field)
+  if (field.localized && isPlainObject(raw)) {
+    const picked = raw[locale] ?? raw[defaultLocale]
+    return picked === undefined ? scalarDefault(field) : picked
+  }
   return raw
 }
 
 /**
  * Resolve a block instance's stored data into render-ready, single-locale data:
- * fills defaults for missing fields and collapses localized maps. Only keys
- * declared in `fields` survive — unknown stored keys are dropped, so a block
- * that removed a field never receives stale data.
+ * fills defaults for missing fields and collapses localized maps (recursively,
+ * through objects and lists). Only keys declared in `fields` survive — unknown
+ * stored keys are dropped, so a block that removed a field never receives stale
+ * data.
  */
 export function resolveData(
   fields: Fields,
@@ -62,7 +85,7 @@ export function resolveData(
 ): Record<string, unknown> {
   const out: Record<string, unknown> = {}
   for (const key of Object.keys(fields)) {
-    out[key] = resolveValue(fields[key], data[key], locale, defaultLocale)
+    out[key] = resolveField(fields[key], data[key], locale, defaultLocale)
   }
   return out
 }
