@@ -1,6 +1,6 @@
 {
   "name": "@adamarant/ds-builder",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Block-based visual page builder for @adamarant/designsystem consumers — typed section registry, crash-safe renderer, admin editor.",
   "type": "module",
   "main": "./dist/index.js",
