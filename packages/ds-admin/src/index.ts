@@ -27,6 +27,8 @@ export type {
   AdminTableProps,
   AdminTableColumn,
   AdminTableAlign,
+  AdminSortState,
+  AdminSortDirection,
   AdminStatusBadgeProps,
   AdminBadgeTone,
   AdminRowActionsProps,

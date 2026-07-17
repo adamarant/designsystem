@@ -140,8 +140,18 @@ export interface AdminTableColumn<Row> {
   align?: AdminTableAlign
   /** Emphasis + truncation via .ds-table__cell--primary. */
   primary?: boolean
+  /** Makes the header a sort control. The value is the sort key reported to
+      onSort and compared against the active sort. */
+  sortKey?: string
   /** Class applied to both <th> and <td> of this column. */
   className?: string
+}
+
+export type AdminSortDirection = 'asc' | 'desc'
+
+export interface AdminSortState {
+  key: string
+  direction: AdminSortDirection
 }
 
 export interface AdminTableProps<Row> {
@@ -155,6 +165,14 @@ export interface AdminTableProps<Row> {
   loadingRows?: number
   /** Empty-state content when not loading and rows is empty. */
   empty?: ReactNode
+  /** Current sort. A column whose sortKey matches shows the asc/desc arrow. */
+  sort?: AdminSortState
+  /** Called when a sortable header is clicked, with the next sort state for
+      that column (toggles asc↔desc, defaults to asc on a new column). */
+  onSortChange?: (sort: AdminSortState) => void
+  /** Footer content, rendered as .ds-table-footer inside the bordered wrapper
+      (e.g. an info string + AdminPagination). One container, one border. */
+  footer?: ReactNode
   className?: string
 }
 
@@ -196,8 +214,6 @@ export interface AdminPaginationProps {
   page: number
   totalPages: number
   onPageChange: (page: number) => void
-  /** Free-form info shown on the left of the footer (e.g. "42 items"). */
-  info?: ReactNode
   /** Labels for the prev/next controls (a11y). */
   prevLabel?: string
   nextLabel?: string

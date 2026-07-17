@@ -1,8 +1,9 @@
 import type { AdminPaginationProps } from './types.js';
 /**
- * Simple table-footer pagination: an info string on the left, prev / "p / n" /
- * next on the right. Composes the DS .ds-pagination parts; renders nothing when
- * there is a single page.
+ * Page controls: prev / "p / n" / next, over the DS .ds-pagination parts.
+ * Renders only the nav cluster — an accompanying info string and the footer
+ * layout belong to the container (e.g. AdminTable's .ds-table-footer). Renders
+ * nothing on a single page.
  */
-export declare function AdminPagination({ page, totalPages, onPageChange, info, prevLabel, nextLabel, className, }: AdminPaginationProps): import("react/jsx-runtime").JSX.Element | null;
+export declare function AdminPagination({ page, totalPages, onPageChange, prevLabel, nextLabel, className, }: AdminPaginationProps): import("react/jsx-runtime").JSX.Element | null;
 //# sourceMappingURL=AdminPagination.d.ts.map

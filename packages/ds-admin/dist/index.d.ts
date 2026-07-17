@@ -9,5 +9,5 @@ export { AdminStatusBadge } from './AdminStatusBadge.js';
 export { AdminRowActions } from './AdminRowActions.js';
 export { AdminPagination } from './AdminPagination.js';
 export { AdminConfirmDialog } from './AdminConfirmDialog.js';
-export type { NavItem, SidebarState, SidebarProviderProps, AdminLayoutProps, AdminSidebarProps, AdminHeaderProps, AdminPageHeaderProps, AdminToolbarProps, AdminToolbarSearch, AdminToolbarFilter, AdminToolbarFilterOption, AdminTableProps, AdminTableColumn, AdminTableAlign, AdminStatusBadgeProps, AdminBadgeTone, AdminRowActionsProps, AdminRowAction, AdminPaginationProps, AdminConfirmDialogProps, } from './types.js';
+export type { NavItem, SidebarState, SidebarProviderProps, AdminLayoutProps, AdminSidebarProps, AdminHeaderProps, AdminPageHeaderProps, AdminToolbarProps, AdminToolbarSearch, AdminToolbarFilter, AdminToolbarFilterOption, AdminTableProps, AdminTableColumn, AdminTableAlign, AdminSortState, AdminSortDirection, AdminStatusBadgeProps, AdminBadgeTone, AdminRowActionsProps, AdminRowAction, AdminPaginationProps, AdminConfirmDialogProps, } from './types.js';
 //# sourceMappingURL=index.d.ts.map
