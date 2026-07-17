@@ -33,6 +33,7 @@ export type {
   AdminTableProps,
   AdminTableColumn,
   AdminTableAlign,
+  AdminCellContext,
   AdminSortState,
   AdminSortDirection,
   AdminStatusBadgeProps,

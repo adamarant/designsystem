@@ -113,12 +113,19 @@ export interface AdminToolbarProps {
     className?: string;
 }
 export type AdminTableAlign = 'start' | 'end' | 'center';
+/** Passed to a column's cell renderer so it can react to row state (e.g. show
+    an input instead of text while the row is being edited inline). */
+export interface AdminCellContext {
+    /** True when this row is the one in inline-edit mode (editingKey match). */
+    editing: boolean;
+}
 export interface AdminTableColumn<Row> {
     key: string;
     header: ReactNode;
     /** Renders the cell for a row. Row field access lives here, so different
-        data shapes (title_es vs title) fit the same table. */
-    cell: (row: Row) => ReactNode;
+        data shapes (title_es vs title) fit the same table. The second arg lets
+        the cell switch to an edit control when the row is being edited inline. */
+    cell: (row: Row, ctx: AdminCellContext) => ReactNode;
     /** Column alignment. Default: 'start'. */
     align?: AdminTableAlign;
     /** Emphasis + truncation via .ds-table__cell--primary. */
@@ -153,6 +160,17 @@ export interface AdminTableProps<Row> {
     /** Footer content, rendered as .ds-table-footer inside the bordered wrapper
         (e.g. an info string + AdminPagination). One container, one border. */
     footer?: ReactNode;
+    /** Enables drag-to-reorder. A grip handle column is prepended and rows become
+        draggable (except the one being edited); on drop this is called with the
+        full rows array in the new order. HTML5 DnD, no dependency. */
+    onReorder?: (rows: Row[]) => void;
+    /** rowKey of the row currently in inline-edit mode. Its cells receive
+        ctx.editing = true so they can render inputs; it is not draggable. */
+    editingKey?: string | null;
+    /** Cells for a trailing row (e.g. an inline "add new" form). AdminTable wraps
+        them in a <tr> after the data rows; provide one cell per column (a leading
+        empty cell for the grip is added automatically when reorderable). */
+    appendRow?: ReactNode;
     className?: string;
 }
 export type AdminBadgeTone = 'neutral' | 'success' | 'warning' | 'info' | 'error';
