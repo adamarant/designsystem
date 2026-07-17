@@ -12,6 +12,12 @@ export { AdminRowActions } from './AdminRowActions.js'
 export { AdminPagination } from './AdminPagination.js'
 export { AdminConfirmDialog } from './AdminConfirmDialog.js'
 
+/* Form primitives (0.4.0) */
+export { AdminFormLayout } from './AdminFormLayout.js'
+export { AdminCard } from './AdminCard.js'
+export { AdminField } from './AdminField.js'
+export { AdminLocaleSwitcher } from './AdminLocaleSwitcher.js'
+
 export type {
   NavItem,
   SidebarState,
@@ -35,4 +41,9 @@ export type {
   AdminRowAction,
   AdminPaginationProps,
   AdminConfirmDialogProps,
+  AdminFormLayoutProps,
+  AdminCardProps,
+  AdminFieldProps,
+  AdminLocaleSwitcherProps,
+  AdminLocaleOption,
 } from './types.js'

@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Component: Admin Form Layout
+   The two-column shell of an admin edit page: a main column that grows and a
+   fixed-width sidebar (publication controls, cover, metadata). Collapses to a
+   single column below lg. Replaces the hand-rolled `*-form__layout` grid every
+   admin form copies.
+
+   Usage:
+     <div class="ds-admin-form">
+       <div class="ds-admin-form__main">…cards…</div>
+       <aside class="ds-admin-form__sidebar">…cards…</aside>
+     </div>
+
+   Override the sidebar width per project:
+     :root { --ds-admin-form-sidebar: 320px; }
+   ========================================================================== */
+
+.ds-admin-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ds-space-6);
+}
+
+.ds-admin-form__main,
+.ds-admin-form__sidebar {
+  min-width: 0;
+}
+
+@media (min-width: 1024px) /* --ds-breakpoint-lg */ {
+  .ds-admin-form {
+    grid-template-columns: minmax(0, 1fr) var(--ds-admin-form-sidebar, 360px);
+  }
+}

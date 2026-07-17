@@ -203,4 +203,52 @@ export interface AdminConfirmDialogProps {
     /** Disable buttons while the action runs. */
     busy?: boolean;
 }
+export interface AdminFormLayoutProps {
+    /** Main column content (the fields/cards). */
+    children: ReactNode;
+    /** Sidebar content (publication, cover, metadata). Omit for a single column. */
+    sidebar?: ReactNode;
+    className?: string;
+}
+export interface AdminCardProps {
+    /** Card title. Omit to render a headerless card (body only). */
+    title?: ReactNode;
+    /** Right-aligned slot in the header (e.g. a locale switcher). Needs a title. */
+    actions?: ReactNode;
+    children: ReactNode;
+    className?: string;
+}
+export interface AdminFieldProps {
+    /** Field label. */
+    label: ReactNode;
+    /** The control (input, textarea, select, editor, ...). */
+    children: ReactNode;
+    /** Associates the label with the control via htmlFor / id. */
+    htmlFor?: string;
+    /** Right-aligned slot on the label row (locale pills, AI buttons, ...) —
+        this is where consumer-specific controls live without forking. */
+    actions?: ReactNode;
+    /** Helper text under the control. */
+    hint?: ReactNode;
+    /** Error text under the control (replaces hint when set). */
+    error?: ReactNode;
+    /** Marks the field required (visual asterisk). */
+    required?: boolean;
+    className?: string;
+}
+export interface AdminLocaleOption {
+    /** Locale code stored/emitted (e.g. 'es'). */
+    value: string;
+    /** Short display label (e.g. 'ES'). */
+    label: string;
+}
+export interface AdminLocaleSwitcherProps {
+    options: AdminLocaleOption[];
+    value: string;
+    onChange: (value: string) => void;
+    /** Size of the segmented control. */
+    size?: 'sm' | 'md' | 'lg';
+    'aria-label'?: string;
+    className?: string;
+}
 //# sourceMappingURL=types.d.ts.map

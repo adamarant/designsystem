@@ -2154,6 +2154,28 @@
       ]
     },
     {
+      "name": "admin-form",
+      "title": "Admin Form Layout",
+      "description": "Two-column admin edit shell: growing main column + fixed-width sidebar, single column below lg.",
+      "category": "layout",
+      "classes": [
+        ".ds-admin-form"
+      ],
+      "elements": [
+        "__main",
+        "__sidebar"
+      ],
+      "variants": [],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Form layout",
+          "html": "<div class=\"ds-admin-form\">\n  <div class=\"ds-admin-form__main\">…</div>\n  <aside class=\"ds-admin-form__sidebar\">…</aside>\n</div>"
+        }
+      ]
+    },
+    {
       "name": "media-library",
       "title": "Media Library",
       "description": "Grid items, selection toolbar, detail panel, and folder sidebar for media management UI.",
