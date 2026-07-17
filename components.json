@@ -2130,6 +2130,30 @@
       ]
     },
     {
+      "name": "page-header",
+      "title": "Page Header",
+      "description": "Top bar of an admin/dashboard page: optional back arrow, title, and right-aligned actions slot.",
+      "category": "layout",
+      "classes": [
+        ".ds-page-header"
+      ],
+      "elements": [
+        "__lead",
+        "__title",
+        "__actions",
+        "__back"
+      ],
+      "variants": [],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Page header with action",
+          "html": "<div class=\"ds-page-header\">\n  <div class=\"ds-page-header__lead\">\n    <button class=\"ds-page-header__back\" aria-label=\"Back\">&larr;</button>\n    <h1 class=\"ds-page-header__title ds-admin-title\">Edit article</h1>\n  </div>\n  <div class=\"ds-page-header__actions\">\n    <button class=\"ds-btn\">Save</button>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
       "name": "media-library",
       "title": "Media Library",
       "description": "Grid items, selection toolbar, detail panel, and folder sidebar for media management UI.",

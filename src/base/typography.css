@@ -58,6 +58,24 @@ strong, b {
   font-weight: var(--ds-weight-medium);
 }
 
+/* Admin page title — the sized member of the .ds-heading-ui family.
+   For the h1 at the top of an admin/dashboard page. Body font, calm size:
+   admin is functional, not editorial, so it must NOT reach for the display
+   font. Use this instead of .ds-section-title (2.25rem, display) or a bare
+   heading (inherits .ds-text-5xl), both of which shout on a data screen. */
+.ds-admin-title {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-xl);
+  font-weight: var(--ds-weight-semibold);
+  letter-spacing: var(--ds-tracking-tight);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text);
+}
+
+@media (min-width: 640px) {
+  .ds-admin-title { font-size: var(--ds-text-2xl); }
+}
+
 /* Section title style */
 .ds-section-title {
   font-family: var(--ds-font-display);

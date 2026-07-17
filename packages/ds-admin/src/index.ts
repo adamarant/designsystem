@@ -3,6 +3,15 @@ export { AdminLayout } from './AdminLayout.js'
 export { AdminSidebar } from './AdminSidebar.js'
 export { AdminHeader } from './AdminHeader.js'
 
+/* Data & page primitives (0.2.0) */
+export { AdminPageHeader } from './AdminPageHeader.js'
+export { AdminToolbar } from './AdminToolbar.js'
+export { AdminTable } from './AdminTable.js'
+export { AdminStatusBadge } from './AdminStatusBadge.js'
+export { AdminRowActions } from './AdminRowActions.js'
+export { AdminPagination } from './AdminPagination.js'
+export { AdminConfirmDialog } from './AdminConfirmDialog.js'
+
 export type {
   NavItem,
   SidebarState,
@@ -10,4 +19,18 @@ export type {
   AdminLayoutProps,
   AdminSidebarProps,
   AdminHeaderProps,
+  AdminPageHeaderProps,
+  AdminToolbarProps,
+  AdminToolbarSearch,
+  AdminToolbarFilter,
+  AdminToolbarFilterOption,
+  AdminTableProps,
+  AdminTableColumn,
+  AdminTableAlign,
+  AdminStatusBadgeProps,
+  AdminBadgeTone,
+  AdminRowActionsProps,
+  AdminRowAction,
+  AdminPaginationProps,
+  AdminConfirmDialogProps,
 } from './types.js'

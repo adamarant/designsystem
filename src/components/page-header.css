@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Component: Page Header
+   The bar at the top of an admin/dashboard page: an optional back arrow, a
+   title, and a right-aligned actions area. Replaces the hand-rolled
+   `flex justify-between` + heading that every admin page copies.
+
+   Usage:
+     <div class="ds-page-header">
+       <div class="ds-page-header__lead">
+         <button class="ds-page-header__back" aria-label="Back">…</button>
+         <h1 class="ds-page-header__title ds-admin-title">Edit article</h1>
+       </div>
+       <div class="ds-page-header__actions">
+         <button class="ds-btn">Save</button>
+       </div>
+     </div>
+
+   Notes:
+   - The title element carries .ds-admin-title for its type; this component
+     only lays out the row, so a consumer can use a different title class if
+     it must. __title only guarantees min-width:0 so a long title truncates
+     instead of shoving the actions off-screen.
+   - The actions area is a plain slot: put one button or several, they align
+     to the end.
+   ========================================================================== */
+
+.ds-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-space-4);
+  flex-wrap: wrap;
+  margin-block-end: var(--ds-space-6);
+}
+
+.ds-page-header__lead {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+  min-width: 0;
+}
+
+.ds-page-header__title {
+  min-width: 0;
+  margin: 0;
+}
+
+/* Actions slot — right-aligned group of buttons. */
+.ds-page-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  flex-shrink: 0;
+}
+
+/* Back control — a borderless target that lines up with the title.
+   Focus ring via box-shadow, per the DS convention. */
+.ds-page-header__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--ds-size-2);
+  min-height: var(--ds-size-2);
+  color: var(--ds-color-text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--ds-radius-md);
+  cursor: pointer;
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-page-header__back:hover {
+  color: var(--ds-color-text);
+  background: var(--ds-color-surface-hover);
+}
+
+.ds-page-header__back:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+  scroll-margin-block: var(--ds-space-16);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-page-header__back {
+    transition: none;
+  }
+}
