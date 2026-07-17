@@ -75,3 +75,146 @@ export interface AdminHeaderProps {
   /** Right slot — theme toggle, avatar, actions */
   right?: ReactNode
 }
+
+/* ==========================================================================
+   Data & page primitives (0.2.0)
+   ========================================================================== */
+
+export interface AdminPageHeaderProps {
+  /** The page title. */
+  title: ReactNode
+  /** When provided, a back arrow appears before the title and calls this. */
+  onBack?: () => void
+  /** Accessible label for the back button. Default: 'Back' */
+  backLabel?: string
+  /** Right-aligned actions slot — one button or several. */
+  actions?: ReactNode
+  /** Class for the title element. Default: 'ds-admin-title' */
+  titleClassName?: string
+  /** Additional class on the root .ds-page-header. */
+  className?: string
+}
+
+export interface AdminToolbarSearch {
+  value: string
+  onChange: (value: string) => void
+  placeholder?: string
+  /** Accessible label when no visible label exists. */
+  'aria-label'?: string
+}
+
+export interface AdminToolbarFilterOption {
+  value: string
+  label: string
+}
+
+export interface AdminToolbarFilter {
+  value: string
+  onChange: (value: string) => void
+  options: AdminToolbarFilterOption[]
+  /** Label for the implicit "all" option (value=''). Omit to remove it. */
+  allLabel?: string
+  'aria-label'?: string
+}
+
+export interface AdminToolbarProps {
+  /** Search box on the left; grows to fill. Omit for no search. */
+  search?: AdminToolbarSearch
+  /** Filter <select>s after the search. */
+  filters?: AdminToolbarFilter[]
+  /** Right-aligned actions slot — this is where consumer-specific controls
+      (e.g. an AI button) live, without forking the toolbar. */
+  actions?: ReactNode
+  className?: string
+}
+
+export type AdminTableAlign = 'start' | 'end' | 'center'
+
+export interface AdminTableColumn<Row> {
+  key: string
+  header: ReactNode
+  /** Renders the cell for a row. Row field access lives here, so different
+      data shapes (title_es vs title) fit the same table. */
+  cell: (row: Row) => ReactNode
+  /** Column alignment. Default: 'start'. */
+  align?: AdminTableAlign
+  /** Emphasis + truncation via .ds-table__cell--primary. */
+  primary?: boolean
+  /** Class applied to both <th> and <td> of this column. */
+  className?: string
+}
+
+export interface AdminTableProps<Row> {
+  columns: AdminTableColumn<Row>[]
+  rows: Row[]
+  /** Unique key per row. Default: String((row as {id}).id). */
+  rowKey?: (row: Row) => string
+  /** Loading → shimmer skeleton rows. */
+  loading?: boolean
+  /** Skeleton row count while loading. Default: 5. */
+  loadingRows?: number
+  /** Empty-state content when not loading and rows is empty. */
+  empty?: ReactNode
+  className?: string
+}
+
+export type AdminBadgeTone =
+  | 'neutral'
+  | 'success'
+  | 'warning'
+  | 'info'
+  | 'error'
+
+export interface AdminStatusBadgeProps {
+  label: ReactNode
+  /** Maps to a ds-badge variant. 'neutral' → outline. Default: 'neutral'. */
+  tone?: AdminBadgeTone
+  className?: string
+}
+
+export interface AdminRowAction {
+  /** Icon element — passed by the consumer (keeps ds-admin icon-free). */
+  icon: ReactNode
+  /** Accessible label / tooltip. */
+  label: string
+  /** Renders an <a> when set; a <button> otherwise. */
+  href?: string
+  onClick?: () => void
+  /** Open the href in a new tab (adds rel=noopener). */
+  external?: boolean
+  /** Danger styling (e.g. delete). */
+  danger?: boolean
+  disabled?: boolean
+}
+
+export interface AdminRowActionsProps {
+  actions: AdminRowAction[]
+  className?: string
+}
+
+export interface AdminPaginationProps {
+  page: number
+  totalPages: number
+  onPageChange: (page: number) => void
+  /** Free-form info shown on the left of the footer (e.g. "42 items"). */
+  info?: ReactNode
+  /** Labels for the prev/next controls (a11y). */
+  prevLabel?: string
+  nextLabel?: string
+  className?: string
+}
+
+export interface AdminConfirmDialogProps {
+  open: boolean
+  title: ReactNode
+  /** Body content — a message, or richer JSX. */
+  children: ReactNode
+  onConfirm: () => void
+  onCancel: () => void
+  confirmLabel?: string
+  cancelLabel?: string
+  /** Danger styling on the confirm button. Default: true. */
+  danger?: boolean
+  /** Disable buttons while the action runs. */
+  busy?: boolean
+}
