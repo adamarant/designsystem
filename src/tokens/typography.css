@@ -32,6 +32,11 @@
   /* --- Display Font Weight (Clash Display looks best at 400) --- */
   --ds-font-display-weight: 400;
 
+  /* --- Admin/UI title weight — the body-font heading weight (.ds-admin-title).
+     A consumer overrides this once to match its global heading weight, the
+     same way --ds-font-display-weight governs display headings. --- */
+  --ds-admin-title-weight: var(--ds-weight-semibold);
+
   /* --- Font Sizes --- */
   --ds-text-2xs: 0.625rem;    /* 10px */
   --ds-text-xs: 0.75rem;      /* 12px */

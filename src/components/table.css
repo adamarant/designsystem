@@ -292,7 +292,8 @@
 .ds-table-wrapper {
   overflow-x: auto;
   border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-xl);
+  /* lg (12px), not xl (16px): a data table reads calmer with a tighter corner. */
+  border-radius: var(--ds-radius-lg);
   background-color: var(--ds-color-surface);
 }
 

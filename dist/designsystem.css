@@ -315,6 +315,11 @@
   /* --- Display Font Weight (Clash Display looks best at 400) --- */
   --ds-font-display-weight: 400;
 
+  /* --- Admin/UI title weight — the body-font heading weight (.ds-admin-title).
+     A consumer overrides this once to match its global heading weight, the
+     same way --ds-font-display-weight governs display headings. --- */
+  --ds-admin-title-weight: var(--ds-weight-semibold);
+
   /* --- Font Sizes --- */
   --ds-text-2xs: 0.625rem;    /* 10px */
   --ds-text-xs: 0.75rem;      /* 12px */
@@ -711,7 +716,7 @@ strong, b {
 .ds-admin-title {
   font-family: var(--ds-font-sans);
   font-size: var(--ds-text-xl);
-  font-weight: var(--ds-weight-semibold);
+  font-weight: var(--ds-admin-title-weight);
   letter-spacing: var(--ds-tracking-tight);
   line-height: var(--ds-leading-snug);
   color: var(--ds-color-text);
@@ -5198,7 +5203,8 @@ hr {
 .ds-table-wrapper {
   overflow-x: auto;
   border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-xl);
+  /* lg (12px), not xl (16px): a data table reads calmer with a tighter corner. */
+  border-radius: var(--ds-radius-lg);
   background-color: var(--ds-color-surface);
 }
 
