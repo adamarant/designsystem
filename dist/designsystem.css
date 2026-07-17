@@ -382,6 +382,7 @@ body {
    --ds-breakpoint-md:  768px
    --ds-breakpoint-lg:  1024px
    --ds-breakpoint-xl:  1280px
+   --ds-breakpoint-2xl: 1536px
 */
 
 :root {
@@ -431,6 +432,9 @@ body {
 
   /* --- Container --- */
   --ds-container-max: 1440px;
+  /* Opt-in wider track for grid-heavy pages (index/archive listings) where the
+     1440 reading measure squeezes columns. Never the default. */
+  --ds-container-wide: 1760px;
   --ds-container-padding: clamp(8px, 5vw, 80px);
   --ds-container-sm: 640px;
   --ds-container-md: 768px;
@@ -12708,11 +12712,19 @@ a:hover .ds-sortable__handle,
 
 /* --- Container --- */
 .ds-container {
+
   width: 100%;
   max-width: var(--ds-container-max);
   margin-inline: auto;
   padding-inline: var(--ds-container-padding);
+
+  /* Wider track for listing/grid pages, where 1440 leaves columns cramped.
+     Opt-in: prose and reading measures keep the default. */
+  
 }
+.ds-container--wide {
+ max-width: var(--ds-container-wide); }
+
 
 /* --- Section (generous vertical rhythm) --- */
 .ds-section {
@@ -12961,9 +12973,23 @@ a:hover .ds-sortable__handle,
 }
 
 
-@media (min-width: 1280px) {
+@media (min-width: 1280px) /* --ds-breakpoint-xl */ {
 
+  .ds-xl\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .ds-xl\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .ds-xl\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .ds-xl\:grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
   .ds-xl\:grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+}
+
+
+@media (min-width: 1536px) /* --ds-breakpoint-2xl */ {
+
+  .ds-2xl\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .ds-2xl\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .ds-2xl\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .ds-2xl\:grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+  .ds-2xl\:grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
 }
 
 
