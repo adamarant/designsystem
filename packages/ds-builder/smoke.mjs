@@ -298,5 +298,32 @@ check('object-list catches missing required sub-field', badCardsMsgs.some((m) =>
 check('object-list catches wrong nested localized scalar', badCardsMsgs.some((m) => m.includes('cards:items[1].title.en:expected string')))
 check('object-list catches wrong nested scalar', badCardsMsgs.some((m) => m.includes('cards:items[1].time:expected string')))
 
+// 13. Shared ProseBlock — optional heading, and back-compat for pre-heading data.
+const { ProseBlock } = await import('./dist/blocks/index.js')
+const proseRegistry = createRegistry([ProseBlock])
+const prosePage = {
+  schemaVersion: 1,
+  defaultLocale: 'it',
+  locales: ['it'],
+  blocks: [
+    { id: 'p1', type: 'prose', version: 1, data: { content: { it: 'Primo.\n\nSecondo.' } } },
+    {
+      id: 'p2',
+      type: 'prose',
+      version: 1,
+      data: {
+        overline: { it: 'Nato a Napoli' },
+        title: { it: 'Bio' },
+        content: { it: 'Corpo della bio.' },
+      },
+    },
+  ],
+}
+const proseHtml = await render(h(PageRenderer, { document: prosePage, registry: proseRegistry, locale: 'it' }))
+check('prose splits blank lines into paragraphs', proseHtml.includes('<p>Primo.</p>') && proseHtml.includes('<p>Secondo.</p>'))
+check('prose renders the optional heading', proseHtml.includes('Nato a Napoli') && proseHtml.includes('>Bio</h2>'))
+check('prose without a heading emits no h2', (proseHtml.match(/<h2/g) ?? []).length === 1)
+check('valid prose document passes validation', validateDocument(proseRegistry, prosePage).valid)
+
 console.log(`\n${failures === 0 ? '✅ all checks passed' : `❌ ${failures} check(s) failed`}`)
 process.exit(failures === 0 ? 0 : 1)
