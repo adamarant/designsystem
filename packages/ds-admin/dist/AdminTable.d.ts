@@ -7,5 +7,5 @@ import type { AdminTableProps } from './types.js';
  * the one bordered wrapper, and — opt-in — drag-to-reorder, inline editing, and
  * a trailing add row.
  */
-export declare function AdminTable<Row>({ columns, rows, rowKey, loading, loadingRows, empty, sort, onSortChange, footer, onReorder, editingKey, appendRow, className, }: AdminTableProps<Row>): import("react/jsx-runtime").JSX.Element;
+export declare function AdminTable<Row>({ columns, rows, rowKey, loading, loadingRows, empty, sort, onSortChange, footer, onReorder, editingKey, appendRow, rowClassName, className, }: AdminTableProps<Row>): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=AdminTable.d.ts.map

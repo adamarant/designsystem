@@ -192,6 +192,9 @@ export interface AdminTableProps<Row> {
       them in a <tr> after the data rows; provide one cell per column (a leading
       empty cell for the grip is added automatically when reorderable). */
   appendRow?: ReactNode
+  /** Extra class per data row (e.g. dim inactive rows). Merged with the drag
+      state classes. */
+  rowClassName?: (row: Row) => string | undefined
   className?: string
 }
 
