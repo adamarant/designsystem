@@ -37,7 +37,7 @@ sitting 48px and 24px from their toolbars.
 | Tables, row actions, status badges, pagination | `AdminTable` and friends |
 | Loading and empty states | `AdminPage` `status` prop / `AdminSpinner` / `AdminEmptyState` |
 | Modals and confirmations | `AdminModal` / `AdminConfirmDialog` |
-| Form scaffolding | `AdminFormLayout` / `AdminCard` / `AdminField` |
+| Form scaffolding, **and the rhythm inside both its columns** | `AdminFormLayout` / `AdminCard` / `AdminField` |
 
 **The consumer owns:**
 
@@ -52,6 +52,9 @@ sitting 48px and 24px from their toolbars.
   `ds-mb-4` on an `AdminToolbar`, or wrapping `AdminPageHeader` in a
   `ds-flex ds-flex-col ds-gap-6`, that's the bug this package exists to
   prevent. Use `AdminPage`.
+- Spacing between the cards inside an `AdminFormLayout` column. Both columns
+  space their own children as of 0.11.0; a bottom-margin utility on a card now
+  doubles up with the column gap.
 - A hand-rolled spinner, empty state, status badge, pagination, or modal.
   All five exist here. The audit found 14 spinners in 4 dialects and 4 raw
   `window.confirm()` calls across the consumers.

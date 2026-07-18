@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 > **Note:** entries between 0.9.0 and 0.21.0 were never written. The file
 > resumes at 0.22.0; the gap is reconstructable from `git log` only.
 
+## [0.23.0] - 2026-07-18
+
+### Changed
+- `ds-admin-form__main` / `__sidebar` diventano colonne flex con
+  `gap: var(--ds-space-6)`. Prima erano semplici guardie `min-width: 0`: la
+  griglia spaziava le due colonne ma non le card dentro ciascuna, quindi ogni
+  consumer se le impilava a mano. Un solo valore ora regge gap fra colonne,
+  gap fra card e stack di `.ds-admin-page`.
+  **Attenzione:** margini bottom scritti a mano sulle card ora si sommano al
+  gap — vanno rimossi. Coppia con `@adamarant/ds-admin` 0.11.0.
+
 ## [0.22.0] - 2026-07-18
 
 ### Added
