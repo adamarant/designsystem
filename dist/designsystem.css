@@ -11175,6 +11175,16 @@ hr {
   margin: 0;
 }
 
+/* Optional line under the title saying what the page is for. Lives inside
+   __lead next to the title, so the back control stays to their left. */
+.ds-page-header__description {
+  margin: var(--ds-space-1) 0 0;
+  font-size: var(--ds-text-sm);
+  line-height: var(--ds-leading-normal);
+  color: var(--ds-color-text-secondary);
+  text-wrap: pretty;
+}
+
 /* Actions slot — right-aligned group of buttons. */
 .ds-page-header__actions {
   display: flex;

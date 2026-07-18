@@ -83,6 +83,8 @@ export interface AdminHeaderProps {
 export interface AdminPageHeaderProps {
   /** The page title. */
   title: ReactNode
+  /** One line under the title saying what the page is for. */
+  description?: ReactNode
   /** When provided, a back arrow appears before the title and calls this. */
   onBack?: () => void
   /** Accessible label for the back button. Default: 'Back' */
