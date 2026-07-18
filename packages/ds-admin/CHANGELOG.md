@@ -4,6 +4,25 @@ Entries before 0.10.0 were reconstructed from git history: the package shipped
 nine minors without a changelog, which is part of why consumers stayed on 0.1.2
 without knowing what they were missing.
 
+## 0.11.0
+
+**`AdminFormLayout`: entrambe le colonne possiedono il proprio ritmo.**
+
+Stessa lacuna di `AdminPage`, un livello sotto. `.ds-admin-form` spaziava le due
+colonne di 24px ma non diceva nulla sulle card *dentro* ciascuna, quindi ogni
+consumer le impilava con un margine scritto a mano — `BlogPostForm`,
+`PropertyForm`, `LocalidadForm`, su tre progetti, ognuno arrivato alla stessa
+toppa per conto proprio.
+
+- **CSS (richiede `@adamarant/designsystem` ≥ 0.23.0):** `.ds-admin-form__main`
+  e `.ds-admin-form__sidebar` diventano colonne flex con
+  `gap: var(--ds-space-6)`. Nessun modificatore per cambiarlo: un solo valore
+  per il gap fra colonne, per il gap fra card dentro una colonna, e per lo
+  stack di `.ds-admin-page`.
+- **Breaking di fatto (visivo, non di API):** le card che prima portavano un
+  margine da 16px scritto a mano ora si distanziano di 24 — e se quel margine
+  resta, si somma al gap. **Rimuovilo dai figli quando aggiorni.**
+
 ## 0.10.0
 
 **`AdminPage` — the page-level contract.**

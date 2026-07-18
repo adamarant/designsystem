@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.22.0 */
+/* @ds/designsystem v0.23.0 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -11319,6 +11319,25 @@ hr {
 
    Override the sidebar width per project:
      :root { --ds-admin-form-sidebar: 320px; }
+
+   ARIA:
+   - Layout container only, no role of its own. The sidebar is an <aside> in
+     AdminFormLayout; give it an accessible name if its content isn't obvious.
+   - Column order in the DOM is main-then-sidebar, which is also the reading
+     order when the grid collapses below lg.
+
+   Notes:
+   - BOTH columns own their internal rhythm, not just the grid between them.
+     Before this, __main and __sidebar were bare min-width guards: the grid
+     spaced the two columns 24px apart but said nothing about the cards inside
+     them, so every consumer stacked its AdminCards with a hand-written
+     `ds-mb-4` (BlogPostForm, PropertyForm, LocalidadForm, across three
+     projects, each having invented it separately). Same failure as the page
+     wrapper one level up — a component that lays out its own box but leaves
+     the space between its children to the caller.
+   - One value for the whole admin surface: the gap between columns, the gap
+     between cards inside a column, and .ds-admin-page's stack are all
+     --ds-space-6. Deliberately no modifier to change it.
    ========================================================================== */
 
 .ds-admin-form {
@@ -11327,8 +11346,13 @@ hr {
   gap: var(--ds-space-6);
 }
 
+/* Each column is itself a stack. min-width:0 so a wide table or a long
+   unbroken string inside a card can shrink instead of blowing out the grid. */
 .ds-admin-form__main,
 .ds-admin-form__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-6);
   min-width: 0;
 }
 
