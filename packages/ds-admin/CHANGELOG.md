@@ -4,6 +4,18 @@ Entries before 0.10.0 were reconstructed from git history: the package shipped
 nine minors without a changelog, which is part of why consumers stayed on 0.1.2
 without knowing what they were missing.
 
+## 0.11.1
+
+**Fix: `AdminRowActions` instrada gli href interni su `next/link`.**
+
+Rendeva un `<a>` nudo, quindi ogni "modifica questa riga" era una navigazione
+di documento completa: tabella, shell e intero albero client smontati e
+ricostruiti su un click che doveva essere una soft nav. `AdminSidebar` usava
+già `next/link` — era un'incoerenza interna al pacchetto, non una scelta.
+Trovato migrando enzo-spatalino, dove la regressione era visibile.
+
+Le azioni con `external: true` restano un `<a>` puro: escono dall'app comunque.
+
 ## 0.11.0
 
 **`AdminFormLayout`: entrambe le colonne possiedono il proprio ritmo.**
