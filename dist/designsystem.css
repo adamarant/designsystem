@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.21.0 */
+/* @ds/designsystem v0.22.0 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -11229,6 +11229,80 @@ hr {
   }
 }
 
+
+/* ==========================================================================
+   Component: Admin Page
+
+   The vertical rhythm of an admin page, owned in one place.
+
+   Before this component the rhythm lived in the consumer: every page opened
+   with its own wrapper — `ds-flex ds-flex-col ds-gap-6` here, a bare `<div>`
+   with `ds-mb-4` on the toolbar there, `ds-stack`, `ds-space-y-8`, a fragment
+   with inline `marginBottom` — and two pages of the same project drifted
+   apart. .ds-admin-page replaces all of them: the page declares its parts,
+   the system spaces them.
+
+   Structure:
+     <div class="ds-admin-page">
+       <div class="ds-page-header">…</div>          <!-- optional -->
+       <div class="ds-admin-page__toolbar">…</div>  <!-- optional -->
+       <div class="ds-admin-page__body">…</div>
+       <div class="ds-admin-page__footer">…</div>   <!-- optional -->
+     </div>
+
+   Notes:
+   - The gap is a single value for the whole stack. There is deliberately no
+     `gap` prop or modifier: a knob here is how the drift started.
+   - .ds-page-header carries its own margin-block-end for standalone use, so
+     it is zeroed inside this component — otherwise margin and gap stack and
+     the header sits 48px from the toolbar instead of 24px.
+   - Overlays (modals, drawers, editors) must NOT be children of this element.
+     A component that returns a wrapper node while closed would still occupy a
+     gap slot and push a phantom 24px onto the bottom of the page. AdminPage
+     renders them as siblings, outside the stack.
+
+   ARIA:
+   - This component is a layout container only and takes no role of its own —
+     the page already sits inside the <main> of .ds-admin__main.
+   - Each part carries its own semantics: .ds-page-header holds the <h1>,
+     .ds-admin-page__footer typically wraps a <nav aria-label="Pagination">.
+   - The loading and empty bodies keep the header and toolbar mounted, so focus
+     and the accessible name of the page survive a fetch. Announce the busy
+     state on the spinner (role="status"), not by unmounting the page.
+   ========================================================================== */
+
+.ds-admin-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-6);
+  min-width: 0;
+}
+
+/* The header owns its spacing when used alone; inside the page stack the gap
+   is authoritative. Without this the two add up. */
+.ds-admin-page > .ds-page-header {
+  margin-block-end: 0;
+}
+
+/* Toolbar row — the slot itself adds nothing but a min-width guard, so a long
+   search field can shrink instead of overflowing the page. */
+.ds-admin-page__toolbar {
+  min-width: 0;
+}
+
+/* Main content. min-width:0 so tables and grids can scroll inside the column
+   rather than widening it. */
+.ds-admin-page__body {
+  min-width: 0;
+}
+
+/* Footer — pagination and friends, centred under the body. */
+.ds-admin-page__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
 
 /* ==========================================================================
    Component: Admin Form Layout

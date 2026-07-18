@@ -5,6 +5,18 @@ All notable changes to `@adamarant/designsystem` will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+> **Note:** entries between 0.9.0 and 0.21.0 were never written. The file
+> resumes at 0.22.0; the gap is reconstructable from `git log` only.
+
+## [0.22.0] - 2026-07-18
+
+### Added
+- `ds-admin-page` — the vertical-rhythm contract for an admin page
+  (`components/admin-page.css`). Lays out header, `__toolbar`, `__body` and
+  `__footer` with one system-owned gap, and zeroes `.ds-page-header`'s own
+  `margin-block-end` when nested inside it, so the margin and the stack gap
+  stop adding up. Paired with `AdminPage` in `@adamarant/ds-admin` 0.10.0.
+
 ## [0.8.0] - 2026-03-24
 
 ### Added — New Components (11)

@@ -2,6 +2,8 @@ export { SidebarProvider, useSidebar } from './SidebarContext.js';
 export { AdminLayout } from './AdminLayout.js';
 export { AdminSidebar } from './AdminSidebar.js';
 export { AdminHeader } from './AdminHeader.js';
+/* Page contract (0.10.0) — start here when building an admin page */
+export { AdminPage } from './AdminPage.js';
 /* Data & page primitives (0.2.0) */
 export { AdminPageHeader } from './AdminPageHeader.js';
 export { AdminToolbar } from './AdminToolbar.js';

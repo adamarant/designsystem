@@ -1,6 +1,6 @@
 {
   "name": "@adamarant/designsystem",
-  "version": "0.21.0",
+  "version": "0.22.0",
   "description": "Design system — installable, extensible, indestructible.",
   "main": "dist/designsystem.css",
   "style": "dist/designsystem.css",
@@ -13,6 +13,7 @@
     "./components/accordion": "./src/components/accordion.css",
     "./components/admin-form": "./src/components/admin-form.css",
     "./components/admin-layout": "./src/components/admin-layout.css",
+    "./components/admin-page": "./src/components/admin-page.css",
     "./components/alert": "./src/components/alert.css",
     "./components/avatar": "./src/components/avatar.css",
     "./components/badge": "./src/components/badge.css",

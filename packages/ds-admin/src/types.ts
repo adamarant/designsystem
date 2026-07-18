@@ -77,6 +77,62 @@ export interface AdminHeaderProps {
 }
 
 /* ==========================================================================
+   Page contract (0.10.0)
+   ========================================================================== */
+
+/** What the body is showing. Header and toolbar stay mounted in every state. */
+export type AdminPageStatus = 'ready' | 'loading' | 'empty'
+
+export interface AdminPageProps {
+  /** The page title. Omit for a page that renders no header at all. */
+  title?: ReactNode
+  /** One line under the title saying what the page is for. */
+  description?: ReactNode
+  /** When provided, a back arrow appears before the title and calls this. */
+  onBack?: () => void
+  /** Accessible label for the back button. Default: 'Back' */
+  backLabel?: string
+  /** Right-aligned header actions — typically the primary "New X" button. */
+  actions?: ReactNode
+  /** Class for the title element. Default: 'ds-admin-title' */
+  titleClassName?: string
+
+  /** Search box in the toolbar. Presence of any toolbar prop renders the row. */
+  search?: AdminToolbarSearch
+  /** Filter controls in the toolbar. */
+  filters?: AdminToolbarFilter[]
+  /** Right-aligned toolbar controls (export, bulk actions, a view switcher). */
+  toolbarActions?: ReactNode
+  /** Escape hatch: a fully custom toolbar node, used instead of the props
+      above. Prefer search/filters/toolbarActions — this exists for the rare
+      surface whose controls don't fit the standard row. */
+  toolbar?: ReactNode
+
+  /** Which body state to render. Default: 'ready'. */
+  status?: AdminPageStatus
+  /** Empty-state content, rendered when status is 'empty'. */
+  empty?: AdminEmptyStateProps
+  /** Accessible label for the loading spinner. Default: 'Loading' */
+  loadingLabel?: string
+
+  /** Pagination under the body. Hidden unless status is 'ready'. */
+  pagination?: AdminPaginationProps
+  /** Custom footer node, used instead of `pagination`. */
+  footer?: ReactNode
+
+  /** Modals, drawers and editors. Rendered OUTSIDE the spacing stack — a
+      closed overlay that still returns a node would otherwise take a gap slot
+      and add a phantom 24px to the bottom of the page. */
+  overlays?: ReactNode
+
+  /** The page content. */
+  children?: ReactNode
+  /** Additional class on the root .ds-admin-page. Layout-neutral only: the
+      vertical rhythm is owned by the component and is not overridable. */
+  className?: string
+}
+
+/* ==========================================================================
    Data & page primitives (0.2.0)
    ========================================================================== */
 
