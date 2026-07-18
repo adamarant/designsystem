@@ -100,6 +100,10 @@ export interface AdminToolbarFilter {
     options: AdminToolbarFilterOption[];
     /** Label for the implicit "all" option (value=''). Omit to remove it. */
     allLabel?: string;
+    /** 'select' (default) renders a dropdown. 'segmented' renders a DS segmented
+        control — right for a short fixed set like a status switch, where seeing
+        every option at once beats hiding them in a menu. */
+    variant?: 'select' | 'segmented';
     'aria-label'?: string;
 }
 export interface AdminToolbarProps {
@@ -174,6 +178,11 @@ export interface AdminTableProps<Row> {
     /** Extra class per data row (e.g. dim inactive rows). Merged with the drag
         state classes. */
     rowClassName?: (row: Row) => string | undefined;
+    /** Makes the whole row a click target (e.g. open the record). Interactive
+        controls inside a cell must stopPropagation so they don't also fire it.
+        Not applied to a row being edited inline. The row's explicit action
+        buttons stay the keyboard-accessible path. */
+    onRowClick?: (row: Row) => void;
     className?: string;
 }
 export type AdminBadgeTone = 'neutral' | 'success' | 'warning' | 'info' | 'error';

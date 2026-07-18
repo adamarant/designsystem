@@ -34,22 +34,58 @@ export function AdminToolbar({ search, filters, actions, className }: AdminToolb
         </div>
       )}
 
-      {filters?.map((filter, i) => (
-        <select
-          key={i}
-          className="ds-select ds-input--lg"
-          value={filter.value}
-          onChange={(e) => filter.onChange(e.target.value)}
-          aria-label={filter['aria-label']}
-        >
-          {filter.allLabel !== undefined && <option value="">{filter.allLabel}</option>}
-          {filter.options.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
-            </option>
-          ))}
-        </select>
-      ))}
+      {filters?.map((filter, i) =>
+        filter.variant === 'segmented' ? (
+          <div key={i} className="ds-segmented" role="radiogroup" aria-label={filter['aria-label']}>
+            {filter.allLabel !== undefined && (
+              <button
+                type="button"
+                role="radio"
+                aria-checked={filter.value === ''}
+                onClick={() => filter.onChange('')}
+                className={
+                  filter.value === ''
+                    ? 'ds-segmented__item ds-segmented__item--active'
+                    : 'ds-segmented__item'
+                }
+              >
+                {filter.allLabel}
+              </button>
+            )}
+            {filter.options.map((o) => (
+              <button
+                key={o.value}
+                type="button"
+                role="radio"
+                aria-checked={filter.value === o.value}
+                onClick={() => filter.onChange(o.value)}
+                className={
+                  filter.value === o.value
+                    ? 'ds-segmented__item ds-segmented__item--active'
+                    : 'ds-segmented__item'
+                }
+              >
+                {o.label}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <select
+            key={i}
+            className="ds-select ds-input--lg"
+            value={filter.value}
+            onChange={(e) => filter.onChange(e.target.value)}
+            aria-label={filter['aria-label']}
+          >
+            {filter.allLabel !== undefined && <option value="">{filter.allLabel}</option>}
+            {filter.options.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        )
+      )}
 
       {actions}
     </div>
