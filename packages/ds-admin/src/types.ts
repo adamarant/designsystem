@@ -281,6 +281,8 @@ export interface AdminFormLayoutProps {
 export interface AdminCardProps {
   /** Card title. Omit to render a headerless card (body only). */
   title?: ReactNode
+  /** One line under the title saying what this group is for. Needs a title. */
+  description?: ReactNode
   /** Right-aligned slot in the header (e.g. a locale switcher). Needs a title. */
   actions?: ReactNode
   children: ReactNode
@@ -354,5 +356,49 @@ export interface AdminSpinnerProps {
   block?: boolean
   /** Accessible label announced while loading. Default: 'Loading'. */
   label?: string
+  className?: string
+}
+
+/* ==========================================================================
+   Modal & read-only detail (0.8.0)
+   ========================================================================== */
+
+export interface AdminModalProps {
+  open: boolean
+  /** Dialog heading. */
+  title: ReactNode
+  children: ReactNode
+  /** Called by the close button and by clicking the backdrop. */
+  onClose: () => void
+  /** Footer content (buttons). Omit for a footerless dialog. */
+  footer?: ReactNode
+  /** Dialog width. Default: 'md'. */
+  size?: 'md' | 'lg'
+  /** Accessible label for the close button. Default: 'Close'. */
+  closeLabel?: string
+  /** Clicking the backdrop closes the dialog. Default: true. Set false when
+      losing input would cost the user work. */
+  closeOnBackdrop?: boolean
+  className?: string
+}
+
+export interface AdminDetailItem {
+  /** The label (rendered as the term). */
+  label: ReactNode
+  /** The value (rendered as the detail). Falsy renders the em dash. */
+  value: ReactNode
+  /** Render the value in the mono face — for ids, keys, hashes. */
+  mono?: boolean
+}
+
+export interface AdminDetailListProps {
+  items: AdminDetailItem[]
+  /** 'stacked' (default) puts the label above the value; 'horizontal' puts
+      them side by side. */
+  layout?: 'stacked' | 'horizontal'
+  /** Adds a rule between rows. */
+  bordered?: boolean
+  /** Placeholder for an empty value. Default: '—'. */
+  emptyValue?: string
   className?: string
 }

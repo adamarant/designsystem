@@ -25,6 +25,9 @@ export function ChevronRightIcon(props) {
 export function SearchIcon(props) {
     return (_jsxs("svg", { ...base(props), children: [_jsx("circle", { cx: "11", cy: "11", r: "8" }), _jsx("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" })] }));
 }
+export function XIcon(props) {
+    return (_jsxs("svg", { ...base(props), children: [_jsx("line", { x1: "18", y1: "6", x2: "6", y2: "18" }), _jsx("line", { x1: "6", y1: "6", x2: "18", y2: "18" })] }));
+}
 export function GripVerticalIcon(props) {
     return (_jsxs("svg", { ...base(props), fill: "currentColor", stroke: "none", children: [_jsx("circle", { cx: "9", cy: "6", r: "1.5" }), _jsx("circle", { cx: "15", cy: "6", r: "1.5" }), _jsx("circle", { cx: "9", cy: "12", r: "1.5" }), _jsx("circle", { cx: "15", cy: "12", r: "1.5" }), _jsx("circle", { cx: "9", cy: "18", r: "1.5" }), _jsx("circle", { cx: "15", cy: "18", r: "1.5" })] }));
 }

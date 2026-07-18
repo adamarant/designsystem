@@ -13,6 +13,9 @@ export { AdminConfirmDialog } from './AdminConfirmDialog.js';
 /* Empty state & spinner (0.7.0) */
 export { AdminEmptyState } from './AdminEmptyState.js';
 export { AdminSpinner } from './AdminSpinner.js';
+/* Modal & read-only detail (0.8.0) */
+export { AdminModal } from './AdminModal.js';
+export { AdminDetailList } from './AdminDetailList.js';
 /* Form primitives (0.4.0) */
 export { AdminFormLayout } from './AdminFormLayout.js';
 export { AdminCard } from './AdminCard.js';
