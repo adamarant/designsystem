@@ -1,6 +1,6 @@
 {
   "name": "@adamarant/ds-admin",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "React admin layout components for @adamarant/designsystem — sidebar, header, layout shell, and sidebar state management.",
   "type": "module",
   "main": "./dist/index.js",

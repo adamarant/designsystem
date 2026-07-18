@@ -322,3 +322,37 @@ export interface AdminLocaleSwitcherProps {
   'aria-label'?: string
   className?: string
 }
+
+/* ==========================================================================
+   Empty state & spinner (0.7.0)
+   ========================================================================== */
+
+export interface AdminEmptyStateProps {
+  /** Headline — what isn't here. */
+  title: ReactNode
+  /** Optional line explaining what to do about it. */
+  description?: ReactNode
+  /** Optional icon above the title. */
+  icon?: ReactNode
+  /** Buttons/links under the text (e.g. "Create your first project"). */
+  actions?: ReactNode
+  /** 'plain' (default) sits inside an existing panel; 'card' draws its own
+      bordered panel; 'compact' tightens the padding for small slots. */
+  variant?: 'plain' | 'card' | 'compact'
+  /** Left-align instead of centred. */
+  align?: 'center' | 'left'
+  className?: string
+}
+
+export interface AdminSpinnerProps {
+  /** Spinner size. Default: 'md'. */
+  size?: 'sm' | 'md' | 'lg'
+  /** Low-emphasis colouring for dark or busy backgrounds. */
+  muted?: boolean
+  /** Centre it in a padded block — for a whole panel that is loading.
+      Default: true. Set false to drop the spinner inline. */
+  block?: boolean
+  /** Accessible label announced while loading. Default: 'Loading'. */
+  label?: string
+  className?: string
+}

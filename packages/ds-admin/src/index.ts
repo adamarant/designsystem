@@ -12,6 +12,10 @@ export { AdminRowActions } from './AdminRowActions.js'
 export { AdminPagination } from './AdminPagination.js'
 export { AdminConfirmDialog } from './AdminConfirmDialog.js'
 
+/* Empty state & spinner (0.7.0) */
+export { AdminEmptyState } from './AdminEmptyState.js'
+export { AdminSpinner } from './AdminSpinner.js'
+
 /* Form primitives (0.4.0) */
 export { AdminFormLayout } from './AdminFormLayout.js'
 export { AdminCard } from './AdminCard.js'
@@ -47,4 +51,6 @@ export type {
   AdminFieldProps,
   AdminLocaleSwitcherProps,
   AdminLocaleOption,
+  AdminEmptyStateProps,
+  AdminSpinnerProps,
 } from './types.js'
