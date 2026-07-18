@@ -2140,6 +2140,7 @@
       "elements": [
         "__lead",
         "__title",
+        "__description",
         "__actions",
         "__back"
       ],
@@ -2149,7 +2150,7 @@
       "examples": [
         {
           "title": "Page header with action",
-          "html": "<div class=\"ds-page-header\">\n  <div class=\"ds-page-header__lead\">\n    <button class=\"ds-page-header__back\" aria-label=\"Back\">&larr;</button>\n    <h1 class=\"ds-page-header__title ds-admin-title\">Edit article</h1>\n  </div>\n  <div class=\"ds-page-header__actions\">\n    <button class=\"ds-btn\">Save</button>\n  </div>\n</div>"
+          "html": "<div class=\"ds-page-header\">\n  <div class=\"ds-page-header__lead\">\n    <button class=\"ds-page-header__back\" aria-label=\"Back\">&larr;</button>\n    <div>\n      <h1 class=\"ds-page-header__title ds-admin-title\">Edit article</h1>\n      <p class=\"ds-page-header__description\">Draft saved 2 minutes ago</p>\n    </div>\n  </div>\n  <div class=\"ds-page-header__actions\">\n    <button class=\"ds-btn\">Save</button>\n  </div>\n</div>"
         }
       ]
     },

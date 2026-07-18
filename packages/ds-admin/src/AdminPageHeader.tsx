@@ -9,6 +9,7 @@ import type { AdminPageHeaderProps } from './types.js'
  */
 export function AdminPageHeader({
   title,
+  description,
   onBack,
   backLabel = 'Back',
   actions,
@@ -28,7 +29,10 @@ export function AdminPageHeader({
             <ArrowLeftIcon />
           </button>
         )}
-        <h1 className={`ds-page-header__title ${titleClassName}`}>{title}</h1>
+        <div className="ds-min-w-0">
+          <h1 className={`ds-page-header__title ${titleClassName}`}>{title}</h1>
+          {description && <p className="ds-page-header__description">{description}</p>}
+        </div>
       </div>
       {actions && <div className="ds-page-header__actions">{actions}</div>}
     </div>
