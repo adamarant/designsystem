@@ -2155,6 +2155,29 @@
       ]
     },
     {
+      "name": "admin-page",
+      "title": "Admin Page",
+      "description": "Vertical rhythm contract for an admin page: header, toolbar, body and footer spaced by the system instead of by a per-page wrapper.",
+      "category": "layout",
+      "classes": [
+        ".ds-admin-page"
+      ],
+      "elements": [
+        "__toolbar",
+        "__body",
+        "__footer"
+      ],
+      "variants": [],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "List page: header, toolbar, body, pagination",
+          "html": "<div class=\"ds-admin-page\">\n  <div class=\"ds-page-header\">\n    <div class=\"ds-page-header__lead\">\n      <h1 class=\"ds-page-header__title ds-admin-title\">Projects</h1>\n    </div>\n    <div class=\"ds-page-header__actions\">\n      <button class=\"ds-btn\">New Project</button>\n    </div>\n  </div>\n  <div class=\"ds-admin-page__toolbar\">\n    <div class=\"ds-flex ds-flex-wrap ds-gap-3 ds-items-center\">\n      <div class=\"ds-input-group ds-flex-1\"><input class=\"ds-input ds-input--lg\" placeholder=\"Search projects…\"></div>\n      <div class=\"ds-segmented\" role=\"radiogroup\" aria-label=\"Status\">\n        <button class=\"ds-segmented__item ds-segmented__item--active\" role=\"radio\" aria-checked=\"true\">All</button>\n        <button class=\"ds-segmented__item\" role=\"radio\" aria-checked=\"false\">Draft</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"ds-admin-page__body\">\n    <div class=\"ds-table-wrapper\"><table class=\"ds-table\"><tbody><tr><td>…</td></tr></tbody></table></div>\n  </div>\n  <div class=\"ds-admin-page__footer\">\n    <nav class=\"ds-pagination\" aria-label=\"Pagination\"><span class=\"ds-pagination__info\">1 / 4</span></nav>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
       "name": "admin-form",
       "title": "Admin Form Layout",
       "description": "Two-column admin edit shell: growing main column + fixed-width sidebar, single column below lg.",

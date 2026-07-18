@@ -1,7 +1,7 @@
 {
   "name": "@adamarant/ds-admin",
-  "version": "0.9.0",
-  "description": "React admin layout components for @adamarant/designsystem — sidebar, header, layout shell, and sidebar state management.",
+  "version": "0.10.0",
+  "description": "React admin components for @adamarant/designsystem — page contract, shell, tables, forms and states.",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -16,7 +16,8 @@
   },
   "files": [
     "dist/",
-    "src/"
+    "src/",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsc",
