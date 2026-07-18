@@ -36,7 +36,7 @@ function sortButtonClass(active, key) {
  * the one bordered wrapper, and — opt-in — drag-to-reorder, inline editing, and
  * a trailing add row.
  */
-export function AdminTable({ columns, rows, rowKey, loading = false, loadingRows = 5, empty, sort, onSortChange, footer, onReorder, editingKey, appendRow, rowClassName, className, }) {
+export function AdminTable({ columns, rows, rowKey, loading = false, loadingRows = 5, empty, sort, onSortChange, footer, onReorder, editingKey, appendRow, rowClassName, onRowClick, className, }) {
     const getKey = (row, i) => rowKey ? rowKey(row) : String(row.id ?? i);
     const reorderable = !!onReorder;
     const [draggedKey, setDraggedKey] = useState(null);
@@ -89,10 +89,11 @@ export function AdminTable({ columns, rows, rowKey, loading = false, loadingRows
             },
         };
     }
-    function rowClass(key, row) {
+    function rowClass(key, row, clickable) {
         return [
             reorderable && draggedKey === key ? 'ds-sortable--dragging' : '',
             reorderable && overKey === key ? 'ds-sortable--over' : '',
+            clickable ? 'ds-cursor-pointer' : '',
             rowClassName?.(row) ?? '',
         ]
             .filter(Boolean)
@@ -105,7 +106,8 @@ export function AdminTable({ columns, rows, rowKey, loading = false, loadingRows
                                 const key = getKey(row, i);
                                 const editing = editingKey != null && editingKey === key;
                                 const ctx = { editing };
-                                return (_jsxs("tr", { className: rowClass(key, row), ...(editing ? {} : dragProps(key)), children: [reorderable && (_jsx("td", { children: !editing && (_jsx("span", { className: "ds-sortable__handle ds-sortable__handle--visible", children: _jsx(GripVerticalIcon, { width: 16, height: 16 }) })) })), columns.map((col) => (_jsx("td", { className: cellClass(col) || undefined, children: col.cell(row, ctx) }, col.key)))] }, key));
+                                const clickable = !!onRowClick && !editing;
+                                return (_jsxs("tr", { className: rowClass(key, row, clickable), ...(clickable ? { onClick: () => onRowClick(row) } : {}), ...(editing ? {} : dragProps(key)), children: [reorderable && (_jsx("td", { children: !editing && (_jsx("span", { className: "ds-sortable__handle ds-sortable__handle--visible", children: _jsx(GripVerticalIcon, { width: 16, height: 16 }) })) })), columns.map((col) => (_jsx("td", { className: cellClass(col) || undefined, children: col.cell(row, ctx) }, col.key)))] }, key));
                             })), appendRow && (_jsxs("tr", { children: [reorderable && _jsx("td", {}), appendRow] }))] })] }), footer && _jsx("div", { className: "ds-table-footer", children: footer })] }));
 }
 //# sourceMappingURL=AdminTable.js.map
