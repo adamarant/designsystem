@@ -90,14 +90,12 @@ const NAV = [
   { id: 'projects', label: 'Projects', href: '/admin/projects', icon: <FolderOpen size={18} /> },
 ]
 
-const TITLES = { admin: 'Dashboard', projects: 'Projects', media: 'Media' }
-
 export function Shell({ children }: { children: ReactNode }) {
   return (
     <AdminShell
       nav={NAV}
       brand={<Link href="/"><Logo /></Link>}
-      titles={TITLES}
+      titles={{ settings: 'Settings' }}   // only routes the nav doesn't cover
       fallbackTitle="Admin"
       themeToggle={<AdminThemeToggle />}
       sidebarFooter={<SignOutButton />}
@@ -109,9 +107,14 @@ export function Shell({ children }: { children: ReactNode }) {
 }
 ```
 
-`titles` maps a path segment to a title and is resolved **last segment first**,
-so `/admin/projects/abc123` shows "Projects" rather than the fallback. Pass
-`title` instead when a page's name isn't derivable from its route.
+**Header titles come from the nav.** Every `NavItem` already carries the label
+for the section it links to, so listing those again in `titles` is a copy that
+goes stale the moment one is renamed. Pass `titles` only for routes with no nav
+entry; it merges over the derived map, so it doubles as an override.
+
+Resolution walks the pathname **last segment first**, so `/admin/projects/abc123`
+shows "Projects" rather than the fallback. Pass `title` instead when a page's
+name isn't derivable from its route at all.
 
 The theme toggle is a slot rather than a built-in because `AdminThemeToggle`
 needs `next-themes`, which not every consumer installs — importing it from the

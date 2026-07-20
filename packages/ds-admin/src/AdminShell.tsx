@@ -5,7 +5,7 @@ import { AdminLayout } from './AdminLayout.js'
 import { AdminSidebar } from './AdminSidebar.js'
 import { AdminHeader } from './AdminHeader.js'
 import { useSidebar } from './SidebarContext.js'
-import type { AdminShellProps } from './types.js'
+import type { AdminShellProps, NavItem } from './types.js'
 
 /* ==========================================================================
    Chrome — inline SVG, like the rest of the package. ds-admin stays
@@ -49,9 +49,37 @@ function CollapseControl() {
    Title resolution
    ========================================================================== */
 
+function lastSegment(href: string): string | undefined {
+  const segments = href.split('/').filter(Boolean)
+  return segments[segments.length - 1]
+}
+
+/** The nav already carries a label for every section it links to. Deriving the
+    default titles from it means the header and the sidebar cannot disagree —
+    a hand-written map is a copy of this list that silently goes stale the
+    first time a label is renamed. `titles` then only needs the routes that
+    aren't in the nav (settings, a builder, a profile page). */
+function navTitles(nav: NavItem[]): Record<string, string> {
+  const map: Record<string, string> = {}
+
+  for (const item of nav) {
+    const segment = lastSegment(item.href)
+    if (segment) map[segment] = item.label
+
+    for (const child of item.children ?? []) {
+      const childSegment = lastSegment(child.href)
+      if (childSegment) map[childSegment] = child.label
+    }
+  }
+
+  return map
+}
+
 /** Walks path segments from the last to the first and returns the first one
     present in the map, so `/admin/projects/abc123` resolves to the "projects"
-    title instead of falling through to the generic label. */
+    title instead of falling through to the generic label. The hand-written
+    resolvers this replaces all matched the last segment only, which is why
+    detail routes showed the fallback. */
 function resolveTitle(
   pathname: string,
   titles: Record<string, string>,
@@ -88,6 +116,7 @@ function ShellSidebarHeader({
 }
 
 function ShellHeader({
+  nav,
   title,
   titles,
   fallbackTitle,
@@ -96,10 +125,13 @@ function ShellHeader({
   themeToggle,
 }: Pick<
   AdminShellProps,
-  'title' | 'titles' | 'fallbackTitle' | 'headerCenter' | 'headerActions' | 'themeToggle'
+  'nav' | 'title' | 'titles' | 'fallbackTitle' | 'headerCenter' | 'headerActions' | 'themeToggle'
 >) {
   const pathname = usePathname()
-  const resolved = title ?? resolveTitle(pathname, titles ?? {}, fallbackTitle ?? 'Admin')
+
+  // Nav labels first, then the consumer's overrides for routes outside the nav.
+  const map = { ...navTitles(nav), ...titles }
+  const resolved = title ?? resolveTitle(pathname, map, fallbackTitle ?? 'Admin')
 
   const right =
     themeToggle || headerActions ? (
@@ -187,6 +219,7 @@ export function AdminShell({
       }
       header={
         <ShellHeader
+          nav={nav}
           title={title}
           titles={titles}
           fallbackTitle={fallbackTitle}

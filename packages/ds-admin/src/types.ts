@@ -103,9 +103,14 @@ export interface AdminShellProps {
   isActive?: (href: string, pathname: string) => boolean
 
   /* --- Header --- */
-  /** Map of path segment → title, e.g. `{ projects: 'Projects' }`. Resolved
-      against the current pathname, last segment first, so detail routes keep
-      their section's title. */
+  /** Titles for routes that aren't in the nav (settings, a builder, a profile
+      page), as a map of path segment → title.
+
+      The nav's own labels are used automatically, so listing them here is
+      redundant — and a redundant copy is what goes stale when a label is
+      renamed. This map is merged over the derived one, so an entry here also
+      works as an override. Resolution walks the pathname last segment first,
+      so detail routes keep their section's title. */
   titles?: Record<string, string>
   /** Shown when no segment matches. Default: 'Admin'. */
   fallbackTitle?: string
