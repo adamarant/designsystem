@@ -29,7 +29,9 @@ sitting 48px and 24px from their toolbars.
 
 | Concern | Owner |
 |---|---|
-| The shell (sidebar, header, collapse state, mobile drawer) | `AdminLayout` + `AdminSidebar` + `AdminHeader` |
+| **The whole frame (sidebar, header, title, collapse control)** | **`AdminShell`** |
+| The shell parts, for a panel `AdminShell` can't express | `AdminLayout` + `AdminSidebar` + `AdminHeader` |
+| The light/dark switch | `AdminThemeToggle` (at `@adamarant/ds-admin/theme`) |
 | Page padding and max-width | `.ds-admin__content` / `.ds-admin__container` (in designsystem) |
 | **Vertical rhythm of a page** | **`AdminPage`** |
 | Header row (back arrow, title, description, actions) | `AdminPageHeader` |
@@ -44,10 +46,17 @@ sitting 48px and 24px from their toolbars.
 - Data fetching, state, routing, auth.
 - The *content* of the body — which table columns, which cards, which form fields.
 - Copy and i18n. Nothing here ships user-facing strings beyond a11y defaults.
-- Navigation structure (the `NavItem[]` passed to `AdminSidebar`).
+- Navigation structure (the `NavItem[]` passed to `AdminShell`).
+- The brand mark, the sidebar footer (the sign-out path differs per auth model)
+  and any extra header controls — these are `AdminShell` slots.
 
 **The consumer must not own:**
 
+- The header title's element or classes. `AdminShell` renders a `<span>`, not a
+  heading, because `AdminPageHeader` already owns the page's `h1` — and it uses
+  the body font, because `typography.css` says admin titles must not reach for
+  the display font. Seven consumers had produced four different answers to this
+  before 0.12.0, two of which were defects rather than preferences.
 - Spacing between the parts of a page. If you find yourself writing
   `ds-mb-4` on an `AdminToolbar`, or wrapping `AdminPageHeader` in a
   `ds-flex ds-flex-col ds-gap-6`, that's the bug this package exists to
@@ -62,6 +71,53 @@ sitting 48px and 24px from their toolbars.
 If something genuinely doesn't fit, that's a gap in this package. Open it as a
 change here rather than solving it locally — a local solution is invisible to
 the other thirteen panels.
+
+---
+
+## Mounting a panel
+
+`AdminShell` is the entry point for the panel, the way `AdminPage` is the entry
+point for a page. Mount it once in the admin `layout.tsx` so the sidebar and
+header persist across navigations.
+
+```tsx
+'use client'
+import { AdminShell } from '@adamarant/ds-admin'
+import { AdminThemeToggle } from '@adamarant/ds-admin/theme'
+
+const NAV = [
+  { id: 'dashboard', label: 'Dashboard', href: '/admin', icon: <LayoutDashboard size={18} /> },
+  { id: 'projects', label: 'Projects', href: '/admin/projects', icon: <FolderOpen size={18} /> },
+]
+
+const TITLES = { admin: 'Dashboard', projects: 'Projects', media: 'Media' }
+
+export function Shell({ children }: { children: ReactNode }) {
+  return (
+    <AdminShell
+      nav={NAV}
+      brand={<Link href="/"><Logo /></Link>}
+      titles={TITLES}
+      fallbackTitle="Admin"
+      themeToggle={<AdminThemeToggle />}
+      sidebarFooter={<SignOutButton />}
+      storageKey="admin_sidebar_collapsed"
+    >
+      {children}
+    </AdminShell>
+  )
+}
+```
+
+`titles` maps a path segment to a title and is resolved **last segment first**,
+so `/admin/projects/abc123` shows "Projects" rather than the fallback. Pass
+`title` instead when a page's name isn't derivable from its route.
+
+The theme toggle is a slot rather than a built-in because `AdminThemeToggle`
+needs `next-themes`, which not every consumer installs — importing it from the
+barrel would break those builds. `AdminShell` still owns where it sits.
+It needs a `next-themes` provider with `attribute="data-theme"` above it, and
+its `defaultTheme` should match the provider's.
 
 ---
 
