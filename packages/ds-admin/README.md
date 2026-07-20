@@ -32,6 +32,7 @@ sitting 48px and 24px from their toolbars.
 | **The whole frame (sidebar, header, title, wordmark, collapse control)** | **`AdminShell`** |
 | The shell parts, for a panel `AdminShell` can't express | `AdminLayout` + `AdminSidebar` + `AdminHeader` |
 | The light/dark switch | `AdminThemeToggle` (at `@adamarant/ds-admin/theme`) |
+| Sidebar footer rows ("go to site", "sign out") | `AdminSidebarLink` |
 | Page padding and max-width | `.ds-admin__content` / `.ds-admin__container` (in designsystem) |
 | **Vertical rhythm of a page** | **`AdminPage`** |
 | Header row (back arrow, title, description, actions) | `AdminPageHeader` |
@@ -47,8 +48,11 @@ sitting 48px and 24px from their toolbars.
 - The *content* of the body — which table columns, which cards, which form fields.
 - Copy and i18n. Nothing here ships user-facing strings beyond a11y defaults.
 - Navigation structure (the `NavItem[]` passed to `AdminShell`).
-- The sidebar footer (the sign-out path differs per auth model) and any extra
-  header controls — these are `AdminShell` slots.
+- The sign-out *action* (a callback, a fetch, a server action — it differs per
+  auth model) and any extra header controls. The footer *rows* are
+  `AdminSidebarLink`; only what they do is yours.
+- Copy and labels, including the footer's — three of these panels run in
+  Italian or Spanish.
 
 **The consumer must not own:**
 

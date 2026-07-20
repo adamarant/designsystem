@@ -5,6 +5,7 @@ export { AdminShell } from './AdminShell.js';
 export { SidebarProvider, useSidebar } from './SidebarContext.js';
 export { AdminLayout } from './AdminLayout.js';
 export { AdminSidebar } from './AdminSidebar.js';
+export { AdminSidebarLink } from './AdminSidebarLink.js';
 export { AdminHeader } from './AdminHeader.js';
 /* Page contract (0.10.0) — start here when building an admin page */
 export { AdminPage } from './AdminPage.js';
