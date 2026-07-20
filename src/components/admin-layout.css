@@ -51,6 +51,7 @@
   --ds-admin-sidebar-w: 16rem;
   --ds-admin-sidebar-w-collapsed: 4rem;
   --ds-admin-header-h: var(--ds-size-4);
+  --ds-admin-nav-icon-size: 20px;
 }
 
 /* ==========================================================================
@@ -166,14 +167,25 @@
   color: var(--ds-color-text);
 }
 
-/* --- Nav Icon (fixed size prevents reflow on collapse) --- */
+/* --- Nav Icon (fixed size prevents reflow on collapse) ---
+   The slot sizes its own icon. It used to declare the box and leave the
+   contents alone, so every consumer had to pass a matching size on every
+   icon — fifty-odd call sites across seven panels, one of which drifted to
+   18 and another passed nothing at all, letting a 24px default overflow the
+   box unnoticed. Override --ds-admin-nav-icon-size to change it; don't
+   restate it per icon. */
 .ds-admin__nav-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: var(--ds-admin-nav-icon-size, 20px);
+  height: var(--ds-admin-nav-icon-size, 20px);
   flex-shrink: 0;
+}
+
+.ds-admin__nav-icon > svg {
+  width: 100%;
+  height: 100%;
 }
 
 /* --- Nav Label --- */

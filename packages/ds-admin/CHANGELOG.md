@@ -4,6 +4,27 @@ Entries before 0.10.0 were reconstructed from git history: the package shipped
 nine minors without a changelog, which is part of why consumers stayed on 0.1.2
 without knowing what they were missing.
 
+## 0.15.1
+
+**The icon slot sizes its own icon** (requires `@adamarant/designsystem` ≥ 0.23.1).
+
+`.ds-admin__nav-icon` declared a 20×20 box and then left its contents alone,
+so the size had to be restated on every icon the consumer passed — fifty-odd
+call sites across seven panels. Predictably one drifted to 18, and
+digiko-marketplace passed no size at all, letting lucide's 24px default
+overflow the box without anyone noticing.
+
+The design system now sizes the `svg` inside the slot, and the box reads
+`--ds-admin-nav-icon-size` (default 20px). Drop `size` from your nav icons;
+override the custom property if you need a different one.
+
+`AdminSidebarLink` puts its icon in the same slot, so the footer rows follow
+without a second rule.
+
+Not breaking for anyone already passing 20 — which, after this session, is all
+seven CMS consumers. `divasti` (16/18) and `cortex` (16) will see their nav
+icons settle at 20, and `digiko-marketplace` stops overflowing.
+
 ## 0.15.0
 
 **`AdminSidebarLink` — the footer row.**

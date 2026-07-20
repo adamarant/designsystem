@@ -32,7 +32,9 @@ export function AdminSidebarLink({
 
   const label = (
     <>
-      <span className="ds-shrink-0">{icon}</span>
+      {/* Same slot as the nav items, so the footer icon takes its size from
+          the design system too instead of from whatever the caller passed. */}
+      <span className="ds-admin__nav-icon">{icon}</span>
       <span className="ds-text-sm ds-font-medium">{children}</span>
     </>
   )
