@@ -4,6 +4,24 @@ Entries before 0.10.0 were reconstructed from git history: the package shipped
 nine minors without a changelog, which is part of why consumers stayed on 0.1.2
 without knowing what they were missing.
 
+## 0.13.1
+
+**Fix: a nav entry owns its whole subtree, not just its last segment.**
+
+0.13.0 derived the title map by taking each nav href's *last segment*. That
+breaks the moment two sections share a leaf, and one of the seven consumers hit
+it immediately: enzo-spatalino's "Pagine" entry points at
+`/admin/pages/home/edit`, so the segment `edit` mapped to "Pagine" — and every
+`/admin/blog/[id]/edit` route inherited that title.
+
+Nav matching is now by **longest href prefix**: `/admin/blog/abc/edit` sits
+under `/admin/blog` and gets "Blog", while `/admin/pages/home/edit` matches its
+own entry exactly. Longest-wins means a root entry at `/admin` never shadows a
+deeper one.
+
+`titles` is unchanged — still matched by segment, last first, and still wins
+over the nav.
+
 ## 0.13.0
 
 **`AdminShell` derives header titles from the nav.**

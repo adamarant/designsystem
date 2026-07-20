@@ -19,42 +19,46 @@ function CollapseControl() {
 /* ==========================================================================
    Title resolution
    ========================================================================== */
-function lastSegment(href) {
-    const segments = href.split('/').filter(Boolean);
-    return segments[segments.length - 1];
-}
-/** The nav already carries a label for every section it links to. Deriving the
-    default titles from it means the header and the sidebar cannot disagree —
-    a hand-written map is a copy of this list that silently goes stale the
-    first time a label is renamed. `titles` then only needs the routes that
-    aren't in the nav (settings, a builder, a profile page). */
-function navTitles(nav) {
-    const map = {};
+function flattenNav(nav) {
+    const flat = [];
     for (const item of nav) {
-        const segment = lastSegment(item.href);
-        if (segment)
-            map[segment] = item.label;
+        flat.push({ href: item.href, label: item.label });
         for (const child of item.children ?? []) {
-            const childSegment = lastSegment(child.href);
-            if (childSegment)
-                map[childSegment] = child.label;
+            flat.push({ href: child.href, label: child.label });
         }
     }
-    return map;
+    return flat;
 }
-/** Walks path segments from the last to the first and returns the first one
-    present in the map, so `/admin/projects/abc123` resolves to the "projects"
-    title instead of falling through to the generic label. The hand-written
-    resolvers this replaces all matched the last segment only, which is why
-    detail routes showed the fallback. */
-function resolveTitle(pathname, titles, fallback) {
+/** The longest nav href the pathname sits under.
+ *
+ *  A nav entry owns its whole subtree, so `/admin/blog/abc/edit` resolves to
+ *  "Blog" — matching by *segment* instead would break as soon as two sections
+ *  share a leaf. A real case: a "Pages" entry pointing at
+ *  `/admin/pages/home/edit` would claim the segment `edit` and then every
+ *  blog edit route would be titled "Pages". Longest match wins, so a root
+ *  entry at `/admin` never shadows a deeper one. */
+function navTitle(pathname, nav) {
+    let best;
+    for (const item of flattenNav(nav)) {
+        const matches = pathname === item.href || pathname.startsWith(`${item.href}/`);
+        if (matches && (!best || item.href.length > best.href.length))
+            best = item;
+    }
+    return best?.label;
+}
+/** The nav already carries a label for every section it links to, so the header
+    and the sidebar cannot disagree — a hand-written map is a copy of that list
+    that goes stale the first time a label is renamed. `titles` covers the
+    routes with no nav entry, and wins where both apply. It is matched by path
+    segment, last segment first, so a detail route keeps its section's title. */
+function resolveTitle(pathname, nav, titles, fallback) {
     const segments = pathname.split('/').filter(Boolean);
     for (let i = segments.length - 1; i >= 0; i -= 1) {
         const segment = segments[i];
         if (segment && titles[segment])
             return titles[segment];
     }
-    return fallback;
+    return navTitle(pathname, nav) ?? fallback;
 }
 /* ==========================================================================
    Shell parts — separate components because they read useSidebar/usePathname,
@@ -66,9 +70,7 @@ function ShellSidebarHeader({ brand, collapsedBrand, collapsible, }) {
 }
 function ShellHeader({ nav, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, }) {
     const pathname = usePathname();
-    // Nav labels first, then the consumer's overrides for routes outside the nav.
-    const map = { ...navTitles(nav), ...titles };
-    const resolved = title ?? resolveTitle(pathname, map, fallbackTitle ?? 'Admin');
+    const resolved = title ?? resolveTitle(pathname, nav, titles ?? {}, fallbackTitle ?? 'Admin');
     const right = themeToggle || headerActions ? (_jsxs(_Fragment, { children: [themeToggle, headerActions] })) : undefined;
     return (_jsx(AdminHeader
     /* A span, not a heading: AdminPageHeader owns the page's h1. Two h1s per
