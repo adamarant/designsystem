@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.23.1 */
+/* @ds/designsystem v0.23.2 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -10796,6 +10796,7 @@ hr {
   --ds-admin-sidebar-w-collapsed: 4rem;
   --ds-admin-header-h: var(--ds-size-4);
   --ds-admin-nav-icon-size: 20px;
+  --ds-admin-nav-icon-stroke: 1.5;
 }
 
 /* ==========================================================================
@@ -10932,13 +10933,24 @@ hr {
 .ds-admin__nav-icon > svg {
   width: 100%;
   height: 100%;
+  /* A 20px icon at the icon set's default stroke of 2 outweighs a 14px label
+     sitting next to it. Thinning the stroke lets the icon keep the slot's
+     size without dominating the row. */
+  stroke-width: var(--ds-admin-nav-icon-stroke, 1.5);
 }
 
 /* --- Nav Label --- */
+/* --- Nav Label ---
+   The line box matches the icon slot, so both flex children of a nav row are
+   the same height and the row is 20px by construction. Without this the label
+   inherited --ds-leading-normal from the body (14px x 1.5 = 21px), so the row
+   was one pixel taller than the slot that declares it and the two centred
+   against each other by accident rather than by rule. */
 .ds-admin__nav-label {
   white-space: nowrap;
   font-size: var(--ds-text-sm);
   font-weight: var(--ds-weight-medium);
+  line-height: var(--ds-admin-nav-icon-size, 20px);
 }
 
 /* --- Sub-Navigation (nested under a parent item) --- */

@@ -32,10 +32,11 @@ export function AdminSidebarLink({
 
   const label = (
     <>
-      {/* Same slot as the nav items, so the footer icon takes its size from
-          the design system too instead of from whatever the caller passed. */}
+      {/* Same slot and same label class as the nav items. These used to be
+          utilities here and BEM there — two mechanisms for one thing, so a fix
+          to the nav rhythm would have left the footer behind. */}
       <span className="ds-admin__nav-icon">{icon}</span>
-      <span className="ds-text-sm ds-font-medium">{children}</span>
+      <span className="ds-admin__nav-label">{children}</span>
     </>
   )
 
