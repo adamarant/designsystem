@@ -4,6 +4,32 @@ Entries before 0.10.0 were reconstructed from git history: the package shipped
 nine minors without a changelog, which is part of why consumers stayed on 0.1.2
 without knowing what they were missing.
 
+## 0.14.0
+
+**`AdminShell` owns the wordmark.**
+
+`brand` was a slot, and a slot is what let seven panels answer the same
+question seven ways: two shipped an SVG logo, five wrote text, across three
+type treatments (`ds-font-display ds-text-xl`, `ds-heading-ui`,
+`ds-heading-ui ds-text-primary`) — and only three carried the "Admin" badge.
+
+```tsx
+<AdminShell brandName="vibhe" brandBadge="Admin" brandHref="/admin" … />
+```
+
+`brandBadge` is a prop with no default rather than a hardcoded "Admin": the
+package ships no user-facing strings beyond a11y defaults, and that rule
+shouldn't bend for a short word.
+
+`brand` stays as the escape hatch for a panel that genuinely needs its own
+mark, and still wins when both are passed. Nothing breaks: it was already the
+only option, so every existing call keeps working — it is now optional rather
+than required.
+
+Collapsed, the rail is 4rem and a wordmark can't fit, so only the collapse
+control shows unless `collapsedBrand` is supplied. That was already the
+behaviour; it is now the documented one.
+
 ## 0.13.1
 
 **Fix: a nav entry owns its whole subtree, not just its last segment.**

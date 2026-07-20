@@ -14,5 +14,5 @@ import type { AdminShellProps } from './types.js';
  * Everything structural — element, classes, placement, the collapse toggle —
  * belongs to the shell and has no prop to override it.
  */
-export declare function AdminShell({ children, nav, brand, collapsedBrand, sidebarFooter, afterNav, mobileHeader, isActive, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, storageKey, defaultCollapsed, collapsible, afterHeader, afterMain, className, }: AdminShellProps): import("react/jsx-runtime").JSX.Element;
+export declare function AdminShell({ children, nav, brand, brandName, brandBadge, brandHref, collapsedBrand, sidebarFooter, afterNav, mobileHeader, isActive, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, storageKey, defaultCollapsed, collapsible, afterHeader, afterMain, className, }: AdminShellProps): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=AdminShell.d.ts.map

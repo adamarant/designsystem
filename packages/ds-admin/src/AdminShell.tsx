@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AdminLayout } from './AdminLayout.js'
 import { AdminSidebar } from './AdminSidebar.js'
@@ -103,20 +104,63 @@ function resolveTitle(
 }
 
 /* ==========================================================================
+   Brand
+   ========================================================================== */
+
+/** The wordmark: the panel's name, and a badge saying which panel it is.
+ *
+ *  A shape rather than a slot, because a slot is what let seven panels answer
+ *  the same question seven ways — two shipped an SVG logo, five wrote text, in
+ *  three different type treatments. Pass `brand` instead when a panel genuinely
+ *  needs its own mark. */
+function ShellBrand({
+  brandName,
+  brandBadge,
+  brandHref,
+}: Pick<AdminShellProps, 'brandName' | 'brandBadge' | 'brandHref'>) {
+  const mark = (
+    <>
+      <span className="ds-heading-ui">{brandName}</span>
+      {brandBadge && <span className="ds-admin__sidebar-badge">{brandBadge}</span>}
+    </>
+  )
+
+  if (!brandHref) return mark
+
+  return (
+    <Link href={brandHref} className="ds-flex ds-items-center ds-gap-2 ds-text-primary">
+      {mark}
+    </Link>
+  )
+}
+
+/* ==========================================================================
    Shell parts — separate components because they read useSidebar/usePathname,
    which only resolve inside the provider AdminLayout mounts.
    ========================================================================== */
 
 function ShellSidebarHeader({
   brand,
+  brandName,
+  brandBadge,
+  brandHref,
   collapsedBrand,
   collapsible,
-}: Pick<AdminShellProps, 'brand' | 'collapsedBrand' | 'collapsible'>) {
+}: Pick<
+  AdminShellProps,
+  'brand' | 'brandName' | 'brandBadge' | 'brandHref' | 'collapsedBrand' | 'collapsible'
+>) {
   const { isCollapsed } = useSidebar()
+
+  // Collapsed, the rail is 4rem: a wordmark can't fit, so only the control
+  // shows unless the consumer supplied a mark sized for it.
+  const expanded = brand ?? (
+    <ShellBrand brandName={brandName} brandBadge={brandBadge} brandHref={brandHref} />
+  )
 
   return (
     <>
-      {isCollapsed ? collapsedBrand : brand}
+      {isCollapsed ? collapsedBrand : expanded}
       {collapsible && <CollapseControl />}
     </>
   )
@@ -180,6 +224,9 @@ export function AdminShell({
   children,
   nav,
   brand,
+  brandName,
+  brandBadge,
+  brandHref,
   collapsedBrand,
   sidebarFooter,
   afterNav,
@@ -216,6 +263,9 @@ export function AdminShell({
           header={
             <ShellSidebarHeader
               brand={brand}
+              brandName={brandName}
+              brandBadge={brandBadge}
+              brandHref={brandHref}
               collapsedBrand={collapsedBrand}
               collapsible={collapsible}
             />

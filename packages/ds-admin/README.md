@@ -29,7 +29,7 @@ sitting 48px and 24px from their toolbars.
 
 | Concern | Owner |
 |---|---|
-| **The whole frame (sidebar, header, title, collapse control)** | **`AdminShell`** |
+| **The whole frame (sidebar, header, title, wordmark, collapse control)** | **`AdminShell`** |
 | The shell parts, for a panel `AdminShell` can't express | `AdminLayout` + `AdminSidebar` + `AdminHeader` |
 | The light/dark switch | `AdminThemeToggle` (at `@adamarant/ds-admin/theme`) |
 | Page padding and max-width | `.ds-admin__content` / `.ds-admin__container` (in designsystem) |
@@ -47,8 +47,8 @@ sitting 48px and 24px from their toolbars.
 - The *content* of the body — which table columns, which cards, which form fields.
 - Copy and i18n. Nothing here ships user-facing strings beyond a11y defaults.
 - Navigation structure (the `NavItem[]` passed to `AdminShell`).
-- The brand mark, the sidebar footer (the sign-out path differs per auth model)
-  and any extra header controls — these are `AdminShell` slots.
+- The sidebar footer (the sign-out path differs per auth model) and any extra
+  header controls — these are `AdminShell` slots.
 
 **The consumer must not own:**
 
@@ -57,6 +57,10 @@ sitting 48px and 24px from their toolbars.
   the body font, because `typography.css` says admin titles must not reach for
   the display font. Seven consumers had produced four different answers to this
   before 0.12.0, two of which were defects rather than preferences.
+- The wordmark's type treatment. Pass `brandName`; `brand` exists for a panel
+  that genuinely needs its own mark, not as the default way in. The same seven
+  consumers had three type treatments here too, and only three of them showed
+  the badge.
 - Spacing between the parts of a page. If you find yourself writing
   `ds-mb-4` on an `AdminToolbar`, or wrapping `AdminPageHeader` in a
   `ds-flex ds-flex-col ds-gap-6`, that's the bug this package exists to
@@ -94,7 +98,9 @@ export function Shell({ children }: { children: ReactNode }) {
   return (
     <AdminShell
       nav={NAV}
-      brand={<Link href="/"><Logo /></Link>}
+      brandName="Adamarant"
+      brandBadge="Admin"
+      brandHref="/admin"
       titles={{ settings: 'Settings' }}   // only routes the nav doesn't cover
       fallbackTitle="Admin"
       themeToggle={<AdminThemeToggle />}

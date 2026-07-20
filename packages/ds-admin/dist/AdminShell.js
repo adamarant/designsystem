@@ -1,5 +1,6 @@
 'use client';
 import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AdminLayout } from './AdminLayout.js';
 import { AdminSidebar } from './AdminSidebar.js';
@@ -61,12 +62,30 @@ function resolveTitle(pathname, nav, titles, fallback) {
     return navTitle(pathname, nav) ?? fallback;
 }
 /* ==========================================================================
+   Brand
+   ========================================================================== */
+/** The wordmark: the panel's name, and a badge saying which panel it is.
+ *
+ *  A shape rather than a slot, because a slot is what let seven panels answer
+ *  the same question seven ways — two shipped an SVG logo, five wrote text, in
+ *  three different type treatments. Pass `brand` instead when a panel genuinely
+ *  needs its own mark. */
+function ShellBrand({ brandName, brandBadge, brandHref, }) {
+    const mark = (_jsxs(_Fragment, { children: [_jsx("span", { className: "ds-heading-ui", children: brandName }), brandBadge && _jsx("span", { className: "ds-admin__sidebar-badge", children: brandBadge })] }));
+    if (!brandHref)
+        return mark;
+    return (_jsx(Link, { href: brandHref, className: "ds-flex ds-items-center ds-gap-2 ds-text-primary", children: mark }));
+}
+/* ==========================================================================
    Shell parts — separate components because they read useSidebar/usePathname,
    which only resolve inside the provider AdminLayout mounts.
    ========================================================================== */
-function ShellSidebarHeader({ brand, collapsedBrand, collapsible, }) {
+function ShellSidebarHeader({ brand, brandName, brandBadge, brandHref, collapsedBrand, collapsible, }) {
     const { isCollapsed } = useSidebar();
-    return (_jsxs(_Fragment, { children: [isCollapsed ? collapsedBrand : brand, collapsible && _jsx(CollapseControl, {})] }));
+    // Collapsed, the rail is 4rem: a wordmark can't fit, so only the control
+    // shows unless the consumer supplied a mark sized for it.
+    const expanded = brand ?? (_jsx(ShellBrand, { brandName: brandName, brandBadge: brandBadge, brandHref: brandHref }));
+    return (_jsxs(_Fragment, { children: [isCollapsed ? collapsedBrand : expanded, collapsible && _jsx(CollapseControl, {})] }));
 }
 function ShellHeader({ nav, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, }) {
     const pathname = usePathname();
@@ -98,7 +117,7 @@ function ShellHeader({ nav, title, titles, fallbackTitle, headerCenter, headerAc
  * Everything structural — element, classes, placement, the collapse toggle —
  * belongs to the shell and has no prop to override it.
  */
-export function AdminShell({ children, nav, brand, collapsedBrand, sidebarFooter, afterNav, mobileHeader, isActive, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, storageKey, defaultCollapsed, collapsible = true, afterHeader, afterMain, className, }) {
-    return (_jsx(AdminLayout, { collapsible: collapsible, storageKey: storageKey, defaultCollapsed: defaultCollapsed, afterHeader: afterHeader, afterMain: afterMain, className: className, sidebar: _jsx(AdminSidebar, { items: nav, isActive: isActive, afterNav: afterNav, mobileHeader: mobileHeader, footer: sidebarFooter, header: _jsx(ShellSidebarHeader, { brand: brand, collapsedBrand: collapsedBrand, collapsible: collapsible }) }), header: _jsx(ShellHeader, { nav: nav, title: title, titles: titles, fallbackTitle: fallbackTitle, headerCenter: headerCenter, headerActions: headerActions, themeToggle: themeToggle }), children: children }));
+export function AdminShell({ children, nav, brand, brandName, brandBadge, brandHref, collapsedBrand, sidebarFooter, afterNav, mobileHeader, isActive, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, storageKey, defaultCollapsed, collapsible = true, afterHeader, afterMain, className, }) {
+    return (_jsx(AdminLayout, { collapsible: collapsible, storageKey: storageKey, defaultCollapsed: defaultCollapsed, afterHeader: afterHeader, afterMain: afterMain, className: className, sidebar: _jsx(AdminSidebar, { items: nav, isActive: isActive, afterNav: afterNav, mobileHeader: mobileHeader, footer: sidebarFooter, header: _jsx(ShellSidebarHeader, { brand: brand, brandName: brandName, brandBadge: brandBadge, brandHref: brandHref, collapsedBrand: collapsedBrand, collapsible: collapsible }) }), header: _jsx(ShellHeader, { nav: nav, title: title, titles: titles, fallbackTitle: fallbackTitle, headerCenter: headerCenter, headerActions: headerActions, themeToggle: themeToggle }), children: children }));
 }
 //# sourceMappingURL=AdminShell.js.map
