@@ -18,7 +18,7 @@ export function AdminSidebarLink({ icon, children, href, external, onClick, type
     const classes = className
         ? `ds-admin__footer-link ${className}`
         : 'ds-admin__footer-link';
-    const label = (_jsxs(_Fragment, { children: [_jsx("span", { className: "ds-admin__nav-icon", children: icon }), _jsx("span", { className: "ds-text-sm ds-font-medium", children: children })] }));
+    const label = (_jsxs(_Fragment, { children: [_jsx("span", { className: "ds-admin__nav-icon", children: icon }), _jsx("span", { className: "ds-admin__nav-label", children: children })] }));
     if (href && external) {
         return (_jsx("a", { href: href, target: "_blank", rel: "noopener noreferrer", onClick: closeMobile, className: classes, children: label }));
     }

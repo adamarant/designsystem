@@ -4,6 +4,30 @@ Entries before 0.10.0 were reconstructed from git history: the package shipped
 nine minors without a changelog, which is part of why consumers stayed on 0.1.2
 without knowing what they were missing.
 
+## 0.15.2
+
+**The nav row is 20px by construction** (requires `@adamarant/designsystem` ≥ 0.23.2).
+
+`.ds-admin__nav-label` declared no `line-height`, so it inherited
+`--ds-leading-normal` from the body: 14px x 1.5 = **21px**, one pixel taller
+than the icon slot that is supposed to set the row. The two children centred
+against each other by accident rather than by rule, and the label read as
+sitting high. It now takes its line box from `--ds-admin-nav-icon-size`, so
+both children of a nav row are the same height.
+
+**`AdminSidebarLink` uses the nav label class**, not utilities. It was
+`ds-text-sm ds-font-medium` here and `.ds-admin__nav-label` there — two
+mechanisms for one thing, inside one package, so this fix would have left the
+footer behind.
+
+That also fixes a collapsed-state bug: `.ds-admin--collapsed` hides
+`.ds-admin__nav-label`, which the footer's utilities never matched, so "Go to
+site" and "Sign out" stayed visible and overflowed the 4rem rail.
+
+**Icon stroke thinned to 1.5** via `--ds-admin-nav-icon-stroke`. A 20px icon at
+the icon set's default stroke of 2 outweighs the 14px label beside it; thinning
+the stroke keeps the slot's size without letting the icon dominate.
+
 ## 0.15.1
 
 **The icon slot sizes its own icon** (requires `@adamarant/designsystem` ≥ 0.23.1).
