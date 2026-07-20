@@ -69,6 +69,66 @@ export interface AdminHeaderProps {
     /** Right slot — theme toggle, avatar, actions */
     right?: ReactNode;
 }
+export interface AdminShellProps {
+    /** The admin pages. */
+    children: ReactNode;
+    /** Navigation items. */
+    nav: NavItem[];
+    /** Brand mark in the sidebar header — a logo, a wordmark, a link home. */
+    brand: ReactNode;
+    /** Brand mark when the sidebar is collapsed (a monogram or icon). Omit to
+        show only the expand control. */
+    collapsedBrand?: ReactNode;
+    /** Sidebar footer — sign out, "go to site". Per-project because the auth
+        model differs (server action, fetch + router, localStorage). */
+    sidebarFooter?: ReactNode;
+    /** Content after the nav items, before the footer. */
+    afterNav?: ReactNode;
+    /** Mobile drawer header. Defaults to a close button. */
+    mobileHeader?: ReactNode;
+    /** Custom active-route detection. Default: startsWith match. */
+    isActive?: (href: string, pathname: string) => boolean;
+    /** Map of path segment → title, e.g. `{ projects: 'Projects' }`. Resolved
+        against the current pathname, last segment first, so detail routes keep
+        their section's title. */
+    titles?: Record<string, string>;
+    /** Shown when no segment matches. Default: 'Admin'. */
+    fallbackTitle?: string;
+    /** Explicit title. Overrides pathname resolution — for the rare page whose
+        name isn't derivable from its route. */
+    title?: ReactNode;
+    /** Centre slot in the header (e.g. a global search). */
+    headerCenter?: ReactNode;
+    /** Header controls after the theme toggle — avatar, sign out, actions. */
+    headerActions?: ReactNode;
+    /** The light/dark switch. Pass `<AdminThemeToggle />` from
+        `@adamarant/ds-admin/theme`; it is a slot rather than built in because
+        that component needs `next-themes`, which not every consumer installs.
+        The shell owns where it sits, so placement stays identical everywhere. */
+    themeToggle?: ReactNode;
+    /** localStorage key for the collapsed state. */
+    storageKey?: string;
+    /** Initial collapsed state. Default: false. */
+    defaultCollapsed?: boolean;
+    /** Enable the collapse control. When false the sidebar is always expanded
+        and no toggle renders. Default: true. */
+    collapsible?: boolean;
+    /** Slot rendered after the header. */
+    afterHeader?: ReactNode;
+    /** Slot rendered after the main content area. */
+    afterMain?: ReactNode;
+    /** Additional class on the root .ds-admin element. */
+    className?: string;
+}
+export interface AdminThemeToggleProps {
+    /** Switch size. Default: 'md'. */
+    size?: 'sm' | 'md' | 'lg';
+    /** The app's default theme, used for the inert pre-hydration render so the
+        thumb doesn't jump on mount. Must match the ThemeProvider's
+        `defaultTheme`. Default: 'dark'. */
+    defaultTheme?: 'light' | 'dark';
+    className?: string;
+}
 /** What the body is showing. Header and toolbar stay mounted in every state. */
 export type AdminPageStatus = 'ready' | 'loading' | 'empty';
 export interface AdminPageProps {

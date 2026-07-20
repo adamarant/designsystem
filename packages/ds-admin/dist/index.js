@@ -1,3 +1,7 @@
+/* Shell contract (0.12.0) — start here when mounting an admin panel.
+   The light/dark switch is at '@adamarant/ds-admin/theme' (needs next-themes). */
+export { AdminShell } from './AdminShell.js';
+/* Shell parts — for a panel whose chrome AdminShell can't express */
 export { SidebarProvider, useSidebar } from './SidebarContext.js';
 export { AdminLayout } from './AdminLayout.js';
 export { AdminSidebar } from './AdminSidebar.js';

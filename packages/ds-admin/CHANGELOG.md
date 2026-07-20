@@ -4,6 +4,79 @@ Entries before 0.10.0 were reconstructed from git history: the package shipped
 nine minors without a changelog, which is part of why consumers stayed on 0.1.2
 without knowing what they were missing.
 
+## 0.12.0
+
+**`AdminShell` — the frame contract.**
+
+Same lesson as `AdminPage`, one level out. The package shipped the parts of the
+chrome (`AdminLayout`, `AdminSidebar`, `AdminHeader`) but left their assembly to
+the consumer, so every project assembled it differently. Across seven CMS
+consumers that produced **two incompatible shell shapes** — a three-file chain
+(`AdminShell` → `AdminLayout` → `AdminSidebar` + `AdminHeader`) in
+studio/riccardo/vibhe, a single `DashboardShell.tsx` in
+esys/riondato/enzo-spatalino/cavallinogroup — and, inside them, four different
+treatments of the same header title:
+
+| Treatment | Where |
+|---|---|
+| `<span class="ds-text-lg ds-font-medium ds-text-primary">` | studio, riccardo |
+| `<span class="ds-heading-ui">` | vibhe |
+| `<h1 class="ds-font-display ds-text-lg ds-text-primary">` | esys, cavallinogroup |
+| `<h1 class="ds-heading-ui ds-text-lg">` | enzo-spatalino |
+
+Two of those were defects, not preferences:
+
+- **`ds-font-display` on an admin title** contradicts `typography.css`, which
+  says in as many words that admin is functional and must not reach for the
+  display font.
+- **`<h1>` in the header** gives the page two h1s, because `AdminPageHeader`
+  already renders one. The header title is a context label, not the page
+  heading.
+
+`AdminShell` owns the element, the classes, the placement and the collapse
+control. There is no `titleClassName` and no `gap` — a knob there is how the
+four dialects happened.
+
+```tsx
+<AdminShell
+  nav={navItems}
+  brand={<Link href="/">{<Logo />}</Link>}
+  titles={{ projects: 'Projects', media: 'Media' }}
+  fallbackTitle="Dashboard"
+  themeToggle={<AdminThemeToggle />}
+  sidebarFooter={<SignOut />}
+>
+  {children}
+</AdminShell>
+```
+
+`titles` resolves against the pathname **last segment first**, so
+`/admin/projects/abc123` keeps the "Projects" title instead of falling through
+to the generic label — the hand-written resolvers all matched the last segment
+only, which is why detail routes showed "Admin".
+
+What remains a slot is what is genuinely per-project: `brand`, `sidebarFooter`
+(the sign-out path differs per auth model), `headerActions`, `afterNav`.
+
+**`AdminThemeToggle`, at `@adamarant/ds-admin/theme`.**
+
+Four projects carried a near-identical `ThemeToggle.tsx` bridging `next-themes`
+to the design system's switch, differing only in how they spelled the hydration
+guard (`useState` + `useEffect` vs `useSyncExternalStore`). Three others had no
+toggle at all.
+
+It ships as a **subpath**, not from the barrel, because it is the only module
+that imports `next-themes` and two consumers (divasti, vibhe) don't have it
+installed — a barrel import would break their build for a component they never
+asked for. `next-themes` is an optional peer dependency.
+
+`AdminShell` takes it as the `themeToggle` slot rather than mounting it
+directly, for the same reason. The shell still owns *where* it sits, so the
+placement is identical everywhere.
+
+Requires a `next-themes` provider with `attribute="data-theme"` above it.
+Pass `defaultTheme` matching the provider's, or the thumb jumps on hydration.
+
 ## 0.11.1
 
 **Fix: `AdminRowActions` instrada gli href interni su `next/link`.**
