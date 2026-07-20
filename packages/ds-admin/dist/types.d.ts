@@ -74,8 +74,20 @@ export interface AdminShellProps {
     children: ReactNode;
     /** Navigation items. */
     nav: NavItem[];
-    /** Brand mark in the sidebar header — a logo, a wordmark, a link home. */
-    brand: ReactNode;
+    /** The panel's name, rendered as the wordmark. Prefer this over `brand`:
+        it is a shape rather than a slot, so the sidebar header can't drift into
+        a different type treatment per project — which is what happened while
+        `brand` was the only option (two SVG logos, five hand-written texts, in
+        three type treatments). */
+    brandName?: string;
+    /** Badge next to the wordmark, e.g. "Admin". A prop rather than a default
+        because the package ships no user-facing strings. */
+    brandBadge?: ReactNode;
+    /** Makes the wordmark a link — usually the panel root. */
+    brandHref?: string;
+    /** Escape hatch: a fully custom mark, used instead of `brandName`. For the
+        panel that genuinely needs its own logo. */
+    brand?: ReactNode;
     /** Brand mark when the sidebar is collapsed (a monogram or icon). Omit to
         show only the expand control. */
     collapsedBrand?: ReactNode;
