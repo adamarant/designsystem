@@ -4,6 +4,40 @@ Entries before 0.10.0 were reconstructed from git history: the package shipped
 nine minors without a changelog, which is part of why consumers stayed on 0.1.2
 without knowing what they were missing.
 
+## 0.15.0
+
+**`AdminSidebarLink` — the footer row.**
+
+The last piece of the frame still left to the consumer. Across seven panels
+that produced: three with the same twenty-five-line `SidebarFooter` copied
+verbatim, one with sign-out only, one with sign-out as an icon in the header
+instead, and two with no footer at all — so two panels had no way out of the
+admin except the browser's back button.
+
+```tsx
+sidebarFooter={
+  <>
+    <AdminSidebarLink href="/" external icon={<ExternalLink size={20} />}>
+      Go to site
+    </AdminSidebarLink>
+    <AdminSidebarLink onClick={signOut} icon={<LogOut size={20} />}>
+      Sign out
+    </AdminSidebarLink>
+  </>
+}
+```
+
+What differs per project is the *action*, not the row: a callback, a fetch, a
+server action. So the row is here and the action is a prop — `href` renders a
+link, `onClick` a button, and `type="submit"` lets it sit inside a
+server-action `<form>`, which is how one consumer signs out.
+
+Labels stay with the consumer: the package ships no user-facing strings, and
+these panels run in three languages.
+
+It closes the mobile drawer on activation. A footer row either navigates away
+or ends the session; leaving the drawer open behind it is wrong in both cases.
+
 ## 0.14.0
 
 **`AdminShell` owns the wordmark.**

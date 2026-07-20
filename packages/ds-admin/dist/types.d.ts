@@ -137,6 +137,22 @@ export interface AdminShellProps {
     /** Additional class on the root .ds-admin element. */
     className?: string;
 }
+export interface AdminSidebarLinkProps {
+    /** Icon element — passed by the consumer, so the package stays icon-free. */
+    icon: ReactNode;
+    /** The label. */
+    children: ReactNode;
+    /** Renders a link. Omit for a button. */
+    href?: string;
+    /** Opens in a new tab (adds rel=noopener) — for "go to site". */
+    external?: boolean;
+    /** Renders a button. */
+    onClick?: () => void;
+    /** 'submit' lets the row sit inside a server-action `<form>`, which is how
+        one consumer signs out. Default: 'button'. */
+    type?: 'button' | 'submit';
+    className?: string;
+}
 export interface AdminThemeToggleProps {
     /** Switch size. Default: 'md'. */
     size?: 'sm' | 'md' | 'lg';
