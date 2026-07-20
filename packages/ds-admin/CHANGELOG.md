@@ -4,6 +4,29 @@ Entries before 0.10.0 were reconstructed from git history: the package shipped
 nine minors without a changelog, which is part of why consumers stayed on 0.1.2
 without knowing what they were missing.
 
+## 0.13.0
+
+**`AdminShell` derives header titles from the nav.**
+
+0.12.0 asked for a `titles` map. Applying it to the first consumer made the
+problem obvious: that map is a copy of the labels already in `nav`, and a copy
+goes stale the first time a section is renamed — the sidebar would say one
+thing and the header another.
+
+The nav's labels (including `children`) are now the default title source.
+`titles` is still there, for routes that have no nav entry — settings, a
+builder, a profile page — and still wins where both define a segment.
+
+```tsx
+const NAV = [{ id: 'projects', label: 'Projects', href: '/admin/projects', icon: … }]
+
+<AdminShell nav={NAV} titles={{ settings: 'Settings' }} />
+//                    ^ only what the nav doesn't already cover
+```
+
+Additive: a `titles` map that repeats the nav labels keeps working, it's just
+no longer needed.
+
 ## 0.12.0
 
 **`AdminShell` — the frame contract.**

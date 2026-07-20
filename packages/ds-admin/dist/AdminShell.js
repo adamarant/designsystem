@@ -19,9 +19,34 @@ function CollapseControl() {
 /* ==========================================================================
    Title resolution
    ========================================================================== */
+function lastSegment(href) {
+    const segments = href.split('/').filter(Boolean);
+    return segments[segments.length - 1];
+}
+/** The nav already carries a label for every section it links to. Deriving the
+    default titles from it means the header and the sidebar cannot disagree —
+    a hand-written map is a copy of this list that silently goes stale the
+    first time a label is renamed. `titles` then only needs the routes that
+    aren't in the nav (settings, a builder, a profile page). */
+function navTitles(nav) {
+    const map = {};
+    for (const item of nav) {
+        const segment = lastSegment(item.href);
+        if (segment)
+            map[segment] = item.label;
+        for (const child of item.children ?? []) {
+            const childSegment = lastSegment(child.href);
+            if (childSegment)
+                map[childSegment] = child.label;
+        }
+    }
+    return map;
+}
 /** Walks path segments from the last to the first and returns the first one
     present in the map, so `/admin/projects/abc123` resolves to the "projects"
-    title instead of falling through to the generic label. */
+    title instead of falling through to the generic label. The hand-written
+    resolvers this replaces all matched the last segment only, which is why
+    detail routes showed the fallback. */
 function resolveTitle(pathname, titles, fallback) {
     const segments = pathname.split('/').filter(Boolean);
     for (let i = segments.length - 1; i >= 0; i -= 1) {
@@ -39,9 +64,11 @@ function ShellSidebarHeader({ brand, collapsedBrand, collapsible, }) {
     const { isCollapsed } = useSidebar();
     return (_jsxs(_Fragment, { children: [isCollapsed ? collapsedBrand : brand, collapsible && _jsx(CollapseControl, {})] }));
 }
-function ShellHeader({ title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, }) {
+function ShellHeader({ nav, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, }) {
     const pathname = usePathname();
-    const resolved = title ?? resolveTitle(pathname, titles ?? {}, fallbackTitle ?? 'Admin');
+    // Nav labels first, then the consumer's overrides for routes outside the nav.
+    const map = { ...navTitles(nav), ...titles };
+    const resolved = title ?? resolveTitle(pathname, map, fallbackTitle ?? 'Admin');
     const right = themeToggle || headerActions ? (_jsxs(_Fragment, { children: [themeToggle, headerActions] })) : undefined;
     return (_jsx(AdminHeader
     /* A span, not a heading: AdminPageHeader owns the page's h1. Two h1s per
@@ -70,6 +97,6 @@ function ShellHeader({ title, titles, fallbackTitle, headerCenter, headerActions
  * belongs to the shell and has no prop to override it.
  */
 export function AdminShell({ children, nav, brand, collapsedBrand, sidebarFooter, afterNav, mobileHeader, isActive, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, storageKey, defaultCollapsed, collapsible = true, afterHeader, afterMain, className, }) {
-    return (_jsx(AdminLayout, { collapsible: collapsible, storageKey: storageKey, defaultCollapsed: defaultCollapsed, afterHeader: afterHeader, afterMain: afterMain, className: className, sidebar: _jsx(AdminSidebar, { items: nav, isActive: isActive, afterNav: afterNav, mobileHeader: mobileHeader, footer: sidebarFooter, header: _jsx(ShellSidebarHeader, { brand: brand, collapsedBrand: collapsedBrand, collapsible: collapsible }) }), header: _jsx(ShellHeader, { title: title, titles: titles, fallbackTitle: fallbackTitle, headerCenter: headerCenter, headerActions: headerActions, themeToggle: themeToggle }), children: children }));
+    return (_jsx(AdminLayout, { collapsible: collapsible, storageKey: storageKey, defaultCollapsed: defaultCollapsed, afterHeader: afterHeader, afterMain: afterMain, className: className, sidebar: _jsx(AdminSidebar, { items: nav, isActive: isActive, afterNav: afterNav, mobileHeader: mobileHeader, footer: sidebarFooter, header: _jsx(ShellSidebarHeader, { brand: brand, collapsedBrand: collapsedBrand, collapsible: collapsible }) }), header: _jsx(ShellHeader, { nav: nav, title: title, titles: titles, fallbackTitle: fallbackTitle, headerCenter: headerCenter, headerActions: headerActions, themeToggle: themeToggle }), children: children }));
 }
 //# sourceMappingURL=AdminShell.js.map
