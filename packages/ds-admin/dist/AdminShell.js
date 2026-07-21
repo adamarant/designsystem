@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { AdminLayout } from './AdminLayout.js';
 import { AdminSidebar } from './AdminSidebar.js';
 import { AdminHeader } from './AdminHeader.js';
+import { AdminEmptyState } from './AdminEmptyState.js';
 import { useSidebar } from './SidebarContext.js';
 /* ==========================================================================
    Chrome — inline SVG, like the rest of the package. ds-admin stays
@@ -17,18 +18,31 @@ function CollapseControl() {
     const { isCollapsed, toggleCollapse } = useSidebar();
     return (_jsx("button", { type: "button", onClick: toggleCollapse, className: isCollapsed ? 'ds-icon-btn' : 'ds-icon-btn ds-ml-auto', "aria-label": isCollapsed ? 'Expand sidebar' : 'Collapse sidebar', children: _jsx(ChevronIcon, { direction: isCollapsed ? 'end' : 'start' }) }));
 }
-/* ==========================================================================
-   Title resolution
-   ========================================================================== */
 function flattenNav(nav) {
     const flat = [];
     for (const item of nav) {
-        flat.push({ href: item.href, label: item.label });
+        flat.push({ href: item.href, label: item.label, id: item.id });
         for (const child of item.children ?? []) {
-            flat.push({ href: child.href, label: child.label });
+            flat.push({
+                href: child.href,
+                label: child.label,
+                id: child.id,
+                parentId: item.id,
+            });
         }
     }
     return flat;
+}
+/** The nav entry whose subtree contains this path — longest href wins, so a
+    root entry never shadows a deeper one. */
+function navMatch(pathname, nav) {
+    let best;
+    for (const item of flattenNav(nav)) {
+        const matches = pathname === item.href || pathname.startsWith(`${item.href}/`);
+        if (matches && (!best || item.href.length > best.href.length))
+            best = item;
+    }
+    return best;
 }
 /** The longest nav href the pathname sits under.
  *
@@ -39,13 +53,22 @@ function flattenNav(nav) {
  *  blog edit route would be titled "Pages". Longest match wins, so a root
  *  entry at `/admin` never shadows a deeper one. */
 function navTitle(pathname, nav) {
-    let best;
-    for (const item of flattenNav(nav)) {
-        const matches = pathname === item.href || pathname.startsWith(`${item.href}/`);
-        if (matches && (!best || item.href.length > best.href.length))
-            best = item;
-    }
-    return best?.label;
+    return navMatch(pathname, nav)?.label;
+}
+/** Whether this route is inside a section the user may reach. A permission on
+    a parent covers its children, so granting "blog" is enough for the
+    categories page under it. */
+function mayReach(pathname, nav, allowed) {
+    if (!allowed)
+        return true;
+    const match = navMatch(pathname, nav);
+    // A route with no nav entry at all (a detail page hanging off nothing) is
+    // left alone: blocking what we can't classify would break more than it
+    // protects, and the API is the real boundary either way.
+    if (!match)
+        return true;
+    return (allowed.includes(match.id) ||
+        (match.parentId !== undefined && allowed.includes(match.parentId)));
 }
 /** The nav already carries a label for every section it links to, so the header
     and the sidebar cannot disagree — a hand-written map is a copy of that list
@@ -132,14 +155,23 @@ function filterNav(nav, allowed) {
         return children?.length ? [{ ...item, children }] : [];
     });
 }
-export function AdminShell({ children, nav, brand, brandName, brandBadge, brandHref, collapsedBrand, sidebarFooter, afterNav, mobileHeader, isActive, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, userMenu, allowedSections, storageKey, defaultCollapsed, collapsible = true, afterHeader, afterMain, className, }) {
+export function AdminShell({ children, nav, brand, brandName, brandBadge, brandHref, collapsedBrand, sidebarFooter, afterNav, mobileHeader, isActive, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, userMenu, allowedSections, forbidden, storageKey, defaultCollapsed, collapsible = true, afterHeader, afterMain, className, }) {
     const visibleNav = filterNav(nav, allowedSections);
+    return (_jsx(ShellBody, { nav: nav, visibleNav: visibleNav, allowedSections: allowedSections, forbidden: forbidden, brand: brand, brandName: brandName, brandBadge: brandBadge, brandHref: brandHref, collapsedBrand: collapsedBrand, sidebarFooter: sidebarFooter, afterNav: afterNav, mobileHeader: mobileHeader, isActive: isActive, title: title, titles: titles, fallbackTitle: fallbackTitle, headerCenter: headerCenter, headerActions: headerActions, themeToggle: themeToggle, userMenu: userMenu, storageKey: storageKey, defaultCollapsed: defaultCollapsed, collapsible: collapsible, afterHeader: afterHeader, afterMain: afterMain, className: className, children: children }));
+}
+/** Split out so the forbidden check can read usePathname — AdminShell itself
+    is the boundary the consumer renders, and hooks belong below it. */
+function ShellBody({ children, nav, visibleNav, allowedSections, forbidden, brand, brandName, brandBadge, brandHref, collapsedBrand, sidebarFooter, afterNav, mobileHeader, isActive, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, userMenu, storageKey, defaultCollapsed, collapsible = true, afterHeader, afterMain, className, }) {
+    const pathname = usePathname();
+    // The chrome stays: someone who lands here needs a way to somewhere they can
+    // actually go, and a bare message with no sidebar is a dead end.
+    const body = forbidden && !mayReach(pathname, nav, allowedSections) ? (_jsx(AdminEmptyState, { ...forbidden, variant: forbidden.variant ?? 'card' })) : (children);
     return (_jsx(AdminLayout, { collapsible: collapsible, storageKey: storageKey, defaultCollapsed: defaultCollapsed, afterHeader: afterHeader, afterMain: afterMain, className: className, sidebar: _jsx(AdminSidebar, { items: visibleNav, isActive: isActive, afterNav: afterNav, mobileHeader: mobileHeader, footer: sidebarFooter, header: _jsx(ShellSidebarHeader, { brand: brand, brandName: brandName, brandBadge: brandBadge, brandHref: brandHref, collapsedBrand: collapsedBrand, collapsible: collapsible }) }), header: _jsx(ShellHeader
         /* The full nav, not the filtered one: a title must still resolve on
            a route the sidebar is hiding, or the header goes blank there. */
         , { 
             /* The full nav, not the filtered one: a title must still resolve on
                a route the sidebar is hiding, or the header goes blank there. */
-            nav: nav, title: title, titles: titles, fallbackTitle: fallbackTitle, headerCenter: headerCenter, headerActions: headerActions, themeToggle: themeToggle, userMenu: userMenu }), children: children }));
+            nav: nav, title: title, titles: titles, fallbackTitle: fallbackTitle, headerCenter: headerCenter, headerActions: headerActions, themeToggle: themeToggle, userMenu: userMenu }), children: body }));
 }
 //# sourceMappingURL=AdminShell.js.map

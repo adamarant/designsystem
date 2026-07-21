@@ -128,6 +128,17 @@ export interface AdminShellProps {
         Navigation only. It does not stop anyone typing the URL and does not
         protect the route behind it — enforce the same answer server-side. */
     allowedSections?: string[];
+    /** What to show instead of the page when the current route is outside
+        `allowedSections`. Rendered as an `AdminEmptyState`, with the sidebar and
+        header still in place so the person can go somewhere they can reach.
+  
+        Omit it and nothing is blocked: the sidebar still hides the links, and
+        the page renders as before. It is opt-in because the copy has to come
+        from the consumer — the package ships no user-facing strings.
+  
+        Still not authorisation. This is what a person sees after typing a URL
+        they shouldn't; what stops them reading the data is the API. */
+    forbidden?: AdminEmptyStateProps;
     /** The light/dark switch. Pass `<AdminThemeToggle />` from
         `@adamarant/ds-admin/theme`; it is a slot rather than built in because
         that component needs `next-themes`, which not every consumer installs.

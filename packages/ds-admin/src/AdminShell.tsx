@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { AdminLayout } from './AdminLayout.js'
 import { AdminSidebar } from './AdminSidebar.js'
 import { AdminHeader } from './AdminHeader.js'
+import { AdminEmptyState } from './AdminEmptyState.js'
 import { useSidebar } from './SidebarContext.js'
 import type { AdminShellProps, NavItem } from './types.js'
 
@@ -50,17 +51,44 @@ function CollapseControl() {
    Title resolution
    ========================================================================== */
 
-function flattenNav(nav: NavItem[]): { href: string; label: string }[] {
-  const flat: { href: string; label: string }[] = []
+interface NavMatch {
+  href: string
+  label: string
+  id: string
+  /** Set when the match is a child, so a permission granted on the parent
+      section still covers it. */
+  parentId?: string
+}
+
+function flattenNav(nav: NavItem[]): NavMatch[] {
+  const flat: NavMatch[] = []
 
   for (const item of nav) {
-    flat.push({ href: item.href, label: item.label })
+    flat.push({ href: item.href, label: item.label, id: item.id })
     for (const child of item.children ?? []) {
-      flat.push({ href: child.href, label: child.label })
+      flat.push({
+        href: child.href,
+        label: child.label,
+        id: child.id,
+        parentId: item.id,
+      })
     }
   }
 
   return flat
+}
+
+/** The nav entry whose subtree contains this path — longest href wins, so a
+    root entry never shadows a deeper one. */
+function navMatch(pathname: string, nav: NavItem[]): NavMatch | undefined {
+  let best: NavMatch | undefined
+
+  for (const item of flattenNav(nav)) {
+    const matches = pathname === item.href || pathname.startsWith(`${item.href}/`)
+    if (matches && (!best || item.href.length > best.href.length)) best = item
+  }
+
+  return best
 }
 
 /** The longest nav href the pathname sits under.
@@ -72,14 +100,29 @@ function flattenNav(nav: NavItem[]): { href: string; label: string }[] {
  *  blog edit route would be titled "Pages". Longest match wins, so a root
  *  entry at `/admin` never shadows a deeper one. */
 function navTitle(pathname: string, nav: NavItem[]): string | undefined {
-  let best: { href: string; label: string } | undefined
+  return navMatch(pathname, nav)?.label
+}
 
-  for (const item of flattenNav(nav)) {
-    const matches = pathname === item.href || pathname.startsWith(`${item.href}/`)
-    if (matches && (!best || item.href.length > best.href.length)) best = item
-  }
+/** Whether this route is inside a section the user may reach. A permission on
+    a parent covers its children, so granting "blog" is enough for the
+    categories page under it. */
+function mayReach(
+  pathname: string,
+  nav: NavItem[],
+  allowed?: string[]
+): boolean {
+  if (!allowed) return true
 
-  return best?.label
+  const match = navMatch(pathname, nav)
+  // A route with no nav entry at all (a detail page hanging off nothing) is
+  // left alone: blocking what we can't classify would break more than it
+  // protects, and the API is the real boundary either way.
+  if (!match) return true
+
+  return (
+    allowed.includes(match.id) ||
+    (match.parentId !== undefined && allowed.includes(match.parentId))
+  )
 }
 
 /** The nav already carries a label for every section it links to, so the header
@@ -266,6 +309,7 @@ export function AdminShell({
   themeToggle,
   userMenu,
   allowedSections,
+  forbidden,
   storageKey,
   defaultCollapsed,
   collapsible = true,
@@ -274,6 +318,82 @@ export function AdminShell({
   className,
 }: AdminShellProps) {
   const visibleNav = filterNav(nav, allowedSections)
+  return (
+    <ShellBody
+      nav={nav}
+      visibleNav={visibleNav}
+      allowedSections={allowedSections}
+      forbidden={forbidden}
+      brand={brand}
+      brandName={brandName}
+      brandBadge={brandBadge}
+      brandHref={brandHref}
+      collapsedBrand={collapsedBrand}
+      sidebarFooter={sidebarFooter}
+      afterNav={afterNav}
+      mobileHeader={mobileHeader}
+      isActive={isActive}
+      title={title}
+      titles={titles}
+      fallbackTitle={fallbackTitle}
+      headerCenter={headerCenter}
+      headerActions={headerActions}
+      themeToggle={themeToggle}
+      userMenu={userMenu}
+      storageKey={storageKey}
+      defaultCollapsed={defaultCollapsed}
+      collapsible={collapsible}
+      afterHeader={afterHeader}
+      afterMain={afterMain}
+      className={className}
+    >
+      {children}
+    </ShellBody>
+  )
+}
+
+/** Split out so the forbidden check can read usePathname — AdminShell itself
+    is the boundary the consumer renders, and hooks belong below it. */
+function ShellBody({
+  children,
+  nav,
+  visibleNav,
+  allowedSections,
+  forbidden,
+  brand,
+  brandName,
+  brandBadge,
+  brandHref,
+  collapsedBrand,
+  sidebarFooter,
+  afterNav,
+  mobileHeader,
+  isActive,
+  title,
+  titles,
+  fallbackTitle,
+  headerCenter,
+  headerActions,
+  themeToggle,
+  userMenu,
+  storageKey,
+  defaultCollapsed,
+  collapsible = true,
+  afterHeader,
+  afterMain,
+  className,
+}: AdminShellProps & { visibleNav: NavItem[] }) {
+  const pathname = usePathname()
+
+  // The chrome stays: someone who lands here needs a way to somewhere they can
+  // actually go, and a bare message with no sidebar is a dead end.
+  const body =
+    forbidden && !mayReach(pathname, nav, allowedSections) ? (
+      <AdminEmptyState {...forbidden} variant={forbidden.variant ?? 'card'} />
+    ) : (
+      children
+    )
+
   return (
     <AdminLayout
       collapsible={collapsible}
@@ -316,7 +436,7 @@ export function AdminShell({
         />
       }
     >
-      {children}
+      {body}
     </AdminLayout>
   )
 }

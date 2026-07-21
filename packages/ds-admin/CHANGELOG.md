@@ -4,6 +4,33 @@ Entries before 0.10.0 were reconstructed from git history: the package shipped
 nine minors without a changelog, which is part of why consumers stayed on 0.1.2
 without knowing what they were missing.
 
+## 0.17.0
+
+**`forbidden` — what someone sees after typing a URL they shouldn't.**
+
+`allowedSections` hid the links; the page behind them still rendered. Pass
+`forbidden` and `AdminShell` shows that state instead, as an `AdminEmptyState`,
+with the sidebar and header still in place — a bare message and no way out is a
+dead end.
+
+```tsx
+<AdminShell
+  allowedSections={user.sections}
+  forbidden={{ title: 'No access', description: 'Ask an administrator…' }}
+/>
+```
+
+Opt-in: omit it and nothing is blocked, exactly as before. The copy has to come
+from the consumer, because the package ships no user-facing strings.
+
+A permission on a parent covers its children, so granting `blog` is enough for
+the categories page beneath it. A route with **no** nav entry at all is left
+alone: blocking what can't be classified would break more than it protects.
+
+**Still not authorisation.** This is presentation. What stops someone reading
+the data is the API — closing documented gap #1 of the admin framework is a
+separate job.
+
 ## 0.16.0
 
 **`AdminUserMenu`** — who is signed in, and the things you do to yourself
