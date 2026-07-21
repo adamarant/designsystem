@@ -242,7 +242,24 @@
     align-items: center;
     justify-content: center;
     color: var(--ds-color-text-tertiary);
+    /* Click-through, so tapping a decorative icon focuses the input. */
     pointer-events: none;
+
+    /* Except an affix that does something — a show/hide password toggle, a
+       clear button. Without this the slot only fits decoration, and anyone
+       needing an interactive one hand-rolls the positioning instead: which is
+       how a consumer ended up centring a button with utilities and getting
+       the class escaping wrong. */
+    & button,
+    & a {
+      pointer-events: auto;
+      color: var(--ds-color-text-secondary);
+      transition: color var(--ds-duration-fast) var(--ds-ease-default);
+
+      &:hover {
+        color: var(--ds-color-text);
+      }
+    }
   }
 
   & .ds-input {

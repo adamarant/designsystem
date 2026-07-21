@@ -8,6 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 > **Note:** entries between 0.9.0 and 0.21.0 were never written. The file
 > resumes at 0.22.0; the gap is reconstructable from `git log` only.
 
+## [0.23.5] - 2026-07-22
+
+**`.ds-input-group__icon` accepts an interactive affix.**
+
+The slot was click-through by design, so tapping a decorative icon focuses the
+input. That also meant it only ever fitted decoration: anyone needing a
+show/hide password toggle or a clear button had to hand-roll the positioning
+with utilities — and one consumer did exactly that, centring a button with
+`ds-top-1/2` and `-ds-translate-y-1/2` written with the CSS escaping still in
+the class name, so neither rule ever matched and the icon floated out of place.
+
+A `button` or `a` inside the slot now takes pointer events and gets the
+secondary/hover colour pair. Decorative icons keep passing clicks through, so
+nothing that uses the slot today changes.
+
 ## [0.23.3] - 2026-07-21
 
 **Admin nav label is optically centred against its icon.**
