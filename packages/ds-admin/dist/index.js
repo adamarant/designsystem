@@ -7,6 +7,7 @@ export { AdminLayout } from './AdminLayout.js';
 export { AdminSidebar } from './AdminSidebar.js';
 export { AdminSidebarLink } from './AdminSidebarLink.js';
 export { AdminHeader } from './AdminHeader.js';
+export { AdminUserMenu } from './AdminUserMenu.js';
 /* Page contract (0.10.0) — start here when building an admin page */
 export { AdminPage } from './AdminPage.js';
 /* Data & page primitives (0.2.0) */

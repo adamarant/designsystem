@@ -174,19 +174,28 @@ function ShellHeader({
   headerCenter,
   headerActions,
   themeToggle,
+  userMenu,
 }: Pick<
   AdminShellProps,
-  'nav' | 'title' | 'titles' | 'fallbackTitle' | 'headerCenter' | 'headerActions' | 'themeToggle'
+  | 'nav'
+  | 'title'
+  | 'titles'
+  | 'fallbackTitle'
+  | 'headerCenter'
+  | 'headerActions'
+  | 'themeToggle'
+  | 'userMenu'
 >) {
   const pathname = usePathname()
   const resolved =
     title ?? resolveTitle(pathname, nav, titles ?? {}, fallbackTitle ?? 'Admin')
 
   const right =
-    themeToggle || headerActions ? (
+    themeToggle || headerActions || userMenu ? (
       <>
         {themeToggle}
         {headerActions}
+        {userMenu}
       </>
     ) : undefined
 
@@ -220,6 +229,23 @@ function ShellHeader({
  * Everything structural — element, classes, placement, the collapse toggle —
  * belongs to the shell and has no prop to override it.
  */
+/** The nav this user may see. An item with children keeps only the children
+    they may reach, and disappears when none survive. */
+function filterNav(nav: NavItem[], allowed?: string[]): NavItem[] {
+  if (!allowed) return nav
+
+  const permitted = new Set(allowed)
+
+  return nav.flatMap((item) => {
+    const children = item.children?.filter((child) => permitted.has(child.id))
+    if (permitted.has(item.id)) {
+      return [item.children ? { ...item, children } : item]
+    }
+    // The parent isn't allowed but a child is: keep the branch reachable.
+    return children?.length ? [{ ...item, children }] : []
+  })
+}
+
 export function AdminShell({
   children,
   nav,
@@ -238,6 +264,8 @@ export function AdminShell({
   headerCenter,
   headerActions,
   themeToggle,
+  userMenu,
+  allowedSections,
   storageKey,
   defaultCollapsed,
   collapsible = true,
@@ -245,6 +273,7 @@ export function AdminShell({
   afterMain,
   className,
 }: AdminShellProps) {
+  const visibleNav = filterNav(nav, allowedSections)
   return (
     <AdminLayout
       collapsible={collapsible}
@@ -255,7 +284,7 @@ export function AdminShell({
       className={className}
       sidebar={
         <AdminSidebar
-          items={nav}
+          items={visibleNav}
           isActive={isActive}
           afterNav={afterNav}
           mobileHeader={mobileHeader}
@@ -274,6 +303,8 @@ export function AdminShell({
       }
       header={
         <ShellHeader
+          /* The full nav, not the filtered one: a title must still resolve on
+             a route the sidebar is hiding, or the header goes blank there. */
           nav={nav}
           title={title}
           titles={titles}
@@ -281,6 +312,7 @@ export function AdminShell({
           headerCenter={headerCenter}
           headerActions={headerActions}
           themeToggle={themeToggle}
+          userMenu={userMenu}
         />
       }
     >

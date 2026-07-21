@@ -4,6 +4,42 @@ Entries before 0.10.0 were reconstructed from git history: the package shipped
 nine minors without a changelog, which is part of why consumers stayed on 0.1.2
 without knowing what they were missing.
 
+## 0.16.0
+
+**`AdminUserMenu`** — who is signed in, and the things you do to yourself
+(requires `@adamarant/designsystem` ≥ 0.23.4).
+
+```tsx
+<AdminShell
+  userMenu={<AdminUserMenu email={user.email} name={user.name}
+                           roleLabel="Superadmin" onSignOut={signOut} />}
+  allowedSections={user.sections}
+/>
+```
+
+It owns no geometry: the trigger is `.ds-avatar--sm` and the panel is
+`.ds-dropdown`, both already in the design system. `--sm` is `--ds-size-2`, so
+the trigger is the same 32px as the icon buttons and the theme toggle next to
+it — the header row is one height because the components share a tier, not
+because this one hard-codes a number.
+
+**`allowedSections`** filters the sidebar. An item with children keeps only
+the children the user may reach and disappears when none survive; a child that
+is allowed keeps its parent reachable even when the parent itself isn't listed.
+
+The header title still resolves against the **full** nav, not the filtered one
+— otherwise a route the sidebar is hiding would render with a blank title.
+
+**This is navigation, not authorisation.** A hidden link does not stop anyone
+typing the URL and does not protect the route behind it. Enforce the same
+answer server-side, where the data is.
+
+**Theme toggle sizes now land on the tiers**: 24 / 32 / 40 (`--ds-size-1/2/3`)
+instead of 24 / 28 / 36. The default used to fall between two tiers and sat 4px
+shorter than everything beside it in a header row. Track width is twice the
+height and the thumb travel is derived from it, so the geometry stays
+consistent at every size.
+
 ## 0.15.2
 
 **The nav row is 20px by construction** (requires `@adamarant/designsystem` ≥ 0.23.2).
