@@ -195,16 +195,29 @@
 
 /* --- Nav Label --- */
 /* --- Nav Label ---
-   The line box matches the icon slot, so both flex children of a nav row are
-   the same height and the row is 20px by construction. Without this the label
-   inherited --ds-leading-normal from the body (14px x 1.5 = 21px), so the row
-   was one pixel taller than the slot that declares it and the two centred
-   against each other by accident rather than by rule. */
+   Two separate jobs here, don't conflate them:
+
+   1. ROW HEIGHT. line-height matches the icon slot, so both flex children are
+      the same box height and the row is 20px by construction. Without it the
+      label inherited --ds-leading-normal (14px x 1.5 = 21px) and the row was a
+      pixel taller than the slot meant to declare it.
+
+   2. OPTICAL CENTRING. Equal box heights do NOT centre the text against the
+      icon: the offset of the ink within its box is (descender - ascender +
+      cap)/2, which is set by the font's metrics and is independent of
+      line-height. Every body font used across the consumers is top-heavy
+      (Telegraf +0.73px high, Switzer +0.35px at 14px), so the label rode above
+      the icon — visible on a retina screen. A fixed nudge can't fix it: the
+      amount differs per font. text-box trims the box to the cap-to-baseline
+      edges, so the box centre IS the ink centre for any font, and align-items
+      lands it dead-centre on the icon. Progressive enhancement: where it isn't
+      supported, line-height above keeps the 20px row and the sub-pixel lean. */
 .ds-admin__nav-label {
   white-space: nowrap;
   font-size: var(--ds-text-sm);
   font-weight: var(--ds-weight-medium);
   line-height: var(--ds-admin-nav-icon-size, 20px);
+  text-box: trim-both cap alphabetic;
 }
 
 /* --- Sub-Navigation (nested under a parent item) --- */
