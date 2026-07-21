@@ -8,6 +8,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 > **Note:** entries between 0.9.0 and 0.21.0 were never written. The file
 > resumes at 0.22.0; the gap is reconstructable from `git log` only.
 
+## [0.23.3] - 2026-07-21
+
+**Admin nav label is optically centred against its icon.**
+
+`.ds-admin__nav-label` had its box height matched to the icon (0.23.2), but
+equal boxes don't centre the *ink*: a font places its glyphs off-centre in the
+line box by `(descender − ascender + cap) / 2`, independent of line-height.
+Every body font the consumers use is top-heavy — Telegraf sits +0.73px high,
+Switzer +0.35px at 14px — so the label rode above the icon, visible on a retina
+display. A fixed nudge can't fix it because the amount is per-font.
+
+`text-box: trim-both cap alphabetic` trims the label box to its cap-to-baseline
+edges, so the box centre is the ink centre for any font and `align-items:
+center` lands it dead-centre. Progressive enhancement: where `text-box` isn't
+supported the existing line-height keeps the 20px row and the sub-pixel lean.
+Applies to the footer rows too (`AdminSidebarLink` uses the same class).
+
 ## [0.23.0] - 2026-07-18
 
 ### Changed
