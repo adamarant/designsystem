@@ -8,6 +8,7 @@ export { AdminLayout } from './AdminLayout.js'
 export { AdminSidebar } from './AdminSidebar.js'
 export { AdminSidebarLink } from './AdminSidebarLink.js'
 export { AdminHeader } from './AdminHeader.js'
+export { AdminUserMenu } from './AdminUserMenu.js'
 
 /* Page contract (0.10.0) — start here when building an admin page */
 export { AdminPage } from './AdminPage.js'
@@ -41,6 +42,8 @@ export type {
   SidebarProviderProps,
   AdminShellProps,
   AdminSidebarLinkProps,
+  AdminUserMenuProps,
+  AdminUserMenuItem,
   AdminLayoutProps,
   AdminPageProps,
   AdminPageStatus,

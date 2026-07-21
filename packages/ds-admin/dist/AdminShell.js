@@ -87,10 +87,10 @@ function ShellSidebarHeader({ brand, brandName, brandBadge, brandHref, collapsed
     const expanded = brand ?? (_jsx(ShellBrand, { brandName: brandName, brandBadge: brandBadge, brandHref: brandHref }));
     return (_jsxs(_Fragment, { children: [isCollapsed ? collapsedBrand : expanded, collapsible && _jsx(CollapseControl, {})] }));
 }
-function ShellHeader({ nav, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, }) {
+function ShellHeader({ nav, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, userMenu, }) {
     const pathname = usePathname();
     const resolved = title ?? resolveTitle(pathname, nav, titles ?? {}, fallbackTitle ?? 'Admin');
-    const right = themeToggle || headerActions ? (_jsxs(_Fragment, { children: [themeToggle, headerActions] })) : undefined;
+    const right = themeToggle || headerActions || userMenu ? (_jsxs(_Fragment, { children: [themeToggle, headerActions, userMenu] })) : undefined;
     return (_jsx(AdminHeader
     /* A span, not a heading: AdminPageHeader owns the page's h1. Two h1s per
        page is what the hand-written headers were producing. */
@@ -117,7 +117,29 @@ function ShellHeader({ nav, title, titles, fallbackTitle, headerCenter, headerAc
  * Everything structural — element, classes, placement, the collapse toggle —
  * belongs to the shell and has no prop to override it.
  */
-export function AdminShell({ children, nav, brand, brandName, brandBadge, brandHref, collapsedBrand, sidebarFooter, afterNav, mobileHeader, isActive, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, storageKey, defaultCollapsed, collapsible = true, afterHeader, afterMain, className, }) {
-    return (_jsx(AdminLayout, { collapsible: collapsible, storageKey: storageKey, defaultCollapsed: defaultCollapsed, afterHeader: afterHeader, afterMain: afterMain, className: className, sidebar: _jsx(AdminSidebar, { items: nav, isActive: isActive, afterNav: afterNav, mobileHeader: mobileHeader, footer: sidebarFooter, header: _jsx(ShellSidebarHeader, { brand: brand, brandName: brandName, brandBadge: brandBadge, brandHref: brandHref, collapsedBrand: collapsedBrand, collapsible: collapsible }) }), header: _jsx(ShellHeader, { nav: nav, title: title, titles: titles, fallbackTitle: fallbackTitle, headerCenter: headerCenter, headerActions: headerActions, themeToggle: themeToggle }), children: children }));
+/** The nav this user may see. An item with children keeps only the children
+    they may reach, and disappears when none survive. */
+function filterNav(nav, allowed) {
+    if (!allowed)
+        return nav;
+    const permitted = new Set(allowed);
+    return nav.flatMap((item) => {
+        const children = item.children?.filter((child) => permitted.has(child.id));
+        if (permitted.has(item.id)) {
+            return [item.children ? { ...item, children } : item];
+        }
+        // The parent isn't allowed but a child is: keep the branch reachable.
+        return children?.length ? [{ ...item, children }] : [];
+    });
+}
+export function AdminShell({ children, nav, brand, brandName, brandBadge, brandHref, collapsedBrand, sidebarFooter, afterNav, mobileHeader, isActive, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, userMenu, allowedSections, storageKey, defaultCollapsed, collapsible = true, afterHeader, afterMain, className, }) {
+    const visibleNav = filterNav(nav, allowedSections);
+    return (_jsx(AdminLayout, { collapsible: collapsible, storageKey: storageKey, defaultCollapsed: defaultCollapsed, afterHeader: afterHeader, afterMain: afterMain, className: className, sidebar: _jsx(AdminSidebar, { items: visibleNav, isActive: isActive, afterNav: afterNav, mobileHeader: mobileHeader, footer: sidebarFooter, header: _jsx(ShellSidebarHeader, { brand: brand, brandName: brandName, brandBadge: brandBadge, brandHref: brandHref, collapsedBrand: collapsedBrand, collapsible: collapsible }) }), header: _jsx(ShellHeader
+        /* The full nav, not the filtered one: a title must still resolve on
+           a route the sidebar is hiding, or the header goes blank there. */
+        , { 
+            /* The full nav, not the filtered one: a title must still resolve on
+               a route the sidebar is hiding, or the header goes blank there. */
+            nav: nav, title: title, titles: titles, fallbackTitle: fallbackTitle, headerCenter: headerCenter, headerActions: headerActions, themeToggle: themeToggle, userMenu: userMenu }), children: children }));
 }
 //# sourceMappingURL=AdminShell.js.map

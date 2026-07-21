@@ -133,6 +133,16 @@ export interface AdminShellProps {
   headerCenter?: ReactNode
   /** Header controls after the theme toggle — avatar, sign out, actions. */
   headerActions?: ReactNode
+  /** The signed-in user's menu — pass `<AdminUserMenu … />`. Sits after the
+      theme toggle, at the end of the header row. */
+  userMenu?: ReactNode
+  /** Nav item ids this user may reach. When set, the sidebar shows only these
+      (plus anything without an id match), so one prop enforces the same menu
+      everywhere.
+
+      Navigation only. It does not stop anyone typing the URL and does not
+      protect the route behind it — enforce the same answer server-side. */
+  allowedSections?: string[]
   /** The light/dark switch. Pass `<AdminThemeToggle />` from
       `@adamarant/ds-admin/theme`; it is a slot rather than built in because
       that component needs `next-themes`, which not every consumer installs.
@@ -170,6 +180,27 @@ export interface AdminSidebarLinkProps {
       one consumer signs out. Default: 'button'. */
   type?: 'button' | 'submit'
   className?: string
+}
+
+export interface AdminUserMenuItem {
+  label: string
+  onSelect: () => void
+}
+
+export interface AdminUserMenuProps {
+  /** Display name. Falls back to the email when absent. */
+  name?: string | null
+  email: string
+  /** Short role label shown as a badge, e.g. "Superadmin". A string rather
+      than a role enum: the package ships no user-facing copy, and these panels
+      run in three languages. */
+  roleLabel?: string
+  /** Entries above the sign-out row — profile, change password, whatever the
+      panel actually has. */
+  items?: AdminUserMenuItem[]
+  onSignOut: () => void
+  signOutLabel?: string
+  ariaLabel?: string
 }
 
 export interface AdminThemeToggleProps {
