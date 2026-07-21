@@ -1,3 +1,3 @@
 import type { AdminShellProps } from './types.js';
-export declare function AdminShell({ children, nav, brand, brandName, brandBadge, brandHref, collapsedBrand, sidebarFooter, afterNav, mobileHeader, isActive, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, userMenu, allowedSections, storageKey, defaultCollapsed, collapsible, afterHeader, afterMain, className, }: AdminShellProps): import("react/jsx-runtime").JSX.Element;
+export declare function AdminShell({ children, nav, brand, brandName, brandBadge, brandHref, collapsedBrand, sidebarFooter, afterNav, mobileHeader, isActive, title, titles, fallbackTitle, headerCenter, headerActions, themeToggle, userMenu, allowedSections, forbidden, storageKey, defaultCollapsed, collapsible, afterHeader, afterMain, className, }: AdminShellProps): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=AdminShell.d.ts.map
