@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.23.4 */
+/* @ds/designsystem v0.23.5 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -1169,8 +1169,30 @@ hr {
     align-items: center;
     justify-content: center;
     color: var(--ds-color-text-tertiary);
+    /* Click-through, so tapping a decorative icon focuses the input. */
     pointer-events: none;
+
+    /* Except an affix that does something — a show/hide password toggle, a
+       clear button. Without this the slot only fits decoration, and anyone
+       needing an interactive one hand-rolls the positioning instead: which is
+       how a consumer ended up centring a button with utilities and getting
+       the class escaping wrong. */
+    
   }
+.ds-input-group__icon button,
+.ds-input-group__icon a {
+
+      pointer-events: auto;
+      color: var(--ds-color-text-secondary);
+      transition: color var(--ds-duration-fast) var(--ds-ease-default);
+
+      
+    }
+.ds-input-group__icon button:hover,
+.ds-input-group__icon a:hover {
+
+        color: var(--ds-color-text);
+      }
 .ds-input-group .ds-input {
 
     padding-inline-start: calc(var(--ds-space-3) + 1rem + var(--ds-space-2));
