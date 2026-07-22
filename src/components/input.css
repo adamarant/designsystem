@@ -199,10 +199,16 @@
   background-position: right var(--ds-space-3) center;
   padding-inline-end: var(--ds-space-8);
 
-  /* Sizes */
+  /* Sizes
+     Every size has to re-state padding-inline-end: the `padding` shorthand
+     each one sets resets the 2rem declared above, and the chevron does not
+     move or shrink with the size — it stays 12px wide, 12px in from the edge —
+     so they all need the same room. lg already did this; xs and sm did not,
+     and their values ran underneath the arrow. */
   &--xs {
     height: var(--ds-size-1);
     padding: 0 var(--ds-space-1-5);
+    padding-inline-end: var(--ds-space-8);
     font-size: var(--ds-text-xs);
     border-radius: var(--ds-radius-sm);
   }
@@ -210,6 +216,7 @@
   &--sm {
     height: var(--ds-size-2);
     padding: 0 var(--ds-space-2);
+    padding-inline-end: var(--ds-space-8);
     font-size: var(--ds-text-sm);
     border-radius: var(--ds-radius-md);
   }
