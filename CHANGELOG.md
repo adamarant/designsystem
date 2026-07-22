@@ -8,6 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 > **Note:** entries between 0.9.0 and 0.21.0 were never written. The file
 > resumes at 0.22.0; the gap is reconstructable from `git log` only.
 
+## [0.23.6] - 2026-07-22
+
+**Select: the value no longer runs under the chevron at xs and sm.**
+
+`.ds-select` reserves 2rem of inline-end padding for its arrow, but each size
+modifier sets the `padding` shorthand, which resets it. `--lg` re-stated it;
+`--xs` and `--sm` did not, so their text ran straight under the arrow — the
+chevron does not shrink or move with the size, it stays 12px wide and 12px in,
+so every size needs the same room. Now they all re-state it.
+
+Found while checking whether two consumers were drawing a duplicate chevron
+over the DS one. They were, and this was underneath.
+
 ## [0.23.5] - 2026-07-22
 
 **`.ds-input-group__icon` accepts an interactive affix.**
