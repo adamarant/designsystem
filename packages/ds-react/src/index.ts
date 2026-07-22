@@ -20,7 +20,6 @@ export { Badge, type BadgeProps } from "./components/Badge";
 export {
   Input,
   Textarea,
-  Select,
   InputGroup,
   InputGroupIcon,
   Help,
@@ -28,13 +27,22 @@ export {
   Radio,
   type InputProps,
   type TextareaProps,
-  type SelectProps,
   type InputGroupProps,
   type InputGroupIconProps,
   type HelpProps,
   type CheckboxProps,
   type RadioProps,
 } from "./components/Input";
+
+/* One select, two renderings: native by default, styled panel with search via
+   `searchable` / `panel`. Same export name as before — existing native usage
+   is untouched. */
+export {
+  Select,
+  type SelectProps,
+  type SelectOption,
+  type SelectSize,
+} from "./components/Select";
 
 export { ignorePasswordManagers } from "./utils/passwordManager";
 

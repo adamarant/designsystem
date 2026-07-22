@@ -1,6 +1,6 @@
 {
   "name": "@adamarant/ds-react",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "React layout primitives for @adamarant/designsystem — Flex, Stack, Grid, Text, Center. Props map to ds-* classes, zero logic.",
   "type": "module",
   "main": "./dist/index.js",
@@ -102,7 +102,8 @@
   },
   "files": [
     "dist/",
-    "src/"
+    "src/",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsc",

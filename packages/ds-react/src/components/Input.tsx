@@ -117,42 +117,9 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 );
 
 /* ================================================================== */
-/*  Select                                                             */
+/*  Select — moved to Select.tsx, where the panel mode lives too.      */
+/*  The barrel keeps exporting it from there under the same name.      */
 /* ================================================================== */
-
-export interface SelectProps
-  extends Omit<ComponentPropsWithoutRef<"select">, "size"> {
-  /** Size tier. Default: "md" (40px) */
-  size?: InputSize;
-  /** Full width (select is auto-width by default). Default: false */
-  full?: boolean;
-  /** Additional className */
-  className?: string;
-}
-
-const selectSizeMap: Record<InputSize, string> = {
-  xs: "ds-select--xs",
-  sm: "ds-select--sm",
-  md: "",
-  lg: "ds-select--lg",
-};
-
-export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  function Select({ size = "md", full, className, ...rest }, ref) {
-    return (
-      <select
-        ref={ref}
-        className={cn(
-          "ds-select",
-          selectSizeMap[size],
-          full && "ds-select--full",
-          className,
-        )}
-        {...rest}
-      />
-    );
-  },
-);
 
 /* ================================================================== */
 /*  InputGroup (input with icon)                                       */
