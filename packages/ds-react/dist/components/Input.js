@@ -23,15 +23,6 @@ const textareaStateMap = {
 export const Textarea = forwardRef(function Textarea({ state = "default", allowPasswordManager, className, ...rest }, ref) {
     return (_jsx("textarea", { ref: ref, "aria-invalid": state === "error" || undefined, ...(allowPasswordManager ? {} : ignorePasswordManagers), className: cn("ds-textarea", textareaStateMap[state], className), ...rest }));
 });
-const selectSizeMap = {
-    xs: "ds-select--xs",
-    sm: "ds-select--sm",
-    md: "",
-    lg: "ds-select--lg",
-};
-export const Select = forwardRef(function Select({ size = "md", full, className, ...rest }, ref) {
-    return (_jsx("select", { ref: ref, className: cn("ds-select", selectSizeMap[size], full && "ds-select--full", className), ...rest }));
-});
 export const InputGroup = forwardRef(function InputGroup({ iconRight, className, ...rest }, ref) {
     return (_jsx("div", { ref: ref, className: cn("ds-input-group", iconRight && "ds-input-group--icon-right", className), ...rest }));
 });

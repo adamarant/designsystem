@@ -7,7 +7,11 @@ export { Center } from "./primitives/Center";
 export { Label } from "./components/Label";
 export { Button, ButtonGroup, } from "./components/Button";
 export { Badge } from "./components/Badge";
-export { Input, Textarea, Select, InputGroup, InputGroupIcon, Help, Checkbox, Radio, } from "./components/Input";
+export { Input, Textarea, InputGroup, InputGroupIcon, Help, Checkbox, Radio, } from "./components/Input";
+/* One select, two renderings: native by default, styled panel with search via
+   `searchable` / `panel`. Same export name as before — existing native usage
+   is untouched. */
+export { Select, } from "./components/Select";
 export { ignorePasswordManagers } from "./utils/passwordManager";
 export { Card, } from "./components/Card";
 export { Alert, } from "./components/Alert";

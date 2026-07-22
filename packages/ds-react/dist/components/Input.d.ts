@@ -31,15 +31,6 @@ export interface TextareaProps extends ComponentPropsWithoutRef<"textarea"> {
     className?: string;
 }
 export declare const Textarea: import("react").ForwardRefExoticComponent<TextareaProps & import("react").RefAttributes<HTMLTextAreaElement>>;
-export interface SelectProps extends Omit<ComponentPropsWithoutRef<"select">, "size"> {
-    /** Size tier. Default: "md" (40px) */
-    size?: InputSize;
-    /** Full width (select is auto-width by default). Default: false */
-    full?: boolean;
-    /** Additional className */
-    className?: string;
-}
-export declare const Select: import("react").ForwardRefExoticComponent<SelectProps & import("react").RefAttributes<HTMLSelectElement>>;
 export interface InputGroupProps extends ComponentPropsWithoutRef<"div"> {
     /** Place icon on the right side instead of left. Default: false */
     iconRight?: boolean;
