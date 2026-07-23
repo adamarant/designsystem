@@ -1,3 +1,5 @@
+"use client";
+
 import { type ComponentPropsWithoutRef, type MouseEvent, forwardRef } from "react";
 import { cn } from "../utils/cn";
 import type { Size } from "../types";

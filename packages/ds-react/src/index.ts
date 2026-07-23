@@ -1,5 +1,3 @@
-"use client";
-
 export type { Size } from "./types";
 
 export { Flex, type FlexProps } from "./primitives/Flex";

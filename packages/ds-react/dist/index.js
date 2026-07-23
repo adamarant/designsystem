@@ -1,4 +1,3 @@
-"use client";
 export { Flex } from "./primitives/Flex";
 export { Stack } from "./primitives/Stack";
 export { Grid } from "./primitives/Grid";
