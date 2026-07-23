@@ -1,6 +1,6 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { LangSwitcher, SiteFooter, SiteHeader } from "../index";
 
 const ITEMS = [
@@ -50,23 +50,75 @@ describe("SiteHeader", () => {
 });
 
 describe("SiteFooter", () => {
-  it("renders brand, nav, legal and meta in the composed structure", () => {
+  const COLUMNS = [
+    { title: "Product", links: [{ label: "Pricing", href: "/pricing" }] },
+    { title: "Company", links: [{ label: "About", href: "/about" }] },
+  ];
+
+  it("data-driven: renders ds-footer with brand, columns and credits", () => {
     const { container } = render(
       <SiteFooter
-        brand="Acme"
-        nav={<a href="/about">About</a>}
-        legal="© 2026 Acme"
-        meta={<a href="mailto:x@acme.io">x@acme.io</a>}
+        brand={<span>Acme</span>}
+        tagline="Premium things"
+        columns={COLUMNS}
+        copyright="© 2026 Acme"
+        legal={[{ label: "Privacy", href: "/privacy" }]}
       />,
     );
-    expect(
-      container.querySelector("footer.ds-section.ds-section--bordered"),
-    ).toBeTruthy();
-    expect(container.querySelector(".ds-divider")).toBeTruthy();
+    expect(container.querySelector("footer.ds-footer")).toBeTruthy();
+    expect(container.querySelectorAll(".ds-footer__column").length).toBe(2);
+    expect(container.querySelector(".ds-footer__column-title")?.textContent).toBe("Product");
+    expect(container.querySelector(".ds-footer__credits")).toBeTruthy();
     expect(screen.getByText(/© 2026/)).toBeTruthy();
+    expect(screen.getByText("Privacy").getAttribute("href")).toBe("/privacy");
+  });
+
+  it("newsletter is opt-in: absent unless provided", () => {
+    const { container, rerender } = render(<SiteFooter columns={COLUMNS} />);
+    expect(container.querySelector(".ds-footer__newsletter")).toBeNull();
+    rerender(
+      <SiteFooter
+        columns={COLUMNS}
+        newsletter={{ title: "Newsletter", onSubmit: () => {} }}
+      />,
+    );
+    expect(container.querySelector(".ds-footer__newsletter")).toBeTruthy();
+  });
+
+  it("newsletter submit: calls onSubmit and shows success", async () => {
+    const onSubmit = vi.fn();
+    render(
+      <SiteFooter
+        newsletter={{
+          title: "Newsletter",
+          onSubmit,
+          buttonLabel: "Join",
+          successMessage: "You're in.",
+        }}
+      />,
+    );
+    await userEvent.type(screen.getByRole("textbox"), "a@b.io");
+    await userEvent.click(screen.getByRole("button", { name: "Join" }));
+    expect(onSubmit).toHaveBeenCalledWith("a@b.io");
+    expect(await screen.findByText("You're in.")).toBeTruthy();
+  });
+
+  it("compound escape: children bypass the data layout", () => {
+    const { container } = render(
+      <SiteFooter>
+        <SiteFooter.Body>
+          <SiteFooter.Brand tagline="t"><span>Acme</span></SiteFooter.Brand>
+          <SiteFooter.Columns>
+            <SiteFooter.Column title="Nav"><a href="/">Home</a></SiteFooter.Column>
+          </SiteFooter.Columns>
+        </SiteFooter.Body>
+        <SiteFooter.Credits><span>© 2026</span></SiteFooter.Credits>
+      </SiteFooter>,
+    );
+    expect(container.querySelector(".ds-footer__body")).toBeTruthy();
+    expect(container.querySelector(".ds-footer__column-title")?.textContent).toBe("Nav");
   });
 });
-
 describe("LangSwitcher", () => {
   const ITEMS = [
     { code: "it", label: "Italiano", href: "/it/chi-siamo" },
@@ -115,47 +167,6 @@ describe("LangSwitcher", () => {
       .find((o) => o.textContent?.includes("English"))!;
     expect(en.getAttribute("href")).toBe("/en/about-us-2026");
     link.remove();
-  });
-});
-
-describe("SiteFooter v2 (compound)", () => {
-  it("composes brand/columns/social/row/bottom/wordmark", () => {
-    const { container } = render(
-      <SiteFooter>
-        <SiteFooter.Brand tagline="Premium things">
-          <span>Acme</span>
-          <SiteFooter.Social title="Follow us">
-            <a href="#ig" aria-label="Instagram">IG</a>
-          </SiteFooter.Social>
-        </SiteFooter.Brand>
-        <SiteFooter.Columns>
-          <SiteFooter.Column title="Navigation">
-            <a href="/">Home</a>
-          </SiteFooter.Column>
-          <SiteFooter.Column title="Legal">
-            <a href="/privacy">Privacy</a>
-          </SiteFooter.Column>
-        </SiteFooter.Columns>
-        <SiteFooter.Row title="Explore">
-          <a href="/blog/x">Guides</a>
-        </SiteFooter.Row>
-        <SiteFooter.Bottom>
-          <span>© 2026 Acme</span>
-          <a href="/admin">Admin</a>
-        </SiteFooter.Bottom>
-        <SiteFooter.Wordmark>
-          <svg aria-label="wordmark" />
-        </SiteFooter.Wordmark>
-      </SiteFooter>,
-    );
-    expect(container.querySelectorAll(".ds-overline").length).toBe(4);
-    expect(screen.getByText("Premium things")).toBeTruthy();
-    expect(screen.getByText(/© 2026/)).toBeTruthy();
-  });
-
-  it("v1 simple props keep working", () => {
-    render(<SiteFooter brand="Acme" legal="© 2026" />);
-    expect(screen.getByText("© 2026")).toBeTruthy();
   });
 });
 

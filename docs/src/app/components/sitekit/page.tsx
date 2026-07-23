@@ -23,24 +23,52 @@ const NAV_ITEMS = [
   { label: "Contact", href: "#contact" },
 ];
 
+const FOOTER_COLUMNS = [
+  {
+    title: "Explore",
+    links: [
+      { label: "Properties", href: "#" },
+      { label: "New builds", href: "#" },
+      { label: "Resale", href: "#" },
+      { label: "Contact", href: "#" },
+    ],
+  },
+  {
+    title: "Studio",
+    links: [
+      { label: "About", href: "#" },
+      { label: "Journal", href: "#" },
+      { label: "Careers", href: "#" },
+    ],
+  },
+];
+
+const SOCIAL = (
+  <>
+    <a href="#ig" aria-label="Instagram" className="ds-footer__social-link">IG</a>
+    <a href="#li" aria-label="LinkedIn" className="ds-footer__social-link">IN</a>
+    <a href="#x" aria-label="X" className="ds-footer__social-link">X</a>
+  </>
+);
+
 export default function SiteKitPage() {
   return (
     <>
       <div className="demo-page-header">
         <h1>SiteKit</h1>
         <p>
-          Il telaio di sito scritto una volta, modellato sui footer e header
-          reali dell&apos;ecosistema (esys, studio, riondato): gruppi con
-          dropdown sul desktop e sezioni titolate nel pannello mobile,
-          footer compound a colonne con social, righe extra, bottom bar e
-          slot wordmark. Header qui in variante static; il default è la
-          barra fissa glass. Sotto 768px provi il pannello mobile.
+          Il telaio di sito scritto una volta: SiteHeader su ds-nav (gruppi a
+          dropdown sul desktop, sezioni titolate nel mobile), SiteFooter
+          canonico a tre zone (newsletter opzionale, brand + colonne di link,
+          riga credits), LangSwitcher sui tier di size. Header qui in variante
+          static; il default è la barra fissa glass. Sotto 768px provi il
+          pannello mobile.
         </p>
       </div>
 
       <DemoSection
         title="SiteHeader — con gruppo a dropdown (desktop) e sezioni (mobile)"
-        code={`<SiteHeader\n  brand="Adamarant"\n  items={[\n    { label: "Home", href: "/" },\n    { label: "Servizi", children: [\n      { label: "Web platform", href: "/servizi/web" },\n      { label: "Brand systems", href: "/servizi/brand" },\n    ]},\n  ]}\n  activeHref="/work"\n  LinkComponent={Link}\n  actions={<><LangSwitcher … /><Button size="sm" pill>Contact us</Button></>}\n/>`}
+        code={`<SiteHeader\n  brand="Adamarant"\n  items={[\n    { label: "Home", href: "/" },\n    { label: "Servizi", children: [\n      { label: "Web platform", href: "/servizi/web" },\n    ]},\n  ]}\n  activeHref="/work"\n  LinkComponent={Link}\n  actions={<><LangSwitcher … /><Button size="sm" pill>Contact</Button></>}\n/>`}
       >
         <div className="ds-w-full">
           <SiteHeader
@@ -53,8 +81,8 @@ export default function SiteKitPage() {
                 <LangSwitcher
                   current="it"
                   items={[
-                    { code: "it", href: "#it" },
-                    { code: "en", href: "#en" },
+                    { code: "it", label: "Italiano", href: "#it" },
+                    { code: "en", label: "English", href: "#en" },
                   ]}
                 />
                 <Button size="sm" pill>
@@ -72,84 +100,51 @@ export default function SiteKitPage() {
       </DemoSection>
 
       <DemoSection
-        title="SiteFooter — composizione ricca (modello esys)"
-        code={`<SiteFooter>\n  <Grid …>\n    <SiteFooter.Brand tagline="Exclusive homes on the Costa Blanca.">\n      <Logo />\n      <SiteFooter.Social title="Follow us">…</SiteFooter.Social>\n    </SiteFooter.Brand>\n    <SiteFooter.Columns>\n      <SiteFooter.Column title="Navigation">…</SiteFooter.Column>\n      <SiteFooter.Column title="Legal">…</SiteFooter.Column>\n    </SiteFooter.Columns>\n  </Grid>\n  <SiteFooter.Row title="Explore the blog">…</SiteFooter.Row>\n  <SiteFooter.Bottom>© 2026 … <a href="/admin">Admin</a></SiteFooter.Bottom>\n</SiteFooter>`}
+        title="SiteFooter — completo (data-driven: le tre zone)"
+        code={`<SiteFooter\n  brand={<Logo/>}\n  tagline="Exclusive homes on the coast."\n  social={<>…icon links…</>}\n  columns={[{ title: "Explore", links: [{ label, href }] }, …]}\n  newsletter={{\n    title: "The newsletter",\n    description: "One email when there's something good.",\n    onSubmit: async (email) => subscribe(email),\n  }}\n  copyright="© 2026 ESYS VIP"\n  legal={[{ label: "Privacy", href: "/privacy" }, …]}\n  LinkComponent={Link}\n/>`}
       >
         <div className="ds-w-full">
-          <SiteFooter>
-            <div className="ds-grid ds-grid-cols-1 ds-md:grid-cols-2 ds-gap-12">
-              <SiteFooter.Brand tagline="Exclusive homes on the Costa Blanca.">
-                <span className="ds-heading-ui ds-text-lg">ESYS VIP</span>
-                <SiteFooter.Social title="Follow us">
-                  <a href="#ig" aria-label="Instagram">IG</a>
-                  <a href="#fb" aria-label="Facebook">FB</a>
-                  <a href="#li" aria-label="LinkedIn">IN</a>
-                </SiteFooter.Social>
-              </SiteFooter.Brand>
-              <SiteFooter.Columns>
-                <SiteFooter.Column title="Navigation">
-                  <a href="#" className="ds-text-sm ds-text-secondary">Propiedades</a>
-                  <a href="#" className="ds-text-sm ds-text-secondary">Obra nueva</a>
-                  <a href="#" className="ds-text-sm ds-text-secondary">Segunda mano</a>
-                  <a href="#" className="ds-text-sm ds-text-secondary">Contacto</a>
-                </SiteFooter.Column>
-                <SiteFooter.Column title="Legal">
-                  <a href="#" className="ds-text-sm ds-text-secondary">Aviso legal</a>
-                  <a href="#" className="ds-text-sm ds-text-secondary">Privacidad</a>
-                  <a href="#" className="ds-text-sm ds-text-secondary">Cookies</a>
-                </SiteFooter.Column>
-              </SiteFooter.Columns>
-            </div>
-            <SiteFooter.Row title="Explore the blog">
-              <a href="#" className="ds-text-sm ds-text-secondary">Descubre Alicante</a>
-              <a href="#" className="ds-text-sm ds-text-secondary">Guías de compra</a>
-              <a href="#" className="ds-text-sm ds-text-secondary">Vivir en la costa</a>
-            </SiteFooter.Row>
-            <SiteFooter.Bottom>
-              <span>© 2026 ESYS VIP</span>
-              <a href="#admin">Admin</a>
-            </SiteFooter.Bottom>
-          </SiteFooter>
+          <SiteFooter
+            brand={<span className="ds-heading-ui ds-text-lg">ESYS VIP</span>}
+            tagline="Exclusive homes on the Costa Blanca, from search to keys."
+            social={SOCIAL}
+            columns={FOOTER_COLUMNS}
+            newsletter={{
+              title: "The newsletter",
+              description:
+                "The market, the listings, and what's worth seeing. One email when there's something good.",
+              buttonLabel: "Subscribe",
+              onSubmit: (email) => {
+                void email;
+              },
+            }}
+            copyright="© 2026 ESYS VIP"
+            legal={[
+              { label: "Privacy", href: "#" },
+              { label: "Legal notice", href: "#" },
+              { label: "Cookies", href: "#" },
+            ]}
+          />
         </div>
       </DemoSection>
 
       <DemoSection
-        title="SiteFooter — banda firmata (modello studio: ink + wordmark)"
-        code={`/* La banda ink e il wordmark restano scelte del progetto:\n   il kit dà gli slot, il tema lo dà il consumer. */\n<SiteFooter className="…" data-band="ink" data-theme="dark">\n  <SiteFooter.Columns>…colonne uppercase…</SiteFooter.Columns>\n  <SiteFooter.Bottom>…legal · social · ©…</SiteFooter.Bottom>\n  <SiteFooter.Wordmark><BrandWordmark /></SiteFooter.Wordmark>\n</SiteFooter>`}
+        title="SiteFooter — minimo (solo colonne + credits, niente newsletter)"
+        code={`<SiteFooter\n  brand="Adamarant"\n  columns={COLUMNS}\n  copyright="© 2026 Adamarant"\n  legal={[{ label: "Privacy", href: "/privacy" }]}\n/>`}
       >
-        <div className="ds-w-full" data-theme="dark">
-          <SiteFooter>
-            <SiteFooter.Columns>
-              <SiteFooter.Column title="Studio">
-                <a href="#" className="ds-text-lg">Projects</a>
-                <a href="#" className="ds-text-lg">Manifesto</a>
-                <a href="#" className="ds-text-lg">Team</a>
-              </SiteFooter.Column>
-              <SiteFooter.Column title="Hubs">
-                <a href="#" className="ds-text-lg">Commerce</a>
-                <a href="#" className="ds-text-lg">Editorial</a>
-              </SiteFooter.Column>
-            </SiteFooter.Columns>
-            <SiteFooter.Bottom>
-              <span>Privacy · Cookies</span>
-              <span>© 2026 Adamarant</span>
-            </SiteFooter.Bottom>
-            <SiteFooter.Wordmark>
-              <div className="ds-heading-ui ds-text-4xl">ADAMARANT</div>
-            </SiteFooter.Wordmark>
-          </SiteFooter>
+        <div className="ds-w-full">
+          <SiteFooter
+            brand={<span className="ds-heading-ui ds-text-lg">Adamarant</span>}
+            columns={FOOTER_COLUMNS}
+            copyright="© 2026 Adamarant"
+            legal={[{ label: "Privacy", href: "#" }]}
+          />
         </div>
       </DemoSection>
 
       <DemoSection
-        title="LangSwitcher — dal modello esys, sui tier di size del DS"
-        code={`/* Trigger = ghost button sul tier (--ds-size-1..4): stessa riga,
-   stessa altezza di Button/Input. Menu = Dropdown (Escape, tastiera).
-   preferHreflang legge gli slug dai <link rel="alternate"> di pagina. */
-<LangSwitcher current="it" size="sm" preferHreflang items={[
-  { code: "it", label: "Italiano", icon: <Flag locale="it"/>, href: "/it/chi-siamo" },
-  { code: "en", label: "English",  icon: <Flag locale="en"/>, href: "/en/about" },
-]} />`}
+        title="LangSwitcher — sui tier di size del DS"
+        code={`<LangSwitcher current="it" size="sm" preferHreflang items={[\n  { code: "it", label: "Italiano", icon: <Flag/>, href: "/it/chi-siamo" },\n  { code: "en", label: "English", href: "/en/about" },\n]} />`}
       >
         <div className="ds-flex ds-items-center ds-gap-3">
           <Button size="sm">sm</Button>
@@ -164,15 +159,6 @@ export default function SiteKitPage() {
           />
           <Button>md</Button>
           <LangSwitcher
-            current="it"
-            items={[
-              { code: "it", label: "Italiano", href: "#it" },
-              { code: "en", label: "English", href: "#en" },
-            ]}
-          />
-          <Button size="lg">lg</Button>
-          <LangSwitcher
-            size="lg"
             current="it"
             items={[
               { code: "it", label: "Italiano", href: "#it" },

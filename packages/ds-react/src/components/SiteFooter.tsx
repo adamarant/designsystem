@@ -1,104 +1,90 @@
-import { type ComponentPropsWithoutRef, type ReactNode, forwardRef } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  type ElementType,
+  type ReactNode,
+  forwardRef,
+} from "react";
 import { cn } from "../utils/cn";
+import {
+  SiteFooterNewsletter,
+  type SiteFooterNewsletterProps,
+} from "./SiteFooterNewsletter";
 
 /* ==================================================================
-   SiteKit — SiteFooter v2 (ECOSYSTEM_ROADMAP, Fase 6)
+   SiteKit — SiteFooter (ECOSYSTEM_ROADMAP, Fase 6)
 
-   Modeled on the real footers of the ecosystem, not on a minimal slot
-   pair: esys (brand + tagline + social block, titled columns, dynamic
-   rows, bottom bar) and studio (ink band, uppercase column titles,
-   full-width wordmark — the Bending Spoons reference). Compound parts,
-   free composition; the simple brand/nav/legal/meta props from v1 keep
-   working when no children are passed. Universal: zero JS shipped.
+   ONE canonical footer for every consumer, on the ds-footer component.
+   Three stacked zones (owner brief, 23 lug 2026):
+     1. Newsletter — optional titled block with an inline email form.
+     2. Body — brand blurb (+ social) beside titled link columns.
+     3. Credits — the last small row: copyright + legal/meta links.
 
-   Composition sketch (esys-like):
-     <SiteFooter>
-       <Grid cols="1" className="ds-md:grid-cols-2 ds-gap-12">
-         <SiteFooterBrand tagline="…">
-           <Logo />
-           <SiteFooterSocial>…icon links…</SiteFooterSocial>
-         </SiteFooterBrand>
-         <SiteFooterColumns>
-           <SiteFooterColumn title="Navigation">…links…</SiteFooterColumn>
-           <SiteFooterColumn title="Legal">…links…</SiteFooterColumn>
-         </SiteFooterColumns>
-       </Grid>
-       <SiteFooterRow title="Explore">…chips…</SiteFooterRow>
-       <SiteFooterBottom>© 2026 … <a>Admin</a></SiteFooterBottom>
-       <SiteFooterWordmark><BrandWordmark /></SiteFooterWordmark>
-     </SiteFooter>
+   Two ways to use it:
+   - DATA-DRIVEN (the common case): pass `columns`, `brand`, `newsletter`,
+     `copyright`, `legal`… and get the whole footer. One prop set, valid
+     for everyone.
+   - COMPOUND (escape): pass children built from SiteFooter.Newsletter /
+     .Body / .Brand / .Columns / .Column / .Social / .Credits.
+
+   Router-free: links render through `LinkComponent` (pass next/link).
+   Universal: server-renders with zero client JS (the newsletter form is
+   the only client island).
    ================================================================== */
 
+export interface SiteFooterLink {
+  label: ReactNode;
+  href: string;
+  /** Plain <a> (skips the router) — for feeds, mailto, external. */
+  external?: boolean;
+}
+
+export interface SiteFooterColumnData {
+  title?: ReactNode;
+  links: SiteFooterLink[];
+}
+
 export interface SiteFooterProps
-  extends ComponentPropsWithoutRef<"footer"> {
-  /** v1 simple mode — brand text/logo (ignored when children are used). */
+  extends Omit<ComponentPropsWithoutRef<"footer">, "children" | "title"> {
+  /** Brand slot (logo/name) at the start of the body zone. */
   brand?: ReactNode;
-  /** v1 simple mode — nav slot next to the brand. */
-  nav?: ReactNode;
-  /** v1 simple mode — left side of the legal row. */
-  legal?: ReactNode;
-  /** v1 simple mode — right side of the legal row. */
-  meta?: ReactNode;
-  className?: string;
-}
-
-export interface SiteFooterBrandProps
-  extends ComponentPropsWithoutRef<"div"> {
-  /** Subordinate line under the brand slot. */
+  /** Subordinate line under the brand. */
   tagline?: ReactNode;
+  /** Social links, already rendered (icon anchors). */
+  social?: ReactNode;
+  /** Titled link columns. */
+  columns?: SiteFooterColumnData[];
+  /** Newsletter zone. Omit to hide it. */
+  newsletter?: SiteFooterNewsletterProps;
+  /** Credits copyright (left of the credits row). */
+  copyright?: ReactNode;
+  /** Credits legal/meta links (right of the credits row). */
+  legal?: SiteFooterLink[];
+  /** Link component (e.g. next/link). Default: "a". */
+  LinkComponent?: ElementType;
+  /** Compound escape — bypasses the data-driven layout. */
+  children?: ReactNode;
   className?: string;
 }
 
-export interface SiteFooterColumnsProps
-  extends ComponentPropsWithoutRef<"div"> {
-  className?: string;
-}
+/* ---------- compound parts ---------- */
 
-export interface SiteFooterColumnProps
-  extends Omit<ComponentPropsWithoutRef<"nav">, "title"> {
-  /** Overline title above the links. */
-  title?: ReactNode;
-  className?: string;
-}
+export const SiteFooterBody = forwardRef<
+  HTMLDivElement,
+  ComponentPropsWithoutRef<"div">
+>(function SiteFooterBody({ className, ...rest }, ref) {
+  return <div ref={ref} className={cn("ds-footer__body", className)} {...rest} />;
+});
 
-export interface SiteFooterSocialProps
-  extends Omit<ComponentPropsWithoutRef<"div">, "title"> {
-  /** Optional overline title (esys: "Follow us"). */
-  title?: ReactNode;
-  className?: string;
+export interface SiteFooterBrandProps extends ComponentPropsWithoutRef<"div"> {
+  tagline?: ReactNode;
 }
-
-export interface SiteFooterRowProps
-  extends Omit<ComponentPropsWithoutRef<"div">, "title"> {
-  /** Optional overline title (esys: "Explore the blog"). */
-  title?: ReactNode;
-  className?: string;
-}
-
-export interface SiteFooterBottomProps
-  extends ComponentPropsWithoutRef<"div"> {
-  className?: string;
-}
-
-export interface SiteFooterWordmarkProps
-  extends ComponentPropsWithoutRef<"div"> {
-  className?: string;
-}
-
-/* ---------- parts ---------- */
 
 export const SiteFooterBrand = forwardRef<HTMLDivElement, SiteFooterBrandProps>(
   function SiteFooterBrand({ tagline, className, children, ...rest }, ref) {
     return (
-      <div
-        ref={ref}
-        className={cn("ds-flex ds-flex-col ds-gap-3", className)}
-        {...rest}
-      >
+      <div ref={ref} className={cn("ds-footer__brand", className)} {...rest}>
         {children}
-        {tagline != null && (
-          <p className="ds-text-sm ds-text-secondary">{tagline}</p>
-        )}
+        {tagline != null && <p className="ds-footer__tagline">{tagline}</p>}
       </div>
     );
   },
@@ -106,26 +92,25 @@ export const SiteFooterBrand = forwardRef<HTMLDivElement, SiteFooterBrandProps>(
 
 export const SiteFooterColumns = forwardRef<
   HTMLDivElement,
-  SiteFooterColumnsProps
+  ComponentPropsWithoutRef<"div">
 >(function SiteFooterColumns({ className, ...rest }, ref) {
   return (
-    <div
-      ref={ref}
-      className={cn("ds-flex ds-flex-wrap ds-gap-8", className)}
-      {...rest}
-    />
+    <div ref={ref} className={cn("ds-footer__columns", className)} {...rest} />
   );
 });
+
+export interface SiteFooterColumnProps
+  extends Omit<ComponentPropsWithoutRef<"nav">, "title"> {
+  title?: ReactNode;
+}
 
 export const SiteFooterColumn = forwardRef<HTMLElement, SiteFooterColumnProps>(
   function SiteFooterColumn({ title, className, children, ...rest }, ref) {
     return (
-      <nav
-        ref={ref}
-        className={cn("ds-flex ds-flex-col ds-gap-2", className)}
-        {...rest}
-      >
-        {title != null && <span className="ds-overline">{title}</span>}
+      <nav ref={ref} className={cn("ds-footer__column", className)} {...rest}>
+        {title != null && (
+          <span className="ds-footer__column-title">{title}</span>
+        )}
         {children}
       </nav>
     );
@@ -134,87 +119,90 @@ export const SiteFooterColumn = forwardRef<HTMLElement, SiteFooterColumnProps>(
 
 export const SiteFooterSocial = forwardRef<
   HTMLDivElement,
-  SiteFooterSocialProps
->(function SiteFooterSocial({ title, className, children, ...rest }, ref) {
+  ComponentPropsWithoutRef<"div">
+>(function SiteFooterSocial({ className, ...rest }, ref) {
   return (
-    <div ref={ref} className={className} {...rest}>
-      {title != null && <span className="ds-overline">{title}</span>}
-      <div className={cn("ds-flex ds-gap-3", title != null && "ds-mt-3")}>
-        {children}
-      </div>
-    </div>
+    <div ref={ref} className={cn("ds-footer__social", className)} {...rest} />
   );
 });
 
-export const SiteFooterRow = forwardRef<HTMLDivElement, SiteFooterRowProps>(
-  function SiteFooterRow({ title, className, children, ...rest }, ref) {
-    return (
-      <div ref={ref} className={className} {...rest}>
-        {title != null && <span className="ds-overline">{title}</span>}
-        <div
-          className={cn(
-            "ds-flex ds-flex-wrap ds-gap-3",
-            title != null && "ds-mt-3",
-          )}
-        >
-          {children}
-        </div>
-      </div>
-    );
-  },
-);
-
-export const SiteFooterBottom = forwardRef<
+export const SiteFooterCredits = forwardRef<
   HTMLDivElement,
-  SiteFooterBottomProps
->(function SiteFooterBottom({ className, ...rest }, ref) {
+  ComponentPropsWithoutRef<"div">
+>(function SiteFooterCredits({ className, ...rest }, ref) {
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "ds-flex ds-flex-wrap ds-items-center ds-justify-between ds-gap-3 ds-text-sm ds-text-tertiary",
-        className,
-      )}
-      {...rest}
-    />
+    <div ref={ref} className={cn("ds-footer__credits", className)} {...rest} />
   );
-});
-
-export const SiteFooterWordmark = forwardRef<
-  HTMLDivElement,
-  SiteFooterWordmarkProps
->(function SiteFooterWordmark({ className, ...rest }, ref) {
-  return <div ref={ref} className={cn("ds-w-full", className)} {...rest} />;
 });
 
 /* ---------- root ---------- */
 
 const SiteFooterRoot = forwardRef<HTMLElement, SiteFooterProps>(
   function SiteFooter(
-    { brand, nav, legal, meta, className, children, ...rest },
+    {
+      brand,
+      tagline,
+      social,
+      columns,
+      newsletter,
+      copyright,
+      legal,
+      LinkComponent = "a",
+      className,
+      children,
+      ...rest
+    },
     ref,
   ) {
+    const renderLink = (link: SiteFooterLink, cls: string) => {
+      const Cmp = link.external ? "a" : LinkComponent;
+      return (
+        <Cmp key={link.href} href={link.href} className={cls}>
+          {link.label}
+        </Cmp>
+      );
+    };
+
     return (
-      <footer
-        ref={ref}
-        className={cn("ds-section", "ds-section--bordered", className)}
-        {...rest}
-      >
-        <div className="ds-container ds-flex ds-flex-col ds-gap-8">
+      <footer ref={ref} className={cn("ds-footer", className)} {...rest}>
+        <div className="ds-container ds-footer__inner">
           {children ?? (
             <>
-              <div className="ds-flex ds-flex-wrap ds-justify-between ds-gap-6">
-                <div className="ds-heading-ui">{brand}</div>
-                {nav}
-              </div>
-              {(legal || meta) && (
-                <>
-                  <div className="ds-divider" />
-                  <SiteFooterBottom>
-                    <div>{legal}</div>
-                    <div>{meta}</div>
-                  </SiteFooterBottom>
-                </>
+              {newsletter && <SiteFooterNewsletter {...newsletter} />}
+
+              {(brand || columns?.length) && (
+                <div className="ds-footer__body">
+                  {(brand || tagline || social) && (
+                    <SiteFooterBrand tagline={tagline}>
+                      {brand}
+                      {social && (
+                        <div className="ds-footer__social">{social}</div>
+                      )}
+                    </SiteFooterBrand>
+                  )}
+                  {columns?.length ? (
+                    <div className="ds-footer__columns">
+                      {columns.map((col, i) => (
+                        <SiteFooterColumn key={i} title={col.title}>
+                          {col.links.map((l) =>
+                            renderLink(l, "ds-footer__link"),
+                          )}
+                        </SiteFooterColumn>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              )}
+
+              {(copyright || legal?.length) && (
+                <div className="ds-footer__credits">
+                  <span>{copyright}</span>
+                  {legal?.length ? (
+                    <div className="ds-footer__credits-links">
+                      {legal.map((l) => renderLink(l, ""))}
+                    </div>
+                  ) : null}
+                </div>
               )}
             </>
           )}
@@ -225,11 +213,11 @@ const SiteFooterRoot = forwardRef<HTMLElement, SiteFooterProps>(
 );
 
 export const SiteFooter = Object.assign(SiteFooterRoot, {
+  Newsletter: SiteFooterNewsletter,
+  Body: SiteFooterBody,
   Brand: SiteFooterBrand,
   Columns: SiteFooterColumns,
   Column: SiteFooterColumn,
   Social: SiteFooterSocial,
-  Row: SiteFooterRow,
-  Bottom: SiteFooterBottom,
-  Wordmark: SiteFooterWordmark,
+  Credits: SiteFooterCredits,
 });
