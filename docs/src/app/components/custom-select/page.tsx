@@ -23,9 +23,10 @@ export default function SelectPage() {
       <div className="demo-page-header">
         <h1>Select</h1>
         <p>
-          UN componente per scegliere un valore, due rese: nativo di default
-          (menu del sistema operativo — la scelta giusta su mobile e nei
-          form semplici) e pannello stilizzato con `panel` / `searchable`.
+          UN componente per scegliere un valore, due rese: col prop `options`
+          il pannello stilizzato è il DEFAULT (ricerca auto oltre 5 voci);
+          il menu nativo del sistema resta per l'uso a children o col
+          prop `native` esplicito.
           `CustomSelect` è un alias deprecato di `&lt;Select panel&gt;`:
           stessa API, verrà rimosso alla prossima major. Per un menu di
           azioni usa Dropdown; per l&apos;autocomplete usa Combobox.

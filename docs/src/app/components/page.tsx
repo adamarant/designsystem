@@ -178,10 +178,10 @@ const COMPONENTS = [
     "description": "Dashed-border upload area with icon, label, hint, and progress states."
   },
   {
-    "name": "Custom Select",
+    "name": "Select",
     "href": "/components/custom-select",
     "cat": "Form",
-    "description": "Styled select dropdown replacing native <select>. Desktop: absolute panel. Mobile: fullscreen sheet with search. Supports multi-select with tags."
+    "description": "One select, two renderings: styled panel by default when options are provided (search auto over 5), OS-native via children or the native prop."
   },
   {
     "name": "Popover",

@@ -41,6 +41,10 @@ export interface SelectProps
   /** Render the styled panel instead of the OS dropdown. Whether the panel
       shows a search box follows `searchable` (auto: more than 5 options). */
   panel?: boolean;
+  /** Force the OS-native dropdown even when `options` are provided.
+      (Owner call, 23 lug 2026: the styled panel is the default — the
+      native menu is the opt-in, not the other way around.) */
+  native?: boolean;
   /** Show a search box that filters the options. Implies `panel`. */
   searchable?: boolean;
   /** Change callback with the plain value, fired in both modes. In panel mode
@@ -125,9 +129,10 @@ const MOBILE_QUERY = "(max-width: 767px)";
 
 function useIsMobile(): boolean {
   const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== "undefined" ? window.matchMedia(MOBILE_QUERY).matches : false,
+    typeof window !== "undefined" && typeof window.matchMedia === "function" ? window.matchMedia(MOBILE_QUERY).matches : false,
   );
   useEffect(() => {
+    if (typeof window.matchMedia !== "function") return;
     const mql = window.matchMedia(MOBILE_QUERY);
     const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
     mql.addEventListener("change", handler);
@@ -414,6 +419,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       className,
       options,
       panel,
+      native,
       searchable,
       onValueChange,
       placeholder = "Select…",
@@ -426,7 +432,9 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     },
     ref,
   ) {
-    const isPanel = panel === true || searchable === true;
+    const isPanel =
+      native !== true &&
+      (panel === true || searchable === true || options != null);
 
     if (isPanel) {
       const opts = options ?? [];

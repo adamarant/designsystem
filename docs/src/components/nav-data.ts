@@ -82,7 +82,7 @@ export const NAV = [
         "href": "/components/field"
       },
       {
-        "name": "Custom Select",
+        "name": "Select",
         "href": "/components/custom-select"
       },
       {

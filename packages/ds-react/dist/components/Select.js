@@ -42,8 +42,10 @@ function CheckIcon() {
 /* ================================================================== */
 const MOBILE_QUERY = "(max-width: 767px)";
 function useIsMobile() {
-    const [isMobile, setIsMobile] = useState(() => typeof window !== "undefined" ? window.matchMedia(MOBILE_QUERY).matches : false);
+    const [isMobile, setIsMobile] = useState(() => typeof window !== "undefined" && typeof window.matchMedia === "function" ? window.matchMedia(MOBILE_QUERY).matches : false);
     useEffect(() => {
+        if (typeof window.matchMedia !== "function")
+            return;
         const mql = window.matchMedia(MOBILE_QUERY);
         const handler = (e) => setIsMobile(e.matches);
         mql.addEventListener("change", handler);
@@ -182,8 +184,9 @@ function PanelSelect({ options, value, onValueChange, placeholder, showSearch, s
  *
  * In panel mode `ref` is not attached: there is no `<select>` to point at.
  */
-export const Select = forwardRef(function Select({ size = "md", full, className, options, panel, searchable, onValueChange, placeholder = "Select…", searchPlaceholder = "Search…", emptyLabel = "No results", panelLabel, onChange, children, ...rest }, ref) {
-    const isPanel = panel === true || searchable === true;
+export const Select = forwardRef(function Select({ size = "md", full, className, options, panel, native, searchable, onValueChange, placeholder = "Select…", searchPlaceholder = "Search…", emptyLabel = "No results", panelLabel, onChange, children, ...rest }, ref) {
+    const isPanel = native !== true &&
+        (panel === true || searchable === true || options != null);
     if (isPanel) {
         const opts = options ?? [];
         return (_jsx(PanelSelect, { options: opts, value: rest.value != null ? String(rest.value) : undefined, onValueChange: onValueChange, placeholder: placeholder, 

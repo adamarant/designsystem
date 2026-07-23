@@ -18,6 +18,10 @@ export interface SelectProps extends Omit<ComponentPropsWithoutRef<"select">, "s
     /** Render the styled panel instead of the OS dropdown. Whether the panel
         shows a search box follows `searchable` (auto: more than 5 options). */
     panel?: boolean;
+    /** Force the OS-native dropdown even when `options` are provided.
+        (Owner call, 23 lug 2026: the styled panel is the default — the
+        native menu is the opt-in, not the other way around.) */
+    native?: boolean;
     /** Show a search box that filters the options. Implies `panel`. */
     searchable?: boolean;
     /** Change callback with the plain value, fired in both modes. In panel mode

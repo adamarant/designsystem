@@ -1095,8 +1095,8 @@
     },
     {
       "name": "custom-select",
-      "title": "Custom Select",
-      "description": "Styled select dropdown replacing native <select>. Desktop: absolute panel. Mobile: fullscreen sheet with search. Supports multi-select with tags.",
+      "title": "Select",
+      "description": "One select, two renderings: styled panel by default when options are provided (search auto over 5), OS-native via children or the native prop.",
       "category": "form",
       "classes": [
         ".ds-custom-select"
