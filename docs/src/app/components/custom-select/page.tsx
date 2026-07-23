@@ -1,174 +1,83 @@
-export default function CustomSelectPage() {
+"use client";
+
+import { useState } from "react";
+import { Select } from "@adamarant/ds-react";
+import { DemoSection } from "@/components/DemoSection";
+
+const OPTIONS = [
+  { value: "apartamento", label: "Apartamento" },
+  { value: "villa", label: "Villa" },
+  { value: "atico", label: "Ático" },
+  { value: "adosado", label: "Adosado" },
+  { value: "estudio", label: "Estudio" },
+  { value: "duplex", label: "Dúplex" },
+  { value: "chalet", label: "Chalet" },
+];
+
+export default function SelectPage() {
+  const [value, setValue] = useState<string | undefined>("apartamento");
+  const [searched, setSearched] = useState<string | undefined>(undefined);
+
   return (
     <>
       <div className="demo-page-header">
-        <h1>Custom Select</h1>
-        <p>Styled select dropdown replacing native &lt;select&gt;. Desktop: absolute panel. Mobile: fullscreen sheet with search. Supports multi-select with tags.</p>
+        <h1>Select</h1>
+        <p>
+          UN componente per scegliere un valore, due rese: nativo di default
+          (menu del sistema operativo — la scelta giusta su mobile e nei
+          form semplici) e pannello stilizzato con `panel` / `searchable`.
+          `CustomSelect` è un alias deprecato di `&lt;Select panel&gt;`:
+          stessa API, verrà rimosso alla prossima major. Per un menu di
+          azioni usa Dropdown; per l&apos;autocomplete usa Combobox.
+        </p>
       </div>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Default</h2>
-        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-custom-select">
-  <button class="ds-custom-select__trigger">
-    <span class="ds-custom-select__trigger-label">Apartamento</span>
-    <span class="ds-custom-select__chevron">&#9662;</span>
-  </button>
-</div>` }} />
-        <details className="demo-code">
-          <summary>View Code</summary>
-          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-custom-select&quot;&gt;
-  &lt;button class=&quot;ds-custom-select__trigger&quot;&gt;
-    &lt;span class=&quot;ds-custom-select__trigger-label&quot;&gt;Apartamento&lt;/span&gt;
-    &lt;span class=&quot;ds-custom-select__chevron&quot;&gt;&amp;#9662;&lt;/span&gt;
-  &lt;/button&gt;
-&lt;/div&gt;` }} /></pre>
-        </details>
-      </section>
+      <DemoSection
+        title="Nativo (default) — menu del browser"
+        code={`<Select>\n  <option>Choose…</option>\n  <option>Apartamento</option>\n</Select>\n<Select size="sm">…</Select>\n<Select size="lg">…</Select>`}
+      >
+        <Select>
+          <option>Choose…</option>
+          <option>Apartamento</option>
+          <option>Villa</option>
+        </Select>
+        <Select size="sm">
+          <option>Small</option>
+          <option>Villa</option>
+        </Select>
+        <Select size="lg">
+          <option>Large</option>
+          <option>Villa</option>
+        </Select>
+      </DemoSection>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Multi-Select</h2>
-        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-custom-select ds-custom-select--multi">
-  <button class="ds-custom-select__trigger">
-    <div class="ds-custom-select__tags">
-      <span class="ds-custom-select__tag">React <button class="ds-custom-select__tag-remove" aria-label="Remove">&times;</button></span>
-      <span class="ds-custom-select__tag">Vue <button class="ds-custom-select__tag-remove" aria-label="Remove">&times;</button></span>
-    </div>
-    <span class="ds-custom-select__chevron">&#9662;</span>
-  </button>
-</div>` }} />
-        <details className="demo-code">
-          <summary>View Code</summary>
-          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-custom-select ds-custom-select--multi&quot;&gt;
-  &lt;button class=&quot;ds-custom-select__trigger&quot;&gt;
-    &lt;div class=&quot;ds-custom-select__tags&quot;&gt;
-      &lt;span class=&quot;ds-custom-select__tag&quot;&gt;React &lt;button class=&quot;ds-custom-select__tag-remove&quot; aria-label=&quot;Remove&quot;&gt;&amp;times;&lt;/button&gt;&lt;/span&gt;
-      &lt;span class=&quot;ds-custom-select__tag&quot;&gt;Vue &lt;button class=&quot;ds-custom-select__tag-remove&quot; aria-label=&quot;Remove&quot;&gt;&amp;times;&lt;/button&gt;&lt;/span&gt;
-    &lt;/div&gt;
-    &lt;span class=&quot;ds-custom-select__chevron&quot;&gt;&amp;#9662;&lt;/span&gt;
-  &lt;/button&gt;
-&lt;/div&gt;` }} /></pre>
-        </details>
-      </section>
+      <DemoSection
+        title="Pannello stilizzato (l'ex CustomSelect)"
+        code={`<Select\n  panel\n  options={OPTIONS}\n  value={value}\n  onValueChange={setValue}\n  placeholder="Tipo de propiedad"\n/>`}
+      >
+        <Select
+          panel
+          options={OPTIONS}
+          value={value}
+          onValueChange={setValue}
+          placeholder="Tipo de propiedad"
+        />
+      </DemoSection>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">API Reference</h2>
-        <div className="ds-table-wrapper">
-          <table className="ds-table ds-table--compact">
-            <thead>
-              <tr>
-                <th>Class</th>
-                <th>Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>.ds-custom-select</code></td>
-                <td>Base</td>
-              </tr>
-              <tr>
-                <td><code>__trigger</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__trigger-label</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__placeholder</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__chevron</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__backdrop</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__panel</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__header</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__header-title</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__header-close</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__search</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__search-icon</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__list</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__option</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__option-check</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__empty</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__tags</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__tag</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__tag-remove</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>--multi</code></td>
-                <td>Variant</td>
-              </tr>
-              <tr>
-                <td><code>--xs</code></td>
-                <td>Size</td>
-              </tr>
-              <tr>
-                <td><code>--sm</code></td>
-                <td>Size</td>
-              </tr>
-              <tr>
-                <td><code>--lg</code></td>
-                <td>Size</td>
-              </tr>
-              <tr>
-                <td><code>__trigger--open</code></td>
-                <td>Modifier</td>
-              </tr>
-              <tr>
-                <td><code>__trigger--disabled</code></td>
-                <td>Modifier</td>
-              </tr>
-              <tr>
-                <td><code>__option--selected</code></td>
-                <td>Modifier</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+      <DemoSection
+        title="Pannello con ricerca (auto con più di 5 opzioni)"
+        code={`<Select\n  panel\n  searchable\n  options={OPTIONS}\n  value={value}\n  onValueChange={setValue}\n  searchPlaceholder="Buscar…"\n/>`}
+      >
+        <Select
+          panel
+          searchable
+          options={OPTIONS}
+          value={searched}
+          onValueChange={setSearched}
+          placeholder="Tipo de propiedad"
+          searchPlaceholder="Buscar…"
+        />
+      </DemoSection>
     </>
   );
 }
