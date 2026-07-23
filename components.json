@@ -296,7 +296,9 @@
         "__actions",
         "__icon-btn",
         "__mobile",
-        "__mobile-links"
+        "__mobile-links",
+        "__section",
+        "__title"
       ],
       "variants": [
         "--static"
