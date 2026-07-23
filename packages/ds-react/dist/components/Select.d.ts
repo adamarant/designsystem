@@ -1,5 +1,6 @@
 import { type ComponentPropsWithoutRef } from "react";
-export type SelectSize = "xs" | "sm" | "md" | "lg";
+import type { Size } from "../types";
+export type SelectSize = Size;
 export interface SelectOption {
     value: string;
     label: string;

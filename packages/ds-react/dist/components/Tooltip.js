@@ -62,6 +62,8 @@ const TooltipRoot = forwardRef(function Tooltip({ placement = "top", delay, clas
     });
     return (_jsx("div", { ref: ref, onFocusCapture: () => setFocused(true), onBlurCapture: () => setFocused(false), className: cn("ds-tooltip", placementMap[placement], delay && "ds-tooltip--delay", className), ...rest, children: enhancedChildren }));
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { TooltipContent };
 export const Tooltip = Object.assign(TooltipRoot, {
     Content: TooltipContent,
 });

@@ -14,6 +14,11 @@ export interface StatCardDetailProps extends ComponentPropsWithoutRef<"div"> {
 export interface StatCardIconProps extends ComponentPropsWithoutRef<"div"> {
     className?: string;
 }
+declare const StatCardLabel: import("react").ForwardRefExoticComponent<StatCardLabelProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const StatCardValue: import("react").ForwardRefExoticComponent<StatCardValueProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const StatCardDetail: import("react").ForwardRefExoticComponent<StatCardDetailProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const StatCardIcon: import("react").ForwardRefExoticComponent<StatCardIconProps & import("react").RefAttributes<HTMLDivElement>>;
+export { StatCardLabel, StatCardValue, StatCardDetail, StatCardIcon };
 export declare const StatCard: import("react").ForwardRefExoticComponent<StatCardProps & import("react").RefAttributes<HTMLDivElement>> & {
     Label: import("react").ForwardRefExoticComponent<StatCardLabelProps & import("react").RefAttributes<HTMLDivElement>>;
     Value: import("react").ForwardRefExoticComponent<StatCardValueProps & import("react").RefAttributes<HTMLDivElement>>;

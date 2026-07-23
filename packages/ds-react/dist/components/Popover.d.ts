@@ -10,6 +10,9 @@ export interface PopoverTriggerProps extends ComponentPropsWithoutRef<"button"> 
 export interface PopoverContentProps extends ComponentPropsWithoutRef<"div"> {
     className?: string;
 }
+declare const Trigger: import("react").ForwardRefExoticComponent<PopoverTriggerProps & import("react").RefAttributes<HTMLButtonElement>>;
+declare const Content: import("react").ForwardRefExoticComponent<PopoverContentProps & import("react").RefAttributes<HTMLDivElement>>;
+export { Trigger as PopoverTrigger, Content as PopoverContent };
 export declare const Popover: import("react").ForwardRefExoticComponent<PopoverProps & import("react").RefAttributes<HTMLDivElement>> & {
     Trigger: import("react").ForwardRefExoticComponent<PopoverTriggerProps & import("react").RefAttributes<HTMLButtonElement>>;
     Content: import("react").ForwardRefExoticComponent<PopoverContentProps & import("react").RefAttributes<HTMLDivElement>>;

@@ -1,6 +1,7 @@
 import { type ComponentPropsWithoutRef } from "react";
+import type { Size } from "../types";
 type Theme = "light" | "dark";
-type ThemeToggleSize = "sm" | "md" | "lg";
+type ThemeToggleSize = Exclude<Size, "xs">;
 export interface ThemeToggleProps extends Omit<ComponentPropsWithoutRef<"button">, "role" | "aria-checked" | "onChange"> {
     /** Current theme. `"dark"` renders as checked (thumb right, moon active). */
     theme: Theme;

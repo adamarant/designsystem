@@ -29,6 +29,8 @@ const ToggleRoot = forwardRef(function Toggle({ checked, onCheckedChange, size =
     };
     return (_jsx("button", { ref: ref, type: "button", role: "switch", "aria-checked": checked, disabled: disabled, onClick: handleClick, className: cn("ds-toggle", sizeMap[size], className), ...rest }));
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { ToggleLabel, ToggleLabelText };
 export const Toggle = Object.assign(ToggleRoot, {
     Label: ToggleLabel,
     LabelText: ToggleLabelText,

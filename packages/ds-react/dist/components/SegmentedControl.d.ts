@@ -6,6 +6,8 @@ export interface SegmentedControlItemProps extends ComponentPropsWithoutRef<"but
     active?: boolean;
     className?: string;
 }
+declare const Item: import("react").ForwardRefExoticComponent<SegmentedControlItemProps & import("react").RefAttributes<HTMLButtonElement>>;
+export { Item as SegmentedControlItem };
 export declare const SegmentedControl: import("react").ForwardRefExoticComponent<SegmentedControlProps & import("react").RefAttributes<HTMLDivElement>> & {
     Item: import("react").ForwardRefExoticComponent<SegmentedControlItemProps & import("react").RefAttributes<HTMLButtonElement>>;
 };

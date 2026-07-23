@@ -21,6 +21,12 @@ export interface DrawerFooterProps extends ComponentPropsWithoutRef<"div"> {
 export interface DrawerCloseProps extends ComponentPropsWithoutRef<"button"> {
     className?: string;
 }
+declare const Content: import("react").ForwardRefExoticComponent<DrawerContentProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const Header: import("react").ForwardRefExoticComponent<DrawerHeaderProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const Body: import("react").ForwardRefExoticComponent<DrawerBodyProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const Footer: import("react").ForwardRefExoticComponent<DrawerFooterProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const Close: import("react").ForwardRefExoticComponent<DrawerCloseProps & import("react").RefAttributes<HTMLButtonElement>>;
+export { Content as DrawerContent, Header as DrawerHeader, Body as DrawerBody, Footer as DrawerFooter, Close as DrawerClose };
 export declare const Drawer: import("react").ForwardRefExoticComponent<DrawerProps & import("react").RefAttributes<HTMLDivElement>> & {
     Content: import("react").ForwardRefExoticComponent<DrawerContentProps & import("react").RefAttributes<HTMLDivElement>>;
     Header: import("react").ForwardRefExoticComponent<DrawerHeaderProps & import("react").RefAttributes<HTMLDivElement>>;
@@ -28,5 +34,4 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<DrawerPro
     Footer: import("react").ForwardRefExoticComponent<DrawerFooterProps & import("react").RefAttributes<HTMLDivElement>>;
     Close: import("react").ForwardRefExoticComponent<DrawerCloseProps & import("react").RefAttributes<HTMLButtonElement>>;
 };
-export {};
 //# sourceMappingURL=Drawer.d.ts.map

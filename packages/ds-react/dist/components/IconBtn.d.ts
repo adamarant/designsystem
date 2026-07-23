@@ -1,6 +1,7 @@
 import { type ComponentPropsWithoutRef } from "react";
+import type { Size } from "../types";
 type IconBtnVariant = "default" | "ghost" | "outline";
-type IconBtnSize = "xs" | "sm" | "md" | "lg";
+type IconBtnSize = Size;
 export interface IconBtnProps extends ComponentPropsWithoutRef<"button"> {
     variant?: IconBtnVariant;
     size?: IconBtnSize;

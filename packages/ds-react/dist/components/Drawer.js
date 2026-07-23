@@ -27,5 +27,7 @@ const DrawerRoot = forwardRef(function Drawer({ open, onClose, side = "left", cl
         return null;
     return createPortal(drawer, document.body);
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Content as DrawerContent, Header as DrawerHeader, Body as DrawerBody, Footer as DrawerFooter, Close as DrawerClose };
 export const Drawer = Object.assign(DrawerRoot, { Content, Header, Body, Footer, Close });
 //# sourceMappingURL=Drawer.js.map

@@ -14,6 +14,11 @@ export interface EmptyStateDescriptionProps extends ComponentPropsWithoutRef<"p"
 export interface EmptyStateActionsProps extends ComponentPropsWithoutRef<"div"> {
     className?: string;
 }
+declare const Icon: import("react").ForwardRefExoticComponent<EmptyStateIconProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const Title: import("react").ForwardRefExoticComponent<EmptyStateTitleProps & import("react").RefAttributes<HTMLHeadingElement>>;
+declare const Description: import("react").ForwardRefExoticComponent<EmptyStateDescriptionProps & import("react").RefAttributes<HTMLParagraphElement>>;
+declare const Actions: import("react").ForwardRefExoticComponent<EmptyStateActionsProps & import("react").RefAttributes<HTMLDivElement>>;
+export { Icon as EmptyStateIcon, Title as EmptyStateTitle, Description as EmptyStateDescription, Actions as EmptyStateActions };
 export declare const EmptyState: import("react").ForwardRefExoticComponent<EmptyStateProps & import("react").RefAttributes<HTMLDivElement>> & {
     Icon: import("react").ForwardRefExoticComponent<EmptyStateIconProps & import("react").RefAttributes<HTMLDivElement>>;
     Title: import("react").ForwardRefExoticComponent<EmptyStateTitleProps & import("react").RefAttributes<HTMLHeadingElement>>;

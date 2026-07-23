@@ -13,6 +13,8 @@ const Separator = forwardRef(function Separator({ className, children, ...rest }
 const BreadcrumbRoot = forwardRef(function Breadcrumb({ className, ...rest }, ref) {
     return _jsx("nav", { ref: ref, "aria-label": "Breadcrumb", className: className, ...rest });
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { List as BreadcrumbList, Item as BreadcrumbItem, Separator as BreadcrumbSeparator };
 export const Breadcrumb = Object.assign(BreadcrumbRoot, {
     List, Item, Separator,
 });

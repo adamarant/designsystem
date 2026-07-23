@@ -31,6 +31,8 @@ const TagRemove = forwardRef(function TagRemove({ className, ...rest }, ref) {
 const TagRoot = forwardRef(function Tag({ variant = "default", size = "md", removable, className, ...rest }, ref) {
     return (_jsx("span", { ref: ref, className: cn("ds-tag", variantMap[variant], sizeMap[size], removable && "ds-tag--removable", className), ...rest }));
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { TagRemove };
 export const Tag = Object.assign(TagRoot, {
     Remove: TagRemove,
 });

@@ -7,8 +7,9 @@ export interface ToastProps extends ComponentPropsWithoutRef<"div"> {
 export interface ToastCloseProps extends ComponentPropsWithoutRef<"button"> {
     className?: string;
 }
+declare const ToastClose: import("react").ForwardRefExoticComponent<ToastCloseProps & import("react").RefAttributes<HTMLButtonElement>>;
+export { ToastClose };
 export declare const Toast: import("react").ForwardRefExoticComponent<ToastProps & import("react").RefAttributes<HTMLDivElement>> & {
     Close: import("react").ForwardRefExoticComponent<ToastCloseProps & import("react").RefAttributes<HTMLButtonElement>>;
 };
-export {};
 //# sourceMappingURL=Toast.d.ts.map

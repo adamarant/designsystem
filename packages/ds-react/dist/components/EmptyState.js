@@ -16,6 +16,8 @@ const Actions = forwardRef(function Actions({ className, ...rest }, ref) {
 const EmptyStateRoot = forwardRef(function EmptyState({ className, ...rest }, ref) {
     return _jsx("div", { ref: ref, className: cn("ds-empty-state", className), ...rest });
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Icon as EmptyStateIcon, Title as EmptyStateTitle, Description as EmptyStateDescription, Actions as EmptyStateActions };
 export const EmptyState = Object.assign(EmptyStateRoot, {
     Icon, Title, Description, Actions,
 });

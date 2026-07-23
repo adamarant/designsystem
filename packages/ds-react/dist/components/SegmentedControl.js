@@ -7,5 +7,7 @@ const Item = forwardRef(function Item({ active, className, ...rest }, ref) {
 const Root = forwardRef(function SegmentedControl({ className, ...rest }, ref) {
     return _jsx("div", { ref: ref, role: "group", className: cn("ds-segmented-control", className), ...rest });
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Item as SegmentedControlItem };
 export const SegmentedControl = Object.assign(Root, { Item });
 //# sourceMappingURL=SegmentedControl.js.map

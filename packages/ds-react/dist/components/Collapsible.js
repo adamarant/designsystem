@@ -16,5 +16,7 @@ function CollapsibleRoot({ defaultOpen = false, className, children, ...rest }) 
     const [open, setOpen] = useState(defaultOpen);
     return (_jsx(Ctx.Provider, { value: { open, toggle: () => setOpen(p => !p) }, children: _jsx("div", { className: cn("ds-collapsible", open && "ds-collapsible--open", className), ...rest, children: children }) }));
 }
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Trigger as CollapsibleTrigger, Content as CollapsibleContent };
 export const Collapsible = Object.assign(CollapsibleRoot, { Trigger, Content });
 //# sourceMappingURL=Collapsible.js.map

@@ -1,6 +1,7 @@
-import { type ComponentPropsWithoutRef } from "react";
+import { type ComponentPropsWithoutRef, type ReactNode } from "react";
+import type { Size } from "../types";
 type InputState = "default" | "error" | "success";
-type InputSize = "xs" | "sm" | "md" | "lg";
+type InputSize = Size;
 export interface InputProps extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
     /** Validation state. Default: "default" */
     state?: InputState;
@@ -51,15 +52,38 @@ export interface HelpProps extends ComponentPropsWithoutRef<"p"> {
     className?: string;
 }
 export declare const Help: import("react").ForwardRefExoticComponent<HelpProps & import("react").RefAttributes<HTMLParagraphElement>>;
-export interface CheckboxProps extends ComponentPropsWithoutRef<"label"> {
+type CheckControlSize = Exclude<Size, "xs">;
+interface CheckControlOwnProps {
+    /** Size tier. Default: "md" */
+    size?: CheckControlSize;
+    /** Label rendered in __content/__label. Enables the enriched markup. */
+    label?: ReactNode;
+    /** Secondary line under the label. */
+    description?: ReactNode;
+    /** Checked state (controlled) — forwarded to the native input. */
+    checked?: boolean;
+    /** Initial state (uncontrolled) — forwarded to the native input. */
+    defaultChecked?: boolean;
+    /** Called with the next checked state. */
+    onCheckedChange?: (checked: boolean) => void;
+    /** Disables the native input (the CSS reacts via :has). */
+    disabled?: boolean;
+    /** Native input name (forms). */
+    name?: string;
+    /** Native input value (forms). */
+    value?: string;
+    /** Extra props forwarded to the native <input>. */
+    inputProps?: ComponentPropsWithoutRef<"input">;
+}
+export interface CheckboxProps extends ComponentPropsWithoutRef<"label">, CheckControlOwnProps {
+    /** Additional className */
+    className?: string;
+}
+export interface RadioProps extends ComponentPropsWithoutRef<"label">, CheckControlOwnProps {
     /** Additional className */
     className?: string;
 }
 export declare const Checkbox: import("react").ForwardRefExoticComponent<CheckboxProps & import("react").RefAttributes<HTMLLabelElement>>;
-export interface RadioProps extends ComponentPropsWithoutRef<"label"> {
-    /** Additional className */
-    className?: string;
-}
 export declare const Radio: import("react").ForwardRefExoticComponent<RadioProps & import("react").RefAttributes<HTMLLabelElement>>;
 export {};
 //# sourceMappingURL=Input.d.ts.map

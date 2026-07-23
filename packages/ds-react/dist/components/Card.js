@@ -43,6 +43,9 @@ const CardMedia = forwardRef(function CardMedia({ aspect = "default", className,
 const CardRoot = forwardRef(function Card({ variant = "default", compact, flush, className, ...rest }, ref) {
     return (_jsx("div", { ref: ref, className: cn("ds-card", variantMap[variant], compact && "ds-card--compact", flush && "ds-card--flush", className), ...rest }));
 });
+/* Flat exports — RSC-safe: dot notation on a client-reference proxy is
+   undefined inside Server Components, the named imports always work. */
+export { CardHeader, CardTitle, CardDescription, CardBody, CardFooter, CardMedia };
 export const Card = Object.assign(CardRoot, {
     Header: CardHeader,
     Title: CardTitle,

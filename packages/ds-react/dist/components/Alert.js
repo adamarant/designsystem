@@ -35,6 +35,8 @@ const AlertClose = forwardRef(function AlertClose({ className, ...rest }, ref) {
 const AlertRoot = forwardRef(function Alert({ variant = "default", compact, banner, className, ...rest }, ref) {
     return (_jsx("div", { ref: ref, role: "alert", className: cn("ds-alert", variantMap[variant], compact && "ds-alert--compact", banner && "ds-alert--banner", className), ...rest }));
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { AlertIcon, AlertContent, AlertTitle, AlertDescription, AlertClose };
 export const Alert = Object.assign(AlertRoot, {
     Icon: AlertIcon,
     Content: AlertContent,

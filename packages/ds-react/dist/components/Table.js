@@ -27,6 +27,8 @@ const TableFooter = forwardRef(function TableFooter({ className, ...rest }, ref)
 const TableRoot = forwardRef(function Table({ compact, dense, striped, bordered, stickyHeader, noHover, stack, className, ...rest }, ref) {
     return (_jsx("table", { ref: ref, className: cn("ds-table", compact && "ds-table--compact", dense && "ds-table--dense", striped && "ds-table--striped", bordered && "ds-table--bordered", stickyHeader && "ds-table--sticky-header", noHover && "ds-table--no-hover", stack && "ds-table--stack", className), ...rest }));
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { TableWrapper, TableSort, TableFooter };
 export const Table = Object.assign(TableRoot, {
     Wrapper: TableWrapper,
     Sort: TableSort,

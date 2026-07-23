@@ -90,6 +90,8 @@ function TabsRoot({ value, onValueChange, children }) {
     const baseId = useId();
     return (_jsx(TabsContext.Provider, { value: { value, onValueChange, baseId }, children: children }));
 }
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { TabsList, TabsTab, TabsIcon, TabsCount, TabsPanel };
 export const Tabs = Object.assign(TabsRoot, {
     List: TabsList,
     Tab: TabsTab,

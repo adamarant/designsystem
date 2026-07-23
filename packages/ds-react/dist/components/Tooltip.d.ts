@@ -12,8 +12,9 @@ export interface TooltipContentProps extends ComponentPropsWithoutRef<"div"> {
     /** Additional className */
     className?: string;
 }
+declare const TooltipContent: import("react").ForwardRefExoticComponent<TooltipContentProps & import("react").RefAttributes<HTMLDivElement>>;
+export { TooltipContent };
 export declare const Tooltip: import("react").ForwardRefExoticComponent<TooltipProps & import("react").RefAttributes<HTMLDivElement>> & {
     Content: import("react").ForwardRefExoticComponent<TooltipContentProps & import("react").RefAttributes<HTMLDivElement>>;
 };
-export {};
 //# sourceMappingURL=Tooltip.d.ts.map

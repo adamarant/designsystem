@@ -9,10 +9,12 @@ export interface CollapsibleTriggerProps extends ComponentPropsWithoutRef<"butto
 export interface CollapsibleContentProps extends ComponentPropsWithoutRef<"div"> {
     className?: string;
 }
+declare const Trigger: import("react").ForwardRefExoticComponent<CollapsibleTriggerProps & import("react").RefAttributes<HTMLButtonElement>>;
+declare const Content: import("react").ForwardRefExoticComponent<CollapsibleContentProps & import("react").RefAttributes<HTMLDivElement>>;
 declare function CollapsibleRoot({ defaultOpen, className, children, ...rest }: CollapsibleProps): import("react/jsx-runtime").JSX.Element;
+export { Trigger as CollapsibleTrigger, Content as CollapsibleContent };
 export declare const Collapsible: typeof CollapsibleRoot & {
     Trigger: import("react").ForwardRefExoticComponent<CollapsibleTriggerProps & import("react").RefAttributes<HTMLButtonElement>>;
     Content: import("react").ForwardRefExoticComponent<CollapsibleContentProps & import("react").RefAttributes<HTMLDivElement>>;
 };
-export {};
 //# sourceMappingURL=Collapsible.d.ts.map
