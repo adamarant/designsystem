@@ -39,6 +39,7 @@
     "./components/dropdown": "./src/components/dropdown.css",
     "./components/empty-state": "./src/components/empty-state.css",
     "./components/field": "./src/components/field.css",
+    "./components/footer": "./src/components/footer.css",
     "./components/gallery": "./src/components/gallery.css",
     "./components/hero": "./src/components/hero.css",
     "./components/icon-btn": "./src/components/icon-btn.css",
