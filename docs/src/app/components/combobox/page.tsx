@@ -1,158 +1,74 @@
+"use client";
+
+import { useState } from "react";
+import { Combobox } from "@adamarant/ds-react";
+import { DemoSection } from "@/components/DemoSection";
+
+const FRAMEWORKS = [
+  { value: "react", label: "React" },
+  { value: "vue", label: "Vue" },
+  { value: "svelte", label: "Svelte" },
+  { value: "solid", label: "Solid" },
+  { value: "qwik", label: "Qwik" },
+  { value: "angular", label: "Angular" },
+];
+
 export default function ComboboxPage() {
+  const [single, setSingle] = useState<string | string[] | null>(null);
+  const [multi, setMulti] = useState<string | string[] | null>(["react"]);
+
   return (
     <>
       <div className="demo-page-header">
         <h1>Combobox</h1>
-        <p>Text input with filterable dropdown results. Supports single/multi-select, inline creation, and keyboard navigation.</p>
+        <p>
+          Autocomplete: input con risultati filtrati mentre scrivi,
+          selezione singola o multipla con tag, navigazione da tastiera.
+          Il confine coi cugini: Select sceglie un valore da una lista
+          chiusa (senza scrivere), Dropdown è un menu di azioni. Il
+          Combobox è per liste lunghe dove digitare è il modo più veloce.
+        </p>
       </div>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Basic Combobox</h2>
-        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-combobox">
-  <input class="ds-combobox__input" placeholder="Search..." />
-  <div class="ds-combobox__listbox ds-combobox__listbox--open">
-    <div class="ds-combobox__option ds-combobox__option--active">Option 1</div>
-    <div class="ds-combobox__option">Option 2</div>
-    <div class="ds-combobox__option ds-combobox__option--selected">Option 3</div>
-  </div>
-</div>` }} />
-        <details className="demo-code">
-          <summary>View Code</summary>
-          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-combobox&quot;&gt;
-  &lt;input class=&quot;ds-combobox__input&quot; placeholder=&quot;Search...&quot; /&gt;
-  &lt;div class=&quot;ds-combobox__listbox ds-combobox__listbox--open&quot;&gt;
-    &lt;div class=&quot;ds-combobox__option ds-combobox__option--active&quot;&gt;Option 1&lt;/div&gt;
-    &lt;div class=&quot;ds-combobox__option&quot;&gt;Option 2&lt;/div&gt;
-    &lt;div class=&quot;ds-combobox__option ds-combobox__option--selected&quot;&gt;Option 3&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;` }} /></pre>
-        </details>
-      </section>
-
-      <section className="demo-section">
-        <h2 className="demo-section__title">Multi-select with Tags</h2>
-        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-combobox ds-combobox--multi">
-  <div class="ds-combobox__input-area">
-    <span class="ds-combobox__tag">React <button class="ds-combobox__tag-remove">&times;</button></span>
-    <span class="ds-combobox__tag">Vue <button class="ds-combobox__tag-remove">&times;</button></span>
-    <input class="ds-combobox__input" placeholder="Add more..." />
-  </div>
-</div>` }} />
-        <details className="demo-code">
-          <summary>View Code</summary>
-          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-combobox ds-combobox--multi&quot;&gt;
-  &lt;div class=&quot;ds-combobox__input-area&quot;&gt;
-    &lt;span class=&quot;ds-combobox__tag&quot;&gt;React &lt;button class=&quot;ds-combobox__tag-remove&quot;&gt;&amp;times;&lt;/button&gt;&lt;/span&gt;
-    &lt;span class=&quot;ds-combobox__tag&quot;&gt;Vue &lt;button class=&quot;ds-combobox__tag-remove&quot;&gt;&amp;times;&lt;/button&gt;&lt;/span&gt;
-    &lt;input class=&quot;ds-combobox__input&quot; placeholder=&quot;Add more...&quot; /&gt;
-  &lt;/div&gt;
-&lt;/div&gt;` }} /></pre>
-        </details>
-      </section>
-
-      <section className="demo-section">
-        <h2 className="demo-section__title">API Reference</h2>
-        <div className="ds-table-wrapper">
-          <table className="ds-table ds-table--compact">
-            <thead>
-              <tr>
-                <th>Class</th>
-                <th>Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>.ds-combobox</code></td>
-                <td>Base</td>
-              </tr>
-              <tr>
-                <td><code>__input-area</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__input</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__icon</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__clear</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__listbox</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__group</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__group-label</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__option</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__option-check</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__option-desc</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__create</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__empty</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__loading</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__tag</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__tag-remove</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>--error</code></td>
-                <td>Variant</td>
-              </tr>
-              <tr>
-                <td><code>--xs</code></td>
-                <td>Size</td>
-              </tr>
-              <tr>
-                <td><code>--sm</code></td>
-                <td>Size</td>
-              </tr>
-              <tr>
-                <td><code>--lg</code></td>
-                <td>Size</td>
-              </tr>
-              <tr>
-                <td><code>--open</code></td>
-                <td>Modifier</td>
-              </tr>
-              <tr>
-                <td><code>--multi</code></td>
-                <td>Modifier</td>
-              </tr>
-            </tbody>
-          </table>
+      <DemoSection
+        title="Singolo"
+        code={`const [value, setValue] = useState<string | string[] | null>(null);\n\n<Combobox\n  options={FRAMEWORKS}\n  value={value}\n  onChange={setValue}\n  placeholder="Search framework…"\n/>`}
+      >
+        <div className="ds-max-w-sm ds-w-full">
+          <Combobox
+            options={FRAMEWORKS}
+            value={single}
+            onChange={setSingle}
+            placeholder="Search framework…"
+          />
         </div>
-      </section>
+      </DemoSection>
+
+      <DemoSection
+        title="Multi con tag"
+        code={`<Combobox\n  multiple\n  options={FRAMEWORKS}\n  value={values}\n  onChange={setValues}\n  placeholder="Add frameworks…"\n/>`}
+      >
+        <div className="ds-max-w-sm ds-w-full">
+          <Combobox
+            multiple
+            options={FRAMEWORKS}
+            value={multi}
+            onChange={setMulti}
+            placeholder="Add frameworks…"
+          />
+        </div>
+      </DemoSection>
+
+      <DemoSection
+        title="Taglie (stessi tier di Button/Input)"
+        code={`<Combobox size="sm" … />\n<Combobox … />\n<Combobox size="lg" … />`}
+      >
+        <div className="ds-flex ds-flex-col ds-gap-3 ds-max-w-sm ds-w-full">
+          <Combobox size="sm" options={FRAMEWORKS} value={null} onChange={() => {}} placeholder="sm" />
+          <Combobox options={FRAMEWORKS} value={null} onChange={() => {}} placeholder="md" />
+          <Combobox size="lg" options={FRAMEWORKS} value={null} onChange={() => {}} placeholder="lg" />
+        </div>
+      </DemoSection>
     </>
   );
 }
