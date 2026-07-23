@@ -73,6 +73,14 @@ describe("SiteFooter", () => {
     expect(screen.getByText("Privacy").getAttribute("href")).toBe("/privacy");
   });
 
+  it("note renders the fine-print zone when provided", () => {
+    const { container } = render(
+      <SiteFooter columns={COLUMNS} note="Not financial advice." />,
+    );
+    const note = container.querySelector(".ds-footer__note");
+    expect(note?.textContent).toBe("Not financial advice.");
+  });
+
   it("newsletter is opt-in: absent unless provided", () => {
     const { container, rerender } = render(<SiteFooter columns={COLUMNS} />);
     expect(container.querySelector(".ds-footer__newsletter")).toBeNull();

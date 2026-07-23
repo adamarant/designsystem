@@ -180,3 +180,11 @@
 .ds-footer__credits-links a:hover {
   color: var(--ds-color-text);
 }
+
+/* --- Note zone: fine print / brand statement / wordmark below credits --- */
+
+.ds-footer__note {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  text-wrap: pretty;
+}
