@@ -17,13 +17,13 @@ export interface PopoverContentProps extends ComponentPropsWithoutRef<"div"> { c
 const Trigger = forwardRef<HTMLButtonElement, PopoverTriggerProps>(
   function Trigger({ className, onClick, ...rest }, ref) {
     const ctx = useCtx();
-    return <button ref={ref} aria-expanded={ctx.open} onClick={(e) => { ctx.onToggle(); onClick?.(e); }} className={cn("ds-popover__trigger", className)} {...rest} />;
+    return <button ref={ref} aria-expanded={ctx.open} onClick={(e) => { ctx.onToggle(); onClick?.(e); }} className={className} {...rest} />;
   },
 );
 const Content = forwardRef<HTMLDivElement, PopoverContentProps>(
   function Content({ className, ...rest }, ref) {
     const ctx = useCtx();
-    return <div ref={ref} className={cn("ds-popover__content", ctx.open && "ds-popover__content--open", className)} {...rest} />;
+    return <div ref={ref} className={cn("ds-popover__content", className)} {...rest} />;
   },
 );
 
@@ -44,7 +44,7 @@ const PopoverRoot = forwardRef<HTMLDivElement, PopoverProps>(
 
     return (
       <Ctx.Provider value={{ open, onToggle, onClose }}>
-        <div ref={(n) => { rootRef.current = n; if (typeof ref === "function") ref(n); else if (ref) ref.current = n; }} className={cn("ds-popover", className)} {...rest} />
+        <div ref={(n) => { rootRef.current = n; if (typeof ref === "function") ref(n); else if (ref) ref.current = n; }} className={cn("ds-popover", open && "ds-popover--open", className)} {...rest} />
       </Ctx.Provider>
     );
   },

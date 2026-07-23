@@ -12,7 +12,7 @@ export interface BottomSheetContentProps extends ComponentPropsWithoutRef<"div">
 export interface BottomSheetHeaderProps extends ComponentPropsWithoutRef<"div"> { className?: string; }
 export interface BottomSheetBodyProps extends ComponentPropsWithoutRef<"div"> { className?: string; }
 
-const Content = forwardRef<HTMLDivElement, BottomSheetContentProps>(function C({ className, ...r }, ref) { return <div ref={ref} className={cn("ds-bottom-sheet__content", className)} {...r} />; });
+const Content = forwardRef<HTMLDivElement, BottomSheetContentProps>(function C({ className, ...r }, ref) { return <div ref={ref} className={cn("ds-bottom-sheet__panel", className)} {...r} />; });
 const Header = forwardRef<HTMLDivElement, BottomSheetHeaderProps>(function H({ className, ...r }, ref) { return <div ref={ref} className={cn("ds-bottom-sheet__header", className)} {...r} />; });
 const Body = forwardRef<HTMLDivElement, BottomSheetBodyProps>(function B({ className, ...r }, ref) { return <div ref={ref} className={cn("ds-bottom-sheet__body", className)} {...r} />; });
 

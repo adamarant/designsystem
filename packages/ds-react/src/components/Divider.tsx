@@ -13,7 +13,10 @@ export interface DividerProps extends ComponentPropsWithoutRef<"hr"> {
 const variantMap: Record<DividerVariant, string> = {
   default: "",
   subtle: "ds-divider--subtle",
-  strong: "ds-divider--strong",
+  /* No CSS behind it: divider.css ships --subtle/--spacious/--vertical/--label,
+     never --strong. Emitted a phantom until DS 0.30; now a no-op rather than a
+     lie. Needs a DS decision before it can mean anything. */
+  strong: "",
 };
 
 export const Divider = forwardRef<HTMLHRElement, DividerProps>(
