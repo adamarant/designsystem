@@ -77,11 +77,13 @@
     "./components/truncated-text": "./src/components/truncated-text.css",
     "./utilities": "./src/utilities/index.css",
     "./js": "./dist/designsystem.js",
-    "./tokens/json": "./src/tokens/tokens.json"
+    "./tokens/json": "./src/tokens/tokens.json",
+    "./eslint": "./eslint/index.mjs"
   },
   "files": [
     "dist/",
-    "src/"
+    "src/",
+    "eslint/"
   ],
   "scripts": {
     "build": "node scripts/build.js",
