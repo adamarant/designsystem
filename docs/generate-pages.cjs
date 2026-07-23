@@ -200,7 +200,12 @@ const customGroups = SIDEBAR_GROUPS.map(group => ({
     .map(n => ({ name: compByName[n].title, href: `/components/${n}` })),
 }));
 
-const allNav = [foundations, ...customGroups];
+const kits = {
+  label: "Kits",
+  items: [{ name: "sitekit", title: "SiteKit" }],
+};
+
+const allNav = [foundations, ...customGroups, kits];
 const sidebarContent = `// Auto-generated from components.json — do not edit manually
 export const NAV = ${JSON.stringify(allNav, null, 2)};
 `;

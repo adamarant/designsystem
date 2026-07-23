@@ -340,8 +340,26 @@ export {
   SiteHeader,
   type SiteHeaderProps,
   type SiteNavItem,
+  type SiteNavChild,
 } from "./components/SiteHeader";
-export { SiteFooter, type SiteFooterProps } from "./components/SiteFooter";
+export {
+  SiteFooter,
+  SiteFooterBrand,
+  SiteFooterColumns,
+  SiteFooterColumn,
+  SiteFooterSocial,
+  SiteFooterRow,
+  SiteFooterBottom,
+  SiteFooterWordmark,
+  type SiteFooterProps,
+  type SiteFooterBrandProps,
+  type SiteFooterColumnsProps,
+  type SiteFooterColumnProps,
+  type SiteFooterSocialProps,
+  type SiteFooterRowProps,
+  type SiteFooterBottomProps,
+  type SiteFooterWordmarkProps,
+} from "./components/SiteFooter";
 export {
   LangSwitcher,
   type LangSwitcherProps,
