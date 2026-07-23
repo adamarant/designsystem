@@ -25,6 +25,12 @@ export interface AlertDescriptionProps extends ComponentPropsWithoutRef<"p"> {
 export interface AlertCloseProps extends ComponentPropsWithoutRef<"button"> {
     className?: string;
 }
+declare const AlertIcon: import("react").ForwardRefExoticComponent<AlertIconProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const AlertContent: import("react").ForwardRefExoticComponent<AlertContentProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const AlertTitle: import("react").ForwardRefExoticComponent<AlertTitleProps & import("react").RefAttributes<HTMLParagraphElement>>;
+declare const AlertDescription: import("react").ForwardRefExoticComponent<AlertDescriptionProps & import("react").RefAttributes<HTMLParagraphElement>>;
+declare const AlertClose: import("react").ForwardRefExoticComponent<AlertCloseProps & import("react").RefAttributes<HTMLButtonElement>>;
+export { AlertIcon, AlertContent, AlertTitle, AlertDescription, AlertClose };
 export declare const Alert: import("react").ForwardRefExoticComponent<AlertProps & import("react").RefAttributes<HTMLDivElement>> & {
     Icon: import("react").ForwardRefExoticComponent<AlertIconProps & import("react").RefAttributes<HTMLDivElement>>;
     Content: import("react").ForwardRefExoticComponent<AlertContentProps & import("react").RefAttributes<HTMLDivElement>>;
@@ -32,5 +38,4 @@ export declare const Alert: import("react").ForwardRefExoticComponent<AlertProps
     Description: import("react").ForwardRefExoticComponent<AlertDescriptionProps & import("react").RefAttributes<HTMLParagraphElement>>;
     Close: import("react").ForwardRefExoticComponent<AlertCloseProps & import("react").RefAttributes<HTMLButtonElement>>;
 };
-export {};
 //# sourceMappingURL=Alert.d.ts.map

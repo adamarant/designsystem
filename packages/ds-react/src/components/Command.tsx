@@ -15,4 +15,7 @@ const Group = forwardRef<HTMLDivElement, CommandGroupProps>(function G({ classNa
 const Root = forwardRef<HTMLDivElement, CommandProps>(
   function Command({ className, ...rest }, ref) { return <div ref={ref} className={cn("ds-command", className)} {...rest} />; },
 );
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Input as CommandInput, List as CommandList, Item as CommandItem, Group as CommandGroup };
+
 export const Command = Object.assign(Root, { Input, List, Item, Group });

@@ -7,5 +7,7 @@ const Item = forwardRef(function Item({ active, className, ...rest }, ref) {
 const Root = forwardRef(function BottomNav({ className, ...rest }, ref) {
     return _jsx("nav", { ref: ref, className: cn("ds-bottom-nav", className), ...rest });
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Item as BottomNavItem };
 export const BottomNav = Object.assign(Root, { Item });
 //# sourceMappingURL=BottomNav.js.map

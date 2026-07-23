@@ -77,6 +77,8 @@ function AccordionRoot({ variant = "default", multiple = false, defaultOpen = []
     }, [multiple]);
     return (_jsx(AccordionContext.Provider, { value: { openItems, toggle, baseId }, children: _jsx("div", { className: cn("ds-accordion", variantMap[variant], className), children: children }) }));
 }
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { AccordionItem, AccordionTrigger, AccordionContent, AccordionBody };
 export const Accordion = Object.assign(AccordionRoot, {
     Item: AccordionItem,
     Trigger: AccordionTrigger,

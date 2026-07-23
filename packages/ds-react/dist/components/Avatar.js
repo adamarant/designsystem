@@ -28,6 +28,8 @@ const AvatarStatus = forwardRef(function AvatarStatus({ variant, className, ...r
 const AvatarRoot = forwardRef(function Avatar({ size = "md", square, bordered, className, ...rest }, ref) {
     return (_jsx("span", { ref: ref, className: cn("ds-avatar", sizeMap[size], square && "ds-avatar--square", bordered && "ds-avatar--bordered", className), ...rest }));
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { AvatarStatus };
 export const Avatar = Object.assign(AvatarRoot, {
     Status: AvatarStatus,
 });

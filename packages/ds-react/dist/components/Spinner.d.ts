@@ -1,5 +1,6 @@
 import { type ComponentPropsWithoutRef } from "react";
-type SpinnerSize = "sm" | "md" | "default" | "lg";
+import type { Size } from "../types";
+type SpinnerSize = Exclude<Size, "xs"> | "default";
 type SpinnerVariant = "default" | "muted" | "light";
 export interface SpinnerProps extends ComponentPropsWithoutRef<"span"> {
     /** Size. Default: "default" (24px) */

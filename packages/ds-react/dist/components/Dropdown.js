@@ -1,3 +1,4 @@
+"use client";
 import { jsx as _jsx } from "react/jsx-runtime";
 import { createContext, forwardRef, useCallback, useContext, useEffect, useRef, } from "react";
 import { cn } from "../utils/cn";
@@ -35,7 +36,13 @@ const DropdownTrigger = forwardRef(function DropdownTrigger({ className, onClick
         ctx.onToggle();
         onClick?.(e);
     };
-    return (_jsx("button", { ref: ref, "aria-haspopup": "true", "aria-expanded": ctx.open, onClick: handleClick, className: cn("ds-dropdown__trigger", className), ...rest }));
+    return (_jsx("button", { ref: (node) => {
+            ctx.registerTrigger(node);
+            if (typeof ref === "function")
+                ref(node);
+            else if (ref)
+                ref.current = node;
+        }, "aria-haspopup": "true", "aria-expanded": ctx.open, onClick: handleClick, className: cn("ds-dropdown__trigger", className), ...rest }));
 });
 const DropdownMenu = forwardRef(function DropdownMenu({ align = "left", position = "down", width = "default", className, ...rest }, ref) {
     const ctx = useDropdownContext();
@@ -45,9 +52,11 @@ const DropdownMenu = forwardRef(function DropdownMenu({ align = "left", position
         if (e.key === "Escape") {
             e.preventDefault();
             ctx.onClose();
+            ctx.focusTrigger();
             return;
         }
-        if (e.key !== "ArrowDown" && e.key !== "ArrowUp")
+        const NAV_KEYS = ["ArrowDown", "ArrowUp", "Home", "End"];
+        if (!NAV_KEYS.includes(e.key))
             return;
         e.preventDefault();
         const container = menuRef.current;
@@ -58,7 +67,13 @@ const DropdownMenu = forwardRef(function DropdownMenu({ align = "left", position
             return;
         const current = items.indexOf(document.activeElement);
         let idx;
-        if (e.key === "ArrowDown") {
+        if (e.key === "Home") {
+            idx = 0;
+        }
+        else if (e.key === "End") {
+            idx = items.length - 1;
+        }
+        else if (e.key === "ArrowDown") {
             idx = current + 1 >= items.length ? 0 : current + 1;
         }
         else {
@@ -92,6 +107,7 @@ const DropdownItem = forwardRef(function DropdownItem({ active, danger, disabled
         if (!disabled) {
             onClick?.(e);
             ctx.onClose();
+            ctx.focusTrigger();
         }
     };
     return (_jsx("button", { ref: ref, role: "menuitem", disabled: disabled, tabIndex: -1, onClick: handleClick, className: cn("ds-dropdown__item", active && "ds-dropdown__item--active", danger && "ds-dropdown__item--danger", disabled && "ds-dropdown__item--disabled", className), ...rest }));
@@ -116,8 +132,15 @@ const DropdownHeader = forwardRef(function DropdownHeader({ className, ...rest }
 /* ================================================================== */
 const DropdownRoot = forwardRef(function Dropdown({ open, onOpenChange, className, ...rest }, ref) {
     const rootRef = useRef(null);
+    const triggerRef = useRef(null);
     const onToggle = useCallback(() => onOpenChange(!open), [open, onOpenChange]);
     const onClose = useCallback(() => onOpenChange(false), [onOpenChange]);
+    const registerTrigger = useCallback((el) => {
+        triggerRef.current = el;
+    }, []);
+    const focusTrigger = useCallback(() => {
+        triggerRef.current?.focus();
+    }, []);
     /* Click outside */
     useEffect(() => {
         if (!open)
@@ -141,7 +164,7 @@ const DropdownRoot = forwardRef(function Dropdown({ open, onOpenChange, classNam
         document.addEventListener("keydown", handler);
         return () => document.removeEventListener("keydown", handler);
     }, [open, onClose]);
-    return (_jsx(DropdownContext.Provider, { value: { open, onToggle, onClose }, children: _jsx("div", { ref: (node) => {
+    return (_jsx(DropdownContext.Provider, { value: { open, onToggle, onClose, registerTrigger, focusTrigger }, children: _jsx("div", { ref: (node) => {
                 rootRef.current = node;
                 if (typeof ref === "function")
                     ref(node);
@@ -149,6 +172,8 @@ const DropdownRoot = forwardRef(function Dropdown({ open, onOpenChange, classNam
                     ref.current = node;
             }, className: cn("ds-dropdown", open && "ds-dropdown--open", className), ...rest }) }));
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { DropdownTrigger, DropdownMenu, DropdownItem, DropdownItemIcon, DropdownItemLabel, DropdownItemShortcut, DropdownDivider, DropdownHeader };
 export const Dropdown = Object.assign(DropdownRoot, {
     Trigger: DropdownTrigger,
     Menu: DropdownMenu,

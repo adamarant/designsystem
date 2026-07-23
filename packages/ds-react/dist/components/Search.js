@@ -9,5 +9,7 @@ const SearchInput = forwardRef(function SearchInput({ size = "md", allowPassword
 const SearchRoot = forwardRef(function Search({ className, ...rest }, ref) {
     return _jsx("div", { ref: ref, className: cn("ds-search", className), ...rest });
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { SearchInput };
 export const Search = Object.assign(SearchRoot, { Input: SearchInput });
 //# sourceMappingURL=Search.js.map

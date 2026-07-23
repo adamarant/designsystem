@@ -1,11 +1,14 @@
+"use client";
+
 import { type ComponentPropsWithoutRef, type MouseEvent, forwardRef } from "react";
 import { cn } from "../utils/cn";
+import type { Size } from "../types";
 
 /* ================================================================== */
 /*  Types                                                              */
 /* ================================================================== */
 
-type ToggleSize = "sm" | "md" | "lg";
+type ToggleSize = Exclude<Size, "xs">;
 
 export interface ToggleProps
   extends Omit<ComponentPropsWithoutRef<"button">, "role"> {
@@ -96,6 +99,9 @@ const ToggleRoot = forwardRef<HTMLButtonElement, ToggleProps>(
     );
   },
 );
+
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { ToggleLabel, ToggleLabelText };
 
 export const Toggle = Object.assign(ToggleRoot, {
   Label: ToggleLabel,

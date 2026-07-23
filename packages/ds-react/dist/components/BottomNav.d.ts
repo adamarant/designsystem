@@ -6,6 +6,8 @@ export interface BottomNavItemProps extends ComponentPropsWithoutRef<"button"> {
     active?: boolean;
     className?: string;
 }
+declare const Item: import("react").ForwardRefExoticComponent<BottomNavItemProps & import("react").RefAttributes<HTMLButtonElement>>;
+export { Item as BottomNavItem };
 export declare const BottomNav: import("react").ForwardRefExoticComponent<BottomNavProps & import("react").RefAttributes<HTMLElement>> & {
     Item: import("react").ForwardRefExoticComponent<BottomNavItemProps & import("react").RefAttributes<HTMLButtonElement>>;
 };

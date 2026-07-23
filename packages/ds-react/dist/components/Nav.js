@@ -10,5 +10,7 @@ const NavItem = forwardRef(function NavItem({ active, className, ...rest }, ref)
 const NavRoot = forwardRef(function Nav({ className, ...rest }, ref) {
     return _jsx("nav", { ref: ref, className: className, ...rest });
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { NavList, NavItem };
 export const Nav = Object.assign(NavRoot, { List: NavList, Item: NavItem });
 //# sourceMappingURL=Nav.js.map

@@ -50,4 +50,7 @@ const PopoverRoot = forwardRef<HTMLDivElement, PopoverProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Trigger as PopoverTrigger, Content as PopoverContent };
+
 export const Popover = Object.assign(PopoverRoot, { Trigger, Content });

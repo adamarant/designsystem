@@ -16,11 +16,15 @@ export interface ResultDescriptionProps extends ComponentPropsWithoutRef<"p"> {
 export interface ResultActionsProps extends ComponentPropsWithoutRef<"div"> {
     className?: string;
 }
+declare const Icon: import("react").ForwardRefExoticComponent<ResultIconProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const Title: import("react").ForwardRefExoticComponent<ResultTitleProps & import("react").RefAttributes<HTMLHeadingElement>>;
+declare const Description: import("react").ForwardRefExoticComponent<ResultDescriptionProps & import("react").RefAttributes<HTMLParagraphElement>>;
+declare const Actions: import("react").ForwardRefExoticComponent<ResultActionsProps & import("react").RefAttributes<HTMLDivElement>>;
+export { Icon as ResultIcon, Title as ResultTitle, Description as ResultDescription, Actions as ResultActions };
 export declare const Result: import("react").ForwardRefExoticComponent<ResultProps & import("react").RefAttributes<HTMLDivElement>> & {
     Icon: import("react").ForwardRefExoticComponent<ResultIconProps & import("react").RefAttributes<HTMLDivElement>>;
     Title: import("react").ForwardRefExoticComponent<ResultTitleProps & import("react").RefAttributes<HTMLHeadingElement>>;
     Description: import("react").ForwardRefExoticComponent<ResultDescriptionProps & import("react").RefAttributes<HTMLParagraphElement>>;
     Actions: import("react").ForwardRefExoticComponent<ResultActionsProps & import("react").RefAttributes<HTMLDivElement>>;
 };
-export {};
 //# sourceMappingURL=Result.d.ts.map

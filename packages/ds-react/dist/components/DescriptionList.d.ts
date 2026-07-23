@@ -8,6 +8,9 @@ export interface DescriptionListTermProps extends ComponentPropsWithoutRef<"dt">
 export interface DescriptionListDetailProps extends ComponentPropsWithoutRef<"dd"> {
     className?: string;
 }
+declare const Term: import("react").ForwardRefExoticComponent<DescriptionListTermProps & import("react").RefAttributes<HTMLElement>>;
+declare const Detail: import("react").ForwardRefExoticComponent<DescriptionListDetailProps & import("react").RefAttributes<HTMLElement>>;
+export { Term as DescriptionListTerm, Detail as DescriptionListDetail };
 export declare const DescriptionList: import("react").ForwardRefExoticComponent<DescriptionListProps & import("react").RefAttributes<HTMLDListElement>> & {
     Term: import("react").ForwardRefExoticComponent<DescriptionListTermProps & import("react").RefAttributes<HTMLElement>>;
     Detail: import("react").ForwardRefExoticComponent<DescriptionListDetailProps & import("react").RefAttributes<HTMLElement>>;

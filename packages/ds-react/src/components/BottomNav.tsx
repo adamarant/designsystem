@@ -17,4 +17,7 @@ const Root = forwardRef<HTMLElement, BottomNavProps>(
     return <nav ref={ref} className={cn("ds-bottom-nav", className)} {...rest} />;
   },
 );
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Item as BottomNavItem };
+
 export const BottomNav = Object.assign(Root, { Item });

@@ -26,12 +26,16 @@ export interface AccordionContentProps extends ComponentPropsWithoutRef<"div"> {
 export interface AccordionBodyProps extends ComponentPropsWithoutRef<"div"> {
     className?: string;
 }
+declare const AccordionItem: import("react").ForwardRefExoticComponent<AccordionItemProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const AccordionTrigger: import("react").ForwardRefExoticComponent<AccordionTriggerProps & import("react").RefAttributes<HTMLButtonElement>>;
+declare const AccordionContent: import("react").ForwardRefExoticComponent<AccordionContentProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const AccordionBody: import("react").ForwardRefExoticComponent<AccordionBodyProps & import("react").RefAttributes<HTMLDivElement>>;
 declare function AccordionRoot({ variant, multiple, defaultOpen, className, children, }: AccordionProps): import("react/jsx-runtime").JSX.Element;
+export { AccordionItem, AccordionTrigger, AccordionContent, AccordionBody };
 export declare const Accordion: typeof AccordionRoot & {
     Item: import("react").ForwardRefExoticComponent<AccordionItemProps & import("react").RefAttributes<HTMLDivElement>>;
     Trigger: import("react").ForwardRefExoticComponent<AccordionTriggerProps & import("react").RefAttributes<HTMLButtonElement>>;
     Content: import("react").ForwardRefExoticComponent<AccordionContentProps & import("react").RefAttributes<HTMLDivElement>>;
     Body: import("react").ForwardRefExoticComponent<AccordionBodyProps & import("react").RefAttributes<HTMLDivElement>>;
 };
-export {};
 //# sourceMappingURL=Accordion.d.ts.map

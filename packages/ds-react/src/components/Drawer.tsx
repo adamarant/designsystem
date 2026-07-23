@@ -58,4 +58,7 @@ const DrawerRoot = forwardRef<HTMLDivElement, DrawerProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Content as DrawerContent, Header as DrawerHeader, Body as DrawerBody, Footer as DrawerFooter, Close as DrawerClose };
+
 export const Drawer = Object.assign(DrawerRoot, { Content, Header, Body, Footer, Close });

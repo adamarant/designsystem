@@ -1,4 +1,5 @@
 import { type ComponentPropsWithoutRef, type ReactNode } from "react";
+import type { Size } from "../types";
 export interface ComboboxOption {
     /** Stable value submitted on change. */
     value: string;
@@ -13,7 +14,7 @@ export interface ComboboxOption {
     /** When true, the option cannot be selected. */
     disabled?: boolean;
 }
-type ComboboxSize = "xs" | "sm" | "md" | "lg";
+type ComboboxSize = Size;
 type ComboboxSort = "az" | "za" | "none";
 export interface ComboboxProps extends Omit<ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
     /** Selectable options. */

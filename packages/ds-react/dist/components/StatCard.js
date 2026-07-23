@@ -16,6 +16,8 @@ const StatCardIcon = forwardRef(function StatCardIcon({ className, ...rest }, re
 const StatCardRoot = forwardRef(function StatCard({ className, ...rest }, ref) {
     return _jsx("div", { ref: ref, className: cn("ds-stat-card", className), ...rest });
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { StatCardLabel, StatCardValue, StatCardDetail, StatCardIcon };
 export const StatCard = Object.assign(StatCardRoot, {
     Label: StatCardLabel,
     Value: StatCardValue,

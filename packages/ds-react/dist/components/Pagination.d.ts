@@ -9,6 +9,9 @@ export interface PaginationItemProps extends ComponentPropsWithoutRef<"button"> 
     active?: boolean;
     className?: string;
 }
+declare const List: import("react").ForwardRefExoticComponent<PaginationListProps & import("react").RefAttributes<HTMLUListElement>>;
+declare const Item: import("react").ForwardRefExoticComponent<PaginationItemProps & import("react").RefAttributes<HTMLButtonElement>>;
+export { List as PaginationList, Item as PaginationItem };
 export declare const Pagination: import("react").ForwardRefExoticComponent<PaginationProps & import("react").RefAttributes<HTMLElement>> & {
     List: import("react").ForwardRefExoticComponent<PaginationListProps & import("react").RefAttributes<HTMLUListElement>>;
     Item: import("react").ForwardRefExoticComponent<PaginationItemProps & import("react").RefAttributes<HTMLButtonElement>>;

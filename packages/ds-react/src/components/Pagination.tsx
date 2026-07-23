@@ -32,4 +32,7 @@ const PaginationRoot = forwardRef<HTMLElement, PaginationProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { List as PaginationList, Item as PaginationItem };
+
 export const Pagination = Object.assign(PaginationRoot, { List, Item });

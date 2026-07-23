@@ -9,6 +9,9 @@ export interface NavItemProps extends ComponentPropsWithoutRef<"li"> {
     active?: boolean;
     className?: string;
 }
+declare const NavList: import("react").ForwardRefExoticComponent<NavListProps & import("react").RefAttributes<HTMLUListElement>>;
+declare const NavItem: import("react").ForwardRefExoticComponent<NavItemProps & import("react").RefAttributes<HTMLLIElement>>;
+export { NavList, NavItem };
 export declare const Nav: import("react").ForwardRefExoticComponent<NavProps & import("react").RefAttributes<HTMLElement>> & {
     List: import("react").ForwardRefExoticComponent<NavListProps & import("react").RefAttributes<HTMLUListElement>>;
     Item: import("react").ForwardRefExoticComponent<NavItemProps & import("react").RefAttributes<HTMLLIElement>>;

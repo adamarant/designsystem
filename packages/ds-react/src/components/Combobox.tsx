@@ -1,3 +1,5 @@
+"use client";
+
 import {
   type ComponentPropsWithoutRef,
   type KeyboardEvent,
@@ -11,6 +13,7 @@ import {
   useState,
 } from "react";
 import { cn } from "../utils/cn";
+import type { Size } from "../types";
 
 /* ================================================================== */
 /*  Types                                                              */
@@ -31,7 +34,7 @@ export interface ComboboxOption {
   disabled?: boolean;
 }
 
-type ComboboxSize = "xs" | "sm" | "md" | "lg";
+type ComboboxSize = Size;
 type ComboboxSort = "az" | "za" | "none";
 
 export interface ComboboxProps

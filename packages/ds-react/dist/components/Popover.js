@@ -33,5 +33,7 @@ const PopoverRoot = forwardRef(function Popover({ open, onOpenChange, className,
             else if (ref)
                 ref.current = n; }, className: cn("ds-popover", className), ...rest }) }));
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Trigger as PopoverTrigger, Content as PopoverContent };
 export const Popover = Object.assign(PopoverRoot, { Trigger, Content });
 //# sourceMappingURL=Popover.js.map

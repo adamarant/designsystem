@@ -30,4 +30,7 @@ const Root = forwardRef<HTMLDivElement, BottomSheetProps>(
     return createPortal(el, document.body);
   },
 );
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Content as BottomSheetContent, Header as BottomSheetHeader, Body as BottomSheetBody };
+
 export const BottomSheet = Object.assign(Root, { Content, Header, Body });

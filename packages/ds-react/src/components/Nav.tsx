@@ -23,4 +23,7 @@ const NavRoot = forwardRef<HTMLElement, NavProps>(
     return <nav ref={ref} className={className} {...rest} />;
   },
 );
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { NavList, NavItem };
+
 export const Nav = Object.assign(NavRoot, { List: NavList, Item: NavItem });

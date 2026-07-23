@@ -24,4 +24,7 @@ const ToastRoot = forwardRef<HTMLDivElement, ToastProps>(
     return <div ref={ref} role="status" className={cn("ds-toast", variantMap[variant], className)} {...rest} />;
   },
 );
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { ToastClose };
+
 export const Toast = Object.assign(ToastRoot, { Close: ToastClose });

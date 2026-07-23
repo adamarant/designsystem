@@ -28,6 +28,9 @@ const BreadcrumbRoot = forwardRef<HTMLElement, BreadcrumbProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { List as BreadcrumbList, Item as BreadcrumbItem, Separator as BreadcrumbSeparator };
+
 export const Breadcrumb = Object.assign(BreadcrumbRoot, {
   List, Item, Separator,
 });

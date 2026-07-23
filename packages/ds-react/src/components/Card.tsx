@@ -149,6 +149,10 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   },
 );
 
+/* Flat exports — RSC-safe: dot notation on a client-reference proxy is
+   undefined inside Server Components, the named imports always work. */
+export { CardHeader, CardTitle, CardDescription, CardBody, CardFooter, CardMedia };
+
 export const Card = Object.assign(CardRoot, {
   Header: CardHeader,
   Title: CardTitle,

@@ -10,4 +10,7 @@ const Item = forwardRef<HTMLDivElement, GalleryItemProps>(
 const Root = forwardRef<HTMLDivElement, GalleryProps>(
   function Gallery({ className, ...rest }, ref) { return <div ref={ref} className={cn("ds-gallery", className)} {...rest} />; },
 );
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Item as GalleryItem };
+
 export const Gallery = Object.assign(Root, { Item });

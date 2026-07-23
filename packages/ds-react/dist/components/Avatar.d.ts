@@ -1,5 +1,6 @@
 import { type ComponentPropsWithoutRef } from "react";
-type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl";
+import type { Size } from "../types";
+type AvatarSize = Size | "xl";
 type StatusVariant = "online" | "offline" | "busy";
 export interface AvatarProps extends ComponentPropsWithoutRef<"span"> {
     /** Size tier. Default: "md" (40px) */
@@ -23,9 +24,10 @@ export interface AvatarGroupProps extends ComponentPropsWithoutRef<"div"> {
     /** Additional className */
     className?: string;
 }
+declare const AvatarStatus: import("react").ForwardRefExoticComponent<AvatarStatusProps & import("react").RefAttributes<HTMLSpanElement>>;
+export { AvatarStatus };
 export declare const Avatar: import("react").ForwardRefExoticComponent<AvatarProps & import("react").RefAttributes<HTMLSpanElement>> & {
     Status: import("react").ForwardRefExoticComponent<AvatarStatusProps & import("react").RefAttributes<HTMLSpanElement>>;
 };
 export declare const AvatarGroup: import("react").ForwardRefExoticComponent<AvatarGroupProps & import("react").RefAttributes<HTMLDivElement>>;
-export {};
 //# sourceMappingURL=Avatar.d.ts.map

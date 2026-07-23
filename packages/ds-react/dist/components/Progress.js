@@ -19,5 +19,7 @@ const ProgressRoot = forwardRef(function Progress({ value, max = 100, variant = 
     const pct = value != null ? Math.min(100, Math.max(0, (value / max) * 100)) : undefined;
     return (_jsx("div", { ref: ref, role: "progressbar", "aria-valuenow": value, "aria-valuemin": 0, "aria-valuemax": max, className: cn("ds-progress", variantMap[variant], sizeMap[size], className), ...rest, children: children || (pct != null && _jsx(ProgressBar, { style: { width: `${pct}%` } })) }));
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { ProgressBar };
 export const Progress = Object.assign(ProgressRoot, { Bar: ProgressBar });
 //# sourceMappingURL=Progress.js.map

@@ -11,5 +11,7 @@ const ToastClose = forwardRef(function ToastClose({ className, ...rest }, ref) {
 const ToastRoot = forwardRef(function Toast({ variant = "default", className, ...rest }, ref) {
     return _jsx("div", { ref: ref, role: "status", className: cn("ds-toast", variantMap[variant], className), ...rest });
 });
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { ToastClose };
 export const Toast = Object.assign(ToastRoot, { Close: ToastClose });
 //# sourceMappingURL=Toast.js.map

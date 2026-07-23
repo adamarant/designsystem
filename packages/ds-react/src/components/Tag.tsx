@@ -1,5 +1,6 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils/cn";
+import type { Size } from "../types";
 
 /* ================================================================== */
 /*  Types                                                              */
@@ -15,7 +16,7 @@ type TagVariant =
   | "purple"
   | "outline";
 
-type TagSize = "sm" | "md" | "lg";
+type TagSize = Exclude<Size, "xs">;
 
 export interface TagProps extends ComponentPropsWithoutRef<"span"> {
   /** Semantic color variant. Default: "default" (neutral muted) */
@@ -95,6 +96,9 @@ const TagRoot = forwardRef<HTMLSpanElement, TagProps>(
     );
   },
 );
+
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { TagRemove };
 
 export const Tag = Object.assign(TagRoot, {
   Remove: TagRemove,

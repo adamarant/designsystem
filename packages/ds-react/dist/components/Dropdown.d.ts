@@ -48,6 +48,15 @@ export interface DropdownDividerProps extends ComponentPropsWithoutRef<"hr"> {
 export interface DropdownHeaderProps extends ComponentPropsWithoutRef<"div"> {
     className?: string;
 }
+declare const DropdownTrigger: import("react").ForwardRefExoticComponent<DropdownTriggerProps & import("react").RefAttributes<HTMLButtonElement>>;
+declare const DropdownMenu: import("react").ForwardRefExoticComponent<DropdownMenuProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const DropdownItem: import("react").ForwardRefExoticComponent<DropdownItemProps & import("react").RefAttributes<HTMLButtonElement>>;
+declare const DropdownItemIcon: import("react").ForwardRefExoticComponent<DropdownItemIconProps & import("react").RefAttributes<HTMLSpanElement>>;
+declare const DropdownItemLabel: import("react").ForwardRefExoticComponent<DropdownItemLabelProps & import("react").RefAttributes<HTMLSpanElement>>;
+declare const DropdownItemShortcut: import("react").ForwardRefExoticComponent<DropdownItemShortcutProps & import("react").RefAttributes<HTMLSpanElement>>;
+declare const DropdownDivider: import("react").ForwardRefExoticComponent<DropdownDividerProps & import("react").RefAttributes<HTMLHRElement>>;
+declare const DropdownHeader: import("react").ForwardRefExoticComponent<DropdownHeaderProps & import("react").RefAttributes<HTMLDivElement>>;
+export { DropdownTrigger, DropdownMenu, DropdownItem, DropdownItemIcon, DropdownItemLabel, DropdownItemShortcut, DropdownDivider, DropdownHeader };
 export declare const Dropdown: import("react").ForwardRefExoticComponent<DropdownProps & import("react").RefAttributes<HTMLDivElement>> & {
     Trigger: import("react").ForwardRefExoticComponent<DropdownTriggerProps & import("react").RefAttributes<HTMLButtonElement>>;
     Menu: import("react").ForwardRefExoticComponent<DropdownMenuProps & import("react").RefAttributes<HTMLDivElement>>;
@@ -58,5 +67,4 @@ export declare const Dropdown: import("react").ForwardRefExoticComponent<Dropdow
     Divider: import("react").ForwardRefExoticComponent<DropdownDividerProps & import("react").RefAttributes<HTMLHRElement>>;
     Header: import("react").ForwardRefExoticComponent<DropdownHeaderProps & import("react").RefAttributes<HTMLDivElement>>;
 };
-export {};
 //# sourceMappingURL=Dropdown.d.ts.map

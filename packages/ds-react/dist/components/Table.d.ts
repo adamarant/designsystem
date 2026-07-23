@@ -30,10 +30,13 @@ export interface TableSortProps extends ComponentPropsWithoutRef<"button"> {
 export interface TableFooterProps extends ComponentPropsWithoutRef<"div"> {
     className?: string;
 }
+declare const TableWrapper: import("react").ForwardRefExoticComponent<TableWrapperProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const TableSort: import("react").ForwardRefExoticComponent<TableSortProps & import("react").RefAttributes<HTMLButtonElement>>;
+declare const TableFooter: import("react").ForwardRefExoticComponent<TableFooterProps & import("react").RefAttributes<HTMLDivElement>>;
+export { TableWrapper, TableSort, TableFooter };
 export declare const Table: import("react").ForwardRefExoticComponent<TableProps & import("react").RefAttributes<HTMLTableElement>> & {
     Wrapper: import("react").ForwardRefExoticComponent<TableWrapperProps & import("react").RefAttributes<HTMLDivElement>>;
     Sort: import("react").ForwardRefExoticComponent<TableSortProps & import("react").RefAttributes<HTMLButtonElement>>;
     Footer: import("react").ForwardRefExoticComponent<TableFooterProps & import("react").RefAttributes<HTMLDivElement>>;
 };
-export {};
 //# sourceMappingURL=Table.d.ts.map

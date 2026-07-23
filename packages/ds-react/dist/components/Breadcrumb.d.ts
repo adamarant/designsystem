@@ -11,6 +11,10 @@ export interface BreadcrumbItemProps extends ComponentPropsWithoutRef<"li"> {
 export interface BreadcrumbSeparatorProps extends ComponentPropsWithoutRef<"li"> {
     className?: string;
 }
+declare const List: import("react").ForwardRefExoticComponent<BreadcrumbListProps & import("react").RefAttributes<HTMLOListElement>>;
+declare const Item: import("react").ForwardRefExoticComponent<BreadcrumbItemProps & import("react").RefAttributes<HTMLLIElement>>;
+declare const Separator: import("react").ForwardRefExoticComponent<BreadcrumbSeparatorProps & import("react").RefAttributes<HTMLLIElement>>;
+export { List as BreadcrumbList, Item as BreadcrumbItem, Separator as BreadcrumbSeparator };
 export declare const Breadcrumb: import("react").ForwardRefExoticComponent<BreadcrumbProps & import("react").RefAttributes<HTMLElement>> & {
     List: import("react").ForwardRefExoticComponent<BreadcrumbListProps & import("react").RefAttributes<HTMLOListElement>>;
     Item: import("react").ForwardRefExoticComponent<BreadcrumbItemProps & import("react").RefAttributes<HTMLLIElement>>;

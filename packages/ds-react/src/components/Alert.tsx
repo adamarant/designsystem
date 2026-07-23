@@ -134,6 +134,9 @@ const AlertRoot = forwardRef<HTMLDivElement, AlertProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { AlertIcon, AlertContent, AlertTitle, AlertDescription, AlertClose };
+
 export const Alert = Object.assign(AlertRoot, {
   Icon: AlertIcon,
   Content: AlertContent,

@@ -1,5 +1,6 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils/cn";
+import type { Size } from "../types";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -14,7 +15,7 @@ type ButtonVariant =
   | "success"
   | "success-solid";
 
-type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+type ButtonSize = Size | "xl" | "2xl";
 
 export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   /** Visual style. Default: "primary" (inverted bg) */

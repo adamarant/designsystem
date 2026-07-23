@@ -1,6 +1,7 @@
 import { type ComponentPropsWithoutRef } from "react";
+import type { Size } from "../types";
 type TabsVariant = "default" | "pills" | "pills-flat" | "vertical";
-type TabsSize = "sm" | "md" | "lg";
+type TabsSize = Exclude<Size, "xs">;
 export interface TabsProps {
     /** Currently active tab value. */
     value: string;
@@ -41,7 +42,13 @@ export interface TabsPanelProps extends ComponentPropsWithoutRef<"div"> {
     /** Additional className */
     className?: string;
 }
+declare const TabsList: import("react").ForwardRefExoticComponent<TabsListProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const TabsTab: import("react").ForwardRefExoticComponent<TabsTabProps & import("react").RefAttributes<HTMLButtonElement>>;
+declare const TabsIcon: import("react").ForwardRefExoticComponent<TabsIconProps & import("react").RefAttributes<HTMLSpanElement>>;
+declare const TabsCount: import("react").ForwardRefExoticComponent<TabsCountProps & import("react").RefAttributes<HTMLSpanElement>>;
+declare const TabsPanel: import("react").ForwardRefExoticComponent<TabsPanelProps & import("react").RefAttributes<HTMLDivElement>>;
 declare function TabsRoot({ value, onValueChange, children }: TabsProps): import("react/jsx-runtime").JSX.Element;
+export { TabsList, TabsTab, TabsIcon, TabsCount, TabsPanel };
 export declare const Tabs: typeof TabsRoot & {
     List: import("react").ForwardRefExoticComponent<TabsListProps & import("react").RefAttributes<HTMLDivElement>>;
     Tab: import("react").ForwardRefExoticComponent<TabsTabProps & import("react").RefAttributes<HTMLButtonElement>>;
@@ -49,5 +56,4 @@ export declare const Tabs: typeof TabsRoot & {
     Count: import("react").ForwardRefExoticComponent<TabsCountProps & import("react").RefAttributes<HTMLSpanElement>>;
     Panel: import("react").ForwardRefExoticComponent<TabsPanelProps & import("react").RefAttributes<HTMLDivElement>>;
 };
-export {};
 //# sourceMappingURL=Tabs.d.ts.map
