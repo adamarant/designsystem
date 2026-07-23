@@ -71,3 +71,21 @@ describe("Select default rendering (owner call 23 lug 2026)", () => {
     expect(container.querySelector("select")).toBeTruthy();
   });
 });
+
+describe("panel escapes transformed ancestors (portal)", () => {
+  it("the open panel is a child of document.body, not of the dialog DOM", async () => {
+    const { container } = render(
+      <div style={{ transform: "scale(1)", overflow: "hidden" }}>
+        <Select options={OPTIONS} value="a" onValueChange={() => {}} />
+      </div>,
+    );
+    const { default: userEvent } = await import("@testing-library/user-event");
+    await userEvent.click(
+      container.querySelector<HTMLButtonElement>(".ds-custom-select__trigger")!,
+    );
+    const panel = document.querySelector(".ds-custom-select__panel")!;
+    expect(panel).toBeTruthy();
+    expect(container.contains(panel)).toBe(false);
+    expect(panel.closest("body")).toBe(document.body);
+  });
+});
