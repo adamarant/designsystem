@@ -71,4 +71,8 @@ export { AdminLayout, AdminLayoutSidebar, AdminLayoutMain, AdminLayoutHeader } f
 export { useContextMenu, } from "./components/ContextMenu";
 export { TurnstileWidget, } from "./components/TurnstileWidget";
 export { ClipReveal } from "./components/ClipReveal";
+/* SiteKit (Fase 6) — site chrome written once. */
+export { SiteHeader, } from "./components/SiteHeader";
+export { SiteFooter } from "./components/SiteFooter";
+export { LangSwitcher, } from "./components/LangSwitcher";
 //# sourceMappingURL=index.js.map

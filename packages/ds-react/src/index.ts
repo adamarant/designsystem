@@ -334,3 +334,16 @@ export {
 } from "./components/TurnstileWidget";
 
 export { ClipReveal, type ClipRevealProps } from "./components/ClipReveal";
+
+/* SiteKit (Fase 6) — site chrome written once. */
+export {
+  SiteHeader,
+  type SiteHeaderProps,
+  type SiteNavItem,
+} from "./components/SiteHeader";
+export { SiteFooter, type SiteFooterProps } from "./components/SiteFooter";
+export {
+  LangSwitcher,
+  type LangSwitcherProps,
+  type LangSwitcherItem,
+} from "./components/LangSwitcher";
