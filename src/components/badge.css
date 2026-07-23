@@ -77,4 +77,16 @@
     font-weight: var(--ds-weight-semibold);
     letter-spacing: var(--ds-tracking-wide);
   }
+
+  /* Size — the pill scales by padding + type, same steps as .ds-tag so a
+     badge and a tag on the same row read at the same weight. */
+  &--sm {
+    padding: var(--ds-space-0-5) var(--ds-space-2);
+    font-size: var(--ds-text-2xs);
+  }
+
+  &--lg {
+    padding: var(--ds-space-1) var(--ds-space-3);
+    font-size: var(--ds-text-sm);
+  }
 }

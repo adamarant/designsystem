@@ -171,5 +171,31 @@
       font-size: var(--ds-text-xs);
     }
   }
+
+  /* Size — the row lands on the canonical tiers, so a pagination can sit
+     beside a button or input of the same size and share its height. The
+     unmodified default stays at 2rem; --compact predates the tiers and is
+     kept as-is for backward compatibility. */
+  &--sm {
+    & .ds-pagination__item,
+    & .ds-pagination__prev,
+    & .ds-pagination__next,
+    & .ds-pagination__ellipsis {
+      min-width: var(--ds-size-1);
+      height: var(--ds-size-1);
+      font-size: var(--ds-text-xs);
+    }
+  }
+
+  &--lg {
+    & .ds-pagination__item,
+    & .ds-pagination__prev,
+    & .ds-pagination__next,
+    & .ds-pagination__ellipsis {
+      min-width: var(--ds-size-3);
+      height: var(--ds-size-3);
+      font-size: var(--ds-text-base);
+    }
+  }
 }
 

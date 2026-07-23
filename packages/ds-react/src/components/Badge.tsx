@@ -1,4 +1,5 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { type Size } from "../types";
 import { cn } from "../utils/cn";
 
 /* ------------------------------------------------------------------ */
@@ -22,6 +23,8 @@ export interface BadgeProps extends ComponentPropsWithoutRef<"span"> {
   dot?: boolean;
   /** Uppercase small caps style (for "NEW", "BETA", etc.). Default: false */
   upper?: boolean;
+  /** Size tier. Default: "md" (no class emitted). */
+  size?: Exclude<Size, "xs">;
   /** Additional className */
   className?: string;
 }
@@ -41,18 +44,28 @@ const variantMap: Record<BadgeVariant, string> = {
   outline: "ds-badge--outline",
 };
 
+const sizeMap: Record<Exclude<Size, "xs">, string> = {
+  sm: "ds-badge--sm",
+  md: "",
+  lg: "ds-badge--lg",
+};
+
 /* ------------------------------------------------------------------ */
 /*  Badge                                                              */
 /* ------------------------------------------------------------------ */
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
-  function Badge({ variant = "default", dot, upper, className, ...rest }, ref) {
+  function Badge(
+    { variant = "default", size = "md", dot, upper, className, ...rest },
+    ref,
+  ) {
     return (
       <span
         ref={ref}
         className={cn(
           "ds-badge",
           variantMap[variant],
+          sizeMap[size],
           dot && "ds-badge--dot",
           upper && "ds-badge--upper",
           className,

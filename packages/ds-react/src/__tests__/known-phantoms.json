@@ -1,0 +1,40 @@
+{
+  "_comment": [
+    "Phantom classes that already shipped — NOT legitimate, just not yet fixed.",
+    "Each is a class a ds-react wrapper emits that the DS never defined, so the",
+    "component renders unstyled in every consumer. Mostly wrapper/CSS name drift:",
+    "the CSS calls it '.ds-segmented', the wrapper writes 'ds-segmented-control';",
+    "nav.css defines no '__item' at all. The backward-compat law forbids renaming",
+    "published CSS classes, so the fix is always to correct the wrapper.",
+    "This list may only ever SHRINK: mount-all.test.tsx fails on any new entry,",
+    "freezing the debt at today's size while blocking new phantoms outright.",
+    "Kept as data, not as TS literals, so the ds-no-phantom-classes hook (which",
+    "guards source files) does not fire on the very list that tracks them."
+  ],
+  "classes": [
+    "ds-admin-layout",
+    "ds-admin-layout__sidebar",
+    "ds-admin-layout__main",
+    "ds-admin-layout__header",
+    "ds-bottom-sheet__content",
+    "ds-breadcrumb__separator",
+    "ds-collapsible__content--open",
+    "ds-copy-button",
+    "ds-divider--strong",
+    "ds-gallery__item",
+    "ds-hero__description",
+    "ds-hero__actions",
+    "ds-icon-btn--outline",
+    "ds-nav__item",
+    "ds-nav__item--active",
+    "ds-nav__section",
+    "ds-nav__title",
+    "ds-popover__trigger",
+    "ds-popover__content--open",
+    "ds-segmented-control",
+    "ds-segmented-control__item",
+    "ds-segmented-control__item--active",
+    "ds-truncated-text",
+    "ds-truncated-text--clamp"
+  ]
+}
