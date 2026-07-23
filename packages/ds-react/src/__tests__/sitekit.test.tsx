@@ -68,21 +68,53 @@ describe("SiteFooter", () => {
 });
 
 describe("LangSwitcher", () => {
-  it("marks the current locale and links the siblings", () => {
-    render(
-      <LangSwitcher
-        current="it"
-        items={[
-          { code: "it", href: "/it/chi-siamo" },
-          { code: "en", href: "/en/about" },
-        ]}
-      />,
-    );
+  const ITEMS = [
+    { code: "it", label: "Italiano", href: "/it/chi-siamo" },
+    { code: "en", label: "English", href: "/en/about" },
+    { code: "es", label: "Español", href: "/es/quienes-somos" },
+  ];
+
+  it("inline variant marks the current locale and links the siblings", () => {
+    render(<LangSwitcher variant="inline" current="it" items={ITEMS} />);
     const it_ = screen.getByText("it");
     const en = screen.getByText("en");
     expect(it_.getAttribute("aria-current")).toBe("true");
     expect(en.getAttribute("aria-current")).toBeNull();
     expect(en.closest("a")?.getAttribute("href")).toBe("/en/about");
+  });
+
+  it("dropdown (default): ghost trigger on the size tier, menu with the other locales", async () => {
+    render(<LangSwitcher current="it" items={ITEMS} size="sm" />);
+    const trigger = screen.getByRole("button", { name: "Language: Italiano" });
+    expect(trigger.className).toContain("ds-btn--ghost");
+    expect(trigger.className).toContain("ds-btn--sm");
+    await userEvent.click(trigger);
+    const options = screen.getAllByRole("menuitem");
+    expect(options.length).toBe(2);
+    expect(options.map((o) => o.getAttribute("href"))).toEqual([
+      "/en/about",
+      "/es/quienes-somos",
+    ]);
+    expect(screen.getByText("English")).toBeTruthy();
+  });
+
+  it("preferHreflang upgrades hrefs from the page's alternate links", async () => {
+    const link = document.createElement("link");
+    link.rel = "alternate";
+    link.hreflang = "en";
+    link.href = "http://localhost/en/about-us-2026";
+    document.head.appendChild(link);
+    render(
+      <LangSwitcher current="it" items={ITEMS} preferHreflang />,
+    );
+    await userEvent.click(
+      screen.getByRole("button", { name: "Language: Italiano" }),
+    );
+    const en = screen
+      .getAllByRole("menuitem")
+      .find((o) => o.textContent?.includes("English"))!;
+    expect(en.getAttribute("href")).toBe("/en/about-us-2026");
+    link.remove();
   });
 });
 
