@@ -21,7 +21,7 @@ const Trigger = forwardRef<HTMLButtonElement, CollapsibleTriggerProps>(
 const Content = forwardRef<HTMLDivElement, CollapsibleContentProps>(
   function Content({ className, ...rest }, ref) {
     const ctx = useContext(Ctx)!;
-    return <div ref={ref} className={cn("ds-collapsible__content", ctx.open && "ds-collapsible__content--open", className)} {...rest} />;
+    return <div ref={ref} className={cn("ds-collapsible__content", className)} {...rest} />;
   },
 );
 

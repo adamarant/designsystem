@@ -16,9 +16,16 @@ const Item = forwardRef<HTMLLIElement, BreadcrumbItemProps>(
     return <li ref={ref} className={cn("ds-breadcrumb__item", className)} {...rest} />;
   },
 );
+/**
+ * @deprecated Renders nothing. `breadcrumb.css` draws the separator itself, as
+ * a `::after` on every `__item` but the last — so a separator in the DOM was
+ * always a second one beside it. It also carried a separator class the DS
+ * never defined. Kept as a no-op export so existing trees keep compiling;
+ * delete the element when you touch the file.
+ */
 const Separator = forwardRef<HTMLLIElement, BreadcrumbSeparatorProps>(
-  function Separator({ className, children, ...rest }, ref) {
-    return <li ref={ref} aria-hidden="true" className={cn("ds-breadcrumb__separator", className)} {...rest}>{children || "/"}</li>;
+  function Separator() {
+    return null;
   },
 );
 

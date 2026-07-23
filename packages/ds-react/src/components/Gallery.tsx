@@ -5,7 +5,7 @@ export interface GalleryProps extends ComponentPropsWithoutRef<"div"> { classNam
 export interface GalleryItemProps extends ComponentPropsWithoutRef<"div"> { className?: string; }
 
 const Item = forwardRef<HTMLDivElement, GalleryItemProps>(
-  function Item({ className, ...rest }, ref) { return <div ref={ref} className={cn("ds-gallery__item", className)} {...rest} />; },
+  function Item({ className, ...rest }, ref) { return <div ref={ref} className={cn("ds-gallery__thumb", className)} {...rest} />; },
 );
 const Root = forwardRef<HTMLDivElement, GalleryProps>(
   function Gallery({ className, ...rest }, ref) { return <div ref={ref} className={cn("ds-gallery", className)} {...rest} />; },

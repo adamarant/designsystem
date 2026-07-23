@@ -5,6 +5,6 @@ export interface CopyButtonProps extends ComponentPropsWithoutRef<"button"> { cl
 
 export const CopyButton = forwardRef<HTMLButtonElement, CopyButtonProps>(
   function CopyButton({ className, ...rest }, ref) {
-    return <button ref={ref} className={cn("ds-copy-button", className)} {...rest} />;
+    return <button ref={ref} className={cn("ds-copy-btn", className)} {...rest} />;
   },
 );

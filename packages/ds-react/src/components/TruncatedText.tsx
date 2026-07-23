@@ -8,6 +8,6 @@ export interface TruncatedTextProps extends ComponentPropsWithoutRef<"div"> {
 
 export const TruncatedText = forwardRef<HTMLDivElement, TruncatedTextProps>(
   function TruncatedText({ lines, className, ...rest }, ref) {
-    return <div ref={ref} className={cn("ds-truncated-text", lines && "ds-truncated-text--clamp", className)} {...rest} />;
+    return <div ref={ref} className={cn("ds-truncate", /* truncated-text.css has --middle, no line-clamp: `lines` is inert */ lines && "", className)} {...rest} />;
   },
 );

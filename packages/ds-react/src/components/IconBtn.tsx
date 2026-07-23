@@ -11,7 +11,7 @@ export interface IconBtnProps extends ComponentPropsWithoutRef<"button"> {
   className?: string;
 }
 
-const variantMap: Record<IconBtnVariant, string> = { default: "", ghost: "ds-icon-btn--ghost", outline: "ds-icon-btn--outline" };
+const variantMap: Record<IconBtnVariant, string> = { default: "", ghost: "ds-icon-btn--ghost", outline: "" /* no --outline in icon-btn.css; no-op, not a phantom */ };
 const sizeMap: Record<IconBtnSize, string> = { xs: "ds-icon-btn--xs", sm: "ds-icon-btn--sm", md: "", lg: "ds-icon-btn--lg" };
 
 export const IconBtn = forwardRef<HTMLButtonElement, IconBtnProps>(

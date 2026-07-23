@@ -15,7 +15,7 @@ const NavList = forwardRef<HTMLUListElement, NavListProps>(
 );
 const NavItem = forwardRef<HTMLLIElement, NavItemProps>(
   function NavItem({ active, className, ...rest }, ref) {
-    return <li ref={ref} className={cn("ds-nav__item", active && "ds-nav__item--active", className)} {...rest} />;
+    return <li ref={ref} className={cn("ds-nav__link", active && "ds-nav__link--active", className)} {...rest} />;
   },
 );
 const NavRoot = forwardRef<HTMLElement, NavProps>(
