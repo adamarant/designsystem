@@ -296,8 +296,8 @@ export const NAV = [
     "label": "Kits",
     "items": [
       {
-        "name": "sitekit",
-        "title": "SiteKit"
+        "name": "SiteKit",
+        "href": "/components/sitekit"
       }
     ]
   }

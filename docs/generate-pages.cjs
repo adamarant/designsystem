@@ -202,7 +202,7 @@ const customGroups = SIDEBAR_GROUPS.map(group => ({
 
 const kits = {
   label: "Kits",
-  items: [{ name: "sitekit", title: "SiteKit" }],
+  items: [{ name: "SiteKit", href: "/components/sitekit" }],
 };
 
 const allNav = [foundations, ...customGroups, kits];
