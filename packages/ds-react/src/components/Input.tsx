@@ -1,5 +1,6 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils/cn";
+import type { Size } from "../types";
 import { ignorePasswordManagers } from "../utils/passwordManager";
 
 /* ================================================================== */
@@ -7,7 +8,7 @@ import { ignorePasswordManagers } from "../utils/passwordManager";
 /* ================================================================== */
 
 type InputState = "default" | "error" | "success";
-type InputSize = "xs" | "sm" | "md" | "lg";
+type InputSize = Size;
 
 /* ================================================================== */
 /*  Input                                                              */

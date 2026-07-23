@@ -1,5 +1,6 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils/cn";
+import type { Size } from "../types";
 
 /* ================================================================== */
 /*  Types                                                              */
@@ -15,7 +16,7 @@ type TagVariant =
   | "purple"
   | "outline";
 
-type TagSize = "sm" | "md" | "lg";
+type TagSize = Exclude<Size, "xs">;
 
 export interface TagProps extends ComponentPropsWithoutRef<"span"> {
   /** Semantic color variant. Default: "default" (neutral muted) */

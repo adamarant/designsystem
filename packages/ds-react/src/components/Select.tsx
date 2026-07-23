@@ -11,12 +11,13 @@ import {
   useState,
 } from "react";
 import { cn } from "../utils/cn";
+import type { Size } from "../types";
 
 /* ================================================================== */
 /*  Types                                                              */
 /* ================================================================== */
 
-export type SelectSize = "xs" | "sm" | "md" | "lg";
+export type SelectSize = Size;
 
 export interface SelectOption {
   value: string;

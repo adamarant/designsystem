@@ -1,11 +1,12 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils/cn";
+import type { Size } from "../types";
 
 /* ================================================================== */
 /*  Types                                                              */
 /* ================================================================== */
 
-type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl";
+type AvatarSize = Size | "xl";
 type StatusVariant = "online" | "offline" | "busy";
 
 export interface AvatarProps extends ComponentPropsWithoutRef<"span"> {

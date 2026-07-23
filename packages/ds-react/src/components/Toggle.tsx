@@ -1,11 +1,12 @@
 import { type ComponentPropsWithoutRef, type MouseEvent, forwardRef } from "react";
 import { cn } from "../utils/cn";
+import type { Size } from "../types";
 
 /* ================================================================== */
 /*  Types                                                              */
 /* ================================================================== */
 
-type ToggleSize = "sm" | "md" | "lg";
+type ToggleSize = Exclude<Size, "xs">;
 
 export interface ToggleProps
   extends Omit<ComponentPropsWithoutRef<"button">, "role"> {

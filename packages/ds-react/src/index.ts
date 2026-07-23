@@ -1,5 +1,7 @@
 "use client";
 
+export type { Size } from "./types";
+
 export { Flex, type FlexProps } from "./primitives/Flex";
 export { Stack, type StackProps } from "./primitives/Stack";
 export { Grid, type GridProps } from "./primitives/Grid";
@@ -48,6 +50,12 @@ export { ignorePasswordManagers } from "./utils/passwordManager";
 
 export {
   Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardBody,
+  CardFooter,
+  CardMedia,
   type CardProps,
   type CardHeaderProps,
   type CardTitleProps,
@@ -85,6 +93,11 @@ export { Spinner, type SpinnerProps } from "./components/Spinner";
 
 export {
   Modal,
+  ModalContent,
+  ModalHeader,
+  ModalClose,
+  ModalBody,
+  ModalFooter,
   type ModalProps,
   type ModalContentProps,
   type ModalHeaderProps,
