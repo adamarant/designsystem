@@ -32,4 +32,7 @@ const SearchRoot = forwardRef<HTMLDivElement, SearchProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { SearchInput };
+
 export const Search = Object.assign(SearchRoot, { Input: SearchInput });

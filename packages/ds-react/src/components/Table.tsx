@@ -113,6 +113,9 @@ const TableRoot = forwardRef<HTMLTableElement, TableProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { TableWrapper, TableSort, TableFooter };
+
 export const Table = Object.assign(TableRoot, {
   Wrapper: TableWrapper,
   Sort: TableSort,

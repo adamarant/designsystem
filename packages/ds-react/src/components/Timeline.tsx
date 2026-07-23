@@ -18,4 +18,7 @@ const Content = forwardRef<HTMLDivElement, TimelineContentProps>(
 const Root = forwardRef<HTMLDivElement, TimelineProps>(
   function Timeline({ className, ...rest }, ref) { return <div ref={ref} className={cn("ds-timeline", className)} {...rest} />; },
 );
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Item as TimelineItem, Dot as TimelineDot, Content as TimelineContent };
+
 export const Timeline = Object.assign(Root, { Item, Dot, Content });

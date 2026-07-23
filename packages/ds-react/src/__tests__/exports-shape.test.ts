@@ -17,12 +17,20 @@ describe("exports shape", () => {
     expect((DS as Record<string, unknown>)[name]).toBeDefined();
   });
 
-  it("compound components expose their parts (dot + flat)", () => {
-    const card = DS.Card as unknown as Record<string, unknown>;
-    expect(card.Header).toBe(DS.CardHeader);
-    expect(card.Body).toBe(DS.CardBody);
-    const modal = DS.Modal as unknown as Record<string, unknown>;
-    expect(modal.Content).toBe(DS.ModalContent);
-    expect(modal.Close).toBe(DS.ModalClose);
+  it("every compound part is also exported flat (Comp.Part === CompPart)", () => {
+    const violations: string[] = [];
+    for (const [name, value] of entries) {
+      if (value === null || typeof value === "string") continue;
+      if (typeof value !== "function" && typeof value !== "object") continue;
+      const partKeys = Object.keys(value as object).filter((k) =>
+        /^[A-Z]/.test(k),
+      );
+      for (const key of partKeys) {
+        const flat = (DS as Record<string, unknown>)[`${name}${key}`];
+        const part = (value as Record<string, unknown>)[key];
+        if (flat !== part) violations.push(`${name}.${key} → ${name}${key}`);
+      }
+    }
+    expect(violations).toEqual([]);
   });
 });

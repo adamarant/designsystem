@@ -30,6 +30,12 @@ import {
   InputGroup,
   Kbd,
   Label,
+  PageHeader,
+  PageHeaderActions,
+  PageHeaderBack,
+  PageHeaderDescription,
+  PageHeaderLead,
+  PageHeaderTitle,
   Progress,
   Radio,
   Result,
@@ -111,6 +117,16 @@ const MOUNTS: Record<string, ReactElement> = {
     </IconBtn>
   ),
   Kbd: <Kbd>K</Kbd>,
+  PageHeader: (
+    <PageHeader>
+      <PageHeaderLead>
+        <PageHeaderBack>←</PageHeaderBack>
+        <PageHeaderTitle>Edit</PageHeaderTitle>
+        <PageHeaderDescription>d</PageHeaderDescription>
+      </PageHeaderLead>
+      <PageHeaderActions>a</PageHeaderActions>
+    </PageHeader>
+  ),
   Result: <Result>x</Result>,
   StatCard: <StatCard>x</StatCard>,
   Toggle: <Toggle checked={false} onCheckedChange={noop} />,

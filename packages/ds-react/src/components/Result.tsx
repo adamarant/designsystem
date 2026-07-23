@@ -23,4 +23,7 @@ const Root = forwardRef<HTMLDivElement, ResultProps>(
     return <div ref={ref} className={cn("ds-result", variantMap[variant], className)} {...rest} />;
   },
 );
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Icon as ResultIcon, Title as ResultTitle, Description as ResultDescription, Actions as ResultActions };
+
 export const Result = Object.assign(Root, { Icon, Title, Description, Actions });

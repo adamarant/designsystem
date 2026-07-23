@@ -98,6 +98,9 @@ const ToggleRoot = forwardRef<HTMLButtonElement, ToggleProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { ToggleLabel, ToggleLabelText };
+
 export const Toggle = Object.assign(ToggleRoot, {
   Label: ToggleLabel,
   LabelText: ToggleLabelText,

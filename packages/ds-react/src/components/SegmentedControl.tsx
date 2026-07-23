@@ -18,4 +18,7 @@ const Root = forwardRef<HTMLDivElement, SegmentedControlProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Item as SegmentedControlItem };
+
 export const SegmentedControl = Object.assign(Root, { Item });

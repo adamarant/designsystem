@@ -203,6 +203,9 @@ function AccordionRoot({
   );
 }
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { AccordionItem, AccordionTrigger, AccordionContent, AccordionBody };
+
 export const Accordion = Object.assign(AccordionRoot, {
   Item: AccordionItem,
   Trigger: AccordionTrigger,

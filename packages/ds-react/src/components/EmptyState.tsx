@@ -34,6 +34,9 @@ const EmptyStateRoot = forwardRef<HTMLDivElement, EmptyStateProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Icon as EmptyStateIcon, Title as EmptyStateTitle, Description as EmptyStateDescription, Actions as EmptyStateActions };
+
 export const EmptyState = Object.assign(EmptyStateRoot, {
   Icon, Title, Description, Actions,
 });

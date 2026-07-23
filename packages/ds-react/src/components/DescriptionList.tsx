@@ -14,4 +14,7 @@ const Detail = forwardRef<HTMLElement, DescriptionListDetailProps>(
 const Root = forwardRef<HTMLDListElement, DescriptionListProps>(
   function DescriptionList({ className, ...rest }, ref) { return <dl ref={ref} className={cn("ds-description-list", className)} {...rest} />; },
 );
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Term as DescriptionListTerm, Detail as DescriptionListDetail };
+
 export const DescriptionList = Object.assign(Root, { Term, Detail });

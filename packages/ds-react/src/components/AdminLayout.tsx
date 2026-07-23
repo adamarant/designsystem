@@ -13,4 +13,7 @@ const Header = forwardRef<HTMLElement, AdminLayoutHeaderProps>(function H({ clas
 const Root = forwardRef<HTMLDivElement, AdminLayoutProps>(
   function AdminLayout({ className, ...rest }, ref) { return <div ref={ref} className={cn("ds-admin-layout", className)} {...rest} />; },
 );
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Sidebar as AdminLayoutSidebar, Main as AdminLayoutMain, Header as AdminLayoutHeader };
+
 export const AdminLayout = Object.assign(Root, { Sidebar, Main, Header });

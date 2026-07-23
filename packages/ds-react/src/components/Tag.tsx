@@ -97,6 +97,9 @@ const TagRoot = forwardRef<HTMLSpanElement, TagProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { TagRemove };
+
 export const Tag = Object.assign(TagRoot, {
   Remove: TagRemove,
 });

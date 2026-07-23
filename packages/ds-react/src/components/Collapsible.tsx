@@ -34,4 +34,7 @@ function CollapsibleRoot({ defaultOpen = false, className, children, ...rest }: 
   );
 }
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Trigger as CollapsibleTrigger, Content as CollapsibleContent };
+
 export const Collapsible = Object.assign(CollapsibleRoot, { Trigger, Content });

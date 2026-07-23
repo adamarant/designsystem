@@ -131,6 +131,9 @@ const TooltipRoot = forwardRef<HTMLDivElement, TooltipProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { TooltipContent };
+
 export const Tooltip = Object.assign(TooltipRoot, {
   Content: TooltipContent,
 });

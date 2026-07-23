@@ -37,6 +37,9 @@ const StatCardRoot = forwardRef<HTMLDivElement, StatCardProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { StatCardLabel, StatCardValue, StatCardDetail, StatCardIcon };
+
 export const StatCard = Object.assign(StatCardRoot, {
   Label: StatCardLabel,
   Value: StatCardValue,

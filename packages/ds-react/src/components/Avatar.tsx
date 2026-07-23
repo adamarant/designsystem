@@ -93,6 +93,9 @@ const AvatarRoot = forwardRef<HTMLSpanElement, AvatarProps>(
   },
 );
 
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { AvatarStatus };
+
 export const Avatar = Object.assign(AvatarRoot, {
   Status: AvatarStatus,
 });

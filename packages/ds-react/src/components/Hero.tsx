@@ -13,4 +13,7 @@ const Actions = forwardRef<HTMLDivElement, HeroActionsProps>(function A({ classN
 const Root = forwardRef<HTMLElement, HeroProps>(
   function Hero({ className, ...rest }, ref) { return <section ref={ref} className={cn("ds-hero", className)} {...rest} />; },
 );
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { Title as HeroTitle, Description as HeroDescription, Actions as HeroActions };
+
 export const Hero = Object.assign(Root, { Title, Description, Actions });
