@@ -14,6 +14,7 @@ import {
   type ReactNode,
   type ChangeEvent,
 } from "react";
+import { createPortal } from "react-dom";
 import { cn } from "../utils/cn";
 import type { Size } from "../types";
 
@@ -348,8 +349,13 @@ function PanelSelect({
         </span>
       </button>
 
-      {isOpen && (
-        <>
+      {/* Portal on body: a transformed/filtered ancestor (ds-modal content
+          has transform+overflow:hidden) becomes the containing block for
+          position:fixed and displaces/clips the panel — studio admin/users,
+          23 lug 2026. Outside the dialog DOM, viewport coords are true. */}
+      {isOpen &&
+        createPortal(
+          <>
           {/* Mobile backdrop */}
           <div className="ds-custom-select__backdrop" onClick={close} aria-hidden />
 
@@ -419,8 +425,9 @@ function PanelSelect({
               )}
             </div>
           </div>
-        </>
-      )}
+          </>,
+          document.body,
+        )}
     </div>
   );
 }
