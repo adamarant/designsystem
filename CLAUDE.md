@@ -106,6 +106,24 @@ Every component file must follow this exact pattern:
 **Semantic variants:** `--success`, `--warning`, `--error`, `--info`
 **Visual variants:** `--outline`, `--ghost`, `--compact`, `--flush`
 
+### 2b. API Shape — one per component, chosen by nature
+
+When you build the ds-react wrapper for a component, it gets **exactly one**
+API. Two axes, never confused:
+
+- **Look** (colour, font, radius, density, dark) → **always tokens**, never
+  structure. It's the only brand-customization channel.
+- **Structure** (what goes where) → one API, decided by the component's form:
+  - **Closed / opinionated** (a canonical shape, you only vary the data) →
+    **data-driven props**. Footer, nav items, field lists, breadcrumb.
+    Compound here is a fork = drift across consumers.
+  - **Open / compositional** (composition *is* the point, you can't enumerate
+    it as data) → **compound parts**. Card, Modal, Table, Accordion.
+    Data-driven here is a prop explosion that still can't express it.
+
+The sin is not the choice — it's offering **both** for the same component.
+Full rationale: `infra/ECOSYSTEM_ROADMAP.md` §2 Principle #1.
+
 ### 3. Token Reference — Read the Source
 
 **Non mantenere liste di token in questo file.** I token cambiano — la lista qui diventa stale.
