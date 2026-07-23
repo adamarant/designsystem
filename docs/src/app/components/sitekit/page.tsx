@@ -124,6 +124,7 @@ export default function SiteKitPage() {
               { label: "Legal notice", href: "#" },
               { label: "Cookies", href: "#" },
             ]}
+            note="ESYS VIP is a real-estate brokerage. Listings are indicative and subject to availability; this is not a binding offer."
           />
         </div>
       </DemoSection>

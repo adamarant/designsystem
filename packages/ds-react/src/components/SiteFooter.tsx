@@ -59,6 +59,10 @@ export interface SiteFooterProps
   copyright?: ReactNode;
   /** Credits legal/meta links (right of the credits row). */
   legal?: SiteFooterLink[];
+  /** Fine print below the credits — disclaimers, a brand statement, a
+      full-width wordmark. The optional bottom zone that absorbs the
+      "extra at the end" every footer eventually grows. */
+  note?: ReactNode;
   /** Link component (e.g. next/link). Default: "a". */
   LinkComponent?: ElementType;
   className?: string;
@@ -145,6 +149,7 @@ const SiteFooterRoot = forwardRef<HTMLElement, SiteFooterProps>(
       newsletter,
       copyright,
       legal,
+      note,
       LinkComponent = "a",
       className,
       ...rest
@@ -200,6 +205,8 @@ const SiteFooterRoot = forwardRef<HTMLElement, SiteFooterProps>(
                   ) : null}
                 </div>
               )}
+
+              {note && <div className="ds-footer__note">{note}</div>}
           </>
         </div>
       </footer>
