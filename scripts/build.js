@@ -408,6 +408,7 @@ function updateExportsMap() {
   exports['./utilities'] = './src/utilities/index.css';
   exports['./js'] = './dist/designsystem.js';
   exports['./tokens/json'] = './src/tokens/tokens.json';
+  exports['./eslint'] = './eslint/index.mjs';
 
   pkg.exports = exports;
   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
