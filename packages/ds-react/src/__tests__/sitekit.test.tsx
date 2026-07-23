@@ -85,3 +85,77 @@ describe("LangSwitcher", () => {
     expect(en.closest("a")?.getAttribute("href")).toBe("/en/about");
   });
 });
+
+describe("SiteFooter v2 (compound)", () => {
+  it("composes brand/columns/social/row/bottom/wordmark", () => {
+    const { container } = render(
+      <SiteFooter>
+        <SiteFooter.Brand tagline="Premium things">
+          <span>Acme</span>
+          <SiteFooter.Social title="Follow us">
+            <a href="#ig" aria-label="Instagram">IG</a>
+          </SiteFooter.Social>
+        </SiteFooter.Brand>
+        <SiteFooter.Columns>
+          <SiteFooter.Column title="Navigation">
+            <a href="/">Home</a>
+          </SiteFooter.Column>
+          <SiteFooter.Column title="Legal">
+            <a href="/privacy">Privacy</a>
+          </SiteFooter.Column>
+        </SiteFooter.Columns>
+        <SiteFooter.Row title="Explore">
+          <a href="/blog/x">Guides</a>
+        </SiteFooter.Row>
+        <SiteFooter.Bottom>
+          <span>© 2026 Acme</span>
+          <a href="/admin">Admin</a>
+        </SiteFooter.Bottom>
+        <SiteFooter.Wordmark>
+          <svg aria-label="wordmark" />
+        </SiteFooter.Wordmark>
+      </SiteFooter>,
+    );
+    expect(container.querySelectorAll(".ds-overline").length).toBe(4);
+    expect(screen.getByText("Premium things")).toBeTruthy();
+    expect(screen.getByText(/© 2026/)).toBeTruthy();
+  });
+
+  it("v1 simple props keep working", () => {
+    render(<SiteFooter brand="Acme" legal="© 2026" />);
+    expect(screen.getByText("© 2026")).toBeTruthy();
+  });
+});
+
+describe("SiteHeader grouped items", () => {
+  const GROUPED = [
+    { label: "Home", href: "/" },
+    {
+      label: "Servizi",
+      children: [
+        { label: "Web", href: "/servizi/web" },
+        { label: "Brand", href: "/servizi/brand" },
+      ],
+    },
+  ];
+
+  it("mobile panel renders titled sections for groups", () => {
+    const { container } = render(
+      <SiteHeader brand="Acme" items={GROUPED} />,
+    );
+    const section = container.querySelector(".ds-nav__mobile .ds-nav__section");
+    expect(section).toBeTruthy();
+    expect(section!.querySelector(".ds-nav__title")!.textContent).toBe(
+      "Servizi",
+    );
+    expect(section!.querySelectorAll(".ds-nav__link").length).toBe(2);
+  });
+
+  it("desktop group opens a dropdown with link menuitems", async () => {
+    render(<SiteHeader brand="Acme" items={GROUPED} />);
+    await userEvent.click(screen.getByRole("button", { name: "Servizi" }));
+    const items = screen.getAllByRole("menuitem");
+    expect(items.length).toBe(2);
+    expect(items[0].getAttribute("href")).toBe("/servizi/web");
+  });
+});

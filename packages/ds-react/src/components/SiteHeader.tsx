@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import { cn } from "../utils/cn";
+import { Dropdown } from "./Dropdown";
 
 /* ==================================================================
    SiteKit — SiteHeader (ECOSYSTEM_ROADMAP, Fase 6)
@@ -23,9 +24,17 @@ import { cn } from "../utils/cn";
    as `activeHref` (pass your pathname).
    ================================================================== */
 
-export interface SiteNavItem {
+export interface SiteNavChild {
   label: ReactNode;
   href: string;
+}
+
+export interface SiteNavItem {
+  label: ReactNode;
+  /** Plain link when no children; with children it becomes a group:
+      desktop = dropdown, mobile = titled section (ds-nav __section/__title). */
+  href?: string;
+  children?: SiteNavChild[];
 }
 
 export interface SiteHeaderProps
@@ -74,6 +83,43 @@ function BurgerIcon({ open }: { open: boolean }) {
         </>
       )}
     </svg>
+  );
+}
+
+function DesktopGroup({
+  item,
+  activeHref,
+  LinkComponent,
+}: {
+  item: SiteNavItem;
+  activeHref?: string;
+  LinkComponent: ElementType;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <Dropdown
+      open={open}
+      onOpenChange={setOpen}
+      className="ds-inline-block"
+    >
+      <Dropdown.Trigger className="ds-nav__link">
+        {item.label}
+      </Dropdown.Trigger>
+      <Dropdown.Menu>
+        {item.children?.map((child) => (
+          <LinkComponent
+            key={child.href}
+            href={child.href}
+            role="menuitem"
+            className="ds-dropdown__item"
+            aria-current={activeHref === child.href ? "page" : undefined}
+            onClick={() => setOpen(false)}
+          >
+            {child.label}
+          </LinkComponent>
+        ))}
+      </Dropdown.Menu>
+    </Dropdown>
   );
 }
 
@@ -127,16 +173,25 @@ export const SiteHeader = forwardRef<HTMLElement, SiteHeaderProps>(
           </LinkComponent>
 
           <div className="ds-nav__menu">
-            {items.map((item) => (
-              <LinkComponent
-                key={item.href}
-                href={item.href}
-                className="ds-nav__link"
-                aria-current={activeHref === item.href ? "page" : undefined}
-              >
-                {item.label}
-              </LinkComponent>
-            ))}
+            {items.map((item, i) =>
+              item.children?.length ? (
+                <DesktopGroup
+                  key={item.href ?? i}
+                  item={item}
+                  activeHref={activeHref}
+                  LinkComponent={LinkComponent}
+                />
+              ) : (
+                <LinkComponent
+                  key={item.href}
+                  href={item.href}
+                  className="ds-nav__link"
+                  aria-current={activeHref === item.href ? "page" : undefined}
+                >
+                  {item.label}
+                </LinkComponent>
+              ),
+            )}
           </div>
 
           <div className="ds-nav__actions">
@@ -163,17 +218,36 @@ export const SiteHeader = forwardRef<HTMLElement, SiteHeaderProps>(
           inert={!open}
         >
           <div className="ds-nav__mobile-links">
-            {items.map((item) => (
-              <LinkComponent
-                key={item.href}
-                href={item.href}
-                className="ds-nav__link"
-                aria-current={activeHref === item.href ? "page" : undefined}
-                onClick={close}
-              >
-                {item.label}
-              </LinkComponent>
-            ))}
+            {items.map((item, i) =>
+              item.children?.length ? (
+                <div key={item.href ?? i} className="ds-nav__section">
+                  <div className="ds-nav__title">{item.label}</div>
+                  {item.children.map((child) => (
+                    <LinkComponent
+                      key={child.href}
+                      href={child.href}
+                      className="ds-nav__link"
+                      aria-current={
+                        activeHref === child.href ? "page" : undefined
+                      }
+                      onClick={close}
+                    >
+                      {child.label}
+                    </LinkComponent>
+                  ))}
+                </div>
+              ) : (
+                <LinkComponent
+                  key={item.href}
+                  href={item.href}
+                  className="ds-nav__link"
+                  aria-current={activeHref === item.href ? "page" : undefined}
+                  onClick={close}
+                >
+                  {item.label}
+                </LinkComponent>
+              ),
+            )}
             {mobileExtra}
           </div>
         </div>

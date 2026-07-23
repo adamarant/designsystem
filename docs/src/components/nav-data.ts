@@ -291,5 +291,14 @@ export const NAV = [
         "href": "/components/bottom-sheet"
       }
     ]
+  },
+  {
+    "label": "Kits",
+    "items": [
+      {
+        "name": "sitekit",
+        "title": "SiteKit"
+      }
+    ]
   }
 ];

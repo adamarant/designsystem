@@ -1,7 +1,14 @@
 import { type ComponentPropsWithoutRef, type ElementType, type ReactNode } from "react";
-export interface SiteNavItem {
+export interface SiteNavChild {
     label: ReactNode;
     href: string;
+}
+export interface SiteNavItem {
+    label: ReactNode;
+    /** Plain link when no children; with children it becomes a group:
+        desktop = dropdown, mobile = titled section (ds-nav __section/__title). */
+    href?: string;
+    children?: SiteNavChild[];
 }
 export interface SiteHeaderProps extends Omit<ComponentPropsWithoutRef<"nav">, "children"> {
     /** Brand slot, rendered inside the ds-nav__brand link area. */
