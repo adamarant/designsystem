@@ -8,6 +8,7 @@ import {
   useRef,
 } from "react";
 import { cn } from "../utils/cn";
+import type { Size } from "../types";
 
 /* ================================================================== */
 /*  Context                                                            */
@@ -32,7 +33,7 @@ function useTabsContext() {
 /* ================================================================== */
 
 type TabsVariant = "default" | "pills" | "pills-flat" | "vertical";
-type TabsSize = "sm" | "md" | "lg";
+type TabsSize = Exclude<Size, "xs">;
 
 export interface TabsProps {
   /** Currently active tab value. */
@@ -242,6 +243,9 @@ function TabsRoot({ value, onValueChange, children }: TabsProps) {
     </TabsContext.Provider>
   );
 }
+
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { TabsList, TabsTab, TabsIcon, TabsCount, TabsPanel };
 
 export const Tabs = Object.assign(TabsRoot, {
   List: TabsList,

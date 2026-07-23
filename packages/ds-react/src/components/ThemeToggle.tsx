@@ -4,13 +4,14 @@ import {
   forwardRef,
 } from "react";
 import { cn } from "../utils/cn";
+import type { Size } from "../types";
 
 /* ================================================================== */
 /*  Types                                                              */
 /* ================================================================== */
 
 type Theme = "light" | "dark";
-type ThemeToggleSize = "sm" | "md" | "lg";
+type ThemeToggleSize = Exclude<Size, "xs">;
 
 export interface ThemeToggleProps
   extends Omit<

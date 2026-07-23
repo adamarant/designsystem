@@ -1,8 +1,9 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils/cn";
+import type { Size } from "../types";
 
 type ProgressVariant = "default" | "success" | "warning" | "error";
-type ProgressSize = "sm" | "md" | "lg";
+type ProgressSize = Exclude<Size, "xs">;
 
 export interface ProgressProps extends ComponentPropsWithoutRef<"div"> {
   value?: number;
@@ -53,5 +54,8 @@ const ProgressRoot = forwardRef<HTMLDivElement, ProgressProps>(
     );
   },
 );
+
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { ProgressBar };
 
 export const Progress = Object.assign(ProgressRoot, { Bar: ProgressBar });

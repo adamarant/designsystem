@@ -1,11 +1,12 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils/cn";
+import type { Size } from "../types";
 
 /* ================================================================== */
 /*  Types                                                              */
 /* ================================================================== */
 
-type SpinnerSize = "sm" | "md" | "default" | "lg";
+type SpinnerSize = Exclude<Size, "xs"> | "default";
 type SpinnerVariant = "default" | "muted" | "light";
 
 export interface SpinnerProps extends ComponentPropsWithoutRef<"span"> {
