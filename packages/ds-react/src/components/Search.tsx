@@ -1,16 +1,25 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { type Size } from "../types";
 import { cn } from "../utils/cn";
 import { ignorePasswordManagers } from "../utils/passwordManager";
 
-export interface SearchProps extends ComponentPropsWithoutRef<"div"> { className?: string; }
+type SearchSize = Exclude<Size, "xs">;
+
+export interface SearchProps extends ComponentPropsWithoutRef<"div"> {
+  /** Size tier. The bar's height lives on the container, so set it here and
+      give SearchInput the matching size to scale the type with it. */
+  size?: SearchSize;
+  className?: string;
+}
 export interface SearchInputProps extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
-  size?: "sm" | "md" | "lg";
+  size?: SearchSize;
   /** Allow password managers (1Password, etc.) to offer autofill. Default false: suppressed. */
   allowPasswordManager?: boolean;
   className?: string;
 }
 
-const sizeMap: Record<string, string> = { sm: "ds-search__input--sm", md: "", lg: "ds-search__input--lg" };
+const sizeMap: Record<SearchSize, string> = { sm: "ds-search__input--sm", md: "", lg: "ds-search__input--lg" };
+const rootSizeMap: Record<SearchSize, string> = { sm: "ds-search--sm", md: "", lg: "ds-search--lg" };
 
 const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
   function SearchInput({ size = "md", allowPasswordManager, className, ...rest }, ref) {
@@ -27,8 +36,14 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
 );
 
 const SearchRoot = forwardRef<HTMLDivElement, SearchProps>(
-  function Search({ className, ...rest }, ref) {
-    return <div ref={ref} className={cn("ds-search", className)} {...rest} />;
+  function Search({ size = "md", className, ...rest }, ref) {
+    return (
+      <div
+        ref={ref}
+        className={cn("ds-search", rootSizeMap[size], className)}
+        {...rest}
+      />
+    );
   },
 );
 

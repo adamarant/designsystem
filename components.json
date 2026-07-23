@@ -260,7 +260,10 @@
         "--purple",
         "--outline"
       ],
-      "sizes": [],
+      "sizes": [
+        "--sm",
+        "--lg"
+      ],
       "modifiers": [
         "--dot",
         "--upper"
@@ -838,7 +841,10 @@
       "variants": [
         "--compact"
       ],
-      "sizes": [],
+      "sizes": [
+        "--sm",
+        "--lg"
+      ],
       "modifiers": [
         "--active",
         "--disabled"
@@ -1366,7 +1372,10 @@
         "__close"
       ],
       "variants": [],
-      "sizes": [],
+      "sizes": [
+        "--sm",
+        "--lg"
+      ],
       "modifiers": [
         "--mobile-expanded",
         "__dropdown--mobile",
@@ -1428,7 +1437,10 @@
         "__remove"
       ],
       "variants": [],
-      "sizes": [],
+      "sizes": [
+        "--sm",
+        "--lg"
+      ],
       "modifiers": [
         "--logic",
         "--sort"

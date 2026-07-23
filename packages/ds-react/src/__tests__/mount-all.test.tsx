@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { cleanup, render } from "@testing-library/react";
 import { type ReactElement } from "react";
@@ -63,6 +63,20 @@ const CSS_BUNDLE = readFileSync(
 
 /** Class tokens that are legitimately absent from the bundle. */
 const CLASS_ALLOWLIST = new Set<string>([]);
+
+/**
+ * Phantoms that already shipped — debt, not legitimacy. See the header comment
+ * in known-phantoms.json: each entry is a class a wrapper emits that the DS
+ * never defined, so the component renders unstyled in every consumer. The list
+ * may only ever SHRINK; the static check below fails on anything new.
+ */
+const KNOWN_PHANTOMS: Set<string> = new Set(
+  (
+    JSON.parse(
+      readFileSync(resolve(__dirname, "known-phantoms.json"), "utf8"),
+    ) as { classes: string[] }
+  ).classes,
+);
 
 const noop = () => {};
 
@@ -138,6 +152,35 @@ afterEach(cleanup);
 describe("mount-all (core catalogue)", () => {
   it.each(Object.entries(MOUNTS))("%s mounts", (_name, element) => {
     expect(() => render(element)).not.toThrow();
+  });
+
+  /**
+   * The static half of the phantom-class contract. Mounting only proves the
+   * classes on the default render path exist; a class reachable solely through
+   * a prop (a sizeMap entry, a variant branch) stays invisible unless the
+   * fixture happens to set that prop. `SearchInput`'s `size` prop shipped
+   * pointing at `.ds-search__input--sm/--lg`, which the CSS never defined — a
+   * silent no-op that mounting missed for exactly that reason. So: every
+   * `ds-*` class literal anywhere in the wrapper source must exist in the
+   * bundle, whatever prop would reach it.
+   */
+  it("every ds-* class literal in the wrapper source exists in the built CSS", () => {
+    const missing = new Map<string, string>();
+    for (const dir of ["components", "primitives"]) {
+      const dirPath = resolve(__dirname, "..", dir);
+      for (const file of readdirSync(dirPath)) {
+        if (!file.endsWith(".tsx")) continue;
+        const source = readFileSync(resolve(dirPath, file), "utf8");
+        for (const m of source.matchAll(/["'`](ds-[a-z0-9-]+(?:__[a-z0-9-]+)?(?:--[a-z0-9-]+)?)["'`]/g)) {
+          const cls = m[1];
+          if (CLASS_ALLOWLIST.has(cls) || KNOWN_PHANTOMS.has(cls)) continue;
+          if (!CSS_BUNDLE.includes(`.${cls}`)) missing.set(cls, `${dir}/${file}`);
+        }
+      }
+    }
+    expect(
+      [...missing.entries()].map(([cls, from]) => `${cls} (in ${from})`),
+    ).toEqual([]);
   });
 
   it("every mounted ds-* class exists in the built CSS", () => {

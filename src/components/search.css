@@ -84,6 +84,31 @@
   color: var(--ds-color-text-tertiary);
 }
 
+/* ---------------------------------------------------------------------------
+   Size
+   The bar's height comes from the container's padding, so a real size tier
+   needs both halves: --sm/--lg on .ds-search sets the box, the matching
+   __input modifier sets the type. ds-react's `size` prop on SearchInput has
+   emitted the __input modifiers since it shipped — they were never defined
+   here, so the prop was a silent no-op until now.
+   --------------------------------------------------------------------------- */
+
+.ds-search--sm {
+  padding: var(--ds-space-1) var(--ds-space-2);
+}
+
+.ds-search--lg {
+  padding: var(--ds-space-3);
+}
+
+.ds-search__input--sm {
+  font-size: var(--ds-text-sm);
+}
+
+.ds-search__input--lg {
+  font-size: var(--ds-text-lg);
+}
+
 /* Keyboard shortcut hint */
 .ds-search__shortcut {
   flex-shrink: 0;

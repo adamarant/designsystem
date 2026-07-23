@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.27.0 */
+/* @ds/designsystem v0.28.0 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -4374,6 +4374,12 @@ hr {
 
   /* Uppercase badge (like "NEW", "BETA") */
   
+
+  /* Size — the pill scales by padding + type, same steps as .ds-tag so a
+     badge and a tag on the same row read at the same weight. */
+  
+
+  
 }
 .ds-badge--primary {
 
@@ -4431,6 +4437,16 @@ hr {
     font-size: var(--ds-text-2xs);
     font-weight: var(--ds-weight-semibold);
     letter-spacing: var(--ds-tracking-wide);
+  }
+.ds-badge--sm {
+
+    padding: var(--ds-space-0-5) var(--ds-space-2);
+    font-size: var(--ds-text-2xs);
+  }
+.ds-badge--lg {
+
+    padding: var(--ds-space-1) var(--ds-space-3);
+    font-size: var(--ds-text-sm);
   }
 
 
@@ -4706,6 +4722,12 @@ hr {
 
   /* Remove button */
   
+
+  /* Size — same steps as .ds-tag / .ds-badge, so the three pill shapes stay
+     interchangeable on a filter row. */
+  
+
+  
 }
 .ds-chip--logic {
 
@@ -4751,6 +4773,16 @@ hr {
       color: var(--ds-color-text);
       background: var(--ds-color-surface-hover);
     }
+.ds-chip--sm {
+
+    padding: var(--ds-space-0-5) var(--ds-space-1-5);
+    font-size: var(--ds-text-2xs);
+  }
+.ds-chip--lg {
+
+    padding: var(--ds-space-1-5) var(--ds-space-3);
+    font-size: var(--ds-text-sm);
+  }
 
 
 /* ==========================================================================
@@ -6892,6 +6924,14 @@ hr {
      --------------------------------------------------------------------------- */
 
   
+
+  /* Size — the row lands on the canonical tiers, so a pagination can sit
+     beside a button or input of the same size and share its height. The
+     unmodified default stays at 2rem; --compact predates the tiers and is
+     kept as-is for backward compatibility. */
+  
+
+  
 }
 .ds-pagination__item {
 
@@ -7027,6 +7067,24 @@ hr {
       min-width: 1.75rem;
       height: 1.75rem;
       font-size: var(--ds-text-xs);
+    }
+.ds-pagination--sm .ds-pagination__item,
+.ds-pagination--sm .ds-pagination__prev,
+.ds-pagination--sm .ds-pagination__next,
+.ds-pagination--sm .ds-pagination__ellipsis {
+
+      min-width: var(--ds-size-1);
+      height: var(--ds-size-1);
+      font-size: var(--ds-text-xs);
+    }
+.ds-pagination--lg .ds-pagination__item,
+.ds-pagination--lg .ds-pagination__prev,
+.ds-pagination--lg .ds-pagination__next,
+.ds-pagination--lg .ds-pagination__ellipsis {
+
+      min-width: var(--ds-size-3);
+      height: var(--ds-size-3);
+      font-size: var(--ds-text-base);
     }
 
 
@@ -12948,6 +13006,31 @@ hr {
 
 .ds-search__input::placeholder {
   color: var(--ds-color-text-tertiary);
+}
+
+/* ---------------------------------------------------------------------------
+   Size
+   The bar's height comes from the container's padding, so a real size tier
+   needs both halves: --sm/--lg on .ds-search sets the box, the matching
+   __input modifier sets the type. ds-react's `size` prop on SearchInput has
+   emitted the __input modifiers since it shipped — they were never defined
+   here, so the prop was a silent no-op until now.
+   --------------------------------------------------------------------------- */
+
+.ds-search--sm {
+  padding: var(--ds-space-1) var(--ds-space-2);
+}
+
+.ds-search--lg {
+  padding: var(--ds-space-3);
+}
+
+.ds-search__input--sm {
+  font-size: var(--ds-text-sm);
+}
+
+.ds-search__input--lg {
+  font-size: var(--ds-text-lg);
 }
 
 /* Keyboard shortcut hint */

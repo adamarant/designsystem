@@ -1,16 +1,34 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { type Size } from "../types";
 import { cn } from "../utils/cn";
 
 export interface PaginationProps extends ComponentPropsWithoutRef<"nav"> { className?: string; }
-export interface PaginationListProps extends ComponentPropsWithoutRef<"ul"> { className?: string; }
+export interface PaginationListProps extends ComponentPropsWithoutRef<"ul"> {
+  /** Size tier for every item in the row. Lives here because `.ds-pagination`
+      is the list, not the nav. Default: "md". */
+  size?: Exclude<Size, "xs">;
+  className?: string;
+}
+
+const sizeMap: Record<Exclude<Size, "xs">, string> = {
+  sm: "ds-pagination--sm",
+  md: "",
+  lg: "ds-pagination--lg",
+};
 export interface PaginationItemProps extends ComponentPropsWithoutRef<"button"> {
   active?: boolean;
   className?: string;
 }
 
 const List = forwardRef<HTMLUListElement, PaginationListProps>(
-  function List({ className, ...rest }, ref) {
-    return <ul ref={ref} className={cn("ds-pagination", className)} {...rest} />;
+  function List({ size = "md", className, ...rest }, ref) {
+    return (
+      <ul
+        ref={ref}
+        className={cn("ds-pagination", sizeMap[size], className)}
+        {...rest}
+      />
+    );
   },
 );
 const Item = forwardRef<HTMLButtonElement, PaginationItemProps>(

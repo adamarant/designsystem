@@ -76,4 +76,16 @@
       background: var(--ds-color-surface-hover);
     }
   }
+
+  /* Size — same steps as .ds-tag / .ds-badge, so the three pill shapes stay
+     interchangeable on a filter row. */
+  &--sm {
+    padding: var(--ds-space-0-5) var(--ds-space-1-5);
+    font-size: var(--ds-text-2xs);
+  }
+
+  &--lg {
+    padding: var(--ds-space-1-5) var(--ds-space-3);
+    font-size: var(--ds-text-sm);
+  }
 }
