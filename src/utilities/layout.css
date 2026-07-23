@@ -20,6 +20,13 @@
   padding-block: var(--ds-section-padding);
 }
 
+/* Section separator — promoted from the ds-section + ds-border-t pattern
+   repeated 3+ times per consumer (rule of three, owner-approved 23 Jul 2026).
+   Styling stays on the section API instead of a styling utility. */
+.ds-section--bordered {
+  border-block-start: 1px solid var(--ds-color-border);
+}
+
 /* --- Flex --- */
 .ds-flex       { display: flex; }
 .ds-inline-flex { display: inline-flex; }
