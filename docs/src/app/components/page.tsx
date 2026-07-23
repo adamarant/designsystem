@@ -124,6 +124,12 @@ const COMPONENTS = [
     "description": "A toggle (switch) control for binary on/off states."
   },
   {
+    "name": "Theme Toggle",
+    "href": "/components/theme-toggle",
+    "cat": "Action",
+    "description": "A modern light/dark switch that shows both icons (sun + moon) at once, so the current and available theme are always visible. aria-checked=\"true\" means dark mode."
+  },
+  {
     "name": "Breadcrumb",
     "href": "/components/breadcrumb",
     "cat": "Navigation",
@@ -364,6 +370,24 @@ const COMPONENTS = [
     "description": "Sidebar + header + main content system for admin dashboards with collapsible sidebar."
   },
   {
+    "name": "Page Header",
+    "href": "/components/page-header",
+    "cat": "Layout",
+    "description": "Top bar of an admin/dashboard page: optional back arrow, title, and right-aligned actions slot."
+  },
+  {
+    "name": "Admin Page",
+    "href": "/components/admin-page",
+    "cat": "Layout",
+    "description": "Vertical rhythm contract for an admin page: header, toolbar, body and footer spaced by the system instead of by a per-page wrapper."
+  },
+  {
+    "name": "Admin Form Layout",
+    "href": "/components/admin-form",
+    "cat": "Layout",
+    "description": "Two-column admin edit shell: growing main column + fixed-width sidebar, single column below lg."
+  },
+  {
     "name": "Media Library",
     "href": "/components/media-library",
     "cat": "Layout",
@@ -376,7 +400,7 @@ export default function ComponentsIndex() {
     <>
       <div className="demo-page-header">
         <h1>Components</h1>
-        <p>All 61 components in the design system.</p>
+        <p>All 65 components in the design system.</p>
       </div>
       <div className="demo-preview demo-preview--col">
         {COMPONENTS.map((c) => (
