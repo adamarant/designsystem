@@ -70,7 +70,7 @@ export { useContextMenu, type UseContextMenuOptions, type UseContextMenuReturn, 
 export { TurnstileWidget, type TurnstileWidgetProps, type TurnstileWidgetHandle, } from "./components/TurnstileWidget";
 export { ClipReveal, type ClipRevealProps } from "./components/ClipReveal";
 export { SiteHeader, type SiteHeaderProps, type SiteNavItem, type SiteNavChild, } from "./components/SiteHeader";
-export { SiteFooter, SiteFooterBody, SiteFooterBrand, SiteFooterColumns, SiteFooterColumn, SiteFooterSocial, SiteFooterCredits, type SiteFooterProps, type SiteFooterLink, type SiteFooterColumnData, type SiteFooterBrandProps, type SiteFooterColumnProps, } from "./components/SiteFooter";
-export { SiteFooterNewsletter, type SiteFooterNewsletterProps, } from "./components/SiteFooterNewsletter";
+export { SiteFooter, type SiteFooterProps, type SiteFooterLink, type SiteFooterColumnData, } from "./components/SiteFooter";
+export type { SiteFooterNewsletterProps } from "./components/SiteFooterNewsletter";
 export { LangSwitcher, type LangSwitcherProps, type LangSwitcherItem, } from "./components/LangSwitcher";
 //# sourceMappingURL=index.d.ts.map

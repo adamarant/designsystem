@@ -344,22 +344,11 @@ export {
 } from "./components/SiteHeader";
 export {
   SiteFooter,
-  SiteFooterBody,
-  SiteFooterBrand,
-  SiteFooterColumns,
-  SiteFooterColumn,
-  SiteFooterSocial,
-  SiteFooterCredits,
   type SiteFooterProps,
   type SiteFooterLink,
   type SiteFooterColumnData,
-  type SiteFooterBrandProps,
-  type SiteFooterColumnProps,
 } from "./components/SiteFooter";
-export {
-  SiteFooterNewsletter,
-  type SiteFooterNewsletterProps,
-} from "./components/SiteFooterNewsletter";
+export type { SiteFooterNewsletterProps } from "./components/SiteFooterNewsletter";
 export {
   LangSwitcher,
   type LangSwitcherProps,
