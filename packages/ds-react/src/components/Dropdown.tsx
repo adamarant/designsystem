@@ -19,6 +19,10 @@ interface DropdownContextValue {
   open: boolean;
   onToggle: () => void;
   onClose: () => void;
+  registerTrigger: (el: HTMLButtonElement | null) => void;
+  /** Return focus to the trigger — on Escape and item selection,
+      never on outside click (the user is focusing elsewhere). */
+  focusTrigger: () => void;
 }
 
 const DropdownContext = createContext<DropdownContextValue | null>(null);
@@ -136,7 +140,11 @@ const DropdownTrigger = forwardRef<HTMLButtonElement, DropdownTriggerProps>(
 
     return (
       <button
-        ref={ref}
+        ref={(node) => {
+          ctx.registerTrigger(node);
+          if (typeof ref === "function") ref(node);
+          else if (ref) ref.current = node;
+        }}
         aria-haspopup="true"
         aria-expanded={ctx.open}
         onClick={handleClick}
@@ -160,10 +168,12 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
       if (e.key === "Escape") {
         e.preventDefault();
         ctx.onClose();
+        ctx.focusTrigger();
         return;
       }
 
-      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+      const NAV_KEYS = ["ArrowDown", "ArrowUp", "Home", "End"];
+      if (!NAV_KEYS.includes(e.key)) return;
       e.preventDefault();
 
       const container = menuRef.current;
@@ -180,7 +190,11 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
         document.activeElement as HTMLButtonElement,
       );
       let idx: number;
-      if (e.key === "ArrowDown") {
+      if (e.key === "Home") {
+        idx = 0;
+      } else if (e.key === "End") {
+        idx = items.length - 1;
+      } else if (e.key === "ArrowDown") {
         idx = current + 1 >= items.length ? 0 : current + 1;
       } else {
         idx = current - 1 < 0 ? items.length - 1 : current - 1;
@@ -235,6 +249,7 @@ const DropdownItem = forwardRef<HTMLButtonElement, DropdownItemProps>(
       if (!disabled) {
         onClick?.(e);
         ctx.onClose();
+        ctx.focusTrigger();
       }
     };
 
@@ -326,12 +341,22 @@ const DropdownHeader = forwardRef<HTMLDivElement, DropdownHeaderProps>(
 const DropdownRoot = forwardRef<HTMLDivElement, DropdownProps>(
   function Dropdown({ open, onOpenChange, className, ...rest }, ref) {
     const rootRef = useRef<HTMLDivElement | null>(null);
+    const triggerRef = useRef<HTMLButtonElement | null>(null);
 
     const onToggle = useCallback(
       () => onOpenChange(!open),
       [open, onOpenChange],
     );
     const onClose = useCallback(() => onOpenChange(false), [onOpenChange]);
+    const registerTrigger = useCallback(
+      (el: HTMLButtonElement | null) => {
+        triggerRef.current = el;
+      },
+      [],
+    );
+    const focusTrigger = useCallback(() => {
+      triggerRef.current?.focus();
+    }, []);
 
     /* Click outside */
     useEffect(() => {
@@ -356,7 +381,9 @@ const DropdownRoot = forwardRef<HTMLDivElement, DropdownProps>(
     }, [open, onClose]);
 
     return (
-      <DropdownContext.Provider value={{ open, onToggle, onClose }}>
+      <DropdownContext.Provider
+        value={{ open, onToggle, onClose, registerTrigger, focusTrigger }}
+      >
         <div
           ref={(node) => {
             rootRef.current = node;
@@ -374,6 +401,9 @@ const DropdownRoot = forwardRef<HTMLDivElement, DropdownProps>(
     );
   },
 );
+
+/* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
+export { DropdownTrigger, DropdownMenu, DropdownItem, DropdownItemIcon, DropdownItemLabel, DropdownItemShortcut, DropdownDivider, DropdownHeader };
 
 export const Dropdown = Object.assign(DropdownRoot, {
   Trigger: DropdownTrigger,
