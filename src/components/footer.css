@@ -19,15 +19,28 @@
    - Newsletter: <label> for the email input (or aria-label)
    ========================================================================== */
 
+/* Look inherits from the consumer. These properties read footer-scoped
+   tokens with the DS default as fallback, so a consumer expresses its
+   footer identity (editorial-big links, tighter or airier rhythm) by
+   overriding just these — no bespoke footer, no touching the rest of the
+   site:
+     --ds-footer-padding        vertical padding      (default space-16)
+     --ds-footer-gap            gap between zones      (default space-12)
+     --ds-footer-link-size      link font-size         (default text-sm)
+     --ds-footer-link-color     link colour            (default text-secondary)
+     --ds-footer-link-hover     link hover colour      (default text)
+     --ds-footer-title-size     column title size      (default text-xs)
+     --ds-footer-credits-size   credits row size       (default text-xs) */
+
 .ds-footer {
   border-block-start: 1px solid var(--ds-color-border);
-  padding-block: var(--ds-space-16);
+  padding-block: var(--ds-footer-padding, var(--ds-space-16));
 }
 
 .ds-footer__inner {
   display: flex;
   flex-direction: column;
-  gap: var(--ds-space-12);
+  gap: var(--ds-footer-gap, var(--ds-space-12));
 }
 
 /* --- Newsletter zone --- */
@@ -104,7 +117,7 @@
 }
 
 .ds-footer__column-title {
-  font-size: var(--ds-text-xs);
+  font-size: var(--ds-footer-title-size, var(--ds-text-xs));
   font-weight: var(--ds-weight-medium);
   text-transform: uppercase;
   letter-spacing: var(--ds-tracking-wide);
@@ -112,14 +125,14 @@
 }
 
 .ds-footer__link {
-  font-size: var(--ds-text-sm);
-  color: var(--ds-color-text-secondary);
+  font-size: var(--ds-footer-link-size, var(--ds-text-sm));
+  color: var(--ds-footer-link-color, var(--ds-color-text-secondary));
   text-decoration: none;
   transition: color var(--ds-duration-fast) var(--ds-ease-default);
 }
 
 .ds-footer__link:hover {
-  color: var(--ds-color-text);
+  color: var(--ds-footer-link-hover, var(--ds-color-text));
 }
 
 /* --- Social row --- */
@@ -161,7 +174,7 @@
   gap: var(--ds-space-3);
   padding-block-start: var(--ds-space-6);
   border-block-start: 1px solid var(--ds-color-border);
-  font-size: var(--ds-text-xs);
+  font-size: var(--ds-footer-credits-size, var(--ds-text-xs));
   color: var(--ds-color-text-tertiary);
 }
 
