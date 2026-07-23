@@ -2235,6 +2235,35 @@
           "html": "<button class=\"ds-media-item ds-media-item--selected\" aria-selected=\"true\"><div class=\"ds-media-item__thumb ds-aspect-square\"><img src=\"#\" class=\"ds-w-full ds-h-full ds-object-cover\" alt=\"\" /></div><div class=\"ds-media-item__check\">✓</div><div class=\"ds-media-item__info\"><p class=\"ds-text-xs ds-text-primary ds-truncate\">photo.jpg</p><p class=\"ds-text-xs ds-text-tertiary\">1.2 MB</p></div></button>"
         }
       ]
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "category": "navigation",
+      "description": "The site closing chrome — one canonical shape: optional newsletter, brand + titled link columns, and a small credits row.",
+      "classes": [
+        ".ds-footer"
+      ],
+      "elements": [
+        ".ds-footer__inner",
+        ".ds-footer__newsletter",
+        ".ds-footer__body",
+        ".ds-footer__brand",
+        ".ds-footer__columns",
+        ".ds-footer__column",
+        ".ds-footer__link",
+        ".ds-footer__social",
+        ".ds-footer__credits"
+      ],
+      "variants": [],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Structure",
+          "html": "<footer class=\"ds-footer\"><div class=\"ds-container ds-footer__inner\">…</div></footer>"
+        }
+      ]
     }
   ]
 }

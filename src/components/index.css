@@ -37,6 +37,7 @@
 @import './segmented-control.css';
 @import './bottom-nav.css';
 @import './toolbar.css';
+@import './footer.css';
 
 /* === Feedback — Communicate status and system messages === */
 @import './alert.css';

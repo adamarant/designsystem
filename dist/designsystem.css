@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.25.0 */
+/* @ds/designsystem v0.25.1 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -7555,6 +7555,189 @@ hr {
   }
 }
 
+
+/* ==========================================================================
+   Component: Footer
+   The site's closing chrome, one canonical shape for every consumer. Three
+   stacked zones, each optional except the credits row:
+
+     1. Newsletter — a titled block with an inline email form. Opt-in.
+     2. Body — the brand blurb (+ social) beside titled link columns.
+     3. Credits — the last small row: copyright on one side, legal/meta
+        links on the other.
+
+   No background: the footer reads as the quiet end of the page, separated
+   from content by a hairline, not by a fill. Identity (font, colour) comes
+   from the consumer's tokens.
+
+   ARIA requirements (consumer responsibility):
+   - Root: <footer> (landmark, no role needed)
+   - Each link column: <nav aria-label="…">
+   - Social links: aria-label per icon-only link
+   - Newsletter: <label> for the email input (or aria-label)
+   ========================================================================== */
+
+.ds-footer {
+  border-block-start: 1px solid var(--ds-color-border);
+  padding-block: var(--ds-space-16);
+}
+
+.ds-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-12);
+}
+
+/* --- Newsletter zone --- */
+
+.ds-footer__newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-3);
+  max-width: 32rem;
+}
+
+.ds-footer__newsletter-title {
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-wide);
+  color: var(--ds-color-text-tertiary);
+}
+
+.ds-footer__newsletter-text {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  text-wrap: pretty;
+}
+
+.ds-footer__newsletter-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-2);
+  margin-block-start: var(--ds-space-1);
+}
+
+.ds-footer__newsletter-form > .ds-input {
+  flex: 1 1 14rem;
+}
+
+.ds-footer__newsletter-note {
+  font-size: var(--ds-text-sm);
+}
+
+/* --- Body zone: brand + columns --- */
+
+.ds-footer__body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--ds-space-12);
+}
+
+.ds-footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-4);
+  max-width: 22rem;
+}
+
+.ds-footer__tagline {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  text-wrap: pretty;
+}
+
+.ds-footer__columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-12);
+}
+
+.ds-footer__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-3);
+  min-width: 8rem;
+}
+
+.ds-footer__column-title {
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-wide);
+  color: var(--ds-color-text-tertiary);
+}
+
+.ds-footer__link {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  text-decoration: none;
+  transition: color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-footer__link:hover {
+  color: var(--ds-color-text);
+}
+
+/* --- Social row --- */
+
+.ds-footer__social {
+  display: flex;
+  gap: var(--ds-space-3);
+  margin-block-start: var(--ds-space-2);
+}
+
+.ds-footer__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ds-size-2);
+  height: var(--ds-size-2);
+  border-radius: var(--ds-radius-full);
+  border: 1px solid var(--ds-color-border);
+  color: var(--ds-color-text-secondary);
+  transition:
+    color var(--ds-duration-fast) var(--ds-ease-default),
+    border-color var(--ds-duration-fast) var(--ds-ease-default),
+    background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-footer__social-link:hover {
+  color: var(--ds-color-text);
+  border-color: var(--ds-color-text);
+  background-color: var(--ds-color-surface-muted);
+}
+
+/* --- Credits zone: the last small row --- */
+
+.ds-footer__credits {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-space-3);
+  padding-block-start: var(--ds-space-6);
+  border-block-start: 1px solid var(--ds-color-border);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
+
+.ds-footer__credits-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-4);
+}
+
+.ds-footer__credits-links a {
+  color: var(--ds-color-text-tertiary);
+  text-decoration: none;
+  transition: color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.ds-footer__credits-links a:hover {
+  color: var(--ds-color-text);
+}
 
 
 /* === Feedback — Communicate status and system messages === */
