@@ -142,17 +142,44 @@ export default function SiteKitPage() {
       </DemoSection>
 
       <DemoSection
-        title="LangSwitcher"
-        code={`<LangSwitcher current="it" items={[{ code:"it", href:"/it/chi-siamo" }, …]} />`}
+        title="LangSwitcher — dal modello esys, sui tier di size del DS"
+        code={`/* Trigger = ghost button sul tier (--ds-size-1..4): stessa riga,
+   stessa altezza di Button/Input. Menu = Dropdown (Escape, tastiera).
+   preferHreflang legge gli slug dai <link rel="alternate"> di pagina. */
+<LangSwitcher current="it" size="sm" preferHreflang items={[
+  { code: "it", label: "Italiano", icon: <Flag locale="it"/>, href: "/it/chi-siamo" },
+  { code: "en", label: "English",  icon: <Flag locale="en"/>, href: "/en/about" },
+]} />`}
       >
-        <LangSwitcher
-          current="it"
-          items={[
-            { code: "it", href: "#it" },
-            { code: "en", href: "#en" },
-            { code: "es", href: "#es" },
-          ]}
-        />
+        <div className="ds-flex ds-items-center ds-gap-3">
+          <Button size="sm">sm</Button>
+          <LangSwitcher
+            size="sm"
+            current="it"
+            items={[
+              { code: "it", label: "Italiano", href: "#it" },
+              { code: "en", label: "English", href: "#en" },
+              { code: "es", label: "Español", href: "#es" },
+            ]}
+          />
+          <Button>md</Button>
+          <LangSwitcher
+            current="it"
+            items={[
+              { code: "it", label: "Italiano", href: "#it" },
+              { code: "en", label: "English", href: "#en" },
+            ]}
+          />
+          <Button size="lg">lg</Button>
+          <LangSwitcher
+            size="lg"
+            current="it"
+            items={[
+              { code: "it", label: "Italiano", href: "#it" },
+              { code: "en", label: "English", href: "#en" },
+            ]}
+          />
+        </div>
       </DemoSection>
     </>
   );
