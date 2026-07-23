@@ -7590,6 +7590,16 @@ hr {
      --ds-footer-title-size     column title size      (default text-xs)
      --ds-footer-credits-size   credits row size       (default text-xs) */
 
+:root {
+  --ds-footer-padding: var(--ds-space-16);
+  --ds-footer-gap: var(--ds-space-12);
+  --ds-footer-link-size: var(--ds-text-sm);
+  --ds-footer-link-color: var(--ds-color-text-secondary);
+  --ds-footer-link-hover: var(--ds-color-text);
+  --ds-footer-title-size: var(--ds-text-xs);
+  --ds-footer-credits-size: var(--ds-text-xs);
+}
+
 .ds-footer {
   border-block-start: 1px solid var(--ds-color-border);
   padding-block: var(--ds-footer-padding, var(--ds-space-16));
