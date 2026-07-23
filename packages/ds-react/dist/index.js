@@ -73,7 +73,6 @@ export { TurnstileWidget, } from "./components/TurnstileWidget";
 export { ClipReveal } from "./components/ClipReveal";
 /* SiteKit (Fase 6) — site chrome written once. */
 export { SiteHeader, } from "./components/SiteHeader";
-export { SiteFooter, SiteFooterBody, SiteFooterBrand, SiteFooterColumns, SiteFooterColumn, SiteFooterSocial, SiteFooterCredits, } from "./components/SiteFooter";
-export { SiteFooterNewsletter, } from "./components/SiteFooterNewsletter";
+export { SiteFooter, } from "./components/SiteFooter";
 export { LangSwitcher, } from "./components/LangSwitcher";
 //# sourceMappingURL=index.js.map

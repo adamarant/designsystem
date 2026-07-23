@@ -103,21 +103,6 @@ describe("SiteFooter", () => {
     expect(await screen.findByText("You're in.")).toBeTruthy();
   });
 
-  it("compound escape: children bypass the data layout", () => {
-    const { container } = render(
-      <SiteFooter>
-        <SiteFooter.Body>
-          <SiteFooter.Brand tagline="t"><span>Acme</span></SiteFooter.Brand>
-          <SiteFooter.Columns>
-            <SiteFooter.Column title="Nav"><a href="/">Home</a></SiteFooter.Column>
-          </SiteFooter.Columns>
-        </SiteFooter.Body>
-        <SiteFooter.Credits><span>© 2026</span></SiteFooter.Credits>
-      </SiteFooter>,
-    );
-    expect(container.querySelector(".ds-footer__body")).toBeTruthy();
-    expect(container.querySelector(".ds-footer__column-title")?.textContent).toBe("Nav");
-  });
 });
 describe("LangSwitcher", () => {
   const ITEMS = [

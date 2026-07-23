@@ -19,12 +19,12 @@ import {
      2. Body — brand blurb (+ social) beside titled link columns.
      3. Credits — the last small row: copyright + legal/meta links.
 
-   Two ways to use it:
-   - DATA-DRIVEN (the common case): pass `columns`, `brand`, `newsletter`,
-     `copyright`, `legal`… and get the whole footer. One prop set, valid
-     for everyone.
-   - COMPOUND (escape): pass children built from SiteFooter.Newsletter /
-     .Body / .Brand / .Columns / .Column / .Social / .Credits.
+   ONE way to use it (Principle #1 — no fork): pass the data —
+   `columns`, `brand`, `social`, `newsletter`, `copyright`, `legal` — and
+   get the canonical footer. Opinionated on purpose: you fill the zones,
+   you can't build a wonky footer. A project that needs a genuinely
+   different footer is Tier 2 and writes its own; it doesn't half-compose
+   this one. (The internal Brand/Column helpers below are private.)
 
    Router-free: links render through `LinkComponent` (pass next/link).
    Universal: server-renders with zero client JS (the newsletter form is
@@ -61,14 +61,12 @@ export interface SiteFooterProps
   legal?: SiteFooterLink[];
   /** Link component (e.g. next/link). Default: "a". */
   LinkComponent?: ElementType;
-  /** Compound escape — bypasses the data-driven layout. */
-  children?: ReactNode;
   className?: string;
 }
 
 /* ---------- compound parts ---------- */
 
-export const SiteFooterBody = forwardRef<
+const SiteFooterBody = forwardRef<
   HTMLDivElement,
   ComponentPropsWithoutRef<"div">
 >(function SiteFooterBody({ className, ...rest }, ref) {
@@ -79,7 +77,7 @@ export interface SiteFooterBrandProps extends ComponentPropsWithoutRef<"div"> {
   tagline?: ReactNode;
 }
 
-export const SiteFooterBrand = forwardRef<HTMLDivElement, SiteFooterBrandProps>(
+const SiteFooterBrand = forwardRef<HTMLDivElement, SiteFooterBrandProps>(
   function SiteFooterBrand({ tagline, className, children, ...rest }, ref) {
     return (
       <div ref={ref} className={cn("ds-footer__brand", className)} {...rest}>
@@ -90,7 +88,7 @@ export const SiteFooterBrand = forwardRef<HTMLDivElement, SiteFooterBrandProps>(
   },
 );
 
-export const SiteFooterColumns = forwardRef<
+const SiteFooterColumns = forwardRef<
   HTMLDivElement,
   ComponentPropsWithoutRef<"div">
 >(function SiteFooterColumns({ className, ...rest }, ref) {
@@ -104,7 +102,7 @@ export interface SiteFooterColumnProps
   title?: ReactNode;
 }
 
-export const SiteFooterColumn = forwardRef<HTMLElement, SiteFooterColumnProps>(
+const SiteFooterColumn = forwardRef<HTMLElement, SiteFooterColumnProps>(
   function SiteFooterColumn({ title, className, children, ...rest }, ref) {
     return (
       <nav ref={ref} className={cn("ds-footer__column", className)} {...rest}>
@@ -117,7 +115,7 @@ export const SiteFooterColumn = forwardRef<HTMLElement, SiteFooterColumnProps>(
   },
 );
 
-export const SiteFooterSocial = forwardRef<
+const SiteFooterSocial = forwardRef<
   HTMLDivElement,
   ComponentPropsWithoutRef<"div">
 >(function SiteFooterSocial({ className, ...rest }, ref) {
@@ -126,7 +124,7 @@ export const SiteFooterSocial = forwardRef<
   );
 });
 
-export const SiteFooterCredits = forwardRef<
+const SiteFooterCredits = forwardRef<
   HTMLDivElement,
   ComponentPropsWithoutRef<"div">
 >(function SiteFooterCredits({ className, ...rest }, ref) {
@@ -149,7 +147,6 @@ const SiteFooterRoot = forwardRef<HTMLElement, SiteFooterProps>(
       legal,
       LinkComponent = "a",
       className,
-      children,
       ...rest
     },
     ref,
@@ -166,8 +163,7 @@ const SiteFooterRoot = forwardRef<HTMLElement, SiteFooterProps>(
     return (
       <footer ref={ref} className={cn("ds-footer", className)} {...rest}>
         <div className="ds-container ds-footer__inner">
-          {children ?? (
-            <>
+          <>
               {newsletter && <SiteFooterNewsletter {...newsletter} />}
 
               {(brand || columns?.length) && (
@@ -204,20 +200,11 @@ const SiteFooterRoot = forwardRef<HTMLElement, SiteFooterProps>(
                   ) : null}
                 </div>
               )}
-            </>
-          )}
+          </>
         </div>
       </footer>
     );
   },
 );
 
-export const SiteFooter = Object.assign(SiteFooterRoot, {
-  Newsletter: SiteFooterNewsletter,
-  Body: SiteFooterBody,
-  Brand: SiteFooterBrand,
-  Columns: SiteFooterColumns,
-  Column: SiteFooterColumn,
-  Social: SiteFooterSocial,
-  Credits: SiteFooterCredits,
-});
+export const SiteFooter = SiteFooterRoot;
