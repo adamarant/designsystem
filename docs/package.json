@@ -9,7 +9,7 @@
     "start": "next start -p 3000"
   },
   "dependencies": {
-    "@adamarant/ds-react": "^1.2.0",
+    "@adamarant/ds-react": "^1.3.0",
     "clsx": "^2.1.0",
     "geist": "^1.7.0",
     "next": "^16.0.0",
