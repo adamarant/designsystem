@@ -31,9 +31,40 @@ describe("Select default rendering (owner call 23 lug 2026)", () => {
     expect(container.querySelector(".ds-custom-select")).toBeNull();
   });
 
-  it("children usage stays native (panel needs data)", () => {
+  it("children usage gets the panel too — options are extracted", () => {
     const { container } = render(
-      <Select defaultValue="x">
+      <Select value="x" onChange={() => {}}>
+        <option value="x">X</option>
+        <option value="y">Y</option>
+      </Select>,
+    );
+    expect(container.querySelector("select")).toBeNull();
+    expect(container.querySelector(".ds-custom-select")).toBeTruthy();
+  });
+
+  it("onChange shim: children callers keep reading e.target.value", async () => {
+    const seen: string[] = [];
+    const { container } = render(
+      <Select value="x" onChange={(e) => seen.push(e.target.value)}>
+        <option value="x">X</option>
+        <option value="y">Y</option>
+      </Select>,
+    );
+    const trigger = container.querySelector<HTMLButtonElement>(
+      ".ds-custom-select__trigger",
+    )!;
+    const { default: userEvent } = await import("@testing-library/user-event");
+    await userEvent.click(trigger);
+    const opt = [...document.querySelectorAll(".ds-custom-select__option")].find(
+      (o) => o.textContent === "Y",
+    ) as HTMLElement;
+    await userEvent.click(opt);
+    expect(seen).toEqual(["y"]);
+  });
+
+  it("native prop keeps children usage on the OS menu", () => {
+    const { container } = render(
+      <Select native defaultValue="x">
         <option value="x">X</option>
       </Select>,
     );
