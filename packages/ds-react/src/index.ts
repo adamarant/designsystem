@@ -344,22 +344,22 @@ export {
 } from "./components/SiteHeader";
 export {
   SiteFooter,
+  SiteFooterBody,
   SiteFooterBrand,
   SiteFooterColumns,
   SiteFooterColumn,
   SiteFooterSocial,
-  SiteFooterRow,
-  SiteFooterBottom,
-  SiteFooterWordmark,
+  SiteFooterCredits,
   type SiteFooterProps,
+  type SiteFooterLink,
+  type SiteFooterColumnData,
   type SiteFooterBrandProps,
-  type SiteFooterColumnsProps,
   type SiteFooterColumnProps,
-  type SiteFooterSocialProps,
-  type SiteFooterRowProps,
-  type SiteFooterBottomProps,
-  type SiteFooterWordmarkProps,
 } from "./components/SiteFooter";
+export {
+  SiteFooterNewsletter,
+  type SiteFooterNewsletterProps,
+} from "./components/SiteFooterNewsletter";
 export {
   LangSwitcher,
   type LangSwitcherProps,
