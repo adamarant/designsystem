@@ -9,6 +9,10 @@ import {
   useMemo,
   useRef,
   useState,
+  Children,
+  isValidElement,
+  type ReactNode,
+  type ChangeEvent,
 } from "react";
 import { cn } from "../utils/cn";
 import type { Size } from "../types";
@@ -59,6 +63,35 @@ export interface SelectProps
   emptyLabel?: string;
   /** Mobile sheet header label. Falls back to `placeholder`. */
   panelLabel?: string;
+}
+
+/* Children <option> already carry the data: the panel extracts them, so
+   existing children-based usage gets the styled panel with zero changes
+   (owner call, 23 lug 2026 — the native menu is opt-in via `native`). */
+function extractOptions(children: ReactNode): SelectOption[] | null {
+  const out: SelectOption[] = [];
+  let found = false;
+  const walk = (nodes: ReactNode) => {
+    Children.forEach(nodes, (child) => {
+      if (!isValidElement(child)) return;
+      const props = child.props as {
+        value?: string | number;
+        children?: ReactNode;
+      };
+      if (child.type === "option") {
+        found = true;
+        const label =
+          typeof props.children === "string" || typeof props.children === "number"
+            ? String(props.children)
+            : String(props.value ?? "");
+        out.push({ value: String(props.value ?? label), label });
+      } else if (props?.children) {
+        walk(props.children);
+      }
+    });
+  };
+  walk(children);
+  return found ? out : null;
 }
 
 const nativeSizeMap: Record<SelectSize, string> = {
@@ -432,17 +465,26 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     },
     ref,
   ) {
+    const childOptions = options ?? extractOptions(children);
     const isPanel =
       native !== true &&
-      (panel === true || searchable === true || options != null);
+      (panel === true || searchable === true || childOptions != null);
 
     if (isPanel) {
-      const opts = options ?? [];
+      const opts = childOptions ?? [];
+      /* Children-based callers pass onChange(e) and read e.target.value:
+         the shim keeps them working against the panel. */
+      const handleValueChange =
+        onValueChange ??
+        (onChange
+          ? (v: string) =>
+              onChange({ target: { value: v } } as unknown as ChangeEvent<HTMLSelectElement>)
+          : undefined);
       return (
         <PanelSelect
           options={opts}
           value={rest.value != null ? String(rest.value) : undefined}
-          onValueChange={onValueChange}
+          onValueChange={handleValueChange}
           placeholder={placeholder}
           // Auto: a list short enough to scan doesn't need a search box.
           showSearch={searchable ?? opts.length > 5}

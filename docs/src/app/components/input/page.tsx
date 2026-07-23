@@ -8,7 +8,7 @@ export default function InputPage() {
     <>
       <div className="demo-page-header">
         <h1>Input</h1>
-        <p>Surface bg, clean borders, focus ring. Includes Input and Textarea. Il Select ha la sua pagina (pannello di default con options; qui sotto la resa nativa a children).</p>
+        <p>Surface bg, clean borders, focus ring. Includes Input and Textarea. Il Select ha la sua pagina — il pannello è il default anche a children; qui sotto la resa nativa esplicita.</p>
       </div>
 
       <DemoSectionCol title="Input" code={`<Label htmlFor="name">Name</Label>\n<Input id="name" placeholder="Enter your name" />\n\n<Label htmlFor="email">Email</Label>\n<Input id="email" state="error" placeholder="Invalid" />\n<Help variant="error">Please enter a valid email</Help>`}>
@@ -39,13 +39,13 @@ export default function InputPage() {
         <Textarea state="error" placeholder="Error state" />
       </DemoSectionCol>
 
-      <DemoSection title="Select" code={`<Select>\n  <option>Choose...</option>\n  <option>Option A</option>\n</Select>`}>
-        <Select>
+      <DemoSection title="Select (native opt-in)" code={`<Select native>\n  <option>Choose...</option>\n  <option>Option A</option>\n</Select>`}>
+        <Select native>
           <option>Choose...</option>
           <option>Option A</option>
           <option>Option B</option>
         </Select>
-        <Select size="sm">
+        <Select native size="sm">
           <option>Small</option>
         </Select>
       </DemoSection>

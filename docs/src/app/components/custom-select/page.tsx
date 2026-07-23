@@ -25,8 +25,9 @@ export default function SelectPage() {
         <p>
           UN componente per scegliere un valore, due rese: col prop `options`
           il pannello stilizzato è il DEFAULT (ricerca auto oltre 5 voci);
-          il menu nativo del sistema resta per l'uso a children o col
-          prop `native` esplicito.
+          anche l&apos;uso a children `&lt;option&gt;` riceve il pannello (le opzioni
+          vengono estratte, il vecchio `onChange(e.target.value)` continua a
+          funzionare); il menu nativo del sistema SOLO col prop `native`.
           `CustomSelect` è un alias deprecato di `&lt;Select panel&gt;`:
           stessa API, verrà rimosso alla prossima major. Per un menu di
           azioni usa Dropdown; per l&apos;autocomplete usa Combobox.
@@ -34,19 +35,19 @@ export default function SelectPage() {
       </div>
 
       <DemoSection
-        title="Nativo (default) — menu del browser"
-        code={`<Select>\n  <option>Choose…</option>\n  <option>Apartamento</option>\n</Select>\n<Select size="sm">…</Select>\n<Select size="lg">…</Select>`}
+        title="Nativo (opt-in via prop) — menu del browser"
+        code={`<Select native>\n  <option>Choose…</option>\n  <option>Apartamento</option>\n</Select>`}
       >
-        <Select>
+        <Select native>
           <option>Choose…</option>
           <option>Apartamento</option>
           <option>Villa</option>
         </Select>
-        <Select size="sm">
+        <Select native size="sm">
           <option>Small</option>
           <option>Villa</option>
         </Select>
-        <Select size="lg">
+        <Select native size="lg">
           <option>Large</option>
           <option>Villa</option>
         </Select>
