@@ -1,4 +1,10 @@
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import {
+  type ChangeEvent,
+  type ComponentPropsWithoutRef,
+  type ForwardedRef,
+  type ReactNode,
+  forwardRef,
+} from "react";
 import { cn } from "../utils/cn";
 import type { Size } from "../types";
 import { ignorePasswordManagers } from "../utils/passwordManager";
@@ -201,43 +207,143 @@ export const Help = forwardRef<HTMLParagraphElement, HelpProps>(
 );
 
 /* ================================================================== */
-/*  Checkbox                                                           */
+/*  Checkbox / Radio                                                   */
+/*  Native <input> inside a styled <label> — the CSS drives states via */
+/*  `& input:checked` / `:has(input:disabled)`, so accessibility is    */
+/*  the platform's, not ours. Two modes:                               */
+/*  - enriched: pass `label` (and friends) and the wrapper renders the */
+/*    full canonical markup (input + __content/__label/__description); */
+/*  - legacy shell: children only → renders exactly what it always     */
+/*    did, existing consumers keep working untouched.                  */
 /* ================================================================== */
 
-export interface CheckboxProps extends ComponentPropsWithoutRef<"label"> {
+type CheckControlSize = Exclude<Size, "xs">;
+
+interface CheckControlOwnProps {
+  /** Size tier. Default: "md" */
+  size?: CheckControlSize;
+  /** Label rendered in __content/__label. Enables the enriched markup. */
+  label?: ReactNode;
+  /** Secondary line under the label. */
+  description?: ReactNode;
+  /** Checked state (controlled) — forwarded to the native input. */
+  checked?: boolean;
+  /** Initial state (uncontrolled) — forwarded to the native input. */
+  defaultChecked?: boolean;
+  /** Called with the next checked state. */
+  onCheckedChange?: (checked: boolean) => void;
+  /** Disables the native input (the CSS reacts via :has). */
+  disabled?: boolean;
+  /** Native input name (forms). */
+  name?: string;
+  /** Native input value (forms). */
+  value?: string;
+  /** Extra props forwarded to the native <input>. */
+  inputProps?: ComponentPropsWithoutRef<"input">;
+}
+
+export interface CheckboxProps
+  extends ComponentPropsWithoutRef<"label">,
+    CheckControlOwnProps {
   /** Additional className */
   className?: string;
+}
+
+export interface RadioProps
+  extends ComponentPropsWithoutRef<"label">,
+    CheckControlOwnProps {
+  /** Additional className */
+  className?: string;
+}
+
+const checkSizeMap: Record<CheckControlSize, string> = {
+  sm: "--sm",
+  md: "",
+  lg: "--lg",
+};
+
+function renderCheckControl(
+  block: "ds-checkbox" | "ds-radio",
+  type: "checkbox" | "radio",
+  props: CheckboxProps,
+  ref: ForwardedRef<HTMLLabelElement>,
+) {
+  const {
+    size = "md",
+    label,
+    description,
+    checked,
+    defaultChecked,
+    onCheckedChange,
+    disabled,
+    name,
+    value,
+    inputProps,
+    className,
+    children,
+    ...rest
+  } = props;
+
+  const enriched =
+    label !== undefined ||
+    description !== undefined ||
+    checked !== undefined ||
+    defaultChecked !== undefined ||
+    onCheckedChange !== undefined ||
+    inputProps !== undefined ||
+    name !== undefined ||
+    value !== undefined ||
+    disabled !== undefined;
+
+  /* Only attach a handler when the consumer gave one — keeps the
+     component usable from Server Components in uncontrolled mode. */
+  const handleChange =
+    onCheckedChange || inputProps?.onChange
+      ? (e: ChangeEvent<HTMLInputElement>) => {
+          inputProps?.onChange?.(e);
+          onCheckedChange?.(e.target.checked);
+        }
+      : undefined;
+
+  const sizeClass = checkSizeMap[size] && `${block}${checkSizeMap[size]}`;
+
+  return (
+    <label ref={ref} className={cn(block, sizeClass, className)} {...rest}>
+      {enriched && (
+        <input
+          type={type}
+          checked={checked}
+          defaultChecked={defaultChecked}
+          disabled={disabled}
+          name={name}
+          value={value}
+          {...inputProps}
+          onChange={handleChange}
+        />
+      )}
+      {enriched && (label !== undefined || description !== undefined) && (
+        <span className={`${block}__content`}>
+          {label !== undefined && (
+            <span className={`${block}__label`}>{label}</span>
+          )}
+          {description !== undefined && (
+            <span className={`${block}__description`}>{description}</span>
+          )}
+        </span>
+      )}
+      {children}
+    </label>
+  );
 }
 
 export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
-  function Checkbox({ className, ...rest }, ref) {
-    return (
-      <label
-        ref={ref}
-        className={cn("ds-checkbox", className)}
-        {...rest}
-      />
-    );
+  function Checkbox(props, ref) {
+    return renderCheckControl("ds-checkbox", "checkbox", props, ref);
   },
 );
 
-/* ================================================================== */
-/*  Radio                                                              */
-/* ================================================================== */
-
-export interface RadioProps extends ComponentPropsWithoutRef<"label"> {
-  /** Additional className */
-  className?: string;
-}
-
 export const Radio = forwardRef<HTMLLabelElement, RadioProps>(
-  function Radio({ className, ...rest }, ref) {
-    return (
-      <label
-        ref={ref}
-        className={cn("ds-radio", className)}
-        {...rest}
-      />
-    );
+  function Radio(props, ref) {
+    return renderCheckControl("ds-radio", "radio", props, ref);
   },
 );
