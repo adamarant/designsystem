@@ -135,6 +135,31 @@
       padding: var(--ds-space-3) 0;
     }
   }
+
+  /* Grouped mobile nav — a parent item with children becomes a titled section
+     inside the panel. The group reads as its own block: a quiet label, its
+     links under it, and a hairline separating it from the group before (never
+     above the first, so the panel doesn't open on a stray rule). */
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-1);
+
+    & + .ds-nav__section {
+      margin-block-start: var(--ds-space-3);
+      padding-block-start: var(--ds-space-3);
+      border-block-start: 1px solid var(--ds-color-border);
+    }
+  }
+
+  &__title {
+    padding-block: var(--ds-space-2);
+    font-size: var(--ds-text-xs);
+    font-weight: var(--ds-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ds-tracking-wide);
+    color: var(--ds-color-text-tertiary);
+  }
 }
 
 /* --- Sidebar --- */

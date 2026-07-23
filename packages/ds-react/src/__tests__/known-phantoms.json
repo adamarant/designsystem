@@ -1,19 +1,14 @@
 {
   "_comment": [
-    "Phantom classes still shipping \u2014 classes a ds-react wrapper emits that the DS",
+    "Phantom classes still shipping - classes a ds-react wrapper emits that the DS",
     "never defined, so the component renders unstyled in every consumer.",
-    "22 of the original 24 were fixed in ds-react 1.10 by correcting the",
-    "wrappers (the backward-compat law forbids renaming published CSS).",
-    "The two below are NOT wrapper drift: SiteHeader groups mobile nav into titled",
-    "sections, a real feature with a test, and nav.css simply has no class for it.",
-    "Fixing them means ADDING two DS classes, which is an owner decision under",
-    "CONTROLLED MODE - not something a wrapper edit can resolve.",
+    "EMPTY since DS 0.30 / ds-react 1.10: 22 of the original 24 were fixed by",
+    "correcting the wrappers (the backward-compat law forbids renaming published",
+    "CSS); the last two were the opposite case - SiteHeader's titled mobile nav",
+    "sections were a real feature nav.css had no classes for, so the DS grew them.",
     "This list may only ever SHRINK: mount-all.test.tsx fails on any new entry.",
     "Kept as data, not TS literals, so the ds-no-phantom-classes hook does not",
     "fire on the very list that tracks them."
   ],
-  "classes": [
-    "ds-nav__section",
-    "ds-nav__title"
-  ]
+  "classes": []
 }
