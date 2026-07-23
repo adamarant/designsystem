@@ -122,7 +122,11 @@
    Fallback absolute positioning when JS hasn't applied styles yet. */
 .ds-custom-select__panel {
   position: fixed;
-  z-index: var(--ds-z-dropdown);
+  /* Above modals: the panel is click-anchored and transient, and it must
+     work when the select lives inside a dialog (admin forms). Bug: panel
+     at z-dropdown (50) opened invisibly UNDER ds-modal (100) — studio
+     admin/users, 23 lug 2026. */
+  z-index: calc(var(--ds-z-modal) + 10);
   background-color: var(--ds-color-surface-muted);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-xl);
