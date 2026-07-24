@@ -73,4 +73,5 @@ export { SiteHeader, type SiteHeaderProps, type SiteNavItem, type SiteNavChild, 
 export { SiteFooter, type SiteFooterProps, type SiteFooterLink, type SiteFooterColumnData, } from "./components/SiteFooter";
 export type { SiteFooterNewsletterProps } from "./components/SiteFooterNewsletter";
 export { LangSwitcher, type LangSwitcherProps, type LangSwitcherItem, } from "./components/LangSwitcher";
+export { useHydrated } from "./hooks/useHydrated";
 //# sourceMappingURL=index.d.ts.map

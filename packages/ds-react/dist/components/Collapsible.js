@@ -10,7 +10,7 @@ const Trigger = forwardRef(function Trigger({ className, onClick, ...rest }, ref
 });
 const Content = forwardRef(function Content({ className, ...rest }, ref) {
     const ctx = useContext(Ctx);
-    return _jsx("div", { ref: ref, className: cn("ds-collapsible__content", ctx.open && "ds-collapsible__content--open", className), ...rest });
+    return _jsx("div", { ref: ref, className: cn("ds-collapsible__content", className), ...rest });
 });
 function CollapsibleRoot({ defaultOpen = false, className, children, ...rest }) {
     const [open, setOpen] = useState(defaultOpen);

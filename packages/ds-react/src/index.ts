@@ -354,3 +354,6 @@ export {
   type LangSwitcherProps,
   type LangSwitcherItem,
 } from "./components/LangSwitcher";
+
+/* Hooks */
+export { useHydrated } from "./hooks/useHydrated";

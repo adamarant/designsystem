@@ -3,7 +3,7 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "../utils/cn";
-const Content = forwardRef(function C({ className, ...r }, ref) { return _jsx("div", { ref: ref, className: cn("ds-bottom-sheet__content", className), ...r }); });
+const Content = forwardRef(function C({ className, ...r }, ref) { return _jsx("div", { ref: ref, className: cn("ds-bottom-sheet__panel", className), ...r }); });
 const Header = forwardRef(function H({ className, ...r }, ref) { return _jsx("div", { ref: ref, className: cn("ds-bottom-sheet__header", className), ...r }); });
 const Body = forwardRef(function B({ className, ...r }, ref) { return _jsx("div", { ref: ref, className: cn("ds-bottom-sheet__body", className), ...r }); });
 const Root = forwardRef(function BottomSheet({ open, onClose, className, children, ...rest }, ref) {

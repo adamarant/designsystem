@@ -7,8 +7,15 @@ const List = forwardRef(function List({ className, ...rest }, ref) {
 const Item = forwardRef(function Item({ className, ...rest }, ref) {
     return _jsx("li", { ref: ref, className: cn("ds-breadcrumb__item", className), ...rest });
 });
-const Separator = forwardRef(function Separator({ className, children, ...rest }, ref) {
-    return _jsx("li", { ref: ref, "aria-hidden": "true", className: cn("ds-breadcrumb__separator", className), ...rest, children: children || "/" });
+/**
+ * @deprecated Renders nothing. `breadcrumb.css` draws the separator itself, as
+ * a `::after` on every `__item` but the last — so a separator in the DOM was
+ * always a second one beside it. It also carried a separator class the DS
+ * never defined. Kept as a no-op export so existing trees keep compiling;
+ * delete the element when you touch the file.
+ */
+const Separator = forwardRef(function Separator() {
+    return null;
 });
 const BreadcrumbRoot = forwardRef(function Breadcrumb({ className, ...rest }, ref) {
     return _jsx("nav", { ref: ref, "aria-label": "Breadcrumb", className: className, ...rest });

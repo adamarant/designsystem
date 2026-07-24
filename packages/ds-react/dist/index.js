@@ -75,4 +75,6 @@ export { ClipReveal } from "./components/ClipReveal";
 export { SiteHeader, } from "./components/SiteHeader";
 export { SiteFooter, } from "./components/SiteFooter";
 export { LangSwitcher, } from "./components/LangSwitcher";
+/* Hooks */
+export { useHydrated } from "./hooks/useHydrated";
 //# sourceMappingURL=index.js.map

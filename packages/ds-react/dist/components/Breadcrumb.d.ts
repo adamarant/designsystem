@@ -13,6 +13,13 @@ export interface BreadcrumbSeparatorProps extends ComponentPropsWithoutRef<"li">
 }
 declare const List: import("react").ForwardRefExoticComponent<BreadcrumbListProps & import("react").RefAttributes<HTMLOListElement>>;
 declare const Item: import("react").ForwardRefExoticComponent<BreadcrumbItemProps & import("react").RefAttributes<HTMLLIElement>>;
+/**
+ * @deprecated Renders nothing. `breadcrumb.css` draws the separator itself, as
+ * a `::after` on every `__item` but the last — so a separator in the DOM was
+ * always a second one beside it. It also carried a separator class the DS
+ * never defined. Kept as a no-op export so existing trees keep compiling;
+ * delete the element when you touch the file.
+ */
 declare const Separator: import("react").ForwardRefExoticComponent<BreadcrumbSeparatorProps & import("react").RefAttributes<HTMLLIElement>>;
 export { List as BreadcrumbList, Item as BreadcrumbItem, Separator as BreadcrumbSeparator };
 export declare const Breadcrumb: import("react").ForwardRefExoticComponent<BreadcrumbProps & import("react").RefAttributes<HTMLElement>> & {
