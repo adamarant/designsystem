@@ -1,9 +1,14 @@
 import { type ComponentPropsWithoutRef } from "react";
+import { type Size } from "../types";
+type SearchSize = Exclude<Size, "xs">;
 export interface SearchProps extends ComponentPropsWithoutRef<"div"> {
+    /** Size tier. The bar's height lives on the container, so set it here and
+        give SearchInput the matching size to scale the type with it. */
+    size?: SearchSize;
     className?: string;
 }
 export interface SearchInputProps extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
-    size?: "sm" | "md" | "lg";
+    size?: SearchSize;
     /** Allow password managers (1Password, etc.) to offer autofill. Default false: suppressed. */
     allowPasswordManager?: boolean;
     className?: string;

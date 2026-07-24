@@ -7,11 +7,11 @@ function useCtx() { const c = useContext(Ctx); if (!c)
     throw new Error("Popover sub-components must be inside <Popover>"); return c; }
 const Trigger = forwardRef(function Trigger({ className, onClick, ...rest }, ref) {
     const ctx = useCtx();
-    return _jsx("button", { ref: ref, "aria-expanded": ctx.open, onClick: (e) => { ctx.onToggle(); onClick?.(e); }, className: cn("ds-popover__trigger", className), ...rest });
+    return _jsx("button", { ref: ref, "aria-expanded": ctx.open, onClick: (e) => { ctx.onToggle(); onClick?.(e); }, className: className, ...rest });
 });
 const Content = forwardRef(function Content({ className, ...rest }, ref) {
     const ctx = useCtx();
-    return _jsx("div", { ref: ref, className: cn("ds-popover__content", ctx.open && "ds-popover__content--open", className), ...rest });
+    return _jsx("div", { ref: ref, className: cn("ds-popover__content", className), ...rest });
 });
 const PopoverRoot = forwardRef(function Popover({ open, onOpenChange, className, ...rest }, ref) {
     const rootRef = useRef(null);
@@ -31,7 +31,7 @@ const PopoverRoot = forwardRef(function Popover({ open, onOpenChange, className,
     return (_jsx(Ctx.Provider, { value: { open, onToggle, onClose }, children: _jsx("div", { ref: (n) => { rootRef.current = n; if (typeof ref === "function")
                 ref(n);
             else if (ref)
-                ref.current = n; }, className: cn("ds-popover", className), ...rest }) }));
+                ref.current = n; }, className: cn("ds-popover", open && "ds-popover--open", className), ...rest }) }));
 });
 /* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
 export { Trigger as PopoverTrigger, Content as PopoverContent };

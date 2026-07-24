@@ -5,7 +5,7 @@ const NavList = forwardRef(function NavList({ className, ...rest }, ref) {
     return _jsx("ul", { ref: ref, className: cn("ds-nav", className), ...rest });
 });
 const NavItem = forwardRef(function NavItem({ active, className, ...rest }, ref) {
-    return _jsx("li", { ref: ref, className: cn("ds-nav__item", active && "ds-nav__item--active", className), ...rest });
+    return _jsx("li", { ref: ref, className: cn("ds-nav__link", active && "ds-nav__link--active", className), ...rest });
 });
 const NavRoot = forwardRef(function Nav({ className, ...rest }, ref) {
     return _jsx("nav", { ref: ref, className: className, ...rest });

@@ -1,4 +1,5 @@
 import { type ComponentPropsWithoutRef } from "react";
+import { type Size } from "../types";
 type BadgeVariant = "default" | "primary" | "success" | "warning" | "error" | "info" | "purple" | "outline";
 export interface BadgeProps extends ComponentPropsWithoutRef<"span"> {
     /** Semantic color variant. Default: "default" (neutral muted) */
@@ -7,6 +8,8 @@ export interface BadgeProps extends ComponentPropsWithoutRef<"span"> {
     dot?: boolean;
     /** Uppercase small caps style (for "NEW", "BETA", etc.). Default: false */
     upper?: boolean;
+    /** Size tier. Default: "md" (no class emitted). */
+    size?: Exclude<Size, "xs">;
     /** Additional className */
     className?: string;
 }
