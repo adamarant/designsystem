@@ -27,10 +27,11 @@
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  gap: var(--ds-space-8);
-  padding-inline-end: var(--ds-space-8);
+  /* Distanza generosa: senza separatore le parole devono staccarsi da sole. */
+  gap: var(--ds-space-12);
+  padding-inline-end: var(--ds-space-12);
   min-inline-size: 100%;
-  animation: dsb-marquee-scroll 40s linear infinite;
+  animation: dsb-marquee-scroll 26s linear infinite;
 }
 
 /* Due binari identici affiancati: quando il primo è uscito di scena, il
@@ -42,11 +43,11 @@
 }
 
 .dsb-marquee--lenta .dsb-marquee__track {
-  animation-duration: 70s;
+  animation-duration: 45s;
 }
 
 .dsb-marquee--veloce .dsb-marquee__track {
-  animation-duration: 22s;
+  animation-duration: 13s;
 }
 
 .dsb-marquee--inversa .dsb-marquee__track {
@@ -57,7 +58,7 @@
 .dsb-marquee__sep {
   font-family: var(--ds-font-display);
   font-weight: var(--ds-font-display-weight);
-  font-size: clamp(2rem, 6vw, 6rem);
+  font-size: clamp(3rem, 11vw, 12rem);
   line-height: var(--ds-leading-none);
   white-space: nowrap;
   color: var(--ds-color-text);

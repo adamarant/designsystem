@@ -239,8 +239,8 @@ export declare const sharedBlocks: (import("../index.js").BlockDefinition<{
     readonly separatore: {
         readonly type: "text";
         readonly label: "Separatore";
-        readonly help: "Il segno fra una parola e l’altra. Lascia vuoto per non averne.";
-        readonly default: "§";
+        readonly help: "Segno facoltativo fra una parola e l’altra. Vuoto: le parole si staccano con lo spazio.";
+        readonly default: "";
     };
     readonly velocita: {
         readonly type: "select";
