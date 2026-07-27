@@ -29,11 +29,17 @@ export interface PageEditorProps {
     pages?: EditorPageLink[];
     /** slug of the page being edited, marked as current in the switcher */
     currentSlug?: string;
+    /**
+     * Persist a new page order (wire to an API route that calls `reorderPages`
+     * from the server export). Passing it is what makes the switcher draggable;
+     * without it the list still shows, just fixed.
+     */
+    onReorderPages?: (slugs: string[]) => Promise<void>;
 }
 /**
  * The page editor: a live canvas plus a schema-driven property panel, with
  * debounced draft autosave and a validated publish. Persistence is injected
  * (`onSaveDraft` / `onPublish`) so this component stays free of transport + auth.
  */
-export declare function PageEditor({ registry, document, onSaveDraft, onPublish, onInvalid, renderImagePicker, labels, autosaveMs, initialLocale, pages, currentSlug, }: PageEditorProps): import("react/jsx-runtime").JSX.Element;
+export declare function PageEditor({ registry, document, onSaveDraft, onPublish, onInvalid, renderImagePicker, labels, autosaveMs, initialLocale, pages, currentSlug, onReorderPages, }: PageEditorProps): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=PageEditor.d.ts.map

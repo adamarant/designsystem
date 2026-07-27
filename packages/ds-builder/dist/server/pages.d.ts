@@ -1,8 +1,21 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { PageDocument } from '../types/page.js';
 import { type PageRow, type PageStoreConfig, type PageSummary } from './config.js';
-/** List pages (summaries only, newest edits first). */
+/**
+ * List pages (summaries only, newest edits first within a position).
+ *
+ * Ordered by the author's own arrangement, with the last edit breaking ties —
+ * so a store whose rows all sit at position 0 (before the first drag, or before
+ * the 0001 migration seeds them) keeps the original most-recent-first order.
+ */
 export declare function listPages(sb: SupabaseClient, config: PageStoreConfig): Promise<PageSummary[]>;
+/**
+ * Persist the author's page order: each slug takes its index in the array.
+ *
+ * Writes only `position`, so it can't disturb content, and skips `updated_at` —
+ * rearranging the switcher is not an edit to any page.
+ */
+export declare function reorderPages(sb: SupabaseClient, config: PageStoreConfig, slugs: string[]): Promise<void>;
 /** Fetch the working draft for a slug (admin/editor). */
 export declare function getDraft(sb: SupabaseClient, config: PageStoreConfig, slug: string): Promise<PageDocument | null>;
 /** Fetch the published content for a slug (public site). Null if unpublished. */

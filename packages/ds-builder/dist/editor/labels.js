@@ -7,6 +7,7 @@ export const defaultLabels = {
     publishing: 'Publishing…',
     language: 'Language',
     pages: 'Pages',
+    reorderPage: 'Reorder page',
     noSelection: 'Select a section to edit its content.',
     unknownBlock: 'Unknown block type',
     blockFailed: 'This section failed to render.',

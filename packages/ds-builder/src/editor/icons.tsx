@@ -51,6 +51,18 @@ export const PlusIcon = (props: SVGProps<SVGSVGElement>) => (
   </Icon>
 )
 
+/** Two columns of dots — the conventional "drag me" mark. Filled, not stroked. */
+export const GripIcon = (props: SVGProps<SVGSVGElement>) => (
+  <Icon fill="currentColor" stroke="none" {...props}>
+    <circle cx="9" cy="6" r="1.5" />
+    <circle cx="15" cy="6" r="1.5" />
+    <circle cx="9" cy="12" r="1.5" />
+    <circle cx="15" cy="12" r="1.5" />
+    <circle cx="9" cy="18" r="1.5" />
+    <circle cx="15" cy="18" r="1.5" />
+  </Icon>
+)
+
 export const UndoIcon = (props: SVGProps<SVGSVGElement>) => (
   <Icon {...props}>
     <path d="M9 14 4 9l5-5" />

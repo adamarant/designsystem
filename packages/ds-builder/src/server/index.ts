@@ -1,5 +1,6 @@
 export {
   listPages,
+  reorderPages,
   getDraft,
   getPublished,
   createPage,

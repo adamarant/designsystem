@@ -5,7 +5,7 @@ non-technical admin edit pages — change text and images, reorder sections — 
 every output stays DS-compliant, because blocks are typed sections that developers
 author once and the admin only fills in.
 
-> **Status: 0.5.0 — Phases 0–3 done, first pilot live.** Core model, content
+> **Status: 0.6.0 — Phases 0–3 done, first pilot live.** Core model, content
 > store, the editor MVP, and composition (palette, reorder, undo/redo) are in. See the roadmap.
 
 ## Why block-based (not free-form)
@@ -29,9 +29,11 @@ admin inside typed, DS-composed sections: preview and production render from the
   (unknown blocks, per-field type/required/select/localized checks). Run it before
   saving so blocks only ever receive well-formed data.
 - **Page store** (from `@adamarant/ds-builder/server`) — service-role Supabase CRUD:
-  `listPages`, `getDraft`, `getPublished`, `createPage`, `saveDraft`, `publishPage`,
-  `deletePage`. Draft and published content live side by side; publishing snapshots
-  the draft into a versions table and bumps the counter. Schema in [`sql/schema.sql`](sql/schema.sql).
+  `listPages`, `reorderPages`, `getDraft`, `getPublished`, `createPage`, `saveDraft`,
+  `publishPage`, `deletePage`. Draft and published content live side by side; publishing
+  snapshots the draft into a versions table and bumps the counter. Schema in
+  [`sql/schema.sql`](sql/schema.sql); upgrades in [`sql/migrations/`](sql/migrations)
+  (**0.6.0 needs `0001_pages_position.sql`** — the page switcher's order column).
 
 ### i18n
 
@@ -99,6 +101,11 @@ export function AdminPageEditor({ slug, initialDoc, pages }) {
       // a select in the toolbar below it. Feed it from `listPages`.
       pages={pages.map((p) => ({ slug: p.slug, label: p.title, href: `/admin/pages/${p.slug}/edit` }))}
       currentSlug={slug}
+      // optional: passing this makes the rail draggable (grip handle, arrow
+      // keys). Wire it to a route that calls `reorderPages` server-side.
+      onReorderPages={(slugs) => fetch('/api/admin/pages/order', {
+        method: 'PUT', body: JSON.stringify({ slugs }),
+      }).then(() => undefined)}
       onSaveDraft={(doc) => fetch(`/api/admin/pages/${slug}/draft`, {
         method: 'PUT', body: JSON.stringify(doc),
       }).then(() => undefined)}

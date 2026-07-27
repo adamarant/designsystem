@@ -29,6 +29,11 @@ export interface EditorContextValue {
     pages?: EditorPageLink[];
     /** Slug of the page being edited, marked as current in the switcher. */
     currentSlug?: string;
+    /**
+     * Apply a new page order. Present only when the host can persist it, which is
+     * what makes the switcher draggable — no handle appears otherwise.
+     */
+    reorderPages?: (pages: EditorPageLink[]) => void;
 }
 export declare function useEditor(): EditorContextValue;
 export declare const EditorProvider: import("react").Provider<EditorContextValue | null>;

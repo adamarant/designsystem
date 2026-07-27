@@ -8,6 +8,7 @@ export interface EditorLabels {
     publishing: string;
     language: string;
     pages: string;
+    reorderPage: string;
     noSelection: string;
     unknownBlock: string;
     blockFailed: string;
