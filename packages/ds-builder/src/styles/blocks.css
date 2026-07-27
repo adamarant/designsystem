@@ -1,0 +1,74 @@
+/*
+ * @adamarant/ds-builder — stili dei blocchi condivisi.
+ * Namespaced `dsb-` (mai `ds-`) così restano fuori dalla superficie di classi
+ * del design system. Colori e spazi vengono dai token DS.
+ *
+ * Da importare nel consumer accanto al design system:
+ *   @import "@adamarant/ds-builder/styles/blocks";
+ *
+ * Serve solo ai blocchi che non sono esprimibili con le sole utility. Oggi:
+ * il marquee, che ha bisogno di overflow, di un'animazione continua e di un
+ * secondo binario per non lasciare buchi.
+ */
+
+/* --- Marquee: una riga di parole che scorre senza fine --- */
+
+.dsb-marquee {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  /* Sfuma ai bordi invece di tagliare di netto: una parola tranciata a metà
+     sul bordo dello schermo legge come un errore di impaginazione. */
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.dsb-marquee__track {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--ds-space-8);
+  padding-inline-end: var(--ds-space-8);
+  min-inline-size: 100%;
+  animation: dsb-marquee-scroll 40s linear infinite;
+}
+
+/* Due binari identici affiancati: quando il primo è uscito di scena, il
+   secondo è esattamente al suo posto e il salto non si vede. */
+@keyframes dsb-marquee-scroll {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.dsb-marquee--lenta .dsb-marquee__track {
+  animation-duration: 70s;
+}
+
+.dsb-marquee--veloce .dsb-marquee__track {
+  animation-duration: 22s;
+}
+
+.dsb-marquee--inversa .dsb-marquee__track {
+  animation-direction: reverse;
+}
+
+.dsb-marquee__item,
+.dsb-marquee__sep {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-font-display-weight);
+  font-size: clamp(2rem, 6vw, 6rem);
+  line-height: var(--ds-leading-none);
+  white-space: nowrap;
+  color: var(--ds-color-text);
+}
+
+.dsb-marquee__sep {
+  color: var(--ds-color-text-tertiary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dsb-marquee__track {
+    animation: none;
+  }
+}

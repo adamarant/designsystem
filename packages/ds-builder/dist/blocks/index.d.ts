@@ -3,6 +3,7 @@ export { ProseBlock } from './prose.js';
 export { CtaBlock } from './cta.js';
 export { ImageBlock } from './image.js';
 export { ContactsBlock } from './contacts.js';
+export { MarqueeBlock } from './marquee.js';
 export { SOCIAL_NETWORKS, type SocialNetwork } from './socialIcons.js';
 /**
  * All shared blocks, in a sensible palette order. Spread into createRegistry
@@ -223,6 +224,50 @@ export declare const sharedBlocks: (import("../index.js").BlockDefinition<{
         readonly label: "Contenuto";
         readonly localized: true;
         readonly default: "";
+    };
+}> | import("../index.js").BlockDefinition<{
+    readonly voci: {
+        readonly type: "list";
+        readonly label: "Parole";
+        readonly of: {
+            readonly type: "text";
+            readonly label: "Parola";
+            readonly localized: true;
+            readonly default: "";
+        };
+    };
+    readonly separatore: {
+        readonly type: "text";
+        readonly label: "Separatore";
+        readonly help: "Il segno fra una parola e l’altra. Lascia vuoto per non averne.";
+        readonly default: "§";
+    };
+    readonly velocita: {
+        readonly type: "select";
+        readonly label: "Velocità";
+        readonly options: readonly [{
+            readonly label: "Lenta";
+            readonly value: "lenta";
+        }, {
+            readonly label: "Media";
+            readonly value: "media";
+        }, {
+            readonly label: "Veloce";
+            readonly value: "veloce";
+        }];
+        readonly default: "media";
+    };
+    readonly direzione: {
+        readonly type: "select";
+        readonly label: "Direzione";
+        readonly options: readonly [{
+            readonly label: "Verso sinistra";
+            readonly value: "sinistra";
+        }, {
+            readonly label: "Verso destra";
+            readonly value: "destra";
+        }];
+        readonly default: "sinistra";
     };
 }>)[];
 //# sourceMappingURL=index.d.ts.map

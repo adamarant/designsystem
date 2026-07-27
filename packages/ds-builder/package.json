@@ -32,7 +32,8 @@
       "import": "./dist/blocks/index.js",
       "default": "./dist/blocks/index.js"
     },
-    "./styles/editor": "./src/styles/editor.css"
+    "./styles/editor": "./src/styles/editor.css",
+    "./styles/blocks": "./src/styles/blocks.css"
   },
   "files": [
     "dist/",

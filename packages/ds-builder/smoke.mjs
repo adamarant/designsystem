@@ -377,5 +377,30 @@ const contactsNoForm = await render(
 check('contacts hides the form when switched off', !contactsNoForm.includes('<form'))
 check('valid contacts document passes validation', validateDocument(contactsRegistry, contactsPage()).valid)
 
+// 15. MarqueeBlock — binario doppio, copia muta per gli screen reader.
+const { MarqueeBlock } = await import('./dist/blocks/index.js')
+const marqueeRegistry = createRegistry([MarqueeBlock])
+const marqueePage = (data) => ({
+  schemaVersion: 1,
+  defaultLocale: 'it',
+  locales: ['it'],
+  blocks: [{ id: 'm1', type: 'marquee', version: 1, data }],
+})
+const marqueeHtml = await render(
+  h(PageRenderer, {
+    document: marqueePage({ voci: [{ it: '#ÈORADIFINIAMOLA' }], separatore: '§', velocita: 'veloce' }),
+    registry: marqueeRegistry,
+    locale: 'it',
+  }),
+)
+check('marquee ripete il binario due volte', (marqueeHtml.match(/dsb-marquee__track/g) ?? []).length === 2)
+check('marquee nasconde la copia agli screen reader', (marqueeHtml.match(/aria-hidden="true"/g) ?? []).length === 1)
+check('marquee applica la classe di velocità', marqueeHtml.includes('dsb-marquee--veloce'))
+check('marquee rende il separatore', marqueeHtml.includes('§'))
+const marqueeEmpty = await render(
+  h(PageRenderer, { document: marqueePage({ voci: [] }), registry: marqueeRegistry, locale: 'it' }),
+)
+check('marquee senza parole non rende nulla', !marqueeEmpty.includes('dsb-marquee'))
+
 console.log(`\n${failures === 0 ? '✅ all checks passed' : `❌ ${failures} check(s) failed`}`)
 process.exit(failures === 0 ? 0 : 1)

@@ -5,7 +5,7 @@ non-technical admin edit pages — change text and images, reorder sections — 
 every output stays DS-compliant, because blocks are typed sections that developers
 author once and the admin only fills in.
 
-> **Status: 0.6.0 — Phases 0–3 done, first pilot live.** Core model, content
+> **Status: 0.7.0 — Phases 0–3 done, first pilot live.** Core model, content
 > store, the editor MVP, and composition (palette, reorder, undo/redo) are in. See the roadmap.
 
 ## Why block-based (not free-form)
@@ -58,6 +58,20 @@ export const registry = createRegistry([...sharedBlocks, MyCustomBlock])
 | `CtaBlock` | Centered band with up to two buttons. |
 | `ImageBlock` | Full-width image with an optional caption. |
 | `ContactsBlock` | A contact page in one block: details on the left, an optional message form on the right, side by side from `lg` up. |
+| `MarqueeBlock` | A line of words scrolling forever, separated by a glyph. Speed and direction are fields. |
+
+`MarqueeBlock` is the one block that needs CSS of its own — overflow, a
+continuous animation and a second rail so the loop has no gap. Import the block
+stylesheet next to the design system:
+
+```css
+@import "@adamarant/designsystem" layer(ds);
+@import "@adamarant/ds-builder/styles/blocks";
+```
+
+Without it the words render as a plain static row: readable, not broken. The
+rail is duplicated and the copy is `aria-hidden`, so a screen reader hears the
+words once. Reduced motion stops the scroll.
 
 `ContactsBlock` carries the only interactive markup in the set. Its form POSTs
 `{nome, cognome, email, messaggio}` as JSON to the `endpoint` field's URL and
