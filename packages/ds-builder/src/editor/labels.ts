@@ -7,6 +7,7 @@ export interface EditorLabels {
   publish: string
   publishing: string
   language: string
+  pages: string
   noSelection: string
   unknownBlock: string
   blockFailed: string
@@ -36,6 +37,7 @@ export const defaultLabels: EditorLabels = {
   publish: 'Publish',
   publishing: 'Publishing…',
   language: 'Language',
+  pages: 'Pages',
   noSelection: 'Select a section to edit its content.',
   unknownBlock: 'Unknown block type',
   blockFailed: 'This section failed to render.',
