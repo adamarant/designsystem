@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.29.0 */
+/* @ds/designsystem v0.30.0 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -13462,6 +13462,16 @@ a:hover .ds-sortable__handle,
 .ds-col-span-4 { grid-column: span 4 / span 4; }
 .ds-col-span-full { grid-column: 1 / -1; }
 
+/* --- Row Span ---
+   Simmetrico a col-span. Serve a far pesare una cella più delle altre in una
+   griglia: senza, si possono avere celle larghe ma non alte, e i layout a
+   tessere (bento) non sono esprimibili. */
+.ds-row-span-1 { grid-row: span 1 / span 1; }
+.ds-row-span-2 { grid-row: span 2 / span 2; }
+.ds-row-span-3 { grid-row: span 3 / span 3; }
+.ds-row-span-4 { grid-row: span 4 / span 4; }
+.ds-row-span-full { grid-row: 1 / -1; }
+
 @media (min-width: 640px) {
 
   .ds-sm\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
@@ -13477,6 +13487,8 @@ a:hover .ds-sortable__handle,
   .ds-md\:col-span-1 { grid-column: span 1 / span 1; }
   .ds-md\:col-span-2 { grid-column: span 2 / span 2; }
   .ds-md\:col-span-3 { grid-column: span 3 / span 3; }
+  .ds-md\:row-span-2 { grid-row: span 2 / span 2; }
+  .ds-md\:row-span-3 { grid-row: span 3 / span 3; }
   .ds-md\:flex-row { flex-direction: row; }
 }
 
@@ -13489,6 +13501,8 @@ a:hover .ds-sortable__handle,
   .ds-lg\:col-span-1 { grid-column: span 1 / span 1; }
   .ds-lg\:col-span-2 { grid-column: span 2 / span 2; }
   .ds-lg\:col-span-3 { grid-column: span 3 / span 3; }
+  .ds-lg\:row-span-2 { grid-row: span 2 / span 2; }
+  .ds-lg\:row-span-3 { grid-row: span 3 / span 3; }
 }
 
 
