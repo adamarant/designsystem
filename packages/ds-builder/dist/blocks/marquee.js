@@ -31,8 +31,8 @@ export const MarqueeBlock = defineBlock({
         separatore: {
             type: 'text',
             label: 'Separatore',
-            help: 'Il segno fra una parola e l’altra. Lascia vuoto per non averne.',
-            default: '§',
+            help: 'Segno facoltativo fra una parola e l’altra. Vuoto: le parole si staccano con lo spazio.',
+            default: '',
         },
         velocita: {
             type: 'select',
