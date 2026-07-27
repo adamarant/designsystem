@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.31.0 */
+/* @ds/designsystem v0.31.1 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -11761,7 +11761,7 @@ hr {
      ds-media-toolbar__spacer   Flex spacer between left/right actions
      ds-media-detail-slot       Reserved sidebar slot (fixed width, sticky) — render always to keep grid stable
      ds-media-detail            Detail/edit sidebar card (surface card with padding) — render inside slot when selected
-     ds-media-detail__preview   Preview container (surface-muted, aspect-video)
+     ds-media-detail__preview   Preview frame (surface-muted, rounded, centred, clipped)
      ds-media-detail__action    Sidebar action button (Copy / Open / Delete)
      ds-media-detail__action--danger  Destructive variant (Delete)
      ds-media-folder            Folder sidebar container (responsive, hidden < md)
@@ -11873,7 +11873,16 @@ hr {
   background-color: var(--ds-color-surface);
 }
 
+/* The preview slot owns its own frame. It used to set only the background, so
+   every consumer re-added `rounded-lg overflow-hidden flex items-center
+   justify-center` by hand — the component was describing half of itself
+   (owner-approved 27 Jul 2026). */
 .ds-media-detail__preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--ds-radius-lg);
   background-color: var(--ds-color-surface-muted);
 }
 
@@ -13414,6 +13423,14 @@ a:hover .ds-sortable__handle,
 .ds-section--bordered {
   border-block-start: 1px solid var(--ds-color-border);
 }
+
+/* Banded sections — same promotion as --bordered, one step further. Alternating
+   a section's background is how every consumer separates page bands, and each
+   one wrote it as `ds-section ds-bg-*`: a styling utility on an element that
+   already has a component API. The band belongs to the section (owner-approved
+   27 Jul 2026). */
+.ds-section--surface { background-color: var(--ds-color-surface); }
+.ds-section--elevated { background-color: var(--ds-color-surface-elevated); }
 
 /* --- Flex --- */
 .ds-flex { display: flex; }

@@ -14,7 +14,7 @@
      ds-media-toolbar__spacer   Flex spacer between left/right actions
      ds-media-detail-slot       Reserved sidebar slot (fixed width, sticky) — render always to keep grid stable
      ds-media-detail            Detail/edit sidebar card (surface card with padding) — render inside slot when selected
-     ds-media-detail__preview   Preview container (surface-muted, aspect-video)
+     ds-media-detail__preview   Preview frame (surface-muted, rounded, centred, clipped)
      ds-media-detail__action    Sidebar action button (Copy / Open / Delete)
      ds-media-detail__action--danger  Destructive variant (Delete)
      ds-media-folder            Folder sidebar container (responsive, hidden < md)
@@ -126,7 +126,16 @@
   background-color: var(--ds-color-surface);
 }
 
+/* The preview slot owns its own frame. It used to set only the background, so
+   every consumer re-added `rounded-lg overflow-hidden flex items-center
+   justify-center` by hand — the component was describing half of itself
+   (owner-approved 27 Jul 2026). */
 .ds-media-detail__preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--ds-radius-lg);
   background-color: var(--ds-color-surface-muted);
 }
 
