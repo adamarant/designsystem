@@ -12,15 +12,34 @@ const emptyDocument = (defaultLocale, locales) => ({
     locales,
     blocks: [],
 });
-/** List pages (summaries only, newest edits first). */
+/**
+ * List pages (summaries only, newest edits first within a position).
+ *
+ * Ordered by the author's own arrangement, with the last edit breaking ties —
+ * so a store whose rows all sit at position 0 (before the first drag, or before
+ * the 0001 migration seeds them) keeps the original most-recent-first order.
+ */
 export async function listPages(sb, config) {
     const { data, error } = await sb
         .from(config.pagesTable)
-        .select('id, slug, title, status, current_version, updated_at')
+        .select('id, slug, title, status, current_version, position, updated_at')
+        .order('position', { ascending: true })
         .order('updated_at', { ascending: false });
     if (error)
         throw new Error(`[ds-builder] listPages: ${error.message}`);
     return (data ?? []);
+}
+/**
+ * Persist the author's page order: each slug takes its index in the array.
+ *
+ * Writes only `position`, so it can't disturb content, and skips `updated_at` —
+ * rearranging the switcher is not an edit to any page.
+ */
+export async function reorderPages(sb, config, slugs) {
+    const results = await Promise.all(slugs.map((slug, index) => sb.from(config.pagesTable).update({ position: index }).eq('slug', slug)));
+    const failed = results.find((r) => r.error);
+    if (failed?.error)
+        throw new Error(`[ds-builder] reorderPages: ${failed.error.message}`);
 }
 /** Fetch the working draft for a slug (admin/editor). */
 export async function getDraft(sb, config, slug) {

@@ -8,6 +8,7 @@ export interface EditorLabels {
   publishing: string
   language: string
   pages: string
+  reorderPage: string
   noSelection: string
   unknownBlock: string
   blockFailed: string
@@ -38,6 +39,7 @@ export const defaultLabels: EditorLabels = {
   publishing: 'Publishing…',
   language: 'Language',
   pages: 'Pages',
+  reorderPage: 'Reorder page',
   noSelection: 'Select a section to edit its content.',
   unknownBlock: 'Unknown block type',
   blockFailed: 'This section failed to render.',

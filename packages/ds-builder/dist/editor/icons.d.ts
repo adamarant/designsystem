@@ -3,6 +3,8 @@ export declare const ChevronUpIcon: (props: SVGProps<SVGSVGElement>) => import("
 export declare const ChevronDownIcon: (props: SVGProps<SVGSVGElement>) => import("react/jsx-runtime").JSX.Element;
 export declare const CloseIcon: (props: SVGProps<SVGSVGElement>) => import("react/jsx-runtime").JSX.Element;
 export declare const PlusIcon: (props: SVGProps<SVGSVGElement>) => import("react/jsx-runtime").JSX.Element;
+/** Two columns of dots — the conventional "drag me" mark. Filled, not stroked. */
+export declare const GripIcon: (props: SVGProps<SVGSVGElement>) => import("react/jsx-runtime").JSX.Element;
 export declare const UndoIcon: (props: SVGProps<SVGSVGElement>) => import("react/jsx-runtime").JSX.Element;
 export declare const RedoIcon: (props: SVGProps<SVGSVGElement>) => import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=icons.d.ts.map

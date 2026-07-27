@@ -158,8 +158,47 @@
   padding: 0;
 }
 
+.dsb-pages__item {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  border-radius: var(--ds-radius-md);
+}
+
+.dsb-pages__item[data-dragging] {
+  opacity: var(--ds-opacity-disabled);
+}
+
+/* Drop target: a line where the row would land, drawn inside the row's own
+   box so the list never shifts while dragging. */
+.dsb-pages__item[data-over] {
+  box-shadow: inset 0 2px 0 0 var(--ds-color-border-active);
+}
+
+.dsb-pages__grip {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: var(--ds-space-1);
+  border: 0;
+  border-radius: var(--ds-radius-sm);
+  background: none;
+  color: var(--ds-color-text-tertiary);
+  cursor: grab;
+}
+
+.dsb-pages__grip:hover {
+  color: var(--ds-color-text-secondary);
+}
+
+.dsb-pages__item[data-dragging] .dsb-pages__grip {
+  cursor: grabbing;
+}
+
 .dsb-pages__link {
   display: block;
+  flex: 1;
+  min-width: 0;
   padding: var(--ds-space-2) var(--ds-space-3);
   border-radius: var(--ds-radius-md);
   font-size: var(--ds-text-sm);

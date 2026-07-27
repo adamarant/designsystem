@@ -24,6 +24,8 @@ create table if not exists builder_pages (
   published_content jsonb,
   -- monotonically increasing published version counter
   current_version   integer not null default 0,
+  -- author-defined order in the admin page switcher (ties break on updated_at)
+  position          integer not null default 0,
   created_at        timestamptz not null default now(),
   updated_at        timestamptz not null default now()
 );
