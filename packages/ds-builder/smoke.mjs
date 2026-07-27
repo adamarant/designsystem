@@ -325,5 +325,57 @@ check('prose renders the optional heading', proseHtml.includes('Nato a Napoli') 
 check('prose without a heading emits no h2', (proseHtml.match(/<h2/g) ?? []).length === 1)
 check('valid prose document passes validation', validateDocument(proseRegistry, prosePage).valid)
 
+// 14. Shared ContactsBlock — details, socials and the optional form, plus the
+// title-weight switch that keeps a section instance from emitting a second h1.
+const { ContactsBlock } = await import('./dist/blocks/index.js')
+const contactsRegistry = createRegistry([ContactsBlock])
+const contactsPage = (overrides = {}) => ({
+  schemaVersion: 1,
+  defaultLocale: 'it',
+  locales: ['it'],
+  blocks: [
+    {
+      id: 'c1',
+      type: 'contacts',
+      version: 1,
+      data: {
+        title: { it: 'Contatti' },
+        recapiti: [
+          { etichetta: { it: 'Segreteria' }, valore: 'ciao@esempio.it', link: 'mailto:ciao@esempio.it' },
+          { etichetta: { it: 'Sede' }, valore: 'Via Roma 1', link: '' },
+        ],
+        social: [{ rete: 'instagram', url: 'https://instagram.com/esempio' }],
+        form: { attivo: true, endpoint: '', labelNome: { it: 'Nome' } },
+        ...overrides,
+      },
+    },
+  ],
+})
+const contactsHtml = await render(
+  h(PageRenderer, { document: contactsPage(), registry: contactsRegistry, locale: 'it' }),
+)
+check('contacts renders the page title as h1', contactsHtml.includes('>Contatti</h1>'))
+check('contacts links a detail that has one', contactsHtml.includes('href="mailto:ciao@esempio.it"'))
+check('contacts leaves a detail without a link as text', !contactsHtml.includes('>Via Roma 1</a>'))
+check('contacts renders the chosen social glyph', contactsHtml.includes('aria-label="Instagram"'))
+check('contacts renders the form with defaulted labels', contactsHtml.includes('name="messaggio"') && contactsHtml.includes('>Messaggio</label>'))
+const contactsSection = await render(
+  h(PageRenderer, {
+    document: contactsPage({ titleStyle: 'sezione' }),
+    registry: contactsRegistry,
+    locale: 'it',
+  }),
+)
+check('contacts as a section emits h2, never h1', contactsSection.includes('>Contatti</h2>') && !contactsSection.includes('<h1'))
+const contactsNoForm = await render(
+  h(PageRenderer, {
+    document: contactsPage({ form: { attivo: false } }),
+    registry: contactsRegistry,
+    locale: 'it',
+  }),
+)
+check('contacts hides the form when switched off', !contactsNoForm.includes('<form'))
+check('valid contacts document passes validation', validateDocument(contactsRegistry, contactsPage()).valid)
+
 console.log(`\n${failures === 0 ? '✅ all checks passed' : `❌ ${failures} check(s) failed`}`)
 process.exit(failures === 0 ? 0 : 1)

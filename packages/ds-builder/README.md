@@ -5,8 +5,8 @@ non-technical admin edit pages — change text and images, reorder sections — 
 every output stays DS-compliant, because blocks are typed sections that developers
 author once and the admin only fills in.
 
-> **Status: 0.1.0 — Phases 0–2 done, ready for first publish.** Core model, content
-> store, the editor MVP, and composition (palette, reorder, undo/redo) are in; the real pilot comes next. See the roadmap.
+> **Status: 0.5.0 — Phases 0–3 done, first pilot live.** Core model, content
+> store, the editor MVP, and composition (palette, reorder, undo/redo) are in. See the roadmap.
 
 ## Why block-based (not free-form)
 
@@ -40,6 +40,31 @@ renderer collapses it to the active locale (falling back to the document's defau
 locale, then the field default). Adding a language — Japanese included — is **data
 in the consumer's config, not a package change**.
 
+### Shared blocks
+
+`@adamarant/ds-builder/blocks` exports `sharedBlocks` — the sections every site
+needs — to spread into your registry alongside your own:
+
+```ts
+export const registry = createRegistry([...sharedBlocks, MyCustomBlock])
+```
+
+| Block | What it is |
+|---|---|
+| `HeroBlock` | Centered overline, title, lede, optional CTA. |
+| `ProseBlock` | Long-form text with an optional heading; blank lines split paragraphs. |
+| `CtaBlock` | Centered band with up to two buttons. |
+| `ImageBlock` | Full-width image with an optional caption. |
+| `ContactsBlock` | A contact page in one block: details on the left, an optional message form on the right, side by side from `lg` up. |
+
+`ContactsBlock` carries the only interactive markup in the set. Its form POSTs
+`{nome, cognome, email, messaggio}` as JSON to the `endpoint` field's URL and
+reads success from the HTTP status, so delivery (Resend, a queue, a CRM) stays a
+route in your app and the block holds no secrets. Leave `endpoint` empty and the
+fields render but submitting does nothing — lay the page out before the route
+exists. Its `titleStyle` field picks `h1` (the block *is* the page) or `h2` (a
+band inside another page), so a section instance never emits a second `h1`.
+
 ## Resilience ("non si rompe")
 
 - **Unknown block type** → `renderUnknown` fallback; the page still renders.
@@ -65,11 +90,15 @@ import { PageEditor } from '@adamarant/ds-builder/editor'
 import '@adamarant/ds-builder/styles/editor'
 import { registry } from '@/blocks' // your createRegistry([...])
 
-export function AdminPageEditor({ slug, initialDoc }) {
+export function AdminPageEditor({ slug, initialDoc, pages }) {
   return (
     <PageEditor
       registry={registry}
       document={initialDoc}
+      // optional: the page switcher. A rail beside the canvas from 1024px up,
+      // a select in the toolbar below it. Feed it from `listPages`.
+      pages={pages.map((p) => ({ slug: p.slug, label: p.title, href: `/admin/pages/${p.slug}/edit` }))}
+      currentSlug={slug}
       onSaveDraft={(doc) => fetch(`/api/admin/pages/${slug}/draft`, {
         method: 'PUT', body: JSON.stringify(doc),
       }).then(() => undefined)}

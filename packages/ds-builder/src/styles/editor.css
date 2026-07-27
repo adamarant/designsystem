@@ -107,6 +107,79 @@
   min-height: 0;
 }
 
+/* --- page switcher ---
+   Two forms of one control. The rail is a third column from 1024px up; below
+   that it collapses and the toolbar select takes over, so a narrow editor never
+   pays a column for it. Exactly one of the two is visible at any width. */
+
+.dsb-pages {
+  display: none;
+}
+
+.dsb-toolbar__pages {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+}
+
+@media (min-width: 1024px) /* --ds-breakpoint-lg */ {
+  .dsb-editor__body--with-pages {
+    grid-template-columns: minmax(160px, 200px) 1fr minmax(280px, 340px);
+  }
+
+  .dsb-pages {
+    display: block;
+    overflow-y: auto;
+    padding: var(--ds-space-4);
+    border-right: 1px solid var(--ds-color-border);
+    background: var(--ds-color-surface);
+  }
+
+  .dsb-toolbar__pages {
+    display: none;
+  }
+}
+
+.dsb-pages__header {
+  margin-bottom: var(--ds-space-3);
+  font-weight: var(--ds-weight-semibold);
+  font-size: var(--ds-text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-wide);
+  color: var(--ds-color-text-secondary);
+}
+
+.dsb-pages__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dsb-pages__link {
+  display: block;
+  padding: var(--ds-space-2) var(--ds-space-3);
+  border-radius: var(--ds-radius-md);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+  text-decoration: none;
+  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.dsb-pages__link[aria-current='page'] {
+  background: var(--ds-color-surface-active);
+  color: var(--ds-color-text);
+}
+
+/* Hover is the transient companion of the persistent current-page state
+   above, so it takes the hover step of the same surface family. */
+.dsb-pages__link:hover {
+  background: var(--ds-color-surface-hover);
+  color: var(--ds-color-text);
+}
+
 /* --- canvas --- */
 
 .dsb-canvas {

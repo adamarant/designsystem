@@ -7,6 +7,7 @@ export interface EditorLabels {
     publish: string;
     publishing: string;
     language: string;
+    pages: string;
     noSelection: string;
     unknownBlock: string;
     blockFailed: string;

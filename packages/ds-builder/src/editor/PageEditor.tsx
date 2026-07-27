@@ -4,9 +4,14 @@ import { useEffect, useReducer, useRef, useState } from 'react'
 import type { Registry } from '../registry/createRegistry.js'
 import type { PageDocument } from '../types/page.js'
 import { validateDocument, type BlockIssue } from '../validate/validateDocument.js'
-import { EditorProvider, type ImagePickerRenderer } from './EditorContext.js'
+import {
+  EditorProvider,
+  type EditorPageLink,
+  type ImagePickerRenderer,
+} from './EditorContext.js'
 import { EditorCanvas } from './EditorCanvas.js'
 import { EditorToolbar } from './EditorToolbar.js'
+import { PageRail } from './PageRail.js'
 import { PropertyPanel } from './PropertyPanel.js'
 import { defaultLabels, type EditorLabels } from './labels.js'
 import { editorReducer, initEditorState } from './reducer.js'
@@ -30,6 +35,13 @@ export interface PageEditorProps {
   autosaveMs?: number
   /** locale to edit first. Default: document.defaultLocale */
   initialLocale?: string
+  /**
+   * Every editable page, for the switcher: a rail beside the canvas on wide
+   * viewports, a select in the toolbar on narrow ones. Omit for a one-page site.
+   */
+  pages?: EditorPageLink[]
+  /** slug of the page being edited, marked as current in the switcher */
+  currentSlug?: string
 }
 
 /**
@@ -47,6 +59,8 @@ export function PageEditor({
   labels,
   autosaveMs = 1200,
   initialLocale,
+  pages,
+  currentSlug,
 }: PageEditorProps) {
   const [state, dispatch] = useReducer(editorReducer, undefined, () =>
     initEditorState(document, initialLocale),
@@ -95,10 +109,25 @@ export function PageEditor({
   }
 
   return (
-    <EditorProvider value={{ state, dispatch, registry, labels: mergedLabels, renderImagePicker }}>
+    <EditorProvider
+      value={{
+        state,
+        dispatch,
+        registry,
+        labels: mergedLabels,
+        renderImagePicker,
+        pages,
+        currentSlug,
+      }}
+    >
       <div className="dsb-editor">
         <EditorToolbar onPublish={handlePublish} publishing={publishing} />
-        <div className="dsb-editor__body">
+        <div
+          className={
+            pages?.length ? 'dsb-editor__body dsb-editor__body--with-pages' : 'dsb-editor__body'
+          }
+        >
+          <PageRail />
           <EditorCanvas />
           <PropertyPanel />
         </div>

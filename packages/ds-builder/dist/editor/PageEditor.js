@@ -2,9 +2,10 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { validateDocument } from '../validate/validateDocument.js';
-import { EditorProvider } from './EditorContext.js';
+import { EditorProvider, } from './EditorContext.js';
 import { EditorCanvas } from './EditorCanvas.js';
 import { EditorToolbar } from './EditorToolbar.js';
+import { PageRail } from './PageRail.js';
 import { PropertyPanel } from './PropertyPanel.js';
 import { defaultLabels } from './labels.js';
 import { editorReducer, initEditorState } from './reducer.js';
@@ -13,7 +14,7 @@ import { editorReducer, initEditorState } from './reducer.js';
  * debounced draft autosave and a validated publish. Persistence is injected
  * (`onSaveDraft` / `onPublish`) so this component stays free of transport + auth.
  */
-export function PageEditor({ registry, document, onSaveDraft, onPublish, onInvalid, renderImagePicker, labels, autosaveMs = 1200, initialLocale, }) {
+export function PageEditor({ registry, document, onSaveDraft, onPublish, onInvalid, renderImagePicker, labels, autosaveMs = 1200, initialLocale, pages, currentSlug, }) {
     const [state, dispatch] = useReducer(editorReducer, undefined, () => initEditorState(document, initialLocale));
     const mergedLabels = { ...defaultLabels, ...labels };
     const [publishing, setPublishing] = useState(false);
@@ -57,6 +58,14 @@ export function PageEditor({ registry, document, onSaveDraft, onPublish, onInval
             setPublishing(false);
         }
     }
-    return (_jsx(EditorProvider, { value: { state, dispatch, registry, labels: mergedLabels, renderImagePicker }, children: _jsxs("div", { className: "dsb-editor", children: [_jsx(EditorToolbar, { onPublish: handlePublish, publishing: publishing }), _jsxs("div", { className: "dsb-editor__body", children: [_jsx(EditorCanvas, {}), _jsx(PropertyPanel, {})] })] }) }));
+    return (_jsx(EditorProvider, { value: {
+            state,
+            dispatch,
+            registry,
+            labels: mergedLabels,
+            renderImagePicker,
+            pages,
+            currentSlug,
+        }, children: _jsxs("div", { className: "dsb-editor", children: [_jsx(EditorToolbar, { onPublish: handlePublish, publishing: publishing }), _jsxs("div", { className: pages?.length ? 'dsb-editor__body dsb-editor__body--with-pages' : 'dsb-editor__body', children: [_jsx(PageRail, {}), _jsx(EditorCanvas, {}), _jsx(PropertyPanel, {})] })] }) }));
 }
 //# sourceMappingURL=PageEditor.js.map

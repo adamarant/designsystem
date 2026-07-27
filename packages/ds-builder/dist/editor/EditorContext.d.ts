@@ -12,12 +12,23 @@ export type ImagePickerRenderer = (props: {
     onSelect: (image: ImageValue) => void;
     onClose: () => void;
 }) => ReactNode;
+/** One entry in the page switcher. `href` keeps routing with the host app. */
+export interface EditorPageLink {
+    slug: string;
+    /** Shown in the switcher. Falls back to the slug. */
+    label?: string;
+    href: string;
+}
 export interface EditorContextValue {
     state: EditorState;
     dispatch: Dispatch<EditorAction>;
     registry: Registry;
     labels: EditorLabels;
     renderImagePicker?: ImagePickerRenderer;
+    /** Every editable page, for the switcher. Omit or leave empty to hide it. */
+    pages?: EditorPageLink[];
+    /** Slug of the page being edited, marked as current in the switcher. */
+    currentSlug?: string;
 }
 export declare function useEditor(): EditorContextValue;
 export declare const EditorProvider: import("react").Provider<EditorContextValue | null>;

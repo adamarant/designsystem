@@ -29,7 +29,7 @@ interface EditorToolbarProps {
 
 /** Top bar: add section, undo/redo, locale switch, save status, publish. */
 export function EditorToolbar({ onPublish, publishing }: EditorToolbarProps) {
-  const { state, dispatch, labels } = useEditor()
+  const { state, dispatch, labels, pages, currentSlug } = useEditor()
   const { locales, blocks } = state.document
   const [paletteOpen, setPaletteOpen] = useState(false)
 
@@ -86,6 +86,27 @@ export function EditorToolbar({ onPublish, publishing }: EditorToolbarProps) {
             <RedoIcon />
           </IconBtn>
         </Flex>
+
+        {/* Narrow-viewport form of the page switcher; the rail takes over from
+            the editor breakpoint up, and CSS decides which of the two shows. */}
+        {pages?.length ? (
+          <label className="dsb-toolbar__pages">
+            <span className="dsb-toolbar__locale-label">{labels.pages}</span>
+            <Select
+              value={currentSlug ?? ''}
+              onChange={(e) => {
+                const next = pages.find((p) => p.slug === e.target.value)
+                if (next) window.location.assign(next.href)
+              }}
+            >
+              {pages.map((page) => (
+                <option key={page.slug} value={page.slug}>
+                  {page.label || page.slug}
+                </option>
+              ))}
+            </Select>
+          </label>
+        ) : null}
 
         {locales.length > 1 ? (
           <label className="dsb-toolbar__locale">
