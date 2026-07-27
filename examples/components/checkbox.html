@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox — Design System</title>
+  <link rel="stylesheet" href="../../dist/designsystem.css">
+  <link rel="stylesheet" href="../_shared/demo.css">
+</head>
+<body>
+
+  <div class="demo-layout">
+    <aside class="demo-sidebar">
+      <a href="../" class="demo-sidebar__brand">Design System</a>
+      <input class="ds-input" id="componentSearch" placeholder="Search..." autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other">
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Foundations</div>
+        <a href="../foundations/colors.html" class="demo-sidebar__link">Colors</a>
+        <a href="../foundations/typography.html" class="demo-sidebar__link">Typography</a>
+        <a href="../foundations/spacing.html" class="demo-sidebar__link">Spacing & Layout</a>
+        <a href="../foundations/effects.html" class="demo-sidebar__link">Effects</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Form</div>
+        <a href="../components/input.html" class="demo-sidebar__link">Input</a>
+        <a href="../components/checkbox.html" class="demo-sidebar__link demo-sidebar__link--active">Checkbox</a>
+        <a href="../components/radio.html" class="demo-sidebar__link">Radio</a>
+        <a href="../components/toggle.html" class="demo-sidebar__link">Toggle</a>
+        <a href="../components/datepicker.html" class="demo-sidebar__link">Datepicker</a>
+        <a href="../components/drop-zone.html" class="demo-sidebar__link">Drop Zone</a>
+        <a href="../components/custom-select.html" class="demo-sidebar__link">Select</a>
+        <a href="../components/slider.html" class="demo-sidebar__link">Slider</a>
+        <a href="../components/field.html" class="demo-sidebar__link">Field</a>
+        <a href="../components/combobox.html" class="demo-sidebar__link">Combobox</a>
+        <a href="../components/number-input.html" class="demo-sidebar__link">Number Input</a>
+        <a href="../components/pin-input.html" class="demo-sidebar__link">Pin Input</a>
+        <a href="../components/color-picker.html" class="demo-sidebar__link">Color Picker</a>
+        <a href="../components/star-rating.html" class="demo-sidebar__link">Star Rating</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Data Display</div>
+        <a href="../components/badge.html" class="demo-sidebar__link">Badge</a>
+        <a href="../components/table.html" class="demo-sidebar__link">Table</a>
+        <a href="../components/avatar.html" class="demo-sidebar__link">Avatar</a>
+        <a href="../components/skeleton.html" class="demo-sidebar__link">Skeleton</a>
+        <a href="../components/tag.html" class="demo-sidebar__link">Tag</a>
+        <a href="../components/progress.html" class="demo-sidebar__link">Progress</a>
+        <a href="../components/timeline.html" class="demo-sidebar__link">Timeline</a>
+        <a href="../components/chip.html" class="demo-sidebar__link">Chip</a>
+        <a href="../components/stat-card.html" class="demo-sidebar__link">Stat Card</a>
+        <a href="../components/description-list.html" class="demo-sidebar__link">Description List</a>
+        <a href="../components/result.html" class="demo-sidebar__link">Result</a>
+        <a href="../components/truncated-text.html" class="demo-sidebar__link">Truncated Text</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Navigation</div>
+        <a href="../components/nav.html" class="demo-sidebar__link">Navigation</a>
+        <a href="../components/tabs.html" class="demo-sidebar__link">Tabs</a>
+        <a href="../components/breadcrumb.html" class="demo-sidebar__link">Breadcrumb</a>
+        <a href="../components/pagination.html" class="demo-sidebar__link">Pagination</a>
+        <a href="../components/toolbar.html" class="demo-sidebar__link">Toolbar</a>
+        <a href="../components/bottom-nav.html" class="demo-sidebar__link">Bottom Nav</a>
+        <a href="../components/segmented-control.html" class="demo-sidebar__link">Segmented Control</a>
+        <a href="../components/footer.html" class="demo-sidebar__link">Footer</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Feedback</div>
+        <a href="../components/toast.html" class="demo-sidebar__link">Toast</a>
+        <a href="../components/alert.html" class="demo-sidebar__link">Alert</a>
+        <a href="../components/tooltip.html" class="demo-sidebar__link">Tooltip</a>
+        <a href="../components/empty-state.html" class="demo-sidebar__link">Empty State</a>
+        <a href="../components/spinner.html" class="demo-sidebar__link">Spinner</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Overlay</div>
+        <a href="../components/modal.html" class="demo-sidebar__link">Modal</a>
+        <a href="../components/dropdown.html" class="demo-sidebar__link">Dropdown</a>
+        <a href="../components/context-menu.html" class="demo-sidebar__link">Context Menu</a>
+        <a href="../components/drawer.html" class="demo-sidebar__link">Drawer</a>
+        <a href="../components/popover.html" class="demo-sidebar__link">Popover</a>
+        <a href="../components/command.html" class="demo-sidebar__link">Command</a>
+        <a href="../components/bottom-sheet.html" class="demo-sidebar__link">Bottom Sheet</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Layout</div>
+        <a href="../components/card.html" class="demo-sidebar__link">Card</a>
+        <a href="../components/divider.html" class="demo-sidebar__link">Divider</a>
+        <a href="../components/accordion.html" class="demo-sidebar__link">Accordion</a>
+        <a href="../components/collapsible.html" class="demo-sidebar__link">Collapsible</a>
+        <a href="../components/gallery.html" class="demo-sidebar__link">Gallery</a>
+        <a href="../components/scroll-area.html" class="demo-sidebar__link">Scroll Area</a>
+        <a href="../components/hero.html" class="demo-sidebar__link">Hero</a>
+        <a href="../components/prose.html" class="demo-sidebar__link">Prose & Editorial</a>
+        <a href="../components/admin-layout.html" class="demo-sidebar__link">Admin Layout</a>
+        <a href="../components/page-header.html" class="demo-sidebar__link">Page Header</a>
+        <a href="../components/admin-page.html" class="demo-sidebar__link">Admin Page</a>
+        <a href="../components/admin-form.html" class="demo-sidebar__link">Admin Form Layout</a>
+        <a href="../components/media-library.html" class="demo-sidebar__link">Media Library</a>
+      </div>
+      <div class="demo-sidebar__group">
+        <div class="demo-sidebar__label">Action</div>
+        <a href="../components/button.html" class="demo-sidebar__link">Button</a>
+        <a href="../components/theme-toggle.html" class="demo-sidebar__link">Theme Toggle</a>
+        <a href="../components/kbd.html" class="demo-sidebar__link">Kbd</a>
+        <a href="../components/sortable.html" class="demo-sidebar__link">Sortable</a>
+        <a href="../components/search.html" class="demo-sidebar__link">Search</a>
+        <a href="../components/icon-btn.html" class="demo-sidebar__link">Icon Button</a>
+        <a href="../components/copy-button.html" class="demo-sidebar__link">Copy Button</a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: var(--ds-space-4); border-top: 1px solid var(--ds-color-border-subtle);">
+        <button class="ds-btn ds-btn--ghost ds-btn--sm" data-toggle-theme style="width: 100%;">Toggle Theme</button>
+      </div>
+    </aside>
+
+    <main class="demo-main">
+
+      <header>
+        <h1>Checkbox</h1>
+        <p>Custom-drawn checkbox: a native input restyled inside a label wrapper.</p>
+        <div class="demo-meta">
+          <span class="ds-badge">Form</span>
+          <code>@import '@adamarant/designsystem/components/checkbox';</code>
+        </div>
+      </header>
+
+
+    <section class="demo-example">
+      <h2>Basic</h2>
+      <div class="demo-preview">
+        <label class="ds-checkbox"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="checkbox" /> Remember me</label>
+<label class="ds-checkbox"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="checkbox" checked /> Subscribe to updates</label>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;label class=&quot;ds-checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt; Remember me&lt;/label&gt;
+&lt;label class=&quot;ds-checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot; checked /&gt; Subscribe to updates&lt;/label&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>With description</h2>
+      <div class="demo-preview">
+        <label class="ds-checkbox">
+  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="checkbox" checked />
+  <span class="ds-checkbox__content">
+    <span class="ds-checkbox__label">Email notifications</span>
+    <span class="ds-checkbox__description">Get notified when someone mentions you in a comment.</span>
+  </span>
+</label>
+<label class="ds-checkbox">
+  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="checkbox" />
+  <span class="ds-checkbox__content">
+    <span class="ds-checkbox__label">Weekly digest</span>
+    <span class="ds-checkbox__description">A summary of activity delivered every Monday.</span>
+  </span>
+</label>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;label class=&quot;ds-checkbox&quot;&gt;
+  &lt;input type=&quot;checkbox&quot; checked /&gt;
+  &lt;span class=&quot;ds-checkbox__content&quot;&gt;
+    &lt;span class=&quot;ds-checkbox__label&quot;&gt;Email notifications&lt;/span&gt;
+    &lt;span class=&quot;ds-checkbox__description&quot;&gt;Get notified when someone mentions you in a comment.&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/label&gt;
+&lt;label class=&quot;ds-checkbox&quot;&gt;
+  &lt;input type=&quot;checkbox&quot; /&gt;
+  &lt;span class=&quot;ds-checkbox__content&quot;&gt;
+    &lt;span class=&quot;ds-checkbox__label&quot;&gt;Weekly digest&lt;/span&gt;
+    &lt;span class=&quot;ds-checkbox__description&quot;&gt;A summary of activity delivered every Monday.&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/label&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>States</h2>
+      <div class="demo-preview">
+        <label class="ds-checkbox"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="checkbox" /> Unchecked</label>
+<label class="ds-checkbox"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="checkbox" checked /> Checked</label>
+<label class="ds-checkbox"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="checkbox" disabled /> Disabled</label>
+<label class="ds-checkbox"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="checkbox" checked disabled /> Checked disabled</label>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;label class=&quot;ds-checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt; Unchecked&lt;/label&gt;
+&lt;label class=&quot;ds-checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot; checked /&gt; Checked&lt;/label&gt;
+&lt;label class=&quot;ds-checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Disabled&lt;/label&gt;
+&lt;label class=&quot;ds-checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Checked disabled&lt;/label&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>Sizes</h2>
+      <div class="demo-preview">
+        <label class="ds-checkbox ds-checkbox--sm"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="checkbox" checked /> Small</label>
+<label class="ds-checkbox"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="checkbox" checked /> Default</label>
+<label class="ds-checkbox ds-checkbox--lg"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="checkbox" checked /> Large</label>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;label class=&quot;ds-checkbox ds-checkbox--sm&quot;&gt;&lt;input type=&quot;checkbox&quot; checked /&gt; Small&lt;/label&gt;
+&lt;label class=&quot;ds-checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot; checked /&gt; Default&lt;/label&gt;
+&lt;label class=&quot;ds-checkbox ds-checkbox--lg&quot;&gt;&lt;input type=&quot;checkbox&quot; checked /&gt; Large&lt;/label&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-api">
+      <h2>API</h2>
+      <table class="ds-table">
+        <thead><tr><th>Class</th><th>Type</th></tr></thead>
+        <tbody><tr><td><code>.ds-checkbox</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-checkbox.ds-checkbox__content</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-checkbox.ds-checkbox__label</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-checkbox.ds-checkbox__description</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-checkbox--sm</code></td><td>Size</td></tr>
+          <tr><td><code>.ds-checkbox--lg</code></td><td>Size</td></tr></tbody>
+      </table>
+    </section>
+
+    <nav class="demo-nav-footer">
+      <a href="input.html">&larr; Input</a>
+      <a href="radio.html">Radio &rarr;</a>
+    </nav>
+    </main>
+  </div>
+
+  <script src="../_shared/demo.js"></script>
+
+</body>
+</html>
