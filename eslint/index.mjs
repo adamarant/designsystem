@@ -28,8 +28,12 @@ function knownClasses() {
   const set = new Set()
   try {
     const css = readFileSync(CSS_BUNDLE, 'utf8')
-    for (const m of css.matchAll(/\.(ds-[a-zA-Z0-9_-]+(?:\\:[a-zA-Z0-9_-]+)*)/g)) {
-      set.add(m[1].replace(/\\:/g, ':'))
+    // Class names can carry variant prefixes (`hover\:`, `md\:`, …) and escaped
+    // slashes in fractional utilities (`ds-top-1\/2`). Capture an optional run of
+    // `prefix\:` segments before the `ds-` base, and treat both `\:` and `\/` as
+    // in-name escapes, so `.hover\:ds-scale-105` and `.ds-top-1\/2` are recognised.
+    for (const m of css.matchAll(/\.((?:[a-zA-Z0-9_-]+\\:)*ds-[a-zA-Z0-9_-]+(?:\\[:/][a-zA-Z0-9_-]+)*)/g)) {
+      set.add(m[1].replace(/\\([:/])/g, '$1'))
     }
   } catch {
     /* fail-open: nessun CSS, nessun report */
