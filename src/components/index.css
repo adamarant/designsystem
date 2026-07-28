@@ -76,6 +76,7 @@
 /* === Action — Trigger operations and commands === */
 @import './button.css';
 @import './icon-btn.css';
+@import './icon-box.css';
 @import './copy-button.css';
 @import './kbd.css';
 @import './search.css';

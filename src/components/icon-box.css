@@ -1,0 +1,63 @@
+/* ==========================================================================
+   Component: Icon Box
+   A square, centred container for an icon. Not interactive — that is
+   `.ds-icon-btn`.
+
+   Why it exists: twelve of these across four consumers, every one rebuilt by
+   hand as `ds-w-10 ds-h-10 ds-rounded-xl ds-flex ds-items-center
+   ds-justify-center` plus a fill. Two of them — cortex and riccardo's StatCard
+   — are the same line of code copied between projects, accent prop included.
+   Five utilities to say "icon in a box" is soup by the DS's own budget, and the
+   budget was right: the component was missing (owner-approved 28 Jul 2026).
+
+   Usage:
+     <div class="ds-icon-box"><Icon /></div>                 40px, muted fill
+     <div class="ds-icon-box ds-icon-box--sm"><Icon /></div>  32px
+     <div class="ds-icon-box ds-icon-box--xl"><Icon /></div>  64px
+     <div class="ds-icon-box ds-bg-accent-blue-subtle ds-text-accent-blue">
+
+   The fill stays overridable on purpose: the StatCard pattern passes an accent
+   pair from the consumer, so the component sets a neutral default rather than
+   locking the colour in.
+   ========================================================================== */
+
+.ds-icon-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--ds-size-3);
+  height: var(--ds-size-3);
+  border-radius: var(--ds-radius-lg);
+  background-color: var(--ds-color-surface-muted);
+  color: var(--ds-color-text-secondary);
+
+  /* Sizes follow the shared size scale, same steps as button and input, so an
+     icon box lines up with the controls beside it. */
+  &--sm {
+    width: var(--ds-size-2);
+    height: var(--ds-size-2);
+  }
+
+  &--lg {
+    width: var(--ds-size-4);
+    height: var(--ds-size-4);
+    border-radius: var(--ds-radius-xl);
+  }
+
+  &--xl {
+    width: var(--ds-size-6);
+    height: var(--ds-size-6);
+    border-radius: var(--ds-radius-2xl);
+  }
+
+  /* Round, for avatar-adjacent uses (initials, status dots). */
+  &--round {
+    border-radius: var(--ds-radius-full);
+  }
+
+  /* No fill — just the geometry, for when the icon carries its own colour. */
+  &--plain {
+    background-color: transparent;
+  }
+}
