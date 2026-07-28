@@ -32,14 +32,21 @@ if (!fs.existsSync(targetDir)) {
 
 const EXTENSIONS = [".css", ".tsx", ".jsx", ".html", ".vue", ".svelte"];
 
-/* v0.32.0 — background utilities renamed so the class names match the tokens
-   they already resolved to. Old names still ship as deprecated aliases with
-   identical declarations, so this rewrite is visually a no-op. */
+/* v0.33.0 — background utilities renamed to the rule foundations/colors states:
+   color-bg is the only bg token, everything else is a surface. Old names still
+   ship as deprecated aliases with identical declarations, so this rewrite is
+   visually a no-op. Longest keys first: ds-bg-surface-muted must be rewritten
+   before ds-bg-surface would match its prefix. */
 const BG_SURFACE_RENAMES = {
-  "ds-bg-muted": "ds-bg-surface-muted",
-  "ds-bg-elevated": "ds-bg-surface-elevated",
-  "ds-bg-subtle": "ds-bg-surface",
-  "ds-bg-nav": "ds-bg-surface",
+  "ds-bg-surface-muted": "ds-surface-muted",
+  "ds-bg-surface-elevated": "ds-surface-elevated",
+  "ds-bg-surface": "ds-surface-plain",
+  "ds-bg-elevated": "ds-surface-elevated",
+  "ds-bg-muted": "ds-surface-muted",
+  "ds-bg-subtle": "ds-surface-plain",
+  "ds-bg-hover": "ds-surface-hover",
+  "ds-bg-nav": "ds-surface-plain",
+  "ds-bg-base": "ds-bg",
 };
 const results = { auto: [], manual: [], info: [] };
 

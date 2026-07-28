@@ -244,6 +244,37 @@ export default function ColorsPage() {
       </section>
 
       <section className="demo-section">
+        <h2 className="demo-section__title">Utility classes</h2>
+        <p className="demo-section__description">
+          The tokens above are CSS variables. These are the classes that apply them,
+          and they follow the same rule: <code>ds-bg</code> is the page, everything
+          else is a surface. One class, one token.
+        </p>
+        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--ds-space-3);">
+            ${[
+              ["ds-bg", "color-bg", "Page background"],
+              ["ds-surface-plain", "color-surface", "Card, panel, input"],
+              ["ds-surface-muted", "color-surface-muted", "Badge, chip, kbd, toggle off"],
+              ["ds-surface-elevated", "color-surface-elevated", "Raised above muted"],
+              ["ds-surface-hover", "color-surface-hover", "Hover state"],
+              ["ds-surface-active", "color-surface-active", "Selected / active state"],
+              ["ds-bg-inverted", "color-inverted", "Inverted block (sets text colour too)"],
+              ["ds-bg-overlay", "color-overlay", "Scrim behind modals"],
+            ].map(([cls, token, note]) => `
+              <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
+                <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
+                <div>
+                  <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">.${cls}</div>
+                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${note} — var(--ds-${token})</div>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        ` }} />
+      </section>
+
+      <section className="demo-section">
         <h2 className="demo-section__title">Deprecated (do not use)</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--ds-space-3); opacity: 0.5;">
