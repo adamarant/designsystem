@@ -20,6 +20,19 @@ describe("SiteHeader", () => {
     expect(
       links.some((l) => l.closest("a")?.getAttribute("aria-current") === "page"),
     ).toBe(true);
+    /* aria-current alone is invisible: nav.css paints the active item through
+       .ds-nav__link--active, so the class has to travel with the attribute. */
+    expect(
+      links.every((l) =>
+        l.closest("a")?.className.includes("ds-nav__link--active"),
+      ),
+    ).toBe(true);
+    const inactive = screen.getAllByText("Home");
+    expect(
+      inactive.some((l) =>
+        l.closest("a")?.className.includes("ds-nav__link--active"),
+      ),
+    ).toBe(false);
   });
 
   it("burger opens the mobile panel, Escape closes it and restores scroll", async () => {
