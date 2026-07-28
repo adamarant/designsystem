@@ -12,6 +12,58 @@ export default function ColorsPage() {
       </div>
 
       <section className="demo-section">
+        <h2 className="demo-section__title">Elevation</h2>
+        <p className="demo-section__description">
+          Four surface tokens, one ladder. Each rung sits <em>on top of</em> the one
+          before it, so pick by what your element is stacked on &mdash; not by how
+          light or dark you want it.
+        </p>
+        <div className="demo-preview">
+          <div style={{ background: "var(--ds-color-bg)", padding: "var(--ds-space-5)", borderRadius: "var(--ds-radius-lg)", border: "1px solid var(--ds-color-border)" }}>
+            <div style={{ fontSize: "var(--ds-text-xs)", fontFamily: "var(--ds-font-mono)", color: "var(--ds-color-text-tertiary)", marginBlockEnd: "var(--ds-space-3)" }}>
+              0 &middot; --ds-color-bg &mdash; the page
+            </div>
+            <div style={{ background: "var(--ds-color-surface)", padding: "var(--ds-space-5)", borderRadius: "var(--ds-radius-lg)", border: "1px solid var(--ds-color-border)" }}>
+              <div style={{ fontSize: "var(--ds-text-xs)", fontFamily: "var(--ds-font-mono)", color: "var(--ds-color-text-tertiary)", marginBlockEnd: "var(--ds-space-3)" }}>
+                1 &middot; --ds-color-surface &mdash; a card on the page
+              </div>
+              <div style={{ background: "var(--ds-color-surface-muted)", padding: "var(--ds-space-5)", borderRadius: "var(--ds-radius-md)" }}>
+                <div style={{ fontSize: "var(--ds-text-xs)", fontFamily: "var(--ds-font-mono)", color: "var(--ds-color-text-tertiary)", marginBlockEnd: "var(--ds-space-3)" }}>
+                  2 &middot; --ds-color-surface-muted &mdash; an element on the card
+                </div>
+                <div style={{ background: "var(--ds-color-surface-elevated)", padding: "var(--ds-space-4)", borderRadius: "var(--ds-radius-md)" }}>
+                  <div style={{ fontSize: "var(--ds-text-xs)", fontFamily: "var(--ds-font-mono)", color: "var(--ds-color-text-tertiary)" }}>
+                    3 &middot; --ds-color-surface-elevated &mdash; an element on the muted one
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p className="demo-section__description">
+          <strong>The ladder climbs in dark and inverts in light, on purpose.</strong> In
+          dark each rung is lighter than the one below (luminance .0028 &rarr; .0048
+          &rarr; .0093 &rarr; .0266). In light you cannot go lighter than the white
+          card, so depth is drawn the other way: the page is grey, the card is white,
+          and nested fills go <em>darker</em>. Same ladder, same tokens, opposite
+          direction &mdash; which is why you choose by stacking position and never by
+          the colour you have in mind.
+        </p>
+        <p className="demo-section__description">
+          <strong>Resting elevation is colour; lift is shadow.</strong> The rungs above
+          are the resting state. When something rises on interaction &mdash; a card on
+          hover, a dropdown opening &mdash; that is <code>--ds-shadow-sm/md/lg</code>,
+          used by 18 components and documented in{" "}
+          <a href="/foundations/effects">Effects</a>. Two mechanisms, one concept.
+        </p>
+        <p className="demo-section__description">
+          <strong>Not rungs:</strong> <code>--ds-color-surface-active</code> and every{" "}
+          <code>-hover</code> token are <em>states</em>, on a different axis. An active
+          sidebar item is not stacked higher than its neighbours; it is selected.
+        </p>
+      </section>
+
+      <section className="demo-section">
         <h2 className="demo-section__title">Background</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--ds-space-3);">
@@ -35,13 +87,13 @@ export default function ColorsPage() {
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--ds-space-3);">
             ${[
-              ["color-surface", "Card, panel, input", "Base surface"],
+              ["color-surface", "Card, panel, input", "Rung 1 — on top of the page"],
               ["color-surface-hover", "Surface hover state", ""],
-              ["color-surface-muted", "Badge, chip, kbd, toggle off", "Neutral component fill"],
+              ["color-surface-muted", "Badge, chip, kbd, toggle off", "Rung 2 — on top of a card"],
               ["color-surface-muted-hover", "Hover of muted", ""],
-              ["color-surface-elevated", "Raised above muted", "Visual layer above muted"],
+              ["color-surface-elevated", "Rung 3 — on top of muted", "See Elevation above"],
               ["color-surface-elevated-hover", "Hover of elevated", ""],
-              ["color-surface-active", "Sidebar active, tab selected", "Same value as elevated, different semantics"],
+              ["color-surface-active", "Sidebar active, tab selected", "A state, not a rung — same value as elevated in light, distinct in dark"],
             ].map(([token, label, note]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3); padding: var(--ds-space-2);">
                 <div style="width: 40px; height: 40px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); flex-shrink: 0; background: var(--ds-${token});"></div>
