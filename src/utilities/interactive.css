@@ -106,12 +106,25 @@
   cursor: grabbing;
 }
 
-/* --- Grip Icon (secondary → primary on group hover) --- */
+/* --- Grip Icon (secondary → primary on group hover) ---
+
+   @deprecated 28 Jul 2026 — this is one hardcoded instance of a mechanism the
+   system already has generically. Replace with:
+       ds-text-secondary  +  group-hover:ds-text-primary
+   which is the same two declarations, composable on any element, and already
+   listens to both .group and .ds-group.
+
+   It also carried a bug the generic rule does not: it only matched `.group`,
+   so a consumer marking its row with `.ds-group` — the class this DS actually
+   defines — got no hover at all. Fixed below while it lives out its deprecation.
+
+   Three uses, all in cortex. Remove in the next major. */
 .ds-grip {
   color: var(--ds-color-text-secondary);
   transition: color var(--ds-duration-fast) var(--ds-ease-default);
 }
-.group:hover .ds-grip {
+.group:hover .ds-grip,
+.ds-group:hover .ds-grip {
   color: var(--ds-color-text);
 }
 

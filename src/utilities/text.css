@@ -215,7 +215,17 @@
 .ds-font-mono { font-family: var(--ds-font-mono); }
 .ds-font-sans { font-family: var(--ds-font-sans); }
 
-/* --- Border --- */
+/* --- Border ---
+
+   Two axes share the `ds-border-` prefix and they are not interchangeable:
+
+     edge      ds-border · -t · -b · -l · -r · -y · -none
+               set a 1px solid border on some side, colour included
+     colour    ds-border-error · -success · -interactive · -hover · -active
+               set only border-color, on a border something else already drew
+
+   `ds-border-t` draws a line; `ds-border-error` recolours one. Using the second
+   without the first sets a colour on a border that is not there. --- */
 .ds-border      { border: 1px solid var(--ds-color-border); }
 .ds-border-t    { border-block-start: 1px solid var(--ds-color-border); }
 .ds-border-b    { border-block-end: 1px solid var(--ds-color-border); }
@@ -231,6 +241,9 @@
 .ds-border-hover       { border-color: var(--ds-color-border-hover); }
 .ds-border-active      { border-color: var(--ds-color-border-active); }
 .ds-border-nav         { border-color: var(--ds-color-nav-border); }
+/* @deprecated 28 Jul 2026 — built on --ds-color-nav-border, itself deprecated,
+   and unused across all 21 consumers. Use .ds-border for the default border
+   colour. Removed in the next major, with its token. */
 
 /* --- Divide --- */
 .ds-divide-y > * + * { border-block-start: 1px solid var(--ds-color-border); }
