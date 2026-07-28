@@ -1,18 +1,6 @@
 import { colorUtilities, colorUtilitiesByProperty } from "@/lib/color-utilities"
 import { colorTokensByGroup, unannotatedTokens } from "@/lib/color-tokens"
 
-/** `--ds-color-surface-muted` and `.ds-bg-muted` both read as "SURFACE MUTED":
- *  the name a person says out loud, with the machinery stripped off. */
-function humanName(technical: string) {
-  return technical
-    .replace(/^--ds-color-bg\b/, "page background")
-    .replace(/^--ds-color-/, "")
-    .replace(/^ds-bg\b/, "page background")
-    .replace(/^ds-bg-/, "background ")
-    .replace(/^ds-(text|border|surface)-?/, "$1 ")
-    .replace(/-/g, " ")
-    .trim()
-}
 
 export default function ColorsPage() {
   const utilities = colorUtilities()
@@ -88,15 +76,17 @@ export default function ColorsPage() {
                 <div key={t.name} style={{ display: "flex", alignItems: "flex-start", gap: "var(--ds-space-4)", padding: "var(--ds-space-3)", opacity: t.deprecated ? 0.55 : 1 }}>
                   <div style={{ width: 72, height: 72, flexShrink: 0, borderRadius: "var(--ds-radius-lg)", border: "1px solid var(--ds-color-border)", background: `var(${t.name})` }} />
                   <div style={{ minWidth: 0 }}>
-                    <div className="ds-overline">{humanName(t.name)}</div>
-                    <div className="ds-text-lg" style={{ marginBlockStart: "var(--ds-space-1)" }}>
-                      {t.usage ?? t.sourceNote ?? <span style={{ color: "var(--ds-color-text-tertiary)" }}>No guidance yet.</span>}
+                    <div className="ds-overline">
+                      {t.light}{t.dark ? ` / ${t.dark}` : " · both themes"}
                     </div>
-                    <div className="ds-text-sm" style={{ color: "var(--ds-color-text-tertiary)", fontFamily: "var(--ds-font-mono)", marginBlockStart: "var(--ds-space-2)" }}>
-                      {t.name} &middot; {t.light}{t.dark ? ` / ${t.dark}` : " (both themes)"}
+                    <div className="ds-text-xl" style={{ fontFamily: "var(--ds-font-mono)", marginBlockStart: "var(--ds-space-1)", wordBreak: "break-word" }}>
+                      {t.name}
+                    </div>
+                    <div className="ds-text-base ds-text-secondary" style={{ marginBlockStart: "var(--ds-space-2)" }}>
+                      {t.usage ?? t.sourceNote ?? <span className="ds-text-tertiary">No guidance yet.</span>}
                     </div>
                     {t.deprecated && (
-                      <div className="ds-text-sm" style={{ color: "var(--ds-color-warning)", marginBlockStart: "var(--ds-space-1)" }}>
+                      <div className="ds-text-sm" style={{ color: "var(--ds-color-warning)", marginBlockStart: "var(--ds-space-2)" }}>
                         deprecated &mdash; do not use in new code
                       </div>
                     )}
@@ -149,15 +139,19 @@ export default function ColorsPage() {
                   <div key={u.cls} style={{ display: "flex", alignItems: "flex-start", gap: "var(--ds-space-4)", padding: "var(--ds-space-3)", opacity: u.replacedBy ? 0.55 : 1 }}>
                     <div style={{ width: 72, height: 72, flexShrink: 0, borderRadius: "var(--ds-radius-lg)", border: "1px solid var(--ds-color-border)", background: `var(${u.token})` }} />
                     <div style={{ minWidth: 0 }}>
-                      <div className="ds-overline">{humanName(u.cls)}</div>
-                      <div className="ds-text-lg" style={{ fontFamily: "var(--ds-font-mono)", marginBlockStart: "var(--ds-space-1)" }}>.{u.cls}</div>
-                      <div className="ds-text-sm" style={{ color: "var(--ds-color-text-tertiary)", fontFamily: "var(--ds-font-mono)", marginBlockStart: "var(--ds-space-2)" }}>
-                        {u.property}: var({u.token})
-                        {u.blended ? " (50% mix)" : ""}
-                        {u.alsoSets?.length ? ` + ${u.alsoSets.join(", ")}` : ""}
+                      <div className="ds-overline">
+                        {u.property}
+                        {u.blended ? " · 50% mix" : ""}
+                        {u.alsoSets?.length ? ` · + ${u.alsoSets.join(", ")}` : ""}
+                      </div>
+                      <div className="ds-text-xl" style={{ fontFamily: "var(--ds-font-mono)", marginBlockStart: "var(--ds-space-1)", wordBreak: "break-word" }}>
+                        .{u.cls}
+                      </div>
+                      <div className="ds-text-base ds-text-secondary" style={{ fontFamily: "var(--ds-font-mono)", marginBlockStart: "var(--ds-space-2)" }}>
+                        var({u.token})
                       </div>
                       {u.replacedBy && (
-                        <div className="ds-text-sm" style={{ color: "var(--ds-color-warning)", marginBlockStart: "var(--ds-space-1)" }}>
+                        <div className="ds-text-sm" style={{ color: "var(--ds-color-warning)", marginBlockStart: "var(--ds-space-2)" }}>
                           deprecated &mdash; use .{u.replacedBy}
                         </div>
                       )}
