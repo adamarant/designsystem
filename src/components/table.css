@@ -56,7 +56,7 @@
   padding: var(--ds-space-3) var(--ds-space-4);
   font-weight: var(--ds-weight-medium);
   font-size: var(--ds-text-sm);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   text-transform: uppercase;
   letter-spacing: var(--ds-tracking-wide);
   border-block-end: 1px solid var(--ds-color-border);
@@ -324,7 +324,7 @@
   padding: var(--ds-space-3) var(--ds-space-4);
   border-block-start: 1px solid var(--ds-color-border);
   font-size: var(--ds-text-sm);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
 }
 
 /* --- Responsive: card-style stacking on mobile --- */
@@ -355,7 +355,7 @@
     min-width: 8rem;
     font-size: var(--ds-text-xs);
     font-weight: var(--ds-weight-medium);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     text-transform: uppercase;
     letter-spacing: var(--ds-tracking-wide);
   }

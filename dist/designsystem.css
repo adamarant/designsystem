@@ -4953,7 +4953,7 @@ hr {
 .ds-stat-card__label {
 
     font-size: var(--ds-text-sm);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
   }
 .ds-stat-card__value {
 
@@ -4966,7 +4966,7 @@ hr {
 .ds-stat-card__detail {
 
     font-size: var(--ds-text-xs);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     margin-block-start: var(--ds-space-0-5);
   }
 .ds-stat-card__icon {
@@ -5040,7 +5040,7 @@ hr {
   padding: var(--ds-space-3) var(--ds-space-4);
   font-weight: var(--ds-weight-medium);
   font-size: var(--ds-text-sm);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   text-transform: uppercase;
   letter-spacing: var(--ds-tracking-wide);
   border-block-end: 1px solid var(--ds-color-border);
@@ -5308,7 +5308,7 @@ hr {
   padding: var(--ds-space-3) var(--ds-space-4);
   border-block-start: 1px solid var(--ds-color-border);
   font-size: var(--ds-text-sm);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
 }
 
 /* --- Responsive: card-style stacking on mobile --- */
@@ -5340,7 +5340,7 @@ hr {
     min-width: 8rem;
     font-size: var(--ds-text-xs);
     font-weight: var(--ds-weight-medium);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     text-transform: uppercase;
     letter-spacing: var(--ds-tracking-wide);
   }
@@ -5680,7 +5680,7 @@ hr {
   display: flex;
   justify-content: space-between;
   font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   margin-block-end: var(--ds-space-1-5);
 }
 
@@ -5844,7 +5844,7 @@ hr {
     border: 2px solid var(--ds-color-border);
     font-size: var(--ds-text-xs);
     font-weight: var(--ds-weight-medium);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     background-color: var(--ds-color-surface);
     flex-shrink: 0;
     transition:
@@ -5882,7 +5882,7 @@ hr {
 .ds-step__description {
 
     font-size: var(--ds-text-xs);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
   }
 .ds-step__connector {
 
@@ -7087,7 +7087,7 @@ hr {
 .ds-pagination__info {
 
     font-size: var(--ds-text-sm);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     white-space: nowrap;
   }
 .ds-pagination--compact .ds-pagination__item,
@@ -10100,7 +10100,7 @@ hr {
 .ds-card__description {
 
     font-size: var(--ds-text-sm);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     margin-block-start: var(--ds-space-1);
   }
 .ds-card__body {

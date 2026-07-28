@@ -42,7 +42,7 @@
   display: flex;
   justify-content: space-between;
   font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   margin-block-end: var(--ds-space-1-5);
 }
 
@@ -149,7 +149,7 @@
     border: 2px solid var(--ds-color-border);
     font-size: var(--ds-text-xs);
     font-weight: var(--ds-weight-medium);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     background-color: var(--ds-color-surface);
     flex-shrink: 0;
     transition:
@@ -194,7 +194,7 @@
 
   &__description {
     font-size: var(--ds-text-xs);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
   }
 
   /* ---------------------------------------------------------------------------
