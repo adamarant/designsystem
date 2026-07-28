@@ -14437,7 +14437,14 @@ a:hover .ds-sortable__handle,
                set only border-color, on a border something else already drew
 
    `ds-border-t` draws a line; `ds-border-error` recolours one. Using the second
-   without the first sets a colour on a border that is not there. --- */
+   without the first sets a colour on a border that is not there.
+
+   The colour utilities take the SOLID token (--ds-color-error), not the 20%
+   alpha (--ds-color-error-border). Components go the other way — alert, badge
+   and button use the alpha — and both are right for what they do: a component
+   pairs the alpha border with a -subtle fill and solid text, the full triplet,
+   where a soft outline reads correctly. A bare utility has no fill behind it, so
+   a 20% line on white would be all but invisible. --- */
 .ds-border { border: 1px solid var(--ds-color-border); }
 .ds-border-t { border-block-start: 1px solid var(--ds-color-border); }
 .ds-border-b { border-block-end: 1px solid var(--ds-color-border); }
@@ -14449,7 +14456,16 @@ a:hover .ds-sortable__handle,
 /* --- Border Color --- */
 .ds-border-error { border-color: var(--ds-color-error); }
 .ds-border-success { border-color: var(--ds-color-success); }
+.ds-border-warning { border-color: var(--ds-color-warning); }
+.ds-border-info { border-color: var(--ds-color-info); }
 .ds-border-interactive { border-color: var(--ds-color-interactive); }
+
+/* Accent borders, completing the set that already had text and background.
+   Owner-approved 28 Jul 2026. */
+.ds-border-accent-blue { border-color: var(--ds-color-accent-blue); }
+.ds-border-accent-purple { border-color: var(--ds-color-accent-purple); }
+.ds-border-accent-green { border-color: var(--ds-color-accent-green); }
+.ds-border-accent-orange { border-color: var(--ds-color-accent-orange); }
 .ds-border-hover { border-color: var(--ds-color-border-hover); }
 .ds-border-active { border-color: var(--ds-color-border-active); }
 .ds-border-nav { border-color: var(--ds-color-nav-border); }
