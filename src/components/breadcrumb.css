@@ -62,12 +62,12 @@
      --------------------------------------------------------------------------- */
 
   &__link {
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     text-decoration: none;
     transition: color var(--ds-duration-fast) var(--ds-ease-out);
 
     &:hover {
-      color: var(--ds-color-text-secondary);
+      color: var(--ds-color-text);
     }
 
     &:focus-visible {
