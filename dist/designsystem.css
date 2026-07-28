@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.31.2 */
+/* @ds/designsystem v0.32.0 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -14204,30 +14204,50 @@ a:hover .ds-sortable__handle,
 .ds-text-always-black { color: var(--ds-color-static-black); }
 
 /* --- Background Color ---
-   The surface-* rename was only half done: the TOKENS moved from bg-* to
-   surface-* (tokens/colors.css), the CLASS names stayed behind. So a utility
-   read `bg-muted` while already resolving `--ds-color-surface-muted`, and the
-   deprecation hook — which cannot tell a class from a token — flagged working
-   code and pointed at a class that did not exist. Names now follow the tokens
+   One rule, the one foundations/colors already states: "color-bg is the only bg
+   token. Everything else is surface." A background is the page — singular, no
+   variants, no states. Anything carrying a variant or an interaction state is a
+   surface. The tokens were migrated to that rule long ago; the utility names
+   were not, so a class still read `bg-muted` while resolving
+   `--ds-color-surface-muted`. Names now follow the tokens
    (owner-approved 27 Jul 2026). */
+.ds-bg { background-color: var(--ds-color-bg); }
+.ds-bg-inverted { background-color: var(--ds-color-inverted); color: var(--ds-color-on-inverted); }
+.ds-bg-overlay { background-color: var(--ds-color-overlay); }
+
+/* --- Surface Color ---
+   One utility per surface token, background only. */
+.ds-surface-plain { background-color: var(--ds-color-surface); }
+.ds-surface-muted { background-color: var(--ds-color-surface-muted); }
+.ds-surface-elevated { background-color: var(--ds-color-surface-elevated); }
+.ds-surface-hover { background-color: var(--ds-color-surface-hover); }
+.ds-surface-active { background-color: var(--ds-color-surface-active); }
+
+/* Namespace note: `.ds-surface` further down this file is an older composite
+   (background PLUS border), and its `--hover` sibling is a transition helper
+   rather than a colour. Three overlapping meanings on one prefix is a wart,
+   but renaming those two reaches consumers, so it is tracked separately.
+
+   @deprecated 27 Jul 2026 — previous names, identical declarations, so nothing
+   moves visually while consumers migrate:
+     .ds-bg-base     → .ds-bg
+     .ds-bg-surface  → .ds-surface-plain
+     .ds-bg-subtle   → .ds-surface-plain     (always was the same colour)
+     .ds-bg-muted    → .ds-surface-muted
+     .ds-bg-elevated → .ds-surface-elevated
+     .ds-bg-hover    → .ds-surface-hover
+     .ds-bg-nav      → .ds-surface-plain     (--ds-color-nav-bg is deprecated)
+   `.ds-bg-surface-muted` / `-elevated` shipped in 0.32.0 and retire in the same
+   breath: one release long, one consumer reached.
+   Remove all of these in the next major. Codemod: scripts/codemod.js <dir> --fix */
 .ds-bg-base { background-color: var(--ds-color-bg); }
 .ds-bg-surface { background-color: var(--ds-color-surface); }
 .ds-bg-surface-muted { background-color: var(--ds-color-surface-muted); }
 .ds-bg-surface-elevated { background-color: var(--ds-color-surface-elevated); }
-.ds-bg-inverted { background-color: var(--ds-color-inverted); color: var(--ds-color-on-inverted); }
-.ds-bg-hover { background-color: var(--ds-color-surface-hover); }
-.ds-bg-overlay { background-color: var(--ds-color-overlay); }
-
-/* @deprecated 27 Jul 2026 — previous names. Identical declarations, so nothing
-   moves visually while consumers migrate:
-     .ds-bg-muted    → .ds-bg-surface-muted
-     .ds-bg-elevated → .ds-bg-surface-elevated
-     .ds-bg-subtle   → .ds-bg-surface           (always was the same colour)
-     .ds-bg-nav      → .ds-bg-surface           (--ds-color-nav-bg is deprecated)
-   Remove in the next major. Codemod: scripts/codemod.js <dir> --fix */
 .ds-bg-subtle { background-color: var(--ds-color-surface); }
 .ds-bg-elevated { background-color: var(--ds-color-surface-elevated); }
 .ds-bg-muted { background-color: var(--ds-color-surface-muted); }
+.ds-bg-hover { background-color: var(--ds-color-surface-hover); }
 .ds-bg-nav { background-color: var(--ds-color-nav-bg); }
 
 /* Status backgrounds */
