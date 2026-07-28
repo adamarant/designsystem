@@ -1,6 +1,6 @@
 {
   "name": "@adamarant/designsystem",
-  "version": "0.35.0",
+  "version": "0.35.1",
   "description": "Design system — installable, extensible, indestructible.",
   "main": "dist/designsystem.css",
   "style": "dist/designsystem.css",
@@ -81,7 +81,8 @@
     "./utilities": "./src/utilities/index.css",
     "./js": "./dist/designsystem.js",
     "./tokens/json": "./src/tokens/tokens.json",
-    "./eslint": "./eslint/index.mjs"
+    "./eslint": "./eslint/index.mjs",
+    "./stylelint": "./stylelint/index.mjs"
   },
   "files": [
     "dist/",
