@@ -13,8 +13,8 @@
  */
 
 import stylelint from 'stylelint'
-import { readFileSync } from 'fs'
-import { dirname, join } from 'path'
+import { readFileSync, readdirSync, existsSync } from 'fs'
+import { dirname, join, sep } from 'path'
 import { fileURLToPath } from 'url'
 
 const { createPlugin, utils } = stylelint
@@ -124,6 +124,50 @@ const noOutlineOverride = createPlugin(outlineRule, (primary) => (root, result) 
   })
 })
 
+/**
+ * Tokens the consuming project defines for itself, from anywhere under its own
+ * `src/`. A project legitimately declares `--ds-color-doc-highlight` in
+ * theme.css and uses it in components.css; scoping the check to one file made
+ * that read as a phantom, which is a false positive that would teach people to
+ * ignore the rule.
+ */
+const projectTokenCache = new Map()
+function projectTokens(filePath) {
+  if (!filePath) return new Set()
+  const marker = `${sep}src${sep}`
+  const cut = filePath.lastIndexOf(marker)
+  if (cut === -1) return new Set()
+  const srcRoot = filePath.slice(0, cut + marker.length - 1)
+  if (projectTokenCache.has(srcRoot)) return projectTokenCache.get(srcRoot)
+
+  const found = new Set()
+  const walk = (dir) => {
+    let entries
+    try {
+      entries = readdirSync(dir, { withFileTypes: true })
+    } catch {
+      return
+    }
+    for (const e of entries) {
+      if (e.name === 'node_modules' || e.name === '.next') continue
+      const p = join(dir, e.name)
+      if (e.isDirectory()) walk(p)
+      else if (e.name.endsWith('.css')) {
+        try {
+          for (const m of readFileSync(p, 'utf8').matchAll(/^\s*(--ds-[a-zA-Z0-9-]+)\s*:/gm)) {
+            found.add(m[1])
+          }
+        } catch {
+          // unreadable file: skip rather than fail the lint
+        }
+      }
+    }
+  }
+  if (existsSync(srcRoot)) walk(srcRoot)
+  projectTokenCache.set(srcRoot, found)
+  return found
+}
+
 // ── ds/no-unknown-token ─────────────────────────────────────────────────────
 // The one that needs no hook equivalent because no hook ever caught it: a
 // var(--ds-…) pointing at a token the DS does not define resolves to nothing.
@@ -142,8 +186,9 @@ const noUnknownToken = createPlugin(tokenRule, (primary) => (root, result) => {
   const known = knownTokens()
   if (known.size === 0) return
 
-  // Tokens the file itself defines are legitimate: that is how theming works.
-  const local = new Set()
+  // Tokens the project defines for itself are legitimate: that is how theming
+  // works, and theme.css is usually not the file being linted.
+  const local = projectTokens(root.source?.input?.file)
   root.walkDecls((decl) => { if (decl.prop.startsWith('--ds-')) local.add(decl.prop) })
 
   root.walkDecls((decl) => {
