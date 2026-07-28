@@ -65,7 +65,7 @@
     border: none;
     border-radius: var(--ds-radius-full);
     background: transparent;
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     cursor: pointer;
     transition:
       color var(--ds-duration-fast) var(--ds-ease-default),

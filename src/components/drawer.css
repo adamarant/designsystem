@@ -188,7 +188,7 @@
     border: 0;
     border-radius: var(--ds-radius-md);
     background-color: transparent;
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     font-size: var(--ds-text-lg);
     line-height: var(--ds-leading-none);
     cursor: pointer;

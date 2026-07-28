@@ -194,7 +194,7 @@
     padding: var(--ds-space-8);
     text-align: center;
     font-size: var(--ds-text-sm);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text);
   }
 
   /* Footer */

@@ -137,7 +137,7 @@
   border: none;
   border-radius: var(--ds-radius-sm);
   background: transparent;
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   cursor: pointer;
   transition:
     color var(--ds-duration-fast) var(--ds-ease-default),
@@ -146,7 +146,7 @@
 
 .ds-search__clear:hover {
   background: var(--ds-color-surface-hover);
-  color: var(--ds-color-text-secondary);
+  color: var(--ds-color-text);
 }
 
 /* Dropdown results panel */
@@ -257,7 +257,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--ds-space-4) var(--ds-space-2);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text);
   font-size: var(--ds-text-sm);
 }
 

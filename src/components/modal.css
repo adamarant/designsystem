@@ -81,7 +81,7 @@
     justify-content: center;
     width: 2rem;
     height: 2rem;
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     border-radius: var(--ds-radius-md);
     transition: all var(--ds-duration-fast) var(--ds-ease-default);
     flex-shrink: 0;

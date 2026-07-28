@@ -221,7 +221,7 @@
 .ds-table__empty {
   text-align: center;
   padding: var(--ds-space-12) var(--ds-space-4);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text);
 }
 
 .ds-table__empty td {
