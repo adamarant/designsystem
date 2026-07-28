@@ -185,7 +185,10 @@ export const SiteHeader = forwardRef<HTMLElement, SiteHeaderProps>(
                 <LinkComponent
                   key={item.href}
                   href={item.href}
-                  className="ds-nav__link"
+                  className={cn(
+                    "ds-nav__link",
+                    activeHref === item.href && "ds-nav__link--active",
+                  )}
                   aria-current={activeHref === item.href ? "page" : undefined}
                 >
                   {item.label}
@@ -226,7 +229,10 @@ export const SiteHeader = forwardRef<HTMLElement, SiteHeaderProps>(
                     <LinkComponent
                       key={child.href}
                       href={child.href}
-                      className="ds-nav__link"
+                      className={cn(
+                        "ds-nav__link",
+                        activeHref === child.href && "ds-nav__link--active",
+                      )}
                       aria-current={
                         activeHref === child.href ? "page" : undefined
                       }
@@ -240,7 +246,10 @@ export const SiteHeader = forwardRef<HTMLElement, SiteHeaderProps>(
                 <LinkComponent
                   key={item.href}
                   href={item.href}
-                  className="ds-nav__link"
+                  className={cn(
+                    "ds-nav__link",
+                    activeHref === item.href && "ds-nav__link--active",
+                  )}
                   aria-current={activeHref === item.href ? "page" : undefined}
                   onClick={close}
                 >
