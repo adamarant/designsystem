@@ -169,6 +169,13 @@ function classifyUtility(rawToken) {
     ? rawToken.slice(rawToken.lastIndexOf(':') + 1)
     : rawToken
   if (!token.startsWith('ds-')) return null
+  /* A BEM modifier is not a utility. `ds-surface--hover` is the transition
+     helper on the surface composite, not a background colour, but it sits
+     under the `ds-surface-` prefix added in 0.33.1 and was being counted as
+     styling — flagging `ds-card ds-surface--hover`, which spends no budget at
+     all. The double dash is the tell, and it holds for any component modifier
+     that shares a prefix with a utility family. */
+  if (token.includes('--')) return null
   if (LAYOUT_EXACT.has(token)) return 'layout'
   if (TEXT_EXACT.has(token)) return 'text'
   for (const p of SPACING_PREFIX) if (token.startsWith(p)) return 'spacing'
