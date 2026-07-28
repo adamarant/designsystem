@@ -81,8 +81,7 @@
     "./utilities": "./src/utilities/index.css",
     "./js": "./dist/designsystem.js",
     "./tokens/json": "./src/tokens/tokens.json",
-    "./eslint": "./eslint/index.mjs",
-    "./stylelint": "./stylelint/index.mjs"
+    "./eslint": "./eslint/index.mjs"
   },
   "files": [
     "dist/",
