@@ -50,13 +50,24 @@ const USAGE: Record<string, string> = {
   '--ds-color-on-inverted': 'Text on an inverted block. Always pair the two.',
   '--ds-color-border': 'Default border. The card outline, the divider.',
   '--ds-color-border-subtle': 'A border that should be felt more than seen.',
-  '--ds-color-interactive': 'Links and interactive text.',
   '--ds-color-brand': 'The brand accent. A project retints this and nothing else moves.',
   '--ds-color-overlay': 'The scrim behind a modal.',
   '--ds-color-static-white': 'Stays white in both themes — on a photo, in a badge over an image.',
   '--ds-color-static-black': 'Stays black in both themes.',
   '--ds-color-selection-bg': 'Text selection highlight.',
   '--ds-color-selection-text': 'Text inside a selection.',
+
+  // The alpha convention. Six families follow it: the base is solid, -subtle is
+  // the same colour at 10% as a background fill, -border the same at 20% as an
+  // outline. Reading -subtle as "faint text" is the usual mistake — it is a fill.
+  '--ds-color-interactive-subtle':
+    'The 10% wash behind an interactive element, not a text colour. Pairs with --ds-color-interactive on top.',
+  '--ds-color-interactive-border':
+    'The 20% outline of the interactive colour. It reads grey because --ds-color-interactive is zinc, not a link blue — see that token.',
+  '--ds-color-interactive':
+    'Links and interactive text. Deliberately zinc rather than blue: the accent of this system is --ds-color-brand, and interactive stays neutral so a project can retint the brand without every link moving.',
+  '--ds-color-overlay-subtle':
+    'A 2-3% wash, near invisible by design: a hairline tint to separate a strip from the page without drawing a border.',
   '--ds-color-on-brand': 'Text on a brand-filled surface. Always pair with --ds-color-brand.',
 
   // Status and accent come as triplets: the base is the text and icon colour,
@@ -78,6 +89,40 @@ const USAGE: Record<string, string> = {
 // Group headings open with `/* --- Name ---` and may run over several lines
 // (the Text group carries its contrast table inside the same comment), so the
 // closing `*/` is not required to recognise one.
+/**
+ * `X-hover` is the hover state of `X`, `X-active` the active one. Twelve such
+ * tokens exist and writing twelve sentences would be twelve chances to drift, so
+ * the sentence is derived and the base token is named in it.
+ */
+const STATE_SUFFIX = /-(hover|active)$/
+/**
+ * The alpha convention, held by six families: `X-subtle` is X at 10% as a fill,
+ * `X-border` X at 20% as an outline. `--ds-color-border-subtle` is the exception
+ * and is excluded — it is a solid lighter colour, not an alpha of `border`.
+ */
+const ALPHA_SUFFIX = /-(subtle|border)$/
+const ALPHA_EXCEPT = new Set(['--ds-color-border-subtle'])
+
+function derivedUsage(name: string, annotated: Set<string>): string | undefined {
+  const state = name.match(STATE_SUFFIX)
+  if (state) {
+    const base = name.replace(STATE_SUFFIX, '')
+    if (annotated.has(base)) {
+      return `${state[1] === 'hover' ? 'Hover' : 'Active'} state of ${base}.`
+    }
+  }
+  const alpha = name.match(ALPHA_SUFFIX)
+  if (alpha && !ALPHA_EXCEPT.has(name)) {
+    const base = name.replace(ALPHA_SUFFIX, '')
+    if (annotated.has(base)) {
+      return alpha[1] === 'subtle'
+        ? `${base} at 10%, as a background fill. Put the solid colour on top of it, never this one.`
+        : `${base} at 20%, as an outline. The third of the triplet with the base and -subtle.`
+    }
+  }
+  return undefined
+}
+
 const GROUP_HEADING = /\/\*\s*-{2,}\s*([^-\n][^\n]*?)\s*-{2,}/
 const DECLARATION = /^\s*(--ds-color-[a-zA-Z0-9-]+)\s*:\s*([^;]+);\s*(?:\/\*\s*(.*?)\s*\*\/)?/
 const BLOCK_OPEN = /^\s*([^{}/]+)\{\s*$/
@@ -155,6 +200,18 @@ export function colorTokens(): ColorToken[] {
         ...(USAGE[name] ? { usage: USAGE[name] } : {}),
         ...(deprecatedRun ? { deprecated: true } : {}),
       })
+    }
+  }
+  // Second pass: state variants inherit a sentence naming their base.
+  // Two passes so a derived sentence can itself become a base: accent-blue is
+  // annotated by hand, accent-blue-subtle derives from it, and
+  // accent-blue-subtle-hover would derive from that.
+  for (let pass = 0; pass < 2; pass++) {
+    const annotated = new Set(out.filter((t) => t.usage).map((t) => t.name))
+    for (const t of out) {
+      if (t.usage) continue
+      const derived = derivedUsage(t.name, annotated)
+      if (derived) t.usage = derived
     }
   }
   return out

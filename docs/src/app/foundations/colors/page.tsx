@@ -83,7 +83,11 @@ export default function ColorsPage() {
                       {t.name}
                     </div>
                     <div className="ds-text-base ds-text-secondary" style={{ marginBlockStart: "var(--ds-space-2)" }}>
-                      {t.usage ?? t.sourceNote ?? <span className="ds-text-tertiary">No guidance yet.</span>}
+                      {t.usage ?? t.sourceNote ?? (
+                        <span className="ds-text-tertiary">
+                          {t.deprecated ? "On its way out — see below." : "No guidance yet."}
+                        </span>
+                      )}
                     </div>
                     {t.deprecated && (
                       <div className="ds-text-sm" style={{ color: "var(--ds-color-warning)", marginBlockStart: "var(--ds-space-2)" }}>
