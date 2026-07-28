@@ -152,7 +152,13 @@ const TEXT_PREFIX = [
   'ds-break-', 'ds-line-clamp-',
 ]
 const STYLING_PREFIX = [
-  'ds-bg-', 'ds-border', 'ds-rounded', 'ds-shadow', 'ds-opacity-',
+  /* `ds-surface-` joined the list with 0.33.0, when the background utilities
+     were renamed to follow the tokens. Without it the rule went blind exactly
+     where it used to bite: a consumer running the codemod saw its soup count
+     drop for free, because `ds-surface-muted` classified as nothing while the
+     `ds-bg-muted` it replaced classified as styling. A rename must never buy a
+     budget. */
+  'ds-bg-', 'ds-surface-', 'ds-border', 'ds-rounded', 'ds-shadow', 'ds-opacity-',
   'ds-ring', 'ds-outline', 'ds-animate-', 'ds-transition', 'ds-duration-',
   'ds-ease-', 'ds-blur', 'ds-backdrop-', 'ds-fill-', 'ds-stroke-',
 ]
