@@ -103,7 +103,7 @@
     padding: 0;
     border: none;
     background: none;
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     border-radius: var(--ds-radius-sm);
     cursor: pointer;
     transition: color var(--ds-duration-fast) var(--ds-ease-default);

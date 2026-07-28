@@ -127,7 +127,7 @@
   border: none;
   border-radius: var(--ds-radius-sm);
   background: transparent;
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   cursor: pointer;
   transition:
     color var(--ds-duration-fast) var(--ds-ease-default),
@@ -136,7 +136,7 @@
 
 .ds-combobox__clear:hover {
   background: var(--ds-color-surface-hover);
-  color: var(--ds-color-text-secondary);
+  color: var(--ds-color-text);
 }
 
 /* --- Listbox (dropdown) --- */
@@ -190,7 +190,7 @@
   padding: var(--ds-space-1) var(--ds-space-3);
   font-size: var(--ds-text-2xs);
   font-weight: var(--ds-weight-medium);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   text-transform: uppercase;
   letter-spacing: var(--ds-tracking-wide);
 }
@@ -251,7 +251,7 @@
 /* Option description (secondary text) */
 .ds-combobox__option-desc {
   font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   line-height: var(--ds-leading-snug);
 }
 
@@ -288,7 +288,7 @@
   justify-content: center;
   padding: var(--ds-space-4) var(--ds-space-3);
   font-size: var(--ds-text-sm);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text);
 }
 
 /* --- Loading state --- */
@@ -299,7 +299,7 @@
   gap: var(--ds-space-2);
   padding: var(--ds-space-4) var(--ds-space-3);
   font-size: var(--ds-text-sm);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text);
 }
 
 /* ==========================================================================

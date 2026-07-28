@@ -52,7 +52,7 @@
   }
 
   &__close {
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     padding: var(--ds-space-1);
     border-radius: var(--ds-radius-sm);
     transition: color var(--ds-duration-fast) var(--ds-ease-default);

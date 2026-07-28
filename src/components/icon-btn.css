@@ -36,7 +36,7 @@
   border: none;
   border-radius: var(--ds-radius-lg);
   background: transparent;
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   cursor: pointer;
   flex-shrink: 0;
   transition:
@@ -46,7 +46,7 @@
 
 .ds-icon-btn:hover {
   background-color: var(--ds-color-surface-hover);
-  color: var(--ds-color-text-secondary);
+  color: var(--ds-color-text);
 }
 
 .ds-icon-btn:focus-visible {

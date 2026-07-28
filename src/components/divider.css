@@ -50,7 +50,7 @@
     font-family: var(--ds-font-sans);
     font-size: var(--ds-text-xs);
     font-weight: var(--ds-weight-medium);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     text-transform: uppercase;
     letter-spacing: var(--ds-tracking-wide);
     white-space: nowrap;

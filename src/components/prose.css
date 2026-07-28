@@ -35,7 +35,7 @@
 }
 
 .ds-prose-block p {
-  color: var(--ds-color-text-secondary);
+  color: var(--ds-color-text);
   margin-block-end: 1em;
 }
 
@@ -83,7 +83,7 @@
 .ds-prose-block ol {
   padding-inline-start: 1.5em;
   margin-block-end: 1em;
-  color: var(--ds-color-text-secondary);
+  color: var(--ds-color-text);
 }
 
 .ds-prose-block li {
@@ -138,7 +138,7 @@
 }
 
 .ds-prose-block td {
-  color: var(--ds-color-text-secondary);
+  color: var(--ds-color-text);
 }
 
 /* ==========================================================================
@@ -177,7 +177,7 @@
   font-family: var(--ds-font-sans);
   font-size: var(--ds-text-editorial-lede);
   line-height: var(--ds-leading-normal);
-  color: var(--ds-color-text-secondary);
+  color: var(--ds-color-text);
   margin: 0;
   max-width: 600px;
 }
@@ -193,13 +193,15 @@
 }
 
 .ds-editorial-body {
-  color: var(--ds-color-text-secondary);
+  color: var(--ds-color-text);
   font-size: var(--ds-text-editorial-body);
   line-height: var(--ds-leading-relaxed);
 }
 
-/* Paragraphs inherit from the wrapper (previously forced to primary in v0.10.1).
-   Editorial long-form uses secondary for calmer reading colour (v0.10.2). */
+/* Paragraphs inherit from the wrapper. v0.10.2 moved editorial long-form to
+   secondary for a softer reading colour; §10 (30 Jun 2026) postdates that and
+   makes primary the default for body copy, so the wrapper is primary again and
+   this stays an inherit. */
 .ds-editorial-body p {
   color: inherit;
 }
@@ -329,7 +331,7 @@
 }
 
 .ds-editorial-body td {
-  color: var(--ds-color-text-secondary);
+  color: var(--ds-color-text);
 }
 
 .ds-editorial-body tbody tr:last-child :is(th, td) {

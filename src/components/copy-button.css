@@ -33,7 +33,7 @@
   border: none;
   border-radius: var(--ds-radius-md);
   background: transparent;
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   cursor: pointer;
   flex-shrink: 0;
   transition:
@@ -42,7 +42,7 @@
 
   &:hover {
     background-color: var(--ds-color-surface-hover);
-    color: var(--ds-color-text-secondary);
+    color: var(--ds-color-text);
   }
 
   &:focus-visible {

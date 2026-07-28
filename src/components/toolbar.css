@@ -80,7 +80,7 @@
     font-size: var(--ds-text-xs);
     font-weight: var(--ds-weight-medium);
     font-family: inherit;
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     background: transparent;
     border: 1px solid transparent;
     border-radius: var(--ds-radius-md);
@@ -92,7 +92,7 @@
       border-color var(--ds-duration-fast) var(--ds-ease-default);
 
     &:hover {
-      color: var(--ds-color-text-secondary);
+      color: var(--ds-color-text);
       background: var(--ds-color-surface-hover);
     }
 
@@ -151,7 +151,7 @@
     padding: var(--ds-space-1) var(--ds-space-3);
     font-size: var(--ds-text-xs);
     font-weight: var(--ds-weight-medium);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     border: none;
     border-radius: var(--ds-radius-sm);
     background: transparent;
@@ -161,7 +161,7 @@
       background-color var(--ds-duration-fast) var(--ds-ease-default);
 
     &:hover {
-      color: var(--ds-color-text-secondary);
+      color: var(--ds-color-text);
     }
 
     &--active {

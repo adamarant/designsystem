@@ -158,7 +158,7 @@
     font-weight: var(--ds-weight-medium);
     text-transform: uppercase;
     letter-spacing: var(--ds-tracking-wide);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
   }
 }
 
@@ -182,7 +182,7 @@
     font-weight: var(--ds-weight-medium);
     text-transform: uppercase;
     letter-spacing: var(--ds-tracking-wide);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     margin-block-end: var(--ds-space-3);
   }
 
