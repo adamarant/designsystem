@@ -122,7 +122,7 @@ API. Two axes, never confused:
     Data-driven here is a prop explosion that still can't express it.
 
 The sin is not the choice — it's offering **both** for the same component.
-Full rationale: `infra/ECOSYSTEM_ROADMAP.md` §2 Principle #1.
+Full rationale in the commit that introduced the rule; `ECOSYSTEM_ROADMAP.md` was deleted on 28 Jul 2026.
 
 ### 3. Token Reference — Read the Source
 
@@ -293,16 +293,16 @@ Compiled:       dist/designsystem.css
 ### Living Registry
 
 - `ds.manifest.json` nella root del progetto traccia versione DS, override strutturali, metriche (NON più la narrativa di sessione)
-- A chiusura sessione: `node ~/Projects/generate-manifest.js` rigenera conteggi e `last_session` automaticamente
+- A chiusura sessione: `node ~/Projects/infra/scripts/generate-manifest.js` rigenera conteggi e `last_session` automaticamente
 - **Note**: il campo `last_session_summary` è stato rimosso dallo schema (v2, 12 Apr 2026, sottrazione A). La narrativa vive in `git log` + `DS_HEALTH.md` quando emerge una lezione cross-project
-- Per stato ecosistema: `node ~/Projects/ds-registry.js`
+- Per stato ecosistema: `node ~/Projects/ds-ops/scripts/ds-registry.js`
 - Il manifest va committato in git
 
 ---
 
 ## End-of-Session Checklist
 
-For DS-wide checklist (CONTROLLED MODE, compliance, build, git) → [DS_HEALTH.md](/Projects/DS_HEALTH.md)
+For DS-wide checklist (CONTROLLED MODE, compliance, build, git) → [DS_HEALTH.md](/Projects/infra/DS_HEALTH.md)
 
 **Questa checklist include commit, push, e publish. Eseguire tutti gli step in ordine.**
 
@@ -330,5 +330,5 @@ For DS-wide checklist (CONTROLLED MODE, compliance, build, git) → [DS_HEALTH.m
 - Mai `npm publish` locale: pubblica la CI. Setup, schema tag per-package e gotcha in `infra/DEV_CONVENTIONS.md`.
 
 ### 5. Living Registry
-- [ ] `node ~/Projects/generate-manifest.js` per rigenerare `ds.manifest.json` (aggiorna `last_session` e metriche)
-- [ ] `node ~/Projects/ds-registry.js` per verificare stato ecosistema
+- [ ] `node ~/Projects/infra/scripts/generate-manifest.js` per rigenerare `ds.manifest.json` (aggiorna `last_session` e metriche)
+- [ ] `node ~/Projects/ds-ops/scripts/ds-registry.js` per verificare stato ecosistema
