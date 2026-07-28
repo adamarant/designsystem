@@ -37,7 +37,7 @@
 
 .ds-field__hint {
   font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   line-height: var(--ds-leading-normal);
 }
 

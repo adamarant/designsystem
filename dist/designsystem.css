@@ -868,7 +868,7 @@ hr {
   display: block;
   font-size: var(--ds-text-sm);
   font-weight: var(--ds-weight-medium);
-  color: var(--ds-color-text-secondary);
+  color: var(--ds-color-text);
   margin-block-end: var(--ds-space-1-5);
 }
 
@@ -1220,7 +1220,7 @@ hr {
 .ds-help {
 
   font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   margin-block-start: var(--ds-space-1-5);
 
   
@@ -1593,7 +1593,7 @@ hr {
 
 .ds-field__hint {
   font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   line-height: var(--ds-leading-normal);
 }
 
@@ -4126,7 +4126,7 @@ hr {
 .ds-drop-zone__hint {
 
     font-size: var(--ds-text-xs);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     margin-block-start: calc(-1 * var(--ds-space-1));
   }
 .ds-drop-zone--active {
