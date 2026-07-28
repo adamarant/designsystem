@@ -24,9 +24,14 @@ h4 { font-size: var(--ds-text-xl); }
 h5 { font-size: var(--ds-text-lg); }
 h6 { font-size: var(--ds-text-base); font-weight: var(--ds-weight-medium); }
 
+/* No colour declaration on purpose: <p> inherits primary from `body`
+   (base/reset.css), which is what §10 asks of body copy. Through 0.37.0 this
+   rule forced secondary, so removing a colour class from a <p> left it
+   secondary in silence and every consumer needed its own unlayered
+   `p:not(...)` override to reach §10. A paragraph that really is the lesser
+   half of a pair still says so explicitly, the way `.ds-modal__header p` does. */
 p {
   line-height: var(--ds-leading-normal);
-  color: var(--ds-color-text-secondary);
 }
 
 .ds-prose p + p {
