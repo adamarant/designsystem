@@ -85,7 +85,8 @@
   "files": [
     "dist/",
     "src/",
-    "eslint/"
+    "eslint/",
+    "scripts/"
   ],
   "scripts": {
     "build": "node scripts/build.js",
