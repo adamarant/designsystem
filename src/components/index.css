@@ -70,6 +70,7 @@
 @import './media-library.css';
 
 /* === Content — Rich text and prose === */
+@import './media.css';
 @import './prose.css';
 
 /* === Action — Trigger operations and commands === */

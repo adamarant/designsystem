@@ -31,6 +31,16 @@ if (!fs.existsSync(targetDir)) {
 }
 
 const EXTENSIONS = [".css", ".tsx", ".jsx", ".html", ".vue", ".svelte"];
+
+/* v0.32.0 — background utilities renamed so the class names match the tokens
+   they already resolved to. Old names still ship as deprecated aliases with
+   identical declarations, so this rewrite is visually a no-op. */
+const BG_SURFACE_RENAMES = {
+  "ds-bg-muted": "ds-bg-surface-muted",
+  "ds-bg-elevated": "ds-bg-surface-elevated",
+  "ds-bg-subtle": "ds-bg-surface",
+  "ds-bg-nav": "ds-bg-surface",
+};
 const results = { auto: [], manual: [], info: [] };
 
 function walk(dir) {
@@ -96,6 +106,27 @@ function scanFile(filePath) {
           "--ds-ring-offset is deprecated since v0.4.0. Focus rings now use box-shadow. Remove this override.",
         original: line.trim(),
       });
+    }
+
+    // 3b. bg-* background utilities → surface-* (v0.32.0)
+    // Safe everywhere, not just CSS: these are whole class names, and the new
+    // classes carry identical declarations, so the swap cannot move a pixel.
+    // Ordered longest-first is unnecessary here (no name is a prefix of
+    // another), but the boundary guard is: ds-bg-muted must not match inside
+    // ds-bg-muted-hover, which was removed rather than renamed.
+    for (const [from, to] of Object.entries(BG_SURFACE_RENAMES)) {
+      const re = new RegExp(`\\b${from}\\b(?!-)`, "g");
+      if (re.test(line)) {
+        results.auto.push({
+          file: filePath,
+          line: lineNum,
+          message: `${from} → ${to}`,
+          original: line.trim(),
+        });
+        if (applyFix) {
+          modified = modified.replace(new RegExp(`\\b${from}\\b(?!-)`, "g"), to);
+        }
+      }
     }
 
     // 4. Hardcoded outline on DS components → info
