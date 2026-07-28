@@ -176,7 +176,7 @@
   padding: var(--ds-space-1) var(--ds-space-3);
   font-size: var(--ds-text-2xs);
   font-weight: var(--ds-weight-medium);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -214,7 +214,7 @@
 }
 
 .ds-search__result-icon {
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   flex-shrink: 0;
 }
 
@@ -245,7 +245,7 @@
 .ds-search__result-meta {
   font-size: var(--ds-text-2xs);
   line-height: var(--ds-leading-snug);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

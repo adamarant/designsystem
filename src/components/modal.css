@@ -70,7 +70,7 @@
 
     & p {
       font-size: var(--ds-text-sm);
-      color: var(--ds-color-text-tertiary);
+      color: var(--ds-color-text-secondary);
       margin-block-start: var(--ds-space-1);
     }
   }

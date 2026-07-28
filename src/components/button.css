@@ -64,7 +64,7 @@
 
   &--outline {
     background-color: transparent;
-    color: var(--ds-color-text-secondary);
+    color: var(--ds-color-text);
     border-color: var(--ds-color-border);
 
     &:hover {
@@ -76,7 +76,7 @@
 
   &--ghost {
     background-color: transparent;
-    color: var(--ds-color-text-secondary);
+    color: var(--ds-color-text);
 
     &:hover {
       color: var(--ds-color-text);

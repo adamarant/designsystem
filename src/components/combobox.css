@@ -190,7 +190,7 @@
   padding: var(--ds-space-1) var(--ds-space-3);
   font-size: var(--ds-text-2xs);
   font-weight: var(--ds-weight-medium);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   text-transform: uppercase;
   letter-spacing: var(--ds-tracking-wide);
 }
@@ -251,7 +251,7 @@
 /* Option description (secondary text) */
 .ds-combobox__option-desc {
   font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
+  color: var(--ds-color-text-secondary);
   line-height: var(--ds-leading-snug);
 }
 

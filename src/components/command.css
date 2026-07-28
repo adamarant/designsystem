@@ -127,7 +127,7 @@
     font-size: var(--ds-text-xs);
     text-transform: uppercase;
     letter-spacing: var(--ds-tracking-wide);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     padding: var(--ds-space-2) var(--ds-space-3);
     font-weight: var(--ds-weight-medium);
   }
@@ -174,7 +174,7 @@
   /* Item icon */
   &__item-icon {
     flex-shrink: 0;
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
   }
 
   /* Item label */

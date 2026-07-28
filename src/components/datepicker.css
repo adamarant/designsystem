@@ -138,7 +138,7 @@
 
   &__weekday {
     font-size: var(--ds-text-xs);
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     text-align: center;
     padding: var(--ds-space-1) 0;
     user-select: none;
