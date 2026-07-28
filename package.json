@@ -42,6 +42,7 @@
     "./components/footer": "./src/components/footer.css",
     "./components/gallery": "./src/components/gallery.css",
     "./components/hero": "./src/components/hero.css",
+    "./components/icon-box": "./src/components/icon-box.css",
     "./components/icon-btn": "./src/components/icon-btn.css",
     "./components/input": "./src/components/input.css",
     "./components/kbd": "./src/components/kbd.css",

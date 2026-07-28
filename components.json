@@ -1485,6 +1485,39 @@
       ]
     },
     {
+      "name": "icon-box",
+      "title": "Icon Box",
+      "description": "Square, centred container for an icon. Non-interactive counterpart of icon-btn.",
+      "category": "data-display",
+      "classes": [
+        ".ds-icon-box"
+      ],
+      "elements": [],
+      "variants": [
+        "--sm",
+        "--lg",
+        "--xl",
+        "--round",
+        "--plain"
+      ],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Default (40px)",
+          "html": "<div class=\"ds-icon-box\"><svg width=\"20\" height=\"20\"></svg></div>"
+        },
+        {
+          "title": "Large, accent fill",
+          "html": "<div class=\"ds-icon-box ds-icon-box--lg ds-bg-accent-blue-subtle ds-text-accent-blue\"><svg width=\"20\" height=\"20\"></svg></div>"
+        },
+        {
+          "title": "Round",
+          "html": "<div class=\"ds-icon-box ds-icon-box--round\"><svg width=\"20\" height=\"20\"></svg></div>"
+        }
+      ]
+    },
+    {
       "name": "bottom-nav",
       "title": "Bottom Nav",
       "description": "Mobile bottom navigation bar, hidden on desktop.",
