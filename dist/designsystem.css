@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.31.1 */
+/* @ds/designsystem v0.31.2 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -11990,6 +11990,86 @@ hr {
 
 /* === Content — Rich text and prose === */
 /* ==========================================================================
+   Component: Media
+   A standalone image/video frame: full width, cropped, rounded.
+
+   Why it exists: `.ds-card__media` already covers width + aspect + object-fit,
+   but it inherits its rounded corner from the card that clips it. Media that
+   lives OUTSIDE a card — a blog cover, a showcase shot, a figure in an article —
+   had no component, so every consumer rebuilt it as
+   `ds-w-full ds-aspect-video ds-object-cover ds-rounded-lg`: four utilities, one
+   of them a styling utility, i.e. soup by the DS's own budget. Eleven such
+   elements in one consumer alone. The frame belongs to the media
+   (owner-approved 27 Jul 2026).
+
+   Usage:
+     <img class="ds-media ds-media--video">      cover, 16:9
+     <img class="ds-media ds-media--auto">       cover, intrinsic height
+     <div class="ds-media ds-media--video">      empty placeholder
+     <div class="ds-media-frame">…</div>         wrapper that clips its children
+
+   Sizes follow the radius scale, not a bespoke one: default lg, --xl, --2xl.
+   ========================================================================== */
+
+.ds-media {
+
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--ds-radius-lg);
+  background-color: var(--ds-color-surface-muted);
+
+  /* Aspect — mirrors the ds-card__media vocabulary so the two read alike. */
+  
+  
+  
+
+  /* Intrinsic height: the element keeps the asset's own proportions. Pairs with
+     `height: auto` on real <img>, which is why object-fit is neutralised here —
+     nothing is being cropped. */
+  
+
+  /* Radius steps. Default is lg; these are for media that sits on a larger
+     surface and needs to echo it. */
+  
+  
+}
+.ds-media--video {
+ aspect-ratio: 16 / 9; }
+.ds-media--square {
+ aspect-ratio: 1; }
+.ds-media--wide {
+ aspect-ratio: 16 / 10; }
+.ds-media--auto {
+
+    aspect-ratio: auto;
+    height: auto;
+    object-fit: unset;
+  }
+.ds-media--xl {
+ border-radius: var(--ds-radius-xl); }
+.ds-media--2xl {
+ border-radius: var(--ds-radius-2xl); }
+
+
+/* Wrapper variant: same frame, but it clips whatever is inside (a <video>, a
+   next/image fill container, a compare slider). The child keeps its own sizing;
+   the frame owns the corner. */
+.ds-media-frame {
+
+  overflow: hidden;
+  border-radius: var(--ds-radius-lg);
+
+  
+  
+}
+.ds-media-frame--xl {
+ border-radius: var(--ds-radius-xl); }
+.ds-media-frame--2xl {
+ border-radius: var(--ds-radius-2xl); }
+
+
+/* ==========================================================================
    Component: Prose Block
    Full markdown-rendered content styling. Use for CMS output, blog posts,
    documentation, or any container with user-generated rich text.
@@ -14123,15 +14203,31 @@ a:hover .ds-sortable__handle,
 .ds-text-always-white { color: var(--ds-color-static-white); }
 .ds-text-always-black { color: var(--ds-color-static-black); }
 
-/* --- Background Color --- */
+/* --- Background Color ---
+   The surface-* rename was only half done: the TOKENS moved from bg-* to
+   surface-* (tokens/colors.css), the CLASS names stayed behind. So a utility
+   read `bg-muted` while already resolving `--ds-color-surface-muted`, and the
+   deprecation hook — which cannot tell a class from a token — flagged working
+   code and pointed at a class that did not exist. Names now follow the tokens
+   (owner-approved 27 Jul 2026). */
 .ds-bg-base { background-color: var(--ds-color-bg); }
 .ds-bg-surface { background-color: var(--ds-color-surface); }
-.ds-bg-subtle { background-color: var(--ds-color-surface); }
-.ds-bg-elevated { background-color: var(--ds-color-surface-elevated); }
+.ds-bg-surface-muted { background-color: var(--ds-color-surface-muted); }
+.ds-bg-surface-elevated { background-color: var(--ds-color-surface-elevated); }
 .ds-bg-inverted { background-color: var(--ds-color-inverted); color: var(--ds-color-on-inverted); }
 .ds-bg-hover { background-color: var(--ds-color-surface-hover); }
-.ds-bg-muted { background-color: var(--ds-color-surface-muted); }
 .ds-bg-overlay { background-color: var(--ds-color-overlay); }
+
+/* @deprecated 27 Jul 2026 — previous names. Identical declarations, so nothing
+   moves visually while consumers migrate:
+     .ds-bg-muted    → .ds-bg-surface-muted
+     .ds-bg-elevated → .ds-bg-surface-elevated
+     .ds-bg-subtle   → .ds-bg-surface           (always was the same colour)
+     .ds-bg-nav      → .ds-bg-surface           (--ds-color-nav-bg is deprecated)
+   Remove in the next major. Codemod: scripts/codemod.js <dir> --fix */
+.ds-bg-subtle { background-color: var(--ds-color-surface); }
+.ds-bg-elevated { background-color: var(--ds-color-surface-elevated); }
+.ds-bg-muted { background-color: var(--ds-color-surface-muted); }
 .ds-bg-nav { background-color: var(--ds-color-nav-bg); }
 
 /* Status backgrounds */

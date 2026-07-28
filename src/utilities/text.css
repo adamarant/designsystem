@@ -67,15 +67,31 @@
 .ds-text-always-white { color: var(--ds-color-static-white); }
 .ds-text-always-black { color: var(--ds-color-static-black); }
 
-/* --- Background Color --- */
-.ds-bg-base     { background-color: var(--ds-color-bg); }
-.ds-bg-surface  { background-color: var(--ds-color-surface); }
-.ds-bg-subtle   { background-color: var(--ds-color-surface); }
-.ds-bg-elevated { background-color: var(--ds-color-surface-elevated); }
+/* --- Background Color ---
+   The surface-* rename was only half done: the TOKENS moved from bg-* to
+   surface-* (tokens/colors.css), the CLASS names stayed behind. So a utility
+   read `bg-muted` while already resolving `--ds-color-surface-muted`, and the
+   deprecation hook — which cannot tell a class from a token — flagged working
+   code and pointed at a class that did not exist. Names now follow the tokens
+   (owner-approved 27 Jul 2026). */
+.ds-bg-base             { background-color: var(--ds-color-bg); }
+.ds-bg-surface          { background-color: var(--ds-color-surface); }
+.ds-bg-surface-muted    { background-color: var(--ds-color-surface-muted); }
+.ds-bg-surface-elevated { background-color: var(--ds-color-surface-elevated); }
 .ds-bg-inverted { background-color: var(--ds-color-inverted); color: var(--ds-color-on-inverted); }
 .ds-bg-hover    { background-color: var(--ds-color-surface-hover); }
-.ds-bg-muted    { background-color: var(--ds-color-surface-muted); }
 .ds-bg-overlay  { background-color: var(--ds-color-overlay); }
+
+/* @deprecated 27 Jul 2026 — previous names. Identical declarations, so nothing
+   moves visually while consumers migrate:
+     .ds-bg-muted    → .ds-bg-surface-muted
+     .ds-bg-elevated → .ds-bg-surface-elevated
+     .ds-bg-subtle   → .ds-bg-surface           (always was the same colour)
+     .ds-bg-nav      → .ds-bg-surface           (--ds-color-nav-bg is deprecated)
+   Remove in the next major. Codemod: scripts/codemod.js <dir> --fix */
+.ds-bg-subtle   { background-color: var(--ds-color-surface); }
+.ds-bg-elevated { background-color: var(--ds-color-surface-elevated); }
+.ds-bg-muted    { background-color: var(--ds-color-surface-muted); }
 .ds-bg-nav      { background-color: var(--ds-color-nav-bg); }
 
 /* Status backgrounds */

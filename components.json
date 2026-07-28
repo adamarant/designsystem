@@ -2214,6 +2214,41 @@
       ]
     },
     {
+      "name": "media",
+      "title": "Media",
+      "description": "Standalone image/video frame: full width, cropped, rounded. For media that is not inside a clipping card.",
+      "category": "layout",
+      "classes": [
+        ".ds-media",
+        ".ds-media-frame"
+      ],
+      "elements": [],
+      "variants": [
+        "--video",
+        "--square",
+        "--wide",
+        "--auto",
+        "--xl",
+        "--2xl"
+      ],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "Cover image, 16:9",
+          "html": "<img class=\"ds-media ds-media--video\" src=\"/cover.jpg\" alt=\"\">"
+        },
+        {
+          "title": "Showcase image, intrinsic height",
+          "html": "<img class=\"ds-media ds-media--auto ds-media--2xl\" src=\"/shot.png\" alt=\"\">"
+        },
+        {
+          "title": "Frame that clips its children",
+          "html": "<div class=\"ds-media-frame ds-media-frame--xl\">\n  <video src=\"/clip.mp4\" autoplay loop muted></video>\n</div>"
+        }
+      ]
+    },
+    {
       "name": "media-library",
       "title": "Media Library",
       "description": "Grid items, selection toolbar, detail panel, and folder sidebar for media management UI.",
