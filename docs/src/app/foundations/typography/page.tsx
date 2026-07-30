@@ -38,7 +38,7 @@ function Specimen({ rows }: { rows: Row[] }) {
     <div className="typo-spec">
       {rows.map((r) => (
         <div className="typo-spec__row" key={r.cls}>
-          <p className="ds-meta typo-spec__label">
+          <p className="typo-label typo-spec__label">
             <code>.{r.cls}</code>
             <span>{r.what}</span>
           </p>
@@ -55,7 +55,7 @@ export default function TypographyPage() {
   return (
     <>
       <header className="typo-hero">
-        <p className="ds-meta">Foundations</p>
+        <p className="typo-label">Foundations</p>
         <h1 className="ds-hero-title">Typography</h1>
         <p className="ds-body typo-hero__lede">
           Ten named classes. Pick by what the text <em>is</em>, never by how big you want it.
@@ -63,7 +63,7 @@ export default function TypographyPage() {
       </header>
 
       <div className="typo-act">
-        <span className="ds-meta typo-act__n">01 &nbsp;/&nbsp; Two doors</span>
+        <span className="typo-label typo-act__n">01 &nbsp;/&nbsp; Two doors</span>
         <h2 className="ds-section-title">A site scales. A product does not.</h2>
         <p className="ds-body typo-act__lede">
           Same tokens on both sides. What changes is which classes come on stage.
@@ -78,7 +78,7 @@ export default function TypographyPage() {
             <li className="ds-body">Display face</li>
             <li className="ds-body">Fluid, 40 &rarr; 72px</li>
             <li className="ds-body">Balanced line breaks</li>
-            <li className="ds-meta">re-scale via --ds-text-hero</li>
+            <li className="ds-body">Re-scale via <code>--ds-text-hero</code></li>
           </ul>
         </div>
         <div className="typo-door">
@@ -88,34 +88,34 @@ export default function TypographyPage() {
             <li className="ds-body">Body face, never display</li>
             <li className="ds-body">Fixed sizes, no clamp()</li>
             <li className="ds-body">Density is a product call</li>
-            <li className="ds-meta">tabular figures in columns</li>
+            <li className="ds-body">Tabular figures in columns</li>
           </ul>
         </div>
       </div>
 
       <div className="typo-act">
-        <span className="ds-meta typo-act__n">02 &nbsp;/&nbsp; The classes</span>
+        <span className="typo-label typo-act__n">02 &nbsp;/&nbsp; The classes</span>
         <h2 className="ds-section-title">Ten of them, and that is the whole API.</h2>
       </div>
 
       <section className="typo-block">
-        <p className="ds-meta typo-group">Web</p>
+        <p className="typo-label typo-group">Web</p>
         <Specimen rows={WEB} />
       </section>
 
       <section className="typo-block">
-        <p className="ds-meta typo-group">Product</p>
+        <p className="typo-label typo-group">Product</p>
         <Specimen rows={PRODUCT} />
       </section>
 
       <section className="typo-block">
-        <p className="ds-meta typo-group">Long-form</p>
+        <p className="typo-label typo-group">Long-form</p>
         <p className="ds-body typo-block__lede">Authored content takes <code>ds-editorial-body</code>. Markdown you do not control takes <code>ds-prose-block</code>. Never nest one in the other.</p>
         <Specimen rows={LONGFORM} />
       </section>
 
       <div className="typo-act">
-        <span className="ds-meta typo-act__n">03 &nbsp;/&nbsp; The rules</span>
+        <span className="typo-label typo-act__n">03 &nbsp;/&nbsp; The rules</span>
         <h2 className="ds-section-title">Two habits that flatten every page.</h2>
       </div>
 
@@ -196,7 +196,7 @@ export default function TypographyPage() {
       </section>
 
       <div className="typo-act">
-        <span className="ds-meta typo-act__n">04 &nbsp;/&nbsp; Reference</span>
+        <span className="typo-label typo-act__n">04 &nbsp;/&nbsp; Reference</span>
         <h2 className="ds-section-title">The tokens underneath.</h2>
       </div>
 

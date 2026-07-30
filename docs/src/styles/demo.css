@@ -237,6 +237,31 @@
   margin-block-start: 0;
 }
 
+/* ── The label role ───────────────────────────────────────────────────────
+   Small AND legible. These were .ds-meta, which is 12px tertiary (#71717a,
+   ~3.8:1 on the dark background — the DS's own colors.css flags it as
+   "decorative/non-essential only"). The act markers, the group dividers and
+   above all the class name next to each specimen are none of those things:
+   the class name is the single answer to "what am I looking at".
+
+   That was this page committing its own sin for the third time. `ds-meta` is
+   correct for what it says on the tin — a timestamp, a count — and wrong for
+   structure, and reaching for it everywhere was consistency bought with
+   legibility.
+
+   Quiet is made with SIZE and TRACKING, never with low contrast. 13px,
+   uppercase, wide tracking, secondary (#a1a1aa, ~7.6:1, AAA). It recedes
+   because it is small and spaced, not because it is hard to see. */
+.typo-label {
+  display: block;
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  letter-spacing: var(--ds-tracking-wider);
+  text-transform: uppercase;
+  color: var(--ds-color-text-secondary);
+}
+
 .typo-act__n {
   display: block;
   margin-block-end: var(--ds-space-4);
@@ -337,19 +362,24 @@
   margin: 0;
 }
 
-/* Strip the DS <code> chip (background, padding, radius). Here the class name
-   is a caption, not an inline code token, and the box made a quiet label read
-   as a second object competing with the specimen. */
+/* The class name is the answer to "what am I looking at", so it is PRIMARY.
+   The chip (background, padding, radius) comes off: on this rail it is a
+   caption, not an inline code token, and the box made it a second object
+   competing with the specimen. */
 .typo-spec__label code {
   display: block;
   padding: 0;
   background: none;
   border-radius: 0;
   font-family: var(--ds-font-mono);
-  font-size: inherit;
-  color: var(--ds-color-text-secondary);
+  font-size: var(--ds-text-sm);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ds-color-text);
 }
 
+/* The purpose under it is the subordinate half of the pair, so secondary is
+   correct here — it has a primary companion directly above it. */
 .typo-spec__label span {
   display: block;
   margin-block-start: var(--ds-space-1);
@@ -358,8 +388,6 @@
 /* Group divider inside an act. A label, not a heading. */
 .typo-group {
   margin-block: var(--ds-space-10) var(--ds-space-2);
-  text-transform: uppercase;
-  letter-spacing: var(--ds-tracking-wide);
 }
 
 @media (max-width: 760px) {
