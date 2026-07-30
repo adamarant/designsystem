@@ -65,7 +65,7 @@ export default function TypographyPage() {
       <div className="typo-act">
         <span className="typo-label typo-act__n">01 &nbsp;/&nbsp; Two doors</span>
         <h2 className="ds-section-title">A site scales. A product does not.</h2>
-        <p className="ds-body typo-act__lede">
+        <p className="ds-body typo-prose typo-act__lede">
           Same tokens on both sides. What changes is which classes come on stage.
         </p>
       </div>
@@ -100,18 +100,24 @@ export default function TypographyPage() {
 
       <section className="typo-block">
         <p className="typo-label typo-group">Web</p>
-        <Specimen rows={WEB} />
+        <div className="typo-panel">
+          <Specimen rows={WEB} />
+        </div>
       </section>
 
       <section className="typo-block">
         <p className="typo-label typo-group">Product</p>
-        <Specimen rows={PRODUCT} />
+        <div className="typo-panel">
+          <Specimen rows={PRODUCT} />
+        </div>
       </section>
 
       <section className="typo-block">
         <p className="typo-label typo-group">Long-form</p>
-        <p className="ds-body typo-block__lede">Authored content takes <code>ds-editorial-body</code>. Markdown you do not control takes <code>ds-prose-block</code>. Never nest one in the other.</p>
-        <Specimen rows={LONGFORM} />
+        <p className="ds-body typo-prose typo-block__lede">Authored content takes <code>ds-editorial-body</code>. Markdown you do not control takes <code>ds-prose-block</code>. Never nest one in the other.</p>
+        <div className="typo-panel">
+          <Specimen rows={LONGFORM} />
+        </div>
       </section>
 
       <div className="typo-act">
@@ -121,9 +127,9 @@ export default function TypographyPage() {
 
       <section className="typo-block">
         <h2 className="ds-section-title">Small means irrelevant</h2>
-        <p className="ds-body typo-block__lede">Body copy drifted to 14px across 21 consumers because no class said &ldquo;this is reading text&rdquo;.</p>
-        <p className="ds-body typo-block__lede"><strong>Content is <code>ds-body</code>. Only genuinely supplementary text is <code>ds-meta</code>.</strong> A link is an action, not metadata.</p>
-        <div className="demo-preview">
+        <p className="ds-body typo-prose typo-block__lede">Body copy drifted to 14px across 21 consumers because no class said &ldquo;this is reading text&rdquo;.</p>
+        <p className="ds-body typo-prose typo-block__lede"><strong>Content is <code>ds-body</code>. Only genuinely supplementary text is <code>ds-meta</code>.</strong> A link is an action, not metadata.</p>
+        <div className="typo-panel">
           <div className="demo-compare">
             <div>
               <span className="demo-compare__label demo-compare__label--avoid">
@@ -165,8 +171,8 @@ export default function TypographyPage() {
 
       <section className="typo-block">
         <h2 className="ds-section-title">One class, never a stack</h2>
-        <p className="ds-body typo-block__lede">Two developers pick two different stacks for the same level. Two hierarchies, no error.</p>
-        <div className="demo-preview">
+        <p className="ds-body typo-prose typo-block__lede">Two developers pick two different stacks for the same level. Two hierarchies, no error.</p>
+        <div className="typo-panel">
           <div className="demo-compare">
             <div>
               <span className="demo-compare__label demo-compare__label--avoid">
@@ -187,12 +193,12 @@ export default function TypographyPage() {
             </div>
           </div>
         </div>
-        <p className="ds-body typo-block__lede">Three or more type utilities on one element means the class already exists.</p>
+        <p className="ds-body typo-prose typo-block__lede">Three or more type utilities on one element means the class already exists.</p>
       </section>
 
       <section className="typo-block">
         <h2 className="ds-section-title">Bare headings</h2>
-        <p className="ds-body typo-block__lede">Fluid and safe on a phone, but the fallback, not the API. 32&ndash;48, 26&ndash;36, 22&ndash;24, then 20, 18, 16.</p>
+        <p className="ds-body typo-prose typo-block__lede">Fluid and safe on a phone, but the fallback, not the API. 32&ndash;48, 26&ndash;36, 22&ndash;24, then 20, 18, 16.</p>
       </section>
 
       <div className="typo-act">
@@ -203,7 +209,7 @@ export default function TypographyPage() {
       <section className="typo-block">
         <h2 className="ds-section-title">Font Families</h2>
         <div
-          className="demo-preview"
+          className="typo-panel"
           dangerouslySetInnerHTML={{
             __html: `
           <div style="display: flex; flex-direction: column; gap: var(--ds-space-6);">
@@ -227,9 +233,9 @@ export default function TypographyPage() {
 
       <section className="typo-block">
         <h2 className="ds-section-title">Font Sizes</h2>
-        <p className="ds-body typo-block__lede">The layer under the classes. Reach for it when building a component, not when writing a page.</p>
+        <p className="ds-body typo-prose typo-block__lede">The layer under the classes. Reach for it when building a component, not when writing a page.</p>
         <div
-          className="demo-preview"
+          className="typo-panel"
           dangerouslySetInnerHTML={{
             __html: `
           <div style="display: flex; flex-direction: column; gap: var(--ds-space-4);">
@@ -260,18 +266,18 @@ export default function TypographyPage() {
         `,
           }}
         />
-        <p className="ds-body typo-block__lede">
+        <p className="ds-body typo-prose typo-block__lede">
           Outside this ramp, four fluid sizes: <code>--ds-text-hero</code>, <code>--ds-text-section</code>, and the editorial pair. Those are what a brand overrides.
         </p>
       </section>
 
       <section className="typo-block">
         <h2 className="ds-section-title">Font Weights</h2>
-        <p className="ds-body typo-block__lede">
+        <p className="ds-body typo-prose typo-block__lede">
           Headings never set a weight by hand. They take <code>--ds-font-display-weight</code>, <code>--ds-admin-title-weight</code> or <code>--ds-heading-ui-weight</code>.
         </p>
         <div
-          className="demo-preview"
+          className="typo-panel"
           dangerouslySetInnerHTML={{
             __html: `
           <div style="display: flex; flex-direction: column; gap: var(--ds-space-4);">
@@ -300,7 +306,7 @@ export default function TypographyPage() {
       <section className="typo-block">
         <h2 className="ds-section-title">Line Heights</h2>
         <div
-          className="demo-preview"
+          className="typo-panel"
           dangerouslySetInnerHTML={{
             __html: `
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--ds-space-6);">
@@ -330,7 +336,7 @@ export default function TypographyPage() {
       <section className="typo-block">
         <h2 className="ds-section-title">Letter Spacing</h2>
         <div
-          className="demo-preview"
+          className="typo-panel"
           dangerouslySetInnerHTML={{
             __html: `
           <div style="display: flex; flex-direction: column; gap: var(--ds-space-4);">

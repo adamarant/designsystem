@@ -206,31 +206,60 @@
    against the element's OWN font-size — the container inherits 16px body, so
    22ch was ~183px and the 72px title was crammed into a column narrower than
    a phone. Measures belong on the text element, never on its wrapper. */
+/* ── Two surfaces, and that is the whole layout ───────────────────────────
+   The page read as a wall because explanation and demonstration shared one
+   surface, one column width and one density: flat text on the page
+   background, all the way down, so nothing told the eye "this part is me
+   talking, this part is the type".
+
+   Now there are exactly two states:
+
+     prose   — narrow measure, on the page background. Me talking.
+     panel   — a surface with a border and real padding. The type itself.
+
+   Nothing else changes between them. One rule, applied everywhere, and the
+   reader stops having to work out which mode they are in. */
+
+.typo-prose {
+  max-width: 62ch;
+}
+
+.typo-panel {
+  padding: clamp(var(--ds-space-6), 4vw, var(--ds-space-12));
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  background-color: var(--ds-color-surface);
+}
+
 .typo-hero {
-  padding-block: var(--ds-space-10) var(--ds-space-6);
+  padding-block: var(--ds-space-16) var(--ds-space-10);
 }
 
 .typo-hero__lede {
-  max-width: 32ch;
+  max-width: 34ch;
   margin-block-start: var(--ds-space-6);
 }
 
-/* A block inside an act: the sub-level between the act heading and body. */
+/* A block inside an act. The gaps were uniform and tight everywhere, so the
+   page had no breathing pattern — everything looked equally urgent. */
 .typo-block {
-  margin-block: var(--ds-space-12);
+  margin-block: var(--ds-space-16);
 }
 
 .typo-block__lede {
-  max-width: 60ch;
-  margin-block: var(--ds-space-3) var(--ds-space-6);
+  max-width: 62ch;
+  margin-block: var(--ds-space-4) var(--ds-space-8);
 }
 
 /* An act opens with air above it and a rule, so the eye knows a new part
    started without having to read the heading to find out. */
+/* An act is the page's biggest gap by a wide margin. If the reader is going
+   to lose their place anywhere, it should be obvious that a new part began. */
 .typo-act {
-  padding-block-start: var(--ds-space-8);
-  margin-block: var(--ds-space-16) var(--ds-space-8);
+  padding-block-start: var(--ds-space-12);
+  margin-block: var(--ds-space-32) var(--ds-space-10);
   border-block-start: 1px solid var(--ds-color-border);
+  max-width: 62ch;
 }
 
 .typo-act:first-of-type {
@@ -339,16 +368,22 @@
    to two elements and the varying sizes become the point, which is how every
    type specimen has always worked. The label is small, quiet and on a fixed
    rail so the eye reads one column of labels and one column of type. */
+/* Inside a panel the rows get real air. They were padding-block: space-8 with
+   a divider, which packed a 72px specimen and a 12px one into the same tight
+   band and made the whole column feel crushed. */
 .typo-spec__row {
   display: grid;
   grid-template-columns: 11rem minmax(0, 1fr);
-  gap: var(--ds-space-8);
+  gap: var(--ds-space-10);
   align-items: baseline;
-  padding-block: var(--ds-space-8);
+  padding-block: var(--ds-space-12);
   border-block-end: 1px solid var(--ds-color-border);
 }
 
+.typo-spec__row:first-child { padding-block-start: 0; }
+
 .typo-spec__row:last-child {
+  padding-block-end: 0;
   border-block-end: none;
 }
 
