@@ -774,9 +774,19 @@ body {
 
 /* Same label stacked above its sample instead of beside it. One column width
    for every token table, replacing the 140/160/180px mishmash. */
+.demo-token-label--center {
+  min-width: 0;
+  text-align: center;
+}
+
 .demo-token-label--block {
   min-width: 0;
   margin-block-end: var(--ds-space-2);
+}
+
+.demo-token-note {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
 }
 
 .demo-token-label__size {
