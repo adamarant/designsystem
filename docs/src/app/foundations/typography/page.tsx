@@ -38,10 +38,10 @@ function Specimen({ rows }: { rows: Row[] }) {
     <div className="typo-spec">
       {rows.map((r) => (
         <div className="typo-spec__row" key={r.cls}>
-          <div className="typo-spec__label">
+          <p className="ds-meta typo-spec__label">
             <code>.{r.cls}</code>
             <span>{r.what}</span>
-          </div>
+          </p>
           <div className="typo-spec__sample">
             <span className={r.cls}>{r.sample}</span>
           </div>
@@ -55,9 +55,9 @@ export default function TypographyPage() {
   return (
     <>
       <header className="typo-hero">
-        <p className="ds-overline">Foundations</p>
+        <p className="ds-meta">Foundations</p>
         <h1 className="ds-hero-title">Typography</h1>
-        <p className="ds-editorial-lede typo-hero__lede">
+        <p className="ds-body typo-hero__lede">
           Ten named classes. Pick by what the text <em>is</em>, never by how big you want it.
         </p>
       </header>
@@ -65,15 +65,14 @@ export default function TypographyPage() {
       <div className="typo-act">
         <span className="ds-meta typo-act__n">01 &nbsp;/&nbsp; Two doors</span>
         <h2 className="ds-section-title">A site scales. A product does not.</h2>
-        <p className="ds-editorial-lede typo-act__lede">
+        <p className="ds-body typo-act__lede">
           Same tokens on both sides. What changes is which classes come on stage.
         </p>
       </div>
 
       <div className="typo-doors">
         <div className="typo-door">
-          <p className="ds-overline">Door A</p>
-          <h3>Web</h3>
+          <h2 className="ds-section-title">Web</h2>
           <p className="ds-body typo-door__what">Site, landing, editorial.</p>
           <ul className="typo-door__facts">
             <li className="ds-body">Display face</li>
@@ -83,8 +82,7 @@ export default function TypographyPage() {
           </ul>
         </div>
         <div className="typo-door">
-          <p className="ds-overline">Door B</p>
-          <h3>Product</h3>
+          <h2 className="ds-section-title">Product</h2>
           <p className="ds-body typo-door__what">Admin, dashboard, forms, tables.</p>
           <ul className="typo-door__facts">
             <li className="ds-body">Body face, never display</li>
@@ -101,17 +99,17 @@ export default function TypographyPage() {
       </div>
 
       <section className="typo-block">
-        <h3>Web</h3>
+        <p className="ds-meta typo-group">Web</p>
         <Specimen rows={WEB} />
       </section>
 
       <section className="typo-block">
-        <h3>Product</h3>
+        <p className="ds-meta typo-group">Product</p>
         <Specimen rows={PRODUCT} />
       </section>
 
       <section className="typo-block">
-        <h3>Long-form</h3>
+        <p className="ds-meta typo-group">Long-form</p>
         <p className="ds-body typo-block__lede">Authored content takes <code>ds-editorial-body</code>. Markdown you do not control takes <code>ds-prose-block</code>. Never nest one in the other.</p>
         <Specimen rows={LONGFORM} />
       </section>
@@ -122,7 +120,7 @@ export default function TypographyPage() {
       </div>
 
       <section className="typo-block">
-        <h3>Small means irrelevant</h3>
+        <h2 className="ds-section-title">Small means irrelevant</h2>
         <p className="ds-body typo-block__lede">Body copy drifted to 14px across 21 consumers because no class said &ldquo;this is reading text&rdquo;.</p>
         <p className="ds-body typo-block__lede"><strong>Content is <code>ds-body</code>. Only genuinely supplementary text is <code>ds-meta</code>.</strong> A link is an action, not metadata.</p>
         <div className="demo-preview">
@@ -166,7 +164,7 @@ export default function TypographyPage() {
       </section>
 
       <section className="typo-block">
-        <h3>One class, never a stack</h3>
+        <h2 className="ds-section-title">One class, never a stack</h2>
         <p className="ds-body typo-block__lede">Two developers pick two different stacks for the same level. Two hierarchies, no error.</p>
         <div className="demo-preview">
           <div className="demo-compare">
@@ -193,7 +191,7 @@ export default function TypographyPage() {
       </section>
 
       <section className="typo-block">
-        <h3>Bare headings</h3>
+        <h2 className="ds-section-title">Bare headings</h2>
         <p className="ds-body typo-block__lede">Fluid and safe on a phone, but the fallback, not the API. 32&ndash;48, 26&ndash;36, 22&ndash;24, then 20, 18, 16.</p>
       </section>
 
@@ -203,7 +201,7 @@ export default function TypographyPage() {
       </div>
 
       <section className="typo-block">
-        <h3>Font Families</h3>
+        <h2 className="ds-section-title">Font Families</h2>
         <div
           className="demo-preview"
           dangerouslySetInnerHTML={{
@@ -228,7 +226,7 @@ export default function TypographyPage() {
       </section>
 
       <section className="typo-block">
-        <h3>Font Sizes</h3>
+        <h2 className="ds-section-title">Font Sizes</h2>
         <p className="ds-body typo-block__lede">The layer under the classes. Reach for it when building a component, not when writing a page.</p>
         <div
           className="demo-preview"
@@ -268,7 +266,7 @@ export default function TypographyPage() {
       </section>
 
       <section className="typo-block">
-        <h3>Font Weights</h3>
+        <h2 className="ds-section-title">Font Weights</h2>
         <p className="ds-body typo-block__lede">
           Headings never set a weight by hand. They take <code>--ds-font-display-weight</code>, <code>--ds-admin-title-weight</code> or <code>--ds-heading-ui-weight</code>.
         </p>
@@ -300,7 +298,7 @@ export default function TypographyPage() {
       </section>
 
       <section className="typo-block">
-        <h3>Line Heights</h3>
+        <h2 className="ds-section-title">Line Heights</h2>
         <div
           className="demo-preview"
           dangerouslySetInnerHTML={{
@@ -330,7 +328,7 @@ export default function TypographyPage() {
       </section>
 
       <section className="typo-block">
-        <h3>Letter Spacing</h3>
+        <h2 className="ds-section-title">Letter Spacing</h2>
         <div
           className="demo-preview"
           dangerouslySetInnerHTML={{

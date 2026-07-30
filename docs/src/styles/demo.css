@@ -327,29 +327,39 @@
   border-block-end: none;
 }
 
+/* The label rail is .ds-meta and nothing more. Its two lines differ only by
+   typeface, not by a size or colour of their own — the page chrome is four
+   classes total (ds-hero-title, ds-section-title, ds-body, ds-meta) so that
+   every other size on the page is unmistakably a specimen. */
 .typo-spec__label {
   position: sticky;
   inset-block-start: var(--ds-space-6);
+  margin: 0;
 }
 
-/* Strip the DS <code> chip (background + padding + radius). On this rail the
-   class name is a caption, not an inline code token, and the box turned a
-   quiet label into a second object competing with the specimen. */
+/* Strip the DS <code> chip (background, padding, radius). Here the class name
+   is a caption, not an inline code token, and the box made a quiet label read
+   as a second object competing with the specimen. */
 .typo-spec__label code {
   display: block;
   padding: 0;
   background: none;
   border-radius: 0;
   font-family: var(--ds-font-mono);
-  font-size: var(--ds-text-sm);
+  font-size: inherit;
   color: var(--ds-color-text-secondary);
 }
 
 .typo-spec__label span {
   display: block;
   margin-block-start: var(--ds-space-1);
-  font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
+}
+
+/* Group divider inside an act. A label, not a heading. */
+.typo-group {
+  margin-block: var(--ds-space-10) var(--ds-space-2);
+  text-transform: uppercase;
+  letter-spacing: var(--ds-tracking-wide);
 }
 
 @media (max-width: 760px) {
@@ -475,12 +485,18 @@
    be styled as throwaway metadata. It is the most important text in the block,
    so it is set at reading size in primary, and the avoid/use distinction is
    carried by colour — signal, not decoration — instead of by size. */
+/* Folded into the label role: same size as every other caption on the page.
+   It carries its meaning in colour, not in a size of its own — which is the
+   whole reason it can be small without repeating the mistake this page warns
+   about. A coloured signal is not tertiary grey. */
 .demo-compare__label {
   display: block;
   margin-block-end: var(--ds-space-3);
-  font-size: var(--ds-text-base);
+  font-size: var(--ds-text-xs);
   font-weight: var(--ds-weight-medium);
-  color: var(--ds-color-text);
+  letter-spacing: var(--ds-tracking-wide);
+  text-transform: uppercase;
+  color: var(--ds-color-text-secondary);
 }
 
 .demo-compare__label--avoid { color: var(--ds-color-error); }
