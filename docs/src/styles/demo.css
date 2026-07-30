@@ -187,3 +187,110 @@
   font-size: var(--ds-text-xs);
   color: var(--ds-color-text-tertiary);
 }
+
+/* Section prose.
+   `.demo-section__description` was used by foundations/colors and never
+   defined — the paragraphs were falling back to bare <p>. Defined 30 Jul 2026. */
+
+.demo-section__description {
+  max-width: 78ch;
+  margin-block: var(--ds-space-3) var(--ds-space-5);
+  font-size: var(--ds-text-base);
+  line-height: var(--ds-leading-relaxed);
+  color: var(--ds-color-text);
+  text-wrap: pretty;
+}
+
+/* Type specimen list — foundations/typography.
+   These exist so the page can be written in real classes instead of inline
+   styles. The token tables further down that page still use HTML strings,
+   which is what the file has always done: `style={{}}` in JSX is blocked, and
+   a page whose job is to render `var(--ds-text-4xl)` needs a dynamic value
+   per row. Layout and chrome live here; only the varying token stays inline
+   in the markup string. */
+
+.demo-type-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-6);
+}
+
+.demo-type-row {
+  display: grid;
+  gap: var(--ds-space-2);
+  padding-block-end: var(--ds-space-6);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.demo-type-row:last-child {
+  padding-block-end: 0;
+  border-block-end: none;
+}
+
+.demo-type-row__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--ds-space-3);
+}
+
+.demo-type-row__cls {
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  background-color: var(--ds-color-surface-muted);
+  padding: 0.15em 0.45em;
+  border-radius: var(--ds-radius-sm);
+}
+
+.demo-type-row__spec,
+.demo-compare__label {
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
+
+.demo-type-row__use {
+  margin: 0;
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+}
+
+.demo-type-row__sample {
+  margin-block-start: var(--ds-space-2);
+}
+
+/* Side-by-side comparison */
+
+.demo-compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--ds-space-6);
+}
+
+.demo-compare__label {
+  display: block;
+  margin-block-end: var(--ds-space-3);
+}
+
+.demo-specimen-card {
+  padding: var(--ds-space-5);
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+}
+
+.demo-specimen-card > * + * {
+  margin-block-start: var(--ds-space-2);
+}
+
+.demo-specimen-card__row {
+  display: flex;
+  gap: var(--ds-space-4);
+  align-items: baseline;
+  margin-block-start: var(--ds-space-4);
+}
+
+.demo-snippet {
+  margin: 0;
+  font-size: var(--ds-text-xs);
+}
