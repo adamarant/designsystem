@@ -242,8 +242,9 @@
   border-radius: var(--ds-radius-sm);
 }
 
-.demo-type-row__spec,
-.demo-compare__label {
+/* The spec line really is metadata sitting next to the class name it
+   describes, so mono/xs/tertiary is the right call here. */
+.demo-type-row__spec {
   font-family: var(--ds-font-mono);
   font-size: var(--ds-text-xs);
   color: var(--ds-color-text-tertiary);
@@ -267,10 +268,22 @@
   gap: var(--ds-space-6);
 }
 
+/* The verdict on each panel. This label was 12px mono tertiary until the owner
+   pointed out the obvious: on a page whose whole argument is that shrinking
+   everything destroys hierarchy, the line that names the lesson cannot itself
+   be styled as throwaway metadata. It is the most important text in the block,
+   so it is set at reading size in primary, and the avoid/use distinction is
+   carried by colour — signal, not decoration — instead of by size. */
 .demo-compare__label {
   display: block;
   margin-block-end: var(--ds-space-3);
+  font-size: var(--ds-text-base);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text);
 }
+
+.demo-compare__label--avoid { color: var(--ds-color-error); }
+.demo-compare__label--use { color: var(--ds-color-success); }
 
 .demo-specimen-card {
   padding: var(--ds-space-5);

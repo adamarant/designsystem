@@ -17,19 +17,19 @@ const WEB: Row[] = [
     cls: "ds-hero-title",
     use: "Top-of-page marquee title. One per page.",
     spec: "display · fluid 40 → 72px · balance + break-word",
-    sample: "Costruiamo cose che restano",
+    sample: "We build things that last",
   },
   {
     cls: "ds-section-title",
     use: "Section heading inside a page.",
     spec: "display · fluid 30 → 36px · balance + break-word",
-    sample: "Come lavoriamo",
+    sample: "How we work",
   },
   {
     cls: "ds-editorial-title",
     use: "Article or case-study title. Bigger than a section, narrower use.",
     spec: "display · fluid 40 → 72px · balance + break-word",
-    sample: "Il valore del vuoto",
+    sample: "The value of empty space",
   },
   {
     cls: "ds-overline",
@@ -50,13 +50,13 @@ const PRODUCT: Row[] = [
     cls: "ds-admin-title",
     use: "The h1 at the top of an admin or dashboard page.",
     spec: "sans · 20 → 24px at 640 · weight via --ds-admin-title-weight",
-    sample: "Fatture",
+    sample: "Invoices",
   },
   {
     cls: "ds-heading-ui",
     use: "Functional heading: field group, panel, sidebar section, settings.",
     spec: "sans · inherits size · weight via --ds-heading-ui-weight",
-    sample: "Dati di fatturazione",
+    sample: "Billing details",
   },
   {
     cls: "ds-body",
@@ -68,7 +68,7 @@ const PRODUCT: Row[] = [
     cls: "ds-meta",
     use: "Timestamps, counts, tags, copyright. Supplementary only.",
     spec: "sans · 12px · tertiary",
-    sample: "12 marzo 2026",
+    sample: "12 March 2026",
   },
 ]
 
@@ -78,19 +78,19 @@ const LONGFORM: Row[] = [
     use: "The lead paragraph under an article title.",
     spec: "sans · fluid 18 → 22px · max-width --ds-measure",
     sample:
-      "Ogni pagina che abbiamo rifatto quest'anno è finita con meno elementi di quella che sostituiva.",
+      "Every page we rebuilt this year ended up with fewer elements than the one it replaced.",
   },
   {
     cls: "ds-editorial-body",
     use: "Wrapper for authored long-form. Dresses h2/h3/h4, lists, quotes, code.",
     spec: "18px · leading 1.625 · h2 fluid 24 → 32, h3 20 → 24",
-    sample: "Il corpo dell'articolo, con il ritmo verticale già impostato dal wrapper.",
+    sample: "The body of the article, with its vertical rhythm already set by the wrapper.",
   },
   {
     cls: "ds-prose-block",
     use: "Wrapper for markdown or CMS output you do not control.",
     spec: "leading 1.625 · full element coverage incl. tables and images",
-    sample: "Output renderizzato da markdown, senza classi sui singoli elementi.",
+    sample: "Markdown output, rendered without a class on any individual element.",
   },
 ]
 
@@ -186,32 +186,36 @@ export default function TypographyPage() {
         <div className="demo-preview">
           <div className="demo-compare">
             <div>
-              <span className="demo-compare__label">evita: tutto piccolo, nessuna gerarchia</span>
+              <span className="demo-compare__label demo-compare__label--avoid">
+                Avoid: everything small, so nothing reads as important
+              </span>
               <div className="demo-specimen-card">
                 <div className="ds-text-xs ds-text-secondary ds-uppercase">Case study</div>
                 <div className="ds-text-lg ds-font-display">Cavallino Group</div>
                 <p className="ds-text-sm ds-text-secondary">
-                  Piattaforma immobiliare bilingue con catalogo sincronizzato e area riservata
-                  per gli agenti.
+                  A bilingual property platform with a synced catalogue and a private area for
+                  agents.
                 </p>
                 <div className="demo-specimen-card__row">
-                  <span className="ds-text-xs ds-text-tertiary">12 marzo 2026</span>
-                  <span className="ds-text-xs ds-text-secondary">Leggi il caso</span>
+                  <span className="ds-text-xs ds-text-tertiary">12 March 2026</span>
+                  <span className="ds-text-xs ds-text-secondary">Read the case</span>
                 </div>
               </div>
             </div>
             <div>
-              <span className="demo-compare__label">usa: tre ruoli, un solo grigio</span>
+              <span className="demo-compare__label demo-compare__label--use">
+                Use: three roles, one grey, the content at full strength
+              </span>
               <div className="demo-specimen-card">
                 <div className="ds-overline">Case study</div>
                 <div className="ds-card__title">Cavallino Group</div>
                 <p className="ds-body">
-                  Piattaforma immobiliare bilingue con catalogo sincronizzato e area riservata
-                  per gli agenti.
+                  A bilingual property platform with a synced catalogue and a private area for
+                  agents.
                 </p>
                 <div className="demo-specimen-card__row">
-                  <span className="ds-meta">12 marzo 2026</span>
-                  <span className="ds-body ds-font-medium">Leggi il caso</span>
+                  <span className="ds-meta">12 March 2026</span>
+                  <span className="ds-body ds-font-medium">Read the case</span>
                 </div>
               </div>
             </div>
@@ -245,14 +249,18 @@ export default function TypographyPage() {
         <div className="demo-preview">
           <div className="demo-compare">
             <div>
-              <span className="demo-compare__label">evita: quattro decisioni a mano</span>
+              <span className="demo-compare__label demo-compare__label--avoid">
+                Avoid: four typographic decisions taken by hand
+              </span>
               <pre className="demo-snippet">
                 <code>{`<h2 className="ds-font-display ds-text-4xl
                ds-font-medium ds-text-primary">`}</code>
               </pre>
             </div>
             <div>
-              <span className="demo-compare__label">usa: nessuna decisione</span>
+              <span className="demo-compare__label demo-compare__label--use">
+                Use: none to take
+              </span>
               <pre className="demo-snippet">
                 <code>{`<h2 className="ds-section-title">`}</code>
               </pre>
