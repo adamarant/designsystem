@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { usePathname } from "next/navigation";
 import { NAV } from "./nav-data";
 
@@ -48,6 +49,9 @@ export function Sidebar() {
           ))}
         </div>
       ))}
+      <div className="demo-sidebar__foot">
+        <ThemeToggle />
+      </div>
       {filteredNav.length === 0 && (
         <p className="ds-text-xs ds-text-tertiary demo-sidebar__empty">
           No results for &ldquo;{query}&rdquo;

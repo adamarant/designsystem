@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { ThemeProvider } from "next-themes";
 import { Sidebar } from "@/components/Sidebar";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 /* riccardo's typeface, adopted here on 31 Jul 2026 in place of Clash Display
    + Switzer. Inter variable with the optical-size axis: large headings get
@@ -34,9 +33,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="demo-layout">
             <Sidebar />
             <main className="demo-main">
-              <div className="demo-topbar">
-                <ThemeToggle />
-              </div>
               {children}
             </main>
           </div>
