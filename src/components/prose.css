@@ -211,11 +211,29 @@
   margin-block-start: var(--ds-space-5);
 }
 
+/* h2 was a flat --ds-text-4xl (36px) while .ds-editorial-title above it is
+   fluid 40 → 72. On desktop that reads 2.00 : 1 and works; on a phone it
+   becomes 40 : 36 = 1.11 : 1 and the two levels flatten into one, exactly
+   where the article is actually read. dokle and riccardo had each already
+   pulled it down to 24px in their own CSS, with near-identical comments.
+   Fluid now: 24px on a phone, 32px on a wide desktop, so the title-to-h2
+   ratio runs 1.67 : 1 at 375px and 2.25 : 1 at 1440 instead of collapsing.
+   Note this IS a visible change on desktop too — h2 goes 36 → 32px — which
+   is the point: 36 was competing with the article title, and both consumers
+   that shipped long-form had already overridden it. h3 caps at today's 24
+   and only shrinks below laptop width.
+
+   The weight was a literal --ds-weight-medium on h2 and h3 while h4 in the
+   same block used --ds-font-display-weight, which made h4 *lighter* than h3
+   rather than only smaller — and, worse, meant a consumer changing
+   --ds-font-display-weight (the one documented lever for heading weight)
+   moved every display heading in the system except these two. Both back on
+   the lever. */
 .ds-editorial-body h2 {
   font-family: var(--ds-font-display);
-  font-size: var(--ds-text-4xl);
-  font-weight: var(--ds-weight-medium);
-  line-height: var(--ds-leading-tight);
+  font-size: clamp(1.5rem, 1.2vw + 1.15rem, 2rem);  /* 24 → 32px */
+  font-weight: var(--ds-font-display-weight);
+  line-height: var(--ds-leading-snug);
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
   margin-block-start: var(--ds-space-12);
@@ -224,8 +242,8 @@
 
 .ds-editorial-body h3 {
   font-family: var(--ds-font-display);
-  font-size: var(--ds-text-2xl);
-  font-weight: var(--ds-weight-medium);
+  font-size: clamp(1.25rem, 0.75vw + 1.05rem, 1.5rem);  /* 20 → 24px */
+  font-weight: var(--ds-font-display-weight);
   line-height: var(--ds-leading-snug);
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
