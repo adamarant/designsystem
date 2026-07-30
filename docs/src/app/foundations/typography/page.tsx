@@ -10,110 +10,44 @@
    used: inline styles in JSX are blocked by a hook, and a table whose job is
    to render one `var(--ds-text-*)` per row needs a value that varies per row. */
 
-type Row = { cls: string; use: string; spec: string; sample: string }
+type Row = { cls: string; what: string; sample: string }
 
 const WEB: Row[] = [
-  {
-    cls: "ds-hero-title",
-    use: "Top-of-page marquee title. One per page.",
-    spec: "display · fluid 40 → 72px · balance + break-word",
-    sample: "We build things that last",
-  },
-  {
-    cls: "ds-section-title",
-    use: "Section heading inside a page.",
-    spec: "display · fluid 30 → 36px · balance + break-word",
-    sample: "How we work",
-  },
-  {
-    cls: "ds-editorial-title",
-    use: "Article or case-study title. Bigger than a section, narrower use.",
-    spec: "display · fluid 40 → 72px · balance + break-word",
-    sample: "The value of empty space",
-  },
-  {
-    cls: "ds-overline",
-    use: "Eyebrow above a title, metric label, small all-caps category.",
-    spec: "sans · 14px · medium · wide tracking · uppercase · secondary",
-    sample: "Case study",
-  },
-  {
-    cls: "ds-stat-number",
-    use: "A large numeric value: price, metric, ordinal.",
-    spec: "display · 24px · tabular figures",
-    sample: "142",
-  },
+  { cls: "ds-hero-title", what: "page title", sample: "We build things that last" },
+  { cls: "ds-section-title", what: "section heading", sample: "How we work" },
+  { cls: "ds-editorial-title", what: "article title", sample: "The value of empty space" },
+  { cls: "ds-overline", what: "eyebrow, label", sample: "Case study" },
+  { cls: "ds-stat-number", what: "big number", sample: "142" },
 ]
 
 const PRODUCT: Row[] = [
-  {
-    cls: "ds-admin-title",
-    use: "The h1 at the top of an admin or dashboard page.",
-    spec: "sans · 20 → 24px at 640 · weight via --ds-admin-title-weight",
-    sample: "Invoices",
-  },
-  {
-    cls: "ds-heading-ui",
-    use: "Functional heading: field group, panel, sidebar section, settings.",
-    spec: "sans · inherits size · weight via --ds-heading-ui-weight",
-    sample: "Billing details",
-  },
-  {
-    cls: "ds-body",
-    use: "Reading text and data values. The default for content.",
-    spec: "sans · 16px · leading 1.5 · primary",
-    sample: "Cavallino Group",
-  },
-  {
-    cls: "ds-meta",
-    use: "Timestamps, counts, tags, copyright. Supplementary only.",
-    spec: "sans · 12px · tertiary",
-    sample: "12 March 2026",
-  },
+  { cls: "ds-admin-title", what: "admin page h1", sample: "Invoices" },
+  { cls: "ds-heading-ui", what: "panel, field group", sample: "Billing details" },
+  { cls: "ds-body", what: "content, values", sample: "Cavallino Group" },
+  { cls: "ds-meta", what: "timestamp, count", sample: "12 March 2026" },
 ]
 
 const LONGFORM: Row[] = [
-  {
-    cls: "ds-editorial-lede",
-    use: "The lead paragraph under an article title.",
-    spec: "sans · fluid 18 → 22px · max-width --ds-measure",
-    sample:
-      "Every page we rebuilt this year ended up with fewer elements than the one it replaced.",
-  },
-  {
-    cls: "ds-editorial-body",
-    use: "Wrapper for authored long-form. Dresses h2/h3/h4, lists, quotes, code.",
-    spec: "18px · leading 1.625 · h2 fluid 24 → 32, h3 20 → 24",
-    sample: "The body of the article, with its vertical rhythm already set by the wrapper.",
-  },
-  {
-    cls: "ds-prose-block",
-    use: "Wrapper for markdown or CMS output you do not control.",
-    spec: "leading 1.625 · full element coverage incl. tables and images",
-    sample: "Markdown output, rendered without a class on any individual element.",
-  },
+  { cls: "ds-editorial-lede", what: "lead paragraph", sample: "Every page we rebuilt this year ended up with fewer elements than the one it replaced." },
+  { cls: "ds-editorial-body", what: "authored article", sample: "The body of the article, with its vertical rhythm already set by the wrapper." },
+  { cls: "ds-prose-block", what: "markdown, CMS", sample: "Markdown output, rendered without a class on any individual element." },
 ]
 
-function TypeTable({ rows }: { rows: Row[] }) {
+function Specimen({ rows }: { rows: Row[] }) {
   return (
-    <table className="typo-table">
-      <thead>
-        <tr>
-          <th className="typo-table__cls">Class</th>
-          <th>Use for</th>
-          <th className="typo-table__spec">Renders</th>
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((r) => (
-          <tr key={r.cls}>
-            <td className="typo-table__cls">.{r.cls}</td>
-            <td>{r.use}</td>
-            <td className="typo-table__spec">{r.spec}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="typo-spec">
+      {rows.map((r) => (
+        <div className="typo-spec__row" key={r.cls}>
+          <div className="typo-spec__label">
+            <code>.{r.cls}</code>
+            <span>{r.what}</span>
+          </div>
+          <div className="typo-spec__sample">
+            <span className={r.cls}>{r.sample}</span>
+          </div>
+        </div>
+      ))}
+    </div>
   )
 }
 
@@ -168,18 +102,18 @@ export default function TypographyPage() {
 
       <section className="typo-block">
         <h3>Web</h3>
-        <TypeTable rows={WEB} />
+        <Specimen rows={WEB} />
       </section>
 
       <section className="typo-block">
         <h3>Product</h3>
-        <TypeTable rows={PRODUCT} />
+        <Specimen rows={PRODUCT} />
       </section>
 
       <section className="typo-block">
         <h3>Long-form</h3>
         <p className="ds-body typo-block__lede">Authored content takes <code>ds-editorial-body</code>. Markdown you do not control takes <code>ds-prose-block</code>. Never nest one in the other.</p>
-        <TypeTable rows={LONGFORM} />
+        <Specimen rows={LONGFORM} />
       </section>
 
       <div className="typo-act">
@@ -189,8 +123,8 @@ export default function TypographyPage() {
 
       <section className="typo-block">
         <h3>Small means irrelevant</h3>
-        <p className="ds-body typo-block__lede">Across the 21 consumers <code>ds-text-sm</code> has 610 uses against 58 for <code>ds-text-base</code>. Body copy drifted to 14px because no class said &ldquo;this is reading text&rdquo;, so the smallest step of the ramp was the handiest thing in reach. Once the body sits at 14, everything under it goes to 12, then 10.</p>
-        <p className="ds-body typo-block__lede"><strong>Content is <code>ds-body</code>, at full strength. Only genuinely supplementary text is <code>ds-meta</code>.</strong> A link is an action, not metadata, however minor it looks.</p>
+        <p className="ds-body typo-block__lede">Body copy drifted to 14px across 21 consumers because no class said &ldquo;this is reading text&rdquo;.</p>
+        <p className="ds-body typo-block__lede"><strong>Content is <code>ds-body</code>. Only genuinely supplementary text is <code>ds-meta</code>.</strong> A link is an action, not metadata.</p>
         <div className="demo-preview">
           <div className="demo-compare">
             <div>
@@ -233,7 +167,7 @@ export default function TypographyPage() {
 
       <section className="typo-block">
         <h3>One class, never a stack</h3>
-        <p className="ds-body typo-block__lede">A stack renders fine the first time. The cost lands on the second developer, who picks a slightly different stack for a heading at the same level. Two hierarchies, no console error. And a hand-set weight escapes <code>--ds-font-display-weight</code>, so a brand-wide change skips it.</p>
+        <p className="ds-body typo-block__lede">Two developers pick two different stacks for the same level. Two hierarchies, no error.</p>
         <div className="demo-preview">
           <div className="demo-compare">
             <div>
@@ -255,12 +189,12 @@ export default function TypographyPage() {
             </div>
           </div>
         </div>
-        <p className="ds-body typo-block__lede">Three or more family, size and colour utilities on one element means the class already exists. One size plus one colour is fine.</p>
+        <p className="ds-body typo-block__lede">Three or more type utilities on one element means the class already exists.</p>
       </section>
 
       <section className="typo-block">
         <h3>Bare headings</h3>
-        <p className="ds-body typo-block__lede"><code>h1</code>&ndash;<code>h6</code> are fluid and safe on a phone, but they are the fallback, not the API. Inside a page, name the role. Sizes: 32&ndash;48, 26&ndash;36, 22&ndash;24, then 20, 18, 16 fixed.</p>
+        <p className="ds-body typo-block__lede">Fluid and safe on a phone, but the fallback, not the API. 32&ndash;48, 26&ndash;36, 22&ndash;24, then 20, 18, 16.</p>
       </section>
 
       <div className="typo-act">
@@ -295,11 +229,7 @@ export default function TypographyPage() {
 
       <section className="typo-block">
         <h3>Font Sizes</h3>
-        <p className="ds-body typo-block__lede">
-          The raw ramp. It is the layer <em>under</em> the classes above, not a substitute for
-          them &mdash; reach for it when you are building a component, not when you are writing
-          a page.
-        </p>
+        <p className="ds-body typo-block__lede">The layer under the classes. Reach for it when building a component, not when writing a page.</p>
         <div
           className="demo-preview"
           dangerouslySetInnerHTML={{
@@ -333,22 +263,14 @@ export default function TypographyPage() {
           }}
         />
         <p className="ds-body typo-block__lede">
-          Four more sizes are fluid and sit outside this ramp: <code>--ds-text-hero</code>{" "}
-          (40&nbsp;&rarr;&nbsp;72px), <code>--ds-text-section</code> (30&nbsp;&rarr;&nbsp;36px),
-          and the editorial pair <code>--ds-text-editorial-title</code> and{" "}
-          <code>--ds-text-editorial-lede</code>. Those are the tokens a consumer overrides to
-          re-scale a brand.
+          Outside this ramp, four fluid sizes: <code>--ds-text-hero</code>, <code>--ds-text-section</code>, and the editorial pair. Those are what a brand overrides.
         </p>
       </section>
 
       <section className="typo-block">
         <h3>Font Weights</h3>
         <p className="ds-body typo-block__lede">
-          Headings do not set a weight by hand. Display headings take{" "}
-          <code>--ds-font-display-weight</code>, and the two body-font heading classes take{" "}
-          <code>--ds-admin-title-weight</code> and <code>--ds-heading-ui-weight</code>. Override
-          those tokens once per project; a literal weight on a heading is what the
-          hardcoded-font-weight hook blocks.
+          Headings never set a weight by hand. They take <code>--ds-font-display-weight</code>, <code>--ds-admin-title-weight</code> or <code>--ds-heading-ui-weight</code>.
         </p>
         <div
           className="demo-preview"

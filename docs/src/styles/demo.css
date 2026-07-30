@@ -302,14 +302,64 @@
    per row. Layout and chrome live here; only the varying token stays inline
    in the markup string. */
 
-/* The class reference is a TABLE, not a specimen book.
-   It used to render each class as four stacked lines — mono name, mono spec,
-   16px description, then a live sample at its true size. Ten of those in a
-   column meant the type went 72px, 36px, 72px, 14px, 24px, 16px, 12px on the
-   way down: a random staircase where nothing told you whether you were
-   looking at the example or the explanation. 172 text elements over 8000px.
-   One row per class, one size, scannable in five seconds. The live rendering
-   lives in "Font Sizes" further down, where a size ramp belongs. */
+/* Specimen rows: a quiet label rail on the left, the type itself on the right.
+
+   Two wrong answers came before this one. First, four stacked lines per class
+   (mono name, mono spec, 16px description, live sample) — the sample was
+   competing with three other things and the column read as a random staircase
+   of 72px down to 12px. Then, over-correcting, a pure table: all class names
+   and prose, no type at all, on the page whose job is to show type.
+
+   The size variation was never the problem; the competition was. Strip a row
+   to two elements and the varying sizes become the point, which is how every
+   type specimen has always worked. The label is small, quiet and on a fixed
+   rail so the eye reads one column of labels and one column of type. */
+.typo-spec__row {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: var(--ds-space-8);
+  align-items: baseline;
+  padding-block: var(--ds-space-8);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.typo-spec__row:last-child {
+  border-block-end: none;
+}
+
+.typo-spec__label {
+  position: sticky;
+  inset-block-start: var(--ds-space-6);
+}
+
+/* Strip the DS <code> chip (background + padding + radius). On this rail the
+   class name is a caption, not an inline code token, and the box turned a
+   quiet label into a second object competing with the specimen. */
+.typo-spec__label code {
+  display: block;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+}
+
+.typo-spec__label span {
+  display: block;
+  margin-block-start: var(--ds-space-1);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
+
+@media (max-width: 760px) {
+  .typo-spec__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--ds-space-3);
+  }
+  .typo-spec__label { position: static; }
+}
+
 .typo-table {
   width: 100%;
   border-collapse: collapse;
