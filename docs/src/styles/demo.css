@@ -214,7 +214,7 @@
 
 .demo-page-header p {
   grid-column: 5 / span 8;
-  margin: var(--ds-space-6) 0 0;
+  margin: var(--ds-space-10) 0 0;
   max-width: 46ch;
   font-size: var(--ds-text-base);
   font-weight: var(--ds-weight-light);
@@ -302,13 +302,6 @@ body {
    Hierarchy comes from size and weight, never from greying text down —
    their labels are 10.5px at FULL contrast, uppercase and tracked. */
 
-.typo-title {
-  margin: 0;
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: var(--ds-weight-bold);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-}
 
 .typo-heading {
   margin: 0;
@@ -415,10 +408,6 @@ body {
   padding-block: var(--ds-space-16) var(--ds-space-10);
 }
 
-.typo-hero__lede {
-  max-width: 34ch;
-  margin-block-start: var(--ds-space-6);
-}
 
 /* A block inside an act. The gaps were uniform and tight everywhere, so the
    page had no breathing pattern — everything looked equally urgent. */
@@ -819,10 +808,6 @@ body {
   color: var(--ds-color-text-secondary);
 }
 
-.typo-hero__lede {
-  margin-block-start: var(--ds-space-6);
-  max-width: 34ch;
-}
 
 .typo-door__what {
   margin-block: var(--ds-space-2) var(--ds-space-5);

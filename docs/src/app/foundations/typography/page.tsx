@@ -94,21 +94,12 @@ function Section({
 export default function TypographyPage() {
   return (
     <>
-      <section className="s-section">
-        <div className="s-container">
-          <div className="s-row">
-            <div className="s-label">
-              <span className="typo-label">Foundations</span>
-            </div>
-            <div className="s-content">
-              <h1 className="typo-title">Typography</h1>
-              <p className="typo-body typo-hero__lede">
-                Ten named classes. Pick by what the text <em>is</em>, never by how big you want it.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="demo-page-header">
+        <h1>Typography</h1>
+        <p>
+          Ten named classes. Pick by what the text <em>is</em>, never by how big you want it.
+        </p>
+      </div>
 
       <Section
         label="Two doors"
