@@ -302,6 +302,63 @@
    per row. Layout and chrome live here; only the varying token stays inline
    in the markup string. */
 
+/* The class reference is a TABLE, not a specimen book.
+   It used to render each class as four stacked lines — mono name, mono spec,
+   16px description, then a live sample at its true size. Ten of those in a
+   column meant the type went 72px, 36px, 72px, 14px, 24px, 16px, 12px on the
+   way down: a random staircase where nothing told you whether you were
+   looking at the example or the explanation. 172 text elements over 8000px.
+   One row per class, one size, scannable in five seconds. The live rendering
+   lives in "Font Sizes" further down, where a size ramp belongs. */
+.typo-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.typo-table th {
+  padding: 0 var(--ds-space-4) var(--ds-space-3) 0;
+  text-align: start;
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  letter-spacing: var(--ds-tracking-wide);
+  text-transform: uppercase;
+  color: var(--ds-color-text-tertiary);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.typo-table td {
+  padding: var(--ds-space-4) var(--ds-space-4) var(--ds-space-4) 0;
+  vertical-align: baseline;
+  font-size: var(--ds-text-base);
+  color: var(--ds-color-text);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.typo-table tr:last-child td {
+  border-block-end: none;
+}
+
+/* Column widths are declared, not left to the browser. The spec column was
+   `white-space: nowrap` and it starved the middle column, so "Use for"
+   wrapped to four lines while the spec sat on one. The prose column gets the
+   most room; the two mono columns wrap like everything else. */
+.typo-table__cls {
+  width: 20%;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+}
+
+.typo-table__spec {
+  width: 38%;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+}
+
+@media (max-width: 900px) {
+  .typo-table__spec { display: none; }
+}
+
 .demo-type-list {
   display: flex;
   flex-direction: column;

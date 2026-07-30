@@ -96,20 +96,24 @@ const LONGFORM: Row[] = [
 
 function TypeTable({ rows }: { rows: Row[] }) {
   return (
-    <div className="demo-type-list">
-      {rows.map((r) => (
-        <div className="demo-type-row" key={r.cls}>
-          <div className="demo-type-row__head">
-            <code className="demo-type-row__cls">.{r.cls}</code>
-            <span className="demo-type-row__spec">{r.spec}</span>
-          </div>
-          <p className="demo-type-row__use">{r.use}</p>
-          <div className="demo-type-row__sample">
-            <span className={r.cls}>{r.sample}</span>
-          </div>
-        </div>
-      ))}
-    </div>
+    <table className="typo-table">
+      <thead>
+        <tr>
+          <th className="typo-table__cls">Class</th>
+          <th>Use for</th>
+          <th className="typo-table__spec">Renders</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr key={r.cls}>
+            <td className="typo-table__cls">.{r.cls}</td>
+            <td>{r.use}</td>
+            <td className="typo-table__spec">{r.spec}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   )
 }
 
@@ -164,24 +168,18 @@ export default function TypographyPage() {
 
       <section className="typo-block">
         <h3>Web</h3>
-        <div className="demo-preview">
-          <TypeTable rows={WEB} />
-        </div>
+        <TypeTable rows={WEB} />
       </section>
 
       <section className="typo-block">
         <h3>Product</h3>
-        <div className="demo-preview">
-          <TypeTable rows={PRODUCT} />
-        </div>
+        <TypeTable rows={PRODUCT} />
       </section>
 
       <section className="typo-block">
         <h3>Long-form</h3>
         <p className="ds-body typo-block__lede">Authored content takes <code>ds-editorial-body</code>. Markdown you do not control takes <code>ds-prose-block</code>. Never nest one in the other.</p>
-        <div className="demo-preview">
-          <TypeTable rows={LONGFORM} />
-        </div>
+        <TypeTable rows={LONGFORM} />
       </section>
 
       <div className="typo-act">
