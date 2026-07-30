@@ -171,6 +171,7 @@
   color: var(--ds-color-text);
   margin: 0;
   text-wrap: balance;
+  overflow-wrap: break-word; /* see base/typography.css for the why */
 }
 
 .ds-editorial-lede {
@@ -179,7 +180,7 @@
   line-height: var(--ds-leading-normal);
   color: var(--ds-color-text);
   margin: 0;
-  max-width: 600px;
+  max-width: var(--ds-measure);
 }
 
 /* Editorial header rhythm — when overline / title / lede appear in sequence,

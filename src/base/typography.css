@@ -17,12 +17,31 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--ds-color-text);
 }
 
-h1 { font-size: var(--ds-text-5xl); }
-h2 { font-size: var(--ds-text-4xl); }
-h3 { font-size: var(--ds-text-2xl); }
+/* Element sizes are fluid as of 30 Jul 2026. They used to be single fixed
+   values with no media query at all, which made the *unclassed* heading the
+   worst-behaving one in the system: .ds-hero-title, .ds-section-title and
+   .ds-admin-title all stepped with the viewport, while a bare <h1> stayed at
+   48px on a 375px phone. Anyone writing a heading inside a Card, an MDX page
+   or an admin layout got the flat value.
+
+   Each clamp caps at exactly today's size and reaches that cap by 1024px, so
+   nothing changes on desktop; only the sub-laptop range, which is where the
+   old rule did nothing, now scales.
+
+   NOT changed here: h2 is 36px and h3 is 24px, so the ladder still skips the
+   30px step. Closing that gap means growing every existing <h3> by 6px across
+   21 consumers — a visible content change, not a bug fix, so it stays a
+   separate decision instead of riding along in a no-regression commit. */
+h1 { font-size: clamp(2rem, 2.5vw + 1.4rem, 3rem); }          /* 32 → 48px */
+h2 { font-size: clamp(1.625rem, 1.55vw + 1.25rem, 2.25rem); } /* 26 → 36px */
+h3 { font-size: clamp(1.375rem, 0.5vw + 1.25rem, 1.5rem); }   /* 22 → 24px */
 h4 { font-size: var(--ds-text-xl); }
 h5 { font-size: var(--ds-text-lg); }
 h6 { font-size: var(--ds-text-base); font-weight: var(--ds-weight-medium); }
+
+/* leading-tight (1.1) is a display value: correct at 48px, too close at 16-20.
+   From h4 down a heading is UI text that wraps to two lines, so it gets snug. */
+h4, h5, h6 { line-height: var(--ds-leading-snug); }
 
 /* No colour declaration on purpose: <p> inherits primary from `body`
    (base/reset.css), which is what §10 asks of body copy. Through 0.37.0 this
@@ -57,10 +76,13 @@ strong, b {
   color: var(--ds-color-text-secondary);
 }
 
-/* UI heading — body font for functional/interface headings (labels, settings, admin) */
+/* UI heading — body font for functional/interface headings (labels, settings, admin).
+   Weight goes through --ds-heading-ui-weight, the sibling of
+   --ds-admin-title-weight: a consumer whose body typeface has no Medium cut
+   overrides the token once instead of re-declaring the class. */
 .ds-heading-ui {
   font-family: var(--ds-font-sans);
-  font-weight: var(--ds-weight-medium);
+  font-weight: var(--ds-heading-ui-weight);
 }
 
 /* Admin page title — the sized member of the .ds-heading-ui family.
@@ -81,39 +103,37 @@ strong, b {
   .ds-admin-title { font-size: var(--ds-text-2xl); }
 }
 
-/* Section title style */
+/* Section title style — size from --ds-text-section (fluid, see tokens) */
 .ds-section-title {
   font-family: var(--ds-font-display);
   font-weight: var(--ds-font-display-weight);
-  font-size: var(--ds-text-3xl);
+  font-size: var(--ds-text-section);
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
   text-wrap: balance;
 }
 
-@media (min-width: 640px) {
-  .ds-section-title { font-size: var(--ds-text-4xl); }
-}
-
-/* Hero title — large editorial display */
+/* Hero title — large editorial display, size from --ds-text-hero */
 .ds-hero-title {
   font-family: var(--ds-font-display);
   font-weight: var(--ds-font-display-weight);
-  font-size: var(--ds-text-4xl);
+  font-size: var(--ds-text-hero);
   line-height: var(--ds-leading-tight);
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
   text-wrap: balance;
 }
 
-@media (min-width: 640px) {
-  .ds-hero-title { font-size: var(--ds-text-5xl); }
-}
-@media (min-width: 768px) {
-  .ds-hero-title { font-size: var(--ds-text-6xl); }
-}
-@media (min-width: 1024px) /* --ds-breakpoint-lg */ {
-  .ds-hero-title { font-size: var(--ds-text-7xl); }
+/* `text-wrap: balance` evens out the line lengths but never breaks a word, so
+   a long compound (IT "internazionalizzazione", ES "responsabilidades") at
+   display size on a 375px screen used to run past the viewport and hand the
+   page a horizontal scrollbar. Before this line the DS contained no
+   `overflow-wrap` at all, and studio, dokle and enzo-spatalino had each added
+   the same declaration on the same three classes in their own theme.css.
+   It is inert when the word fits. */
+.ds-hero-title,
+.ds-section-title {
+  overflow-wrap: break-word;
 }
 
 code, kbd, samp {
