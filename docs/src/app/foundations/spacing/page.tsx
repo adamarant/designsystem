@@ -9,7 +9,7 @@ export default function SpacingPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Spacing Scale</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
-          <div style="display: flex; flex-direction: column; gap: var(--ds-space-2);">
+          <div class="demo-token-list">
             ${[
               ["space-0", "0"],
               ["space-0-5", "0.125rem / 2px"],
@@ -41,7 +41,7 @@ export default function SpacingPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Component Size Tiers</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
-          <div style="display: flex; flex-direction: column; gap: var(--ds-space-3);">
+          <div class="demo-token-list">
             ${[
               ["size-1", "1.5rem / 24px", "xs"],
               ["size-2", "2rem / 32px", "sm"],
@@ -72,7 +72,7 @@ export default function SpacingPage() {
               ["radius-2xl", "20px"],
               ["radius-full", "9999px"],
             ].map(([token, val]) => `
-              <div style="display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-2);">
+              <div class="demo-token-list">
                 <div style="width: 64px; height: 64px; background: var(--ds-color-interactive-subtle); border: 2px solid var(--ds-color-interactive-border); border-radius: var(--ds-${token});"></div>
                 <div class="demo-token-label demo-token-label--center">${token}<span class="demo-token-label__size">${val}</span></div>
               </div>
@@ -84,7 +84,7 @@ export default function SpacingPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Z-Index Layers</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
-          <div style="display: flex; flex-direction: column; gap: var(--ds-space-2);">
+          <div class="demo-token-list">
             ${[
               ["z-base", "0", "Default stacking"],
               ["z-dropdown", "50", "Dropdown menus"],
@@ -110,7 +110,7 @@ export default function SpacingPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Container Widths</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
-          <div style="display: flex; flex-direction: column; gap: var(--ds-space-3);">
+          <div class="demo-token-list">
             ${[
               ["container-sm", "640px"],
               ["container-md", "768px"],

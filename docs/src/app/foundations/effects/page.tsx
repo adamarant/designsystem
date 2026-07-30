@@ -31,7 +31,7 @@ export default function EffectsPage() {
         <h2 className="demo-section__title">Focus Ring</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
           <div style="display: flex; flex-wrap: wrap; gap: var(--ds-space-6); align-items: center;">
-            <div style="display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-3);">
+            <div class="demo-token-list">
               <div style="width: 80px; height: 40px; background: var(--ds-color-surface); border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); outline: var(--ds-ring-width) solid var(--ds-ring-color); outline-offset: var(--ds-ring-offset);"></div>
               <div class="demo-token-label demo-token-label--center">ring-width: 2px<br>ring-offset: 2px<br>ring-color: border-active</div>
             </div>
@@ -118,11 +118,11 @@ export default function EffectsPage() {
         <h2 className="demo-section__title">Opacity</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
           <div style="display: flex; gap: var(--ds-space-6); align-items: center;">
-            <div style="display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-2);">
+            <div class="demo-token-list">
               <div style="width: 80px; height: 40px; background: var(--ds-color-interactive); border-radius: var(--ds-radius-md);"></div>
               <div class="demo-token-label">Normal (1)</div>
             </div>
-            <div style="display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-2);">
+            <div class="demo-token-list">
               <div style="width: 80px; height: 40px; background: var(--ds-color-interactive); border-radius: var(--ds-radius-md); opacity: var(--ds-opacity-disabled);"></div>
               <div class="demo-token-label">opacity-disabled (0.5)</div>
             </div>

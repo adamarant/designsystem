@@ -757,6 +757,22 @@ body {
   font-size: var(--ds-text-sm);
 }
 
+/* A list of token rows.
+
+   Proximity was doing the opposite of its job: 2px between a token name and
+   its own value, 8px between one token block and the next. With line-height
+   in play those read as the same gap, so a value could belong to the row
+   above it or the one below and nothing said which.
+
+   Now 0 within a group (the line box is the separation) against 24px between
+   groups. The rule lives here rather than inline on each page so spacing,
+   colours and effects cannot drift to three different answers. */
+.demo-token-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-6);
+}
+
 /* Token table row label.
    The left column of the size/weight/leading/tracking tables. It used to be
    12px mono tertiary with a 10px sub-line — the smallest text on the page,
@@ -791,7 +807,6 @@ body {
 
 .demo-token-label__size {
   display: block;
-  margin-block-start: var(--ds-space-0-5);
   font-size: var(--ds-text-xs);
   color: var(--ds-color-text-secondary);
 }
