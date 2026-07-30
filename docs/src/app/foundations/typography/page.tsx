@@ -116,73 +116,83 @@ function TypeTable({ rows }: { rows: Row[] }) {
 export default function TypographyPage() {
   return (
     <>
-      <div className="demo-page-header">
-        <h1>Typography</h1>
-        <p>
-          Ten named classes, two entry points, one set of tokens underneath. Pick a class by
-          what the text <em>is</em>, never by how big you want it.
+      <header className="typo-hero">
+        <p className="ds-overline">Foundations</p>
+        <h1 className="ds-hero-title">Typography</h1>
+        <p className="ds-editorial-lede typo-hero__lede">
+          Ten named classes. Pick by what the text <em>is</em>, never by how big you want it.
+        </p>
+      </header>
+
+      <div className="typo-act">
+        <span className="ds-meta typo-act__n">01 &nbsp;/&nbsp; Two doors</span>
+        <h2 className="ds-section-title">A site scales. A product does not.</h2>
+        <p className="ds-editorial-lede typo-act__lede">
+          Same tokens on both sides. What changes is which classes come on stage.
         </p>
       </div>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Two doors, one system</h2>
-        <p className="demo-section__description">
-          A site and an application want different typography, and the split is not cosmetic.
-          A marketing page is a composition: the type scales with the viewport because the page
-          is meant to breathe. A dashboard is a tool: its density is a product decision, so its
-          type does <strong>not</strong> reflow when you widen the window, and it never reaches
-          for the display face &mdash; display type on a data table is noise.
-        </p>
-        <p className="demo-section__description">
-          Same tokens on both sides. What changes is which set of classes comes on stage.
-        </p>
-      </section>
+      <div className="typo-doors">
+        <div className="typo-door">
+          <p className="ds-overline">Door A</p>
+          <h3>Web</h3>
+          <p className="ds-body typo-door__what">Site, landing, editorial.</p>
+          <ul className="typo-door__facts">
+            <li className="ds-body">Display face</li>
+            <li className="ds-body">Fluid, 40 &rarr; 72px</li>
+            <li className="ds-body">Balanced line breaks</li>
+            <li className="ds-meta">re-scale via --ds-text-hero</li>
+          </ul>
+        </div>
+        <div className="typo-door">
+          <p className="ds-overline">Door B</p>
+          <h3>Product</h3>
+          <p className="ds-body typo-door__what">Admin, dashboard, forms, tables.</p>
+          <ul className="typo-door__facts">
+            <li className="ds-body">Body face, never display</li>
+            <li className="ds-body">Fixed sizes, no clamp()</li>
+            <li className="ds-body">Density is a product call</li>
+            <li className="ds-meta">tabular figures in columns</li>
+          </ul>
+        </div>
+      </div>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Door A &mdash; Web</h2>
-        <p className="demo-section__description">
-          Site, landing, editorial. Display face, fluid sizes, tight tracking, balanced line
-          breaks. Sizes come from <code>--ds-text-hero</code> and <code>--ds-text-section</code>:
-          to re-scale a brand, override those two tokens in the project&apos;s{" "}
-          <code>theme.css</code> and leave the classes alone.
-        </p>
+      <div className="typo-act">
+        <span className="ds-meta typo-act__n">02 &nbsp;/&nbsp; The classes</span>
+        <h2 className="ds-section-title">Ten of them, and that is the whole API.</h2>
+      </div>
+
+      <section className="typo-block">
+        <h3>Web</h3>
         <div className="demo-preview">
           <TypeTable rows={WEB} />
         </div>
       </section>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Door B &mdash; Product</h2>
-        <p className="demo-section__description">
-          Admin, dashboard, forms, tables. Body face throughout, fixed sizes, no{" "}
-          <code>clamp()</code>. Pair with <code>ds-tabular-nums</code> wherever numbers stack
-          into a column.
-        </p>
+      <section className="typo-block">
+        <h3>Product</h3>
         <div className="demo-preview">
           <TypeTable rows={PRODUCT} />
         </div>
       </section>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Small means irrelevant</h2>
-        <p className="demo-section__description">
-          <code>ds-body</code> and <code>ds-meta</code> exist because of a count, not a taste.
-          Across the 21 consumers <code>ds-text-sm</code> has 610 uses and{" "}
-          <code>ds-text-xs</code> 286, against 58 for <code>ds-text-base</code>: body copy in
-          this ecosystem drifted to 14px and nobody chose that. It happens because the DS had no
-          class meaning &ldquo;this is reading text&rdquo;, so the handiest thing in reach was
-          the smallest step of the ramp &mdash; and once the body sits at 14, everything
-          subordinate has to go to 12, then 10. The page compresses downward and size stops
-          meaning anything.
-        </p>
-        <p className="demo-section__description">
-          <strong>
-            So: content is <code>ds-body</code>, at full strength. Only genuinely supplementary
-            text is <code>ds-meta</code>.
-          </strong>{" "}
-          A timestamp, a count, a tag. A link is an action, not metadata, however minor it looks
-          &mdash; it does not go in <code>ds-meta</code>.
-        </p>
+      <section className="typo-block">
+        <h3>Long-form</h3>
+        <p className="ds-body typo-block__lede">Authored content takes <code>ds-editorial-body</code>. Markdown you do not control takes <code>ds-prose-block</code>. Never nest one in the other.</p>
+        <div className="demo-preview">
+          <TypeTable rows={LONGFORM} />
+        </div>
+      </section>
+
+      <div className="typo-act">
+        <span className="ds-meta typo-act__n">03 &nbsp;/&nbsp; The rules</span>
+        <h2 className="ds-section-title">Two habits that flatten every page.</h2>
+      </div>
+
+      <section className="typo-block">
+        <h3>Small means irrelevant</h3>
+        <p className="ds-body typo-block__lede">Across the 21 consumers <code>ds-text-sm</code> has 610 uses against 58 for <code>ds-text-base</code>. Body copy drifted to 14px because no class said &ldquo;this is reading text&rdquo;, so the smallest step of the ramp was the handiest thing in reach. Once the body sits at 14, everything under it goes to 12, then 10.</p>
+        <p className="ds-body typo-block__lede"><strong>Content is <code>ds-body</code>, at full strength. Only genuinely supplementary text is <code>ds-meta</code>.</strong> A link is an action, not metadata, however minor it looks.</p>
         <div className="demo-preview">
           <div className="demo-compare">
             <div>
@@ -223,29 +233,9 @@ export default function TypographyPage() {
         </div>
       </section>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Long-form</h2>
-        <p className="demo-section__description">
-          Two containers, and they are not interchangeable. Use <code>ds-editorial-body</code>{" "}
-          for content you author, where the reading rhythm is the point. Use{" "}
-          <code>ds-prose-block</code> for markdown or CMS output you do not control, where the
-          job is to dress whatever elements arrive. Do not nest one in the other.
-        </p>
-        <div className="demo-preview">
-          <TypeTable rows={LONGFORM} />
-        </div>
-      </section>
-
-      <section className="demo-section">
-        <h2 className="demo-section__title">One class, never a stack</h2>
-        <p className="demo-section__description">
-          A stack of utilities on a heading renders fine the first time. The cost lands on the
-          second developer, who composes a slightly different stack for a heading at the same
-          level. Neither is wrong, and the page ends up with two hierarchies &mdash; no console
-          error, nothing to catch it. Worse, a hand-set weight escapes{" "}
-          <code>--ds-font-display-weight</code>, so a brand-wide weight change silently skips
-          those elements.
-        </p>
+      <section className="typo-block">
+        <h3>One class, never a stack</h3>
+        <p className="ds-body typo-block__lede">A stack renders fine the first time. The cost lands on the second developer, who picks a slightly different stack for a heading at the same level. Two hierarchies, no console error. And a hand-set weight escapes <code>--ds-font-display-weight</code>, so a brand-wide change skips it.</p>
         <div className="demo-preview">
           <div className="demo-compare">
             <div>
@@ -267,28 +257,21 @@ export default function TypographyPage() {
             </div>
           </div>
         </div>
-        <p className="demo-section__description">
-          Rule of thumb, and what the typography-soup hook enforces: three or more family, size
-          and colour utilities on one element &mdash; <code>ds-font-display</code> plus{" "}
-          <code>ds-text-4xl</code> plus <code>ds-text-primary</code>, say &mdash; means you are
-          rebuilding a class that already exists. One size plus one colour is fine and stays
-          inside the budget.
-        </p>
+        <p className="ds-body typo-block__lede">Three or more family, size and colour utilities on one element means the class already exists. One size plus one colour is fine.</p>
       </section>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Bare headings</h2>
-        <p className="demo-section__description">
-          <code>h1</code>&ndash;<code>h6</code> carry the display face and are fluid, so an
-          unclassed heading is safe on a phone. They are still the fallback, not the API: inside
-          a page you name the role. Sizes are <code>h1</code> 32&nbsp;&rarr;&nbsp;48,{" "}
-          <code>h2</code> 26&nbsp;&rarr;&nbsp;36, <code>h3</code> 22&nbsp;&rarr;&nbsp;24, then{" "}
-          <code>h4</code> 20, <code>h5</code> 18, <code>h6</code> 16 fixed with snug leading.
-        </p>
+      <section className="typo-block">
+        <h3>Bare headings</h3>
+        <p className="ds-body typo-block__lede"><code>h1</code>&ndash;<code>h6</code> are fluid and safe on a phone, but they are the fallback, not the API. Inside a page, name the role. Sizes: 32&ndash;48, 26&ndash;36, 22&ndash;24, then 20, 18, 16 fixed.</p>
       </section>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Font Families</h2>
+      <div className="typo-act">
+        <span className="ds-meta typo-act__n">04 &nbsp;/&nbsp; Reference</span>
+        <h2 className="ds-section-title">The tokens underneath.</h2>
+      </div>
+
+      <section className="typo-block">
+        <h3>Font Families</h3>
         <div
           className="demo-preview"
           dangerouslySetInnerHTML={{
@@ -312,9 +295,9 @@ export default function TypographyPage() {
         />
       </section>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Font Sizes</h2>
-        <p className="demo-section__description">
+      <section className="typo-block">
+        <h3>Font Sizes</h3>
+        <p className="ds-body typo-block__lede">
           The raw ramp. It is the layer <em>under</em> the classes above, not a substitute for
           them &mdash; reach for it when you are building a component, not when you are writing
           a page.
@@ -351,7 +334,7 @@ export default function TypographyPage() {
         `,
           }}
         />
-        <p className="demo-section__description">
+        <p className="ds-body typo-block__lede">
           Four more sizes are fluid and sit outside this ramp: <code>--ds-text-hero</code>{" "}
           (40&nbsp;&rarr;&nbsp;72px), <code>--ds-text-section</code> (30&nbsp;&rarr;&nbsp;36px),
           and the editorial pair <code>--ds-text-editorial-title</code> and{" "}
@@ -360,9 +343,9 @@ export default function TypographyPage() {
         </p>
       </section>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Font Weights</h2>
-        <p className="demo-section__description">
+      <section className="typo-block">
+        <h3>Font Weights</h3>
+        <p className="ds-body typo-block__lede">
           Headings do not set a weight by hand. Display headings take{" "}
           <code>--ds-font-display-weight</code>, and the two body-font heading classes take{" "}
           <code>--ds-admin-title-weight</code> and <code>--ds-heading-ui-weight</code>. Override
@@ -396,8 +379,8 @@ export default function TypographyPage() {
         />
       </section>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Line Heights</h2>
+      <section className="typo-block">
+        <h3>Line Heights</h3>
         <div
           className="demo-preview"
           dangerouslySetInnerHTML={{
@@ -426,8 +409,8 @@ export default function TypographyPage() {
         />
       </section>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Letter Spacing</h2>
+      <section className="typo-block">
+        <h3>Letter Spacing</h3>
         <div
           className="demo-preview"
           dangerouslySetInnerHTML={{

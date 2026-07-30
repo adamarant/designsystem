@@ -188,6 +188,99 @@
   color: var(--ds-color-text-tertiary);
 }
 
+/* ==========================================================================
+   foundations/typography — page structure
+
+   Layout only. Every piece of type on this page is a DS class: the title is
+   .ds-hero-title, the lede .ds-editorial-lede, the act headings
+   .ds-section-title, the numbers .ds-meta, the tags .ds-overline. The page
+   that documents the system is built out of it, so it demonstrates the
+   hierarchy instead of describing one it does not have.
+
+   Why this exists at all: .demo-section__title is --ds-text-base, the same
+   size as body copy, and the page had twelve of them in a row with no act
+   structure. Nothing read as a heading and everything read as a peer.
+   ========================================================================== */
+
+/* No max-width on the container. It had `max-width: 22ch`, and `ch` resolves
+   against the element's OWN font-size — the container inherits 16px body, so
+   22ch was ~183px and the 72px title was crammed into a column narrower than
+   a phone. Measures belong on the text element, never on its wrapper. */
+.typo-hero {
+  padding-block: var(--ds-space-10) var(--ds-space-6);
+}
+
+.typo-hero__lede {
+  max-width: 32ch;
+  margin-block-start: var(--ds-space-6);
+}
+
+/* A block inside an act: the sub-level between the act heading and body. */
+.typo-block {
+  margin-block: var(--ds-space-12);
+}
+
+.typo-block__lede {
+  max-width: 60ch;
+  margin-block: var(--ds-space-3) var(--ds-space-6);
+}
+
+/* An act opens with air above it and a rule, so the eye knows a new part
+   started without having to read the heading to find out. */
+.typo-act {
+  padding-block-start: var(--ds-space-8);
+  margin-block: var(--ds-space-16) var(--ds-space-8);
+  border-block-start: 1px solid var(--ds-color-border);
+}
+
+.typo-act:first-of-type {
+  margin-block-start: 0;
+}
+
+.typo-act__n {
+  display: block;
+  margin-block-end: var(--ds-space-4);
+}
+
+.typo-act__lede {
+  max-width: 46ch;
+  margin-block-start: var(--ds-space-5);
+}
+
+/* The two doors, side by side. This is the page's one big idea, so it gets
+   the width and the air rather than a paragraph. */
+.typo-doors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--ds-space-10);
+  margin-block: var(--ds-space-10);
+}
+
+.typo-door {
+  padding-block-start: var(--ds-space-5);
+  border-block-start: 2px solid var(--ds-color-text);
+}
+
+.typo-door__what {
+  margin-block: var(--ds-space-3) var(--ds-space-5);
+  max-width: 30ch;
+}
+
+.typo-door__facts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.typo-door__facts li {
+  padding-block: var(--ds-space-2);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.typo-door__facts li:last-child {
+  border-block-end: none;
+}
+
 /* Section prose.
    `.demo-section__description` was used by foundations/colors and never
    defined — the paragraphs were falling back to bare <p>. Defined 30 Jul 2026. */
