@@ -76,6 +76,51 @@ strong, b {
   color: var(--ds-color-text-secondary);
 }
 
+/* ==========================================================================
+   Text roles (30 Jul 2026)
+
+   Two classes that name what a piece of text IS, so nobody has to pick a
+   number. They exist because of a measurement, not a preference: across the
+   21 consumers, `ds-text-sm` has 610 uses and `ds-text-xs` 286, against 58
+   for `ds-text-base`. Body copy in this ecosystem is 14px — a default nobody
+   ever chose.
+
+   The mechanism is worth writing down, because it will come back otherwise.
+   The DS had no class meaning "this is reading text", so the handiest thing
+   in reach was the smallest step of the size ramp. Once body copy sits at
+   14px, anything subordinate has to go to 12, and anything below that to 10.
+   The whole page compresses downward and the hierarchy stops carrying
+   meaning: when everything is small, small no longer says "less important".
+
+   So the rule these two encode is: SMALL MEANS IRRELEVANT. A timestamp, a
+   count, a category tag — those are `ds-meta`. Content is `ds-body`, at full
+   strength, whatever else is on the card. A link is an action, not metadata,
+   and does not go in `ds-meta` however minor it looks.
+
+   Deliberately NOT added: a `caption` role (that is `ds-text-sm` plus a
+   colour, two utilities, already inside the budget) and a `body-large` role
+   (that is `.ds-editorial-lede`, which already exists). Four roles is the
+   textbook set; two is what was actually missing here.
+   ========================================================================== */
+
+/* Reading text. The default for content, at primary strength (§10). */
+.ds-body {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-base);
+  line-height: var(--ds-leading-normal);
+  color: var(--ds-color-text);
+}
+
+/* Metadata. Genuinely supplementary: timestamps, counts, tags, copyright.
+   Tertiary does not meet 4.5:1 and this class is scoped to match — if the
+   text matters, it is not meta, and the right class is .ds-body. */
+.ds-meta {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-xs);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text-tertiary);
+}
+
 /* UI heading — body font for functional/interface headings (labels, settings, admin).
    Weight goes through --ds-heading-ui-weight, the sibling of
    --ds-admin-title-weight: a consumer whose body typeface has no Medium cut
