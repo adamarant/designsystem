@@ -24,19 +24,19 @@ export default function ColorsPage() {
         </p>
         <div className="demo-preview">
           <div style={{ background: "var(--ds-color-bg)", padding: "var(--ds-space-5)", borderRadius: "var(--ds-radius-lg)", border: "1px solid var(--ds-color-border)" }}>
-            <div style={{ fontSize: "var(--ds-text-xs)", fontFamily: "var(--ds-font-mono)", color: "var(--ds-color-text-tertiary)", marginBlockEnd: "var(--ds-space-3)" }}>
+            <div className="demo-token-label demo-token-label--block" style={{ marginBlockEnd: "var(--ds-space-3)" }}>
               0 &middot; --ds-color-bg &mdash; the page
             </div>
             <div style={{ background: "var(--ds-color-surface)", padding: "var(--ds-space-5)", borderRadius: "var(--ds-radius-lg)", border: "1px solid var(--ds-color-border)" }}>
-              <div style={{ fontSize: "var(--ds-text-xs)", fontFamily: "var(--ds-font-mono)", color: "var(--ds-color-text-tertiary)", marginBlockEnd: "var(--ds-space-3)" }}>
+              <div className="demo-token-label demo-token-label--block" style={{ marginBlockEnd: "var(--ds-space-3)" }}>
                 1 &middot; --ds-color-surface &mdash; a card on the page
               </div>
               <div style={{ background: "var(--ds-color-surface-muted)", padding: "var(--ds-space-5)", borderRadius: "var(--ds-radius-md)" }}>
-                <div style={{ fontSize: "var(--ds-text-xs)", fontFamily: "var(--ds-font-mono)", color: "var(--ds-color-text-tertiary)", marginBlockEnd: "var(--ds-space-3)" }}>
+                <div className="demo-token-label demo-token-label--block" style={{ marginBlockEnd: "var(--ds-space-3)" }}>
                   2 &middot; --ds-color-surface-muted &mdash; an element on the card
                 </div>
                 <div style={{ background: "var(--ds-color-surface-elevated)", padding: "var(--ds-space-4)", borderRadius: "var(--ds-radius-md)" }}>
-                  <div style={{ fontSize: "var(--ds-text-xs)", fontFamily: "var(--ds-font-mono)", color: "var(--ds-color-text-tertiary)" }}>
+                  <div className="demo-token-label">
                     3 &middot; --ds-color-surface-elevated &mdash; an element on the muted one
                   </div>
                 </div>

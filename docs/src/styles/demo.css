@@ -1,8 +1,9 @@
-/* Map next/font CSS variables to DS font tokens */
+/* Map next/font CSS variables to DS font tokens.
+   One family since 31 Jul 2026: --font-display no longer exists, and the
+   display token is aliased onto sans further down (see "Typeface"). */
 :root {
-  --ds-font-display: var(--font-display), system-ui, sans-serif;
   --ds-font-sans: var(--font-sans), system-ui, sans-serif;
-  --ds-font-mono: var(--font-mono), ui-monospace, monospace;
+  --ds-font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 /* Demo site layout — NOT part of the design system */
@@ -82,7 +83,7 @@
 .demo-main {
   flex: 1;
   padding: var(--ds-space-6) var(--ds-space-8);
-  max-width: 64rem;
+  max-width: 1220px;
   overflow-x: hidden;
 }
 
@@ -92,18 +93,56 @@
   margin-block-end: var(--ds-space-6);
 }
 
-/* Demo sections */
+/* ── The framework, shared by all 73 pages ────────────────────────────────
+   Typography was rebuilt on a 12-column grid (see "the grid" below) and the
+   other 72 pages were still stacking 16px headings on a single column. Rather
+   than edit 72 files, the two pieces every page already shares — the header
+   and DemoSection — are restyled onto the same grid. One change, whole site.
+
+   A section is one grid row: the title sits in the label column (4 cols) and
+   the demo in the content column (8), which is exactly how a specimen row
+   works on the typography page. Same structure for a colour swatch, a button
+   demo and a type sample. */
 
 .demo-section {
-  margin-block-end: var(--ds-space-8);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--ds-space-6);
+  max-width: 1156px;
+  margin-inline: auto;
+  padding-block: var(--ds-space-16);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+/* Every child except the title is pinned to the content column. Left to
+   auto-placement the first one lands at column 5 and the next wraps back to
+   column 1, so a "View Code" block sat under the label instead of under its
+   own preview. */
+.demo-section > *:not(.demo-section__title) {
+  grid-column: 5 / span 8;
+  min-width: 0;
 }
 
 .demo-section__title {
-  font-family: var(--ds-font-display);
-  font-weight: var(--ds-weight-semibold);
-  font-size: var(--ds-text-base);
+  grid-column: span 4;
+  align-self: start;
+  font-family: var(--ds-font-sans);
+  font-size: 0.6875rem;
+  font-weight: var(--ds-weight-normal);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
   color: var(--ds-color-text);
-  margin-block-end: var(--ds-space-3);
+  margin: 0;
+}
+
+.demo-section__description {
+  grid-column: 5 / span 8;
+}
+
+@media (max-width: 820px) {
+  .demo-section > *:not(.demo-section__title),
+  .demo-section__title,
+  .demo-section__description { grid-column: span 12; }
 }
 
 .demo-preview {
@@ -150,21 +189,51 @@
 
 /* Page header */
 
+/* Same row shape as every section: an empty label column, then the title and
+   its lede in the content column. 30px semibold display became the page-title
+   treatment the typography page introduced. */
 .demo-page-header {
-  margin-block-end: var(--ds-space-8);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--ds-space-6);
+  max-width: 1156px;
+  margin-inline: auto;
+  padding-block: var(--ds-space-12) var(--ds-space-16);
+  border-block-end: 1px solid var(--ds-color-border);
 }
 
 .demo-page-header h1 {
-  font-family: var(--ds-font-display);
+  grid-column: 5 / span 8;
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: var(--ds-weight-bold);
-  font-size: var(--ds-text-3xl);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
   color: var(--ds-color-text);
-  margin-block-end: var(--ds-space-2);
 }
 
 .demo-page-header p {
+  grid-column: 5 / span 8;
+  margin: var(--ds-space-10) 0 0;
+  max-width: 46ch;
   font-size: var(--ds-text-base);
-  color: var(--ds-color-text-secondary);
+  font-weight: var(--ds-weight-light);
+  line-height: var(--ds-leading-normal);
+  color: var(--ds-color-text);
+  text-wrap: pretty;
+}
+
+@media (max-width: 820px) {
+  .demo-page-header h1,
+  .demo-page-header p { grid-column: span 12; }
+}
+
+/* Sidebar footer — the theme control lives with the chrome, not floating in
+   the top-right of the content area. */
+.demo-sidebar__foot {
+  margin-block-start: var(--ds-space-6);
+  padding-block-start: var(--ds-space-4);
+  border-block-start: 1px solid var(--ds-color-border);
 }
 
 /* Component index links */
@@ -186,4 +255,624 @@
 .demo-component-link__cat {
   font-size: var(--ds-text-xs);
   color: var(--ds-color-text-tertiary);
+}
+
+/* ==========================================================================
+   foundations/typography — page structure
+
+   Layout only. Every piece of type on this page is a DS class: the title is
+   .ds-hero-title, the lede .ds-editorial-lede, the act headings
+   .ds-section-title, the numbers .ds-meta, the tags .ds-overline. The page
+   that documents the system is built out of it, so it demonstrates the
+   hierarchy instead of describing one it does not have.
+
+   Why this exists at all: .demo-section__title is --ds-text-base, the same
+   size as body copy, and the page had twelve of them in a row with no act
+   structure. Nothing read as a heading and everything read as a peer.
+   ========================================================================== */
+
+/* No max-width on the container. It had `max-width: 22ch`, and `ch` resolves
+   against the element's OWN font-size — the container inherits 16px body, so
+   22ch was ~183px and the 72px title was crammed into a column narrower than
+   a phone. Measures belong on the text element, never on its wrapper. */
+/* ── Typeface ─────────────────────────────────────────────────────────────
+   riccardo's face, adopted 31 Jul 2026 in place of Clash Display + Switzer.
+   Inter variable with the optical-size axis, one family for both roles:
+   font-optical-sizing (auto by default) gives large headings Inter's Display
+   cut and body text the Text cut, so display and sans differ by optics rather
+   than by a second typeface. Same move riccardo makes, and the same one
+   brand.s25.studio makes with a single Diatype in three cuts.
+
+   Declared on body because that is where next/font puts --font-sans. */
+body {
+  --ds-font-display: var(--ds-font-sans);
+}
+
+/* ── Chrome typography ────────────────────────────────────────────────────
+   Four roles, and NONE of them is a DS class.
+
+   Dogfooding the documented classes for the page's own furniture was the
+   thing that made demo and documentation indistinguishable: ds-overline was
+   both the kicker and a specimen, ds-editorial-lede was both the intro and a
+   specimen. Chrome now has its own vocabulary, so every DS class on the page
+   appears exactly once — inside a panel, as the thing being shown.
+
+   The system is borrowed from brand.s25.studio, which uses one family and
+   a binary weight: 300 for everything, 700 only for the display moment.
+   Hierarchy comes from size and weight, never from greying text down —
+   their labels are 10.5px at FULL contrast, uppercase and tracked. */
+
+
+.typo-heading {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.4vw, 1.75rem);
+  font-weight: var(--ds-weight-light);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ds-color-text);
+}
+
+.typo-body {
+  margin: 0;
+  max-width: 62ch;
+  font-size: var(--ds-text-base);
+  font-weight: var(--ds-weight-light);
+  line-height: var(--ds-leading-normal);
+  color: var(--ds-color-text);
+  text-wrap: pretty;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   foundations/typography — the grid
+
+   Reverse-engineered from brand.s25.studio, which is what this page should
+   have been built on from the start. Its whole layout is one structure:
+
+     12 columns, 1156px container, 24px gutters
+     every row is LABEL (4 cols) | CONTENT (8 cols)
+     the label column is left EMPTY on continuation rows, so a run of content
+       flows under a single label
+     uniform 64px section padding, everywhere, with no bespoke gaps at all
+
+   Measured, not guessed: their label column is 369px and their content column
+   763px, which is exactly 4 and 8 columns of that grid (4*74.33 + 3*24 = 369,
+   8*74.33 + 7*24 = 763, and 369 + 24 + 763 = 1156).
+
+   The rhythm comes from the grid holding still. Every previous attempt here
+   was a single column with hand-tuned gaps per section, which is why it read
+   as a pile of unrelated blocks no matter how the type was set.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.s-section {
+  padding-block: var(--ds-space-16);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.s-section:last-child { border-block-end: none; }
+
+.s-container {
+  max-width: 1156px;
+  margin-inline: auto;
+}
+
+.s-row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--ds-space-6);
+}
+
+.s-row + .s-row { margin-block-start: var(--ds-space-10); }
+
+.s-label   { grid-column: span 4; }
+.s-content { grid-column: span 8; min-width: 0; }
+
+/* Two things side by side inside the content column. */
+.s-split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--ds-space-8);
+}
+
+@media (max-width: 820px) {
+  .s-label, .s-content { grid-column: span 12; }
+  .s-row + .s-row { margin-block-start: var(--ds-space-8); }
+}
+
+/* ── Two surfaces, and that is the whole layout ───────────────────────────
+   The page read as a wall because explanation and demonstration shared one
+   surface, one column width and one density: flat text on the page
+   background, all the way down, so nothing told the eye "this part is me
+   talking, this part is the type".
+
+   Now there are exactly two states:
+
+     prose   — narrow measure, on the page background. Me talking.
+     panel   — a surface with a border and real padding. The type itself.
+
+   Nothing else changes between them. One rule, applied everywhere, and the
+   reader stops having to work out which mode they are in. */
+
+.typo-prose {
+  max-width: 62ch;
+}
+
+.typo-panel {
+  padding: clamp(var(--ds-space-6), 4vw, var(--ds-space-12));
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  background-color: var(--ds-color-surface);
+}
+
+.typo-hero {
+  padding-block: var(--ds-space-16) var(--ds-space-10);
+}
+
+
+/* A block inside an act. The gaps were uniform and tight everywhere, so the
+   page had no breathing pattern — everything looked equally urgent. */
+.typo-block {
+  margin-block: var(--ds-space-16);
+}
+
+.typo-block__lede {
+  max-width: 62ch;
+  margin-block: var(--ds-space-4) var(--ds-space-8);
+}
+
+/* An act opens with air above it and a rule, so the eye knows a new part
+   started without having to read the heading to find out. */
+/* An act is the page's biggest gap by a wide margin. If the reader is going
+   to lose their place anywhere, it should be obvious that a new part began. */
+.typo-act {
+  padding-block-start: var(--ds-space-12);
+  margin-block: var(--ds-space-32) var(--ds-space-10);
+  border-block-start: 1px solid var(--ds-color-border);
+  max-width: 62ch;
+}
+
+.typo-act:first-of-type {
+  margin-block-start: 0;
+}
+
+/* ── The label role ───────────────────────────────────────────────────────
+   Small AND legible. These were .ds-meta, which is 12px tertiary (#71717a,
+   ~3.8:1 on the dark background — the DS's own colors.css flags it as
+   "decorative/non-essential only"). The act markers, the group dividers and
+   above all the class name next to each specimen are none of those things:
+   the class name is the single answer to "what am I looking at".
+
+   That was this page committing its own sin for the third time. `ds-meta` is
+   correct for what it says on the tin — a timestamp, a count — and wrong for
+   structure, and reaching for it everywhere was consistency bought with
+   legibility.
+
+   Quiet is made with SIZE and TRACKING, never with low contrast. 13px,
+   uppercase, wide tracking, secondary (#a1a1aa, ~7.6:1, AAA). It recedes
+   because it is small and spaced, not because it is hard to see. */
+.typo-label {
+  display: block;
+  font-family: var(--ds-font-sans);
+  font-size: 0.6875rem;
+  font-weight: var(--ds-weight-normal);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ds-color-text);
+}
+
+.typo-act__n {
+  display: block;
+  margin-block-end: var(--ds-space-4);
+}
+
+.typo-act__lede {
+  max-width: 46ch;
+  margin-block-start: var(--ds-space-5);
+}
+
+/* The two doors, side by side. This is the page's one big idea, so it gets
+   the width and the air rather than a paragraph. */
+.typo-doors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--ds-space-10);
+  margin-block: var(--ds-space-10);
+}
+
+.typo-door {
+  padding-block-start: var(--ds-space-5);
+  border-block-start: 2px solid var(--ds-color-text);
+}
+
+.typo-door__what {
+  margin-block: var(--ds-space-3) var(--ds-space-5);
+  max-width: 30ch;
+}
+
+.typo-door__facts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.typo-door__facts li {
+  padding-block: var(--ds-space-2);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.typo-door__facts li:last-child {
+  border-block-end: none;
+}
+
+/* Section prose.
+   `.demo-section__description` was used by foundations/colors and never
+   defined — the paragraphs were falling back to bare <p>. Defined 30 Jul 2026. */
+
+.demo-section__description {
+  max-width: 78ch;
+  margin-block: var(--ds-space-3) var(--ds-space-5);
+  font-size: var(--ds-text-base);
+  line-height: var(--ds-leading-relaxed);
+  color: var(--ds-color-text);
+  text-wrap: pretty;
+}
+
+/* Type specimen list — foundations/typography.
+   These exist so the page can be written in real classes instead of inline
+   styles. The token tables further down that page still use HTML strings,
+   which is what the file has always done: `style={{}}` in JSX is blocked, and
+   a page whose job is to render `var(--ds-text-4xl)` needs a dynamic value
+   per row. Layout and chrome live here; only the varying token stays inline
+   in the markup string. */
+
+/* Specimen rows: a quiet label rail on the left, the type itself on the right.
+
+   Two wrong answers came before this one. First, four stacked lines per class
+   (mono name, mono spec, 16px description, live sample) — the sample was
+   competing with three other things and the column read as a random staircase
+   of 72px down to 12px. Then, over-correcting, a pure table: all class names
+   and prose, no type at all, on the page whose job is to show type.
+
+   The size variation was never the problem; the competition was. Strip a row
+   to two elements and the varying sizes become the point, which is how every
+   type specimen has always worked. The label is small, quiet and on a fixed
+   rail so the eye reads one column of labels and one column of type. */
+/* Inside a panel the rows get real air. They were padding-block: space-8 with
+   a divider, which packed a 72px specimen and a 12px one into the same tight
+   band and made the whole column feel crushed. */
+.typo-spec__row {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: var(--ds-space-10);
+  align-items: baseline;
+  padding-block: var(--ds-space-12);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.typo-spec__row:first-child { padding-block-start: 0; }
+
+.typo-spec__row:last-child {
+  padding-block-end: 0;
+  border-block-end: none;
+}
+
+/* The label rail is .ds-meta and nothing more. Its two lines differ only by
+   typeface, not by a size or colour of their own — the page chrome is four
+   classes total (ds-hero-title, ds-section-title, ds-body, ds-meta) so that
+   every other size on the page is unmistakably a specimen. */
+.typo-spec__label {
+  position: sticky;
+  inset-block-start: var(--ds-space-6);
+  margin: 0;
+}
+
+/* The class name is the answer to "what am I looking at", so it is PRIMARY.
+   The chip (background, padding, radius) comes off: on this rail it is a
+   caption, not an inline code token, and the box made it a second object
+   competing with the specimen. */
+.typo-spec__label code {
+  display: block;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ds-color-text);
+}
+
+/* The purpose under it is the subordinate half of the pair, so secondary is
+   correct here — it has a primary companion directly above it. */
+.typo-spec__label span {
+  display: block;
+  margin-block-start: var(--ds-space-1);
+}
+
+/* Group divider inside an act. A label, not a heading. */
+.typo-group {
+  margin-block: var(--ds-space-10) var(--ds-space-2);
+}
+
+@media (max-width: 760px) {
+  .typo-spec__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--ds-space-3);
+  }
+  .typo-spec__label { position: static; }
+}
+
+.typo-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.typo-table th {
+  padding: 0 var(--ds-space-4) var(--ds-space-3) 0;
+  text-align: start;
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  letter-spacing: var(--ds-tracking-wide);
+  text-transform: uppercase;
+  color: var(--ds-color-text-tertiary);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.typo-table td {
+  padding: var(--ds-space-4) var(--ds-space-4) var(--ds-space-4) 0;
+  vertical-align: baseline;
+  font-size: var(--ds-text-base);
+  color: var(--ds-color-text);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.typo-table tr:last-child td {
+  border-block-end: none;
+}
+
+/* Column widths are declared, not left to the browser. The spec column was
+   `white-space: nowrap` and it starved the middle column, so "Use for"
+   wrapped to four lines while the spec sat on one. The prose column gets the
+   most room; the two mono columns wrap like everything else. */
+.typo-table__cls {
+  width: 20%;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+}
+
+.typo-table__spec {
+  width: 38%;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+}
+
+@media (max-width: 900px) {
+  .typo-table__spec { display: none; }
+}
+
+.demo-type-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-6);
+}
+
+.demo-type-row {
+  display: grid;
+  gap: var(--ds-space-2);
+  padding-block-end: var(--ds-space-6);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.demo-type-row:last-child {
+  padding-block-end: 0;
+  border-block-end: none;
+}
+
+.demo-type-row__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--ds-space-3);
+}
+
+.demo-type-row__cls {
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  background-color: var(--ds-color-surface-muted);
+  padding: 0.15em 0.45em;
+  border-radius: var(--ds-radius-sm);
+}
+
+/* The spec sits next to the class name it describes: subordinate half of a
+   pair, so secondary is right — but at reading size, not shrunk to 12px.
+   It is not metadata, it is the answer to "what does this class do". */
+.demo-type-row__spec {
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+}
+
+.demo-type-row__use {
+  margin: 0;
+  font-size: var(--ds-text-base);
+  color: var(--ds-color-text-secondary);
+}
+
+.demo-type-row__sample {
+  margin-block-start: var(--ds-space-2);
+}
+
+/* Side-by-side comparison */
+
+.demo-compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--ds-space-6);
+}
+
+/* The verdict on each panel. This label was 12px mono tertiary until the owner
+   pointed out the obvious: on a page whose whole argument is that shrinking
+   everything destroys hierarchy, the line that names the lesson cannot itself
+   be styled as throwaway metadata. It is the most important text in the block,
+   so it is set at reading size in primary, and the avoid/use distinction is
+   carried by colour — signal, not decoration — instead of by size. */
+/* Folded into the label role: same size as every other caption on the page.
+   It carries its meaning in colour, not in a size of its own — which is the
+   whole reason it can be small without repeating the mistake this page warns
+   about. A coloured signal is not tertiary grey. */
+.demo-compare__label {
+  display: block;
+  margin-block-end: var(--ds-space-3);
+  font-size: var(--ds-text-xs);
+  font-weight: var(--ds-weight-medium);
+  letter-spacing: var(--ds-tracking-wide);
+  text-transform: uppercase;
+  color: var(--ds-color-text-secondary);
+}
+
+.demo-compare__label--avoid { color: var(--ds-color-error); }
+.demo-compare__label--use { color: var(--ds-color-success); }
+
+.demo-specimen-card {
+  padding: var(--ds-space-5);
+  background-color: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+}
+
+.demo-specimen-card > * + * {
+  margin-block-start: var(--ds-space-2);
+}
+
+.demo-specimen-card__row {
+  display: flex;
+  gap: var(--ds-space-4);
+  align-items: baseline;
+  margin-block-start: var(--ds-space-4);
+}
+
+.demo-snippet {
+  margin: 0;
+  font-size: var(--ds-text-sm);
+}
+
+/* Token table row label.
+   The left column of the size/weight/leading/tracking tables. It used to be
+   12px mono tertiary with a 10px sub-line — the smallest text on the page,
+   below 4.5:1 on both themes, and unreadable in dark (the owner pointed at
+   exactly this). The token NAME is the content of that column, so it is
+   primary at reading size. Only the rem/px pair under it is genuinely
+   supplementary, and that one is allowed to be small and quiet. */
+.demo-token-label {
+  flex-shrink: 0;
+  min-width: 13rem;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text);
+}
+
+/* Same label stacked above its sample instead of beside it. One column width
+   for every token table, replacing the 140/160/180px mishmash. */
+.demo-token-label--center {
+  min-width: 0;
+  text-align: center;
+}
+
+.demo-token-label--block {
+  min-width: 0;
+  margin-block-end: var(--ds-space-2);
+}
+
+.demo-token-note {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+}
+
+.demo-token-label__size {
+  display: block;
+  margin-block-start: var(--ds-space-0-5);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-secondary);
+}
+
+/* ── Pieces that live inside the grid ─────────────────────────────────── */
+
+/* The class name in the label column. Primary, because it is the answer to
+   "what am I looking at"; the DS <code> chip comes off since this is a
+   caption, not an inline token. */
+.typo-cls {
+  display: block;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text);
+}
+
+/* The purpose under it: subordinate half of a pair, so secondary is right. */
+.typo-cls__what {
+  margin-block-start: var(--ds-space-1);
+  color: var(--ds-color-text-secondary);
+}
+
+
+.typo-door__what {
+  margin-block: var(--ds-space-2) var(--ds-space-5);
+}
+
+.typo-facts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--ds-text-base);
+  font-weight: var(--ds-weight-light);
+  color: var(--ds-color-text);
+}
+
+.typo-facts li {
+  padding-block: var(--ds-space-2);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.typo-facts li:last-child { border-block-end: none; }
+
+.typo-facts code { font-size: var(--ds-text-sm); }
+
+/* Verdict labels on a comparison. They carry meaning in colour, not in size,
+   which is why they can stay at label size without going grey. */
+.typo-verdict {
+  margin-block-end: var(--ds-space-3);
+}
+
+.typo-verdict--bad { color: var(--ds-color-error); }
+.typo-verdict--good { color: var(--ds-color-success); }
+
+.typo-card {
+  padding: var(--ds-space-5);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  background-color: var(--ds-color-surface);
+}
+
+.typo-card > * + * { margin-block-start: var(--ds-space-2); }
+
+.typo-card__row {
+  display: flex;
+  gap: var(--ds-space-4);
+  align-items: baseline;
+  margin-block-start: var(--ds-space-4);
+}
+
+.typo-snippet {
+  margin: 0;
+  padding: var(--ds-space-4);
+  border-radius: var(--ds-radius-md);
+  background-color: var(--ds-color-surface);
+  font-size: var(--ds-text-sm);
+  line-height: var(--ds-leading-relaxed);
+  color: var(--ds-color-text-secondary);
+  overflow-x: auto;
 }

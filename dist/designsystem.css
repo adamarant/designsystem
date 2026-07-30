@@ -320,6 +320,15 @@
      same way --ds-font-display-weight governs display headings. --- */
   --ds-admin-title-weight: var(--ds-weight-semibold);
 
+  /* --- UI heading weight (.ds-heading-ui) ---
+     The sibling lever to --ds-admin-title-weight, added 30 Jul 2026 because
+     the class hardcoded --ds-weight-medium and two consumers (studio, dokle)
+     carried the *same* override with the *same* comment: their body typeface
+     (PP Telegraf) ships 300/400 only, so the browser synthesized the 500 and
+     it read as a different family. A workaround written twice belongs in the
+     source. --- */
+  --ds-heading-ui-weight: var(--ds-weight-medium);
+
   /* --- Font Sizes --- */
   --ds-text-2xs: 0.625rem;    /* 10px */
   --ds-text-xs: 0.75rem;      /* 12px */
@@ -342,6 +351,34 @@
   --ds-text-editorial-title: clamp(2.5rem, 4vw + 1.5rem, 4.5rem);  /* 40 → 72px */
   --ds-text-editorial-lede: clamp(1.125rem, 0.5vw + 1rem, 1.375rem); /* 18 → 22px */
   --ds-text-editorial-body: 1.125rem; /* 18px — editorial reading standard (was 17px pre-Apr 2026) */
+
+  /* --- Display sizes, fluid (30 Jul 2026) ---
+       .ds-hero-title and .ds-section-title used to step through 4 and 2 media
+       queries. Every consumer with a real identity threw the ladder away and
+       wrote a clamp() instead: 5 of them on hero, 4 on section, always the
+       same shape. That is a missing token, not brand work — so here it is, and
+       a consumer now re-themes the display scale with one line in theme.css
+       instead of restating font-size, line-height and tracking on the class.
+
+       The curves are fitted to the old ladder rather than invented: each one
+       reaches its cap where the last media query used to fire, so nothing
+       moves on desktop. Only the small end changes, and only upward — the
+       hero floor goes 36 → 40px, because 36px of display type on a 375px
+       phone was the ladder's flat bottom, not a decision.
+
+         hero     375px → 40   640 → 53   768 → 59   1024+ → 72  (was 36/48/60/72)
+         section  375px → 30   640+ → 36                          (was 30/36) --- */
+  --ds-text-hero: clamp(2.5rem, 4.9vw + 1.35rem, 4.5rem);      /* 40 → 72px */
+  --ds-text-section: clamp(1.875rem, 2.25vw + 1.35rem, 2.25rem); /* 30 → 36px */
+
+  /* --- Reading measure ---
+       Replaces the literal `max-width: 600px` that sat in .ds-editorial-lede
+       (the only hardcoded length in the typography layer). Expressed in `ch`
+       so it tracks the font size instead of freezing one viewport's guess:
+       ~60 characters is the classic comfortable line. `dokle` had already
+       invented its own 46rem for the article body — this is the lever it was
+       missing. --- */
+  --ds-measure: 60ch;
 
   /* --- Font Weights --- */
   --ds-weight-extralight: 200;
@@ -667,12 +704,31 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--ds-color-text);
 }
 
-h1 { font-size: var(--ds-text-5xl); }
-h2 { font-size: var(--ds-text-4xl); }
-h3 { font-size: var(--ds-text-2xl); }
+/* Element sizes are fluid as of 30 Jul 2026. They used to be single fixed
+   values with no media query at all, which made the *unclassed* heading the
+   worst-behaving one in the system: .ds-hero-title, .ds-section-title and
+   .ds-admin-title all stepped with the viewport, while a bare <h1> stayed at
+   48px on a 375px phone. Anyone writing a heading inside a Card, an MDX page
+   or an admin layout got the flat value.
+
+   Each clamp caps at exactly today's size and reaches that cap by 1024px, so
+   nothing changes on desktop; only the sub-laptop range, which is where the
+   old rule did nothing, now scales.
+
+   NOT changed here: h2 is 36px and h3 is 24px, so the ladder still skips the
+   30px step. Closing that gap means growing every existing <h3> by 6px across
+   21 consumers — a visible content change, not a bug fix, so it stays a
+   separate decision instead of riding along in a no-regression commit. */
+h1 { font-size: clamp(2rem, 2.5vw + 1.4rem, 3rem); }          /* 32 → 48px */
+h2 { font-size: clamp(1.625rem, 1.55vw + 1.25rem, 2.25rem); } /* 26 → 36px */
+h3 { font-size: clamp(1.375rem, 0.5vw + 1.25rem, 1.5rem); }   /* 22 → 24px */
 h4 { font-size: var(--ds-text-xl); }
 h5 { font-size: var(--ds-text-lg); }
 h6 { font-size: var(--ds-text-base); font-weight: var(--ds-weight-medium); }
+
+/* leading-tight (1.1) is a display value: correct at 48px, too close at 16-20.
+   From h4 down a heading is UI text that wraps to two lines, so it gets snug. */
+h4, h5, h6 { line-height: var(--ds-leading-snug); }
 
 /* No colour declaration on purpose: <p> inherits primary from `body`
    (base/reset.css), which is what §10 asks of body copy. Through 0.37.0 this
@@ -707,10 +763,58 @@ strong, b {
   color: var(--ds-color-text-secondary);
 }
 
-/* UI heading — body font for functional/interface headings (labels, settings, admin) */
+/* ==========================================================================
+   Text roles (30 Jul 2026)
+
+   Two classes that name what a piece of text IS, so nobody has to pick a
+   number. They exist because of a measurement, not a preference: across the
+   21 consumers, `ds-text-sm` has 610 uses and `ds-text-xs` 286, against 58
+   for `ds-text-base`. Body copy in this ecosystem is 14px — a default nobody
+   ever chose.
+
+   The mechanism is worth writing down, because it will come back otherwise.
+   The DS had no class meaning "this is reading text", so the handiest thing
+   in reach was the smallest step of the size ramp. Once body copy sits at
+   14px, anything subordinate has to go to 12, and anything below that to 10.
+   The whole page compresses downward and the hierarchy stops carrying
+   meaning: when everything is small, small no longer says "less important".
+
+   So the rule these two encode is: SMALL MEANS IRRELEVANT. A timestamp, a
+   count, a category tag — those are `ds-meta`. Content is `ds-body`, at full
+   strength, whatever else is on the card. A link is an action, not metadata,
+   and does not go in `ds-meta` however minor it looks.
+
+   Deliberately NOT added: a `caption` role (that is `ds-text-sm` plus a
+   colour, two utilities, already inside the budget) and a `body-large` role
+   (that is `.ds-editorial-lede`, which already exists). Four roles is the
+   textbook set; two is what was actually missing here.
+   ========================================================================== */
+
+/* Reading text. The default for content, at primary strength (§10). */
+.ds-body {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-base);
+  line-height: var(--ds-leading-normal);
+  color: var(--ds-color-text);
+}
+
+/* Metadata. Genuinely supplementary: timestamps, counts, tags, copyright.
+   Tertiary does not meet 4.5:1 and this class is scoped to match — if the
+   text matters, it is not meta, and the right class is .ds-body. */
+.ds-meta {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-xs);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text-tertiary);
+}
+
+/* UI heading — body font for functional/interface headings (labels, settings, admin).
+   Weight goes through --ds-heading-ui-weight, the sibling of
+   --ds-admin-title-weight: a consumer whose body typeface has no Medium cut
+   overrides the token once instead of re-declaring the class. */
 .ds-heading-ui {
   font-family: var(--ds-font-sans);
-  font-weight: var(--ds-weight-medium);
+  font-weight: var(--ds-heading-ui-weight);
 }
 
 /* Admin page title — the sized member of the .ds-heading-ui family.
@@ -733,48 +837,38 @@ strong, b {
 }
 
 
-/* Section title style */
+/* Section title style — size from --ds-text-section (fluid, see tokens) */
 .ds-section-title {
   font-family: var(--ds-font-display);
   font-weight: var(--ds-font-display-weight);
-  font-size: var(--ds-text-3xl);
+  font-size: var(--ds-text-section);
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
   text-wrap: balance;
 }
 
-@media (min-width: 640px) {
-
-  .ds-section-title { font-size: var(--ds-text-4xl); }
-}
-
-
-/* Hero title — large editorial display */
+/* Hero title — large editorial display, size from --ds-text-hero */
 .ds-hero-title {
   font-family: var(--ds-font-display);
   font-weight: var(--ds-font-display-weight);
-  font-size: var(--ds-text-4xl);
+  font-size: var(--ds-text-hero);
   line-height: var(--ds-leading-tight);
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
   text-wrap: balance;
 }
 
-@media (min-width: 640px) {
-
-  .ds-hero-title { font-size: var(--ds-text-5xl); }
+/* `text-wrap: balance` evens out the line lengths but never breaks a word, so
+   a long compound (IT "internazionalizzazione", ES "responsabilidades") at
+   display size on a 375px screen used to run past the viewport and hand the
+   page a horizontal scrollbar. Before this line the DS contained no
+   `overflow-wrap` at all, and studio, dokle and enzo-spatalino had each added
+   the same declaration on the same three classes in their own theme.css.
+   It is inert when the word fits. */
+.ds-hero-title,
+.ds-section-title {
+  overflow-wrap: break-word;
 }
-
-@media (min-width: 768px) {
-
-  .ds-hero-title { font-size: var(--ds-text-6xl); }
-}
-
-@media (min-width: 1024px) /* --ds-breakpoint-lg */ {
-
-  .ds-hero-title { font-size: var(--ds-text-7xl); }
-}
-
 
 code, kbd, samp {
   font-family: var(--ds-font-mono);
@@ -12247,6 +12341,7 @@ hr {
   color: var(--ds-color-text);
   margin: 0;
   text-wrap: balance;
+  overflow-wrap: break-word; /* see base/typography.css for the why */
 }
 
 .ds-editorial-lede {
@@ -12255,7 +12350,7 @@ hr {
   line-height: var(--ds-leading-normal);
   color: var(--ds-color-text);
   margin: 0;
-  max-width: 600px;
+  max-width: var(--ds-measure);
 }
 
 /* Editorial header rhythm — when overline / title / lede appear in sequence,
@@ -12286,11 +12381,29 @@ hr {
   margin-block-start: var(--ds-space-5);
 }
 
+/* h2 was a flat --ds-text-4xl (36px) while .ds-editorial-title above it is
+   fluid 40 → 72. On desktop that reads 2.00 : 1 and works; on a phone it
+   becomes 40 : 36 = 1.11 : 1 and the two levels flatten into one, exactly
+   where the article is actually read. dokle and riccardo had each already
+   pulled it down to 24px in their own CSS, with near-identical comments.
+   Fluid now: 24px on a phone, 32px on a wide desktop, so the title-to-h2
+   ratio runs 1.67 : 1 at 375px and 2.25 : 1 at 1440 instead of collapsing.
+   Note this IS a visible change on desktop too — h2 goes 36 → 32px — which
+   is the point: 36 was competing with the article title, and both consumers
+   that shipped long-form had already overridden it. h3 caps at today's 24
+   and only shrinks below laptop width.
+
+   The weight was a literal --ds-weight-medium on h2 and h3 while h4 in the
+   same block used --ds-font-display-weight, which made h4 *lighter* than h3
+   rather than only smaller — and, worse, meant a consumer changing
+   --ds-font-display-weight (the one documented lever for heading weight)
+   moved every display heading in the system except these two. Both back on
+   the lever. */
 .ds-editorial-body h2 {
   font-family: var(--ds-font-display);
-  font-size: var(--ds-text-4xl);
-  font-weight: var(--ds-weight-medium);
-  line-height: var(--ds-leading-tight);
+  font-size: clamp(1.5rem, 1.2vw + 1.15rem, 2rem);  /* 24 → 32px */
+  font-weight: var(--ds-font-display-weight);
+  line-height: var(--ds-leading-snug);
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
   margin-block-start: var(--ds-space-12);
@@ -12299,8 +12412,8 @@ hr {
 
 .ds-editorial-body h3 {
   font-family: var(--ds-font-display);
-  font-size: var(--ds-text-2xl);
-  font-weight: var(--ds-weight-medium);
+  font-size: clamp(1.25rem, 0.75vw + 1.05rem, 1.5rem);  /* 20 → 24px */
+  font-weight: var(--ds-font-display-weight);
   line-height: var(--ds-leading-snug);
   letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
@@ -14215,7 +14328,12 @@ a:hover .ds-sortable__handle,
    Utilities: Text, Visual & style helpers
    ========================================================================== */
 
-/* --- Text Size --- */
+/* --- Text Size ---
+   `.ds-text-2xs` was missing until 30 Jul 2026: the token has existed since
+   the beginning and ten components use it, and /foundations/typography lists
+   it as the first step of the scale — but the utility was never written, so
+   the documented step was unreachable from JSX. */
+.ds-text-2xs { font-size: var(--ds-text-2xs); }
 .ds-text-xs { font-size: var(--ds-text-xs); }
 .ds-text-sm { font-size: var(--ds-text-sm); }
 .ds-text-base { font-size: var(--ds-text-base); }
@@ -14235,13 +14353,21 @@ a:hover .ds-sortable__handle,
   .ds-sm\:text-5xl { font-size: var(--ds-text-5xl); }
 }
 
+/* One block per breakpoint. The md set used to be split in two @media
+   (min-width: 768px) blocks 450 lines apart, so `ds-md:text-5xl` lived
+   nowhere near its siblings and the set looked incomplete from either end.
+   Merged 30 Jul 2026, ordered by size; same declarations, same cascade. */
 @media (min-width: 768px) {
 
+  .ds-md\:text-xs { font-size: var(--ds-text-xs); }
+  .ds-md\:text-sm { font-size: var(--ds-text-sm); }
+  .ds-md\:text-base { font-size: var(--ds-text-base); }
   .ds-md\:text-lg { font-size: var(--ds-text-lg); }
   .ds-md\:text-xl { font-size: var(--ds-text-xl); }
   .ds-md\:text-2xl { font-size: var(--ds-text-2xl); }
   .ds-md\:text-3xl { font-size: var(--ds-text-3xl); }
   .ds-md\:text-4xl { font-size: var(--ds-text-4xl); }
+  .ds-md\:text-5xl { font-size: var(--ds-text-5xl); }
   .ds-md\:text-6xl { font-size: var(--ds-text-6xl); }
 }
 
@@ -14383,11 +14509,16 @@ a:hover .ds-sortable__handle,
 .ds-lowercase { text-transform: lowercase; }
 .ds-capitalize { text-transform: capitalize; }
 
-/* --- Line Height --- */
+/* --- Line Height ---
+   `none` and `loose` join the set on 30 Jul 2026. Same gap as .ds-text-2xs:
+   both tokens existed and the docs page rendered all six, but only four had
+   a utility, so two documented steps could not be reached from JSX. */
+.ds-leading-none { line-height: var(--ds-leading-none); }
 .ds-leading-tight { line-height: var(--ds-leading-tight); }
 .ds-leading-snug { line-height: var(--ds-leading-snug); }
 .ds-leading-normal { line-height: var(--ds-leading-normal); }
 .ds-leading-relaxed { line-height: var(--ds-leading-relaxed); }
+.ds-leading-loose { line-height: var(--ds-leading-loose); }
 
 /* --- Tracking --- */
 .ds-tracking-tighter { letter-spacing: var(--ds-tracking-tighter); }
@@ -14691,15 +14822,9 @@ a:hover .ds-sortable__handle,
   border-width: 0;
 }
 
-/* --- Responsive: md (768px) — small text sizes --- */
-@media (min-width: 768px) {
-
-  .ds-md\:text-xs { font-size: var(--ds-text-xs); }
-  .ds-md\:text-sm { font-size: var(--ds-text-sm); }
-  .ds-md\:text-base { font-size: var(--ds-text-base); }
-  .ds-md\:text-5xl { font-size: var(--ds-text-5xl); }
-}
-
+/* The second md block that used to live here was merged into the one at the
+   top of this file (30 Jul 2026). Responsive size utilities are all declared
+   together up there now — do not start a new @media block down here. */
 
 /* ==========================================================================
    Utilities: Interactive

@@ -2,7 +2,12 @@
    Utilities: Text, Visual & style helpers
    ========================================================================== */
 
-/* --- Text Size --- */
+/* --- Text Size ---
+   `.ds-text-2xs` was missing until 30 Jul 2026: the token has existed since
+   the beginning and ten components use it, and /foundations/typography lists
+   it as the first step of the scale — but the utility was never written, so
+   the documented step was unreachable from JSX. */
+.ds-text-2xs  { font-size: var(--ds-text-2xs); }
 .ds-text-xs   { font-size: var(--ds-text-xs); }
 .ds-text-sm   { font-size: var(--ds-text-sm); }
 .ds-text-base { font-size: var(--ds-text-base); }
@@ -20,13 +25,21 @@
   .ds-sm\:text-4xl { font-size: var(--ds-text-4xl); }
   .ds-sm\:text-5xl { font-size: var(--ds-text-5xl); }
 }
+/* One block per breakpoint. The md set used to be split in two @media
+   (min-width: 768px) blocks 450 lines apart, so `ds-md:text-5xl` lived
+   nowhere near its siblings and the set looked incomplete from either end.
+   Merged 30 Jul 2026, ordered by size; same declarations, same cascade. */
 @media (min-width: 768px) {
-  .ds-md\:text-lg  { font-size: var(--ds-text-lg); }
-  .ds-md\:text-xl  { font-size: var(--ds-text-xl); }
-  .ds-md\:text-2xl { font-size: var(--ds-text-2xl); }
-  .ds-md\:text-3xl { font-size: var(--ds-text-3xl); }
-  .ds-md\:text-4xl { font-size: var(--ds-text-4xl); }
-  .ds-md\:text-6xl { font-size: var(--ds-text-6xl); }
+  .ds-md\:text-xs   { font-size: var(--ds-text-xs); }
+  .ds-md\:text-sm   { font-size: var(--ds-text-sm); }
+  .ds-md\:text-base { font-size: var(--ds-text-base); }
+  .ds-md\:text-lg   { font-size: var(--ds-text-lg); }
+  .ds-md\:text-xl   { font-size: var(--ds-text-xl); }
+  .ds-md\:text-2xl  { font-size: var(--ds-text-2xl); }
+  .ds-md\:text-3xl  { font-size: var(--ds-text-3xl); }
+  .ds-md\:text-4xl  { font-size: var(--ds-text-4xl); }
+  .ds-md\:text-5xl  { font-size: var(--ds-text-5xl); }
+  .ds-md\:text-6xl  { font-size: var(--ds-text-6xl); }
 }
 @media (min-width: 1024px) /* --ds-breakpoint-lg */ {
   .ds-lg\:text-xl  { font-size: var(--ds-text-xl); }
@@ -164,11 +177,16 @@
 .ds-lowercase  { text-transform: lowercase; }
 .ds-capitalize { text-transform: capitalize; }
 
-/* --- Line Height --- */
+/* --- Line Height ---
+   `none` and `loose` join the set on 30 Jul 2026. Same gap as .ds-text-2xs:
+   both tokens existed and the docs page rendered all six, but only four had
+   a utility, so two documented steps could not be reached from JSX. */
+.ds-leading-none    { line-height: var(--ds-leading-none); }
 .ds-leading-tight   { line-height: var(--ds-leading-tight); }
 .ds-leading-snug    { line-height: var(--ds-leading-snug); }
 .ds-leading-normal  { line-height: var(--ds-leading-normal); }
 .ds-leading-relaxed { line-height: var(--ds-leading-relaxed); }
+.ds-leading-loose   { line-height: var(--ds-leading-loose); }
 
 /* --- Tracking --- */
 .ds-tracking-tighter { letter-spacing: var(--ds-tracking-tighter); }
@@ -470,10 +488,6 @@
   border-width: 0;
 }
 
-/* --- Responsive: md (768px) — small text sizes --- */
-@media (min-width: 768px) {
-  .ds-md\:text-xs   { font-size: var(--ds-text-xs); }
-  .ds-md\:text-sm   { font-size: var(--ds-text-sm); }
-  .ds-md\:text-base { font-size: var(--ds-text-base); }
-  .ds-md\:text-5xl  { font-size: var(--ds-text-5xl); }
-}
+/* The second md block that used to live here was merged into the one at the
+   top of this file (30 Jul 2026). Responsive size utilities are all declared
+   together up there now — do not start a new @media block down here. */

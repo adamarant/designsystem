@@ -37,6 +37,15 @@
      same way --ds-font-display-weight governs display headings. --- */
   --ds-admin-title-weight: var(--ds-weight-semibold);
 
+  /* --- UI heading weight (.ds-heading-ui) ---
+     The sibling lever to --ds-admin-title-weight, added 30 Jul 2026 because
+     the class hardcoded --ds-weight-medium and two consumers (studio, dokle)
+     carried the *same* override with the *same* comment: their body typeface
+     (PP Telegraf) ships 300/400 only, so the browser synthesized the 500 and
+     it read as a different family. A workaround written twice belongs in the
+     source. --- */
+  --ds-heading-ui-weight: var(--ds-weight-medium);
+
   /* --- Font Sizes --- */
   --ds-text-2xs: 0.625rem;    /* 10px */
   --ds-text-xs: 0.75rem;      /* 12px */
@@ -59,6 +68,34 @@
   --ds-text-editorial-title: clamp(2.5rem, 4vw + 1.5rem, 4.5rem);  /* 40 → 72px */
   --ds-text-editorial-lede: clamp(1.125rem, 0.5vw + 1rem, 1.375rem); /* 18 → 22px */
   --ds-text-editorial-body: 1.125rem; /* 18px — editorial reading standard (was 17px pre-Apr 2026) */
+
+  /* --- Display sizes, fluid (30 Jul 2026) ---
+       .ds-hero-title and .ds-section-title used to step through 4 and 2 media
+       queries. Every consumer with a real identity threw the ladder away and
+       wrote a clamp() instead: 5 of them on hero, 4 on section, always the
+       same shape. That is a missing token, not brand work — so here it is, and
+       a consumer now re-themes the display scale with one line in theme.css
+       instead of restating font-size, line-height and tracking on the class.
+
+       The curves are fitted to the old ladder rather than invented: each one
+       reaches its cap where the last media query used to fire, so nothing
+       moves on desktop. Only the small end changes, and only upward — the
+       hero floor goes 36 → 40px, because 36px of display type on a 375px
+       phone was the ladder's flat bottom, not a decision.
+
+         hero     375px → 40   640 → 53   768 → 59   1024+ → 72  (was 36/48/60/72)
+         section  375px → 30   640+ → 36                          (was 30/36) --- */
+  --ds-text-hero: clamp(2.5rem, 4.9vw + 1.35rem, 4.5rem);      /* 40 → 72px */
+  --ds-text-section: clamp(1.875rem, 2.25vw + 1.35rem, 2.25rem); /* 30 → 36px */
+
+  /* --- Reading measure ---
+       Replaces the literal `max-width: 600px` that sat in .ds-editorial-lede
+       (the only hardcoded length in the typography layer). Expressed in `ch`
+       so it tracks the font size instead of freezing one viewport's guess:
+       ~60 characters is the classic comfortable line. `dokle` had already
+       invented its own 46rem for the article body — this is the lever it was
+       missing. --- */
+  --ds-measure: 60ch;
 
   /* --- Font Weights --- */
   --ds-weight-extralight: 200;

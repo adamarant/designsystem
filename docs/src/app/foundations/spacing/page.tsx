@@ -30,7 +30,7 @@ export default function SpacingPage() {
               ["space-32", "8rem / 128px"],
             ].map(([token, val]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
-                <div style="min-width: 160px; font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary); flex-shrink: 0;">${token}<br><span style="font-size: var(--ds-text-2xs);">${val}</span></div>
+                <div class="demo-token-label">${token}<span class="demo-token-label__size">${val}</span></div>
                 <div style="height: 16px; width: var(--ds-${token}); background: var(--ds-color-interactive); border-radius: var(--ds-radius-sm); min-width: 2px;"></div>
               </div>
             `).join("")}
@@ -51,7 +51,7 @@ export default function SpacingPage() {
               ["size-6", "4rem / 64px", "2xl"],
             ].map(([token, val, tier]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
-                <div style="min-width: 160px; font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary); flex-shrink: 0;">${token} &mdash; ${tier}<br><span style="font-size: var(--ds-text-2xs);">${val}</span></div>
+                <div class="demo-token-label">${token} &mdash; ${tier}<span class="demo-token-label__size">${val}</span></div>
                 <div style="height: var(--ds-${token}); width: var(--ds-${token}); background: var(--ds-color-interactive-subtle); border: 1px solid var(--ds-color-interactive-border); border-radius: var(--ds-radius-md); display: flex; align-items: center; justify-content: center; font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-secondary);">${tier}</div>
               </div>
             `).join("")}
@@ -74,7 +74,7 @@ export default function SpacingPage() {
             ].map(([token, val]) => `
               <div style="display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-2);">
                 <div style="width: 64px; height: 64px; background: var(--ds-color-interactive-subtle); border: 2px solid var(--ds-color-interactive-border); border-radius: var(--ds-${token});"></div>
-                <div style="font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary); text-align: center;">${token}<br>${val}</div>
+                <div class="demo-token-label demo-token-label--center">${token}<span class="demo-token-label__size">${val}</span></div>
               </div>
             `).join("")}
           </div>
@@ -99,7 +99,7 @@ export default function SpacingPage() {
                 <div style="height: 32px; background: var(--ds-color-interactive-subtle); border: 1px solid var(--ds-color-interactive-border); border-radius: var(--ds-radius-sm); flex: 1; max-width: calc(${val} * 2px + 80px); min-width: 80px;"></div>
                 <div>
                   <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
-                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${desc}</div>
+                  <div class="demo-token-note">${desc}</div>
                 </div>
               </div>
             `).join("")}
@@ -118,7 +118,7 @@ export default function SpacingPage() {
               ["container-max", "1440px"],
             ].map(([token, val]) => `
               <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
-                <div style="min-width: 160px; font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary); flex-shrink: 0;">${token} (${val})</div>
+                <div class="demo-token-label">${token} (${val})</div>
                 <div style="height: 16px; width: 100%; max-width: var(--ds-${token}); background: var(--ds-color-brand-subtle); border: 1px solid var(--ds-color-brand-border); border-radius: var(--ds-radius-sm);"></div>
               </div>
             `).join("")}

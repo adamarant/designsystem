@@ -19,7 +19,7 @@ export default function EffectsPage() {
                 <div style="width: 120px; height: 80px; background: var(--ds-color-surface); border-radius: var(--ds-radius-lg); box-shadow: var(--ds-${token});"></div>
                 <div style="text-align: center;">
                   <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
-                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${label}</div>
+                  <div class="demo-token-note">${label}</div>
                 </div>
               </div>
             `).join("")}
@@ -33,7 +33,7 @@ export default function EffectsPage() {
           <div style="display: flex; flex-wrap: wrap; gap: var(--ds-space-6); align-items: center;">
             <div style="display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-3);">
               <div style="width: 80px; height: 40px; background: var(--ds-color-surface); border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); outline: var(--ds-ring-width) solid var(--ds-ring-color); outline-offset: var(--ds-ring-offset);"></div>
-              <div style="font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary); text-align: center;">ring-width: 2px<br>ring-offset: 2px<br>ring-color: border-active</div>
+              <div class="demo-token-label demo-token-label--center">ring-width: 2px<br>ring-offset: 2px<br>ring-color: border-active</div>
             </div>
           </div>
         ` }} />
@@ -52,7 +52,7 @@ export default function EffectsPage() {
               <div style="display: flex; align-items: center; gap: var(--ds-space-4);">
                 <div style="min-width: 180px; flex-shrink: 0;">
                   <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
-                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${val} &mdash; ${desc}</div>
+                  <div class="demo-token-note">${val} &mdash; ${desc}</div>
                 </div>
                 <div style="flex: 1; height: 32px; position: relative; background: var(--ds-color-bg-muted); border-radius: var(--ds-radius-sm); overflow: hidden;">
                   <div style="position: absolute; left: 0; top: 0; height: 100%; width: calc(${parseInt(val)} / 800 * 100%); background: var(--ds-color-interactive); border-radius: var(--ds-radius-sm); opacity: 0.6;"></div>
@@ -79,7 +79,7 @@ export default function EffectsPage() {
               <div style="display: flex; align-items: center; gap: var(--ds-space-4);">
                 <div style="min-width: 180px; flex-shrink: 0;">
                   <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
-                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${desc}</div>
+                  <div class="demo-token-note">${desc}</div>
                   <div style="font-size: var(--ds-text-2xs); color: var(--ds-color-text-disabled); font-family: var(--ds-font-mono);">${val}</div>
                 </div>
                 <div style="flex: 1; height: 32px; position: relative; background: var(--ds-color-bg-muted); border-radius: var(--ds-radius-sm); overflow: visible;">
@@ -106,7 +106,7 @@ export default function EffectsPage() {
                 </div>
                 <div style="text-align: center;">
                   <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">${token}</div>
-                  <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">${val}</div>
+                  <div class="demo-token-note">${val}</div>
                 </div>
               </div>
             `).join("")}
@@ -120,11 +120,11 @@ export default function EffectsPage() {
           <div style="display: flex; gap: var(--ds-space-6); align-items: center;">
             <div style="display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-2);">
               <div style="width: 80px; height: 40px; background: var(--ds-color-interactive); border-radius: var(--ds-radius-md);"></div>
-              <div style="font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary);">Normal (1)</div>
+              <div class="demo-token-label">Normal (1)</div>
             </div>
             <div style="display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-2);">
               <div style="width: 80px; height: 40px; background: var(--ds-color-interactive); border-radius: var(--ds-radius-md); opacity: var(--ds-opacity-disabled);"></div>
-              <div style="font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary);">opacity-disabled (0.5)</div>
+              <div class="demo-token-label">opacity-disabled (0.5)</div>
             </div>
           </div>
         ` }} />
@@ -150,7 +150,7 @@ export default function EffectsPage() {
             </div>
             <div style="display: flex; flex-direction: column; gap: var(--ds-space-2);">
               <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">offset-sm / offset-md</div>
-              <div style="font-size: var(--ds-text-xs); color: var(--ds-color-text-tertiary);">4px / 8px popover offset</div>
+              <div class="demo-token-note">4px / 8px popover offset</div>
             </div>
           </div>
         ` }} />
