@@ -295,15 +295,15 @@ export default function TypographyPage() {
             __html: `
           <div style="display: flex; flex-direction: column; gap: var(--ds-space-6);">
             <div>
-              <div style="font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary); margin-bottom: var(--ds-space-1);">font-display</div>
+              <div class="demo-token-label demo-token-label--block">font-display</div>
               <div style="font-family: var(--ds-font-display); font-weight: var(--ds-font-display-weight); font-size: var(--ds-text-3xl); line-height: var(--ds-leading-tight);">Clash Display for headings</div>
             </div>
             <div>
-              <div style="font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary); margin-bottom: var(--ds-space-1);">font-sans</div>
+              <div class="demo-token-label demo-token-label--block">font-sans</div>
               <div style="font-family: var(--ds-font-sans); font-size: var(--ds-text-lg); line-height: var(--ds-leading-normal);">Switzer for body text and UI elements</div>
             </div>
             <div>
-              <div style="font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary); margin-bottom: var(--ds-space-1);">font-mono</div>
+              <div class="demo-token-label demo-token-label--block">font-mono</div>
               <div style="font-family: var(--ds-font-mono); font-size: var(--ds-text-base); line-height: var(--ds-leading-normal);">Geist Mono for code and token names</div>
             </div>
           </div>
@@ -341,7 +341,7 @@ export default function TypographyPage() {
               .map(
                 ([token, size]) => `
               <div style="display: flex; align-items: baseline; gap: var(--ds-space-4);">
-                <div style="min-width: 140px; font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary); flex-shrink: 0;">${token}<br><span style="font-size: var(--ds-text-2xs);">${size}</span></div>
+                <div class="demo-token-label">${token}<span class="demo-token-label__size">${size}</span></div>
                 <div style="font-size: var(--ds-${token}); line-height: var(--ds-leading-snug); font-family: var(--ds-font-sans);">The quick brown fox</div>
               </div>
             `,
@@ -384,7 +384,7 @@ export default function TypographyPage() {
               .map(
                 ([token, val]) => `
               <div style="display: flex; align-items: baseline; gap: var(--ds-space-4);">
-                <div style="min-width: 160px; font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary); flex-shrink: 0;">${token} (${val})</div>
+                <div class="demo-token-label">${token} (${val})</div>
                 <div style="font-weight: var(--ds-${token}); font-size: var(--ds-text-xl); font-family: var(--ds-font-sans);">The quick brown fox jumps over the lazy dog</div>
               </div>
             `,
@@ -414,7 +414,7 @@ export default function TypographyPage() {
               .map(
                 ([token, val]) => `
               <div style="padding: var(--ds-space-3); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md);">
-                <div style="font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary); margin-bottom: var(--ds-space-2);">${token} (${val})</div>
+                <div class="demo-token-label demo-token-label--block">${token} (${val})</div>
                 <div style="font-size: var(--ds-text-base); line-height: var(--ds-${token}); font-family: var(--ds-font-sans); background: var(--ds-color-surface-muted); padding: var(--ds-space-2); border-radius: var(--ds-radius-sm);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</div>
               </div>
             `,
@@ -443,7 +443,7 @@ export default function TypographyPage() {
               .map(
                 ([token, val]) => `
               <div style="display: flex; align-items: baseline; gap: var(--ds-space-4);">
-                <div style="min-width: 180px; font-size: var(--ds-text-xs); font-family: var(--ds-font-mono); color: var(--ds-color-text-tertiary); flex-shrink: 0;">${token} (${val})</div>
+                <div class="demo-token-label">${token} (${val})</div>
                 <div style="letter-spacing: var(--ds-${token}); font-size: var(--ds-text-lg); font-family: var(--ds-font-sans); text-transform: uppercase;">Design system tokens</div>
               </div>
             `,

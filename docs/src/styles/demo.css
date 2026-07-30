@@ -242,17 +242,18 @@
   border-radius: var(--ds-radius-sm);
 }
 
-/* The spec line really is metadata sitting next to the class name it
-   describes, so mono/xs/tertiary is the right call here. */
+/* The spec sits next to the class name it describes: subordinate half of a
+   pair, so secondary is right — but at reading size, not shrunk to 12px.
+   It is not metadata, it is the answer to "what does this class do". */
 .demo-type-row__spec {
   font-family: var(--ds-font-mono);
-  font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
 }
 
 .demo-type-row__use {
   margin: 0;
-  font-size: var(--ds-text-sm);
+  font-size: var(--ds-text-base);
   color: var(--ds-color-text-secondary);
 }
 
@@ -305,5 +306,34 @@
 
 .demo-snippet {
   margin: 0;
+  font-size: var(--ds-text-sm);
+}
+
+/* Token table row label.
+   The left column of the size/weight/leading/tracking tables. It used to be
+   12px mono tertiary with a 10px sub-line — the smallest text on the page,
+   below 4.5:1 on both themes, and unreadable in dark (the owner pointed at
+   exactly this). The token NAME is the content of that column, so it is
+   primary at reading size. Only the rem/px pair under it is genuinely
+   supplementary, and that one is allowed to be small and quiet. */
+.demo-token-label {
+  flex-shrink: 0;
+  min-width: 13rem;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text);
+}
+
+/* Same label stacked above its sample instead of beside it. One column width
+   for every token table, replacing the 140/160/180px mishmash. */
+.demo-token-label--block {
+  min-width: 0;
+  margin-block-end: var(--ds-space-2);
+}
+
+.demo-token-label__size {
+  display: block;
+  margin-block-start: var(--ds-space-0-5);
   font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-secondary);
 }
