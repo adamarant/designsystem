@@ -1,8 +1,9 @@
-/* Map next/font CSS variables to DS font tokens */
+/* Map next/font CSS variables to DS font tokens.
+   One family since 31 Jul 2026: --font-display no longer exists, and the
+   display token is aliased onto sans further down (see "Typeface"). */
 :root {
-  --ds-font-display: var(--font-display), system-ui, sans-serif;
   --ds-font-sans: var(--font-sans), system-ui, sans-serif;
-  --ds-font-mono: var(--font-mono), ui-monospace, monospace;
+  --ds-font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 /* Demo site layout — NOT part of the design system */
@@ -82,7 +83,7 @@
 .demo-main {
   flex: 1;
   padding: var(--ds-space-6) var(--ds-space-8);
-  max-width: 64rem;
+  max-width: 1220px;
   overflow-x: hidden;
 }
 
@@ -258,6 +259,63 @@ body {
   line-height: var(--ds-leading-normal);
   color: var(--ds-color-text);
   text-wrap: pretty;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   foundations/typography — the grid
+
+   Reverse-engineered from brand.s25.studio, which is what this page should
+   have been built on from the start. Its whole layout is one structure:
+
+     12 columns, 1156px container, 24px gutters
+     every row is LABEL (4 cols) | CONTENT (8 cols)
+     the label column is left EMPTY on continuation rows, so a run of content
+       flows under a single label
+     uniform 64px section padding, everywhere, with no bespoke gaps at all
+
+   Measured, not guessed: their label column is 369px and their content column
+   763px, which is exactly 4 and 8 columns of that grid (4*74.33 + 3*24 = 369,
+   8*74.33 + 7*24 = 763, and 369 + 24 + 763 = 1156).
+
+   The rhythm comes from the grid holding still. Every previous attempt here
+   was a single column with hand-tuned gaps per section, which is why it read
+   as a pile of unrelated blocks no matter how the type was set.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.s-section {
+  padding-block: var(--ds-space-16);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.s-section:last-child { border-block-end: none; }
+
+.s-container {
+  max-width: 1156px;
+  margin-inline: auto;
+}
+
+.s-row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--ds-space-6);
+}
+
+.s-row + .s-row { margin-block-start: var(--ds-space-10); }
+
+.s-label   { grid-column: span 4; }
+.s-content { grid-column: span 8; min-width: 0; }
+
+/* Two things side by side inside the content column. */
+.s-split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--ds-space-8);
+}
+
+@media (max-width: 820px) {
+  .s-label, .s-content { grid-column: span 12; }
+  .s-row + .s-row { margin-block-start: var(--ds-space-8); }
 }
 
 /* ── Two surfaces, and that is the whole layout ───────────────────────────
@@ -669,4 +727,89 @@ body {
   margin-block-start: var(--ds-space-0-5);
   font-size: var(--ds-text-xs);
   color: var(--ds-color-text-secondary);
+}
+
+/* ── Pieces that live inside the grid ─────────────────────────────────── */
+
+/* The class name in the label column. Primary, because it is the answer to
+   "what am I looking at"; the DS <code> chip comes off since this is a
+   caption, not an inline token. */
+.typo-cls {
+  display: block;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text);
+}
+
+/* The purpose under it: subordinate half of a pair, so secondary is right. */
+.typo-cls__what {
+  margin-block-start: var(--ds-space-1);
+  color: var(--ds-color-text-secondary);
+}
+
+.typo-hero__lede {
+  margin-block-start: var(--ds-space-6);
+  max-width: 34ch;
+}
+
+.typo-door__what {
+  margin-block: var(--ds-space-2) var(--ds-space-5);
+}
+
+.typo-facts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--ds-text-base);
+  font-weight: var(--ds-weight-light);
+  color: var(--ds-color-text);
+}
+
+.typo-facts li {
+  padding-block: var(--ds-space-2);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.typo-facts li:last-child { border-block-end: none; }
+
+.typo-facts code { font-size: var(--ds-text-sm); }
+
+/* Verdict labels on a comparison. They carry meaning in colour, not in size,
+   which is why they can stay at label size without going grey. */
+.typo-verdict {
+  margin-block-end: var(--ds-space-3);
+}
+
+.typo-verdict--bad { color: var(--ds-color-error); }
+.typo-verdict--good { color: var(--ds-color-success); }
+
+.typo-card {
+  padding: var(--ds-space-5);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  background-color: var(--ds-color-surface);
+}
+
+.typo-card > * + * { margin-block-start: var(--ds-space-2); }
+
+.typo-card__row {
+  display: flex;
+  gap: var(--ds-space-4);
+  align-items: baseline;
+  margin-block-start: var(--ds-space-4);
+}
+
+.typo-snippet {
+  margin: 0;
+  padding: var(--ds-space-4);
+  border-radius: var(--ds-radius-md);
+  background-color: var(--ds-color-surface);
+  font-size: var(--ds-text-sm);
+  line-height: var(--ds-leading-relaxed);
+  color: var(--ds-color-text-secondary);
+  overflow-x: auto;
 }

@@ -1,18 +1,16 @@
-/* Typography — the API first, the tokens after.
-   Until 30 Jul 2026 this page rendered five token tables and never once named
-   a DS typography class. The measured consequence across 21 consumers:
-   `ds-text-sm` 610 uses and `ds-text-xs` 286 against 58 for `ds-text-base`,
-   and `ds-admin-title` used exactly once while its sibling `ds-heading-ui`
-   had 133. People learn what a docs page shows them.
+/* foundations/typography
 
-   The specimen sections below are written in real classes (see demo.css). The
-   token tables at the bottom keep the HTML-string form the file has always
-   used: inline styles in JSX are blocked by a hook, and a table whose job is
-   to render one `var(--ds-text-*)` per row needs a value that varies per row. */
+   Built on the structure of brand.s25.studio: a 12-column grid where every
+   row is LABEL (4 cols) | CONTENT (8 cols), the label column runs empty on
+   continuation rows, and every section carries the same 64px of padding. The
+   rhythm comes from the grid holding still, not from per-section spacing.
 
-type Row = { cls: string; what: string; sample: string }
+   Chrome uses .typo-* / .s-* classes only. No DS typography class appears
+   outside a specimen, so everything you see set in the system IS the demo. */
 
-const WEB: Row[] = [
+type Spec = { cls: string; what: string; sample: string }
+
+const WEB: Spec[] = [
   { cls: "ds-hero-title", what: "page title", sample: "We build things that last" },
   { cls: "ds-section-title", what: "section heading", sample: "How we work" },
   { cls: "ds-editorial-title", what: "article title", sample: "The value of empty space" },
@@ -20,347 +18,369 @@ const WEB: Row[] = [
   { cls: "ds-stat-number", what: "big number", sample: "142" },
 ]
 
-const PRODUCT: Row[] = [
+const PRODUCT: Spec[] = [
   { cls: "ds-admin-title", what: "admin page h1", sample: "Invoices" },
   { cls: "ds-heading-ui", what: "panel, field group", sample: "Billing details" },
   { cls: "ds-body", what: "content, values", sample: "Cavallino Group" },
   { cls: "ds-meta", what: "timestamp, count", sample: "12 March 2026" },
 ]
 
-const LONGFORM: Row[] = [
-  { cls: "ds-editorial-lede", what: "lead paragraph", sample: "Every page we rebuilt this year ended up with fewer elements than the one it replaced." },
-  { cls: "ds-editorial-body", what: "authored article", sample: "The body of the article, with its vertical rhythm already set by the wrapper." },
-  { cls: "ds-prose-block", what: "markdown, CMS", sample: "Markdown output, rendered without a class on any individual element." },
+const LONGFORM: Spec[] = [
+  {
+    cls: "ds-editorial-lede",
+    what: "lead paragraph",
+    sample: "Every page we rebuilt this year ended up with fewer elements than the one it replaced.",
+  },
+  {
+    cls: "ds-editorial-body",
+    what: "authored article",
+    sample: "The body of the article, with its vertical rhythm already set by the wrapper.",
+  },
+  {
+    cls: "ds-prose-block",
+    what: "markdown, CMS",
+    sample: "Markdown output, rendered without a class on any individual element.",
+  },
 ]
 
-function Specimen({ rows }: { rows: Row[] }) {
+/* One specimen per grid row: the class name sits in the page's own label
+   column, the type in the content column. No nested rail, no second grid. */
+function Specimens({ rows }: { rows: Spec[] }) {
   return (
-    <div className="typo-spec">
+    <>
       {rows.map((r) => (
-        <div className="typo-spec__row" key={r.cls}>
-          <p className="typo-label typo-spec__label">
-            <code>.{r.cls}</code>
-            <span>{r.what}</span>
-          </p>
-          <div className="typo-spec__sample">
+        <div className="s-row" key={r.cls}>
+          <div className="s-label">
+            <code className="typo-cls">.{r.cls}</code>
+            <span className="typo-label typo-cls__what">{r.what}</span>
+          </div>
+          <div className="s-content">
             <span className={r.cls}>{r.sample}</span>
           </div>
         </div>
       ))}
-    </div>
+    </>
+  )
+}
+
+function Section({
+  label,
+  lede,
+  children,
+}: {
+  label: string
+  lede?: React.ReactNode
+  children?: React.ReactNode
+}) {
+  return (
+    <section className="s-section">
+      <div className="s-container">
+        <div className="s-row">
+          <div className="s-label">
+            <span className="typo-label">{label}</span>
+          </div>
+          {lede ? (
+            <div className="s-content">
+              <p className="typo-body">{lede}</p>
+            </div>
+          ) : null}
+        </div>
+        {children}
+      </div>
+    </section>
   )
 }
 
 export default function TypographyPage() {
   return (
     <>
-      <header className="typo-hero">
-        <p className="typo-label">Foundations</p>
-        <h1 className="typo-title">Typography</h1>
-        <p className="typo-body typo-hero__lede">
-          Ten named classes. Pick by what the text <em>is</em>, never by how big you want it.
-        </p>
-      </header>
-
-      <div className="typo-act">
-        <span className="typo-label typo-act__n">01 &nbsp;/&nbsp; Two doors</span>
-        <h2 className="typo-heading">A site scales. A product does not.</h2>
-        <p className="typo-body typo-act__lede">
-          Same tokens on both sides. What changes is which classes come on stage.
-        </p>
-      </div>
-
-      <div className="typo-doors">
-        <div className="typo-door">
-          <h2 className="typo-heading">Web</h2>
-          <p className="typo-body typo-door__what">Site, landing, editorial.</p>
-          <ul className="typo-door__facts">
-            <li className="typo-body">Display face</li>
-            <li className="typo-body">Fluid, 40 &rarr; 72px</li>
-            <li className="typo-body">Balanced line breaks</li>
-            <li className="typo-body">Re-scale via <code>--ds-text-hero</code></li>
-          </ul>
-        </div>
-        <div className="typo-door">
-          <h2 className="typo-heading">Product</h2>
-          <p className="typo-body typo-door__what">Admin, dashboard, forms, tables.</p>
-          <ul className="typo-door__facts">
-            <li className="typo-body">Body face, never display</li>
-            <li className="typo-body">Fixed sizes, no clamp()</li>
-            <li className="typo-body">Density is a product call</li>
-            <li className="typo-body">Tabular figures in columns</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="typo-act">
-        <span className="typo-label typo-act__n">02 &nbsp;/&nbsp; The classes</span>
-        <h2 className="typo-heading">Ten of them, and that is the whole API.</h2>
-      </div>
-
-      <section className="typo-block">
-        <p className="typo-label typo-group">Web</p>
-        <div className="typo-panel">
-          <Specimen rows={WEB} />
+      <section className="s-section">
+        <div className="s-container">
+          <div className="s-row">
+            <div className="s-label">
+              <span className="typo-label">Foundations</span>
+            </div>
+            <div className="s-content">
+              <h1 className="typo-title">Typography</h1>
+              <p className="typo-body typo-hero__lede">
+                Ten named classes. Pick by what the text <em>is</em>, never by how big you want it.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="typo-block">
-        <p className="typo-label typo-group">Product</p>
-        <div className="typo-panel">
-          <Specimen rows={PRODUCT} />
-        </div>
-      </section>
-
-      <section className="typo-block">
-        <p className="typo-label typo-group">Long-form</p>
-        <p className="typo-body typo-block__lede">Authored content takes <code>ds-editorial-body</code>. Markdown you do not control takes <code>ds-prose-block</code>. Never nest one in the other.</p>
-        <div className="typo-panel">
-          <Specimen rows={LONGFORM} />
-        </div>
-      </section>
-
-      <div className="typo-act">
-        <span className="typo-label typo-act__n">03 &nbsp;/&nbsp; The rules</span>
-        <h2 className="typo-heading">Two habits that flatten every page.</h2>
-      </div>
-
-      <section className="typo-block">
-        <h2 className="typo-heading">Small means irrelevant</h2>
-        <p className="typo-body typo-block__lede">Body copy drifted to 14px across 21 consumers because no class said &ldquo;this is reading text&rdquo;.</p>
-        <p className="typo-body typo-block__lede"><strong>Content is <code>ds-body</code>. Only genuinely supplementary text is <code>ds-meta</code>.</strong> A link is an action, not metadata.</p>
-        <div className="typo-panel">
-          <div className="demo-compare">
-            <div>
-              <span className="demo-compare__label demo-compare__label--avoid">
-                Avoid: everything small, so nothing reads as important
-              </span>
-              <div className="demo-specimen-card">
-                <div className="ds-text-xs ds-text-secondary ds-uppercase">Case study</div>
-                <div className="ds-text-lg ds-font-display">Cavallino Group</div>
-                <p className="ds-text-sm ds-text-secondary">
-                  A bilingual property platform with a synced catalogue and a private area for
-                  agents.
-                </p>
-                <div className="demo-specimen-card__row">
-                  <span className="ds-text-xs ds-text-tertiary">12 March 2026</span>
-                  <span className="ds-text-xs ds-text-secondary">Read the case</span>
-                </div>
+      <Section
+        label="Two doors"
+        lede="A site scales with the viewport because a page is a composition. A product does not: density is a decision, not the window's. Same tokens on both sides."
+      >
+        <div className="s-row">
+          <div className="s-label" />
+          <div className="s-content">
+            <div className="s-split">
+              <div>
+                <h2 className="typo-heading">Web</h2>
+                <p className="typo-body typo-door__what">Site, landing, editorial.</p>
+                <ul className="typo-facts">
+                  <li>Display face</li>
+                  <li>Fluid, 40 &rarr; 72px</li>
+                  <li>Balanced line breaks</li>
+                  <li>
+                    Re-scale via <code className="typo-cls">--ds-text-hero</code>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h2 className="typo-heading">Product</h2>
+                <p className="typo-body typo-door__what">Admin, dashboard, forms, tables.</p>
+                <ul className="typo-facts">
+                  <li>Body face, never display</li>
+                  <li>Fixed sizes, no clamp()</li>
+                  <li>Density is a product call</li>
+                  <li>Tabular figures in columns</li>
+                </ul>
               </div>
             </div>
-            <div>
-              <span className="demo-compare__label demo-compare__label--use">
-                Use: three roles, one grey, the content at full strength
-              </span>
-              <div className="demo-specimen-card">
-                <div className="ds-overline">Case study</div>
-                <div className="ds-card__title">Cavallino Group</div>
-                <p className="ds-body">
-                  A bilingual property platform with a synced catalogue and a private area for
-                  agents.
-                </p>
-                <div className="demo-specimen-card__row">
-                  <span className="ds-meta">12 March 2026</span>
-                  <span className="ds-body ds-font-medium">Read the case</span>
+          </div>
+        </div>
+      </Section>
+
+      <Section
+        label="Web"
+        lede="Display face, fluid sizes. Re-scale a brand by overriding --ds-text-hero and --ds-text-section in theme.css, never by restating the class."
+      >
+        <Specimens rows={WEB} />
+      </Section>
+
+      <Section
+        label="Product"
+        lede="Body face throughout, fixed sizes, no clamp(). Pair with ds-tabular-nums wherever numbers stack into a column."
+      >
+        <Specimens rows={PRODUCT} />
+      </Section>
+
+      <Section
+        label="Long-form"
+        lede="Authored content takes ds-editorial-body. Markdown you do not control takes ds-prose-block. Never nest one in the other."
+      >
+        <Specimens rows={LONGFORM} />
+      </Section>
+
+      <Section
+        label="Small means irrelevant"
+        lede="Body copy drifted to 14px across 21 consumers because no class said &ldquo;this is reading text&rdquo;. Content is ds-body, at full strength. Only genuinely supplementary text is ds-meta, and a link is an action, not metadata."
+      >
+        <div className="s-row">
+          <div className="s-label" />
+          <div className="s-content">
+            <div className="s-split">
+              <div>
+                <span className="typo-label typo-verdict typo-verdict--bad">Avoid</span>
+                <div className="typo-card">
+                  <div className="ds-text-xs ds-text-secondary ds-uppercase">Case study</div>
+                  <div className="ds-text-lg ds-font-display">Cavallino Group</div>
+                  <p className="ds-text-sm ds-text-secondary">
+                    A bilingual property platform with a synced catalogue.
+                  </p>
+                  <div className="typo-card__row">
+                    <span className="ds-text-xs ds-text-tertiary">12 March 2026</span>
+                    <span className="ds-text-xs ds-text-secondary">Read the case</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <span className="typo-label typo-verdict typo-verdict--good">Use</span>
+                <div className="typo-card">
+                  <div className="ds-overline">Case study</div>
+                  <div className="ds-card__title">Cavallino Group</div>
+                  <p className="ds-body">A bilingual property platform with a synced catalogue.</p>
+                  <div className="typo-card__row">
+                    <span className="ds-meta">12 March 2026</span>
+                    <span className="ds-body ds-font-medium">Read the case</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="typo-block">
-        <h2 className="typo-heading">One class, never a stack</h2>
-        <p className="typo-body typo-block__lede">Two developers pick two different stacks for the same level. Two hierarchies, no error.</p>
-        <div className="typo-panel">
-          <div className="demo-compare">
-            <div>
-              <span className="demo-compare__label demo-compare__label--avoid">
-                Avoid: four typographic decisions taken by hand
-              </span>
-              <pre className="demo-snippet">
-                <code>{`<h2 className="ds-font-display ds-text-4xl
-               ds-font-medium ds-text-primary">`}</code>
-              </pre>
-            </div>
-            <div>
-              <span className="demo-compare__label demo-compare__label--use">
-                Use: none to take
-              </span>
-              <pre className="demo-snippet">
-                <code>{`<h2 className="typo-heading">`}</code>
-              </pre>
+      <Section
+        label="One class, never a stack"
+        lede="Two developers pick two different stacks for the same level and the page ends with two hierarchies, no error. Three or more type utilities on one element means the class already exists."
+      >
+        <div className="s-row">
+          <div className="s-label" />
+          <div className="s-content">
+            <div className="s-split">
+              <div>
+                <span className="typo-label typo-verdict typo-verdict--bad">Avoid</span>
+                <pre className="typo-snippet">
+                  <code>{`<h2 className="ds-font-display
+    ds-text-4xl ds-font-medium
+    ds-text-primary">`}</code>
+                </pre>
+              </div>
+              <div>
+                <span className="typo-label typo-verdict typo-verdict--good">Use</span>
+                <pre className="typo-snippet">
+                  <code>{`<h2 className="ds-section-title">`}</code>
+                </pre>
+              </div>
             </div>
           </div>
         </div>
-        <p className="typo-body typo-block__lede">Three or more type utilities on one element means the class already exists.</p>
-      </section>
+      </Section>
 
-      <section className="typo-block">
-        <h2 className="typo-heading">Bare headings</h2>
-        <p className="typo-body typo-block__lede">Fluid and safe on a phone, but the fallback, not the API. 32&ndash;48, 26&ndash;36, 22&ndash;24, then 20, 18, 16.</p>
-      </section>
+      <Section
+        label="Bare headings"
+        lede="h1 to h6 are fluid and safe on a phone, but they are the fallback, not the API. Inside a page, name the role. Sizes: 32 to 48, 26 to 36, 22 to 24, then 20, 18, 16."
+      />
 
-      <div className="typo-act">
-        <span className="typo-label typo-act__n">04 &nbsp;/&nbsp; Reference</span>
-        <h2 className="typo-heading">The tokens underneath.</h2>
-      </div>
+      <Section label="Typefaces">
+        <div className="s-row">
+          <div className="s-label">
+            <code className="typo-cls">--ds-font-display</code>
+            <span className="typo-label typo-cls__what">headings</span>
+          </div>
+          <div
+            className="s-content"
+            dangerouslySetInnerHTML={{
+              __html: `<div style="font-family: var(--ds-font-display); font-weight: var(--ds-font-display-weight); font-size: var(--ds-text-3xl); line-height: var(--ds-leading-tight);">Inter, Display optical cut</div>`,
+            }}
+          />
+        </div>
+        <div className="s-row">
+          <div className="s-label">
+            <code className="typo-cls">--ds-font-sans</code>
+            <span className="typo-label typo-cls__what">body, UI</span>
+          </div>
+          <div
+            className="s-content"
+            dangerouslySetInnerHTML={{
+              __html: `<div style="font-family: var(--ds-font-sans); font-size: var(--ds-text-lg); line-height: var(--ds-leading-normal);">Inter, Text optical cut, for body and interface</div>`,
+            }}
+          />
+        </div>
+        <div className="s-row">
+          <div className="s-label">
+            <code className="typo-cls">--ds-font-mono</code>
+            <span className="typo-label typo-cls__what">code, tokens</span>
+          </div>
+          <div
+            className="s-content"
+            dangerouslySetInnerHTML={{
+              __html: `<div style="font-family: var(--ds-font-mono); font-size: var(--ds-text-base); line-height: var(--ds-leading-normal);">Geist Mono for code and token names</div>`,
+            }}
+          />
+        </div>
+      </Section>
 
-      <section className="typo-block">
-        <h2 className="typo-heading">Font Families</h2>
-        <div
-          className="typo-panel"
-          dangerouslySetInnerHTML={{
-            __html: `
-          <div style="display: flex; flex-direction: column; gap: var(--ds-space-6);">
-            <div>
-              <div class="demo-token-label demo-token-label--block">font-display</div>
-              <div style="font-family: var(--ds-font-display); font-weight: var(--ds-font-display-weight); font-size: var(--ds-text-3xl); line-height: var(--ds-leading-tight);">Clash Display for headings</div>
+      <Section
+        label="Scale"
+        lede="The raw ramp, under the classes. Reach for it when building a component, not when writing a page. Four more sizes are fluid and sit outside it: --ds-text-hero, --ds-text-section and the editorial pair."
+      >
+        {[
+          ["text-2xs", "10"],
+          ["text-xs", "12"],
+          ["text-sm", "14"],
+          ["text-base", "16"],
+          ["text-lg", "18"],
+          ["text-xl", "20"],
+          ["text-2xl", "24"],
+          ["text-3xl", "30"],
+          ["text-4xl", "36"],
+          ["text-5xl", "48"],
+          ["text-6xl", "60"],
+          ["text-7xl", "72"],
+        ].map(([token, px]) => (
+          <div className="s-row" key={token}>
+            <div className="s-label">
+              <code className="typo-cls">{token}</code>
+              <span className="typo-label typo-cls__what">{px}px</span>
             </div>
-            <div>
-              <div class="demo-token-label demo-token-label--block">font-sans</div>
-              <div style="font-family: var(--ds-font-sans); font-size: var(--ds-text-lg); line-height: var(--ds-leading-normal);">Switzer for body text and UI elements</div>
+            <div
+              className="s-content"
+              dangerouslySetInnerHTML={{
+                __html: `<div style="font-size: var(--ds-${token}); line-height: var(--ds-leading-snug);">The quick brown fox</div>`,
+              }}
+            />
+          </div>
+        ))}
+      </Section>
+
+      <Section
+        label="Weight"
+        lede="Headings never set a weight by hand. They take --ds-font-display-weight, --ds-admin-title-weight or --ds-heading-ui-weight."
+      >
+        {[
+          ["weight-light", "300"],
+          ["weight-normal", "400"],
+          ["weight-medium", "500"],
+          ["weight-semibold", "600"],
+          ["weight-bold", "700"],
+        ].map(([token, val]) => (
+          <div className="s-row" key={token}>
+            <div className="s-label">
+              <code className="typo-cls">{token}</code>
+              <span className="typo-label typo-cls__what">{val}</span>
             </div>
-            <div>
-              <div class="demo-token-label demo-token-label--block">font-mono</div>
-              <div style="font-family: var(--ds-font-mono); font-size: var(--ds-text-base); line-height: var(--ds-leading-normal);">Geist Mono for code and token names</div>
+            <div
+              className="s-content"
+              dangerouslySetInnerHTML={{
+                __html: `<div style="font-weight: var(--ds-${token}); font-size: var(--ds-text-xl);">The quick brown fox jumps over the lazy dog</div>`,
+              }}
+            />
+          </div>
+        ))}
+      </Section>
+
+      <Section label="Leading">
+        {[
+          ["leading-none", "1"],
+          ["leading-tight", "1.1"],
+          ["leading-snug", "1.25"],
+          ["leading-normal", "1.5"],
+          ["leading-relaxed", "1.625"],
+          ["leading-loose", "2"],
+        ].map(([token, val]) => (
+          <div className="s-row" key={token}>
+            <div className="s-label">
+              <code className="typo-cls">{token}</code>
+              <span className="typo-label typo-cls__what">{val}</span>
             </div>
+            <div
+              className="s-content"
+              dangerouslySetInnerHTML={{
+                __html: `<div style="font-size: var(--ds-text-base); line-height: var(--ds-${token}); max-width: 46ch;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</div>`,
+              }}
+            />
           </div>
-        `,
-          }}
-        />
-      </section>
+        ))}
+      </Section>
 
-      <section className="typo-block">
-        <h2 className="typo-heading">Font Sizes</h2>
-        <p className="typo-body typo-block__lede">The layer under the classes. Reach for it when building a component, not when writing a page.</p>
-        <div
-          className="typo-panel"
-          dangerouslySetInnerHTML={{
-            __html: `
-          <div style="display: flex; flex-direction: column; gap: var(--ds-space-4);">
-            ${[
-              ["text-2xs", "0.625rem / 10px"],
-              ["text-xs", "0.75rem / 12px"],
-              ["text-sm", "0.875rem / 14px"],
-              ["text-base", "1rem / 16px"],
-              ["text-lg", "1.125rem / 18px"],
-              ["text-xl", "1.25rem / 20px"],
-              ["text-2xl", "1.5rem / 24px"],
-              ["text-3xl", "1.875rem / 30px"],
-              ["text-4xl", "2.25rem / 36px"],
-              ["text-5xl", "3rem / 48px"],
-              ["text-6xl", "3.75rem / 60px"],
-              ["text-7xl", "4.5rem / 72px"],
-            ]
-              .map(
-                ([token, size]) => `
-              <div style="display: flex; align-items: baseline; gap: var(--ds-space-4);">
-                <div class="demo-token-label">${token}<span class="demo-token-label__size">${size}</span></div>
-                <div style="font-size: var(--ds-${token}); line-height: var(--ds-leading-snug); font-family: var(--ds-font-sans);">The quick brown fox</div>
-              </div>
-            `,
-              )
-              .join("")}
+      <Section label="Tracking">
+        {[
+          ["tracking-tighter", "-0.02em"],
+          ["tracking-tight", "-0.01em"],
+          ["tracking-normal", "0"],
+          ["tracking-wide", "0.05em"],
+          ["tracking-wider", "0.1em"],
+        ].map(([token, val]) => (
+          <div className="s-row" key={token}>
+            <div className="s-label">
+              <code className="typo-cls">{token}</code>
+              <span className="typo-label typo-cls__what">{val}</span>
+            </div>
+            <div
+              className="s-content"
+              dangerouslySetInnerHTML={{
+                __html: `<div style="letter-spacing: var(--ds-${token}); font-size: var(--ds-text-lg); text-transform: uppercase;">Design system tokens</div>`,
+              }}
+            />
           </div>
-        `,
-          }}
-        />
-        <p className="typo-body typo-block__lede">
-          Outside this ramp, four fluid sizes: <code>--ds-text-hero</code>, <code>--ds-text-section</code>, and the editorial pair. Those are what a brand overrides.
-        </p>
-      </section>
-
-      <section className="typo-block">
-        <h2 className="typo-heading">Font Weights</h2>
-        <p className="typo-body typo-block__lede">
-          Headings never set a weight by hand. They take <code>--ds-font-display-weight</code>, <code>--ds-admin-title-weight</code> or <code>--ds-heading-ui-weight</code>.
-        </p>
-        <div
-          className="typo-panel"
-          dangerouslySetInnerHTML={{
-            __html: `
-          <div style="display: flex; flex-direction: column; gap: var(--ds-space-4);">
-            ${[
-              ["weight-light", "300"],
-              ["weight-normal", "400"],
-              ["weight-medium", "500"],
-              ["weight-semibold", "600"],
-              ["weight-bold", "700"],
-            ]
-              .map(
-                ([token, val]) => `
-              <div style="display: flex; align-items: baseline; gap: var(--ds-space-4);">
-                <div class="demo-token-label">${token} (${val})</div>
-                <div style="font-weight: var(--ds-${token}); font-size: var(--ds-text-xl); font-family: var(--ds-font-sans);">The quick brown fox jumps over the lazy dog</div>
-              </div>
-            `,
-              )
-              .join("")}
-          </div>
-        `,
-          }}
-        />
-      </section>
-
-      <section className="typo-block">
-        <h2 className="typo-heading">Line Heights</h2>
-        <div
-          className="typo-panel"
-          dangerouslySetInnerHTML={{
-            __html: `
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--ds-space-6);">
-            ${[
-              ["leading-none", "1"],
-              ["leading-tight", "1.1"],
-              ["leading-snug", "1.25"],
-              ["leading-normal", "1.5"],
-              ["leading-relaxed", "1.625"],
-              ["leading-loose", "2"],
-            ]
-              .map(
-                ([token, val]) => `
-              <div style="padding: var(--ds-space-3); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md);">
-                <div class="demo-token-label demo-token-label--block">${token} (${val})</div>
-                <div style="font-size: var(--ds-text-base); line-height: var(--ds-${token}); font-family: var(--ds-font-sans); background: var(--ds-color-surface-muted); padding: var(--ds-space-2); border-radius: var(--ds-radius-sm);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</div>
-              </div>
-            `,
-              )
-              .join("")}
-          </div>
-        `,
-          }}
-        />
-      </section>
-
-      <section className="typo-block">
-        <h2 className="typo-heading">Letter Spacing</h2>
-        <div
-          className="typo-panel"
-          dangerouslySetInnerHTML={{
-            __html: `
-          <div style="display: flex; flex-direction: column; gap: var(--ds-space-4);">
-            ${[
-              ["tracking-tighter", "-0.02em"],
-              ["tracking-tight", "-0.01em"],
-              ["tracking-normal", "0"],
-              ["tracking-wide", "0.05em"],
-              ["tracking-wider", "0.1em"],
-            ]
-              .map(
-                ([token, val]) => `
-              <div style="display: flex; align-items: baseline; gap: var(--ds-space-4);">
-                <div class="demo-token-label">${token} (${val})</div>
-                <div style="letter-spacing: var(--ds-${token}); font-size: var(--ds-text-lg); font-family: var(--ds-font-sans); text-transform: uppercase;">Design system tokens</div>
-              </div>
-            `,
-              )
-              .join("")}
-          </div>
-        `,
-          }}
-        />
-      </section>
+        ))}
+      </Section>
     </>
   )
 }
