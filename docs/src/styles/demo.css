@@ -206,6 +206,60 @@
    against the element's OWN font-size — the container inherits 16px body, so
    22ch was ~183px and the 72px title was crammed into a column narrower than
    a phone. Measures belong on the text element, never on its wrapper. */
+/* ── Typeface ─────────────────────────────────────────────────────────────
+   riccardo's face, adopted 31 Jul 2026 in place of Clash Display + Switzer.
+   Inter variable with the optical-size axis, one family for both roles:
+   font-optical-sizing (auto by default) gives large headings Inter's Display
+   cut and body text the Text cut, so display and sans differ by optics rather
+   than by a second typeface. Same move riccardo makes, and the same one
+   brand.s25.studio makes with a single Diatype in three cuts.
+
+   Declared on body because that is where next/font puts --font-sans. */
+body {
+  --ds-font-display: var(--ds-font-sans);
+}
+
+/* ── Chrome typography ────────────────────────────────────────────────────
+   Four roles, and NONE of them is a DS class.
+
+   Dogfooding the documented classes for the page's own furniture was the
+   thing that made demo and documentation indistinguishable: ds-overline was
+   both the kicker and a specimen, ds-editorial-lede was both the intro and a
+   specimen. Chrome now has its own vocabulary, so every DS class on the page
+   appears exactly once — inside a panel, as the thing being shown.
+
+   The system is borrowed from brand.s25.studio, which uses one family and
+   a binary weight: 300 for everything, 700 only for the display moment.
+   Hierarchy comes from size and weight, never from greying text down —
+   their labels are 10.5px at FULL contrast, uppercase and tracked. */
+
+.typo-title {
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: var(--ds-weight-bold);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.typo-heading {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.4vw, 1.75rem);
+  font-weight: var(--ds-weight-light);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ds-color-text);
+}
+
+.typo-body {
+  margin: 0;
+  max-width: 62ch;
+  font-size: var(--ds-text-base);
+  font-weight: var(--ds-weight-light);
+  line-height: var(--ds-leading-normal);
+  color: var(--ds-color-text);
+  text-wrap: pretty;
+}
+
 /* ── Two surfaces, and that is the whole layout ───────────────────────────
    The page read as a wall because explanation and demonstration shared one
    surface, one column width and one density: flat text on the page
@@ -284,11 +338,11 @@
 .typo-label {
   display: block;
   font-family: var(--ds-font-sans);
-  font-size: var(--ds-text-xs);
-  font-weight: var(--ds-weight-medium);
-  letter-spacing: var(--ds-tracking-wider);
+  font-size: 0.6875rem;
+  font-weight: var(--ds-weight-normal);
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--ds-color-text-secondary);
+  color: var(--ds-color-text);
 }
 
 .typo-act__n {
