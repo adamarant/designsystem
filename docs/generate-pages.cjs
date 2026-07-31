@@ -157,6 +157,17 @@ const foundations = {
     { name: "Effects", href: "/foundations/effects" },
   ]
 };
+// Foundations shows one class per rail row, which proves the ramp exists and
+// proves nothing about a page built from it. These three are the other half:
+// one finished page per door, hand-written, never generated from the manifest.
+const inUse = {
+  label: "In use",
+  items: [
+    { name: "Web", href: "/in-use/web" },
+    { name: "Editorial", href: "/in-use/editorial" },
+    { name: "Product", href: "/in-use/product" },
+  ]
+};
 // Custom sidebar grouping — by what you're building, not by technical category
 const SIDEBAR_GROUPS = [
   {
@@ -205,7 +216,7 @@ const kits = {
   items: [{ name: "SiteKit", href: "/components/sitekit" }],
 };
 
-const allNav = [foundations, ...customGroups, kits];
+const allNav = [foundations, inUse, ...customGroups, kits];
 const sidebarContent = `// Auto-generated from components.json — do not edit manually
 export const NAV = ${JSON.stringify(allNav, null, 2)};
 `;
