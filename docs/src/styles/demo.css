@@ -912,22 +912,6 @@ body {
         size instead of freezing one viewport's guess.
    ────────────────────────────────────────────────────────────────────────── */
 
-/* What the page below is proving. Docs voice.
-
-   It used to be a left-flush block under a page title that starts at column 5
-   of the docs grid, so the two disagreed about where the page begins and one
-   of them had to be lying. It now rides the same .s-row / .s-label /
-   .s-content grid every other docs page uses: label in columns 1-4,
-   explanation in 5-12, flush with the h1 above it.
-
-   The canvas below is deliberately the one thing that breaks out to full
-   width. That is not a third alignment, it is a framed object: it has a
-   border and a title bar, so it reads as a picture of a page rather than as
-   more text that failed to line up. */
-.ex-note { margin-block-end: var(--ds-space-16); }
-
-.ex-note .s-content > * + * { margin-block-start: var(--ds-space-4); }
-
 /* Inline token name inside a sentence. .typo-cls is display:block, built for
    the rail's label column, so it cannot be reused here. */
 .ex-code {
@@ -938,41 +922,108 @@ body {
   color: var(--ds-color-text);
 }
 
-.ex-note ul {
-  margin: var(--ds-space-5) 0 0;
-  padding-inline-start: var(--ds-space-5);
-  list-style-type: disc;
+/* ── Nothing on the page but the page ─────────────────────────────────────
+   These routes carried a labelled note block, a seam, a titled frame and a
+   docs page header, all of it explanation, all of it printed next to type
+   that was supposed to be the argument. A page cannot demonstrate quiet
+   typography while surrounded by four registers of commentary.
+
+   So the commentary is gone from the layout entirely. Every note now lives on
+   the element it describes, as a data attribute, and surfaces only on a
+   click. See Inspect.tsx. What is left in the markup is the page. */
+
+.ex-ins { position: relative; }
+
+/* No permanent affordance. The pointer changes and a hairline appears on
+   hover, and that is the whole invitation. */
+.ex-ins [data-note] { cursor: pointer; }
+
+.ex-ins [data-note]:hover {
+  outline: 1px dashed var(--ds-color-border-hover);
+  outline-offset: 8px;
 }
 
-.ex-note li + li { margin-block-start: var(--ds-space-3); }
+.ex-ins [data-ins-active="true"] {
+  outline: 1px solid var(--ds-color-interactive);
+  outline-offset: 8px;
+}
 
-/* The seam between the two registers. Above it the docs are talking; below
-   it, everything is the exemplar and nothing is commentary. Saying so in one
-   line beats hoping the border communicates it. */
-.ex-seam {
+.ex-pop {
+  position: absolute;
+  z-index: 5;
+  inset-block-start: var(--ex-pop-y, 0);
+  inset-inline-start: var(--ex-pop-x, 0);
+  inline-size: min(21.25rem, 100%);
+  padding: var(--ds-space-5);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  background-color: var(--ds-color-surface-elevated);
+  box-shadow: var(--ds-shadow-lg);
+}
+
+.ex-pop__head {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--ds-space-3);
+  gap: var(--ds-space-4);
   align-items: baseline;
   justify-content: space-between;
-  margin-block-end: var(--ds-space-5);
-  padding-block-end: var(--ds-space-4);
-  border-block-end: 1px solid var(--ds-color-border);
 }
 
-/* The canvas. A border and nothing else: the exemplar sits on the page
-   background because it IS a page, and a card surface underneath would make
-   it read as a component demo.
+.ex-pop__cls {
+  padding: 0;
+  background: none;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text);
+}
 
-   One thing the canvas cannot fake: --ds-text-hero and --ds-text-section are
-   clamps on `vw`, and `vw` is the window, not this frame. Narrow the browser
-   and the type inside the canvas steps down correctly; narrow only the canvas
-   and it does not. To see the mobile end honestly, resize the window. */
-.ex-canvas {
+.ex-pop__close {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
+
+.ex-pop__close:hover { color: var(--ds-color-text); }
+
+.ex-pop__spec {
+  margin-block-start: var(--ds-space-2);
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
+
+.ex-pop__note {
+  margin-block-start: var(--ds-space-4);
+  font-size: var(--ds-text-sm);
+  line-height: var(--ds-leading-relaxed);
+  color: var(--ds-color-text);
+}
+
+/* The one piece of chrome, and it leaves after the first click. */
+.ex-hint {
+  position: fixed;
+  inset-block-end: var(--ds-space-6);
+  inset-inline-end: var(--ds-space-6);
+  z-index: 6;
+  padding: var(--ds-space-2) var(--ds-space-4);
   border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-xl);
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-surface-elevated);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-secondary);
+}
+
+/* The page's own frame is gone with the rest of the chrome: a border and a
+   title bar made it a picture of a page instead of a page.
+
+   One thing to know when reading these routes: --ds-text-hero and
+   --ds-text-section are clamps on `vw`. Resize the window to see the small
+   end; there is no container to narrow any more. */
+.ex-canvas {
   background-color: var(--ds-color-bg);
-  overflow: hidden;
 
   /* The measure these pages actually use, and the one place they knowingly
      leave a DS token behind.
@@ -988,23 +1039,6 @@ body {
      Kept local to the exemplars: the token itself is in src/tokens and
      changing it moves every consumer, which is a decision, not a fix. */
   --ex-measure: 48ch;
-}
-
-.ex-canvas__bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--ds-space-3);
-  align-items: baseline;
-  justify-content: space-between;
-  padding: var(--ds-space-3) var(--ds-space-5);
-  border-block-end: 1px solid var(--ds-color-border);
-  background-color: var(--ds-color-bg-subtle);
-}
-
-.ex-canvas__cls {
-  font-family: var(--ds-font-mono);
-  font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
 }
 
 /* Section rhythm, shared by all three exemplars.
