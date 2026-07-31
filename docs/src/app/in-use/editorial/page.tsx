@@ -23,48 +23,74 @@ export default function InUseEditorialPage() {
 
       <section className="s-section">
         <div className="s-container">
-          <div className="ex-note">
-            <p className="typo-body">
-              What the page below is doing, and why it holds:
-            </p>
-            <ul className="typo-body">
-              <li>
-                <strong>The body sets its own rhythm.</strong>{" "}
-                <code className="ex-code">.ds-editorial-body</code> puts 48px
-                above an <code className="ex-code">h2</code> and 20px under it,
-                so the heading opens the section instead of hovering between
-                two. No margin is written in the page.
-              </li>
-              <li>
-                <strong>The title block is wider than the text block.</strong>{" "}
-                42rem against 48ch. A 72px title inside a reading measure wraps
-                four times and stops working as a title.
-              </li>
-              <li>
-                <strong>The measure is applied here, not by the class.</strong>{" "}
-                <code className="ex-code">.ds-editorial-lede</code> caps itself
-                at <code className="ex-code">--ds-measure</code>;{" "}
-                <code className="ex-code">.ds-editorial-body</code>, which sets
-                the longest text in the system, caps at nothing. In a wide
-                container it runs the full width of its parent. That is the
-                second gap this exercise found.
-              </li>
-              <li>
-                <strong>The byline is a spec block, not a grey line.</strong>{" "}
-                Author, date and reading time each get a 14px uppercase label
-                over a 16px value, so the eye knows what it is looking at before
-                it reads. Three spans separated by dots, all at the same weight,
-                name nothing and are the version this page started with. Topic
-                tags underneath use{" "}
-                <code className="ex-code">.ds-badge--upper</code> at 10px, which
-                is the one place on the page small is the whole point.
-              </li>
-              <li>
-                <strong>The caption is two utilities.</strong> One size, one
-                colour, inside the budget. The system has no dedicated caption
-                class, and it is not missing one.
-              </li>
-            </ul>
+          <div className="s-row ex-note">
+            <div className="s-label">
+              <span className="typo-label">Notes on the page</span>
+            </div>
+            <div className="s-content">
+              <p className="typo-body">
+                Everything from here to the frame is documentation talking.
+                Everything inside the frame is the article, including its
+                caption and its end matter.
+              </p>
+              <ul className="typo-body">
+                <li>
+                  <strong>The body sets its own rhythm.</strong>{" "}
+                  <code className="ex-code">.ds-editorial-body</code> puts 48px
+                  above an <code className="ex-code">h2</code> and 20px under
+                  it, so the heading opens the section instead of hovering
+                  between two. No margin is written in the page.
+                </li>
+                <li>
+                  <strong>The title block is wider than the text block.</strong>{" "}
+                  42rem against 48ch. A 72px title inside a reading measure
+                  wraps four times and stops working as a title.
+                </li>
+                <li>
+                  <strong>
+                    The measure is applied here, not by the class.
+                  </strong>{" "}
+                  <code className="ex-code">.ds-editorial-lede</code> caps
+                  itself at <code className="ex-code">--ds-measure</code>;{" "}
+                  <code className="ex-code">.ds-editorial-body</code>, which
+                  sets the longest text in the system, caps at nothing. In a
+                  wide container it runs the full width of its parent. That is
+                  the second gap this exercise found.
+                </li>
+                <li>
+                  <strong>The byline is a spec block, not a grey line.</strong>{" "}
+                  Author, date and reading time each get a 14px uppercase label
+                  over a 16px value, so the eye knows what it is looking at
+                  before it reads. Three spans separated by dots, all at the
+                  same weight, name nothing and are the version this page
+                  started with. Topic tags underneath use{" "}
+                  <code className="ex-code">.ds-badge--upper</code> at 10px,
+                  which is the one place on the page small is the whole point.
+                </li>
+                <li>
+                  <strong>The caption is numbered and tied down.</strong> One
+                  size utility, one colour, inside the budget, plus a figure
+                  number and a rule joining it to the frame above. Loose grey
+                  text under a figure reads as a stray thought; a caption has to
+                  say what it is a caption of. The system has no dedicated
+                  caption class, and it is not missing one.
+                </li>
+                <li>
+                  <strong>The end matter is readable.</strong> The method behind
+                  every number in the piece is what makes the piece checkable,
+                  so it gets labelled pairs at body size. It used to be one line
+                  of <code className="ex-code">.ds-meta</code>, 12px tertiary,
+                  which is the treatment the system reserves for a timestamp.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="ex-seam">
+            <span className="typo-label">Below: the article</span>
+            <span className="ex-canvas__cls">
+              Nothing past this line is a note
+            </span>
           </div>
 
           <div className="ex-canvas">
@@ -169,10 +195,13 @@ export default function InUseEditorialPage() {
                       </p>
                     </div>
                   </div>
-                  <figcaption className="ds-text-sm ds-text-secondary ex-fig__caption">
-                    The same sentence under both caps, at the same 16px. The
-                    unit did not change and the font did not change. Only the
-                    number in front of it did.
+                  <figcaption className="ex-fig__caption">
+                    <span className="ds-overline ex-fig__n">Fig. 1</span>
+                    <span className="ds-text-sm ds-text-secondary">
+                      The same sentence under both caps, at the same 16px. The
+                      unit did not change and the font did not change. Only the
+                      number in front of it did.
+                    </span>
                   </figcaption>
                 </figure>
 
@@ -225,10 +254,27 @@ export default function InUseEditorialPage() {
                 </div>
 
                 <div className="ex-article__end">
-                  <p className="ds-meta">
-                    Filed under Foundations. Measured on Inter at 16px and 22px,
-                    1512px viewport.
-                  </p>
+                  <h3 className="ds-heading-ui ds-text-lg">
+                    How this was measured
+                  </h3>
+                  <div className="ex-article__end-grid">
+                    <div className="ex-meta">
+                      <p className="ds-overline">Typeface</p>
+                      <p className="ds-body">Inter, optical sizing on</p>
+                    </div>
+                    <div className="ex-meta">
+                      <p className="ds-overline">Sizes</p>
+                      <p className="ds-body ds-tabular-nums">16px and 22px</p>
+                    </div>
+                    <div className="ex-meta">
+                      <p className="ds-overline">Viewport</p>
+                      <p className="ds-body ds-tabular-nums">1512px</p>
+                    </div>
+                    <div className="ex-meta">
+                      <p className="ds-overline">Method</p>
+                      <p className="ds-body">Range rect per character</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </article>

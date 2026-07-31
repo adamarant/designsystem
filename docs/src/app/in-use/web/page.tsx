@@ -27,57 +27,73 @@ export default function InUseWebPage() {
 
       <section className="s-section">
         <div className="s-container">
-          <div className="ex-note">
-            <p className="typo-body">
-              What the page below is doing, and why it holds:
-            </p>
-            <ul className="typo-body">
-              <li>
-                <strong>Five levels, far apart.</strong> 72px statement, 36px
-                section heading, 16px body, 14px label, 10px badge. Nothing sits
-                between them, so every step reads as a step. Two levels close
-                together, which is what the doors section was before, reads as
-                no hierarchy at all.
-              </li>
-              <li>
-                <strong>Labelled pairs, not paragraphs.</strong> A small
-                uppercase label over a full-size value builds hierarchy out of
-                case, tracking and distance instead of dimming text. Two
-                paragraphs side by side carry the same information and give the
-                eye nothing to land on.
-              </li>
-              <li>
-                <strong>Unequal spacing.</strong> A section opens with 128px
-                above its heading and closes 40px under it. Inside a block the
-                gaps run 16, 24, 40. A heading belongs to what follows, and
-                equal space on both sides leaves it floating between two things
-                instead of opening one.
-              </li>
-              <li>
-                <strong>One measure, and it is not the token.</strong>{" "}
-                <code className="ex-code">--ds-measure</code> is 60ch, and 60ch
-                measured on this page renders 73 to 83 characters per line. The{" "}
-                <code className="ex-code">ch</code> unit is the width of the
-                digit zero, which in Inter is much wider than the average
-                lowercase letter. These pages cap running text at 48ch, which
-                measures 61 to 69.
-              </li>
-              <li>
-                <strong>Small marks the label, never the content.</strong> The
-                eyebrow is 14px and the body under it is 16px. The only 12px on
-                the page is the copyright.
-              </li>
-              <li>
-                <strong>The feature rows still use a bare heading.</strong>{" "}
-                Between <code className="ex-code">.ds-section-title</code> at
-                36px and body at 16px the system names no display role, so the
-                three row headings fall back to{" "}
-                <code className="ex-code">h3</code>. The doors above dodge it by
-                giving each door a full{" "}
-                <code className="ex-code">.ds-section-title</code>, which works
-                because there are two of them and not ten. The gap is real.
-              </li>
-            </ul>
+          <div className="s-row ex-note">
+            <div className="s-label">
+              <span className="typo-label">Notes on the page</span>
+            </div>
+            <div className="s-content">
+              <p className="typo-body">
+                Everything from here to the frame is documentation talking.
+                Everything inside the frame is the page itself, and none of it
+                is commentary.
+              </p>
+              <ul className="typo-body">
+                <li>
+                  <strong>Five levels, far apart.</strong> 72px statement, 36px
+                  section heading, 16px body, 14px label, 10px badge. Nothing
+                  sits between them, so every step reads as a step. Two levels
+                  close together, which is what the doors section was before,
+                  reads as no hierarchy at all.
+                </li>
+                <li>
+                  <strong>Labelled pairs, not paragraphs.</strong> A small
+                  uppercase label over a full-size value builds hierarchy out of
+                  case, tracking and distance instead of dimming text. Two
+                  paragraphs side by side carry the same information and give
+                  the eye nothing to land on.
+                </li>
+                <li>
+                  <strong>Space groups, rules only divide.</strong> 160px
+                  between sections against 40px inside one, a ratio of 4:1, and
+                  no hairline anywhere between them. At the 2.5:1 this page used
+                  to run, the two gaps read as one gap and the sections ran
+                  together. A rule on top of a big gap says the same thing
+                  twice.
+                </li>
+                <li>
+                  <strong>One measure, and it is not the token.</strong>{" "}
+                  <code className="ex-code">--ds-measure</code> is 60ch, and
+                  60ch measured on this page renders 73 to 83 characters per
+                  line. The <code className="ex-code">ch</code> unit is the
+                  width of the digit zero, which in Inter is much wider than the
+                  average lowercase letter. These pages cap running text at
+                  48ch, which measures 61 to 69.
+                </li>
+                <li>
+                  <strong>Small marks the label, never the content.</strong> The
+                  eyebrow is 14px and the body under it is 16px. The only 12px
+                  on the page is the copyright.
+                </li>
+                <li>
+                  <strong>The feature rows still use a bare heading.</strong>{" "}
+                  Between <code className="ex-code">.ds-section-title</code> at
+                  36px and body at 16px the system names no display role, so the
+                  three row headings fall back to{" "}
+                  <code className="ex-code">h3</code>. The doors above dodge it
+                  by giving each door a full{" "}
+                  <code className="ex-code">.ds-section-title</code>, which
+                  works because there are two of them and not ten. The gap is
+                  real.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="ex-seam">
+            <span className="typo-label">Below: the page</span>
+            <span className="ex-canvas__cls">
+              Nothing past this line is a note
+            </span>
           </div>
 
           <div className="ex-canvas">

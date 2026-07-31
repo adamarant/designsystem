@@ -912,14 +912,21 @@ body {
         size instead of freezing one viewport's guess.
    ────────────────────────────────────────────────────────────────────────── */
 
-/* What the page below is proving. Docs voice, so it stays on the docs
-   background at the docs measure and never borrows the exemplar's type. */
-.ex-note {
-  max-inline-size: var(--ds-measure);
-  margin-block-end: var(--ds-space-10);
-}
+/* What the page below is proving. Docs voice.
 
-.ex-note > * + * { margin-block-start: var(--ds-space-4); }
+   It used to be a left-flush block under a page title that starts at column 5
+   of the docs grid, so the two disagreed about where the page begins and one
+   of them had to be lying. It now rides the same .s-row / .s-label /
+   .s-content grid every other docs page uses: label in columns 1-4,
+   explanation in 5-12, flush with the h1 above it.
+
+   The canvas below is deliberately the one thing that breaks out to full
+   width. That is not a third alignment, it is a framed object: it has a
+   border and a title bar, so it reads as a picture of a page rather than as
+   more text that failed to line up. */
+.ex-note { margin-block-end: var(--ds-space-16); }
+
+.ex-note .s-content > * + * { margin-block-start: var(--ds-space-4); }
 
 /* Inline token name inside a sentence. .typo-cls is display:block, built for
    the rail's label column, so it cannot be reused here. */
@@ -938,6 +945,20 @@ body {
 }
 
 .ex-note li + li { margin-block-start: var(--ds-space-3); }
+
+/* The seam between the two registers. Above it the docs are talking; below
+   it, everything is the exemplar and nothing is commentary. Saying so in one
+   line beats hoping the border communicates it. */
+.ex-seam {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-3);
+  align-items: baseline;
+  justify-content: space-between;
+  margin-block-end: var(--ds-space-5);
+  padding-block-end: var(--ds-space-4);
+  border-block-end: 1px solid var(--ds-color-border);
+}
 
 /* The canvas. A border and nothing else: the exemplar sits on the page
    background because it IS a page, and a card surface underneath would make
@@ -986,15 +1007,21 @@ body {
   color: var(--ds-color-text-tertiary);
 }
 
-/* Section rhythm, shared by all three exemplars. The inline padding is the
-   same clamp the DS uses for containers; the block padding is what separates
-   a page that breathes from a page that stacks. */
+/* Section rhythm, shared by all three exemplars.
+
+   The block padding was clamp(48, 7vw, 96), which put 96px above a heading
+   and 40px under it. Under 2.5:1 the two gaps read as the same gap and the
+   sections ran together, so the page had no visible grouping at all.
+
+   Now 160px between sections against 40px inside one: 4:1. The rule between
+   them is gone with it. A hairline plus a big gap is the same information
+   twice, and the DS's own foundations page dropped its rules for exactly
+   this reason (95ea0df, "let proximity do the grouping"). Space groups; a
+   line only divides. */
 .ex-sec {
   padding-inline: clamp(var(--ds-space-6), 5vw, var(--ds-space-16));
-  padding-block: clamp(var(--ds-space-12), 7vw, var(--ds-space-24));
+  padding-block: clamp(var(--ds-space-16), 10vw, calc(var(--ds-space-32) + var(--ds-space-8)));
 }
-
-.ex-sec + .ex-sec { border-block-start: 1px solid var(--ds-color-border); }
 
 .ex-wrap {
   max-inline-size: 64rem;
@@ -1198,21 +1225,173 @@ body {
 .ex-fig__wide { max-inline-size: 60ch; }
 .ex-fig__tight { max-inline-size: 48ch; }
 
-/* Caption: one size utility plus one colour, which is the whole budget and
-   the reason .ds-caption does not need to exist. */
+/* Caption. It used to be a loose grey paragraph under the frame with nothing
+   attaching it to anything, so it read as a stray thought rather than as the
+   figure's caption. Now it is numbered, tied to the frame by a short rule on
+   the start edge, and indented off the figure's own edge: three signals that
+   it belongs to the thing above it and is not the article resuming. */
 .ex-fig__caption {
-  margin-block-start: var(--ds-space-3);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--ds-space-3);
+  align-items: baseline;
+  margin-block-start: var(--ds-space-4);
+  padding-block-start: var(--ds-space-4);
+  border-block-start: 1px solid var(--ds-color-border);
   max-inline-size: var(--ex-measure);
 }
 
+.ex-fig__n { white-space: nowrap; }
+
+/* End matter. This was one line of .ds-meta: 12px, tertiary, under a rule,
+   which is the size and colour the system reserves for a timestamp. The
+   method behind every number in the piece is not a timestamp, so nobody read
+   the one thing that made the article checkable. It is labelled pairs at
+   body size now, the same device as the byline that opens the article. */
 .ex-article__end {
-  max-inline-size: var(--ex-measure);
-  margin-block-start: var(--ds-space-12);
+  margin-block-start: var(--ds-space-16);
+  padding-block-start: var(--ds-space-6);
+  border-block-start: 1px solid var(--ds-color-border);
+}
+
+.ex-article__end-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--ds-space-6);
+  margin-block-start: var(--ds-space-5);
+}
+
+/* ── Product door: a whole application screen ────────────────────────────
+
+   The first version was a content area with no application around it: no
+   navigation, no header, no account, no pagination. A dashboard is mostly
+   chrome, and chrome is where a product's type actually gets tested, because
+   that is where labels, counts, states and nav items all have to coexist at
+   small sizes without turning grey.
+
+   The shell is .ex-shell rather than .ds-admin because .ds-admin__sidebar and
+   .ds-admin__header are position:fixed against the viewport (100dvh, z-index
+   above everything), so the real component cannot be embedded in a frame on
+   a docs page: it escapes and covers the documentation. Worth knowing if
+   anyone ever wants to preview an admin layout anywhere. Every type class
+   inside the shell is still the DS's own. */
+
+.ex-shell {
+  display: grid;
+  grid-template-columns: 14rem minmax(0, 1fr);
+  min-block-size: 40rem;
+}
+
+@media (max-width: 860px) {
+  .ex-shell { grid-template-columns: minmax(0, 1fr); }
+  .ex-shell__side { display: none; }
+}
+
+.ex-shell__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-6);
+  padding: var(--ds-space-5);
+  border-inline-end: 1px solid var(--ds-color-border);
+  background-color: var(--ds-color-bg-subtle);
+}
+
+.ex-shell__brand {
+  display: flex;
+  gap: var(--ds-space-2);
+  align-items: baseline;
+  padding-block-end: var(--ds-space-5);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.ex-shell__group > * + * { margin-block-start: var(--ds-space-1); }
+.ex-shell__group-label { margin-block-end: var(--ds-space-3); }
+
+/* Nav items: the active one is primary, the rest secondary, expressed as a
+   surface change rather than by hand-stacking colour utilities. The one
+   place an all-secondary block is correct (CLAUDE.md §10). */
+.ex-nav-item {
+  display: flex;
+  gap: var(--ds-space-2);
+  justify-content: space-between;
+  align-items: baseline;
+  padding: var(--ds-space-2) var(--ds-space-3);
+  border-radius: var(--ds-radius-md);
+  color: var(--ds-color-text-secondary);
+}
+
+.ex-nav-item--active {
+  background-color: var(--ds-color-surface-active);
+  color: var(--ds-color-text);
+}
+
+.ex-shell__side-foot {
+  margin-block-start: auto;
   padding-block-start: var(--ds-space-5);
   border-block-start: 1px solid var(--ds-color-border);
 }
 
-/* ── Product door: admin screen ─────────────────────────────────────────── */
+.ex-shell__main { min-inline-size: 0; }
+
+.ex-shell__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-4);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ds-space-3) var(--ds-space-6);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.ex-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-2);
+  align-items: baseline;
+}
+
+.ex-shell__top-right {
+  display: flex;
+  gap: var(--ds-space-3);
+  align-items: center;
+}
+
+/* A search field, drawn rather than wired: the exemplar is a still of a
+   screen, so it carries no behaviour it cannot honour. */
+.ex-fauxfield {
+  min-inline-size: 12rem;
+  padding: var(--ds-space-2) var(--ds-space-3);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-md);
+  background-color: var(--ds-color-surface);
+}
+
+.ex-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--ds-size-2);
+  block-size: var(--ds-size-2);
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-surface-muted);
+  border: 1px solid var(--ds-color-border);
+}
+
+.ex-pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-3);
+  align-items: center;
+  justify-content: space-between;
+  margin-block-start: var(--ds-space-4);
+}
+
+.ex-pager__btns {
+  display: flex;
+  gap: var(--ds-space-2);
+}
+
+/* ── Product door: the content area ─────────────────────────────────────── */
 
 /* Tighter than the web pages on purpose. Density is the product decision the
    Web door does not get to make, and it shows up as spacing, never as a
