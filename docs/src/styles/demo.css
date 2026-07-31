@@ -1037,13 +1037,48 @@ body {
 .ex-sec__head { margin-block-end: var(--ds-space-10); }
 .ex-sec__head > * + * { margin-block-start: var(--ds-space-4); }
 
-.ex-cols {
+/* ── Label / value spec rows ─────────────────────────────────────────────
+   The device every reference site leans on (s25.studio, vanschneider): a
+   small uppercase label over a full-size value, repeated. It builds
+   hierarchy out of case, tracking and size distance rather than out of
+   dimming, which is why it survives on a dark background where a grey
+   paragraph just recedes.
+
+   Two paragraphs side by side, which is what this section used to be, have
+   no such levels: 24px heading, 16px text, and nothing else. That is what
+   "missing hierarchy" was. */
+
+.ex-doors {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   gap: var(--ds-space-10);
 }
 
-.ex-col > * + * { margin-block-start: var(--ds-space-4); }
+.ex-door__head {
+  padding-block-end: var(--ds-space-5);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.ex-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-2);
+  margin-block-start: var(--ds-space-4);
+}
+
+.ex-spec { margin: 0; }
+
+.ex-spec__row {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 6fr);
+  gap: var(--ds-space-4);
+  align-items: baseline;
+  padding-block: var(--ds-space-3);
+}
+
+.ex-spec__row + .ex-spec__row { border-block-start: 1px solid var(--ds-color-border); }
+.ex-spec dt,
+.ex-spec dd { margin: 0; }
 
 /* Feature rows. A rule between them and no card around them, so the type
    carries the grouping on its own. */
@@ -1121,17 +1156,20 @@ body {
    magazine layout. */
 .ex-article__lede { max-inline-size: var(--ex-measure); }
 
-/* Byline. The name is content and reads at body size; the date and the
-   reading time are the supplementary half and drop to .ds-meta. */
-.ex-article__byline {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--ds-space-2) var(--ds-space-4);
-  align-items: baseline;
+/* Byline, as a spec block rather than a line of grey text.
+   Three flat spans separated by dots gave the reader no way in: author, date
+   and reading time all arrived at the same weight with nothing saying which
+   was which. Labelled pairs name each value and let it stay at full size. */
+.ex-article__meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--ds-space-6);
   margin-block-start: var(--ds-space-8);
   padding-block-start: var(--ds-space-5);
   border-block-start: 1px solid var(--ds-color-border);
 }
+
+.ex-meta > * + * { margin-block-start: var(--ds-space-2); }
 
 /* .ds-editorial-body caps nothing, so the measure has to be applied here.
    Everything else inside it (h2 at 48px above / 20px below, lists, quote
@@ -1203,49 +1241,74 @@ body {
 
 .ex-app__block { margin-block-start: var(--ds-space-8); }
 
-.ex-app__stats {
+/* Figures as one divided strip, not four separate cards.
+   Four identical bordered boxes in a row is the default admin look and it
+   flattens everything: four borders, four radii, four surfaces, all shouting
+   equally. One frame with hairline dividers reads as a single instrument
+   panel and lets the numbers do the work. The 1px gap over a border-coloured
+   background draws the dividers, so they survive a wrap. */
+.ex-app__figures {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-  gap: var(--ds-space-4);
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1px;
+  background-color: var(--ds-color-border);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  overflow: hidden;
 }
 
-.ex-app__split {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-  gap: var(--ds-space-6);
-  align-items: start;
+.ex-figure {
+  padding: var(--ds-space-5);
+  background-color: var(--ds-color-bg);
 }
 
-@media (max-width: 900px) {
-  .ex-app__split { grid-template-columns: minmax(0, 1fr); }
-}
+.ex-figure > * + * { margin-block-start: var(--ds-space-1); }
+.ex-figure__detail { margin-block-start: var(--ds-space-2); }
 
 .ex-app__toolbar {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--ds-space-2);
+  gap: var(--ds-space-3);
   align-items: center;
   margin-block-end: var(--ds-space-4);
 }
 
 .ex-app__spacer { margin-inline-start: auto; }
 
-.ex-panel {
+/* Selected-row detail, under the table at full width. It used to sit in a
+   column beside the table, which squeezed six columns of data into two
+   thirds of the frame and clipped them. */
+.ex-app__detail {
+  margin-block-start: var(--ds-space-6);
   padding: var(--ds-space-5);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-xl);
-  background-color: var(--ds-color-surface);
 }
 
-.ex-panel__row {
+.ex-app__detail-head {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--ds-space-2);
+  gap: var(--ds-space-3);
+  align-items: center;
   justify-content: space-between;
-  align-items: baseline;
-  padding-block: var(--ds-space-3);
 }
 
-.ex-panel__row + .ex-panel__row { border-block-start: 1px solid var(--ds-color-border); }
+.ex-app__detail-name {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-3);
+  align-items: center;
+}
 
-.ex-panel__body { margin-block-start: var(--ds-space-3); }
+.ex-app__detail-text {
+  margin-block-start: var(--ds-space-4);
+}
+
+.ex-app__detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--ds-space-5);
+  margin-block-start: var(--ds-space-5);
+  padding-block-start: var(--ds-space-5);
+  border-block-start: 1px solid var(--ds-color-border);
+}

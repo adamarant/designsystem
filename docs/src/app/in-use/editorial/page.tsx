@@ -50,11 +50,14 @@ export default function InUseEditorialPage() {
                 second gap this exercise found.
               </li>
               <li>
-                <strong>The byline splits.</strong> The author is content and
-                stays at <code className="ex-code">.ds-body</code>. The date and
-                the reading time are the supplementary half and drop to{" "}
-                <code className="ex-code">.ds-meta</code>. A byline set entirely
-                in 12px grey is the most common version of the mistake.
+                <strong>The byline is a spec block, not a grey line.</strong>{" "}
+                Author, date and reading time each get a 14px uppercase label
+                over a 16px value, so the eye knows what it is looking at before
+                it reads. Three spans separated by dots, all at the same weight,
+                name nothing and are the version this page started with. Topic
+                tags underneath use{" "}
+                <code className="ex-code">.ds-badge--upper</code> at 10px, which
+                is the one place on the page small is the whole point.
               </li>
               <li>
                 <strong>The caption is two utilities.</strong> One size, one
@@ -87,10 +90,24 @@ export default function InUseEditorialPage() {
                     digit zero, and in most sans faces those are two different
                     numbers.
                   </p>
-                  <div className="ex-article__byline">
-                    <span className="ds-body">Design system notes</span>
-                    <span className="ds-meta">31 July 2026</span>
-                    <span className="ds-meta">5 min read</span>
+                  <div className="ex-article__meta">
+                    <div className="ex-meta">
+                      <p className="ds-overline">Written by</p>
+                      <p className="ds-body">Design system notes</p>
+                    </div>
+                    <div className="ex-meta">
+                      <p className="ds-overline">Published</p>
+                      <p className="ds-body">31 July 2026</p>
+                    </div>
+                    <div className="ex-meta">
+                      <p className="ds-overline">Reading time</p>
+                      <p className="ds-body ds-tabular-nums">5 min</p>
+                    </div>
+                  </div>
+                  <div className="ex-tags">
+                    <span className="ds-badge ds-badge--upper">Measure</span>
+                    <span className="ds-badge ds-badge--upper">Tokens</span>
+                    <span className="ds-badge ds-badge--upper">Inter</span>
                   </div>
                 </header>
 
