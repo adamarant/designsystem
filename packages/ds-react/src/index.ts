@@ -338,7 +338,12 @@ export { ClipReveal, type ClipRevealProps } from "./components/ClipReveal";
 /* SiteKit (Fase 6) — site chrome written once. */
 export {
   SiteHeader,
+  /* Public because a burger is needed outside the site header too — a docs
+     drawer, an admin shell. Kept private, the only option was to hand-roll
+     one, which is how the docs ended up with a 13px glyph in a 40px button. */
+  BurgerIcon,
   type SiteHeaderProps,
+  type BurgerIconProps,
   type SiteNavItem,
   type SiteNavChild,
 } from "./components/SiteHeader";

@@ -69,7 +69,7 @@ export { AdminLayout, AdminLayoutSidebar, AdminLayoutMain, AdminLayoutHeader, ty
 export { useContextMenu, type UseContextMenuOptions, type UseContextMenuReturn, type ContextMenuItem, type ContextMenuAction, type ContextMenuDivider, type ContextMenuLabel, } from "./components/ContextMenu";
 export { TurnstileWidget, type TurnstileWidgetProps, type TurnstileWidgetHandle, } from "./components/TurnstileWidget";
 export { ClipReveal, type ClipRevealProps } from "./components/ClipReveal";
-export { SiteHeader, type SiteHeaderProps, type SiteNavItem, type SiteNavChild, } from "./components/SiteHeader";
+export { SiteHeader, BurgerIcon, type SiteHeaderProps, type BurgerIconProps, type SiteNavItem, type SiteNavChild, } from "./components/SiteHeader";
 export { SiteFooter, type SiteFooterProps, type SiteFooterLink, type SiteFooterColumnData, } from "./components/SiteFooter";
 export type { SiteFooterNewsletterProps } from "./components/SiteFooterNewsletter";
 export { LangSwitcher, type LangSwitcherProps, type LangSwitcherItem, } from "./components/LangSwitcher";

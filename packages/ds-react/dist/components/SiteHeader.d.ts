@@ -30,5 +30,13 @@ export interface SiteHeaderProps extends Omit<ComponentPropsWithoutRef<"nav">, "
     closeLabel?: string;
     className?: string;
 }
+export interface BurgerIconProps {
+    /** Renders the close (X) form instead of the bars. */
+    open?: boolean;
+    /** Rendered box in px. Pair it with the control's tier: 16 / 20 / 24 / 28
+        for a 24 / 32 / 40 / 48px control (--ds-icon-1..4 in tokens/spacing). */
+    size?: number;
+}
+export declare function BurgerIcon({ open, size }: BurgerIconProps): import("react/jsx-runtime").JSX.Element;
 export declare const SiteHeader: import("react").ForwardRefExoticComponent<SiteHeaderProps & import("react").RefAttributes<HTMLElement>>;
 //# sourceMappingURL=SiteHeader.d.ts.map

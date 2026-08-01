@@ -465,6 +465,41 @@ body {
   --ds-size-5: 3.5rem;
   --ds-size-6: 4rem;
 
+  /* --- Icon Glyph Sizes ---
+       The other half of the size-tier contract. "Inline components at the
+       same size tier share the same height" only delivers visual coherence
+       if the glyphs inside them match too, and until now nothing said what
+       a glyph should measure — it was implied by each component's padding,
+       so every author sized icons by eye and they drifted.
+
+       --ds-icon-N is the glyph that belongs inside a --ds-size-N control:
+
+       --ds-icon-1: 16px — inside a 24px control
+       --ds-icon-2: 20px — inside a 32px control
+       --ds-icon-3: 24px — inside a 40px control
+       --ds-icon-4: 28px — inside a 48px control
+
+       This describes what the system already does where it is coherent:
+       icon-btn (default/--sm) is 32px with 6px padding, leaving exactly 20;
+       icon-btn--lg is 40px with 8px padding, leaving exactly 24; the theme
+       toggle pairs a 16px glyph with its 26px thumb and 20px with its 34px
+       one. Two places do not match and are NOT changed here, because both
+       would be a visible change in every consumer:
+
+         - .ds-icon-btn--xs leaves 20px inside a 24px control (2px padding),
+           where the scale says 16.
+         - Nothing enforces these values. A component can still be handed a
+           glyph of any size; the tokens document the contract, they do not
+           yet police it.
+
+       Authoring note: glyphs sit on a 24-unit grid (viewBox="0 0 24 24",
+       stroke-width 2, round caps), the convention every icon in ds-react
+       follows. The box above is the rendered size, not the grid. */
+  --ds-icon-1: 1rem;
+  --ds-icon-2: 1.25rem;
+  --ds-icon-3: 1.5rem;
+  --ds-icon-4: 1.75rem;
+
   /* --- Component-Specific Heights --- */
   --ds-search-bar-height: 3.5rem;
   --ds-toolbar-row-height: 2.5rem;

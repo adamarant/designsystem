@@ -60,6 +60,52 @@ export default function SpacingPage() {
       </section>
 
       <section className="demo-section">
+        <h2 className="demo-section__title">Icon Sizes</h2>
+        <p className="demo-section__description">
+          The other half of the size-tier contract. Two controls of the same
+          height only <em>look</em>{" "}the same if the glyphs inside them match, and
+          until these existed nothing said what a glyph should measure &mdash; it
+          was implied by each component&rsquo;s padding, so icons were sized by eye
+          and drifted. <code>--ds-icon-N</code> is the glyph that belongs inside a{" "}
+          <code>--ds-size-N</code> control.
+        </p>
+        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
+          <div class="demo-token-list">
+            ${[
+              ["icon-1", "1rem / 16px", "size-1", "24px control"],
+              ["icon-2", "1.25rem / 20px", "size-2", "32px control"],
+              ["icon-3", "1.5rem / 24px", "size-3", "40px control"],
+              ["icon-4", "1.75rem / 28px", "size-4", "48px control"],
+            ].map(([token, val, pair, ctrl]) => `
+              <div style="display: flex; align-items: center; gap: var(--ds-space-3);">
+                <div class="demo-token-label">${token} &mdash; ${ctrl}<span class="demo-token-label__size">${val}</span></div>
+                <div style="height: var(--ds-${pair}); width: var(--ds-${pair}); background: var(--ds-color-interactive-subtle); border: 1px solid var(--ds-color-interactive-border); border-radius: var(--ds-radius-md); display: flex; align-items: center; justify-content: center; color: var(--ds-color-text);">
+                  <svg style="width: var(--ds-${token}); height: var(--ds-${token});" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="3" y1="8" x2="21" y2="8"></line>
+                    <line x1="3" y1="16" x2="21" y2="16"></line>
+                  </svg>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        ` }} />
+        <p className="demo-section__description">
+          <strong>Documented, not yet enforced.</strong> Nothing stops a component
+          being handed a glyph of another size, and two places do not match the
+          scale today: <code>.ds-icon-btn--xs</code> leaves 20px inside a 24px
+          control where the scale says 16, and <code>.ds-nav__icon-btn</code> is
+          2.25rem, which is not a tier at all. Both are visible in every consumer,
+          so neither was changed on the way in.
+        </p>
+        <p className="demo-section__description">
+          Glyphs are authored on a 24-unit grid &mdash;{" "}
+          <code>viewBox=&quot;0 0 24 24&quot;</code>, <code>stroke-width: 2</code>,
+          round caps &mdash; which every icon in <code>ds-react</code> follows. The
+          token is the rendered box, not the grid.
+        </p>
+      </section>
+
+      <section className="demo-section">
         <h2 className="demo-section__title">Border Radius</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(140px, 100%), 1fr)); gap: var(--ds-space-4);">

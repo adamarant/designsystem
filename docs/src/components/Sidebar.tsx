@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { IconBtn } from "@adamarant/ds-react";
+import { BurgerIcon, IconBtn } from "@adamarant/ds-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { usePathname } from "next/navigation";
 import { NAV } from "./nav-data";
@@ -81,9 +81,14 @@ export function Sidebar() {
     <>
       {/* size="lg" and no `variant="ghost"`: --ghost sets width/height to auto
           (icon-btn.css), so it throws the size tier away and the button
-          collapses onto its 18px glyph. Default variant is transparent at
-          rest anyway — the only thing it adds over ghost is the 40px box and
-          a hover surface, which is exactly what a thumb needs. */}
+          collapses onto its glyph. Default variant is transparent at rest
+          anyway — the only thing it adds over ghost is the 40px box and a
+          hover surface, which is exactly what a thumb needs.
+
+          The glyph is the DS's own BurgerIcon at its default 24px, which is
+          --ds-icon-3, the size that belongs in a 40px control. The version
+          that lived here was hand-drawn and measured 13px of ink, which is
+          why it read smaller than the theme toggle sitting next to it. */}
       <header className="demo-bar">
         <IconBtn
           ref={burgerRef}
@@ -93,18 +98,7 @@ export function Sidebar() {
           aria-controls="demo-nav"
           onClick={() => setOpen(true)}
         >
-          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
-            <g
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              fill="none"
-            >
-              <path d="M2.5 5h13" />
-              <path d="M2.5 9h13" />
-              <path d="M2.5 13h13" />
-            </g>
-          </svg>
+          <BurgerIcon />
         </IconBtn>
         <Link href="/" className="demo-bar__brand">
           Design System
@@ -143,17 +137,7 @@ export function Sidebar() {
               burgerRef.current?.focus();
             }}
           >
-            <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
-              <g
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                fill="none"
-              >
-                <path d="M4.5 4.5 L13.5 13.5" />
-                <path d="M13.5 4.5 L4.5 13.5" />
-              </g>
-            </svg>
+            <BurgerIcon open />
           </IconBtn>
         </div>
         <div className="demo-sidebar__search">
