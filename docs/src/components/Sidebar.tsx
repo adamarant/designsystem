@@ -79,11 +79,15 @@ export function Sidebar() {
 
   return (
     <>
+      {/* size="lg" and no `variant="ghost"`: --ghost sets width/height to auto
+          (icon-btn.css), so it throws the size tier away and the button
+          collapses onto its 18px glyph. Default variant is transparent at
+          rest anyway — the only thing it adds over ghost is the 40px box and
+          a hover surface, which is exactly what a thumb needs. */}
       <header className="demo-bar">
         <IconBtn
           ref={burgerRef}
-          variant="ghost"
-          size="sm"
+          size="lg"
           aria-label="Open navigation"
           aria-expanded={open}
           aria-controls="demo-nav"
@@ -105,8 +109,11 @@ export function Sidebar() {
         <Link href="/" className="demo-bar__brand">
           Design System
         </Link>
+        {/* lg here, sm in the sidebar foot: the bar is thumb-operated, the
+            desktop sidebar is not, and the foot's size is what desktop has
+            always had. */}
         <div className="demo-bar__end">
-          <ThemeToggle />
+          <ThemeToggle size="lg" />
         </div>
       </header>
 
@@ -128,8 +135,7 @@ export function Sidebar() {
               has to be inside the panel. Scrim tap and Escape work too, but
               neither is visible. */}
           <IconBtn
-            variant="ghost"
-            size="sm"
+            size="lg"
             className="demo-sidebar__close"
             aria-label="Close navigation"
             onClick={() => {

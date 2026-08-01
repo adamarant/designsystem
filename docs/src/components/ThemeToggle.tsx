@@ -10,7 +10,7 @@ import { ThemeToggle as DsThemeToggle } from "@adamarant/ds-react";
    the top-right of the content area. This is now a thin adapter — next-themes
    holds the state, the DS draws the control — and it lives in the sidebar
    with the rest of the chrome. */
-export function ThemeToggle() {
+export function ThemeToggle({ size = "sm" }: { size?: "sm" | "md" | "lg" }) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -23,7 +23,7 @@ export function ThemeToggle() {
 
   return (
     <DsThemeToggle
-      size="sm"
+      size={size}
       theme={theme}
       onThemeChange={setTheme}
       aria-label="Toggle colour theme"

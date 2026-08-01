@@ -66,14 +66,19 @@
     display: block;
   }
 
+  /* The bar was 48px tall with a 32px burger in it: a desktop control shrunk
+     to fit, not a touch target. The controls now use the DS's own top tier
+     (icon-btn --lg and theme-toggle --lg, both --ds-size-3 = 40px) rather
+     than an override of .ds-icon-btn's geometry, and the bar is sized by its
+     contents plus space-2 instead of by a number. */
   .demo-bar {
     display: flex;
     align-items: center;
-    gap: var(--ds-space-2);
+    gap: var(--ds-space-3);
     position: sticky;
     inset-block-start: 0;
     z-index: var(--ds-z-sticky);
-    padding: var(--ds-space-2) var(--ds-space-3);
+    padding: var(--ds-space-2) var(--ds-space-4);
     background-color: var(--ds-color-bg-subtle);
     border-block-end: 1px solid var(--ds-color-border);
   }
@@ -81,7 +86,7 @@
   .demo-bar__brand {
     font-family: var(--ds-font-display);
     font-weight: var(--ds-weight-bold);
-    font-size: var(--ds-text-base);
+    font-size: var(--ds-text-lg);
     color: var(--ds-color-text);
     text-decoration: none;
   }
