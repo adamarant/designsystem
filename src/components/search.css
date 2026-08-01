@@ -63,8 +63,19 @@
 
 /* Icon */
 .ds-search__icon {
+  display: inline-flex;
   color: var(--ds-color-text-tertiary);
   flex-shrink: 0;
+  transition: color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+/* Tertiary at rest is right — the magnifier is a label for a bar that already
+   says "Search...", so it should not compete with the placeholder. Once you
+   reach for the bar it stops being decoration and becomes the thing you are
+   pointing at, so it takes primary. */
+.ds-search:hover .ds-search__icon,
+.ds-search:focus-within .ds-search__icon {
+  color: var(--ds-color-text);
 }
 
 /* Input */

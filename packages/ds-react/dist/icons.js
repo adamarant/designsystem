@@ -1,6 +1,8 @@
 import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
 /* ==========================================================================
-   Icons
+   Icons — GENERATED, do not edit.
+   Source: icons.json · Regenerate: node scripts/generate-icons.js
+
    The closed starter set. Not a library: these are exactly the marks the
    design system's own components decide for themselves, and the set does not
    grow on request. Anything the *content* decides — a nav item, a stat card, a

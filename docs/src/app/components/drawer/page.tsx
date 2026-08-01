@@ -12,7 +12,7 @@ export default function DrawerPage() {
   <div class="ds-drawer__content" style="position:relative;transform:none;width:24rem;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);">
     <div class="ds-drawer__header">
       <h3>Filter Options</h3>
-      <button class="ds-drawer__close" aria-label="Close">&times;</button>
+      <button class="ds-drawer__close" aria-label="Close"><svg data-icon="close" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.18934 4.18934C4.77513 3.60355 5.72487 3.60355 6.31066 4.18934L12 9.87868L17.6893 4.18934C18.2751 3.60355 19.2249 3.60355 19.8107 4.18934C20.3964 4.77513 20.3964 5.72487 19.8107 6.31066L14.1213 12L19.8107 17.6893C20.3964 18.2751 20.3964 19.2249 19.8107 19.8107C19.2249 20.3964 18.2751 20.3964 17.6893 19.8107L12 14.1213L6.31066 19.8107C5.72487 20.3964 4.77513 20.3964 4.18934 19.8107C3.60355 19.2249 3.60355 18.2751 4.18934 17.6893L9.87868 12L4.18934 6.31066C3.60355 5.72487 3.60355 4.77513 4.18934 4.18934Z" fill="currentColor" /></svg></button>
     </div>
     <div class="ds-drawer__body">
       <div class="ds-form-group">
@@ -36,7 +36,7 @@ export default function DrawerPage() {
   &lt;div class=&quot;ds-drawer__content&quot; style=&quot;position:relative;transform:none;width:24rem;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);&quot;&gt;
     &lt;div class=&quot;ds-drawer__header&quot;&gt;
       &lt;h3&gt;Filter Options&lt;/h3&gt;
-      &lt;button class=&quot;ds-drawer__close&quot; aria-label=&quot;Close&quot;&gt;&amp;times;&lt;/button&gt;
+      &lt;button class=&quot;ds-drawer__close&quot; aria-label=&quot;Close&quot;&gt;&lt;svg data-icon=&quot;close&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M4.18934 4.18934C4.77513 3.60355 5.72487 3.60355 6.31066 4.18934L12 9.87868L17.6893 4.18934C18.2751 3.60355 19.2249 3.60355 19.8107 4.18934C20.3964 4.77513 20.3964 5.72487 19.8107 6.31066L14.1213 12L19.8107 17.6893C20.3964 18.2751 20.3964 19.2249 19.8107 19.8107C19.2249 20.3964 18.2751 20.3964 17.6893 19.8107L12 14.1213L6.31066 19.8107C5.72487 20.3964 4.77513 20.3964 4.18934 19.8107C3.60355 19.2249 3.60355 18.2751 4.18934 17.6893L9.87868 12L4.18934 6.31066C3.60355 5.72487 3.60355 4.77513 4.18934 4.18934Z&quot; fill=&quot;currentColor&quot; /&gt;&lt;/svg&gt;&lt;/button&gt;
     &lt;/div&gt;
     &lt;div class=&quot;ds-drawer__body&quot;&gt;
       &lt;div class=&quot;ds-form-group&quot;&gt;

@@ -12,9 +12,9 @@ export default function DatepickerPage() {
   <button class="ds-datepicker__trigger">Mar 20, 2026</button>
   <div class="ds-datepicker__panel">
     <div class="ds-datepicker__header">
-      <button class="ds-datepicker__nav">‹</button>
+      <button class="ds-datepicker__nav"><svg data-icon="chevron-left" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g transform="rotate(90 12 12)"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.29289 8.29289C3.68342 7.90237 4.31658 7.90237 4.70711 8.29289L11.2929 14.8787C11.6834 15.2692 12.3166 15.2692 12.7071 14.8787L19.2929 8.29289C19.6834 7.90237 20.3166 7.90237 20.7071 8.29289C21.0976 8.68342 21.0976 9.31658 20.7071 9.70711L14.1213 16.2929C12.9498 17.4645 11.0503 17.4645 9.8787 16.2929L3.29289 9.70711C2.90237 9.31658 2.90237 8.68342 3.29289 8.29289Z" fill="currentColor" /></g></svg></button>
       <span class="ds-datepicker__title">March 2026</span>
-      <button class="ds-datepicker__nav">›</button>
+      <button class="ds-datepicker__nav"><svg data-icon="chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g transform="rotate(-90 12 12)"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.29289 8.29289C3.68342 7.90237 4.31658 7.90237 4.70711 8.29289L11.2929 14.8787C11.6834 15.2692 12.3166 15.2692 12.7071 14.8787L19.2929 8.29289C19.6834 7.90237 20.3166 7.90237 20.7071 8.29289C21.0976 8.68342 21.0976 9.31658 20.7071 9.70711L14.1213 16.2929C12.9498 17.4645 11.0503 17.4645 9.8787 16.2929L3.29289 9.70711C2.90237 9.31658 2.90237 8.68342 3.29289 8.29289Z" fill="currentColor" /></g></svg></button>
     </div>
     <div class="ds-datepicker__weekdays">
       <span class="ds-datepicker__weekday">Mo</span>
@@ -74,9 +74,9 @@ export default function DatepickerPage() {
   &lt;button class=&quot;ds-datepicker__trigger&quot;&gt;Mar 20, 2026&lt;/button&gt;
   &lt;div class=&quot;ds-datepicker__panel&quot;&gt;
     &lt;div class=&quot;ds-datepicker__header&quot;&gt;
-      &lt;button class=&quot;ds-datepicker__nav&quot;&gt;‹&lt;/button&gt;
+      &lt;button class=&quot;ds-datepicker__nav&quot;&gt;&lt;svg data-icon=&quot;chevron-left&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;g transform=&quot;rotate(90 12 12)&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M3.29289 8.29289C3.68342 7.90237 4.31658 7.90237 4.70711 8.29289L11.2929 14.8787C11.6834 15.2692 12.3166 15.2692 12.7071 14.8787L19.2929 8.29289C19.6834 7.90237 20.3166 7.90237 20.7071 8.29289C21.0976 8.68342 21.0976 9.31658 20.7071 9.70711L14.1213 16.2929C12.9498 17.4645 11.0503 17.4645 9.8787 16.2929L3.29289 9.70711C2.90237 9.31658 2.90237 8.68342 3.29289 8.29289Z&quot; fill=&quot;currentColor&quot; /&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/button&gt;
       &lt;span class=&quot;ds-datepicker__title&quot;&gt;March 2026&lt;/span&gt;
-      &lt;button class=&quot;ds-datepicker__nav&quot;&gt;›&lt;/button&gt;
+      &lt;button class=&quot;ds-datepicker__nav&quot;&gt;&lt;svg data-icon=&quot;chevron-right&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;g transform=&quot;rotate(-90 12 12)&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M3.29289 8.29289C3.68342 7.90237 4.31658 7.90237 4.70711 8.29289L11.2929 14.8787C11.6834 15.2692 12.3166 15.2692 12.7071 14.8787L19.2929 8.29289C19.6834 7.90237 20.3166 7.90237 20.7071 8.29289C21.0976 8.68342 21.0976 9.31658 20.7071 9.70711L14.1213 16.2929C12.9498 17.4645 11.0503 17.4645 9.8787 16.2929L3.29289 9.70711C2.90237 9.31658 2.90237 8.68342 3.29289 8.29289Z&quot; fill=&quot;currentColor&quot; /&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/button&gt;
     &lt;/div&gt;
     &lt;div class=&quot;ds-datepicker__weekdays&quot;&gt;
       &lt;span class=&quot;ds-datepicker__weekday&quot;&gt;Mo&lt;/span&gt;
@@ -136,16 +136,16 @@ export default function DatepickerPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">With Step Arrows</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-datepicker">
-  <button class="ds-datepicker__step">‹</button>
+  <button class="ds-datepicker__step"><svg data-icon="chevron-left" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g transform="rotate(90 12 12)"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.29289 8.29289C3.68342 7.90237 4.31658 7.90237 4.70711 8.29289L11.2929 14.8787C11.6834 15.2692 12.3166 15.2692 12.7071 14.8787L19.2929 8.29289C19.6834 7.90237 20.3166 7.90237 20.7071 8.29289C21.0976 8.68342 21.0976 9.31658 20.7071 9.70711L14.1213 16.2929C12.9498 17.4645 11.0503 17.4645 9.8787 16.2929L3.29289 9.70711C2.90237 9.31658 2.90237 8.68342 3.29289 8.29289Z" fill="currentColor" /></g></svg></button>
   <button class="ds-datepicker__trigger">Mar 20, 2026</button>
-  <button class="ds-datepicker__step">›</button>
+  <button class="ds-datepicker__step"><svg data-icon="chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g transform="rotate(-90 12 12)"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.29289 8.29289C3.68342 7.90237 4.31658 7.90237 4.70711 8.29289L11.2929 14.8787C11.6834 15.2692 12.3166 15.2692 12.7071 14.8787L19.2929 8.29289C19.6834 7.90237 20.3166 7.90237 20.7071 8.29289C21.0976 8.68342 21.0976 9.31658 20.7071 9.70711L14.1213 16.2929C12.9498 17.4645 11.0503 17.4645 9.8787 16.2929L3.29289 9.70711C2.90237 9.31658 2.90237 8.68342 3.29289 8.29289Z" fill="currentColor" /></g></svg></button>
 </div>` }} />
         <details className="demo-code">
           <summary>View Code</summary>
           <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-datepicker&quot;&gt;
-  &lt;button class=&quot;ds-datepicker__step&quot;&gt;‹&lt;/button&gt;
+  &lt;button class=&quot;ds-datepicker__step&quot;&gt;&lt;svg data-icon=&quot;chevron-left&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;g transform=&quot;rotate(90 12 12)&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M3.29289 8.29289C3.68342 7.90237 4.31658 7.90237 4.70711 8.29289L11.2929 14.8787C11.6834 15.2692 12.3166 15.2692 12.7071 14.8787L19.2929 8.29289C19.6834 7.90237 20.3166 7.90237 20.7071 8.29289C21.0976 8.68342 21.0976 9.31658 20.7071 9.70711L14.1213 16.2929C12.9498 17.4645 11.0503 17.4645 9.8787 16.2929L3.29289 9.70711C2.90237 9.31658 2.90237 8.68342 3.29289 8.29289Z&quot; fill=&quot;currentColor&quot; /&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/button&gt;
   &lt;button class=&quot;ds-datepicker__trigger&quot;&gt;Mar 20, 2026&lt;/button&gt;
-  &lt;button class=&quot;ds-datepicker__step&quot;&gt;›&lt;/button&gt;
+  &lt;button class=&quot;ds-datepicker__step&quot;&gt;&lt;svg data-icon=&quot;chevron-right&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;g transform=&quot;rotate(-90 12 12)&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M3.29289 8.29289C3.68342 7.90237 4.31658 7.90237 4.70711 8.29289L11.2929 14.8787C11.6834 15.2692 12.3166 15.2692 12.7071 14.8787L19.2929 8.29289C19.6834 7.90237 20.3166 7.90237 20.7071 8.29289C21.0976 8.68342 21.0976 9.31658 20.7071 9.70711L14.1213 16.2929C12.9498 17.4645 11.0503 17.4645 9.8787 16.2929L3.29289 9.70711C2.90237 9.31658 2.90237 8.68342 3.29289 8.29289Z&quot; fill=&quot;currentColor&quot; /&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/button&gt;
 &lt;/div&gt;` }} /></pre>
         </details>
       </section>

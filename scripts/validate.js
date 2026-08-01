@@ -596,6 +596,62 @@ function checkDiscoverySync() {
 // CATEGORY G: COMPONENT QUALITY (5 checks)
 // ═══════════════════════════════════════════════════════════════════════════════
 
+function checkIconSync() {
+  // F35: icon geometry is generated, not authored
+  const source = path.join(ROOT, 'icons.json');
+  if (!fs.existsSync(source)) return;
+
+  const { execFileSync } = require('child_process');
+  try {
+    execFileSync('node', [path.join(ROOT, 'scripts/generate-icons.js'), '--check'], {
+      cwd: ROOT, stdio: 'pipe',
+    });
+  } catch {
+    report(ERROR, 'sync', 'icon-geometry-drift',
+      'icons.tsx or components.json no longer match icons.json — run: node scripts/generate-icons.js',
+      'icons.json');
+  }
+
+  // F36: no component may document a keyboard character where a mark belongs.
+  // This is the class of bug the set exists to end: a close button that is
+  // literally a multiplication sign renders in the page font, ignores the icon
+  // scale, and cannot follow the theme.
+  //
+  // Scoped to elements whose own class says a mark goes there, not to the
+  // character anywhere. An ellipsis is perfectly good copy — "Move to…" is a
+  // menu label and "Search projects…" is a placeholder. It is only wrong as
+  // the entire content of .ds-pagination__ellipsis.
+  const manifestPath = path.join(ROOT, 'components.json');
+  if (!fs.existsSync(manifestPath)) return;
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+
+  // Trailing (?![\w-]) matters: ds-admin__nav-item and __nav-label are not mark
+  // slots, ds-datepicker__nav is.
+  const MARK_SLOTS = /__(close|remove|tag-remove|clear|prev|next|nav|step|ellipsis|star|icon)(?![\w-])/;
+  const ELEMENT = /<(?:button|span|div|a)\b[^>]*class="([^"]*)"[^>]*>([\s\S]*?)<\/(?:button|span|div|a)>/g;
+
+  const walk = (node, componentName) => {
+    if (Array.isArray(node)) return node.forEach((n) => walk(n, componentName));
+    if (node && typeof node === 'object') {
+      return Object.values(node).forEach((n) => walk(n, componentName));
+    }
+    if (typeof node !== 'string' || !node.includes('class=')) return;
+    for (const m of node.matchAll(ELEMENT)) {
+      const [, className, inner] = m;
+      if (!MARK_SLOTS.test(className)) continue;
+      const content = inner.trim();
+      if (!content || content.includes('<svg') || content.includes('<img')) continue;
+      report(ERROR, 'sync', 'icon-character-glyph',
+        `${componentName}: "${className.trim()}" contains "${content.slice(0, 12)}" where a mark belongs — use an icon from icons.json`,
+        'components.json');
+    }
+  };
+
+  for (const component of manifest.components || []) {
+    walk(component.examples, component.name);
+  }
+}
+
 function checkComponentQuality() {
   // G36: No duplicate dark selectors in tokens
   if (fs.existsSync(path.join(TOKENS_DIR, 'colors.css'))) {
@@ -698,6 +754,7 @@ checkLogicalProperties();
 checkTheme();
 checkAccessibility();
 checkDiscoverySync();
+checkIconSync();
 checkComponentQuality();
 
 // ─── Output ──────────────────────────────────────────────────────────────────
