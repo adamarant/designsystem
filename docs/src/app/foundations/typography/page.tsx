@@ -11,20 +11,24 @@
    The raw ramps (text sizes, numeric weights, leading, tracking) are not
    documented here on purpose: the source is their truth. */
 
-type Spec = { cls: string; what: string; sample: string }
+/* One sentence for every specimen, the classic one: comparing rungs only
+   works when the text holds still. */
+const SPECIMEN = "Almost before we knew it, we had left the ground."
+
+type Spec = { cls: string; what: string }
 
 const ROLES: Spec[] = [
-  { cls: "ds-heading-1", what: "page title", sample: "We build things that last" },
-  { cls: "ds-heading-2", what: "section", sample: "How we work" },
-  { cls: "ds-heading-3", what: "subsection", sample: "The studio in numbers" },
-  { cls: "ds-heading-4", what: "group", sample: "Selected work" },
-  { cls: "ds-heading-5", what: "minor", sample: "Process" },
-  { cls: "ds-heading-6", what: "smallest", sample: "Colophon" },
-  { cls: "ds-copy", what: "lede", sample: "Every page we rebuilt this year ended up with fewer elements than the one it replaced." },
-  { cls: "ds-body", what: "content", sample: "The default for any content, at full strength, whatever else is on the card." },
-  { cls: "ds-caption", what: "half of a pair", sample: "Shot on location in Verona, 2026." },
-  { cls: "ds-meta", what: "small", sample: "12 March 2026 · 4 min" },
-  { cls: "ds-overline", what: "label, uppercase", sample: "Case study" },
+  { cls: "ds-heading-1", what: "page title" },
+  { cls: "ds-heading-2", what: "section" },
+  { cls: "ds-heading-3", what: "subsection" },
+  { cls: "ds-heading-4", what: "group" },
+  { cls: "ds-heading-5", what: "minor" },
+  { cls: "ds-heading-6", what: "smallest" },
+  { cls: "ds-copy", what: "lede" },
+  { cls: "ds-body", what: "content" },
+  { cls: "ds-caption", what: "half of a pair" },
+  { cls: "ds-meta", what: "small" },
+  { cls: "ds-overline", what: "label, uppercase" },
 ]
 
 /* One specimen per grid row: the class name in the page's own label column,
@@ -39,7 +43,7 @@ function Specimens({ rows }: { rows: Spec[] }) {
             <span className="typo-label typo-cls__what">{r.what}</span>
           </div>
           <div className="s-content">
-            <span className={r.cls}>{r.sample}</span>
+            <span className={r.cls}>{SPECIMEN}</span>
           </div>
         </div>
       ))}
@@ -106,10 +110,7 @@ export default function TypographyPage() {
           </div>
           <div className="s-content">
             <div className="ds-prose">
-              <span className="ds-body">
-                Editorial is web plus context, not a third surface: inside ds-prose the same body
-                class reads at 18 with relaxed leading.
-              </span>
+              <span className="ds-body">{SPECIMEN}</span>
             </div>
           </div>
         </div>
@@ -172,7 +173,7 @@ export default function TypographyPage() {
             <div
               className="s-content"
               dangerouslySetInnerHTML={{
-                __html: `<div style="font-weight: var(--ds-${token}); font-size: var(--ds-text-xl);">The quick brown fox jumps over the lazy dog</div>`,
+                __html: `<div style="font-weight: var(--ds-${token}); font-size: var(--ds-text-xl);">${SPECIMEN}</div>`,
               }}
             />
           </div>
