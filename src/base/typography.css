@@ -31,7 +31,12 @@ h1, h2, h3, h4, h5, h6 {
    NOT changed here: h2 is 36px and h3 is 24px, so the ladder still skips the
    30px step. Closing that gap means growing every existing <h3> by 6px across
    21 consumers — a visible content change, not a bug fix, so it stays a
-   separate decision instead of riding along in a no-regression commit. */
+   separate decision instead of riding along in a no-regression commit.
+
+   Next major: bare h1..h6 read the role tokens of the ambient surface
+   (the .ds-heading-1..6 values, web or product), locked decision 5 of the
+   2026-08-01 typography spec. Frozen until then for the same no-regression
+   reason. */
 h1 { font-size: clamp(2rem, 2.5vw + 1.4rem, 3rem); }          /* 32 → 48px */
 h2 { font-size: clamp(1.625rem, 1.55vw + 1.25rem, 2.25rem); } /* 26 → 36px */
 h3 { font-size: clamp(1.375rem, 0.5vw + 1.25rem, 1.5rem); }   /* 22 → 24px */
@@ -66,11 +71,13 @@ strong, b {
   font-weight: var(--ds-weight-semibold);
 }
 
-/* Overline / label style (like "PRODUCT DESIGNER & DEVELOPER") */
+/* Overline / label style (like "PRODUCT DESIGNER & DEVELOPER").
+   The uppercase incarnation of the label role: size and weight read the
+   label tokens since 0.38.0, same values. Not deprecated. */
 .ds-overline {
   font-family: var(--ds-font-sans);
-  font-size: var(--ds-text-sm);
-  font-weight: var(--ds-weight-medium);
+  font-size: var(--ds-type-label-size);
+  font-weight: var(--ds-type-label-weight);
   letter-spacing: var(--ds-tracking-wide);
   text-transform: uppercase;
   color: var(--ds-color-text-secondary);
@@ -103,20 +110,24 @@ strong, b {
    textbook set; two is what was actually missing here.
    ========================================================================== */
 
-/* Reading text. The default for content, at primary strength (§10). */
+/* Reading text. The default for content, at primary strength (§10).
+   Reads the body role tokens since 0.38.0, same values: .ds-prose re-tunes
+   them locally to editorial strength; data-surface leaves them alone. */
 .ds-body {
   font-family: var(--ds-font-sans);
-  font-size: var(--ds-text-base);
-  line-height: var(--ds-leading-normal);
+  font-size: var(--ds-type-body-size);
+  line-height: var(--ds-type-body-leading);
   color: var(--ds-color-text);
 }
 
 /* Metadata. Genuinely supplementary: timestamps, counts, tags, copyright.
    Tertiary does not meet 4.5:1 and this class is scoped to match — if the
-   text matters, it is not meta, and the right class is .ds-body. */
+   text matters, it is not meta, and the right class is .ds-body.
+   .ds-meta IS the `small` role of the type ladder (1 Aug 2026): the name
+   stays, the size reads --ds-type-small-size, same value. */
 .ds-meta {
   font-family: var(--ds-font-sans);
-  font-size: var(--ds-text-xs);
+  font-size: var(--ds-type-small-size);
   line-height: var(--ds-leading-snug);
   color: var(--ds-color-text-tertiary);
 }
@@ -124,7 +135,10 @@ strong, b {
 /* UI heading — body font for functional/interface headings (labels, settings, admin).
    Weight goes through --ds-heading-ui-weight, the sibling of
    --ds-admin-title-weight: a consumer whose body typeface has no Medium cut
-   overrides the token once instead of re-declaring the class. */
+   overrides the token once instead of re-declaring the class.
+   @deprecated 0.38.0. Successor: .ds-heading-3/4/5 under
+   data-surface="product", which finally give it a size. Frozen until the
+   next major. */
 .ds-heading-ui {
   font-family: var(--ds-font-sans);
   font-weight: var(--ds-heading-ui-weight);
@@ -134,7 +148,9 @@ strong, b {
    For the h1 at the top of an admin/dashboard page. Body font, calm size:
    admin is functional, not editorial, so it must NOT reach for the display
    font. Use this instead of .ds-section-title (2.25rem, display) or a bare
-   heading (inherits .ds-text-5xl), both of which shout on a data screen. */
+   heading (inherits .ds-text-5xl), both of which shout on a data screen.
+   @deprecated 0.38.0. Successor: .ds-heading-1 under data-surface="product"
+   (28px vs this 20→24: review at migration). Frozen until the next major. */
 .ds-admin-title {
   font-family: var(--ds-font-sans);
   font-size: var(--ds-text-xl);
@@ -148,7 +164,9 @@ strong, b {
   .ds-admin-title { font-size: var(--ds-text-2xl); }
 }
 
-/* Section title style — size from --ds-text-section (fluid, see tokens) */
+/* Section title style — size from --ds-text-section (fluid, see tokens).
+   @deprecated 0.38.0. Successor: .ds-heading-2 (web, 40→56px vs this 30→36:
+   the hierarchy fix, review per page). Frozen until the next major. */
 .ds-section-title {
   font-family: var(--ds-font-display);
   font-weight: var(--ds-font-display-weight);
@@ -158,7 +176,9 @@ strong, b {
   text-wrap: balance;
 }
 
-/* Hero title — large editorial display, size from --ds-text-hero */
+/* Hero title — large editorial display, size from --ds-text-hero.
+   @deprecated 0.38.0. Successor: .ds-heading-1 (web, 56→80px vs this 40→72).
+   Frozen until the next major. */
 .ds-hero-title {
   font-family: var(--ds-font-display);
   font-weight: var(--ds-font-display-weight);
@@ -179,6 +199,122 @@ strong, b {
 .ds-hero-title,
 .ds-section-title {
   overflow-wrap: break-word;
+}
+
+/* ==========================================================================
+   Type roles (1 Aug 2026)
+
+   One ladder, resolved by context: the class names what the text IS, the
+   surface (data-surface, web default) and the viewport decide the number.
+   Tokens in tokens/typography.css; spec and locked decisions in
+   ds-ops/proposals/spec-2026-08-01-typography-roles-surfaces.md.
+
+   The named classes above (.ds-hero-title, .ds-section-title,
+   .ds-admin-title, .ds-heading-ui) and the .ds-editorial-* family are
+   FROZEN: deprecated at 0.38.0, byte-identical until removal at the next
+   major, because pointing them at these tokens would resize existing pages
+   at a minor. Migration map with per-class deltas: the spec's compat table.
+
+   Role guide (small still means irrelevant):
+   - copy     emphasised reading text: lede, standfirst, intro. 18→22 / 18.
+   - body     the default for ANY content, full strength. If in doubt, body.
+   - label    UI label text, tokens only: .ds-label is the form incarnation,
+              .ds-overline the uppercase one. Both read the label tokens.
+   - caption  the subordinate half of a pair: under an image, under a value.
+   - small    genuinely irrelevant text: timestamps, legal. That class is
+              .ds-meta.
+   ========================================================================== */
+
+.ds-heading-1 {
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-type-h1-size);
+  font-weight: var(--ds-type-h1-weight);
+  line-height: var(--ds-type-h1-leading);
+  letter-spacing: var(--ds-type-h1-tracking);
+  color: var(--ds-color-text);
+}
+
+.ds-heading-2 {
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-type-h2-size);
+  font-weight: var(--ds-type-h2-weight);
+  line-height: var(--ds-type-h2-leading);
+  letter-spacing: var(--ds-type-h2-tracking);
+  color: var(--ds-color-text);
+}
+
+.ds-heading-3 {
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-type-h3-size);
+  font-weight: var(--ds-type-h3-weight);
+  line-height: var(--ds-type-h3-leading);
+  letter-spacing: var(--ds-type-h3-tracking);
+  color: var(--ds-color-text);
+}
+
+.ds-heading-4 {
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-type-h4-size);
+  font-weight: var(--ds-type-h4-weight);
+  line-height: var(--ds-type-h4-leading);
+  letter-spacing: var(--ds-type-h4-tracking);
+  color: var(--ds-color-text);
+}
+
+.ds-heading-5 {
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-type-h5-size);
+  font-weight: var(--ds-type-h5-weight);
+  line-height: var(--ds-type-h5-leading);
+  letter-spacing: var(--ds-type-h5-tracking);
+  color: var(--ds-color-text);
+}
+
+.ds-heading-6 {
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-type-h6-size);
+  font-weight: var(--ds-type-h6-weight);
+  line-height: var(--ds-type-h6-leading);
+  letter-spacing: var(--ds-type-h6-tracking);
+  color: var(--ds-color-text);
+}
+
+/* Long display lines: even the rag, never hand the page a horizontal
+   scrollbar (same lesson as .ds-hero-title above). Only the display end of
+   the ladder needs it. */
+.ds-heading-1,
+.ds-heading-2,
+.ds-heading-3 {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+/* Emphasised reading text: lede, standfirst, the paragraph under a hero.
+   Bigger than body on purpose; primary strength (§10), the page adds a
+   colour class only when the copy is genuinely the lesser of a pair. */
+.ds-copy {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-type-copy-size);
+  line-height: var(--ds-type-copy-leading);
+  color: var(--ds-color-text);
+}
+
+/* The subordinate half of a pair: under an image, under a value. Secondary
+   is baked in because a caption by definition sits next to a primary
+   companion (§10); on its own it is the wrong class, use .ds-body. */
+.ds-caption {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-type-caption-size);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text-secondary);
+}
+
+/* Long-form is a context, not a surface: inside .ds-prose the body role
+   reads at editorial strength (16 → 18, relaxed), which is exactly what the
+   frozen .ds-editorial-body hardcodes for itself. */
+.ds-prose {
+  --ds-type-body-size: var(--ds-text-lg);
+  --ds-type-body-leading: var(--ds-leading-relaxed);
 }
 
 code, kbd, samp {
