@@ -162,10 +162,10 @@
    .ds-heading-ui / .ds-section-title / .ds-prose-block for those.
 
    @deprecated 0.38.0. The type roles ladder replaces this family: title →
-   .ds-heading-1 (web), lede → .ds-copy (same curve), body → .ds-body inside
-   .ds-prose, which re-tunes the body role to 18/relaxed (see
-   base/typography.css). Frozen byte-identical until removal at the next
-   major. Spec: ds-ops/proposals/spec-2026-08-01-typography-roles-surfaces.md
+   .ds-heading-1 (web), lede AND body → .ds-copy (the reading tier; the
+   Figma scale has no separate lede step). Frozen byte-identical until
+   removal at the next major. Spec:
+   ds-ops/proposals/spec-2026-08-01-typography-roles-surfaces.md
    ========================================================================== */
 
 .ds-editorial-title {

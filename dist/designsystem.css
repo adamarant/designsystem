@@ -928,8 +928,8 @@ strong, b {
    ========================================================================== */
 
 /* Reading text. The default for content, at primary strength (§10).
-   Reads the body role tokens since 0.38.0, same values: .ds-prose re-tunes
-   them locally to editorial strength; data-surface leaves them alone. */
+   Reads the body role tokens since 0.38.0, same values, and they are
+   surface-invariant: 16 everywhere. Long-form reading text is .ds-copy. */
 .ds-body {
   font-family: var(--ds-font-sans);
   font-size: var(--ds-type-body-size);
@@ -1035,7 +1035,10 @@ strong, b {
    at a minor. Migration map with per-class deltas: the spec's compat table.
 
    Role guide (small still means irrelevant):
-   - copy     emphasised reading text: lede, standfirst, intro. 18→22 / 18.
+   - copy     reading text: lede, standfirst, article body. 18→20 / 18.
+              The Figma scale has no separate lede tier: Large Body IS the
+              reading tier, so long-form bodies take copy too (owner call,
+              1 Aug 2026; the prose re-tune of body was folded in here).
    - body     the default for ANY content, full strength. If in doubt, body.
    - label    UI label text, tokens only: .ds-label is the form incarnation,
               .ds-overline the uppercase one. Both read the label tokens.
@@ -1108,7 +1111,7 @@ strong, b {
   overflow-wrap: break-word;
 }
 
-/* Emphasised reading text: lede, standfirst, the paragraph under a hero.
+/* Reading text: lede, standfirst, article body, the paragraph under a hero.
    Bigger than body on purpose; primary strength (§10), the page adds a
    colour class only when the copy is genuinely the lesser of a pair. */
 .ds-copy {
@@ -1126,14 +1129,6 @@ strong, b {
   font-size: var(--ds-type-caption-size);
   line-height: var(--ds-leading-snug);
   color: var(--ds-color-text-secondary);
-}
-
-/* Long-form is a context, not a surface: inside .ds-prose the body role
-   reads at editorial strength (16 → 18, relaxed), which is exactly what the
-   frozen .ds-editorial-body hardcodes for itself. */
-.ds-prose {
-  --ds-type-body-size: var(--ds-text-lg);
-  --ds-type-body-leading: var(--ds-leading-relaxed);
 }
 
 code, kbd, samp {
@@ -12661,10 +12656,10 @@ hr {
    .ds-heading-ui / .ds-section-title / .ds-prose-block for those.
 
    @deprecated 0.38.0. The type roles ladder replaces this family: title →
-   .ds-heading-1 (web), lede → .ds-copy (same curve), body → .ds-body inside
-   .ds-prose, which re-tunes the body role to 18/relaxed (see
-   base/typography.css). Frozen byte-identical until removal at the next
-   major. Spec: ds-ops/proposals/spec-2026-08-01-typography-roles-surfaces.md
+   .ds-heading-1 (web), lede AND body → .ds-copy (the reading tier; the
+   Figma scale has no separate lede step). Frozen byte-identical until
+   removal at the next major. Spec:
+   ds-ops/proposals/spec-2026-08-01-typography-roles-surfaces.md
    ========================================================================== */
 
 .ds-editorial-title {
