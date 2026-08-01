@@ -321,10 +321,16 @@
    the old hand-set mobile values, which is why the mobile padding overrides
    below are gone); product compresses to 32 between sections. The docs
    chrome eats the cooking, like the page titles do. */
+/* The children stacked in the content column — description, preview, its
+   own code toggle — are ONE group, so the row gap is the element rhythm and
+   it is the only owner of that distance (.demo-code's own 8px margin used
+   to add to it: 24 + 8 = 32 between a demo and its own code). The column
+   gap stays space-6: that is the 12-col grid's gutter, not rhythm. */
 .demo-section {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: var(--ds-space-6);
+  column-gap: var(--ds-space-6);
+  row-gap: var(--ds-rhythm-element);
   max-width: 1156px;
   margin-inline: auto;
   padding-block: calc(var(--ds-rhythm-section) / 2);
@@ -367,7 +373,7 @@
   .demo-section__description { grid-column: span 12; }
 
   .demo-section {
-    gap: var(--ds-space-4);
+    column-gap: var(--ds-space-4);
   }
 }
 
@@ -399,8 +405,8 @@
   }
 }
 
+/* No margin: the section's row-gap owns the distance to the preview above. */
 .demo-code {
-  margin-block-start: var(--ds-space-2);
   background-color: var(--ds-color-bg-subtle);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-radius-lg);
@@ -433,7 +439,8 @@
 .demo-page-header {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: var(--ds-space-6);
+  column-gap: var(--ds-space-6);
+  row-gap: 0;
   max-width: 1156px;
   margin-inline: auto;
   padding-block: calc(var(--ds-rhythm-section) / 2);
@@ -461,9 +468,15 @@
    too loud once the ladder grew): a standfirst, still the body face. Size
    only — the family stays sans and the leading goes snug, which the rung's
    own tight ratio would not survive on a multi-line paragraph. */
+/* Title and lede are ONE group: the distance between them is --ds-rhythm-
+   element, and it has exactly one owner. It used to have two — the grid's
+   24px gap plus a 40px margin here — which summed to 64px and pushed the
+   subtitle away from the title it belongs to. The row-gap is now zeroed for
+   this header (the column gap still holds the 12-col grid) and the margin
+   is the single owner. */
 .demo-page-header p {
   grid-column: 5 / span 8;
-  margin: var(--ds-space-10) 0 0;
+  margin: var(--ds-rhythm-element) 0 0;
   max-width: 46ch;
   font-size: var(--ds-type-h5-size);
   line-height: var(--ds-leading-snug);
@@ -476,13 +489,7 @@
   .demo-page-header p { grid-column: span 12; }
 
   .demo-page-header {
-    gap: var(--ds-space-4);
-  }
-
-  /* The lede sat 40px below the title because it was clearing a column that
-     no longer exists at this width. */
-  .demo-page-header p {
-    margin-block-start: var(--ds-space-6);
+    column-gap: var(--ds-space-4);
   }
 }
 
@@ -614,10 +621,14 @@ body {
   margin-inline: auto;
 }
 
+/* Same rule as .demo-section: the column gap is the grid's gutter, the row
+   gap (which only appears once the row stacks below md) is the element
+   rhythm — a label and the specimen it names are one group. */
 .s-row {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: var(--ds-space-6);
+  column-gap: var(--ds-space-6);
+  row-gap: var(--ds-rhythm-element);
 }
 
 .s-row + .s-row { margin-block-start: var(--ds-rhythm-block); }
