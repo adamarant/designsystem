@@ -1734,3 +1734,161 @@ body {
   padding-block-start: var(--ds-space-5);
   border-block-start: 1px solid var(--ds-color-border);
 }
+
+/* ==========================================================================
+   foundations/icons — the inventory
+
+   Layout only. The page's job is comparison: the same mark drawn twice has to
+   sit close enough that the difference is visible, and the metadata must not
+   push the specimens apart. Hence a fixed specimen rail on the inline start
+   and everything else flowing after it.
+   ========================================================================== */
+
+.icon-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.icon-row {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-4);
+  padding-block: var(--ds-space-3);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.icon-row:last-child {
+  border-block-end: none;
+}
+
+/* The rail. Fixed width so every specimen in the column starts at the same
+   place — a ragged left edge would defeat the comparison the page exists for.
+   Each slot is --ds-icon-3 wide, the glyph box for a 40px control. */
+.icon-row__specs {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+  flex-shrink: 0;
+}
+
+.icon-row__spec {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--ds-icon-3);
+  block-size: var(--ds-icon-3);
+  color: var(--ds-color-text);
+}
+
+.icon-row__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-0-5);
+  min-inline-size: 0;
+}
+
+.icon-row__mark {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text);
+}
+
+.icon-row__name {
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-secondary);
+}
+
+/* Wraps rather than truncates: on a phone the source path is the second line
+   of the fact string, not an ellipsis. */
+.icon-row__facts {
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  overflow-wrap: anywhere;
+}
+
+/* One row per grid, so the weight difference between grids is a single glance
+   down the column rather than a hunt through the inventory. */
+.icon-grid-row {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-4);
+  flex-wrap: wrap;
+  padding-block: var(--ds-space-4);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.icon-grid-row:last-child {
+  border-block-end: none;
+}
+
+.icon-grid-row__marks {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-5);
+  flex-wrap: wrap;
+  color: var(--ds-color-text);
+}
+
+.icon-dupe {
+  padding-block: var(--ds-space-4);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.icon-dupe:last-child {
+  border-block-end: none;
+}
+
+.icon-dupe__set {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-6);
+  margin-block-start: var(--ds-space-3);
+}
+
+.icon-dupe__one,
+.icon-size {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ds-space-1);
+  color: var(--ds-color-text);
+  text-align: center;
+}
+
+/* The specimens are different heights by definition on this page, so the row
+   aligns on their boxes rather than their baselines. */
+.icon-size {
+  justify-content: flex-end;
+  min-inline-size: 4rem;
+}
+
+.icon-slots {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.icon-slots__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--ds-space-2) var(--ds-space-4);
+  padding-block: var(--ds-space-2);
+  border-block-end: 1px solid var(--ds-color-border);
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text);
+}
+
+.icon-slots__row:last-child {
+  border-block-end: none;
+}
+
+.icon-slots__row > :last-child {
+  color: var(--ds-color-text-tertiary);
+}

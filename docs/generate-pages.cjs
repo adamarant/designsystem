@@ -154,6 +154,7 @@ const foundations = {
     { name: "Colors", href: "/foundations/colors" },
     { name: "Typography", href: "/foundations/typography" },
     { name: "Spacing", href: "/foundations/spacing" },
+    { name: "Icons", href: "/foundations/icons" },
     { name: "Effects", href: "/foundations/effects" },
   ]
 };

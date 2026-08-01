@@ -16,6 +16,10 @@ export const NAV = [
         "href": "/foundations/spacing"
       },
       {
+        "name": "Icons",
+        "href": "/foundations/icons"
+      },
+      {
         "name": "Effects",
         "href": "/foundations/effects"
       }
