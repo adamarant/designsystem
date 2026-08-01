@@ -388,6 +388,17 @@
   --ds-weight-semibold: 600;
   --ds-weight-bold: 700;
 
+  /* --- Semantic weights (1 Aug 2026, typography roles) ---
+     Four names over the numeric ramp, so a brand re-maps a name to the cuts
+     its typeface actually ships (PP Telegraf has no Medium: one line moves
+     robust to 400) instead of re-declaring classes. 600 is the loudest
+     weight in real use across the ecosystem; 700 stays reachable as raw
+     --ds-weight-bold or as a brand re-map of intense. */
+  --ds-weight-delicate: var(--ds-weight-light);
+  --ds-weight-standard: var(--ds-weight-normal);
+  --ds-weight-robust: var(--ds-weight-medium);
+  --ds-weight-intense: var(--ds-weight-semibold);
+
   /* --- Line Heights --- */
   --ds-leading-none: 1;
   --ds-leading-tight: 1.1;
@@ -402,6 +413,64 @@
   --ds-tracking-normal: 0;
   --ds-tracking-wide: 0.05em;
   --ds-tracking-wider: 0.1em;
+
+  /* --- Type roles (1 Aug 2026) ---
+     One ladder of roles; context resolves the number. A class names what the
+     text IS (.ds-heading-1) and the surface plus the viewport decide the
+     size. :root carries the web surface: display headings, fluid sizes (the
+     two clamp ends ARE mobile and desktop, 375px floor, cap by ~1024px).
+     The [data-surface="product"] block at the end of this file re-declares
+     the variant roles: fixed sizes, body face, denser weights. Spec and
+     locked decisions:
+     ds-ops/proposals/spec-2026-08-01-typography-roles-surfaces.md */
+  /* Web sizes re-based 1 Aug 2026 on the Figma Foundation scale
+     (1. Foundation → Typography, tokens x500..x150): desktop caps 80/64/48/
+     40/32/24, an arithmetic ladder (16s then 8s). Line-heights are the
+     Figma per-rung ratios (110→133%), written as literals because the
+     leading ramp has no 1.12/1.17/1.2/1.33 steps and these belong to the
+     rung, not the ramp. Tracking: the Figma px values (-2.5 at 80 ... -0.75
+     at 24) are one constant ratio, -0.03em. Mobile floors keep the locked
+     fluid model: h1 floors at 56, the rest proportionally, 375 → 1024px. */
+  --ds-type-heading-family: var(--ds-font-display);
+  --ds-type-h1-size: clamp(3.5rem, 3.7vw + 2.63rem, 5rem);       /* 56 → 80px */
+  --ds-type-h1-weight: var(--ds-weight-standard);
+  --ds-type-h1-leading: 1.1;                                     /* 110% */
+  --ds-type-h1-tracking: -0.03em;
+  --ds-type-h2-size: clamp(2.75rem, 3.1vw + 2.02rem, 4rem);      /* 44 → 64px */
+  --ds-type-h2-weight: var(--ds-weight-standard);
+  --ds-type-h2-leading: 1.12;                                    /* 112% */
+  --ds-type-h2-tracking: -0.03em;
+  --ds-type-h3-size: clamp(2.25rem, 1.85vw + 1.82rem, 3rem);     /* 36 → 48px */
+  --ds-type-h3-weight: var(--ds-weight-standard);
+  --ds-type-h3-leading: 1.17;                                    /* 117% */
+  --ds-type-h3-tracking: -0.03em;
+  --ds-type-h4-size: clamp(1.75rem, 1.85vw + 1.32rem, 2.5rem);   /* 28 → 40px */
+  --ds-type-h4-weight: var(--ds-weight-standard);
+  --ds-type-h4-leading: 1.2;                                     /* 120% */
+  --ds-type-h4-tracking: -0.03em;
+  --ds-type-h5-size: clamp(1.5rem, 1.25vw + 1.21rem, 2rem);      /* 24 → 32px */
+  --ds-type-h5-weight: var(--ds-weight-standard);
+  --ds-type-h5-leading: var(--ds-leading-snug);                  /* 125% */
+  --ds-type-h5-tracking: -0.03em;
+  --ds-type-h6-size: clamp(1.25rem, 0.6vw + 1.11rem, 1.5rem);    /* 20 → 24px */
+  --ds-type-h6-weight: var(--ds-weight-robust);
+  --ds-type-h6-leading: 1.33;                                    /* 133% */
+  --ds-type-h6-tracking: -0.03em;
+
+  /* Text roles. Sizes are surface-invariant except copy, which product fixes
+     at 18: a timestamp is 12px on both surfaces. copy duplicates the lede
+     curve on purpose: --ds-text-editorial-lede stays consumed by the frozen
+     .ds-editorial-lede and retires with it at the next major. caption's 13px
+     is deliberately off the ds-text-* ramp: the small end needs a readable
+     step between label (14) and the floor (12). */
+  --ds-type-copy-size: clamp(1.125rem, 0.3vw + 1.05rem, 1.25rem); /* 18 → 20px (Figma Large Body) */
+  --ds-type-copy-leading: 1.6;                                    /* Figma: 160% */
+  --ds-type-body-size: var(--ds-text-base);                      /* 16px */
+  --ds-type-body-leading: var(--ds-leading-normal);
+  --ds-type-label-size: var(--ds-text-sm);                       /* 14px */
+  --ds-type-label-weight: var(--ds-weight-robust);
+  --ds-type-caption-size: 0.8125rem;                             /* 13px */
+  --ds-type-small-size: var(--ds-text-xs);                       /* 12px */
 }
 
 /* Body-scope re-declaration of the font tokens so they resolve against the
@@ -412,6 +481,32 @@ body {
   --ds-font-display: var(--font-display, "Clash Display"), system-ui, sans-serif;
   --ds-font-sans: var(--font-sans, "Switzer"), system-ui, -apple-system, sans-serif;
   --ds-font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, "SF Mono", monospace;
+}
+
+/* Product surface: apps, webapps, admin, dashboards. Fixed sizes (density on
+   a data screen is a product decision, not the viewport's), body face,
+   denser weights. Set data-surface="product" on the shell (html, body or any
+   subtree; a product widget inside a web page just carries the attribute).
+   The unmarked default is web. Custom properties inherit, so the switch
+   nests and costs no specificity. Roles not re-declared here (body, label,
+   caption, small, h4-h6 leading, tracking) are surface-invariant. */
+[data-surface="product"] {
+  --ds-type-heading-family: var(--ds-font-sans);
+  --ds-type-h1-size: 1.75rem;              /* 28px, deliberately off the ramp */
+  --ds-type-h1-weight: var(--ds-weight-intense);
+  --ds-type-h1-leading: var(--ds-leading-snug);
+  --ds-type-h2-size: var(--ds-text-2xl);   /* 24px */
+  --ds-type-h2-weight: var(--ds-weight-robust);
+  --ds-type-h2-leading: var(--ds-leading-snug);
+  --ds-type-h3-size: var(--ds-text-xl);    /* 20px */
+  --ds-type-h3-weight: var(--ds-weight-robust);
+  --ds-type-h3-leading: var(--ds-leading-snug);
+  --ds-type-h4-size: var(--ds-text-lg);    /* 18px */
+  --ds-type-h4-weight: var(--ds-weight-robust);
+  --ds-type-h5-size: var(--ds-text-base);  /* 16px */
+  --ds-type-h5-weight: var(--ds-weight-robust);
+  --ds-type-h6-size: var(--ds-text-sm);    /* 14px */
+  --ds-type-copy-size: var(--ds-text-lg);  /* 18px, fixed */
 }
 
 /* ==========================================================================
@@ -469,8 +564,27 @@ body {
   --ds-search-bar-height: 3.5rem;
   --ds-toolbar-row-height: 2.5rem;
 
-  /* --- Section Padding (responsive, generous) --- */
-  --ds-section-padding: clamp(80px, 12vw, 160px);
+  /* --- Rhythm (1 Aug 2026) ---
+     The only vertical distances a page is supposed to have, one owner each,
+     resolved per surface like the type roles. This is the page-level slice
+     only: the spacing ramp and the size tiers never split by surface (470 of
+     ~670 ramp uses are component-internal geometry). Receipt for the family:
+     six consumers hand-picked five different section paddings because the
+     only named step was the big fluid one. Spec and locked values:
+     ds-ops/proposals/spec-2026-08-01-rhythm-tokens.md
+       section  between sections of a page
+       block    between blocks inside a section (the de-facto 48 measured
+                in the wild, 22 uses)
+       element  a title to its own content */
+  --ds-rhythm-section: clamp(80px, 12vw, 160px);
+  --ds-rhythm-block: var(--ds-space-12);   /* 48px */
+  --ds-rhythm-element: var(--ds-space-4);  /* 16px */
+
+  /* --- Section Padding ---
+     Compat alias since 0.38.0: reads the rhythm family. Brand overrides of
+     --ds-section-padding keep working (.ds-section reads this name); new
+     work targets --ds-rhythm-section. */
+  --ds-section-padding: var(--ds-rhythm-section);
 
   /* --- Container --- */
   --ds-container-max: 1440px;
@@ -499,6 +613,22 @@ body {
   --ds-z-modal: 100;
   --ds-z-toast: 150;
   --ds-z-tooltip: 200;
+}
+
+/* Product surface: dense page rhythm. Same switch as the type roles; the
+   unmarked default is web. A dense area inside a web page is not a section
+   variant, it is data-surface="product" on that subtree — density is the
+   surface, not a per-page knob. */
+[data-surface="product"] {
+  --ds-rhythm-section: var(--ds-space-8);  /* 32px */
+  --ds-rhythm-block: var(--ds-space-6);    /* 24px */
+  --ds-rhythm-element: var(--ds-space-3);  /* 12px */
+
+  /* The alias must be re-declared HERE too: a var() inside a custom property
+     is substituted where the property is declared, so the :root alias
+     freezes the web value and descendants inherit it resolved. Same trap as
+     the --font-* body-scope note in typography.css. */
+  --ds-section-padding: var(--ds-rhythm-section);
 }
 
 /* ==========================================================================
@@ -718,7 +848,12 @@ h1, h2, h3, h4, h5, h6 {
    NOT changed here: h2 is 36px and h3 is 24px, so the ladder still skips the
    30px step. Closing that gap means growing every existing <h3> by 6px across
    21 consumers — a visible content change, not a bug fix, so it stays a
-   separate decision instead of riding along in a no-regression commit. */
+   separate decision instead of riding along in a no-regression commit.
+
+   Next major: bare h1..h6 read the role tokens of the ambient surface
+   (the .ds-heading-1..6 values, web or product), locked decision 5 of the
+   2026-08-01 typography spec. Frozen until then for the same no-regression
+   reason. */
 h1 { font-size: clamp(2rem, 2.5vw + 1.4rem, 3rem); }          /* 32 → 48px */
 h2 { font-size: clamp(1.625rem, 1.55vw + 1.25rem, 2.25rem); } /* 26 → 36px */
 h3 { font-size: clamp(1.375rem, 0.5vw + 1.25rem, 1.5rem); }   /* 22 → 24px */
@@ -753,11 +888,13 @@ strong, b {
   font-weight: var(--ds-weight-semibold);
 }
 
-/* Overline / label style (like "PRODUCT DESIGNER & DEVELOPER") */
+/* Overline / label style (like "PRODUCT DESIGNER & DEVELOPER").
+   The uppercase incarnation of the label role: size and weight read the
+   label tokens since 0.38.0, same values. Not deprecated. */
 .ds-overline {
   font-family: var(--ds-font-sans);
-  font-size: var(--ds-text-sm);
-  font-weight: var(--ds-weight-medium);
+  font-size: var(--ds-type-label-size);
+  font-weight: var(--ds-type-label-weight);
   letter-spacing: var(--ds-tracking-wide);
   text-transform: uppercase;
   color: var(--ds-color-text-secondary);
@@ -790,20 +927,24 @@ strong, b {
    textbook set; two is what was actually missing here.
    ========================================================================== */
 
-/* Reading text. The default for content, at primary strength (§10). */
+/* Reading text. The default for content, at primary strength (§10).
+   Reads the body role tokens since 0.38.0, same values, and they are
+   surface-invariant: 16 everywhere. Long-form reading text is .ds-copy. */
 .ds-body {
   font-family: var(--ds-font-sans);
-  font-size: var(--ds-text-base);
-  line-height: var(--ds-leading-normal);
+  font-size: var(--ds-type-body-size);
+  line-height: var(--ds-type-body-leading);
   color: var(--ds-color-text);
 }
 
 /* Metadata. Genuinely supplementary: timestamps, counts, tags, copyright.
    Tertiary does not meet 4.5:1 and this class is scoped to match — if the
-   text matters, it is not meta, and the right class is .ds-body. */
+   text matters, it is not meta, and the right class is .ds-body.
+   .ds-meta IS the `small` role of the type ladder (1 Aug 2026): the name
+   stays, the size reads --ds-type-small-size, same value. */
 .ds-meta {
   font-family: var(--ds-font-sans);
-  font-size: var(--ds-text-xs);
+  font-size: var(--ds-type-small-size);
   line-height: var(--ds-leading-snug);
   color: var(--ds-color-text-tertiary);
 }
@@ -811,7 +952,10 @@ strong, b {
 /* UI heading — body font for functional/interface headings (labels, settings, admin).
    Weight goes through --ds-heading-ui-weight, the sibling of
    --ds-admin-title-weight: a consumer whose body typeface has no Medium cut
-   overrides the token once instead of re-declaring the class. */
+   overrides the token once instead of re-declaring the class.
+   @deprecated 0.38.0. Successor: .ds-heading-3/4/5 under
+   data-surface="product", which finally give it a size. Frozen until the
+   next major. */
 .ds-heading-ui {
   font-family: var(--ds-font-sans);
   font-weight: var(--ds-heading-ui-weight);
@@ -821,7 +965,9 @@ strong, b {
    For the h1 at the top of an admin/dashboard page. Body font, calm size:
    admin is functional, not editorial, so it must NOT reach for the display
    font. Use this instead of .ds-section-title (2.25rem, display) or a bare
-   heading (inherits .ds-text-5xl), both of which shout on a data screen. */
+   heading (inherits .ds-text-5xl), both of which shout on a data screen.
+   @deprecated 0.38.0. Successor: .ds-heading-1 under data-surface="product"
+   (28px vs this 20→24: review at migration). Frozen until the next major. */
 .ds-admin-title {
   font-family: var(--ds-font-sans);
   font-size: var(--ds-text-xl);
@@ -837,7 +983,9 @@ strong, b {
 }
 
 
-/* Section title style — size from --ds-text-section (fluid, see tokens) */
+/* Section title style — size from --ds-text-section (fluid, see tokens).
+   @deprecated 0.38.0. Successor: .ds-heading-2 (web, 40→56px vs this 30→36:
+   the hierarchy fix, review per page). Frozen until the next major. */
 .ds-section-title {
   font-family: var(--ds-font-display);
   font-weight: var(--ds-font-display-weight);
@@ -847,7 +995,9 @@ strong, b {
   text-wrap: balance;
 }
 
-/* Hero title — large editorial display, size from --ds-text-hero */
+/* Hero title — large editorial display, size from --ds-text-hero.
+   @deprecated 0.38.0. Successor: .ds-heading-1 (web, 56→80px vs this 40→72).
+   Frozen until the next major. */
 .ds-hero-title {
   font-family: var(--ds-font-display);
   font-weight: var(--ds-font-display-weight);
@@ -868,6 +1018,117 @@ strong, b {
 .ds-hero-title,
 .ds-section-title {
   overflow-wrap: break-word;
+}
+
+/* ==========================================================================
+   Type roles (1 Aug 2026)
+
+   One ladder, resolved by context: the class names what the text IS, the
+   surface (data-surface, web default) and the viewport decide the number.
+   Tokens in tokens/typography.css; spec and locked decisions in
+   ds-ops/proposals/spec-2026-08-01-typography-roles-surfaces.md.
+
+   The named classes above (.ds-hero-title, .ds-section-title,
+   .ds-admin-title, .ds-heading-ui) and the .ds-editorial-* family are
+   FROZEN: deprecated at 0.38.0, byte-identical until removal at the next
+   major, because pointing them at these tokens would resize existing pages
+   at a minor. Migration map with per-class deltas: the spec's compat table.
+
+   Role guide (small still means irrelevant):
+   - copy     reading text: lede, standfirst, article body. 18→20 / 18.
+              The Figma scale has no separate lede tier: Large Body IS the
+              reading tier, so long-form bodies take copy too (owner call,
+              1 Aug 2026; the prose re-tune of body was folded in here).
+   - body     the default for ANY content, full strength. If in doubt, body.
+   - label    UI label text, tokens only: .ds-label is the form incarnation,
+              .ds-overline the uppercase one. Both read the label tokens.
+   - caption  the subordinate half of a pair: under an image, under a value.
+   - small    genuinely irrelevant text: timestamps, legal. That class is
+              .ds-meta.
+   ========================================================================== */
+
+.ds-heading-1 {
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-type-h1-size);
+  font-weight: var(--ds-type-h1-weight);
+  line-height: var(--ds-type-h1-leading);
+  letter-spacing: var(--ds-type-h1-tracking);
+  color: var(--ds-color-text);
+}
+
+.ds-heading-2 {
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-type-h2-size);
+  font-weight: var(--ds-type-h2-weight);
+  line-height: var(--ds-type-h2-leading);
+  letter-spacing: var(--ds-type-h2-tracking);
+  color: var(--ds-color-text);
+}
+
+.ds-heading-3 {
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-type-h3-size);
+  font-weight: var(--ds-type-h3-weight);
+  line-height: var(--ds-type-h3-leading);
+  letter-spacing: var(--ds-type-h3-tracking);
+  color: var(--ds-color-text);
+}
+
+.ds-heading-4 {
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-type-h4-size);
+  font-weight: var(--ds-type-h4-weight);
+  line-height: var(--ds-type-h4-leading);
+  letter-spacing: var(--ds-type-h4-tracking);
+  color: var(--ds-color-text);
+}
+
+.ds-heading-5 {
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-type-h5-size);
+  font-weight: var(--ds-type-h5-weight);
+  line-height: var(--ds-type-h5-leading);
+  letter-spacing: var(--ds-type-h5-tracking);
+  color: var(--ds-color-text);
+}
+
+.ds-heading-6 {
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-type-h6-size);
+  font-weight: var(--ds-type-h6-weight);
+  line-height: var(--ds-type-h6-leading);
+  letter-spacing: var(--ds-type-h6-tracking);
+  color: var(--ds-color-text);
+}
+
+/* Long display lines: even the rag, never hand the page a horizontal
+   scrollbar (same lesson as .ds-hero-title above). Only the display end of
+   the ladder needs it. */
+.ds-heading-1,
+.ds-heading-2,
+.ds-heading-3 {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+/* Reading text: lede, standfirst, article body, the paragraph under a hero.
+   Bigger than body on purpose; primary strength (§10), the page adds a
+   colour class only when the copy is genuinely the lesser of a pair. */
+.ds-copy {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-type-copy-size);
+  line-height: var(--ds-type-copy-leading);
+  color: var(--ds-color-text);
+}
+
+/* The subordinate half of a pair: under an image, under a value. Secondary
+   is baked in because a caption by definition sits next to a primary
+   companion (§10); on its own it is the wrong class, use .ds-body. */
+.ds-caption {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-type-caption-size);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text-secondary);
 }
 
 code, kbd, samp {
@@ -11764,9 +12025,14 @@ hr {
    ========================================================================== */
 
 .ds-admin-page {
+  /* The gap is the block rhythm. The local declaration pins it to today's
+     24px until the admin shell sets data-surface="product" itself
+     (typography phase 2) — then this line retires and the surface resolves
+     it. Renders identically either way. */
+  --ds-rhythm-block: var(--ds-space-6);
   display: flex;
   flex-direction: column;
-  gap: var(--ds-space-6);
+  gap: var(--ds-rhythm-block);
   min-width: 0;
 }
 
@@ -12342,6 +12608,12 @@ hr {
    Designed for: blog posts, long-form articles, editorial landing, magazine
    layouts. NOT for admin UI, dashboards, or functional copy — use
    .ds-heading-ui / .ds-section-title / .ds-prose-block for those.
+
+   @deprecated 0.38.0. The type roles ladder replaces this family: title →
+   .ds-heading-1 (web), lede AND body → .ds-copy (the reading tier; the
+   Figma scale has no separate lede step). Frozen byte-identical until
+   removal at the next major. Spec:
+   ds-ops/proposals/spec-2026-08-01-typography-roles-surfaces.md
    ========================================================================== */
 
 .ds-editorial-title {
