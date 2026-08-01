@@ -2,6 +2,7 @@
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import { forwardRef, useCallback, useEffect, useId, useMemo, useRef, useState, } from "react";
 import { cn } from "../utils/cn";
+import { IconCheck, IconClose, IconPlus } from "../icons";
 /* ================================================================== */
 /*  Maps                                                               */
 /* ================================================================== */
@@ -14,15 +15,6 @@ const sizeMap = {
 /* ================================================================== */
 /*  Icons (currentColor, no dependency)                                */
 /* ================================================================== */
-function CheckGlyph({ className }) {
-    return (_jsx("svg", { className: className, viewBox: "0 0 16 16", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: _jsx("path", { d: "M13.5 4.5 6 12 2.5 8.5" }) }));
-}
-function CloseGlyph() {
-    return (_jsx("svg", { width: "14", height: "14", viewBox: "0 0 16 16", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", "aria-hidden": "true", children: _jsx("path", { d: "m4 4 8 8M12 4l-8 8" }) }));
-}
-function PlusGlyph() {
-    return (_jsx("svg", { width: "14", height: "14", viewBox: "0 0 16 16", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", "aria-hidden": "true", children: _jsx("path", { d: "M8 3v10M3 8h10" }) }));
-}
 /* ================================================================== */
 /*  Combobox                                                           */
 /* ================================================================== */
@@ -221,7 +213,7 @@ export const Combobox = forwardRef(function Combobox({ options, value, onChange,
         const flatIndex = indexByValue.get(opt.value) ?? -1;
         const isActive = flatIndex === activeIndex;
         const isSelected = selectedSet.has(opt.value);
-        return (_jsxs("button", { type: "button", role: "option", id: `${baseId}-opt-${flatIndex}`, "aria-selected": isSelected, "aria-disabled": opt.disabled || undefined, "data-active": isActive || undefined, tabIndex: -1, onMouseEnter: () => setActiveIndex(flatIndex), onClick: () => selectOption(opt), className: cn("ds-combobox__option", isActive && "ds-combobox__option--active", isSelected && "ds-combobox__option--selected"), children: [opt.icon, _jsx("span", { children: opt.label }), opt.description ? (_jsx("span", { className: "ds-combobox__option-desc", children: opt.description })) : null, isSelected ? (_jsx(CheckGlyph, { className: "ds-combobox__option-check" })) : null] }, opt.value));
+        return (_jsxs("button", { type: "button", role: "option", id: `${baseId}-opt-${flatIndex}`, "aria-selected": isSelected, "aria-disabled": opt.disabled || undefined, "data-active": isActive || undefined, tabIndex: -1, onMouseEnter: () => setActiveIndex(flatIndex), onClick: () => selectOption(opt), className: cn("ds-combobox__option", isActive && "ds-combobox__option--active", isSelected && "ds-combobox__option--selected"), children: [opt.icon, _jsx("span", { children: opt.label }), opt.description ? (_jsx("span", { className: "ds-combobox__option-desc", children: opt.description })) : null, isSelected ? (_jsx(IconCheck, { className: "ds-combobox__option-check" })) : null] }, opt.value));
     };
     return (_jsxs("div", { ref: (node) => {
             rootRef.current = node;
@@ -240,7 +232,7 @@ export const Combobox = forwardRef(function Combobox({ options, value, onChange,
                         ? selectedOptions.map((opt) => (_jsxs("span", { className: "ds-combobox__tag", children: [opt.label, _jsx("button", { type: "button", className: "ds-combobox__tag-remove", "aria-label": `Remove ${opt.label}`, onClick: (e) => {
                                         e.stopPropagation();
                                         removeValue(opt.value);
-                                    }, children: _jsx(CloseGlyph, {}) })] }, opt.value)))
+                                    }, children: _jsx(IconClose, { size: 14 }) })] }, opt.value)))
                         : null, _jsx("input", { ref: inputRef, className: "ds-combobox__input", role: "combobox", "aria-expanded": open, "aria-controls": listboxId, "aria-autocomplete": "list", "aria-activedescendant": activeOptionId, disabled: disabled, readOnly: !searchable, placeholder: hasSelection && !multiple ? singleLabel : placeholder, value: inputValue, onChange: (e) => {
                             setQuery(e.target.value);
                             if (!open)
@@ -248,8 +240,8 @@ export const Combobox = forwardRef(function Combobox({ options, value, onChange,
                         }, onFocus: openMenu, onKeyDown: onKeyDown }), clearable && hasSelection && !disabled ? (_jsx("button", { type: "button", className: "ds-combobox__clear", "aria-label": "Clear", onClick: (e) => {
                             e.stopPropagation();
                             clearAll();
-                        }, children: _jsx(CloseGlyph, {}) })) : null] }), _jsx("div", { ref: listboxRef, id: listboxId, role: "listbox", "aria-multiselectable": multiple || undefined, className: cn("ds-combobox__listbox", open && "ds-combobox__listbox--open"), children: loading ? (_jsx("div", { className: "ds-combobox__loading", children: loadingMessage })) : (_jsxs(_Fragment, { children: [grouped
+                        }, children: _jsx(IconClose, { size: 14 }) })) : null] }), _jsx("div", { ref: listboxRef, id: listboxId, role: "listbox", "aria-multiselectable": multiple || undefined, className: cn("ds-combobox__listbox", open && "ds-combobox__listbox--open"), children: loading ? (_jsx("div", { className: "ds-combobox__loading", children: loadingMessage })) : (_jsxs(_Fragment, { children: [grouped
                             ? grouped.map((g) => (_jsxs("div", { className: "ds-combobox__group", children: [g.label ? (_jsx("span", { className: "ds-combobox__group-label", children: g.label })) : null, g.items.map(renderOption)] }, g.label || "_")))
-                            : filtered.map(renderOption), filtered.length === 0 && !showCreate ? (_jsx("div", { className: "ds-combobox__empty", children: emptyMessage })) : null, showCreate ? (_jsxs("button", { type: "button", id: `${baseId}-create`, "data-active": activeIndex === createIndex || undefined, tabIndex: -1, onMouseEnter: () => setActiveIndex(createIndex), onClick: commitCreate, className: "ds-combobox__create", children: [_jsx(PlusGlyph, {}), _jsxs("span", { children: ["Create \u201C", query.trim(), "\u201D"] })] })) : null] })) })] }));
+                            : filtered.map(renderOption), filtered.length === 0 && !showCreate ? (_jsx("div", { className: "ds-combobox__empty", children: emptyMessage })) : null, showCreate ? (_jsxs("button", { type: "button", id: `${baseId}-create`, "data-active": activeIndex === createIndex || undefined, tabIndex: -1, onMouseEnter: () => setActiveIndex(createIndex), onClick: commitCreate, className: "ds-combobox__create", children: [_jsx(IconPlus, { size: 14 }), _jsxs("span", { children: ["Create \u201C", query.trim(), "\u201D"] })] })) : null] })) })] }));
 });
 //# sourceMappingURL=Combobox.js.map

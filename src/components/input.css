@@ -194,7 +194,12 @@
 
   /* Select */
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a1a1aa' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  /* Native select chevron. Was a 12-unit filled triangle in #a1a1aa — a grey
+     that matches no token in either theme. Now the set's chevron at
+     --ds-color-text-tertiary (#71717a, identical light and dark, so one
+     declaration covers both). A data: URI cannot read the token, hence the
+     literal; regenerate from icons.json if the chevron changes. */
+  background-image: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'><path%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M3.29289%208.29289C3.68342%207.90237%204.31658%207.90237%204.70711%208.29289L11.2929%2014.8787C11.6834%2015.2692%2012.3166%2015.2692%2012.7071%2014.8787L19.2929%208.29289C19.6834%207.90237%2020.3166%207.90237%2020.7071%208.29289C21.0976%208.68342%2021.0976%209.31658%2020.7071%209.70711L14.1213%2016.2929C12.9498%2017.4645%2011.0503%2017.4645%209.8787%2016.2929L3.29289%209.70711C2.90237%209.31658%202.90237%208.68342%203.29289%208.29289Z'%20fill='%2371717a'%20/></svg>");
   background-repeat: no-repeat;
   background-position: right var(--ds-space-3) center;
   padding-inline-end: var(--ds-space-8);

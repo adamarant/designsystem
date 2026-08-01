@@ -10,6 +10,7 @@ import {
 } from "react";
 import { cn } from "../utils/cn";
 import { Dropdown } from "./Dropdown";
+import { IconClose, IconMenu } from "../icons";
 
 /* ==================================================================
    SiteKit — SiteHeader (ECOSYSTEM_ROADMAP, Fase 6)
@@ -67,49 +68,20 @@ export interface BurgerIconProps {
   size?: number;
 }
 
-/* The menu glyph, on the same grid as every other icon in this package.
+/* Kept as an export because it has shipped for a long time and consumers
+   import it. It no longer draws anything of its own: the two marks come from
+   the set, so the menu here and the menu in the admin header are finally the
+   same drawing.
 
-   It used to be the one exception: an 18-unit viewBox at stroke-width 1.5,
-   where the other six icons here are all viewBox="0 0 24 24" at stroke-width
-   2 with round caps. Two consequences, both visible. Its ink measured 12
-   units wide inside a 36px .ds-nav__icon-btn, so it read as noticeably
-   lighter than anything beside it — the theme toggle's 20px glyph on a 34px
-   thumb, for instance. And because it was private to this file, anyone
-   needing a burger elsewhere hand-rolled one, inheriting nothing and
-   drifting further. The docs did exactly that.
-
-   Now on the 24 grid with ink from 3 to 21, which is what every icon in
-   ds-react (and Lucide, which that grid comes from) uses. The two-bar form
-   is kept: that is this system's menu mark, not an accident of the old grid.
-   The bars sit at 8 and 16 — the thirds — which is the proportion they held
-   at 6 and 12 on the old 18 grid. Placing them at 9 and 15 instead reads as
-   an equals sign floating in the middle of an empty box. */
+   The two-bar form survives the move — IconMenu is two bars, which is what
+   this component argued for when it owned the geometry, and the previous
+   fight (an 18-unit viewBox at stroke 1.5 against everyone else's 24 at
+   stroke 2, reading visibly lighter inside a 36px .ds-nav__icon-btn) is
+   exactly the class of drift the set exists to end. The bars shift from 8/16
+   to 7/17, which is the only visible difference. */
 export function BurgerIcon({ open = false, size = 24 }: BurgerIconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      {open ? (
-        <>
-          <line x1="18" y1="6" x2="6" y2="18" />
-          <line x1="6" y1="6" x2="18" y2="18" />
-        </>
-      ) : (
-        <>
-          <line x1="3" y1="8" x2="21" y2="8" />
-          <line x1="3" y1="16" x2="21" y2="16" />
-        </>
-      )}
-    </svg>
-  );
+  const Mark = open ? IconClose : IconMenu;
+  return <Mark size={size} />;
 }
 
 function DesktopGroup({

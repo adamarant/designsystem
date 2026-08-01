@@ -3,6 +3,7 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef, } from "react";
 import { Dialog } from "@base-ui/react/dialog";
 import { cn } from "../utils/cn";
+import { IconClose } from "../icons";
 /* ================================================================== */
 /*  Maps                                                               */
 /* ================================================================== */
@@ -23,8 +24,8 @@ export const ModalContent = forwardRef(function ModalContent({ className, ...res
 export const ModalHeader = forwardRef(function ModalHeader({ className, ...rest }, ref) {
     return (_jsx("div", { ref: ref, className: cn("ds-modal__header", className), ...rest }));
 });
-export const ModalClose = forwardRef(function ModalClose({ className, ...rest }, ref) {
-    return (_jsx(Dialog.Close, { ref: ref, "aria-label": "Close", className: cn("ds-modal__close", className), ...rest }));
+export const ModalClose = forwardRef(function ModalClose({ className, children, ...rest }, ref) {
+    return (_jsx(Dialog.Close, { ref: ref, "aria-label": "Close", className: cn("ds-modal__close", className), ...rest, children: children ?? _jsx(IconClose, { size: 20 }) }));
 });
 export const ModalBody = forwardRef(function ModalBody({ className, ...rest }, ref) {
     return (_jsx("div", { ref: ref, className: cn("ds-modal__body", className), ...rest }));

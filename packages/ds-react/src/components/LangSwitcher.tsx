@@ -10,6 +10,7 @@ import {
 import { cn } from "../utils/cn";
 import { Dropdown } from "./Dropdown";
 import type { Size } from "../types";
+import { IconChevronDown } from "../icons";
 
 /* Same tier map as Button: the trigger sits on --ds-size-1..4, so it
    lines up with every other control in the row. */
@@ -78,23 +79,6 @@ function hreflangHref(code: string): string | null {
   }
 }
 
-function Caret() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M3.5 5.5 7 9l3.5-3.5" />
-    </svg>
-  );
-}
 
 export const LangSwitcher = forwardRef<HTMLDivElement, LangSwitcherProps>(
   function LangSwitcher(
@@ -167,7 +151,7 @@ export const LangSwitcher = forwardRef<HTMLDivElement, LangSwitcherProps>(
           <span className="ds-text-xs ds-font-semibold ds-uppercase">
             {current}
           </span>
-          <Caret />
+          <IconChevronDown size={14} />
         </Dropdown.Trigger>
         <Dropdown.Menu align="right" width="auto">
           {others.map((item) => (

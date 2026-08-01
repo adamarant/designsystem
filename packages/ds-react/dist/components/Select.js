@@ -3,6 +3,7 @@ import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-run
 import { forwardRef, useCallback, useEffect, useMemo, useRef, useState, Children, isValidElement, } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "../utils/cn";
+import { IconCheck, IconChevronDown, IconClose, IconSearch } from "../icons";
 /* Children <option> already carry the data: the panel extracts them, so
    existing children-based usage gets the styled panel with zero changes
    (owner call, 23 lug 2026 — the native menu is opt-in via `native`). */
@@ -44,18 +45,6 @@ const panelSizeMap = {
 /* ================================================================== */
 /*  Icons (self-contained — the package ships no icon dependency)      */
 /* ================================================================== */
-function ChevronIcon() {
-    return (_jsx("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: _jsx("polyline", { points: "6 9 12 15 18 9" }) }));
-}
-function SearchIcon() {
-    return (_jsxs("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: [_jsx("circle", { cx: "11", cy: "11", r: "8" }), _jsx("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" })] }));
-}
-function CloseIcon() {
-    return (_jsxs("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: [_jsx("line", { x1: "18", y1: "6", x2: "6", y2: "18" }), _jsx("line", { x1: "6", y1: "6", x2: "18", y2: "18" })] }));
-}
-function CheckIcon() {
-    return (_jsx("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: _jsx("polyline", { points: "20 6 9 17 4 12" }) }));
-}
 /* ================================================================== */
 /*  Panel machinery — ported from the implementation that has run in   */
 /*  production behind @adamarant/cms/ui (esys, cavallino property and  */
@@ -188,10 +177,10 @@ function PanelSelect({ options, value, onValueChange, placeholder, showSearch, s
         document.addEventListener("keydown", handleKey);
         return () => document.removeEventListener("keydown", handleKey);
     }, [isOpen, close]);
-    return (_jsxs("div", { ref: wrapperRef, className: cn("ds-custom-select", panelSizeMap[size], className), children: [_jsxs("button", { ref: triggerRef, type: "button", className: cn("ds-custom-select__trigger", isOpen && "ds-custom-select__trigger--open", disabled && "ds-custom-select__trigger--disabled"), onClick: toggle, disabled: disabled, "aria-haspopup": "listbox", "aria-expanded": isOpen, children: [_jsx("span", { className: "ds-custom-select__trigger-label", children: selectedOption ? (selectedOption.label) : (_jsx("span", { className: "ds-custom-select__placeholder", children: placeholder })) }), _jsx("span", { className: "ds-custom-select__chevron", children: _jsx(ChevronIcon, {}) })] }), isOpen &&
-                createPortal(_jsxs(_Fragment, { children: [_jsx("div", { className: "ds-custom-select__backdrop", onClick: close, "aria-hidden": true }), _jsxs("div", { ref: panelRef, className: "ds-custom-select__panel", style: panelStyle, role: "listbox", children: [_jsxs("div", { className: "ds-custom-select__header", children: [_jsx("span", { className: "ds-custom-select__header-title", children: panelLabel || placeholder }), _jsx("button", { type: "button", className: "ds-custom-select__header-close", onClick: close, "aria-label": "Close", children: _jsx(CloseIcon, {}) })] }), showSearch && (_jsxs("div", { className: "ds-custom-select__search", children: [_jsx("span", { className: "ds-custom-select__search-icon", children: _jsx(SearchIcon, {}) }), _jsx("input", { ref: searchRef, type: "text", value: search, onChange: (e) => setSearch(e.target.value), placeholder: searchPlaceholder, autoComplete: "off" })] })), _jsx("div", { className: "ds-custom-select__list", children: filtered.length === 0 ? (_jsx("div", { className: "ds-custom-select__empty", children: emptyLabel })) : (filtered.map((opt) => {
+    return (_jsxs("div", { ref: wrapperRef, className: cn("ds-custom-select", panelSizeMap[size], className), children: [_jsxs("button", { ref: triggerRef, type: "button", className: cn("ds-custom-select__trigger", isOpen && "ds-custom-select__trigger--open", disabled && "ds-custom-select__trigger--disabled"), onClick: toggle, disabled: disabled, "aria-haspopup": "listbox", "aria-expanded": isOpen, children: [_jsx("span", { className: "ds-custom-select__trigger-label", children: selectedOption ? (selectedOption.label) : (_jsx("span", { className: "ds-custom-select__placeholder", children: placeholder })) }), _jsx("span", { className: "ds-custom-select__chevron", children: _jsx(IconChevronDown, { size: 16 }) })] }), isOpen &&
+                createPortal(_jsxs(_Fragment, { children: [_jsx("div", { className: "ds-custom-select__backdrop", onClick: close, "aria-hidden": true }), _jsxs("div", { ref: panelRef, className: "ds-custom-select__panel", style: panelStyle, role: "listbox", children: [_jsxs("div", { className: "ds-custom-select__header", children: [_jsx("span", { className: "ds-custom-select__header-title", children: panelLabel || placeholder }), _jsx("button", { type: "button", className: "ds-custom-select__header-close", onClick: close, "aria-label": "Close", children: _jsx(IconClose, { size: 18 }) })] }), showSearch && (_jsxs("div", { className: "ds-custom-select__search", children: [_jsx("span", { className: "ds-custom-select__search-icon", children: _jsx(IconSearch, { size: 16 }) }), _jsx("input", { ref: searchRef, type: "text", value: search, onChange: (e) => setSearch(e.target.value), placeholder: searchPlaceholder, autoComplete: "off" })] })), _jsx("div", { className: "ds-custom-select__list", children: filtered.length === 0 ? (_jsx("div", { className: "ds-custom-select__empty", children: emptyLabel })) : (filtered.map((opt) => {
                                         const isSelected = opt.value === value;
-                                        return (_jsxs("div", { role: "option", "aria-selected": isSelected, className: cn("ds-custom-select__option", isSelected && "ds-custom-select__option--selected"), onClick: () => select(opt.value), children: [_jsx("span", { children: opt.label }), isSelected && (_jsx("span", { className: "ds-custom-select__option-check", children: _jsx(CheckIcon, {}) }))] }, opt.value));
+                                        return (_jsxs("div", { role: "option", "aria-selected": isSelected, className: cn("ds-custom-select__option", isSelected && "ds-custom-select__option--selected"), onClick: () => select(opt.value), children: [_jsx("span", { children: opt.label }), isSelected && (_jsx("span", { className: "ds-custom-select__option-check", children: _jsx(IconCheck, { size: 16 }) }))] }, opt.value));
                                     })) })] })] }), document.body)] }));
 }
 /* ================================================================== */

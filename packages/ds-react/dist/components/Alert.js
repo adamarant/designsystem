@@ -1,6 +1,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { cn } from "../utils/cn";
+import { IconClose } from "../icons";
 /* ================================================================== */
 /*  Maps                                                               */
 /* ================================================================== */
@@ -26,8 +27,8 @@ const AlertTitle = forwardRef(function AlertTitle({ className, ...rest }, ref) {
 const AlertDescription = forwardRef(function AlertDescription({ className, ...rest }, ref) {
     return (_jsx("p", { ref: ref, className: cn("ds-alert__description", className), ...rest }));
 });
-const AlertClose = forwardRef(function AlertClose({ className, ...rest }, ref) {
-    return (_jsx("button", { ref: ref, "aria-label": "Dismiss", className: cn("ds-alert__close", className), ...rest }));
+const AlertClose = forwardRef(function AlertClose({ className, children, ...rest }, ref) {
+    return (_jsx("button", { ref: ref, "aria-label": "Dismiss", className: cn("ds-alert__close", className), ...rest, children: children ?? _jsx(IconClose, { size: 16 }) }));
 });
 /* ================================================================== */
 /*  Alert (root + dot notation)                                        */

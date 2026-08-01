@@ -1,6 +1,7 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils/cn";
 import type { Size } from "../types";
+import { IconClose } from "../icons";
 
 /* ================================================================== */
 /*  Types                                                              */
@@ -60,14 +61,16 @@ const sizeMap: Record<TagSize, string> = {
 /* ================================================================== */
 
 const TagRemove = forwardRef<HTMLButtonElement, TagRemoveProps>(
-  function TagRemove({ className, ...rest }, ref) {
+  function TagRemove({ className, children, ...rest }, ref) {
     return (
       <button
         ref={ref}
         aria-label="Remove"
         className={cn("ds-tag__remove", className)}
         {...rest}
-      />
+      >
+        {children ?? <IconClose size={12} />}
+      </button>
     );
   },
 );

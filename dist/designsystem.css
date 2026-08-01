@@ -1226,7 +1226,12 @@ hr {
 
   /* Select */
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a1a1aa' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  /* Native select chevron. Was a 12-unit filled triangle in #a1a1aa — a grey
+     that matches no token in either theme. Now the set's chevron at
+     --ds-color-text-tertiary (#71717a, identical light and dark, so one
+     declaration covers both). A data: URI cannot read the token, hence the
+     literal; regenerate from icons.json if the chevron changes. */
+  background-image: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'><path%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M3.29289%208.29289C3.68342%207.90237%204.31658%207.90237%204.70711%208.29289L11.2929%2014.8787C11.6834%2015.2692%2012.3166%2015.2692%2012.7071%2014.8787L19.2929%208.29289C19.6834%207.90237%2020.3166%207.90237%2020.7071%208.29289C21.0976%208.68342%2021.0976%209.31658%2020.7071%209.70711L14.1213%2016.2929C12.9498%2017.4645%2011.0503%2017.4645%209.8787%2016.2929L3.29289%209.70711C2.90237%209.31658%202.90237%208.68342%203.29289%208.29289Z'%20fill='%2371717a'%20/></svg>");
   background-repeat: no-repeat;
   background-position: right var(--ds-space-3) center;
   padding-inline-end: var(--ds-space-8);
@@ -1455,9 +1460,14 @@ hr {
   }
 
 
-/* Checkmark glyph */
+/* Checkmark glyph — the set's check, not a second drawing of one.
+
+   The colour is written out rather than tokenised because a data: URI cannot
+   read a custom property. It is --ds-color-on-brand (#ffffff, the same in both
+   themes), which is what sits on the --ds-color-brand fill this rule paints
+   over. Regenerate from icons.json if the check is ever re-exported. */
 .ds-checkbox input:checked {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'><path%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M19.3209%204.24472C20.0142%204.69807%2020.2088%205.62768%2019.7555%206.32105L11.2555%2019.321C10.9972%2019.7161%2010.5681%2019.9665%2010.0971%2019.997C9.62613%2020.0276%209.16825%2019.8347%208.86111%2019.4764L4.36111%2014.2264C3.82198%2013.5974%203.89482%2012.6504%204.52381%2012.1113C5.1528%2011.5722%206.09975%2011.645%206.63888%2012.274L9.83825%2016.0066L17.2445%204.6793C17.6979%203.98593%2018.6275%203.79136%2019.3209%204.24472Z'%20fill='%23ffffff'%20/></svg>");
   background-size: 70%;
 }
 
@@ -4400,16 +4410,23 @@ hr {
       position: relative;
       color: var(--ds-color-border);
 
+      /* The half fill is a masked copy of the same star the markup renders, not
+         a text character on top of an SVG — those two shapes never lined up. */
       
     }
 .ds-star-rating__star--half::before {
 
-        content: "★";
+        content: "";
+        mask-image: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'><path%20d='M13.3726%201.86222C12.8203%200.712594%2011.1798%200.71259%2010.6275%201.86222L8.26537%206.77927L2.82465%207.49166C1.56329%207.65682%201.03808%209.21543%201.97724%2010.101L5.95315%2013.8499L4.95534%2019.2025C4.71844%2020.4733%206.06382%2021.4154%207.17531%2020.8162L12%2018.2151L16.8248%2020.8162C17.9363%2021.4154%2019.2816%2020.4733%2019.0447%2019.2025L18.0469%2013.8499L22.0228%2010.101C22.962%209.21543%2022.4368%207.65682%2021.1754%207.49166L15.7347%206.77927L13.3726%201.86222Z'%20fill='black'%20/></svg>");
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        background-color: var(--ds-color-warning);
         position: absolute;
         inset-inline-start: 0;
         width: 50%;
+        height: 100%;
         overflow: hidden;
-        color: var(--ds-color-warning);
       }
 .ds-star-rating--interactive .ds-star-rating__star {
 

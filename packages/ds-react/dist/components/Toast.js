@@ -1,12 +1,13 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { cn } from "../utils/cn";
+import { IconClose } from "../icons";
 const variantMap = {
     default: "", success: "ds-toast--success", error: "ds-toast--error",
     warning: "ds-toast--warning", info: "ds-toast--info",
 };
-const ToastClose = forwardRef(function ToastClose({ className, ...rest }, ref) {
-    return _jsx("button", { ref: ref, "aria-label": "Dismiss", className: cn("ds-toast__close", className), ...rest });
+const ToastClose = forwardRef(function ToastClose({ className, children, ...rest }, ref) {
+    return (_jsx("button", { ref: ref, "aria-label": "Dismiss", className: cn("ds-toast__close", className), ...rest, children: children ?? _jsx(IconClose, { size: 16 }) }));
 });
 const ToastRoot = forwardRef(function Toast({ variant = "default", className, ...rest }, ref) {
     return _jsx("div", { ref: ref, role: "status", className: cn("ds-toast", variantMap[variant], className), ...rest });

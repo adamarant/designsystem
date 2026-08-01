@@ -2,6 +2,7 @@
 import { type ComponentPropsWithoutRef, type MouseEvent, forwardRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "../utils/cn";
+import { IconClose } from "../icons";
 
 type DrawerSide = "left" | "right";
 
@@ -32,7 +33,13 @@ const Footer = forwardRef<HTMLDivElement, DrawerFooterProps>(
   function Footer({ className, ...rest }, ref) { return <div ref={ref} className={cn("ds-drawer__footer", className)} {...rest} />; },
 );
 const Close = forwardRef<HTMLButtonElement, DrawerCloseProps>(
-  function Close({ className, ...rest }, ref) { return <button ref={ref} aria-label="Close" className={cn("ds-drawer__close", className)} {...rest} />; },
+  function Close({ className, children, ...rest }, ref) {
+    return (
+      <button ref={ref} aria-label="Close" className={cn("ds-drawer__close", className)} {...rest}>
+        {children ?? <IconClose size={20} />}
+      </button>
+    );
+  },
 );
 
 const DrawerRoot = forwardRef<HTMLDivElement, DrawerProps>(

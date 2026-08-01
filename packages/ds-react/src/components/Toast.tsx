@@ -1,5 +1,6 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils/cn";
+import { IconClose } from "../icons";
 
 type ToastVariant = "default" | "success" | "error" | "warning" | "info";
 
@@ -15,8 +16,12 @@ const variantMap: Record<ToastVariant, string> = {
 };
 
 const ToastClose = forwardRef<HTMLButtonElement, ToastCloseProps>(
-  function ToastClose({ className, ...rest }, ref) {
-    return <button ref={ref} aria-label="Dismiss" className={cn("ds-toast__close", className)} {...rest} />;
+  function ToastClose({ className, children, ...rest }, ref) {
+    return (
+      <button ref={ref} aria-label="Dismiss" className={cn("ds-toast__close", className)} {...rest}>
+        {children ?? <IconClose size={16} />}
+      </button>
+    );
   },
 );
 const ToastRoot = forwardRef<HTMLDivElement, ToastProps>(

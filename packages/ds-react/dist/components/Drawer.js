@@ -3,12 +3,15 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "../utils/cn";
+import { IconClose } from "../icons";
 const sideMap = { left: "", right: "ds-drawer--right" };
 const Content = forwardRef(function Content({ className, ...rest }, ref) { return _jsx("div", { ref: ref, className: cn("ds-drawer__content", className), ...rest }); });
 const Header = forwardRef(function Header({ className, ...rest }, ref) { return _jsx("div", { ref: ref, className: cn("ds-drawer__header", className), ...rest }); });
 const Body = forwardRef(function Body({ className, ...rest }, ref) { return _jsx("div", { ref: ref, className: cn("ds-drawer__body", className), ...rest }); });
 const Footer = forwardRef(function Footer({ className, ...rest }, ref) { return _jsx("div", { ref: ref, className: cn("ds-drawer__footer", className), ...rest }); });
-const Close = forwardRef(function Close({ className, ...rest }, ref) { return _jsx("button", { ref: ref, "aria-label": "Close", className: cn("ds-drawer__close", className), ...rest }); });
+const Close = forwardRef(function Close({ className, children, ...rest }, ref) {
+    return (_jsx("button", { ref: ref, "aria-label": "Close", className: cn("ds-drawer__close", className), ...rest, children: children ?? _jsx(IconClose, { size: 20 }) }));
+});
 const DrawerRoot = forwardRef(function Drawer({ open, onClose, side = "left", className, children, ...rest }, ref) {
     useEffect(() => {
         if (!open)

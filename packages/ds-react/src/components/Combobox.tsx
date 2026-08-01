@@ -14,6 +14,7 @@ import {
 } from "react";
 import { cn } from "../utils/cn";
 import type { Size } from "../types";
+import { IconCheck, IconClose, IconPlus } from "../icons";
 
 /* ================================================================== */
 /*  Types                                                              */
@@ -87,57 +88,6 @@ const sizeMap: Record<ComboboxSize, string> = {
 /* ================================================================== */
 /*  Icons (currentColor, no dependency)                                */
 /* ================================================================== */
-
-function CheckGlyph({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M13.5 4.5 6 12 2.5 8.5" />
-    </svg>
-  );
-}
-
-function CloseGlyph() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      aria-hidden="true"
-    >
-      <path d="m4 4 8 8M12 4l-8 8" />
-    </svg>
-  );
-}
-
-function PlusGlyph() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      aria-hidden="true"
-    >
-      <path d="M8 3v10M3 8h10" />
-    </svg>
-  );
-}
 
 /* ================================================================== */
 /*  Combobox                                                           */
@@ -415,7 +365,7 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
             <span className="ds-combobox__option-desc">{opt.description}</span>
           ) : null}
           {isSelected ? (
-            <CheckGlyph className="ds-combobox__option-check" />
+            <IconCheck className="ds-combobox__option-check" />
           ) : null}
         </button>
       );
@@ -462,7 +412,7 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
                       removeValue(opt.value);
                     }}
                   >
-                    <CloseGlyph />
+                    <IconClose size={14} />
                   </button>
                 </span>
               ))
@@ -498,7 +448,7 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
                 clearAll();
               }}
             >
-              <CloseGlyph />
+              <IconClose size={14} />
             </button>
           ) : null}
         </div>
@@ -544,7 +494,7 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
                   onClick={commitCreate}
                   className="ds-combobox__create"
                 >
-                  <PlusGlyph />
+                  <IconPlus size={14} />
                   <span>Create &ldquo;{query.trim()}&rdquo;</span>
                 </button>
               ) : null}

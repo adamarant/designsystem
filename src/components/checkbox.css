@@ -61,9 +61,14 @@
   }
 }
 
-/* Checkmark glyph */
+/* Checkmark glyph — the set's check, not a second drawing of one.
+
+   The colour is written out rather than tokenised because a data: URI cannot
+   read a custom property. It is --ds-color-on-brand (#ffffff, the same in both
+   themes), which is what sits on the --ds-color-brand fill this rule paints
+   over. Regenerate from icons.json if the check is ever re-exported. */
 .ds-checkbox input:checked {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'><path%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M19.3209%204.24472C20.0142%204.69807%2020.2088%205.62768%2019.7555%206.32105L11.2555%2019.321C10.9972%2019.7161%2010.5681%2019.9665%2010.0971%2019.997C9.62613%2020.0276%209.16825%2019.8347%208.86111%2019.4764L4.36111%2014.2264C3.82198%2013.5974%203.89482%2012.6504%204.52381%2012.1113C5.1528%2011.5722%206.09975%2011.645%206.63888%2012.274L9.83825%2016.0066L17.2445%204.6793C17.6979%203.98593%2018.6275%203.79136%2019.3209%204.24472Z'%20fill='%23ffffff'%20/></svg>");
   background-size: 70%;
 }
 

@@ -1,5 +1,6 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils/cn";
+import { IconClose } from "../icons";
 
 /* ================================================================== */
 /*  Types                                                              */
@@ -96,14 +97,16 @@ const AlertDescription = forwardRef<
 });
 
 const AlertClose = forwardRef<HTMLButtonElement, AlertCloseProps>(
-  function AlertClose({ className, ...rest }, ref) {
+  function AlertClose({ className, children, ...rest }, ref) {
     return (
       <button
         ref={ref}
         aria-label="Dismiss"
         className={cn("ds-alert__close", className)}
         {...rest}
-      />
+      >
+        {children ?? <IconClose size={16} />}
+      </button>
     );
   },
 );

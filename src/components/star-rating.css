@@ -56,13 +56,20 @@
       position: relative;
       color: var(--ds-color-border);
 
+      /* The half fill is a masked copy of the same star the markup renders, not
+         a text character on top of an SVG — those two shapes never lined up. */
       &::before {
-        content: "★";
+        content: "";
+        mask-image: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'><path%20d='M13.3726%201.86222C12.8203%200.712594%2011.1798%200.71259%2010.6275%201.86222L8.26537%206.77927L2.82465%207.49166C1.56329%207.65682%201.03808%209.21543%201.97724%2010.101L5.95315%2013.8499L4.95534%2019.2025C4.71844%2020.4733%206.06382%2021.4154%207.17531%2020.8162L12%2018.2151L16.8248%2020.8162C17.9363%2021.4154%2019.2816%2020.4733%2019.0447%2019.2025L18.0469%2013.8499L22.0228%2010.101C22.962%209.21543%2022.4368%207.65682%2021.1754%207.49166L15.7347%206.77927L13.3726%201.86222Z'%20fill='black'%20/></svg>");
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        background-color: var(--ds-color-warning);
         position: absolute;
         inset-inline-start: 0;
         width: 50%;
+        height: 100%;
         overflow: hidden;
-        color: var(--ds-color-warning);
       }
     }
   }

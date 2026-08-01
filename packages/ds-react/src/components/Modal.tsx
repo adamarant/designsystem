@@ -6,6 +6,7 @@ import {
 } from "react";
 import { Dialog } from "@base-ui/react/dialog";
 import { cn } from "../utils/cn";
+import { IconClose } from "../icons";
 
 /* ================================================================== */
 /*  Types                                                              */
@@ -85,14 +86,16 @@ export const ModalHeader = forwardRef<HTMLDivElement, ModalHeaderProps>(
 );
 
 export const ModalClose = forwardRef<HTMLButtonElement, ModalCloseProps>(
-  function ModalClose({ className, ...rest }, ref) {
+  function ModalClose({ className, children, ...rest }, ref) {
     return (
       <Dialog.Close
         ref={ref}
         aria-label="Close"
         className={cn("ds-modal__close", className)}
         {...rest}
-      />
+      >
+        {children ?? <IconClose size={20} />}
+      </Dialog.Close>
     );
   },
 );

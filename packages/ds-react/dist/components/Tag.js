@@ -1,6 +1,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef } from "react";
 import { cn } from "../utils/cn";
+import { IconClose } from "../icons";
 /* ================================================================== */
 /*  Maps                                                               */
 /* ================================================================== */
@@ -22,8 +23,8 @@ const sizeMap = {
 /* ================================================================== */
 /*  Sub-components                                                     */
 /* ================================================================== */
-const TagRemove = forwardRef(function TagRemove({ className, ...rest }, ref) {
-    return (_jsx("button", { ref: ref, "aria-label": "Remove", className: cn("ds-tag__remove", className), ...rest }));
+const TagRemove = forwardRef(function TagRemove({ className, children, ...rest }, ref) {
+    return (_jsx("button", { ref: ref, "aria-label": "Remove", className: cn("ds-tag__remove", className), ...rest, children: children ?? _jsx(IconClose, { size: 12 }) }));
 });
 /* ================================================================== */
 /*  Tag (root + dot notation)                                          */
