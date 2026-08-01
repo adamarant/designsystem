@@ -452,15 +452,15 @@
   color: var(--ds-color-text);
 }
 
-/* The lede takes the h3 SIZE (owner call, 1 Aug 2026): big enough to be the
-   page's standfirst, still the body face. Size only — the family stays sans
-   and the leading goes snug, which tight (h3's own) would not survive on a
-   multi-line paragraph. */
+/* The lede takes the h5 SIZE (owner call, 1 Aug 2026; was h3 for a day,
+   too loud once the ladder grew): a standfirst, still the body face. Size
+   only — the family stays sans and the leading goes snug, which the rung's
+   own tight ratio would not survive on a multi-line paragraph. */
 .demo-page-header p {
   grid-column: 5 / span 8;
   margin: var(--ds-space-10) 0 0;
   max-width: 46ch;
-  font-size: var(--ds-type-h3-size);
+  font-size: var(--ds-type-h5-size);
   line-height: var(--ds-leading-snug);
   color: var(--ds-color-text);
   text-wrap: pretty;

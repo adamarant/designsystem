@@ -4,12 +4,12 @@
    row is LABEL (4 cols) | CONTENT (8 cols), the label column runs empty on
    continuation rows, and every section carries the same 64px of padding.
 
-   Chrome uses .typo-* / .s-* classes only. No DS typography class appears
-   outside a specimen, so everything you see set in the system IS the demo.
-   The ladder renders once: the surface, theme and viewport it resolves
-   against are the header's segmented modes, not sections of this page.
-   The raw ramps (text sizes, numeric weights, leading, tracking) are not
-   documented here on purpose: the source is their truth. */
+   Chrome uses .typo-* / .s-* classes; the one deliberate exception is the
+   section lede, set in ds-copy so the page eats its own cooking. The ladder
+   renders once: the surface, theme and viewport it resolves against are the
+   header's segmented modes, not sections of this page. The raw ramps (text
+   sizes, numeric weights, leading, tracking) are not documented here on
+   purpose: the source is their truth. */
 
 /* One sentence for every specimen, the classic one: comparing rungs only
    works when the text holds still. */
@@ -17,18 +17,21 @@ const SPECIMEN = "Almost before we knew it, we had left the ground."
 
 type Spec = { cls: string; what: string }
 
+/* The what-column speaks the scale's own arithmetic: body is x100 and every
+   rung is its ratio (80px = x500), which is also how the Figma Foundation
+   file names the tokens. */
 const ROLES: Spec[] = [
-  { cls: "ds-heading-1", what: "page title" },
-  { cls: "ds-heading-2", what: "section" },
-  { cls: "ds-heading-3", what: "subsection" },
-  { cls: "ds-heading-4", what: "group" },
-  { cls: "ds-heading-5", what: "minor" },
-  { cls: "ds-heading-6", what: "smallest" },
-  { cls: "ds-copy", what: "lede" },
-  { cls: "ds-body", what: "content" },
-  { cls: "ds-caption", what: "half of a pair" },
-  { cls: "ds-meta", what: "small" },
-  { cls: "ds-overline", what: "label, uppercase" },
+  { cls: "ds-heading-1", what: "x500" },
+  { cls: "ds-heading-2", what: "x400" },
+  { cls: "ds-heading-3", what: "x300" },
+  { cls: "ds-heading-4", what: "x250" },
+  { cls: "ds-heading-5", what: "x200" },
+  { cls: "ds-heading-6", what: "x150" },
+  { cls: "ds-copy", what: "x125" },
+  { cls: "ds-body", what: "x100" },
+  { cls: "ds-caption", what: "x080" },
+  { cls: "ds-meta", what: "x075" },
+  { cls: "ds-overline", what: "x085 spaced" },
 ]
 
 /* One specimen per grid row: the class name in the page's own label column,
@@ -69,7 +72,7 @@ function Section({
           </div>
           {lede ? (
             <div className="s-content">
-              <p className="typo-body">{lede}</p>
+              <p className="ds-copy">{lede}</p>
             </div>
           ) : null}
         </div>
@@ -103,17 +106,6 @@ export default function TypographyPage() {
         }
       >
         <Specimens rows={ROLES} />
-        <div className="s-row">
-          <div className="s-label">
-            <code className="typo-cls">.ds-prose &gt; .ds-body</code>
-            <span className="typo-label typo-cls__what">reading body</span>
-          </div>
-          <div className="s-content">
-            <div className="ds-prose">
-              <span className="ds-body">{SPECIMEN}</span>
-            </div>
-          </div>
-        </div>
       </Section>
 
       <Section
@@ -182,7 +174,7 @@ export default function TypographyPage() {
 
       <Section
         label="The old names"
-        lede="ds-hero-title, ds-section-title, ds-admin-title, ds-heading-ui and the ds-editorial-* family are frozen: deprecated at 0.38.0, unchanged until the next major. Successors: heading-1 and heading-2 on web; heading-1 and heading-3/4/5 on product; copy and body-in-prose for editorial. Bare h1 to h6 keep their legacy sizes and flip to the role tokens at the major. Deltas and the full map live in the spec."
+        lede="ds-hero-title, ds-section-title, ds-admin-title, ds-heading-ui and the ds-editorial-* family are frozen: deprecated at 0.38.0, unchanged until the next major. Successors: heading-1 and heading-2 on web; heading-1 and heading-3/4/5 on product; copy for editorial, lede and body alike. Bare h1 to h6 keep their legacy sizes and flip to the role tokens at the major. Deltas and the full map live in the spec."
       />
     </>
   )
