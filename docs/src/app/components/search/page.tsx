@@ -156,6 +156,14 @@ export default function SearchPage() {
                 <td>Element</td>
               </tr>
               <tr>
+                <td><code>--sm</code></td>
+                <td>Size</td>
+              </tr>
+              <tr>
+                <td><code>--lg</code></td>
+                <td>Size</td>
+              </tr>
+              <tr>
                 <td><code>--mobile-expanded</code></td>
                 <td>Modifier</td>
               </tr>

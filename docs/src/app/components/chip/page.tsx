@@ -43,6 +43,14 @@ export default function ChipPage() {
                 <td>Element</td>
               </tr>
               <tr>
+                <td><code>--sm</code></td>
+                <td>Size</td>
+              </tr>
+              <tr>
+                <td><code>--lg</code></td>
+                <td>Size</td>
+              </tr>
+              <tr>
                 <td><code>--logic</code></td>
                 <td>Modifier</td>
               </tr>

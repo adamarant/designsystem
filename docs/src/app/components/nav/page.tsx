@@ -124,6 +124,14 @@ export default function NavPage() {
                 <td>Element</td>
               </tr>
               <tr>
+                <td><code>__section</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
+                <td><code>__title</code></td>
+                <td>Element</td>
+              </tr>
+              <tr>
                 <td><code>--static</code></td>
                 <td>Variant</td>
               </tr>

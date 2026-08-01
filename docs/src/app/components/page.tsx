@@ -244,6 +244,12 @@ const COMPONENTS = [
     "description": "Standalone icon button for actions, toolbars, and table rows."
   },
   {
+    "name": "Icon Box",
+    "href": "/components/icon-box",
+    "cat": "Data Display",
+    "description": "Square, centred container for an icon. Non-interactive counterpart of icon-btn."
+  },
+  {
     "name": "Bottom Nav",
     "href": "/components/bottom-nav",
     "cat": "Navigation",
@@ -388,10 +394,22 @@ const COMPONENTS = [
     "description": "Two-column admin edit shell: growing main column + fixed-width sidebar, single column below lg."
   },
   {
+    "name": "Media",
+    "href": "/components/media",
+    "cat": "Layout",
+    "description": "Standalone image/video frame: full width, cropped, rounded. For media that is not inside a clipping card."
+  },
+  {
     "name": "Media Library",
     "href": "/components/media-library",
     "cat": "Layout",
     "description": "Grid items, selection toolbar, detail panel, and folder sidebar for media management UI."
+  },
+  {
+    "name": "Footer",
+    "href": "/components/footer",
+    "cat": "Navigation",
+    "description": "The site closing chrome — one canonical shape: optional newsletter, brand + titled link columns, and a small credits row."
   }
 ];
 
@@ -400,7 +418,7 @@ export default function ComponentsIndex() {
     <>
       <div className="demo-page-header">
         <h1>Components</h1>
-        <p>All 65 components in the design system.</p>
+        <p>All 68 components in the design system.</p>
       </div>
       <div className="demo-preview demo-preview--col">
         {COMPONENTS.map((c) => (

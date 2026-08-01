@@ -94,6 +94,14 @@ export default function PaginationPage() {
                 <td>Variant</td>
               </tr>
               <tr>
+                <td><code>--sm</code></td>
+                <td>Size</td>
+              </tr>
+              <tr>
+                <td><code>--lg</code></td>
+                <td>Size</td>
+              </tr>
+              <tr>
                 <td><code>--active</code></td>
                 <td>Modifier</td>
               </tr>
