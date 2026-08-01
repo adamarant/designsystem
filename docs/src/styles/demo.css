@@ -23,12 +23,22 @@
    go single-column. That is the whole responsive vocabulary of this site.
    ────────────────────────────────────────────────────────────────────────── */
 
+/* ≥ lg: a grid where the sidebar owns the full left rail and the mode bar
+   tops the content column only — the modes change everything except the
+   sidebar, and the layout says so. < lg overrides to block and the drawer
+   chrome below takes over. */
 .demo-layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "side bar"
+    "side main";
   min-height: 100dvh;
 }
 
 .demo-sidebar {
+  grid-area: side;
   width: 260px;
   flex-shrink: 0;
   padding: var(--ds-space-4);
@@ -56,9 +66,56 @@
    The bar and the scrim are display:none above lg, so the desktop layout is
    byte-for-byte what it was. */
 
-.demo-bar,
 .demo-scrim {
   display: none;
+}
+
+/* The bar is the docs' mode chrome at every width. ≥ lg it holds the three
+   segmented modes (surface, theme, viewport) and hides the drawer controls;
+   < lg it keeps the burger + theme-toggle form from the drawer work and the
+   modes hide — seven segments do not fit at 375px. Controls use the DS's own
+   tiers (icon-btn --lg and theme-toggle --lg are --ds-size-3 = 40px on the
+   thumb bar, segmented --sm on the desktop bar). */
+.demo-bar {
+  grid-area: bar;
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--ds-z-sticky);
+  padding: var(--ds-space-2) var(--ds-space-4);
+  background-color: var(--ds-color-bg);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.demo-bar__brand {
+  font-family: var(--ds-font-display);
+  font-weight: var(--ds-weight-bold);
+  font-size: var(--ds-text-lg);
+  color: var(--ds-color-text);
+  text-decoration: none;
+}
+
+.demo-bar__end {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+}
+
+.demo-bar__modes {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+}
+
+@media (min-width: 1024px) {
+  .demo-bar__burger,
+  .demo-bar__brand,
+  .demo-bar__toggle {
+    display: none;
+  }
 }
 
 @media (max-width: 1023px) /* < --ds-breakpoint-lg */ {
@@ -66,35 +123,8 @@
     display: block;
   }
 
-  /* The bar was 48px tall with a 32px burger in it: a desktop control shrunk
-     to fit, not a touch target. The controls now use the DS's own top tier
-     (icon-btn --lg and theme-toggle --lg, both --ds-size-3 = 40px) rather
-     than an override of .ds-icon-btn's geometry, and the bar is sized by its
-     contents plus space-2 instead of by a number. */
-  .demo-bar {
-    display: flex;
-    align-items: center;
-    gap: var(--ds-space-3);
-    position: sticky;
-    inset-block-start: 0;
-    z-index: var(--ds-z-sticky);
-    padding: var(--ds-space-2) var(--ds-space-4);
-    background-color: var(--ds-color-bg-subtle);
-    border-block-end: 1px solid var(--ds-color-border);
-  }
-
-  .demo-bar__brand {
-    font-family: var(--ds-font-display);
-    font-weight: var(--ds-weight-bold);
-    font-size: var(--ds-text-lg);
-    color: var(--ds-color-text);
-    text-decoration: none;
-  }
-
-  .demo-bar__end {
-    margin-inline-start: auto;
-    display: flex;
-    align-items: center;
+  .demo-bar__modes {
+    display: none;
   }
 
   .demo-sidebar {
@@ -218,10 +248,34 @@
 }
 
 .demo-main {
+  grid-area: main;
   flex: 1;
   padding: var(--ds-space-6) var(--ds-space-8);
   max-width: 1220px;
   overflow-x: hidden;
+}
+
+/* ── Docs viewport modes ──────────────────────────────────────────────────
+   The web ladder is vw-fluid, and vw reads the real window: narrowing a
+   column cannot show the phone resolution. The header's viewport control
+   pins the fluid role tokens to the clamp's value at each canonical width
+   instead (375 and 768; desktop is the natural resolution, no attribute).
+   Web only, via :not() — product is fixed by doctrine, and the control is
+   disabled there. */
+.demo-main[data-viewport="tablet"]:not([data-surface="product"]) {
+  --ds-type-h1-size: 4.41rem;    /* 70.5px at 768 */
+  --ds-type-h2-size: 3.11rem;    /* 49.8px */
+  --ds-type-h3-size: 2.31rem;    /* 37px */
+  --ds-type-h4-size: 1.65rem;    /* 26.4px */
+  --ds-type-copy-size: 1.24rem;  /* 19.8px */
+}
+
+.demo-main[data-viewport="mobile"]:not([data-surface="product"]) {
+  --ds-type-h1-size: 3.5rem;     /* 56px — the clamp floors at 375 */
+  --ds-type-h2-size: 2.5rem;     /* 40px */
+  --ds-type-h3-size: 2rem;       /* 32px */
+  --ds-type-h4-size: 1.5rem;     /* 24px */
+  --ds-type-copy-size: 1.125rem; /* 18px */
 }
 
 /* 64px of side padding is a third of a phone's width. The gutter shrinks with

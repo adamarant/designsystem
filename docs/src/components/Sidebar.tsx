@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { BurgerIcon, IconBtn } from "@adamarant/ds-react";
+import { useTheme } from "next-themes";
+import { BurgerIcon, IconBtn, SegmentedControl, SegmentedControlItem } from "@adamarant/ds-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { usePathname } from "next/navigation";
 import { NAV } from "./nav-data";
@@ -20,12 +21,35 @@ import { NAV } from "./nav-data";
 
 const DRAWER_MQ = "(min-width: 1024px)";
 
+type Surface = "web" | "product";
+type Viewport = "desktop" | "tablet" | "mobile";
+
 export function Sidebar() {
   const pathname = usePathname();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const burgerRef = useRef<HTMLButtonElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
+
+  /* The three docs modes. Surface and viewport land as data attributes on
+     .demo-main — the content column, never the sidebar — where the DS (and
+     the viewport pins in demo.css) resolve them. Theme stays next-themes'.
+     Defaults carry no attribute, so the server render is already correct. */
+  const [surface, setSurface] = useState<Surface>("web");
+  const [viewport, setViewport] = useState<Viewport>("desktop");
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const theme = mounted && resolvedTheme === "light" ? "light" : "dark";
+
+  useEffect(() => {
+    const main = document.querySelector(".demo-main");
+    if (!main) return;
+    if (surface === "product") main.setAttribute("data-surface", "product");
+    else main.removeAttribute("data-surface");
+    if (surface === "web" && viewport !== "desktop") main.setAttribute("data-viewport", viewport);
+    else main.removeAttribute("data-viewport");
+  }, [surface, viewport]);
 
   /* Navigating is the implicit "close": the drawer covers the page it just
      took you to. */
@@ -92,6 +116,7 @@ export function Sidebar() {
       <header className="demo-bar">
         <IconBtn
           ref={burgerRef}
+          className="demo-bar__burger"
           size="lg"
           aria-label="Open navigation"
           aria-expanded={open}
@@ -103,11 +128,47 @@ export function Sidebar() {
         <Link href="/" className="demo-bar__brand">
           Design System
         </Link>
-        {/* lg here, sm in the sidebar foot: the bar is thumb-operated, the
-            desktop sidebar is not, and the foot's size is what desktop has
-            always had. */}
         <div className="demo-bar__end">
-          <ThemeToggle size="lg" />
+          {/* Desktop: the three modes as segmented controls. Everything under
+              the bar re-resolves; the sidebar is outside on purpose. */}
+          <div className="demo-bar__modes">
+            <SegmentedControl className="ds-segmented--sm" aria-label="Surface">
+              <SegmentedControlItem active={surface === "web"} onClick={() => setSurface("web")}>
+                Web
+              </SegmentedControlItem>
+              <SegmentedControlItem
+                active={surface === "product"}
+                onClick={() => setSurface("product")}
+              >
+                Product
+              </SegmentedControlItem>
+            </SegmentedControl>
+            <SegmentedControl className="ds-segmented--sm" aria-label="Theme">
+              <SegmentedControlItem active={theme === "light"} onClick={() => setTheme("light")}>
+                Light
+              </SegmentedControlItem>
+              <SegmentedControlItem active={theme === "dark"} onClick={() => setTheme("dark")}>
+                Dark
+              </SegmentedControlItem>
+            </SegmentedControl>
+            <SegmentedControl className="ds-segmented--sm" aria-label="Viewport">
+              {(["desktop", "tablet", "mobile"] as const).map((v) => (
+                <SegmentedControlItem
+                  key={v}
+                  active={viewport === v}
+                  disabled={surface === "product"}
+                  title={surface === "product" ? "Product is fixed: density is not the viewport's" : undefined}
+                  onClick={() => setViewport(v)}
+                >
+                  {v[0].toUpperCase() + v.slice(1)}
+                </SegmentedControlItem>
+              ))}
+            </SegmentedControl>
+          </div>
+          {/* < lg: the thumb bar keeps the toggle; the modes hide in CSS. */}
+          <span className="demo-bar__toggle">
+            <ThemeToggle size="lg" />
+          </span>
         </div>
       </header>
 
@@ -164,9 +225,6 @@ export function Sidebar() {
             ))}
           </div>
         ))}
-        <div className="demo-sidebar__foot">
-          <ThemeToggle />
-        </div>
         {filteredNav.length === 0 && (
           <p className="ds-text-xs ds-text-tertiary demo-sidebar__empty">
             No results for &ldquo;{query}&rdquo;
