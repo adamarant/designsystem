@@ -44,17 +44,23 @@
 - Hover/active state fixes across all components
 
 ## Next (v1.0.0)
-- Icon set: finish the adoption. The 28 marks ship from `ds-react/src/icons.tsx`
-  (1 Aug 2026) but nothing is wired to them yet, so the old drawings are still
-  what renders. Outstanding, in order: re-export `CloseIcon` / `CheckIcon` /
-  `ArrowLeftIcon` at stroke 2 (they measure 3) and settle `MenuIcon` at two or
-  three lines; point Select, Combobox, ThemeToggle, SiteHeader and Pagination at
-  the set and retire their private copies; convert the marks still faked in CSS
-  (checkbox and input data-URIs with hardcoded `white` / `#a1a1aa`, the
-  accordion, collapsible and table border-arrows, `/` in breadcrumb, `★` in
-  star-rating, `☁` in drop-zone); give ds-admin a `@adamarant/ds-react` peer dep
-  so it can drop its six duplicates. Each step changes rendering in every
-  consumer, so each is its own confirmed change.
+- Icon set: adopted 1 Aug 2026 — 28 marks in `ds-react/src/icons.tsx`, all
+  generated from `icons.json`, with `scripts/generate-icons.js --check` wired
+  into validate. What is left:
+  - Re-export `IconClose` / `IconCheck` / `IconArrowLeft` at stroke 2 (they
+    measure 3) and settle `IconMenu` at two or three bars. One edit to
+    icons.json, then regenerate — every copy follows.
+  - ds-builder still draws its own seven. It has `@adamarant/ds-react@0.8.0`
+    installed in its own node_modules shadowing the workspace symlink, so it
+    compiles against a version that predates the set. Either publish, or clear
+    that install so it links the workspace.
+  - `Pagination` has no Prev/Next/Ellipsis parts and `Chip` has no Remove part,
+    so their marks still come from the consumer. Adding them is new API, not a
+    rewire.
+  - The tag, chip, combobox and custom-select removes are 14-16px boxes, below
+    `--ds-icon-1` (16), so their marks are set at 12 — off the documented
+    scale. Those controls are also under the 24px WCAG 2.5.8 target the DS
+    claims to meet. Either the controls grow or the scale gains a step.
 - Figma token sync via Style Dictionary + DTCG
 - Visual regression testing (Playwright + screenshot comparison)
 - Documentation site (Astro/11ty)
