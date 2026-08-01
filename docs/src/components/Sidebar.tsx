@@ -23,6 +23,7 @@ const DRAWER_MQ = "(min-width: 1024px)";
 
 type Surface = "web" | "product";
 type Viewport = "desktop" | "tablet" | "mobile";
+type Radius = "sharp" | "soft" | "round" | "pill";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -37,6 +38,7 @@ export function Sidebar() {
      Defaults carry no attribute, so the server render is already correct. */
   const [surface, setSurface] = useState<Surface>("web");
   const [viewport, setViewport] = useState<Viewport>("desktop");
+  const [radius, setRadius] = useState<Radius>("round");
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -50,6 +52,13 @@ export function Sidebar() {
     if (surface === "web" && viewport !== "desktop") main.setAttribute("data-viewport", viewport);
     else main.removeAttribute("data-viewport");
   }, [surface, viewport]);
+
+  useEffect(() => {
+    const main = document.querySelector(".demo-main");
+    if (!main) return;
+    if (radius !== "round") main.setAttribute("data-radius", radius);
+    else main.removeAttribute("data-radius");
+  }, [radius]);
 
   /* Navigating is the implicit "close": the drawer covers the page it just
      took you to. */
@@ -150,6 +159,13 @@ export function Sidebar() {
               <SegmentedControlItem active={theme === "dark"} onClick={() => setTheme("dark")}>
                 Dark
               </SegmentedControlItem>
+            </SegmentedControl>
+            <SegmentedControl className="ds-segmented--sm" aria-label="Radius">
+              {(["sharp", "soft", "round", "pill"] as const).map((r) => (
+                <SegmentedControlItem key={r} active={radius === r} onClick={() => setRadius(r)}>
+                  {r[0].toUpperCase() + r.slice(1)}
+                </SegmentedControlItem>
+              ))}
             </SegmentedControl>
             <SegmentedControl className="ds-segmented--sm" aria-label="Viewport">
               {(["desktop", "tablet", "mobile"] as const).map((v) => (
