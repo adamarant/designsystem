@@ -891,3 +891,637 @@ body {
   color: var(--ds-color-text-secondary);
   overflow-x: auto;
 }
+
+/* ── Exemplars: the type in composition ───────────────────────────────────
+   /foundations/typography shows the ten classes one at a time, on a rail,
+   which proves the ramp exists and proves nothing about whether a page built
+   from it holds together. These three routes are the other half: one finished
+   page per door, at full quality, using only DS classes.
+
+   Three rules carry almost all of it, and they live here rather than on the
+   type classes because they are layout decisions, not typographic ones:
+
+     1. Spacing belongs to the container, never to the type class. Nothing
+        below names a .ds-* selector. A heading arrives with no margin and the
+        parent decides the rhythm, which is why the same .ds-section-title
+        works in a hero, a table panel and an article.
+     2. Space above a heading is roughly double the space below it. A heading
+        belongs to what follows, and equal space on both sides makes it float
+        between two blocks instead of opening one.
+     3. Running text is capped at --ds-measure. In `ch`, so it tracks the font
+        size instead of freezing one viewport's guess.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Inline token name inside a sentence. .typo-cls is display:block, built for
+   the rail's label column, so it cannot be reused here. */
+.ex-code {
+  padding: 0;
+  background: none;
+  font-family: var(--ds-font-mono);
+  font-size: 0.9em;
+  color: var(--ds-color-text);
+}
+
+/* ── Nothing on the page but the page ─────────────────────────────────────
+   These routes carried a labelled note block, a seam, a titled frame and a
+   docs page header, all of it explanation, all of it printed next to type
+   that was supposed to be the argument. A page cannot demonstrate quiet
+   typography while surrounded by four registers of commentary.
+
+   So the commentary is gone from the layout entirely. Every note now lives on
+   the element it describes, as a data attribute, and surfaces only on a
+   click. See Inspect.tsx. What is left in the markup is the page. */
+
+.ex-ins { position: relative; }
+
+/* No permanent affordance. The pointer changes and a hairline appears on
+   hover, and that is the whole invitation. */
+.ex-ins [data-note] { cursor: pointer; }
+
+.ex-ins [data-note]:hover {
+  outline: 1px dashed var(--ds-color-border-hover);
+  outline-offset: 8px;
+}
+
+.ex-ins [data-ins-active="true"] {
+  outline: 1px solid var(--ds-color-interactive);
+  outline-offset: 8px;
+}
+
+.ex-pop {
+  position: absolute;
+  z-index: 5;
+  inset-block-start: var(--ex-pop-y, 0);
+  inset-inline-start: var(--ex-pop-x, 0);
+  inline-size: min(21.25rem, 100%);
+  padding: var(--ds-space-5);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  background-color: var(--ds-color-surface-elevated);
+  box-shadow: var(--ds-shadow-lg);
+}
+
+.ex-pop__head {
+  display: flex;
+  gap: var(--ds-space-4);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.ex-pop__cls {
+  padding: 0;
+  background: none;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text);
+}
+
+.ex-pop__close {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
+
+.ex-pop__close:hover { color: var(--ds-color-text); }
+
+.ex-pop__spec {
+  margin-block-start: var(--ds-space-2);
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+}
+
+.ex-pop__note {
+  margin-block-start: var(--ds-space-4);
+  font-size: var(--ds-text-sm);
+  line-height: var(--ds-leading-relaxed);
+  color: var(--ds-color-text);
+}
+
+/* The one piece of chrome, and it leaves after the first click. */
+.ex-hint {
+  position: fixed;
+  inset-block-end: var(--ds-space-6);
+  inset-inline-end: var(--ds-space-6);
+  z-index: 6;
+  padding: var(--ds-space-2) var(--ds-space-4);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-surface-elevated);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-secondary);
+}
+
+/* The page's own frame is gone with the rest of the chrome: a border and a
+   title bar made it a picture of a page instead of a page.
+
+   One thing to know when reading these routes: --ds-text-hero and
+   --ds-text-section are clamps on `vw`. Resize the window to see the small
+   end; there is no container to narrow any more. */
+.ex-canvas {
+  background-color: var(--ds-color-bg);
+
+  /* The measure these pages actually use, and the one place they knowingly
+     leave a DS token behind.
+
+     --ds-measure is 60ch, chosen (correctly) in `ch` so it tracks the font
+     size. But `ch` is the advance width of the digit ZERO, and in Inter the
+     zero is far wider than the average lowercase letter. Measured on the
+     hero lede and the section body of /in-use/web, 60ch renders 73 to 83
+     characters per line. The comfortable range everyone cites is 45 to 75,
+     so the token overshoots the top of it by a fifth.
+
+     48ch measures 61 to 69 characters, which is what 60ch was reaching for.
+     Kept local to the exemplars: the token itself is in src/tokens and
+     changing it moves every consumer, which is a decision, not a fix. */
+  --ex-measure: 48ch;
+}
+
+/* Section rhythm, shared by all three exemplars.
+
+   The block padding was clamp(48, 7vw, 96), which put 96px above a heading
+   and 40px under it. Under 2.5:1 the two gaps read as the same gap and the
+   sections ran together, so the page had no visible grouping at all.
+
+   Now 160px between sections against 40px inside one: 4:1. The rule between
+   them is gone with it. A hairline plus a big gap is the same information
+   twice, and the DS's own foundations page dropped its rules for exactly
+   this reason (95ea0df, "let proximity do the grouping"). Space groups; a
+   line only divides. */
+.ex-sec {
+  padding-inline: clamp(var(--ds-space-6), 5vw, var(--ds-space-16));
+  padding-block: clamp(var(--ds-space-16), 10vw, calc(var(--ds-space-32) + var(--ds-space-8)));
+}
+
+.ex-wrap {
+  max-inline-size: 64rem;
+  margin-inline: auto;
+}
+
+/* Any block of running text. One declaration, applied everywhere, is the
+   single largest difference between these pages and a default one. */
+.ex-measure { max-inline-size: var(--ex-measure); }
+
+/* ── Web door: landing ──────────────────────────────────────────────────── */
+
+.ex-hero { padding-block: clamp(var(--ds-space-16), 9vw, var(--ds-space-32)); }
+
+/* The three gaps are deliberately unequal. Eyebrow to title is tight because
+   they are one unit; title to lede opens; lede to buttons opens further,
+   because the call to action is a different kind of thing. */
+.ex-hero__title { margin-block-start: var(--ds-space-4); }
+.ex-hero__lede {
+  margin-block-start: var(--ds-space-6);
+  max-inline-size: var(--ex-measure); /* .ds-editorial-lede ships 60ch; see above */
+}
+.ex-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-3);
+  margin-block-start: var(--ds-space-10);
+}
+
+/* Stats. Tabular figures and a label under the number, never over it: the
+   number is the content and reads first. */
+.ex-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--ds-space-8);
+}
+
+.ex-stat > * + * { margin-block-start: var(--ds-space-2); }
+
+.ex-sec__head { margin-block-end: var(--ds-space-10); }
+.ex-sec__head > * + * { margin-block-start: var(--ds-space-4); }
+
+/* ── Label / value spec rows ─────────────────────────────────────────────
+   The device every reference site leans on (s25.studio, vanschneider): a
+   small uppercase label over a full-size value, repeated. It builds
+   hierarchy out of case, tracking and size distance rather than out of
+   dimming, which is why it survives on a dark background where a grey
+   paragraph just recedes.
+
+   Two paragraphs side by side, which is what this section used to be, have
+   no such levels: 24px heading, 16px text, and nothing else. That is what
+   "missing hierarchy" was. */
+
+.ex-doors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--ds-space-10);
+}
+
+.ex-door__head {
+  padding-block-end: var(--ds-space-5);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.ex-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-2);
+  margin-block-start: var(--ds-space-4);
+}
+
+.ex-spec { margin: 0; }
+
+.ex-spec__row {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 6fr);
+  gap: var(--ds-space-4);
+  align-items: baseline;
+  padding-block: var(--ds-space-3);
+}
+
+.ex-spec__row + .ex-spec__row { border-block-start: 1px solid var(--ds-color-border); }
+.ex-spec dt,
+.ex-spec dd { margin: 0; }
+
+/* Feature rows. A rule between them and no card around them, so the type
+   carries the grouping on its own. */
+.ex-rows > * + * {
+  margin-block-start: var(--ds-space-10);
+  padding-block-start: var(--ds-space-10);
+  border-block-start: 1px solid var(--ds-color-border);
+}
+
+.ex-row {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--ds-space-8);
+  align-items: start;
+}
+
+.ex-row__body > * + * { margin-block-start: var(--ds-space-4); }
+
+@media (max-width: 720px) {
+  .ex-row { grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-4); }
+}
+
+/* Closing block. Centred, and the only place on the page where text is not
+   left aligned, which is what makes it register as the end. */
+.ex-close { text-align: center; }
+.ex-close > * + * { margin-block-start: var(--ds-space-6); }
+.ex-close .ex-measure { margin-inline: auto; }
+
+.ex-close__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-3);
+  justify-content: center;
+  margin-block-start: var(--ds-space-8);
+}
+
+/* Footer: the documented low-emphasis exception (CLAUDE.md §10). */
+.ex-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-6);
+  justify-content: space-between;
+  align-items: baseline;
+  padding-inline: clamp(var(--ds-space-6), 5vw, var(--ds-space-16));
+  padding-block: var(--ds-space-8);
+  border-block-start: 1px solid var(--ds-color-border);
+}
+
+.ex-foot__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-6);
+}
+
+/* ── Editorial door: article ────────────────────────────────────────────── */
+
+.ex-article {
+  padding-inline: clamp(var(--ds-space-6), 5vw, var(--ds-space-16));
+  padding-block: clamp(var(--ds-space-16), 8vw, var(--ds-space-32));
+}
+
+/* One column, centred once. Everything inside it aligns on the same left
+   edge and only the right edge moves, which is what makes the width changes
+   read as decisions. Centring each block on its own width instead leaves the
+   title and the body starting at two different x positions, and that reads
+   as a mistake however deliberate it was. */
+.ex-article__col {
+  max-inline-size: 42rem;
+  margin-inline: auto;
+}
+
+/* The title block runs the full column and the text block goes back to the
+   measure. A 72px title inside a reading measure wraps four times and stops
+   working as a title. The step between the two widths is the oldest move in
+   magazine layout. */
+.ex-article__lede { max-inline-size: var(--ex-measure); }
+
+/* Byline, as a spec block rather than a line of grey text.
+   Three flat spans separated by dots gave the reader no way in: author, date
+   and reading time all arrived at the same weight with nothing saying which
+   was which. Labelled pairs name each value and let it stay at full size. */
+.ex-article__meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--ds-space-6);
+  margin-block-start: var(--ds-space-8);
+  padding-block-start: var(--ds-space-5);
+  border-block-start: 1px solid var(--ds-color-border);
+}
+
+.ex-meta > * + * { margin-block-start: var(--ds-space-2); }
+
+/* .ds-editorial-body caps nothing, so the measure has to be applied here.
+   Everything else inside it (h2 at 48px above / 20px below, lists, quote
+   rules) already comes from the class. */
+.ex-article__body {
+  max-inline-size: var(--ex-measure);
+  margin-block-start: var(--ds-space-12);
+}
+
+/* A figure runs the full column, past the measure, which is what a figure
+   is for. */
+.ex-fig {
+  margin-block-start: var(--ds-space-12);
+}
+
+.ex-fig__frame {
+  padding: var(--ds-space-6);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  background-color: var(--ds-color-surface);
+}
+
+.ex-fig__row + .ex-fig__row { margin-block-start: var(--ds-space-6); }
+.ex-fig__row > * + * { margin-block-start: var(--ds-space-2); }
+
+.ex-fig__wide { max-inline-size: 60ch; }
+.ex-fig__tight { max-inline-size: 48ch; }
+
+/* Caption. It used to be a loose grey paragraph under the frame with nothing
+   attaching it to anything, so it read as a stray thought rather than as the
+   figure's caption. Now it is numbered, tied to the frame by a short rule on
+   the start edge, and indented off the figure's own edge: three signals that
+   it belongs to the thing above it and is not the article resuming. */
+.ex-fig__caption {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--ds-space-3);
+  align-items: baseline;
+  margin-block-start: var(--ds-space-4);
+  padding-block-start: var(--ds-space-4);
+  border-block-start: 1px solid var(--ds-color-border);
+  max-inline-size: var(--ex-measure);
+}
+
+.ex-fig__n { white-space: nowrap; }
+
+/* End matter. This was one line of .ds-meta: 12px, tertiary, under a rule,
+   which is the size and colour the system reserves for a timestamp. The
+   method behind every number in the piece is not a timestamp, so nobody read
+   the one thing that made the article checkable. It is labelled pairs at
+   body size now, the same device as the byline that opens the article. */
+.ex-article__end {
+  margin-block-start: var(--ds-space-16);
+  padding-block-start: var(--ds-space-6);
+  border-block-start: 1px solid var(--ds-color-border);
+}
+
+.ex-article__end-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--ds-space-6);
+  margin-block-start: var(--ds-space-5);
+}
+
+/* ── Product door: a whole application screen ────────────────────────────
+
+   The first version was a content area with no application around it: no
+   navigation, no header, no account, no pagination. A dashboard is mostly
+   chrome, and chrome is where a product's type actually gets tested, because
+   that is where labels, counts, states and nav items all have to coexist at
+   small sizes without turning grey.
+
+   The shell is .ex-shell rather than .ds-admin because .ds-admin__sidebar and
+   .ds-admin__header are position:fixed against the viewport (100dvh, z-index
+   above everything), so the real component cannot be embedded in a frame on
+   a docs page: it escapes and covers the documentation. Worth knowing if
+   anyone ever wants to preview an admin layout anywhere. Every type class
+   inside the shell is still the DS's own. */
+
+.ex-shell {
+  display: grid;
+  grid-template-columns: 14rem minmax(0, 1fr);
+  min-block-size: 40rem;
+}
+
+@media (max-width: 860px) {
+  .ex-shell { grid-template-columns: minmax(0, 1fr); }
+  .ex-shell__side { display: none; }
+}
+
+.ex-shell__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-6);
+  padding: var(--ds-space-5);
+  border-inline-end: 1px solid var(--ds-color-border);
+  background-color: var(--ds-color-bg-subtle);
+}
+
+.ex-shell__brand {
+  display: flex;
+  gap: var(--ds-space-2);
+  align-items: baseline;
+  padding-block-end: var(--ds-space-5);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.ex-shell__group > * + * { margin-block-start: var(--ds-space-1); }
+.ex-shell__group-label { margin-block-end: var(--ds-space-3); }
+
+/* Nav items: the active one is primary, the rest secondary, expressed as a
+   surface change rather than by hand-stacking colour utilities. The one
+   place an all-secondary block is correct (CLAUDE.md §10). */
+.ex-nav-item {
+  display: flex;
+  gap: var(--ds-space-2);
+  justify-content: space-between;
+  align-items: baseline;
+  padding: var(--ds-space-2) var(--ds-space-3);
+  border-radius: var(--ds-radius-md);
+  color: var(--ds-color-text-secondary);
+}
+
+.ex-nav-item--active {
+  background-color: var(--ds-color-surface-active);
+  color: var(--ds-color-text);
+}
+
+.ex-shell__side-foot {
+  margin-block-start: auto;
+  padding-block-start: var(--ds-space-5);
+  border-block-start: 1px solid var(--ds-color-border);
+}
+
+.ex-shell__main { min-inline-size: 0; }
+
+.ex-shell__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-4);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ds-space-3) var(--ds-space-6);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.ex-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-2);
+  align-items: baseline;
+}
+
+.ex-shell__top-right {
+  display: flex;
+  gap: var(--ds-space-3);
+  align-items: center;
+}
+
+/* A search field, drawn rather than wired: the exemplar is a still of a
+   screen, so it carries no behaviour it cannot honour. */
+.ex-fauxfield {
+  min-inline-size: 12rem;
+  padding: var(--ds-space-2) var(--ds-space-3);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-md);
+  background-color: var(--ds-color-surface);
+}
+
+.ex-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--ds-size-2);
+  block-size: var(--ds-size-2);
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-surface-muted);
+  border: 1px solid var(--ds-color-border);
+}
+
+.ex-pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-3);
+  align-items: center;
+  justify-content: space-between;
+  margin-block-start: var(--ds-space-4);
+}
+
+.ex-pager__btns {
+  display: flex;
+  gap: var(--ds-space-2);
+}
+
+/* ── Product door: the content area ─────────────────────────────────────── */
+
+/* Tighter than the web pages on purpose. Density is the product decision the
+   Web door does not get to make, and it shows up as spacing, never as a
+   smaller body size. */
+.ex-app {
+  padding-inline: clamp(var(--ds-space-5), 3vw, var(--ds-space-10));
+  padding-block: clamp(var(--ds-space-8), 3vw, var(--ds-space-12));
+}
+
+.ex-app__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-4);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.ex-app__head-text > * + * { margin-block-start: var(--ds-space-2); }
+.ex-app__head-text p { max-inline-size: var(--ex-measure); }
+
+.ex-app__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-2);
+}
+
+.ex-app__block { margin-block-start: var(--ds-space-8); }
+
+/* Figures as one divided strip, not four separate cards.
+   Four identical bordered boxes in a row is the default admin look and it
+   flattens everything: four borders, four radii, four surfaces, all shouting
+   equally. One frame with hairline dividers reads as a single instrument
+   panel and lets the numbers do the work. The 1px gap over a border-coloured
+   background draws the dividers, so they survive a wrap. */
+.ex-app__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1px;
+  background-color: var(--ds-color-border);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  overflow: hidden;
+}
+
+.ex-figure {
+  padding: var(--ds-space-5);
+  background-color: var(--ds-color-bg);
+}
+
+.ex-figure > * + * { margin-block-start: var(--ds-space-1); }
+.ex-figure__detail { margin-block-start: var(--ds-space-2); }
+
+.ex-app__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-3);
+  align-items: center;
+  margin-block-end: var(--ds-space-4);
+}
+
+.ex-app__spacer { margin-inline-start: auto; }
+
+/* Selected-row detail, under the table at full width. It used to sit in a
+   column beside the table, which squeezed six columns of data into two
+   thirds of the frame and clipped them. */
+.ex-app__detail {
+  margin-block-start: var(--ds-space-6);
+  padding: var(--ds-space-5);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+}
+
+.ex-app__detail-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-3);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ex-app__detail-name {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-3);
+  align-items: center;
+}
+
+.ex-app__detail-text {
+  margin-block-start: var(--ds-space-4);
+}
+
+.ex-app__detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--ds-space-5);
+  margin-block-start: var(--ds-space-5);
+  padding-block-start: var(--ds-space-5);
+  border-block-start: 1px solid var(--ds-color-border);
+}
