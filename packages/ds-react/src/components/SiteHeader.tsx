@@ -172,7 +172,16 @@ export const SiteHeader = forwardRef<HTMLElement, SiteHeaderProps>(
             {brand}
           </LinkComponent>
 
-          <div className="ds-nav__menu">
+          {/* The desktop half of the pair. The burger and the panel below
+              both carry ds-md:hidden, but this row carried nothing, so on a
+              phone you got the panel AND the full desktop link row running
+              off the side of the screen. .ds-nav__menu itself stays a plain
+              flex row — a static nav may legitimately want it at every width
+              — so the breakpoint lives here, where the desktop/mobile pairing
+              is actually decided, and it is the DS's own utility doing it.
+              Utilities out-layer components, so ds-hidden wins over the
+              component's display: flex without a specificity fight. */}
+          <div className="ds-nav__menu ds-hidden ds-md:flex">
             {items.map((item, i) =>
               item.children?.length ? (
                 <DesktopGroup

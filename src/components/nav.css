@@ -10,6 +10,20 @@
    - Skip nav: add ds-skip-link before nav to skip to main content
    ========================================================================== */
 
+/* A column, not a row, and min-height rather than height.
+
+   .ds-nav was written when its only child was __inner, and the mobile panel
+   was added later as a second child without adapting the container. In a
+   row, __inner (width: 100%) took the whole line and __mobile was squeezed
+   to zero width beside it, then centred and clipped out of a fixed 64px box:
+   measured 0 x 574px, sitting 267px above the bar it belongs to. The panel
+   opened, set its max-height, ran its transition, and was never visible —
+   in the docs or in any consumer using SiteHeader.
+
+   As a column the bar keeps its 4rem and the panel drops underneath it,
+   which is what __mobile--open's `max-height: calc(100dvh - 4rem)` has
+   always assumed. Above md the panel is display:none, so the column has a
+   single child and desktop renders exactly as it did. */
 .ds-nav {
   position: fixed;
   inset-block-start: 0;
@@ -17,9 +31,10 @@
   inset-inline-end: 0;
   z-index: var(--ds-z-sticky);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 4rem;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-height: 4rem;
   background-color: color-mix(in srgb, var(--ds-color-surface) 80%, transparent);
   border-block-end: 1px solid color-mix(in srgb, var(--ds-color-border) 60%, transparent);
   backdrop-filter: blur(var(--ds-blur-lg)) saturate(1.5);
@@ -29,11 +44,20 @@
     position: relative;
   }
 
+  /* The bar's own height, now that the nav is a column and may grow past it
+     to hold the open mobile panel.
+
+     Minus the nav's border: the block used to be `height: 4rem` on a
+     border-box .ds-nav, so the bar plus its rule measured 64px in total.
+     Reading 4rem here would make it 65 and shift every fixed-header content
+     offset in every consumer by a pixel, for nothing. */
   &__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-shrink: 0;
     width: 100%;
+    min-height: calc(4rem - 1px);
     max-width: var(--ds-container-max);
     margin-inline: auto;
     padding-inline: var(--ds-container-padding);
@@ -80,6 +104,9 @@
     display: flex;
     align-items: center;
     gap: var(--ds-space-2);
+    /* Holds its size, so the burger it contains is the last thing a narrow
+       header gives up rather than the first. */
+    flex-shrink: 0;
   }
 
   /* Icon button in nav */
