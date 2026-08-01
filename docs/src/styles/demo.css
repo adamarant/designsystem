@@ -1736,159 +1736,131 @@ body {
 }
 
 /* ==========================================================================
-   foundations/icons — the inventory
+   foundations/icons
 
-   Layout only. The page's job is comparison: the same mark drawn twice has to
-   sit close enough that the difference is visible, and the metadata must not
-   push the specimens apart. Hence a fixed specimen rail on the inline start
-   and everything else flowing after it.
+   Layout only. The page shows a set that is meant to look like one thing, so
+   the job here is to get out of the way: even cells, one row per group, no
+   metadata competing with the marks.
    ========================================================================== */
 
-.icon-list {
+.icon-group {
   display: flex;
   flex-direction: column;
+  gap: var(--ds-space-3);
   width: 100%;
+  padding-block: var(--ds-space-4);
+  border-block-end: 1px solid var(--ds-color-border);
 }
 
-.icon-row {
+.icon-group:last-child {
+  border-block-end: none;
+}
+
+/* Even cells rather than a flex row: the marks have different widths — a
+   minus is 2 units tall and a sun is 22 across — and ragged spacing would read
+   as inconsistency in the set rather than in the layout.
+
+   auto-fill keeps the cell width identical from group to group, which auto-fit
+   would not: a two-mark row would stretch to half the page. The cost is empty
+   trailing tracks, so the rules are drawn by the cells themselves rather than
+   by a gap over a coloured container — an empty track then paints nothing
+   instead of showing a grey block. */
+.icon-set {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  border-block-start: 1px solid var(--ds-color-border);
+  border-inline-start: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-md);
+  overflow: hidden;
+}
+
+.icon-set__cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ds-space-2);
+  padding-block: var(--ds-space-4);
+  padding-inline: var(--ds-space-2);
+  border-block-end: 1px solid var(--ds-color-border);
+  border-inline-end: 1px solid var(--ds-color-border);
+  color: var(--ds-color-text);
+}
+
+.icon-set__name {
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-secondary);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.icon-size-row {
   display: flex;
   align-items: center;
   gap: var(--ds-space-4);
+  flex-wrap: wrap;
   padding-block: var(--ds-space-3);
   border-block-end: 1px solid var(--ds-color-border);
 }
 
-.icon-row:last-child {
+.icon-size-row:last-child {
   border-block-end: none;
 }
 
-/* The rail. Fixed width so every specimen in the column starts at the same
-   place — a ragged left edge would defeat the comparison the page exists for.
-   Each slot is --ds-icon-3 wide, the glyph box for a 40px control. */
-.icon-row__specs {
+/* Aligned on the box, not the baseline: the specimens are different heights by
+   definition, so a baseline row would stagger them. */
+.icon-size-row__marks {
   display: flex;
   align-items: center;
-  gap: var(--ds-space-3);
-  flex-shrink: 0;
-}
-
-.icon-row__spec {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  inline-size: var(--ds-icon-3);
-  block-size: var(--ds-icon-3);
+  gap: var(--ds-space-5);
   color: var(--ds-color-text);
 }
 
-.icon-row__meta {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ds-space-0-5);
-  min-inline-size: 0;
+.icon-boundary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: var(--ds-space-6);
+  width: 100%;
 }
 
-.icon-row__mark {
+.icon-boundary__col {
   display: flex;
-  align-items: center;
-  gap: var(--ds-space-2);
+  flex-direction: column;
+  gap: var(--ds-space-1);
+}
+
+.icon-boundary__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ds-space-2) var(--ds-space-4);
+  padding-block: var(--ds-space-2);
+  border-block-end: 1px solid var(--ds-color-border);
   font-size: var(--ds-text-sm);
   color: var(--ds-color-text);
 }
 
-.icon-row__name {
-  font-family: var(--ds-font-mono);
-  font-size: var(--ds-text-xs);
+.icon-boundary__row:last-child {
+  border-block-end: none;
+}
+
+.icon-boundary__what {
   color: var(--ds-color-text-secondary);
 }
 
-/* Wraps rather than truncates: on a phone the source path is the second line
-   of the fact string, not an ellipsis. */
-.icon-row__facts {
+.icon-mono {
   font-family: var(--ds-font-mono);
   font-size: var(--ds-text-xs);
-  color: var(--ds-color-text-tertiary);
-  overflow-wrap: anywhere;
 }
 
-/* One row per grid, so the weight difference between grids is a single glance
-   down the column rather than a hunt through the inventory. */
-.icon-grid-row {
-  display: flex;
-  align-items: center;
-  gap: var(--ds-space-4);
-  flex-wrap: wrap;
-  padding-block: var(--ds-space-4);
-  border-block-end: 1px solid var(--ds-color-border);
-}
-
-.icon-grid-row:last-child {
-  border-block-end: none;
-}
-
-.icon-grid-row__marks {
-  display: flex;
-  align-items: center;
-  gap: var(--ds-space-5);
-  flex-wrap: wrap;
-  color: var(--ds-color-text);
-}
-
-.icon-dupe {
-  padding-block: var(--ds-space-4);
-  border-block-end: 1px solid var(--ds-color-border);
-}
-
-.icon-dupe:last-child {
-  border-block-end: none;
-}
-
-.icon-dupe__set {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--ds-space-6);
-  margin-block-start: var(--ds-space-3);
-}
-
-.icon-dupe__one,
+/* Shared by the unsettled-marks row. */
 .icon-size {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--ds-space-1);
+  min-inline-size: 4rem;
   color: var(--ds-color-text);
   text-align: center;
-}
-
-/* The specimens are different heights by definition on this page, so the row
-   aligns on their boxes rather than their baselines. */
-.icon-size {
-  justify-content: flex-end;
-  min-inline-size: 4rem;
-}
-
-.icon-slots {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.icon-slots__row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--ds-space-2) var(--ds-space-4);
-  padding-block: var(--ds-space-2);
-  border-block-end: 1px solid var(--ds-color-border);
-  font-family: var(--ds-font-mono);
-  font-size: var(--ds-text-xs);
-  color: var(--ds-color-text);
-}
-
-.icon-slots__row:last-child {
-  border-block-end: none;
-}
-
-.icon-slots__row > :last-child {
-  color: var(--ds-color-text-tertiary);
 }

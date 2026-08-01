@@ -1,436 +1,321 @@
-/* The icon inventory.
+/* The icon set.
 
-   Every glyph below is copied verbatim from the ds-react source, because ten
-   of the eleven are module-private and cannot be imported. That duplication is
-   deliberate and temporary: this page exists to make the current state visible
-   so it can be decided on, and the copy is the only way to render marks the
-   package does not export. Geometry is byte-identical to the source — if you
-   change an icon in ds-react, change it here too until the decision lands. */
+   This page used to be an inventory of a problem: eleven marks drawn inside
+   whichever component happened to need one, on three grids, with the geometry
+   copied here because none of them could be imported. All of that is gone. The
+   marks now come from one module and this page imports them, so what you see
+   below is the shipped API rather than a specimen of it. */
 
-import { Badge, Text } from "@adamarant/ds-react";
+import {
+  Badge,
+  Text,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ArrowLeftIcon,
+  EllipsisIcon,
+  CloseIcon,
+  CheckIcon,
+  PlusIcon,
+  MinusIcon,
+  InfoIcon,
+  SuccessIcon,
+  WarningIcon,
+  ErrorIcon,
+  SearchIcon,
+  CalendarIcon,
+  UploadIcon,
+  CopyIcon,
+  StarFilledIcon,
+  StarOutlineIcon,
+  GripIcon,
+  UndoIcon,
+  RedoIcon,
+  SunIcon,
+  MoonIcon,
+  MenuIcon,
+  EyeIcon,
+  EyeOffIcon,
+  type IconProps,
+} from "@adamarant/ds-react";
 
-type Glyph = {
-  /** What the mark depicts, not what the function is called. */
-  mark: string;
-  /** Exported name in ds-react. */
-  name: string;
-  file: string;
-  line: number;
-  /** viewBox edge. Three different values are in use. */
-  grid: 14 | 16 | 24;
-  stroke: number;
-  /** Rendered box in px, or "css" when a stylesheet sizes it. */
-  rendered: number | "css";
-  exported: boolean;
-  d: React.ReactNode;
-};
+type Icon = React.ComponentType<IconProps>;
 
-const GLYPHS: Glyph[] = [
+const GROUPS: { title: string; note: string; icons: [string, Icon][] }[] = [
   {
-    mark: "Menu",
-    name: "BurgerIcon",
-    file: "SiteHeader.tsx",
-    line: 89,
-    grid: 24,
-    stroke: 2,
-    rendered: 24,
-    exported: true,
-    d: (
-      <>
-        <line x1="3" y1="8" x2="21" y2="8" />
-        <line x1="3" y1="16" x2="21" y2="16" />
-      </>
-    ),
+    title: "Disclosure and navigation",
+    note: "Left and right are the down chevron rotated, not separate drawings, so the four cannot drift apart. They swap in place in accordions, sort headers and pagination, where a size or vertex mismatch would show as a jump.",
+    icons: [
+      ["ChevronDownIcon", ChevronDownIcon],
+      ["ChevronUpIcon", ChevronUpIcon],
+      ["ChevronLeftIcon", ChevronLeftIcon],
+      ["ChevronRightIcon", ChevronRightIcon],
+      ["ArrowLeftIcon", ArrowLeftIcon],
+      ["EllipsisIcon", EllipsisIcon],
+    ],
   },
   {
-    mark: "Close",
-    name: "BurgerIcon open",
-    file: "SiteHeader.tsx",
-    line: 89,
-    grid: 24,
-    stroke: 2,
-    rendered: 24,
-    exported: true,
-    d: (
-      <>
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-      </>
-    ),
+    title: "Confirm and dismiss",
+    note: "CloseIcon is the most-used mark in the system: modal, drawer, bottom sheet, toast, lightbox, alert dismiss, chip and tag removal, search clear.",
+    icons: [
+      ["CloseIcon", CloseIcon],
+      ["CheckIcon", CheckIcon],
+      ["PlusIcon", PlusIcon],
+      ["MinusIcon", MinusIcon],
+    ],
   },
   {
-    mark: "Close",
-    name: "CloseIcon",
-    file: "Select.tsx",
-    line: 135,
-    grid: 24,
-    stroke: 2,
-    rendered: 18,
-    exported: false,
-    d: (
-      <>
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-      </>
-    ),
+    title: "Status",
+    note: "Determined by the variant on Alert, Toast and Result. Their CSS has always coloured a __icon slot per variant; until now nothing filled it.",
+    icons: [
+      ["InfoIcon", InfoIcon],
+      ["SuccessIcon", SuccessIcon],
+      ["WarningIcon", WarningIcon],
+      ["ErrorIcon", ErrorIcon],
+    ],
   },
   {
-    mark: "Close",
-    name: "CloseGlyph",
-    file: "Combobox.tsx",
-    line: 110,
-    grid: 16,
-    stroke: 2,
-    rendered: 14,
-    exported: false,
-    d: <path d="m4 4 8 8M12 4l-8 8" />,
+    title: "Affordances",
+    note: "StarFilledIcon and StarOutlineIcon are the same star, one solid and one not, so hovering across a rating changes the fill and nothing else.",
+    icons: [
+      ["SearchIcon", SearchIcon],
+      ["CalendarIcon", CalendarIcon],
+      ["UploadIcon", UploadIcon],
+      ["CopyIcon", CopyIcon],
+      ["StarFilledIcon", StarFilledIcon],
+      ["StarOutlineIcon", StarOutlineIcon],
+      ["GripIcon", GripIcon],
+    ],
   },
   {
-    mark: "Check",
-    name: "CheckIcon",
-    file: "Select.tsx",
-    line: 144,
-    grid: 24,
-    stroke: 2,
-    rendered: 16,
-    exported: false,
-    d: <polyline points="20 6 9 17 4 12" />,
+    title: "Editor history",
+    note: "An exact 180° pair, verified rather than assumed.",
+    icons: [
+      ["UndoIcon", UndoIcon],
+      ["RedoIcon", RedoIcon],
+    ],
   },
   {
-    mark: "Check",
-    name: "CheckGlyph",
-    file: "Combobox.tsx",
-    line: 93,
-    grid: 16,
-    stroke: 2,
-    rendered: "css",
-    exported: false,
-    d: <path d="M13.5 4.5 6 12 2.5 8.5" />,
+    title: "Theme and chrome",
+    note: "Sun and moon swap inside the same ThemeToggle button.",
+    icons: [
+      ["SunIcon", SunIcon],
+      ["MoonIcon", MoonIcon],
+      ["MenuIcon", MenuIcon],
+    ],
   },
   {
-    mark: "Chevron down",
-    name: "ChevronIcon",
-    file: "Select.tsx",
-    line: 118,
-    grid: 24,
-    stroke: 2,
-    rendered: 16,
-    exported: false,
-    d: <polyline points="6 9 12 15 18 9" />,
-  },
-  {
-    mark: "Chevron down",
-    name: "Caret",
-    file: "LangSwitcher.tsx",
-    line: 83,
-    grid: 14,
-    stroke: 1.5,
-    rendered: 14,
-    exported: false,
-    d: <path d="M3.5 5.5 7 9l3.5-3.5" />,
-  },
-  {
-    mark: "Search",
-    name: "SearchIcon",
-    file: "Select.tsx",
-    line: 126,
-    grid: 24,
-    stroke: 2,
-    rendered: 16,
-    exported: false,
-    d: (
-      <>
-        <circle cx="11" cy="11" r="8" />
-        <line x1="21" y1="21" x2="16.65" y2="16.65" />
-      </>
-    ),
-  },
-  {
-    mark: "Plus",
-    name: "PlusGlyph",
-    file: "Combobox.tsx",
-    line: 127,
-    grid: 16,
-    stroke: 2,
-    rendered: 14,
-    exported: false,
-    d: <path d="M8 3v10M3 8h10" />,
-  },
-  {
-    mark: "Sun",
-    name: "SunIcon",
-    file: "ThemeToggle.tsx",
-    line: 49,
-    grid: 24,
-    stroke: 2,
-    rendered: "css",
-    exported: false,
-    d: (
-      <>
-        <circle cx="12" cy="12" r="4" />
-        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
-      </>
-    ),
-  },
-  {
-    mark: "Moon",
-    name: "MoonIcon",
-    file: "ThemeToggle.tsx",
-    line: 66,
-    grid: 24,
-    stroke: 2,
-    rendered: "css",
-    exported: false,
-    d: <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />,
+    title: "No consumer yet",
+    note: "The one deliberate exception to the rule below: nothing in the system asks for these, and they are here for the password reveal that Input does not have. If that never lands, they leave.",
+    icons: [
+      ["EyeIcon", EyeIcon],
+      ["EyeOffIcon", EyeOffIcon],
+    ],
   },
 ];
 
-/* The six components named *Icon that draw nothing. They are slots: a styled
-   box you put a glyph inside. Listed because the shared suffix makes the
-   inventory read as nineteen icons when it is eleven. */
-const SLOTS = [
-  { name: "Alert.Icon", file: "Alert.tsx", renders: ".ds-alert__icon" },
-  { name: "Dropdown.ItemIcon", file: "Dropdown.tsx", renders: ".ds-dropdown__item-icon" },
-  { name: "EmptyState.Icon", file: "EmptyState.tsx", renders: ".ds-empty-state__icon" },
-  { name: "InputGroup.Icon", file: "Input.tsx", renders: ".ds-input-group__icon" },
-  { name: "StatCard.Icon", file: "StatCard.tsx", renders: ".ds-stat-card__icon" },
-  { name: "Tabs.Icon", file: "Tabs.tsx", renders: ".ds-tabs__icon" },
+/* Sizes, and the control tier each belongs inside. */
+const SIZES: [string, number, string][] = [
+  ["--ds-icon-1", 16, "inside a 24px control — size-1, xs"],
+  ["--ds-icon-2", 20, "inside a 32px control — size-2, sm"],
+  ["--ds-icon-3", 24, "inside a 40px control — size-3, md"],
+  ["--ds-icon-4", 28, "inside a 48px control — size-4, lg"],
 ];
 
-function Mark({ g, size }: { g: Glyph; size: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox={`0 0 ${g.grid} ${g.grid}`}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={g.stroke}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      {g.d}
-    </svg>
-  );
-}
+const SHIPS: [string, string][] = [
+  ["Modal, Drawer, BottomSheet, Toast", "always a close mark"],
+  ["Select, Combobox, Accordion, Collapsible", "always a down chevron"],
+  ["Checkbox, Select option", "always a check"],
+  ["Alert, Toast, Result — semantic variants", "the mark the variant names"],
+  ["Pagination, Datepicker", "chevrons, in a known direction"],
+  ["CopyButton, NumberInput, ThemeToggle, Sortable", "a mark tied to state"],
+];
+
+const SLOTS: [string, string][] = [
+  ["EmptyState.Icon", ".ds-empty-state__icon"],
+  ["StatCard.Icon", ".ds-stat-card__icon"],
+  ["Tabs.Icon", ".ds-tabs__icon"],
+  ["Dropdown.ItemIcon", ".ds-dropdown__item-icon"],
+  ["Alert.Icon", ".ds-alert__icon"],
+  ["InputGroup.Icon", ".ds-input-group__icon"],
+];
 
 export default function IconsPage() {
-  const marks = [...new Set(GLYPHS.map((g) => g.mark))];
-  const grids = [...new Set(GLYPHS.map((g) => g.grid))].sort((a, b) => a - b);
-  /* Rows and components are not the same number: BurgerIcon draws two marks,
-     so it occupies two rows. Every count on the page says which it means. */
-  const components = [...new Set(GLYPHS.map((g) => `${g.file}:${g.line}`))].length;
-  const dupes = marks
-    .map((m) => ({ mark: m, impls: GLYPHS.filter((g) => g.mark === m) }))
-    .filter((x) => x.impls.length > 1);
+  const total = GROUPS.reduce((n, g) => n + g.icons.length, 0);
 
   return (
     <>
       <div className="demo-page-header">
         <h1>Icons</h1>
         <p>
-          The design system does not ship an icon set. It ships {components}{" "}
-          icon components, drawn inside whichever component needed them, on{" "}
-          {grids.length} different grids. This page is the inventory.
+          A closed set of {`${total} marks`}{" "}
+          &mdash; exactly what the system&rsquo;s
+          own components decide for themselves. It is not an icon library and it
+          does not grow on request. Everything the <em>content</em> decides
+          stays a slot you fill with your own set.
         </p>
       </div>
 
       <section className="demo-section">
-        <h2 className="demo-section__title">The inventory</h2>
+        <h2 className="demo-section__title">The set</h2>
         <p className="demo-section__description">
-          Every mark in <code>@adamarant/ds-react</code>, shown at a common 24px
-          so the drawings can be compared, then again at the size the component
-          actually renders it. {GLYPHS.length} rows for {components} components:
-          BurgerIcon draws two marks, so it appears twice. One component of the{" "}
-          {components} is exported.
+          One grid and one weight: a 24 viewBox at stroke 2, corner radius 2.
+          Shown at 24px. Colour is <code>currentColor</code>, so a mark inherits
+          whatever text colour its container sets &mdash; which means the text
+          colour hierarchy applies to icons too, and a mark that carries meaning
+          takes primary, not secondary.
         </p>
         <div className="demo-preview demo-preview--col">
-          <div className="icon-list">
-            {GLYPHS.map((g) => (
-              <div className="icon-row" key={g.name + g.mark}>
-                <div className="icon-row__specs">
-                  <span className="icon-row__spec">
-                    <Mark g={g} size={24} />
-                  </span>
-                  <span className="icon-row__spec">
-                    <Mark g={g} size={g.rendered === "css" ? 20 : g.rendered} />
-                  </span>
-                </div>
-                <div className="icon-row__meta">
-                  <span className="icon-row__mark">
-                    {g.mark}
-                    {g.exported ? (
-                      <Badge size="sm">exported</Badge>
-                    ) : null}
-                  </span>
-                  <span className="icon-row__name">{g.name}</span>
-                  <span className="icon-row__facts">
-                    grid {g.grid} &middot; stroke {g.stroke} &middot;{" "}
-                    {g.rendered === "css" ? "css-sized" : `${g.rendered}px`}
-                    &nbsp;&middot;&nbsp;{g.file}:{g.line}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <p className="demo-section__description">
-          Left specimen is 24px for comparison; right is the size the component
-          actually asks for. Three are sized by CSS rather than by an attribute
-          and are shown at 20, which is what the theme toggle resolves to at its
-          large tier.
-        </p>
-      </section>
-
-      <section className="demo-section">
-        <h2 className="demo-section__title">{grids.length} grids</h2>
-        <p className="demo-section__description">
-          A glyph grid is the coordinate space a mark is drawn in. Two marks on
-          different grids cannot share a stroke weight, because the same{" "}
-          <code>stroke-width</code> renders thicker on a smaller viewBox scaled
-          up to the same box. That is why these do not look like one set.
-        </p>
-        <div className="demo-preview demo-preview--col">
-          {grids.map((grid) => {
-            const inGrid = GLYPHS.filter((g) => g.grid === grid);
-            return (
-              <div className="icon-grid-row" key={grid}>
-                <div className="demo-token-label">
-                  viewBox {grid}
-                  <span className="demo-token-label__size">
-                    {inGrid.length} {inGrid.length === 1 ? "glyph" : "glyphs"} ·
-                    stroke {[...new Set(inGrid.map((g) => g.stroke))].join(", ")}
-                  </span>
-                </div>
-                <div className="icon-grid-row__marks">
-                  {inGrid.map((g) => (
-                    <Mark g={g} size={24} key={g.name + g.mark} />
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <p className="demo-section__description">
-          All three rows are rendered at the same 24px box. The 14-grid caret is
-          visibly heavier than the 24-grid chevron beside it in the next section,
-          and it is the same mark.
-        </p>
-      </section>
-
-      <section className="demo-section">
-        <h2 className="demo-section__title">
-          {marks.length} marks, {GLYPHS.length} drawings
-        </h2>
-        <p className="demo-section__description">
-          Three marks are drawn more than once, each time by whoever needed it,
-          each time slightly differently. Shown at 32px so the divergence is
-          legible.
-        </p>
-        <div className="demo-preview demo-preview--col">
-          {dupes.map(({ mark, impls }) => (
-            <div className="icon-dupe" key={mark}>
+          {GROUPS.map((g) => (
+            <div className="icon-group" key={g.title}>
               <div className="demo-token-label">
-                {mark}
+                {g.title}
                 <span className="demo-token-label__size">
-                  {impls.length} implementations
+                  {g.icons.length} {g.icons.length === 1 ? "mark" : "marks"}
                 </span>
               </div>
-              <div className="icon-dupe__set">
-                {impls.map((g) => (
-                  <div className="icon-dupe__one" key={g.name + g.mark}>
-                    <Mark g={g} size={32} />
-                    <Text size="xs" color="tertiary">
-                      {g.name}
-                    </Text>
-                    <Text size="xs" color="tertiary">
-                      grid {g.grid}
-                    </Text>
+              <div className="icon-set">
+                {g.icons.map(([name, Mark]) => (
+                  <div className="icon-set__cell" key={name}>
+                    <Mark size={24} />
+                    <span className="icon-set__name">{name}</span>
                   </div>
                 ))}
               </div>
+              <Text size="xs" color="secondary">
+                {g.note}
+              </Text>
             </div>
           ))}
         </div>
-        <p className="demo-section__description">
-          <strong>Close</strong> is drawn three times: twice identically on the
-          24 grid, in two different files, and once more on the 16 grid with its
-          own geometry. <strong>Check</strong> and{" "}
-          <strong>chevron</strong> are drawn twice each, on different grids.
-        </p>
       </section>
 
       <section className="demo-section">
         <h2 className="demo-section__title">Sizing</h2>
         <p className="demo-section__description">
-          The rendered sizes are 14, 16, 18, 20 and 24. Only 16, 20 and 24 are on
-          the token scale &mdash; <code>--ds-icon-1</code>,{" "}
-          <code>--ds-icon-2</code>, <code>--ds-icon-3</code> &mdash; and the
-          tokens landed after every one of these was written, so nothing was
-          checked against them. See{" "}
-          <a href="/foundations/spacing">Spacing</a> for the scale and the
-          control tier each size pairs with.
+          <code>size</code> takes a number as pixels, or any CSS length, so{" "}
+          <code>size=&quot;var(--ds-icon-2)&quot;</code> follows the token scale.
+          The default is 24. Each step pairs with the control tier it sits
+          inside &mdash; see <a href="/foundations/spacing">Spacing</a> for the
+          heights.
         </p>
-        <div className="demo-preview">
-          {[14, 16, 18, 20, 24].map((s) => {
-            const onScale = [16, 20, 24].includes(s);
-            return (
-              <div className="icon-size" key={s}>
-                <Mark g={GLYPHS[0]} size={s} />
-                <Text size="xs">{s}px</Text>
-                <Text size="xs" color="tertiary">
-                  {onScale ? "on scale" : "off scale"}
-                </Text>
+        <div className="demo-preview demo-preview--col">
+          {SIZES.map(([token, px, tier]) => (
+            <div className="icon-size-row" key={token}>
+              <div className="demo-token-label">
+                {token}
+                <span className="demo-token-label__size">{px}px</span>
               </div>
-            );
-          })}
+              <div className="icon-size-row__marks">
+                <SearchIcon size={px} />
+                <ChevronDownIcon size={px} />
+                <CloseIcon size={px} />
+                <CheckIcon size={px} />
+              </div>
+              <Text size="xs" color="tertiary">
+                {tier}
+              </Text>
+            </div>
+          ))}
         </div>
       </section>
 
       <section className="demo-section">
-        <h2 className="demo-section__title">Not icons</h2>
+        <h2 className="demo-section__title">What is ours and what is yours</h2>
         <p className="demo-section__description">
-          Six more components carry the <code>Icon</code> suffix and draw
-          nothing. They are slots &mdash; a styled box you put a glyph inside.
-          Counting by name gives {components + SLOTS.length}; the number of
-          things that actually draw a mark is {components}. Listed so the suffix
-          stops being ambiguous.
+          <strong>
+            The system ships the mark when the component decides which mark it
+            is. You supply it when the content decides.
+          </strong>{" "}
+          The test: name the icon from the component and its state alone, knowing
+          nothing about the page. If you can, it is ours.
         </p>
         <div className="demo-preview demo-preview--col">
-          <div className="icon-slots">
-            {SLOTS.map((s) => (
-              <div className="icon-slots__row" key={s.name}>
-                <span className="icon-table__mono">{s.name}</span>
-                <span className="icon-table__mono icon-table__src">
-                  {s.renders}
-                </span>
-              </div>
-            ))}
+          <div className="icon-boundary">
+            <div className="icon-boundary__col">
+              <div className="demo-token-label">The system draws it</div>
+              {SHIPS.map(([where, what]) => (
+                <div className="icon-boundary__row" key={where}>
+                  <span>{where}</span>
+                  <span className="icon-boundary__what">{what}</span>
+                </div>
+              ))}
+            </div>
+            <div className="icon-boundary__col">
+              <div className="demo-token-label">You fill it</div>
+              {SLOTS.map(([name, renders]) => (
+                <div className="icon-boundary__row" key={name}>
+                  <span className="icon-mono">{name}</span>
+                  <span className="icon-boundary__what icon-mono">
+                    {renders}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <p className="demo-section__description">
-          <code>.ds-icon-box</code> is the CSS counterpart &mdash; a square,
-          centred, non-interactive container for a glyph. The interactive one is{" "}
-          <code>.ds-icon-btn</code>. Neither supplies a mark.
+          The right-hand column is a styled box with no mark of its own, and it
+          never gains one. <code>.ds-icon-box</code> is the CSS counterpart
+          &mdash; square, centred, not interactive; <code>.ds-icon-btn</code> is
+          the interactive one. Neither supplies a glyph.
         </p>
       </section>
 
       <section className="demo-section">
-        <h2 className="demo-section__title">Open</h2>
+        <h2 className="demo-section__title">Replacing one</h2>
         <p className="demo-section__description">
-          <strong>Where glyphs come from is not decided yet.</strong> The system
-          owns the container (<code>.ds-icon-box</code>,{" "}
-          <code>.ds-icon-btn</code>) and, since the spacing tokens landed, the
-          sizing. It does not own the marks, and the {components} above were each
-          drawn to unblock the component in front of them rather than as a set.
+          Every shipped mark is a default, not a fixture. Components that draw
+          one take an override, so a project on its own icon set swaps a single
+          mark without touching anything else &mdash; and without the set
+          growing to accommodate it.
         </p>
+        <div className="demo-code">
+          <pre>
+            <code>{`import { ChevronDownIcon } from "@adamarant/ds-react";
+
+// the default
+<Select />
+
+// your own, same place
+<Select icon={<IconChevronBottom />} />
+
+// on the token scale rather than a fixed box
+<ChevronDownIcon size="var(--ds-icon-1)" />`}</code>
+          </pre>
+        </div>
+      </section>
+
+      <section className="demo-section">
+        <h2 className="demo-section__title">
+          Not settled yet <Badge size="sm">4 marks</Badge>
+        </h2>
         <p className="demo-section__description">
-          Until that is settled this page is a specimen, not an API:{" "}
-          {components - 1} of the {components} are module-private, so the
-          geometry here is copied from the ds-react source rather than imported.
-          Change one there and it must be changed here too.
+          Stated here rather than left to be discovered.{" "}
+          <code>CloseIcon</code>, <code>CheckIcon</code> and{" "}
+          <code>ArrowLeftIcon</code> measure stroke 3 against the set&rsquo;s 2
+          &mdash; visible when the close sits beside a chevron in the same
+          control &mdash; and are waiting on a re-export.{" "}
+          <code>MenuIcon</code> is the two-line burger, which reads as an equals
+          sign at 16px; the admin header draws a three-line one, so the system
+          currently disagrees with itself and one of the two has to give.
         </p>
+        <div className="demo-preview">
+          {([
+            ["CloseIcon", CloseIcon],
+            ["CheckIcon", CheckIcon],
+            ["ArrowLeftIcon", ArrowLeftIcon],
+            ["MenuIcon", MenuIcon],
+          ] as [string, Icon][]).map(([name, Mark]) => (
+            <div className="icon-size" key={name}>
+              <Mark size={24} />
+              <Text size="xs" color="tertiary">
+                {name}
+              </Text>
+            </div>
+          ))}
+        </div>
       </section>
     </>
   );
