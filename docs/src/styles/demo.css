@@ -263,6 +263,7 @@
    Web only, via :not() — product is fixed by doctrine, and the control is
    disabled there. */
 .demo-main[data-viewport="tablet"]:not([data-surface="product"]) {
+  --ds-rhythm-section: 92px;     /* the rhythm clamp at 768 */
   --ds-type-h1-size: 4.41rem;    /* 70.5px at 768 */
   --ds-type-h2-size: 3.51rem;    /* 56.1px */
   --ds-type-h3-size: 2.71rem;    /* 43.3px */
@@ -273,6 +274,7 @@
 }
 
 .demo-main[data-viewport="mobile"]:not([data-surface="product"]) {
+  --ds-rhythm-section: 80px;     /* the rhythm clamp's floor */
   --ds-type-h1-size: 3.5rem;     /* 56px — the clamp floors at 375 */
   --ds-type-h2-size: 2.75rem;    /* 44px */
   --ds-type-h3-size: 2.25rem;    /* 36px */
@@ -313,13 +315,19 @@
    works on the typography page. Same structure for a colour swatch, a button
    demo and a type sample. */
 
+/* Section-level verticals read the rhythm family (1 Aug 2026 spec): half a
+   --ds-rhythm-section per side, so the DISTANCE between two sections is
+   exactly one token. Web it breathes fluidly (the clamp's floor lands on
+   the old hand-set mobile values, which is why the mobile padding overrides
+   below are gone); product compresses to 32 between sections. The docs
+   chrome eats the cooking, like the page titles do. */
 .demo-section {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--ds-space-6);
   max-width: 1156px;
   margin-inline: auto;
-  padding-block: var(--ds-space-16);
+  padding-block: calc(var(--ds-rhythm-section) / 2);
   border-block-end: 1px solid var(--ds-color-border);
 }
 
@@ -358,11 +366,8 @@
   .demo-section__title,
   .demo-section__description { grid-column: span 12; }
 
-  /* 128px of air between two rows of buttons is desktop rhythm read on a
-     phone as an empty screen between them. */
   .demo-section {
     gap: var(--ds-space-4);
-    padding-block: var(--ds-space-10);
   }
 }
 
@@ -431,7 +436,7 @@
   gap: var(--ds-space-6);
   max-width: 1156px;
   margin-inline: auto;
-  padding-block: var(--ds-space-12) var(--ds-space-16);
+  padding-block: calc(var(--ds-rhythm-section) / 2);
   border-block-end: 1px solid var(--ds-color-border);
 }
 
@@ -472,7 +477,6 @@
 
   .demo-page-header {
     gap: var(--ds-space-4);
-    padding-block: var(--ds-space-8) var(--ds-space-10);
   }
 
   /* The lede sat 40px below the title because it was clearing a column that
@@ -599,7 +603,7 @@ body {
    ══════════════════════════════════════════════════════════════════════════ */
 
 .s-section {
-  padding-block: var(--ds-space-16);
+  padding-block: calc(var(--ds-rhythm-section) / 2);
   border-block-end: 1px solid var(--ds-color-border);
 }
 
@@ -616,7 +620,7 @@ body {
   gap: var(--ds-space-6);
 }
 
-.s-row + .s-row { margin-block-start: var(--ds-space-10); }
+.s-row + .s-row { margin-block-start: var(--ds-rhythm-block); }
 
 .s-label   { grid-column: span 4; }
 .s-content { grid-column: span 8; min-width: 0; }
@@ -630,8 +634,6 @@ body {
 
 @media (max-width: 767px) /* < --ds-breakpoint-md */ {
   .s-label, .s-content { grid-column: span 12; }
-  .s-row + .s-row { margin-block-start: var(--ds-space-8); }
-  .s-section { padding-block: var(--ds-space-10); }
   .s-split { gap: var(--ds-space-6); }
 }
 
@@ -661,14 +663,14 @@ body {
 }
 
 .typo-hero {
-  padding-block: var(--ds-space-16) var(--ds-space-10);
+  padding-block: calc(var(--ds-rhythm-section) / 2) var(--ds-space-10);
 }
 
 
 /* A block inside an act. The gaps were uniform and tight everywhere, so the
    page had no breathing pattern — everything looked equally urgent. */
 .typo-block {
-  margin-block: var(--ds-space-16);
+  margin-block: var(--ds-rhythm-block);
 }
 
 .typo-block__lede {
@@ -682,7 +684,9 @@ body {
    to lose their place anywhere, it should be obvious that a new part began. */
 .typo-act {
   padding-block-start: var(--ds-space-12);
-  margin-block: var(--ds-space-32) var(--ds-space-10);
+  /* A pure margin is a true between-distance, so it takes the full token:
+     the act gap IS one rhythm-section. */
+  margin-block: var(--ds-rhythm-section) var(--ds-space-10);
   border-block-start: 1px solid var(--ds-color-border);
   max-width: 62ch;
 }
