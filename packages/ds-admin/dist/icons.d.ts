@@ -1,8 +1,2 @@
-import type { SVGProps } from 'react';
-export declare function ArrowLeftIcon(props: SVGProps<SVGSVGElement>): import("react/jsx-runtime").JSX.Element;
-export declare function ChevronLeftIcon(props: SVGProps<SVGSVGElement>): import("react/jsx-runtime").JSX.Element;
-export declare function ChevronRightIcon(props: SVGProps<SVGSVGElement>): import("react/jsx-runtime").JSX.Element;
-export declare function SearchIcon(props: SVGProps<SVGSVGElement>): import("react/jsx-runtime").JSX.Element;
-export declare function XIcon(props: SVGProps<SVGSVGElement>): import("react/jsx-runtime").JSX.Element;
-export declare function GripVerticalIcon(props: SVGProps<SVGSVGElement>): import("react/jsx-runtime").JSX.Element;
+export { IconArrowLeft as ArrowLeftIcon, IconChevronLeft as ChevronLeftIcon, IconChevronRight as ChevronRightIcon, IconSearch as SearchIcon, IconClose as XIcon, IconGrip as GripVerticalIcon, } from "@adamarant/ds-react";
 //# sourceMappingURL=icons.d.ts.map

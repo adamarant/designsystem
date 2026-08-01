@@ -7,12 +7,14 @@ import { AdminSidebar } from './AdminSidebar.js';
 import { AdminHeader } from './AdminHeader.js';
 import { AdminEmptyState } from './AdminEmptyState.js';
 import { useSidebar } from './SidebarContext.js';
+import { IconChevronLeft, IconChevronRight } from '@adamarant/ds-react';
 /* ==========================================================================
    Chrome — inline SVG, like the rest of the package. ds-admin stays
    icon-library-free; consumer icons arrive as NavItem.icon.
    ========================================================================== */
 function ChevronIcon({ direction }) {
-    return (_jsx("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: _jsx("polyline", { points: direction === 'start' ? '15 18 9 12 15 6' : '9 18 15 12 9 6' }) }));
+    const Mark = direction === 'start' ? IconChevronLeft : IconChevronRight;
+    return _jsx(Mark, { width: 16, height: 16 });
 }
 function CollapseControl() {
     const { isCollapsed, toggleCollapse } = useSidebar();

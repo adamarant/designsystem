@@ -8,6 +8,7 @@ import { AdminHeader } from './AdminHeader.js'
 import { AdminEmptyState } from './AdminEmptyState.js'
 import { useSidebar } from './SidebarContext.js'
 import type { AdminShellProps, NavItem } from './types.js'
+import { IconChevronLeft, IconChevronRight } from '@adamarant/ds-react'
 
 /* ==========================================================================
    Chrome — inline SVG, like the rest of the package. ds-admin stays
@@ -15,21 +16,8 @@ import type { AdminShellProps, NavItem } from './types.js'
    ========================================================================== */
 
 function ChevronIcon({ direction }: { direction: 'start' | 'end' }) {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <polyline points={direction === 'start' ? '15 18 9 12 15 6' : '9 18 15 12 9 6'} />
-    </svg>
-  )
+  const Mark = direction === 'start' ? IconChevronLeft : IconChevronRight
+  return <Mark width={16} height={16} />
 }
 
 function CollapseControl() {

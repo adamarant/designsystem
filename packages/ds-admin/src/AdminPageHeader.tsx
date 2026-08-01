@@ -26,7 +26,7 @@ export function AdminPageHeader({
             className="ds-page-header__back"
             aria-label={backLabel}
           >
-            <ArrowLeftIcon />
+            <ArrowLeftIcon width={18} height={18} />
           </button>
         )}
         <div className="ds-min-w-0">

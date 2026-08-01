@@ -20,7 +20,7 @@ export function AdminToolbar({ search, filters, actions, className }: AdminToolb
       {search && (
         <div className="ds-input-group ds-flex-1">
           <div className="ds-input-group__icon">
-            <SearchIcon />
+            <SearchIcon width={18} height={18} />
           </div>
           <input
             type="text"

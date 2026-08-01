@@ -2,6 +2,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useSyncExternalStore } from 'react';
 import { useTheme } from 'next-themes';
+import { IconMoon, IconSun } from '@adamarant/ds-react';
 /* This file is deliberately NOT re-exported from index.ts. It is the only
    module in the package that imports `next-themes`, and two consumers
    (divasti, vibhe) don't have it installed — pulling it into the barrel would
@@ -13,12 +14,8 @@ const sizeClass = {
     md: '',
     lg: 'ds-theme-toggle--lg',
 };
-function SunIcon() {
-    return (_jsxs("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: [_jsx("circle", { cx: "12", cy: "12", r: "4" }), _jsx("path", { d: "M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" })] }));
-}
-function MoonIcon() {
-    return (_jsx("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: _jsx("path", { d: "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" }) }));
-}
+const SunIcon = () => _jsx(IconSun, { width: 16, height: 16 });
+const MoonIcon = () => _jsx(IconMoon, { width: 16, height: 16 });
 /**
  * The light/dark switch for the admin header.
  *
