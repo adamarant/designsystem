@@ -79,6 +79,10 @@ export { SiteHeader,
 BurgerIcon, } from "./components/SiteHeader";
 export { SiteFooter, } from "./components/SiteFooter";
 export { LangSwitcher, } from "./components/LangSwitcher";
+/* Icons — the closed starter set. See icons.tsx for what belongs in it and
+   why. `BurgerIcon` above predates the set and still ships from SiteHeader;
+   `MenuIcon` is its replacement, and SiteHeader moves over in its own change. */
+export { ChevronDownIcon, ChevronUpIcon, ChevronLeftIcon, ChevronRightIcon, ArrowLeftIcon, EllipsisIcon, CloseIcon, CheckIcon, PlusIcon, MinusIcon, InfoIcon, SuccessIcon, WarningIcon, ErrorIcon, SearchIcon, CalendarIcon, UploadIcon, CopyIcon, StarFilledIcon, StarOutlineIcon, GripIcon, UndoIcon, RedoIcon, SunIcon, MoonIcon, MenuIcon, EyeIcon, EyeOffIcon, } from "./icons";
 /* Hooks */
 export { useHydrated } from "./hooks/useHydrated";
 //# sourceMappingURL=index.js.map

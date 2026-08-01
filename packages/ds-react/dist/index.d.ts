@@ -73,5 +73,6 @@ export { SiteHeader, BurgerIcon, type SiteHeaderProps, type BurgerIconProps, typ
 export { SiteFooter, type SiteFooterProps, type SiteFooterLink, type SiteFooterColumnData, } from "./components/SiteFooter";
 export type { SiteFooterNewsletterProps } from "./components/SiteFooterNewsletter";
 export { LangSwitcher, type LangSwitcherProps, type LangSwitcherItem, } from "./components/LangSwitcher";
+export { type IconProps, ChevronDownIcon, ChevronUpIcon, ChevronLeftIcon, ChevronRightIcon, ArrowLeftIcon, EllipsisIcon, CloseIcon, CheckIcon, PlusIcon, MinusIcon, InfoIcon, SuccessIcon, WarningIcon, ErrorIcon, SearchIcon, CalendarIcon, UploadIcon, CopyIcon, StarFilledIcon, StarOutlineIcon, GripIcon, UndoIcon, RedoIcon, SunIcon, MoonIcon, MenuIcon, EyeIcon, EyeOffIcon, } from "./icons";
 export { useHydrated } from "./hooks/useHydrated";
 //# sourceMappingURL=index.d.ts.map
