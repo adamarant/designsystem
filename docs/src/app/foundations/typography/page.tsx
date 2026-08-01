@@ -10,52 +10,60 @@
 
 type Spec = { cls: string; what: string; sample: string }
 
-const WEB: Spec[] = [
-  { cls: "ds-hero-title", what: "page title", sample: "We build things that last" },
-  { cls: "ds-section-title", what: "section heading", sample: "How we work" },
-  { cls: "ds-editorial-title", what: "article title", sample: "The value of empty space" },
-  { cls: "ds-overline", what: "eyebrow, label", sample: "Case study" },
+const ROLES: Spec[] = [
+  { cls: "ds-heading-1", what: "page title · 56 → 80", sample: "We build things that last" },
+  { cls: "ds-heading-2", what: "section · 40 → 56", sample: "How we work" },
+  { cls: "ds-heading-3", what: "subsection · 32 → 40", sample: "The studio in numbers" },
+  { cls: "ds-heading-4", what: "group · 24 → 28", sample: "Selected work" },
+  { cls: "ds-heading-5", what: "minor · 20", sample: "Process" },
+  { cls: "ds-heading-6", what: "smallest · 18, robust", sample: "Colophon" },
+  { cls: "ds-copy", what: "lede · 18 → 22", sample: "Every page we rebuilt this year ended up with fewer elements than the one it replaced." },
+  { cls: "ds-body", what: "content · 16", sample: "The default for any content, at full strength, whatever else is on the card." },
+  { cls: "ds-caption", what: "half of a pair · 13", sample: "Shot on location in Verona, 2026." },
+  { cls: "ds-meta", what: "small · 12", sample: "12 March 2026 · 4 min" },
+  { cls: "ds-overline", what: "label, uppercase", sample: "Case study" },
   { cls: "ds-stat-number", what: "big number", sample: "142" },
 ]
 
 const PRODUCT: Spec[] = [
-  { cls: "ds-admin-title", what: "admin page h1", sample: "Invoices" },
-  { cls: "ds-heading-ui", what: "panel, field group", sample: "Billing details" },
-  { cls: "ds-body", what: "content, values", sample: "Cavallino Group" },
-  { cls: "ds-meta", what: "timestamp, count", sample: "12 March 2026" },
+  { cls: "ds-heading-1", what: "page h1 · 28, intense", sample: "Invoices" },
+  { cls: "ds-heading-2", what: "panel · 24, robust", sample: "Billing details" },
+  { cls: "ds-heading-3", what: "group · 20", sample: "Payment methods" },
+  { cls: "ds-heading-4", what: "field group · 18", sample: "Card on file" },
+  { cls: "ds-heading-5", what: "minor · 16", sample: "Backup email" },
+  { cls: "ds-heading-6", what: "smallest · 14", sample: "Advanced" },
+  { cls: "ds-copy", what: "lede · fixed 18", sample: "Everything billed this month, in one place." },
+  { cls: "ds-body", what: "content · 16, invariant", sample: "Cavallino Group" },
+  { cls: "ds-meta", what: "small · 12, invariant", sample: "Updated 2 min ago" },
 ]
 
-const LONGFORM: Spec[] = [
-  {
-    cls: "ds-editorial-lede",
-    what: "lead paragraph",
-    sample: "Every page we rebuilt this year ended up with fewer elements than the one it replaced.",
-  },
-  {
-    cls: "ds-editorial-body",
-    what: "authored article",
-    sample: "The body of the article, with its vertical rhythm already set by the wrapper.",
-  },
-  {
-    cls: "ds-prose-block",
-    what: "markdown, CMS",
-    sample: "Markdown output, rendered without a class on any individual element.",
-  },
+const FROZEN: Array<{ old: string; next: string; delta: string }> = [
+  { old: "ds-hero-title", next: "ds-heading-1", delta: "web · +8 on desktop" },
+  { old: "ds-section-title", next: "ds-heading-2", delta: "web · +20, the hierarchy fix" },
+  { old: "ds-editorial-title", next: "ds-heading-1", delta: "web · +8" },
+  { old: "ds-editorial-lede", next: "ds-copy", delta: "same curve" },
+  { old: "ds-editorial-body", next: "ds-body in ds-prose", delta: "same values" },
+  { old: "ds-admin-title", next: "ds-heading-1", delta: "product · +4" },
+  { old: "ds-heading-ui", next: "ds-heading-3/4/5", delta: "product · gains a size" },
 ]
 
 /* One specimen per grid row: the class name sits in the page's own label
-   column, the type in the content column. No nested rail, no second grid. */
-function Specimens({ rows }: { rows: Spec[] }) {
+   column, the type in the content column. No nested rail, no second grid.
+   `surface` sets data-surface on the specimen itself: custom properties
+   resolve on the element, so each row re-enters the ladder alone. */
+function Specimens({ rows, surface }: { rows: Spec[]; surface?: "product" }) {
   return (
     <>
       {rows.map((r) => (
-        <div className="s-row" key={r.cls}>
+        <div className="s-row" key={r.cls + r.what}>
           <div className="s-label">
             <code className="typo-cls">.{r.cls}</code>
             <span className="typo-label typo-cls__what">{r.what}</span>
           </div>
           <div className="s-content">
-            <span className={r.cls}>{r.sample}</span>
+            <span className={r.cls} {...(surface ? { "data-surface": surface } : {})}>
+              {r.sample}
+            </span>
           </div>
         </div>
       ))}
@@ -97,13 +105,21 @@ export default function TypographyPage() {
       <div className="demo-page-header">
         <h1>Typography</h1>
         <p>
-          Ten named classes. Pick by what the text <em>is</em>, never by how big you want it.
+          One ladder of roles, resolved by context. Pick by what the text <em>is</em>; the surface
+          and the viewport decide the number.
         </p>
       </div>
 
       <Section
-        label="Two doors"
-        lede="A site scales with the viewport because a page is a composition. A product does not: density is a decision, not the window's. Same tokens on both sides."
+        label="One ladder, two surfaces"
+        lede={
+          <>
+            A site scales with the viewport because a page is a composition. A product does not:
+            density is a decision, not the window&rsquo;s. The same role class renders both;{" "}
+            <code className="typo-cls">data-surface=&quot;product&quot;</code> on the shell flips
+            the resolution, and web is the unmarked default.
+          </>
+        }
       >
         <div className="s-row">
           <div className="s-label" />
@@ -114,10 +130,10 @@ export default function TypographyPage() {
                 <p className="typo-body typo-door__what">Site, landing, editorial.</p>
                 <ul className="typo-facts">
                   <li>Display face</li>
-                  <li>Fluid, 40 &rarr; 72px</li>
+                  <li>Fluid: each clamp&rsquo;s ends are mobile and desktop</li>
                   <li>Balanced line breaks</li>
                   <li>
-                    Re-scale via <code className="typo-cls">--ds-text-hero</code>
+                    Re-scale via <code className="typo-cls">--ds-type-h1-size</code>
                   </li>
                 </ul>
               </div>
@@ -127,7 +143,9 @@ export default function TypographyPage() {
                 <ul className="typo-facts">
                   <li>Body face, never display</li>
                   <li>Fixed sizes, no clamp()</li>
-                  <li>Density is a product call</li>
+                  <li>
+                    <code className="typo-cls">data-surface</code> on the shell, inherits down
+                  </li>
                   <li>Tabular figures in columns</li>
                 </ul>
               </div>
@@ -137,29 +155,53 @@ export default function TypographyPage() {
       </Section>
 
       <Section
-        label="Web"
-        lede="Display face, fluid sizes. Re-scale a brand by overriding --ds-text-hero and --ds-text-section in theme.css, never by restating the class."
+        label="The roles"
+        lede="This page is a web surface, so this is the web resolution: display headings, fluid sizes. ds-overline and ds-stat-number are not rungs; the overline is the uppercase incarnation of the label role, the stat number a display value."
       >
-        <Specimens rows={WEB} />
+        <Specimens rows={ROLES} />
       </Section>
 
       <Section
-        label="Product"
-        lede="Body face throughout, fixed sizes, no clamp(). Pair with ds-tabular-nums wherever numbers stack into a column."
+        label="Same roles, product"
+        lede="Identical classes, resolved through data-surface. The face switches to the body family, the sizes freeze, the h1 takes the intense weight. Body and small do not move: a timestamp is 12px on both surfaces."
       >
-        <Specimens rows={PRODUCT} />
+        <Specimens rows={PRODUCT} surface="product" />
       </Section>
 
       <Section
         label="Long-form"
-        lede="Authored content takes ds-editorial-body. Markdown you do not control takes ds-prose-block. Never nest one in the other."
+        lede="Editorial is not a third surface: it is web plus the ds-prose context, where the body role reads at 18 with relaxed leading. An article is heading-1, copy, then body inside ds-prose. Markdown you do not control keeps ds-prose-block."
       >
-        <Specimens rows={LONGFORM} />
+        <div className="s-row">
+          <div className="s-label">
+            <code className="typo-cls">.ds-prose &gt; .ds-body</code>
+            <span className="typo-label typo-cls__what">reading body · 18</span>
+          </div>
+          <div className="s-content">
+            <div className="ds-prose">
+              <span className="ds-body">
+                Inside the prose context the same body class reads at editorial strength, and the
+                wrapper sets the rhythm.
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="s-row">
+          <div className="s-label">
+            <code className="typo-cls">.ds-prose-block</code>
+            <span className="typo-label typo-cls__what">markdown, CMS</span>
+          </div>
+          <div className="s-content">
+            <span className="ds-prose-block">
+              Markdown output, rendered without a class on any individual element.
+            </span>
+          </div>
+        </div>
       </Section>
 
       <Section
         label="Small means irrelevant"
-        lede="Body copy drifted to 14px across 21 consumers because no class said &ldquo;this is reading text&rdquo;. Content is ds-body, at full strength. Only genuinely supplementary text is ds-meta, and a link is an action, not metadata."
+        lede="Body copy drifted to 14px across 21 consumers because no class said &ldquo;this is reading text&rdquo;. Content is ds-body, at full strength. ds-caption is the subordinate half of a pair, never a page&rsquo;s default. Only genuinely supplementary text is ds-meta, and a link is an action, not metadata."
       >
         <div className="s-row">
           <div className="s-label" />
@@ -215,7 +257,7 @@ export default function TypographyPage() {
               <div>
                 <span className="typo-label typo-verdict typo-verdict--good">Use</span>
                 <pre className="typo-snippet">
-                  <code>{`<h2 className="ds-section-title">`}</code>
+                  <code>{`<h2 className="ds-heading-2">`}</code>
                 </pre>
               </div>
             </div>
@@ -224,8 +266,25 @@ export default function TypographyPage() {
       </Section>
 
       <Section
+        label="The old names, frozen"
+        lede="Published classes are never deleted and never renamed. These seven are deprecated at 0.38.0 and stay byte-identical until the next major; each has a successor, and migration is per page, eyes on the deltas."
+      >
+        {FROZEN.map((r) => (
+          <div className="s-row" key={r.old}>
+            <div className="s-label">
+              <code className="typo-cls">.{r.old}</code>
+              <span className="typo-label typo-cls__what">{r.delta}</span>
+            </div>
+            <div className="s-content">
+              <code className="typo-cls">&rarr; .{r.next}</code>
+            </div>
+          </div>
+        ))}
+      </Section>
+
+      <Section
         label="Bare headings"
-        lede="h1 to h6 are fluid and safe on a phone, but they are the fallback, not the API. Inside a page, name the role. Sizes: 32 to 48, 26 to 36, 22 to 24, then 20, 18, 16."
+        lede="h1 to h6 are fluid and safe on a phone, but they are the fallback, not the API. Today they keep the legacy sizes: 32 to 48, 26 to 36, 22 to 24, then 20, 18, 16. At the next major they read the role tokens of the ambient surface. Inside a page, name the role."
       />
 
       <Section label="Typefaces">
@@ -269,7 +328,7 @@ export default function TypographyPage() {
 
       <Section
         label="Scale"
-        lede="The raw ramp, under the classes. Reach for it when building a component, not when writing a page. Four more sizes are fluid and sit outside it: --ds-text-hero, --ds-text-section and the editorial pair."
+        lede="The raw ramp, under the classes. Reach for it when building a component, not when writing a page. The fluid sizes live in the role tokens, --ds-type-h1-size down to --ds-type-h4-size, with the frozen legacy four alongside until the next major."
       >
         {[
           ["text-2xs", "10"],
@@ -302,8 +361,27 @@ export default function TypographyPage() {
 
       <Section
         label="Weight"
-        lede="Headings never set a weight by hand. They take --ds-font-display-weight, --ds-admin-title-weight or --ds-heading-ui-weight."
+        lede="Four semantic names are the brand lever: a typeface with no Medium cut re-maps robust once in theme.css instead of re-declaring classes. Roles read the names; the numbers underneath stay for raw work. Headings never set a weight by hand."
       >
+        {[
+          ["weight-delicate", "300 · light"],
+          ["weight-standard", "400 · normal"],
+          ["weight-robust", "500 · medium"],
+          ["weight-intense", "600 · semibold"],
+        ].map(([token, val]) => (
+          <div className="s-row" key={token}>
+            <div className="s-label">
+              <code className="typo-cls">{token}</code>
+              <span className="typo-label typo-cls__what">{val}</span>
+            </div>
+            <div
+              className="s-content"
+              dangerouslySetInnerHTML={{
+                __html: `<div style="font-weight: var(--ds-${token}); font-size: var(--ds-text-xl);">The quick brown fox jumps over the lazy dog</div>`,
+              }}
+            />
+          </div>
+        ))}
         {[
           ["weight-light", "300"],
           ["weight-normal", "400"],
