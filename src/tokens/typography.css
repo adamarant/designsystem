@@ -105,6 +105,17 @@
   --ds-weight-semibold: 600;
   --ds-weight-bold: 700;
 
+  /* --- Semantic weights (1 Aug 2026, typography roles) ---
+     Four names over the numeric ramp, so a brand re-maps a name to the cuts
+     its typeface actually ships (PP Telegraf has no Medium: one line moves
+     robust to 400) instead of re-declaring classes. 600 is the loudest
+     weight in real use across the ecosystem; 700 stays reachable as raw
+     --ds-weight-bold or as a brand re-map of intense. */
+  --ds-weight-delicate: var(--ds-weight-light);
+  --ds-weight-standard: var(--ds-weight-normal);
+  --ds-weight-robust: var(--ds-weight-medium);
+  --ds-weight-intense: var(--ds-weight-semibold);
+
   /* --- Line Heights --- */
   --ds-leading-none: 1;
   --ds-leading-tight: 1.1;
@@ -119,6 +130,56 @@
   --ds-tracking-normal: 0;
   --ds-tracking-wide: 0.05em;
   --ds-tracking-wider: 0.1em;
+
+  /* --- Type roles (1 Aug 2026) ---
+     One ladder of roles; context resolves the number. A class names what the
+     text IS (.ds-heading-1) and the surface plus the viewport decide the
+     size. :root carries the web surface: display headings, fluid sizes (the
+     two clamp ends ARE mobile and desktop, 375px floor, cap by ~1024px).
+     The [data-surface="product"] block at the end of this file re-declares
+     the variant roles: fixed sizes, body face, denser weights. Spec and
+     locked decisions:
+     ds-ops/proposals/spec-2026-08-01-typography-roles-surfaces.md */
+  --ds-type-heading-family: var(--ds-font-display);
+  --ds-type-h1-size: clamp(3.5rem, 3.7vw + 2.63rem, 5rem);       /* 56 → 80px */
+  --ds-type-h1-weight: var(--ds-weight-standard);
+  --ds-type-h1-leading: var(--ds-leading-tight);
+  --ds-type-h1-tracking: var(--ds-tracking-tight);
+  --ds-type-h2-size: clamp(2.5rem, 2.5vw + 1.91rem, 3.5rem);     /* 40 → 56px */
+  --ds-type-h2-weight: var(--ds-weight-standard);
+  --ds-type-h2-leading: var(--ds-leading-tight);
+  --ds-type-h2-tracking: var(--ds-tracking-tight);
+  --ds-type-h3-size: clamp(2rem, 1.25vw + 1.71rem, 2.5rem);      /* 32 → 40px */
+  --ds-type-h3-weight: var(--ds-weight-standard);
+  --ds-type-h3-leading: var(--ds-leading-tight);
+  --ds-type-h3-tracking: var(--ds-tracking-tight);
+  --ds-type-h4-size: clamp(1.5rem, 0.6vw + 1.36rem, 1.75rem);    /* 24 → 28px */
+  --ds-type-h4-weight: var(--ds-weight-standard);
+  --ds-type-h4-leading: var(--ds-leading-snug);
+  --ds-type-h4-tracking: var(--ds-tracking-tight);
+  --ds-type-h5-size: var(--ds-text-xl);                          /* 20px */
+  --ds-type-h5-weight: var(--ds-weight-standard);
+  --ds-type-h5-leading: var(--ds-leading-snug);
+  --ds-type-h5-tracking: var(--ds-tracking-tight);
+  --ds-type-h6-size: var(--ds-text-lg);                          /* 18px */
+  --ds-type-h6-weight: var(--ds-weight-robust);
+  --ds-type-h6-leading: var(--ds-leading-snug);
+  --ds-type-h6-tracking: var(--ds-tracking-tight);
+
+  /* Text roles. Sizes are surface-invariant except copy, which product fixes
+     at 18: a timestamp is 12px on both surfaces. copy duplicates the lede
+     curve on purpose: --ds-text-editorial-lede stays consumed by the frozen
+     .ds-editorial-lede and retires with it at the next major. caption's 13px
+     is deliberately off the ds-text-* ramp: the small end needs a readable
+     step between label (14) and the floor (12). */
+  --ds-type-copy-size: clamp(1.125rem, 0.5vw + 1rem, 1.375rem);  /* 18 → 22px */
+  --ds-type-copy-leading: var(--ds-leading-normal);
+  --ds-type-body-size: var(--ds-text-base);                      /* 16px */
+  --ds-type-body-leading: var(--ds-leading-normal);
+  --ds-type-label-size: var(--ds-text-sm);                       /* 14px */
+  --ds-type-label-weight: var(--ds-weight-robust);
+  --ds-type-caption-size: 0.8125rem;                             /* 13px */
+  --ds-type-small-size: var(--ds-text-xs);                       /* 12px */
 }
 
 /* Body-scope re-declaration of the font tokens so they resolve against the
@@ -129,4 +190,30 @@ body {
   --ds-font-display: var(--font-display, "Clash Display"), system-ui, sans-serif;
   --ds-font-sans: var(--font-sans, "Switzer"), system-ui, -apple-system, sans-serif;
   --ds-font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, "SF Mono", monospace;
+}
+
+/* Product surface: apps, webapps, admin, dashboards. Fixed sizes (density on
+   a data screen is a product decision, not the viewport's), body face,
+   denser weights. Set data-surface="product" on the shell (html, body or any
+   subtree; a product widget inside a web page just carries the attribute).
+   The unmarked default is web. Custom properties inherit, so the switch
+   nests and costs no specificity. Roles not re-declared here (body, label,
+   caption, small, h4-h6 leading, tracking) are surface-invariant. */
+[data-surface="product"] {
+  --ds-type-heading-family: var(--ds-font-sans);
+  --ds-type-h1-size: 1.75rem;              /* 28px, deliberately off the ramp */
+  --ds-type-h1-weight: var(--ds-weight-intense);
+  --ds-type-h1-leading: var(--ds-leading-snug);
+  --ds-type-h2-size: var(--ds-text-2xl);   /* 24px */
+  --ds-type-h2-weight: var(--ds-weight-robust);
+  --ds-type-h2-leading: var(--ds-leading-snug);
+  --ds-type-h3-size: var(--ds-text-xl);    /* 20px */
+  --ds-type-h3-weight: var(--ds-weight-robust);
+  --ds-type-h3-leading: var(--ds-leading-snug);
+  --ds-type-h4-size: var(--ds-text-lg);    /* 18px */
+  --ds-type-h4-weight: var(--ds-weight-robust);
+  --ds-type-h5-size: var(--ds-text-base);  /* 16px */
+  --ds-type-h5-weight: var(--ds-weight-robust);
+  --ds-type-h6-size: var(--ds-text-sm);    /* 14px */
+  --ds-type-copy-size: var(--ds-text-lg);  /* 18px, fixed */
 }
