@@ -112,4 +112,10 @@
   --ds-rhythm-section: var(--ds-space-8);  /* 32px */
   --ds-rhythm-block: var(--ds-space-6);    /* 24px */
   --ds-rhythm-element: var(--ds-space-3);  /* 12px */
+
+  /* The alias must be re-declared HERE too: a var() inside a custom property
+     is substituted where the property is declared, so the :root alias
+     freezes the web value and descendants inherit it resolved. Same trap as
+     the --font-* body-scope note in typography.css. */
+  --ds-section-padding: var(--ds-rhythm-section);
 }
