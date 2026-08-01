@@ -423,31 +423,39 @@
      the variant roles: fixed sizes, body face, denser weights. Spec and
      locked decisions:
      ds-ops/proposals/spec-2026-08-01-typography-roles-surfaces.md */
+  /* Web sizes re-based 1 Aug 2026 on the Figma Foundation scale
+     (1. Foundation → Typography, tokens x500..x150): desktop caps 80/64/48/
+     40/32/24, an arithmetic ladder (16s then 8s). Line-heights are the
+     Figma per-rung ratios (110→133%), written as literals because the
+     leading ramp has no 1.12/1.17/1.2/1.33 steps and these belong to the
+     rung, not the ramp. Tracking: the Figma px values (-2.5 at 80 ... -0.75
+     at 24) are one constant ratio, -0.03em. Mobile floors keep the locked
+     fluid model: h1 floors at 56, the rest proportionally, 375 → 1024px. */
   --ds-type-heading-family: var(--ds-font-display);
   --ds-type-h1-size: clamp(3.5rem, 3.7vw + 2.63rem, 5rem);       /* 56 → 80px */
   --ds-type-h1-weight: var(--ds-weight-standard);
-  --ds-type-h1-leading: var(--ds-leading-tight);
-  --ds-type-h1-tracking: var(--ds-tracking-tight);
-  --ds-type-h2-size: clamp(2.5rem, 2.5vw + 1.91rem, 3.5rem);     /* 40 → 56px */
+  --ds-type-h1-leading: 1.1;                                     /* 110% */
+  --ds-type-h1-tracking: -0.03em;
+  --ds-type-h2-size: clamp(2.75rem, 3.1vw + 2.02rem, 4rem);      /* 44 → 64px */
   --ds-type-h2-weight: var(--ds-weight-standard);
-  --ds-type-h2-leading: var(--ds-leading-tight);
-  --ds-type-h2-tracking: var(--ds-tracking-tight);
-  --ds-type-h3-size: clamp(2rem, 1.25vw + 1.71rem, 2.5rem);      /* 32 → 40px */
+  --ds-type-h2-leading: 1.12;                                    /* 112% */
+  --ds-type-h2-tracking: -0.03em;
+  --ds-type-h3-size: clamp(2.25rem, 1.85vw + 1.82rem, 3rem);     /* 36 → 48px */
   --ds-type-h3-weight: var(--ds-weight-standard);
-  --ds-type-h3-leading: var(--ds-leading-tight);
-  --ds-type-h3-tracking: var(--ds-tracking-tight);
-  --ds-type-h4-size: clamp(1.5rem, 0.6vw + 1.36rem, 1.75rem);    /* 24 → 28px */
+  --ds-type-h3-leading: 1.17;                                    /* 117% */
+  --ds-type-h3-tracking: -0.03em;
+  --ds-type-h4-size: clamp(1.75rem, 1.85vw + 1.32rem, 2.5rem);   /* 28 → 40px */
   --ds-type-h4-weight: var(--ds-weight-standard);
-  --ds-type-h4-leading: var(--ds-leading-snug);
-  --ds-type-h4-tracking: var(--ds-tracking-tight);
-  --ds-type-h5-size: var(--ds-text-xl);                          /* 20px */
+  --ds-type-h4-leading: 1.2;                                     /* 120% */
+  --ds-type-h4-tracking: -0.03em;
+  --ds-type-h5-size: clamp(1.5rem, 1.25vw + 1.21rem, 2rem);      /* 24 → 32px */
   --ds-type-h5-weight: var(--ds-weight-standard);
-  --ds-type-h5-leading: var(--ds-leading-snug);
-  --ds-type-h5-tracking: var(--ds-tracking-tight);
-  --ds-type-h6-size: var(--ds-text-lg);                          /* 18px */
+  --ds-type-h5-leading: var(--ds-leading-snug);                  /* 125% */
+  --ds-type-h5-tracking: -0.03em;
+  --ds-type-h6-size: clamp(1.25rem, 0.6vw + 1.11rem, 1.5rem);    /* 20 → 24px */
   --ds-type-h6-weight: var(--ds-weight-robust);
-  --ds-type-h6-leading: var(--ds-leading-snug);
-  --ds-type-h6-tracking: var(--ds-tracking-tight);
+  --ds-type-h6-leading: 1.33;                                    /* 133% */
+  --ds-type-h6-tracking: -0.03em;
 
   /* Text roles. Sizes are surface-invariant except copy, which product fixes
      at 18: a timestamp is 12px on both surfaces. copy duplicates the lede
@@ -455,8 +463,8 @@
      .ds-editorial-lede and retires with it at the next major. caption's 13px
      is deliberately off the ds-text-* ramp: the small end needs a readable
      step between label (14) and the floor (12). */
-  --ds-type-copy-size: clamp(1.125rem, 0.5vw + 1rem, 1.375rem);  /* 18 → 22px */
-  --ds-type-copy-leading: var(--ds-leading-normal);
+  --ds-type-copy-size: clamp(1.125rem, 0.3vw + 1.05rem, 1.25rem); /* 18 → 20px (Figma Large Body) */
+  --ds-type-copy-leading: 1.6;                                    /* Figma: 160% */
   --ds-type-body-size: var(--ds-text-base);                      /* 16px */
   --ds-type-body-leading: var(--ds-leading-normal);
   --ds-type-label-size: var(--ds-text-sm);                       /* 14px */
