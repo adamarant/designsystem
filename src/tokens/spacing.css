@@ -154,3 +154,36 @@
      the --font-* body-scope note in typography.css. */
   --ds-section-padding: var(--ds-rhythm-section);
 }
+
+/* Radius modes (2 Aug 2026): the brand personality knob. Four presets over
+   the radius ramp — sharp, soft, round (the default: no attribute, today's
+   values), pill (strict 3x) — set once per brand with data-radius on the
+   shell; every component inherits because components read the ramp. soft is
+   exactly half of round. --ds-radius-full and --ds-radius-none never
+   re-declare: avatars, toggle thumbs and radio dots are circles by
+   geometry, not personality, so badges and chips stay pills even under
+   sharp (owner-confirmed). Spec and locked decisions:
+   ds-ops/proposals/spec-2026-08-02-radius-modes.md */
+[data-radius="sharp"] {
+  --ds-radius-sm: 0;
+  --ds-radius-md: 0;
+  --ds-radius-lg: 0;
+  --ds-radius-xl: 0;
+  --ds-radius-2xl: 0;
+}
+
+[data-radius="soft"] {
+  --ds-radius-sm: 3px;
+  --ds-radius-md: 4px;
+  --ds-radius-lg: 6px;
+  --ds-radius-xl: 8px;
+  --ds-radius-2xl: 10px;
+}
+
+[data-radius="pill"] {
+  --ds-radius-sm: 18px;
+  --ds-radius-md: 24px;
+  --ds-radius-lg: 36px;
+  --ds-radius-xl: 48px;
+  --ds-radius-2xl: 60px;
+}
