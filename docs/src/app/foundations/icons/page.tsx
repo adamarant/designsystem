@@ -9,34 +9,34 @@
 import {
   Badge,
   Text,
-  ChevronDownIcon,
-  ChevronUpIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ArrowLeftIcon,
-  EllipsisIcon,
-  CloseIcon,
-  CheckIcon,
-  PlusIcon,
-  MinusIcon,
-  InfoIcon,
-  SuccessIcon,
-  WarningIcon,
-  ErrorIcon,
-  SearchIcon,
-  CalendarIcon,
-  UploadIcon,
-  CopyIcon,
-  StarFilledIcon,
-  StarOutlineIcon,
-  GripIcon,
-  UndoIcon,
-  RedoIcon,
-  SunIcon,
-  MoonIcon,
-  MenuIcon,
-  EyeIcon,
-  EyeOffIcon,
+  IconChevronDown,
+  IconChevronUp,
+  IconChevronLeft,
+  IconChevronRight,
+  IconArrowLeft,
+  IconEllipsis,
+  IconClose,
+  IconCheck,
+  IconPlus,
+  IconMinus,
+  IconInfo,
+  IconSuccess,
+  IconWarning,
+  IconError,
+  IconSearch,
+  IconCalendar,
+  IconUpload,
+  IconCopy,
+  IconStarFilled,
+  IconStarOutline,
+  IconGrip,
+  IconUndo,
+  IconRedo,
+  IconSun,
+  IconMoon,
+  IconMenu,
+  IconEye,
+  IconEyeOff,
   type IconProps,
 } from "@adamarant/ds-react";
 
@@ -47,70 +47,70 @@ const GROUPS: { title: string; note: string; icons: [string, Icon][] }[] = [
     title: "Disclosure and navigation",
     note: "Left and right are the down chevron rotated, not separate drawings, so the four cannot drift apart. They swap in place in accordions, sort headers and pagination, where a size or vertex mismatch would show as a jump.",
     icons: [
-      ["ChevronDownIcon", ChevronDownIcon],
-      ["ChevronUpIcon", ChevronUpIcon],
-      ["ChevronLeftIcon", ChevronLeftIcon],
-      ["ChevronRightIcon", ChevronRightIcon],
-      ["ArrowLeftIcon", ArrowLeftIcon],
-      ["EllipsisIcon", EllipsisIcon],
+      ["IconChevronDown", IconChevronDown],
+      ["IconChevronUp", IconChevronUp],
+      ["IconChevronLeft", IconChevronLeft],
+      ["IconChevronRight", IconChevronRight],
+      ["IconArrowLeft", IconArrowLeft],
+      ["IconEllipsis", IconEllipsis],
     ],
   },
   {
     title: "Confirm and dismiss",
-    note: "CloseIcon is the most-used mark in the system: modal, drawer, bottom sheet, toast, lightbox, alert dismiss, chip and tag removal, search clear.",
+    note: "IconClose is the most-used mark in the system: modal, drawer, bottom sheet, toast, lightbox, alert dismiss, chip and tag removal, search clear.",
     icons: [
-      ["CloseIcon", CloseIcon],
-      ["CheckIcon", CheckIcon],
-      ["PlusIcon", PlusIcon],
-      ["MinusIcon", MinusIcon],
+      ["IconClose", IconClose],
+      ["IconCheck", IconCheck],
+      ["IconPlus", IconPlus],
+      ["IconMinus", IconMinus],
     ],
   },
   {
     title: "Status",
     note: "Determined by the variant on Alert, Toast and Result. Their CSS has always coloured a __icon slot per variant; until now nothing filled it.",
     icons: [
-      ["InfoIcon", InfoIcon],
-      ["SuccessIcon", SuccessIcon],
-      ["WarningIcon", WarningIcon],
-      ["ErrorIcon", ErrorIcon],
+      ["IconInfo", IconInfo],
+      ["IconSuccess", IconSuccess],
+      ["IconWarning", IconWarning],
+      ["IconError", IconError],
     ],
   },
   {
     title: "Affordances",
-    note: "StarFilledIcon and StarOutlineIcon are the same star, one solid and one not, so hovering across a rating changes the fill and nothing else.",
+    note: "IconStarFilled and IconStarOutline are the same star, one solid and one not, so hovering across a rating changes the fill and nothing else.",
     icons: [
-      ["SearchIcon", SearchIcon],
-      ["CalendarIcon", CalendarIcon],
-      ["UploadIcon", UploadIcon],
-      ["CopyIcon", CopyIcon],
-      ["StarFilledIcon", StarFilledIcon],
-      ["StarOutlineIcon", StarOutlineIcon],
-      ["GripIcon", GripIcon],
+      ["IconSearch", IconSearch],
+      ["IconCalendar", IconCalendar],
+      ["IconUpload", IconUpload],
+      ["IconCopy", IconCopy],
+      ["IconStarFilled", IconStarFilled],
+      ["IconStarOutline", IconStarOutline],
+      ["IconGrip", IconGrip],
     ],
   },
   {
     title: "Editor history",
     note: "An exact 180° pair, verified rather than assumed.",
     icons: [
-      ["UndoIcon", UndoIcon],
-      ["RedoIcon", RedoIcon],
+      ["IconUndo", IconUndo],
+      ["IconRedo", IconRedo],
     ],
   },
   {
     title: "Theme and chrome",
     note: "Sun and moon swap inside the same ThemeToggle button.",
     icons: [
-      ["SunIcon", SunIcon],
-      ["MoonIcon", MoonIcon],
-      ["MenuIcon", MenuIcon],
+      ["IconSun", IconSun],
+      ["IconMoon", IconMoon],
+      ["IconMenu", IconMenu],
     ],
   },
   {
     title: "No consumer yet",
     note: "The one deliberate exception to the rule below: nothing in the system asks for these, and they are here for the password reveal that Input does not have. If that never lands, they leave.",
     icons: [
-      ["EyeIcon", EyeIcon],
-      ["EyeOffIcon", EyeOffIcon],
+      ["IconEye", IconEye],
+      ["IconEyeOff", IconEyeOff],
     ],
   },
 ];
@@ -208,10 +208,10 @@ export default function IconsPage() {
                 <span className="demo-token-label__size">{px}px</span>
               </div>
               <div className="icon-size-row__marks">
-                <SearchIcon size={px} />
-                <ChevronDownIcon size={px} />
-                <CloseIcon size={px} />
-                <CheckIcon size={px} />
+                <IconSearch size={px} />
+                <IconChevronDown size={px} />
+                <IconClose size={px} />
+                <IconCheck size={px} />
               </div>
               <Text size="xs" color="tertiary">
                 {tier}
@@ -273,7 +273,7 @@ export default function IconsPage() {
         </p>
         <div className="demo-code">
           <pre>
-            <code>{`import { ChevronDownIcon } from "@adamarant/ds-react";
+            <code>{`import { IconChevronDown } from "@adamarant/ds-react";
 
 // the default
 <Select />
@@ -282,7 +282,7 @@ export default function IconsPage() {
 <Select icon={<IconChevronBottom />} />
 
 // on the token scale rather than a fixed box
-<ChevronDownIcon size="var(--ds-icon-1)" />`}</code>
+<IconChevronDown size="var(--ds-icon-1)" />`}</code>
           </pre>
         </div>
       </section>
@@ -293,20 +293,20 @@ export default function IconsPage() {
         </h2>
         <p className="demo-section__description">
           Stated here rather than left to be discovered.{" "}
-          <code>CloseIcon</code>, <code>CheckIcon</code> and{" "}
-          <code>ArrowLeftIcon</code> measure stroke 3 against the set&rsquo;s 2
+          <code>IconClose</code>, <code>IconCheck</code> and{" "}
+          <code>IconArrowLeft</code> measure stroke 3 against the set&rsquo;s 2
           &mdash; visible when the close sits beside a chevron in the same
           control &mdash; and are waiting on a re-export.{" "}
-          <code>MenuIcon</code> is the two-line burger, which reads as an equals
+          <code>IconMenu</code> is the two-line burger, which reads as an equals
           sign at 16px; the admin header draws a three-line one, so the system
           currently disagrees with itself and one of the two has to give.
         </p>
         <div className="demo-preview">
           {([
-            ["CloseIcon", CloseIcon],
-            ["CheckIcon", CheckIcon],
-            ["ArrowLeftIcon", ArrowLeftIcon],
-            ["MenuIcon", MenuIcon],
+            ["IconClose", IconClose],
+            ["IconCheck", IconCheck],
+            ["IconArrowLeft", IconArrowLeft],
+            ["IconMenu", IconMenu],
           ] as [string, Icon][]).map(([name, Mark]) => (
             <div className="icon-size" key={name}>
               <Mark size={24} />

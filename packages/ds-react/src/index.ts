@@ -240,7 +240,9 @@ export { Pagination,
   PaginationItem, type PaginationProps } from "./components/Pagination";
 export { Kbd, type KbdProps } from "./components/Kbd";
 export { Search,
-  SearchInput, type SearchProps } from "./components/Search";
+  SearchInput, SearchIcon, SearchClear,
+  type SearchProps, type SearchInputProps,
+  type SearchIconProps, type SearchClearProps } from "./components/Search";
 export { IconBtn, type IconBtnProps } from "./components/IconBtn";
 
 export { Nav,
@@ -362,37 +364,37 @@ export {
 
 /* Icons — the closed starter set. See icons.tsx for what belongs in it and
    why. `BurgerIcon` above predates the set and still ships from SiteHeader;
-   `MenuIcon` is its replacement, and SiteHeader moves over in its own change. */
+   `IconMenu` is its replacement, and SiteHeader moves over in its own change. */
 export {
   type IconProps,
-  ChevronDownIcon,
-  ChevronUpIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ArrowLeftIcon,
-  EllipsisIcon,
-  CloseIcon,
-  CheckIcon,
-  PlusIcon,
-  MinusIcon,
-  InfoIcon,
-  SuccessIcon,
-  WarningIcon,
-  ErrorIcon,
-  SearchIcon,
-  CalendarIcon,
-  UploadIcon,
-  CopyIcon,
-  StarFilledIcon,
-  StarOutlineIcon,
-  GripIcon,
-  UndoIcon,
-  RedoIcon,
-  SunIcon,
-  MoonIcon,
-  MenuIcon,
-  EyeIcon,
-  EyeOffIcon,
+  IconChevronDown,
+  IconChevronUp,
+  IconChevronLeft,
+  IconChevronRight,
+  IconArrowLeft,
+  IconEllipsis,
+  IconClose,
+  IconCheck,
+  IconPlus,
+  IconMinus,
+  IconInfo,
+  IconSuccess,
+  IconWarning,
+  IconError,
+  IconSearch,
+  IconCalendar,
+  IconUpload,
+  IconCopy,
+  IconStarFilled,
+  IconStarOutline,
+  IconGrip,
+  IconUndo,
+  IconRedo,
+  IconSun,
+  IconMoon,
+  IconMenu,
+  IconEye,
+  IconEyeOff,
 } from "./icons";
 
 /* Hooks */
