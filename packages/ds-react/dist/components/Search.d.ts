@@ -13,9 +13,19 @@ export interface SearchInputProps extends Omit<ComponentPropsWithoutRef<"input">
     allowPasswordManager?: boolean;
     className?: string;
 }
+export interface SearchIconProps extends ComponentPropsWithoutRef<"span"> {
+    className?: string;
+}
+export interface SearchClearProps extends ComponentPropsWithoutRef<"button"> {
+    className?: string;
+}
 declare const SearchInput: import("react").ForwardRefExoticComponent<SearchInputProps & import("react").RefAttributes<HTMLInputElement>>;
-export { SearchInput };
+declare const SearchIcon: import("react").ForwardRefExoticComponent<SearchIconProps & import("react").RefAttributes<HTMLSpanElement>>;
+declare const SearchClear: import("react").ForwardRefExoticComponent<SearchClearProps & import("react").RefAttributes<HTMLButtonElement>>;
+export { SearchInput, SearchIcon, SearchClear };
 export declare const Search: import("react").ForwardRefExoticComponent<SearchProps & import("react").RefAttributes<HTMLDivElement>> & {
     Input: import("react").ForwardRefExoticComponent<SearchInputProps & import("react").RefAttributes<HTMLInputElement>>;
+    Icon: import("react").ForwardRefExoticComponent<SearchIconProps & import("react").RefAttributes<HTMLSpanElement>>;
+    Clear: import("react").ForwardRefExoticComponent<SearchClearProps & import("react").RefAttributes<HTMLButtonElement>>;
 };
 //# sourceMappingURL=Search.d.ts.map

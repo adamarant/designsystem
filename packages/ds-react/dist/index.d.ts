@@ -33,7 +33,7 @@ export { EmptyState, EmptyStateIcon, EmptyStateTitle, EmptyStateDescription, Emp
 export { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator, type BreadcrumbProps } from "./components/Breadcrumb";
 export { Pagination, PaginationList, PaginationItem, type PaginationProps } from "./components/Pagination";
 export { Kbd, type KbdProps } from "./components/Kbd";
-export { Search, SearchInput, type SearchProps } from "./components/Search";
+export { Search, SearchInput, SearchIcon, SearchClear, type SearchProps, type SearchInputProps, type SearchIconProps, type SearchClearProps } from "./components/Search";
 export { IconBtn, type IconBtnProps } from "./components/IconBtn";
 export { Nav, NavList, NavItem, type NavProps } from "./components/Nav";
 export { Toast, ToastClose, type ToastProps } from "./components/Toast";
@@ -73,6 +73,6 @@ export { SiteHeader, BurgerIcon, type SiteHeaderProps, type BurgerIconProps, typ
 export { SiteFooter, type SiteFooterProps, type SiteFooterLink, type SiteFooterColumnData, } from "./components/SiteFooter";
 export type { SiteFooterNewsletterProps } from "./components/SiteFooterNewsletter";
 export { LangSwitcher, type LangSwitcherProps, type LangSwitcherItem, } from "./components/LangSwitcher";
-export { type IconProps, ChevronDownIcon, ChevronUpIcon, ChevronLeftIcon, ChevronRightIcon, ArrowLeftIcon, EllipsisIcon, CloseIcon, CheckIcon, PlusIcon, MinusIcon, InfoIcon, SuccessIcon, WarningIcon, ErrorIcon, SearchIcon, CalendarIcon, UploadIcon, CopyIcon, StarFilledIcon, StarOutlineIcon, GripIcon, UndoIcon, RedoIcon, SunIcon, MoonIcon, MenuIcon, EyeIcon, EyeOffIcon, } from "./icons";
+export { type IconProps, IconChevronDown, IconChevronUp, IconChevronLeft, IconChevronRight, IconArrowLeft, IconEllipsis, IconClose, IconCheck, IconPlus, IconMinus, IconInfo, IconSuccess, IconWarning, IconError, IconSearch, IconCalendar, IconUpload, IconCopy, IconStarFilled, IconStarOutline, IconGrip, IconUndo, IconRedo, IconSun, IconMoon, IconMenu, IconEye, IconEyeOff, } from "./icons";
 export { useHydrated } from "./hooks/useHydrated";
 //# sourceMappingURL=index.d.ts.map
