@@ -7,6 +7,8 @@
    package does not export. Geometry is byte-identical to the source — if you
    change an icon in ds-react, change it here too until the decision lands. */
 
+import { Badge, Text } from "@adamarant/ds-react";
+
 type Glyph = {
   /** What the mark depicts, not what the function is called. */
   mark: string;
@@ -259,7 +261,7 @@ export default function IconsPage() {
                   <span className="icon-row__mark">
                     {g.mark}
                     {g.exported ? (
-                      <span className="ds-badge ds-badge--sm">exported</span>
+                      <Badge size="sm">exported</Badge>
                     ) : null}
                   </span>
                   <span className="icon-row__name">{g.name}</span>
@@ -339,10 +341,12 @@ export default function IconsPage() {
                 {impls.map((g) => (
                   <div className="icon-dupe__one" key={g.name + g.mark}>
                     <Mark g={g} size={32} />
-                    <span className="ds-text-xs ds-text-tertiary">{g.name}</span>
-                    <span className="ds-text-xs ds-text-tertiary">
+                    <Text size="xs" color="tertiary">
+                      {g.name}
+                    </Text>
+                    <Text size="xs" color="tertiary">
                       grid {g.grid}
-                    </span>
+                    </Text>
                   </div>
                 ))}
               </div>
@@ -374,10 +378,10 @@ export default function IconsPage() {
             return (
               <div className="icon-size" key={s}>
                 <Mark g={GLYPHS[0]} size={s} />
-                <span className="ds-text-xs">{s}px</span>
-                <span className="ds-text-xs ds-text-tertiary">
+                <Text size="xs">{s}px</Text>
+                <Text size="xs" color="tertiary">
                   {onScale ? "on scale" : "off scale"}
-                </span>
+                </Text>
               </div>
             );
           })}
