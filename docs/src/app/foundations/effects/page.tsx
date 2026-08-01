@@ -9,7 +9,7 @@ export default function EffectsPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Box Shadows</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-8);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); gap: var(--ds-space-8);">
             ${[
               ["shadow-sm", "Small"],
               ["shadow-md", "Medium"],
@@ -94,7 +94,7 @@ export default function EffectsPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Backdrop Blur</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--ds-space-4);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(180px, 100%), 1fr)); gap: var(--ds-space-4);">
             ${[
               ["blur-sm", "4px"],
               ["blur-md", "12px"],
@@ -133,7 +133,7 @@ export default function EffectsPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Miscellaneous</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--ds-space-4);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); gap: var(--ds-space-4);">
             <div style="display: flex; flex-direction: column; gap: var(--ds-space-2);">
               <div style="font-size: var(--ds-text-sm); font-family: var(--ds-font-mono);">dot-size</div>
               <div style="display: flex; align-items: center; gap: var(--ds-space-2);">

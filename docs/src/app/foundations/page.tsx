@@ -14,7 +14,7 @@ export default function FoundationsPage() {
         <h1>Foundations</h1>
         <p>Design tokens that power every component. Override any token to re-theme the entire system.</p>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "var(--ds-space-4)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(280px, 100%), 1fr))", gap: "var(--ds-space-4)" }}>
         {pages.map((p) => (
           <Link
             key={p.href}

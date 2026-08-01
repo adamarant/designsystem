@@ -71,7 +71,7 @@ export default function ColorsPage() {
         <section className="demo-section" key={group}>
           <h2 className="demo-section__title">{group}</h2>
           <div className="demo-preview">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))", gap: "var(--ds-space-3)" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(400px, 100%), 1fr))", gap: "var(--ds-space-3)" }}>
               {tokens.map((t) => (
                 <div key={t.name} style={{ display: "flex", alignItems: "flex-start", gap: "var(--ds-space-4)", padding: "var(--ds-space-3)", opacity: t.deprecated ? 0.55 : 1 }}>
                   <div style={{ width: 72, height: 72, flexShrink: 0, borderRadius: "var(--ds-radius-lg)", border: "1px solid var(--ds-color-border)", background: `var(${t.name})` }} />
@@ -138,7 +138,7 @@ export default function ColorsPage() {
               {property}
             </h3>
             <div className="demo-preview">
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))", gap: "var(--ds-space-3)" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(400px, 100%), 1fr))", gap: "var(--ds-space-3)" }}>
                 {list.map((u) => (
                   <div key={u.cls} style={{ display: "flex", alignItems: "flex-start", gap: "var(--ds-space-4)", padding: "var(--ds-space-3)", opacity: u.replacedBy ? 0.55 : 1 }}>
                     <div style={{ width: 72, height: 72, flexShrink: 0, borderRadius: "var(--ds-radius-lg)", border: "1px solid var(--ds-color-border)", background: `var(${u.token})` }} />

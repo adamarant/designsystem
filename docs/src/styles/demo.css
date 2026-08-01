@@ -8,6 +8,21 @@
 
 /* Demo site layout — NOT part of the design system */
 
+/* ── Breakpoints ──────────────────────────────────────────────────────────
+   Two, and they are the DS's own: md (768) and lg (1024). The docs used to
+   break at 720, 760, 820, 860 and 900 — five widths, each invented for the
+   one block it appeared under, none of them a device and none of them a
+   token. A reader resizing the window watched the page rearrange itself five
+   times in 180px.
+
+   The system already publishes the scale (--ds-breakpoint-* in
+   tokens/spacing.css). Media queries cannot read custom properties, so the
+   values are written out, and every one of them carries the token name in a
+   comment. Anything narrower than lg has no sidebar column, so it gets the
+   drawer; anything narrower than md has no room for a label column, so rows
+   go single-column. That is the whole responsive vocabulary of this site.
+   ────────────────────────────────────────────────────────────────────────── */
+
 .demo-layout {
   display: flex;
   min-height: 100dvh;
@@ -25,6 +40,113 @@
   height: 100dvh;
 }
 
+/* ── Mobile / tablet chrome ───────────────────────────────────────────────
+   The sidebar is 260px of a 375px viewport: at phone width it was not a
+   navigation column, it was the page, and the documentation sat off-screen
+   to the right of it. Below lg the same aside becomes an off-canvas drawer
+   and a sticky bar takes over as the chrome.
+
+   Closed state is `visibility: hidden`, not `inert` or `display: none`. It
+   takes the links out of the tab order in CSS, at the same width where the
+   drawer exists at all, so nothing about desktop focus order depends on React
+   state — and it still transitions, which display:none does not. The
+   visibility flip is delayed to the end of the slide on close and immediate
+   on open.
+
+   The bar and the scrim are display:none above lg, so the desktop layout is
+   byte-for-byte what it was. */
+
+.demo-bar,
+.demo-scrim {
+  display: none;
+}
+
+@media (max-width: 1023px) /* < --ds-breakpoint-lg */ {
+  .demo-layout {
+    display: block;
+  }
+
+  .demo-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--ds-space-2);
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--ds-z-sticky);
+    padding: var(--ds-space-2) var(--ds-space-3);
+    background-color: var(--ds-color-bg-subtle);
+    border-block-end: 1px solid var(--ds-color-border);
+  }
+
+  .demo-bar__brand {
+    font-family: var(--ds-font-display);
+    font-weight: var(--ds-weight-bold);
+    font-size: var(--ds-text-base);
+    color: var(--ds-color-text);
+    text-decoration: none;
+  }
+
+  .demo-bar__end {
+    margin-inline-start: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .demo-sidebar {
+    position: fixed;
+    inset-block: 0;
+    inset-inline-start: 0;
+    z-index: var(--ds-z-modal);
+    width: min(75vw, 20rem);
+    height: 100dvh;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition:
+      transform var(--ds-duration-normal) var(--ds-ease-default),
+      visibility 0s linear var(--ds-duration-normal);
+  }
+
+  .demo-sidebar--open {
+    transform: translateX(0);
+    visibility: visible;
+    transition:
+      transform var(--ds-duration-normal) var(--ds-ease-default),
+      visibility 0s;
+  }
+
+  /* The theme control lives in the bar at this width — one toggle on screen,
+     not one in the bar and a second inside the open drawer. */
+  .demo-sidebar__foot {
+    display: none;
+  }
+
+  .demo-scrim--open {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: var(--ds-z-overlay);
+    background-color: var(--ds-color-overlay);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-sidebar {
+    transition: none;
+  }
+}
+
+/* The rule under the brand belongs to the head row now, not to the brand
+   itself — the close button shares that row at drawer widths. */
+.demo-sidebar__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-space-2);
+  margin-block-end: var(--ds-space-4);
+  padding-block-end: var(--ds-space-4);
+  border-block-end: 1px solid var(--ds-color-border);
+}
+
 .demo-sidebar__brand {
   display: block;
   font-family: var(--ds-font-display);
@@ -32,9 +154,19 @@
   font-size: var(--ds-text-lg);
   color: var(--ds-color-text);
   text-decoration: none;
-  margin-block-end: var(--ds-space-4);
-  padding-block-end: var(--ds-space-4);
-  border-block-end: 1px solid var(--ds-color-border);
+}
+
+.demo-sidebar__close {
+  display: none;
+}
+
+/* Declared here rather than in the drawer block above, which sits earlier in
+   the file and would lose to the `display: none` on equal specificity. */
+@media (max-width: 1023px) /* < --ds-breakpoint-lg */ {
+  .demo-sidebar__close {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
 }
 
 .demo-sidebar__search {
@@ -85,6 +217,20 @@
   padding: var(--ds-space-6) var(--ds-space-8);
   max-width: 1220px;
   overflow-x: hidden;
+}
+
+/* 64px of side padding is a third of a phone's width. The gutter shrinks with
+   the viewport; the vertical rhythm is handled per-block below. */
+@media (max-width: 1023px) /* < --ds-breakpoint-lg */ {
+  .demo-main {
+    padding-inline: var(--ds-space-6);
+  }
+}
+
+@media (max-width: 767px) /* < --ds-breakpoint-md */ {
+  .demo-main {
+    padding: var(--ds-space-4);
+  }
 }
 
 .demo-topbar {
@@ -139,10 +285,22 @@
   grid-column: 5 / span 8;
 }
 
-@media (max-width: 820px) {
+/* The label column needs about 220px to hold a tracked uppercase label on one
+   line. Below md there is no width for it and the content beside it, so the
+   row stacks: label, then demo. Above md — including the whole tablet range,
+   where the sidebar has gone off-canvas and handed its 260px back — the
+   4 | 8 split holds, and it is the same split as on desktop. */
+@media (max-width: 767px) /* < --ds-breakpoint-md */ {
   .demo-section > *:not(.demo-section__title),
   .demo-section__title,
   .demo-section__description { grid-column: span 12; }
+
+  /* 128px of air between two rows of buttons is desktop rhythm read on a
+     phone as an empty screen between them. */
+  .demo-section {
+    gap: var(--ds-space-4);
+    padding-block: var(--ds-space-10);
+  }
 }
 
 .demo-preview {
@@ -159,6 +317,18 @@
 .demo-preview--col {
   flex-direction: column;
   align-items: stretch;
+}
+
+/* Deliberately no `overflow-x` here, however tempting: the previews for
+   dropdown, popover, tooltip and context-menu paint outside their frame, and
+   a scroll container would clip them. Wide demos are handled by the
+   components' own wrappers (.ds-table-wrapper scrolls, .demo-code pre
+   scrolls) and by flex-wrap, not by the frame. */
+@media (max-width: 767px) /* < --ds-breakpoint-md */ {
+  .demo-preview {
+    padding: var(--ds-space-4);
+    gap: var(--ds-space-2);
+  }
 }
 
 .demo-code {
@@ -223,9 +393,20 @@
   text-wrap: pretty;
 }
 
-@media (max-width: 820px) {
+@media (max-width: 767px) /* < --ds-breakpoint-md */ {
   .demo-page-header h1,
   .demo-page-header p { grid-column: span 12; }
+
+  .demo-page-header {
+    gap: var(--ds-space-4);
+    padding-block: var(--ds-space-8) var(--ds-space-10);
+  }
+
+  /* The lede sat 40px below the title because it was clearing a column that
+     no longer exists at this width. */
+  .demo-page-header p {
+    margin-block-start: var(--ds-space-6);
+  }
 }
 
 /* Sidebar footer — the theme control lives with the chrome, not floating in
@@ -374,9 +555,11 @@ body {
   gap: var(--ds-space-8);
 }
 
-@media (max-width: 820px) {
+@media (max-width: 767px) /* < --ds-breakpoint-md */ {
   .s-label, .s-content { grid-column: span 12; }
   .s-row + .s-row { margin-block-start: var(--ds-space-8); }
+  .s-section { padding-block: var(--ds-space-10); }
+  .s-split { gap: var(--ds-space-6); }
 }
 
 /* ── Two surfaces, and that is the whole layout ───────────────────────────
@@ -788,6 +971,17 @@ body {
   color: var(--ds-color-text);
 }
 
+/* 13rem is an alignment device: it keeps every token name in one column so
+   the samples beside them line up. On a phone there is no second column to
+   align to, and the floor was propping open the widest thing on the page —
+   the four nested boxes of the elevation ladder measured 384px inside a
+   343px viewport because the innermost label refused to go under 208. */
+@media (max-width: 767px) /* < --ds-breakpoint-md */ {
+  .demo-token-label {
+    min-width: 0;
+  }
+}
+
 /* Same label stacked above its sample instead of beside it. One column width
    for every token table, replacing the 140/160/180px mishmash. */
 .demo-token-label--center {
@@ -1052,9 +1246,14 @@ body {
    twice, and the DS's own foundations page dropped its rules for exactly
    this reason (95ea0df, "let proximity do the grouping"). Space groups; a
    line only divides. */
+/* Fluid, and the floors are set low enough that the fluid term is what
+   actually runs on a phone. They were space-6 and space-16, both of which
+   clamp flat below ~480px: the exemplar sat inside the docs' own 16px gutter
+   and then added 24 more, so a 375px screen gave the example site 295px to
+   work with. No breakpoint needed here — the vw term already knows. */
 .ex-sec {
-  padding-inline: clamp(var(--ds-space-6), 5vw, var(--ds-space-16));
-  padding-block: clamp(var(--ds-space-16), 10vw, calc(var(--ds-space-32) + var(--ds-space-8)));
+  padding-inline: clamp(var(--ds-space-4), 5vw, var(--ds-space-16));
+  padding-block: clamp(var(--ds-space-10), 10vw, calc(var(--ds-space-32) + var(--ds-space-8)));
 }
 
 .ex-wrap {
@@ -1158,7 +1357,7 @@ body {
 
 .ex-row__body > * + * { margin-block-start: var(--ds-space-4); }
 
-@media (max-width: 720px) {
+@media (max-width: 767px) /* < --ds-breakpoint-md */ {
   .ex-row { grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-4); }
 }
 
@@ -1316,11 +1515,6 @@ body {
   min-block-size: 40rem;
 }
 
-@media (max-width: 860px) {
-  .ex-shell { grid-template-columns: minmax(0, 1fr); }
-  .ex-shell__side { display: none; }
-}
-
 .ex-shell__side {
   display: flex;
   flex-direction: column;
@@ -1328,6 +1522,16 @@ body {
   padding: var(--ds-space-5);
   border-inline-end: 1px solid var(--ds-color-border);
   background-color: var(--ds-color-bg-subtle);
+}
+
+/* After .ex-shell__side, not before it: `display: none` and `display: flex`
+   have the same specificity, and the hide used to sit above the rule it was
+   meant to beat. The shell collapsed to one column on a phone and then
+   stacked its 14rem sidebar on top of the app it was framing — the first
+   screen of the product exemplar was somebody else's navigation. */
+@media (max-width: 767px) /* < --ds-breakpoint-md */ {
+  .ex-shell { grid-template-columns: minmax(0, 1fr); }
+  .ex-shell__side { display: none; }
 }
 
 .ex-shell__brand {

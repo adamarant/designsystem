@@ -62,7 +62,7 @@ export default function SpacingPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Border Radius</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--ds-space-4);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(140px, 100%), 1fr)); gap: var(--ds-space-4);">
             ${[
               ["radius-none", "0"],
               ["radius-sm", "6px"],
