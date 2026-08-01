@@ -44,6 +44,17 @@
 - Hover/active state fixes across all components
 
 ## Next (v1.0.0)
+- Icon set: finish the adoption. The 28 marks ship from `ds-react/src/icons.tsx`
+  (1 Aug 2026) but nothing is wired to them yet, so the old drawings are still
+  what renders. Outstanding, in order: re-export `CloseIcon` / `CheckIcon` /
+  `ArrowLeftIcon` at stroke 2 (they measure 3) and settle `MenuIcon` at two or
+  three lines; point Select, Combobox, ThemeToggle, SiteHeader and Pagination at
+  the set and retire their private copies; convert the marks still faked in CSS
+  (checkbox and input data-URIs with hardcoded `white` / `#a1a1aa`, the
+  accordion, collapsible and table border-arrows, `/` in breadcrumb, `★` in
+  star-rating, `☁` in drop-zone); give ds-admin a `@adamarant/ds-react` peer dep
+  so it can drop its six duplicates. Each step changes rendering in every
+  consumer, so each is its own confirmed change.
 - Figma token sync via Style Dictionary + DTCG
 - Visual regression testing (Playwright + screenshot comparison)
 - Documentation site (Astro/11ty)
