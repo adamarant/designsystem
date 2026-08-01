@@ -431,13 +431,20 @@
   border-block-end: 1px solid var(--ds-color-border);
 }
 
+/* The title and lede read the role tokens (h1 and copy), not their own
+   numbers: the header's modes reach the page chrome too, so switching to
+   product turns every docs title into the 28px sans h1 it documents. Only
+   the sidebar stays outside the switch, and that is structural. This also
+   retires the hand-set clamp and the hand-set bold that the DS forbids
+   consumers from writing on a heading. */
 .demo-page-header h1 {
   grid-column: 5 / span 8;
   margin: 0;
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: var(--ds-weight-bold);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-type-h1-size);
+  font-weight: var(--ds-type-h1-weight);
+  line-height: var(--ds-type-h1-leading);
+  letter-spacing: var(--ds-type-h1-tracking);
   color: var(--ds-color-text);
 }
 
@@ -445,9 +452,8 @@
   grid-column: 5 / span 8;
   margin: var(--ds-space-10) 0 0;
   max-width: 46ch;
-  font-size: var(--ds-text-base);
-  font-weight: var(--ds-weight-light);
-  line-height: var(--ds-leading-normal);
+  font-size: var(--ds-type-copy-size);
+  line-height: var(--ds-type-copy-leading);
   color: var(--ds-color-text);
   text-wrap: pretty;
 }
