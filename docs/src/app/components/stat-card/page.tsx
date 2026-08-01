@@ -26,7 +26,7 @@ export default function StatCardPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">With Icon</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-stat-card">
-  <div class="ds-stat-card__icon">&#128200;</div>
+  <div class="ds-stat-card__icon">📈</div>
   <div class="ds-stat-card__label">Active Users</div>
   <div class="ds-stat-card__value">1,234</div>
   <div class="ds-stat-card__detail">+5.2% this week</div>
@@ -34,7 +34,7 @@ export default function StatCardPage() {
         <details className="demo-code">
           <summary>View Code</summary>
           <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-stat-card&quot;&gt;
-  &lt;div class=&quot;ds-stat-card__icon&quot;&gt;&amp;#128200;&lt;/div&gt;
+  &lt;div class=&quot;ds-stat-card__icon&quot;&gt;📈&lt;/div&gt;
   &lt;div class=&quot;ds-stat-card__label&quot;&gt;Active Users&lt;/div&gt;
   &lt;div class=&quot;ds-stat-card__value&quot;&gt;1,234&lt;/div&gt;
   &lt;div class=&quot;ds-stat-card__detail&quot;&gt;+5.2% this week&lt;/div&gt;

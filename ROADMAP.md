@@ -57,10 +57,13 @@
   - `Pagination` has no Prev/Next/Ellipsis parts and `Chip` has no Remove part,
     so their marks still come from the consumer. Adding them is new API, not a
     rewire.
-  - The tag, chip, combobox and custom-select removes are 14-16px boxes, below
-    `--ds-icon-1` (16), so their marks are set at 12 — off the documented
-    scale. Those controls are also under the 24px WCAG 2.5.8 target the DS
-    claims to meet. Either the controls grow or the scale gains a step.
+  - Five examples still render a pictographic character because the closed set
+    has no mark for them: a gear and an envelope and a house in `bottom-nav`, a
+    chart in `stat-card` and `card`, a document in `empty-state`. All are slots
+    the consumer fills, so the fix is a decision about scope — either those
+    examples stop pretending to be real content, or the set grows, which is the
+    thing it is designed not to do. Flagged as a warning by `validate`, not an
+    error, for exactly that reason.
 - Figma token sync via Style Dictionary + DTCG
 - Visual regression testing (Playwright + screenshot comparison)
 - Documentation site (Astro/11ty)

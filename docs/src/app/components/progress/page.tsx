@@ -48,7 +48,7 @@ export default function ProgressPage() {
         <h2 className="demo-section__title">Step Indicator</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-steps">
   <div class="ds-step ds-step--completed">
-    <div class="ds-step__indicator">&#10003;</div>
+    <div class="ds-step__indicator"><svg data-icon="check" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.3209 4.24472C20.0142 4.69807 20.2088 5.62768 19.7555 6.32105L11.2555 19.321C10.9972 19.7161 10.5681 19.9665 10.0971 19.997C9.62613 20.0276 9.16825 19.8347 8.86111 19.4764L4.36111 14.2264C3.82198 13.5974 3.89482 12.6504 4.52381 12.1113C5.1528 11.5722 6.09975 11.645 6.63888 12.274L9.83825 16.0066L17.2445 4.6793C17.6979 3.98593 18.6275 3.79136 19.3209 4.24472Z" fill="currentColor" /></svg></div>
     <div class="ds-step__content">
       <span class="ds-step__title">Account</span>
     </div>
@@ -72,7 +72,7 @@ export default function ProgressPage() {
           <summary>View Code</summary>
           <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-steps&quot;&gt;
   &lt;div class=&quot;ds-step ds-step--completed&quot;&gt;
-    &lt;div class=&quot;ds-step__indicator&quot;&gt;&amp;#10003;&lt;/div&gt;
+    &lt;div class=&quot;ds-step__indicator&quot;&gt;&lt;svg data-icon=&quot;check&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M19.3209 4.24472C20.0142 4.69807 20.2088 5.62768 19.7555 6.32105L11.2555 19.321C10.9972 19.7161 10.5681 19.9665 10.0971 19.997C9.62613 20.0276 9.16825 19.8347 8.86111 19.4764L4.36111 14.2264C3.82198 13.5974 3.89482 12.6504 4.52381 12.1113C5.1528 11.5722 6.09975 11.645 6.63888 12.274L9.83825 16.0066L17.2445 4.6793C17.6979 3.98593 18.6275 3.79136 19.3209 4.24472Z&quot; fill=&quot;currentColor&quot; /&gt;&lt;/svg&gt;&lt;/div&gt;
     &lt;div class=&quot;ds-step__content&quot;&gt;
       &lt;span class=&quot;ds-step__title&quot;&gt;Account&lt;/span&gt;
     &lt;/div&gt;

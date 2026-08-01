@@ -627,8 +627,32 @@ function checkIconSync() {
 
   // Trailing (?![\w-]) matters: ds-admin__nav-item and __nav-label are not mark
   // slots, ds-datepicker__nav is.
-  const MARK_SLOTS = /__(close|remove|tag-remove|clear|prev|next|nav|step|ellipsis|star|icon)(?![\w-])/;
+  // Element suffixes where a mark belongs, plus the icon-button blocks whose
+  // whole content IS the mark — .ds-copy-btn has no __icon-suffixed wrapper,
+  // which is exactly how a clipboard emoji sat in it unnoticed.
+  const MARK_SLOTS =
+    /__(close|remove|tag-remove|clear|prev|next|nav|step|ellipsis|star|icon)(?![\w-])|\bds-(copy-btn|icon-btn)(?![\w-])/;
   const ELEMENT = /<(?:button|span|div|a)\b[^>]*class="([^"]*)"[^>]*>([\s\S]*?)<\/(?:button|span|div|a)>/g;
+
+  // Numeric entities are the hole the first version of this check had:
+  // &#128203; is a clipboard emoji and &#10003; a check mark, and neither
+  // looks like a glyph until it is decoded.
+  const decode = (s) =>
+    s.replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+     .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)));
+
+  // Pictographic characters sitting in example markup: emoji, dingbats,
+  // arrows. Emoji in particular depend on the device font and are banned in UI
+  // across this codebase. Ranges are built from code points so this file does
+  // not itself trip the no-emoji hook.
+  const RANGES = [[0x2190, 0x2bff], [0x1f000, 0x1faff], [0xfe0f, 0xfe0f]];
+  const isPictographic = (s) => {
+    for (const cp of s) {
+      const c = cp.codePointAt(0);
+      if (RANGES.some(([lo, hi]) => c >= lo && c <= hi)) return true;
+    }
+    return false;
+  };
 
   const walk = (node, componentName) => {
     if (Array.isArray(node)) return node.forEach((n) => walk(n, componentName));
@@ -638,12 +662,26 @@ function checkIconSync() {
     if (typeof node !== 'string' || !node.includes('class=')) return;
     for (const m of node.matchAll(ELEMENT)) {
       const [, className, inner] = m;
-      if (!MARK_SLOTS.test(className)) continue;
-      const content = inner.trim();
+      const content = decode(inner).trim();
       if (!content || content.includes('<svg') || content.includes('<img')) continue;
-      report(ERROR, 'sync', 'icon-character-glyph',
-        `${componentName}: "${className.trim()}" contains "${content.slice(0, 12)}" where a mark belongs — use an icon from icons.json`,
-        'components.json');
+
+      // Keyboard symbols in a shortcut hint are typography, not marks: the
+      // return arrow and the delete key are what those keys are called.
+      if (/__(item-shortcut|shortcut)(?![\w-])|\bds-kbd(?![\w-])/.test(className)) continue;
+
+      if (MARK_SLOTS.test(className)) {
+        report(ERROR, 'sync', 'icon-character-glyph',
+          `${componentName}: "${className.trim()}" contains "${content.slice(0, 12)}" where a mark belongs — use an icon from icons.json`,
+          'components.json');
+      } else if (isPictographic(content)) {
+        // A warning, not an error: these sit in slots the consumer fills, and
+        // the closed set has no gear, chart, home or document to swap in. The
+        // example still should not ship an emoji — but the fix is a decision
+        // about the set's scope, not a find-and-replace.
+        report(WARNING, 'sync', 'icon-emoji-in-example',
+          `${componentName}: "${className.trim()}" renders a pictographic character in a consumer-filled slot — depends on the device font, and the set has no mark for it`,
+          'components.json');
+      }
     }
   };
 

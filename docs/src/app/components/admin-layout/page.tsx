@@ -13,7 +13,7 @@ export default function AdminLayoutPage() {
     <div class="ds-admin__sidebar-header">Logo</div>
     <nav class="ds-admin__nav">
       <a class="ds-admin__nav-item ds-admin__nav-item--active">
-        <span class="ds-admin__nav-icon">&#9776;</span>
+        <span class="ds-admin__nav-icon"><svg data-icon="menu" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7H21M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
         <span class="ds-admin__nav-label">Dashboard</span>
       </a>
     </nav>
@@ -32,7 +32,7 @@ export default function AdminLayoutPage() {
     &lt;div class=&quot;ds-admin__sidebar-header&quot;&gt;Logo&lt;/div&gt;
     &lt;nav class=&quot;ds-admin__nav&quot;&gt;
       &lt;a class=&quot;ds-admin__nav-item ds-admin__nav-item--active&quot;&gt;
-        &lt;span class=&quot;ds-admin__nav-icon&quot;&gt;&amp;#9776;&lt;/span&gt;
+        &lt;span class=&quot;ds-admin__nav-icon&quot;&gt;&lt;svg data-icon=&quot;menu&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M3 7H21M3 17H21&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; /&gt;&lt;/svg&gt;&lt;/span&gt;
         &lt;span class=&quot;ds-admin__nav-label&quot;&gt;Dashboard&lt;/span&gt;
       &lt;/a&gt;
     &lt;/nav&gt;

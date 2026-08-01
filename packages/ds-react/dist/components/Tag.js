@@ -24,7 +24,7 @@ const sizeMap = {
 /*  Sub-components                                                     */
 /* ================================================================== */
 const TagRemove = forwardRef(function TagRemove({ className, children, ...rest }, ref) {
-    return (_jsx("button", { ref: ref, "aria-label": "Remove", className: cn("ds-tag__remove", className), ...rest, children: children ?? _jsx(IconClose, { size: 12 }) }));
+    return (_jsx("button", { ref: ref, "aria-label": "Remove", className: cn("ds-tag__remove", className), ...rest, children: children ?? _jsx(IconClose, { size: 16 }) }));
 });
 /* ================================================================== */
 /*  Tag (root + dot notation)                                          */

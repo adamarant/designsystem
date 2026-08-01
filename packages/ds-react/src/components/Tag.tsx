@@ -69,7 +69,7 @@ const TagRemove = forwardRef<HTMLButtonElement, TagRemoveProps>(
         className={cn("ds-tag__remove", className)}
         {...rest}
       >
-        {children ?? <IconClose size={12} />}
+        {children ?? <IconClose size={16} />}
       </button>
     );
   },

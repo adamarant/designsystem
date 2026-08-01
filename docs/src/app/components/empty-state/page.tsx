@@ -9,7 +9,7 @@ export default function EmptyStatePage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Basic Empty State</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-empty-state">
-  <div class="ds-empty-state__icon">&#128269;</div>
+  <div class="ds-empty-state__icon"><svg data-icon="search" width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 18C14.866 18 18 14.866 18 11C18 7.13401 14.866 4 11 4C7.13401 4 4 7.13401 4 11C4 14.866 7.13401 18 11 18Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" /><path d="M20 20L16.05 16.05" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg></div>
   <div class="ds-empty-state__title">No results found</div>
   <div class="ds-empty-state__description">Try adjusting your search or filters to find what you're looking for.</div>
   <div class="ds-empty-state__actions">
@@ -20,7 +20,7 @@ export default function EmptyStatePage() {
         <details className="demo-code">
           <summary>View Code</summary>
           <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-empty-state&quot;&gt;
-  &lt;div class=&quot;ds-empty-state__icon&quot;&gt;&amp;#128269;&lt;/div&gt;
+  &lt;div class=&quot;ds-empty-state__icon&quot;&gt;&lt;svg data-icon=&quot;search&quot; width=&quot;32&quot; height=&quot;32&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M11 18C14.866 18 18 14.866 18 11C18 7.13401 14.866 4 11 4C7.13401 4 4 7.13401 4 11C4 14.866 7.13401 18 11 18Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; /&gt;&lt;path d=&quot;M20 20L16.05 16.05&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; /&gt;&lt;/svg&gt;&lt;/div&gt;
   &lt;div class=&quot;ds-empty-state__title&quot;&gt;No results found&lt;/div&gt;
   &lt;div class=&quot;ds-empty-state__description&quot;&gt;Try adjusting your search or filters to find what you're looking for.&lt;/div&gt;
   &lt;div class=&quot;ds-empty-state__actions&quot;&gt;
@@ -34,7 +34,7 @@ export default function EmptyStatePage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Card Empty State</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-empty-state ds-empty-state--card">
-  <div class="ds-empty-state__icon">&#128196;</div>
+  <div class="ds-empty-state__icon">📄</div>
   <div class="ds-empty-state__title">No documents yet</div>
   <div class="ds-empty-state__description">Upload your first document to get started.</div>
   <div class="ds-empty-state__actions">
@@ -44,7 +44,7 @@ export default function EmptyStatePage() {
         <details className="demo-code">
           <summary>View Code</summary>
           <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-empty-state ds-empty-state--card&quot;&gt;
-  &lt;div class=&quot;ds-empty-state__icon&quot;&gt;&amp;#128196;&lt;/div&gt;
+  &lt;div class=&quot;ds-empty-state__icon&quot;&gt;📄&lt;/div&gt;
   &lt;div class=&quot;ds-empty-state__title&quot;&gt;No documents yet&lt;/div&gt;
   &lt;div class=&quot;ds-empty-state__description&quot;&gt;Upload your first document to get started.&lt;/div&gt;
   &lt;div class=&quot;ds-empty-state__actions&quot;&gt;

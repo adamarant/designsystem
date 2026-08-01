@@ -9,7 +9,7 @@ export default function ResultPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Success</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-result ds-result--success">
-  <div class="ds-result__icon">&#10003;</div>
+  <div class="ds-result__icon"><svg data-icon="success" width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><path d="M8 12.875L10.625 15.5L15 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
   <h2 class="ds-result__title">Payment Successful</h2>
   <p class="ds-result__description">Your order has been confirmed and will be shipped shortly.</p>
   <div class="ds-result__actions">
@@ -20,7 +20,7 @@ export default function ResultPage() {
         <details className="demo-code">
           <summary>View Code</summary>
           <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-result ds-result--success&quot;&gt;
-  &lt;div class=&quot;ds-result__icon&quot;&gt;&amp;#10003;&lt;/div&gt;
+  &lt;div class=&quot;ds-result__icon&quot;&gt;&lt;svg data-icon=&quot;success&quot; width=&quot;32&quot; height=&quot;32&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; /&gt;&lt;path d=&quot;M8 12.875L10.625 15.5L15 9&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; /&gt;&lt;/svg&gt;&lt;/div&gt;
   &lt;h2 class=&quot;ds-result__title&quot;&gt;Payment Successful&lt;/h2&gt;
   &lt;p class=&quot;ds-result__description&quot;&gt;Your order has been confirmed and will be shipped shortly.&lt;/p&gt;
   &lt;div class=&quot;ds-result__actions&quot;&gt;
@@ -34,7 +34,7 @@ export default function ResultPage() {
       <section className="demo-section">
         <h2 className="demo-section__title">Error</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-result ds-result--error">
-  <div class="ds-result__icon">&#10007;</div>
+  <div class="ds-result__icon"><svg data-icon="error" width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" /><path d="M12 8V12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" /><circle cx="12" cy="15.7996" r="1.2" fill="currentColor" /></svg></div>
   <h2 class="ds-result__title">Something went wrong</h2>
   <p class="ds-result__description">We couldn't process your request. Please try again later.</p>
   <div class="ds-result__actions">
@@ -44,7 +44,7 @@ export default function ResultPage() {
         <details className="demo-code">
           <summary>View Code</summary>
           <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-result ds-result--error&quot;&gt;
-  &lt;div class=&quot;ds-result__icon&quot;&gt;&amp;#10007;&lt;/div&gt;
+  &lt;div class=&quot;ds-result__icon&quot;&gt;&lt;svg data-icon=&quot;error&quot; width=&quot;32&quot; height=&quot;32&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M12 8V12.5&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; /&gt;&lt;circle cx=&quot;12&quot; cy=&quot;15.7996&quot; r=&quot;1.2&quot; fill=&quot;currentColor&quot; /&gt;&lt;/svg&gt;&lt;/div&gt;
   &lt;h2 class=&quot;ds-result__title&quot;&gt;Something went wrong&lt;/h2&gt;
   &lt;p class=&quot;ds-result__description&quot;&gt;We couldn't process your request. Please try again later.&lt;/p&gt;
   &lt;div class=&quot;ds-result__actions&quot;&gt;

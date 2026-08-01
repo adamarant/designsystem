@@ -10,7 +10,7 @@ export default function CommandPage() {
         <h2 className="demo-section__title">Command Palette</h2>
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div style="background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);overflow:hidden;max-width:32rem;box-shadow:var(--ds-shadow-lg);">
   <div class="ds-command__input-wrapper">
-    <span class="ds-command__input-icon">&#128269;</span>
+    <span class="ds-command__input-icon"><svg data-icon="search" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 18C14.866 18 18 14.866 18 11C18 7.13401 14.866 4 11 4C7.13401 4 4 7.13401 4 11C4 14.866 7.13401 18 11 18Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" /><path d="M20 20L16.05 16.05" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg></span>
     <input class="ds-command__input" placeholder="Type a command or search..." />
   </div>
   <div class="ds-command__list">
@@ -35,7 +35,7 @@ export default function CommandPage() {
           <summary>View Code</summary>
           <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div style=&quot;background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);overflow:hidden;max-width:32rem;box-shadow:var(--ds-shadow-lg);&quot;&gt;
   &lt;div class=&quot;ds-command__input-wrapper&quot;&gt;
-    &lt;span class=&quot;ds-command__input-icon&quot;&gt;&amp;#128269;&lt;/span&gt;
+    &lt;span class=&quot;ds-command__input-icon&quot;&gt;&lt;svg data-icon=&quot;search&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M11 18C14.866 18 18 14.866 18 11C18 7.13401 14.866 4 11 4C7.13401 4 4 7.13401 4 11C4 14.866 7.13401 18 11 18Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; /&gt;&lt;path d=&quot;M20 20L16.05 16.05&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; /&gt;&lt;/svg&gt;&lt;/span&gt;
     &lt;input class=&quot;ds-command__input&quot; placeholder=&quot;Type a command or search...&quot; /&gt;
   &lt;/div&gt;
   &lt;div class=&quot;ds-command__list&quot;&gt;

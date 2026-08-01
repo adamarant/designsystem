@@ -127,13 +127,17 @@ function buildTsx() {
    size attribute stays whatever the example set, since a mark in a 32px control
    is not the same size as one in a 48px control. */
 
-const SVG_RE = /<svg\b[^>]*\bdata-icon="([a-z-]+)"[^>]*>[\s\S]*?<\/svg>/g;
+const SVG_RE = /<svg\b[^>]*\bdata-icon=\\?"([a-z-]+)\\?"[^>]*>[\s\S]*?<\/svg>/g;
 
-function renderSvg(slug, size) {
+function renderSvg(slug, size, className) {
   const icon = icons[slug];
   if (!icon) throw new Error(`components.json references unknown icon "${slug}"`);
+  // A class survives regeneration: several components style the mark itself
+  // (.ds-copy-btn__icon-check is positioned and faded by the copied state), so
+  // the hook has to stay on the element the CSS targets.
+  const cls = className ? ` class="${className}"` : "";
   return (
-    `<svg data-icon="${slug}" width="${size}" height="${size}" ` +
+    `<svg data-icon="${slug}"${cls} width="${size}" height="${size}" ` +
     `viewBox="0 0 24 24" fill="none" aria-hidden="true">${icon.html}</svg>`
   );
 }
@@ -141,9 +145,10 @@ function renderSvg(slug, size) {
 function refreshManifest(raw) {
   return raw.replace(SVG_RE, (match, slug) => {
     const size = (match.match(/\bwidth=\\?"(\d+)\\?"/) || [, "16"])[1];
+    const cls = (match.match(/\bclass=\\?"([^"\\]+)\\?"/) || [, ""])[1];
     // components.json stores HTML inside JSON strings, so quotes arrive escaped
     const escaped = match.includes('\\"');
-    const fresh = renderSvg(slug, size);
+    const fresh = renderSvg(slug, size, cls);
     return escaped ? fresh.replace(/"/g, '\\"') : fresh;
   });
 }
