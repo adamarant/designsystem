@@ -31,11 +31,10 @@ export default function DropdownPage() {
       <div className="demo-page-header">
         <h1>Dropdown</h1>
         <p>
-          Menu di AZIONI (New, Save, Delete…) ancorato a un trigger — non è
-          un controllo di selezione: per scegliere un valore in un form usa
-          Select, per l&apos;autocomplete usa Combobox. Il trigger non ha
-          chrome proprio: vestilo con le classi di Button e aggiungi il
-          caret, come qui.
+          A menu of ACTIONS (New, Save, Delete…) anchored to a trigger — not a
+          selection control: to pick a value in a form use Select, for
+          autocomplete use Combobox. The trigger carries no chrome of its own:
+          dress it with the Button classes and add the caret, as here.
         </p>
       </div>
 

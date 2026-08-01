@@ -138,8 +138,8 @@ export const ContactsBlock = defineBlock({
 
               {social.length ? (
                 <div className="ds-flex ds-flex-col ds-gap-2">
-                  {/* Le icone sono glifi pieni senza cornice: a gap 1 si toccano
-                      e leggono come un unico oggetto. */}
+                  {/* The icons are solid glyphs with no frame: at gap 1 they
+                      touch and read as a single object. */}
                   <div className="ds-flex ds-gap-3">
                     {social.map((s, i) => {
                       const rete = s.rete as SocialNetwork

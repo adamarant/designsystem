@@ -23,19 +23,19 @@ export default function SelectPage() {
       <div className="demo-page-header">
         <h1>Select</h1>
         <p>
-          UN componente per scegliere un valore, due rese: col prop `options`
-          il pannello stilizzato è il DEFAULT (ricerca auto oltre 5 voci);
-          anche l&apos;uso a children `&lt;option&gt;` riceve il pannello (le opzioni
-          vengono estratte, il vecchio `onChange(e.target.value)` continua a
-          funzionare); il menu nativo del sistema SOLO col prop `native`.
-          `CustomSelect` è un alias deprecato di `&lt;Select panel&gt;`:
-          stessa API, verrà rimosso alla prossima major. Per un menu di
-          azioni usa Dropdown; per l&apos;autocomplete usa Combobox.
+          ONE component for picking a value, two renderings: with the `options`
+          prop the styled panel is the DEFAULT (search appears automatically past
+          5 entries); the `&lt;option&gt;` children form gets the panel too (the
+          options are extracted, and the old `onChange(e.target.value)` keeps
+          working); the native system menu ONLY with the `native` prop.
+          `CustomSelect` is a deprecated alias for `&lt;Select panel&gt;`: same API,
+          removed in the next major. For a menu of actions use Dropdown; for
+          autocomplete use Combobox.
         </p>
       </div>
 
       <DemoSection
-        title="Nativo (opt-in via prop) — menu del browser"
+        title="Native (opt-in via prop) — the browser's own menu"
         code={`<Select native>\n  <option>Choose…</option>\n  <option>Apartamento</option>\n</Select>`}
       >
         <Select native>
@@ -54,7 +54,7 @@ export default function SelectPage() {
       </DemoSection>
 
       <DemoSection
-        title="Pannello stilizzato (l'ex CustomSelect)"
+        title="Styled panel (the former CustomSelect)"
         code={`<Select\n  panel\n  options={OPTIONS}\n  value={value}\n  onValueChange={setValue}\n  placeholder="Tipo de propiedad"\n/>`}
       >
         <Select
@@ -67,7 +67,7 @@ export default function SelectPage() {
       </DemoSection>
 
       <DemoSection
-        title="Pannello con ricerca (auto con più di 5 opzioni)"
+        title="Panel with search (automatic past 5 options)"
         code={`<Select\n  panel\n  searchable\n  options={OPTIONS}\n  value={value}\n  onValueChange={setValue}\n  searchPlaceholder="Buscar…"\n/>`}
       >
         <Select

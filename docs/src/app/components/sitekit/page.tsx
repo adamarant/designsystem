@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { label: "Home", href: "#home" },
   { label: "Work", href: "#work" },
   {
-    label: "Servizi",
+    label: "Services",
     children: [
       { label: "Web platform", href: "#web" },
       { label: "Brand systems", href: "#brand" },
@@ -57,18 +57,18 @@ export default function SiteKitPage() {
       <div className="demo-page-header">
         <h1>SiteKit</h1>
         <p>
-          Il telaio di sito scritto una volta: SiteHeader su ds-nav (gruppi a
-          dropdown sul desktop, sezioni titolate nel mobile), SiteFooter
-          canonico a tre zone (newsletter opzionale, brand + colonne di link,
-          riga credits), LangSwitcher sui tier di size. Header qui in variante
-          static; il default è la barra fissa glass. Sotto 768px provi il
-          pannello mobile.
+          The site frame, written once: SiteHeader on ds-nav (dropdown groups on
+          desktop, titled sections on mobile), the canonical three-zone
+          SiteFooter (optional newsletter, brand + link columns, credits row),
+          LangSwitcher on the size tiers. The header here is the static variant;
+          the default is the fixed glass bar. Below 768px you get the mobile
+          panel.
         </p>
       </div>
 
       <DemoSection
-        title="SiteHeader — con gruppo a dropdown (desktop) e sezioni (mobile)"
-        code={`<SiteHeader\n  brand="Adamarant"\n  items={[\n    { label: "Home", href: "/" },\n    { label: "Servizi", children: [\n      { label: "Web platform", href: "/servizi/web" },\n    ]},\n  ]}\n  activeHref="/work"\n  LinkComponent={Link}\n  actions={<><LangSwitcher … /><Button size="sm" pill>Contact</Button></>}\n/>`}
+        title="SiteHeader — with a dropdown group (desktop) and sections (mobile)"
+        code={`<SiteHeader\n  brand="Adamarant"\n  items={[\n    { label: "Home", href: "/" },\n    { label: "Services", children: [\n      { label: "Web platform", href: "/services/web" },\n    ]},\n  ]}\n  activeHref="/work"\n  LinkComponent={Link}\n  actions={<><LangSwitcher … /><Button size="sm" pill>Contact</Button></>}\n/>`}
       >
         <div className="ds-w-full">
           <SiteHeader
@@ -100,7 +100,7 @@ export default function SiteKitPage() {
       </DemoSection>
 
       <DemoSection
-        title="SiteFooter — completo (data-driven: le tre zone)"
+        title="SiteFooter — full (data-driven: all three zones)"
         code={`<SiteFooter\n  brand={<Logo/>}\n  tagline="Exclusive homes on the coast."\n  social={<>…icon links…</>}\n  columns={[{ title: "Explore", links: [{ label, href }] }, …]}\n  newsletter={{\n    title: "The newsletter",\n    description: "One email when there's something good.",\n    onSubmit: async (email) => subscribe(email),\n  }}\n  copyright="© 2026 ESYS VIP"\n  legal={[{ label: "Privacy", href: "/privacy" }, …]}\n  LinkComponent={Link}\n/>`}
       >
         <div className="ds-w-full">
@@ -130,7 +130,7 @@ export default function SiteKitPage() {
       </DemoSection>
 
       <DemoSection
-        title="SiteFooter — minimo (solo colonne + credits, niente newsletter)"
+        title="SiteFooter — minimal (columns + credits only, no newsletter)"
         code={`<SiteFooter\n  brand="Adamarant"\n  columns={COLUMNS}\n  copyright="© 2026 Adamarant"\n  legal={[{ label: "Privacy", href: "/privacy" }]}\n/>`}
       >
         <div className="ds-w-full">
@@ -144,7 +144,7 @@ export default function SiteKitPage() {
       </DemoSection>
 
       <DemoSection
-        title="LangSwitcher — sui tier di size del DS"
+        title="LangSwitcher — on the DS size tiers"
         code={`<LangSwitcher current="it" size="sm" preferHreflang items={[\n  { code: "it", label: "Italiano", icon: <Flag/>, href: "/it/chi-siamo" },\n  { code: "en", label: "English", href: "/en/about" },\n]} />`}
       >
         <div className="ds-flex ds-items-center ds-gap-3">

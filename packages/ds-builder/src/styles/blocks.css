@@ -1,24 +1,24 @@
 /*
- * @adamarant/ds-builder — stili dei blocchi condivisi.
- * Namespaced `dsb-` (mai `ds-`) così restano fuori dalla superficie di classi
- * del design system. Colori e spazi vengono dai token DS.
+ * @adamarant/ds-builder — shared block styles.
+ * Namespaced `dsb-` (never `ds-`) so they stay outside the design system's
+ * class surface. Colours and spacing come from the DS tokens.
  *
- * Da importare nel consumer accanto al design system:
+ * Import in the consumer alongside the design system:
  *   @import "@adamarant/ds-builder/styles/blocks";
  *
- * Serve solo ai blocchi che non sono esprimibili con le sole utility. Oggi:
- * il marquee, che ha bisogno di overflow, di un'animazione continua e di un
- * secondo binario per non lasciare buchi.
+ * Only the blocks that utilities alone can't express need this. Today that
+ * means the marquee, which needs overflow, a continuous animation and a second
+ * track so it never leaves a gap.
  */
 
-/* --- Marquee: una riga di parole che scorre senza fine --- */
+/* --- Marquee: a row of words scrolling without end --- */
 
 .dsb-marquee {
   display: flex;
   overflow: hidden;
   user-select: none;
-  /* Sfuma ai bordi invece di tagliare di netto: una parola tranciata a metà
-     sul bordo dello schermo legge come un errore di impaginazione. */
+  /* Fade at the edges instead of a hard cut: a word sliced in half at the
+     edge of the screen reads as a layout error. */
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
@@ -27,15 +27,16 @@
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  /* Distanza generosa: senza separatore le parole devono staccarsi da sole. */
+  /* Generous distance: with no separator, the words have to stand apart on
+     their own. */
   gap: var(--ds-space-12);
   padding-inline-end: var(--ds-space-12);
   min-inline-size: 100%;
   animation: dsb-marquee-scroll 26s linear infinite;
 }
 
-/* Due binari identici affiancati: quando il primo è uscito di scena, il
-   secondo è esattamente al suo posto e il salto non si vede. */
+/* Two identical tracks side by side: by the time the first has left the
+   stage, the second is exactly in its place and the jump is invisible. */
 @keyframes dsb-marquee-scroll {
   to {
     transform: translateX(-100%);

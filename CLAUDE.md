@@ -2,47 +2,47 @@
 
 ## DS Health → [/Projects/infra/DS_HEALTH.md](/Projects/infra/DS_HEALTH.md)
 
-Metriche, azioni aperte, CONTROLLED MODE rules generali, regole DS per tutti i progetti: centralizzate in DS_HEALTH.md.
+Metrics, open actions, general CONTROLLED MODE rules, DS rules for every project: all centralised in DS_HEALTH.md.
 
-## CONTROLLED MODE — Regole Specifiche per il DS Source
+## CONTROLLED MODE — Rules Specific to the DS Source
 
-Il DS e in fase di consolidamento. Queste regole si aggiungono a quelle generali in DS_HEALTH.md.
+The DS is in a consolidation phase. These rules are additional to the general ones in DS_HEALTH.md.
 
-### Regola Fondamentale — Backward Compatibility
+### The Fundamental Rule — Backward Compatibility
 
-**Le classi DS pubblicate NON si cancellano e NON si rinominano. Mai.**
+**Published DS classes are NEVER deleted and NEVER renamed. Ever.**
 
-Tutti i progetti consumer dipendono da queste classi. Rinominare o rimuovere una classe rompe silenziosamente le UI senza errori in console — il bug peggiore possibile.
+Every consumer project depends on these classes. Renaming or removing one breaks UIs silently, with no console error — the worst kind of bug there is.
 
-Se una classe deve cambiare:
-1. **Depreca** — aggiungi commento `/* @deprecated — use .ds-new-name instead */` e mantieni la vecchia classe funzionante
-2. **Aggiungi la nuova** — la nuova classe coesiste con la vecchia
-3. **Comunica** — documenta in DS_HEALTH.md sezione "Deprecazioni" con deadline di rimozione
-4. **Aspetta** — i consumer hanno almeno 2 versioni minor per migrare
-5. **Solo dopo** — rimuovi la vecchia classe in una major version
+If a class has to change:
+1. **Deprecate** — add a `/* @deprecated — use .ds-new-name instead */` comment and keep the old class working
+2. **Add the new one** — the new class coexists with the old one
+3. **Announce** — document it in the DS_HEALTH.md "Deprecations" section with a removal deadline
+4. **Wait** — consumers get at least 2 minor versions to migrate
+5. **Only then** — remove the old class, in a major version
 
-Stesso principio per i token (`--ds-*`): non rinominare, non rimuovere. Aggiungi il nuovo, depreca il vecchio.
+Same principle for tokens (`--ds-*`): never rename, never remove. Add the new one, deprecate the old one.
 
-### BLOCCATO — Non fare MAI senza approvazione esplicita dell'utente:
-- Aggiungere nuovi componenti CSS
-- Modificare API di componenti esistenti (classi, modifier, varianti)
-- Cambiare valori token in `src/tokens/`
-- Aggiungere breaking changes
-- Cancellare o rinominare classi/token esistenti
-- Pubblicare nuove major/minor version (solo patch per bugfix)
+### BLOCKED — NEVER do these without the user's explicit approval:
+- Adding new CSS components
+- Changing the API of existing components (classes, modifiers, variants)
+- Changing token values in `src/tokens/`
+- Introducing breaking changes
+- Deleting or renaming existing classes/tokens
+- Publishing new major/minor versions (patch only, for bugfixes)
 
-### CONSENTITO senza chiedere:
-- Bug fix su componenti esistenti (es. phantom tokens, hardcoded values)
-- Migliorare documentazione (ARIA docs, examples, header comments)
-- Aggiungere check al `scripts/validate.js`
-- Fixare violazioni trovate dal validate (`npm run validate`)
-- Migliorare build/tooling/codemod
-- Rimuovere codice morto o ridondante (ma MAI classi pubbliche — vedi regola sopra)
+### ALLOWED without asking:
+- Bug fixes on existing components (e.g. phantom tokens, hardcoded values)
+- Improving documentation (ARIA docs, examples, header comments)
+- Adding checks to `scripts/validate.js`
+- Fixing violations reported by the validator (`npm run validate`)
+- Improving build/tooling/codemods
+- Removing dead or redundant code (but NEVER public classes — see the rule above)
 
-### Se pensi di dover aggiungere qualcosa:
-1. STOP — non farlo
-2. Chiedi all'utente: "Serve davvero un nuovo componente/modifier/token, o posso comporre con quelli esistenti?"
-3. Solo l'utente puo sbloccare CONTROLLED MODE per una modifica specifica
+### If you think you need to add something:
+1. STOP — don't
+2. Ask the user: "Do we genuinely need a new component/modifier/token, or can I compose it from what exists?"
+3. Only the user can unlock CONTROLLED MODE for a specific change
 
 ---
 
@@ -126,15 +126,15 @@ Full rationale in the commit that introduced the rule; `ECOSYSTEM_ROADMAP.md` wa
 
 ### 3. Token Reference — Read the Source
 
-**Non mantenere liste di token in questo file.** I token cambiano — la lista qui diventa stale.
+**Do not keep token lists in this file.** Tokens change — a list here goes stale.
 
-Per sapere quali token esistono, leggi direttamente:
-- `src/tokens/colors.css` per i colori
-- `src/tokens/typography.css` per font size, weight, leading, tracking
-- `src/tokens/spacing.css` per spacing, radius, z-index, container
-- `src/tokens/shadows.css` per shadow, duration, easing
+To find out which tokens exist, read the source directly:
+- `src/tokens/colors.css` for colours
+- `src/tokens/typography.css` for font size, weight, leading, tracking
+- `src/tokens/spacing.css` for spacing, radius, z-index, container
+- `src/tokens/shadows.css` for shadow, duration, easing
 
-**Component Heights (size tiers):** Le 4 tier sono stabili:
+**Component Heights (size tiers):** the 4 tiers are stable:
 - `--ds-size-1`: 1.5rem (24px) — tier xs
 - `--ds-size-2`: 2rem (32px) — tier sm
 - `--ds-size-3`: 2.5rem (40px) — tier md (default)
@@ -183,7 +183,7 @@ All new components MUST use logical properties:
 
 ## Architecture
 
-**Non elencare i componenti qui.** Per la lista corrente, leggi `src/components/index.css` (importa tutto) o `components.json` (metadati).
+**Do not list the components here.** For the current list, read `src/components/index.css` (it imports everything) or `components.json` (metadata).
 
 ```
 src/
@@ -292,11 +292,11 @@ Compiled:       dist/designsystem.css
 
 ### Living Registry
 
-- `ds.manifest.json` nella root del progetto traccia versione DS, override strutturali, metriche (NON più la narrativa di sessione)
-- A chiusura sessione: `node ~/Projects/infra/scripts/generate-manifest.js` rigenera conteggi e `last_session` automaticamente
-- **Note**: il campo `last_session_summary` è stato rimosso dallo schema (v2, 12 Apr 2026, sottrazione A). La narrativa vive in `git log` + `DS_HEALTH.md` quando emerge una lezione cross-project
-- Per stato ecosistema: `node ~/Projects/ds-ops/scripts/ds-registry.js`
-- Il manifest va committato in git
+- `ds.manifest.json` in the project root tracks the DS version, structural overrides and metrics (no longer the session narrative)
+- At session close: `node ~/Projects/infra/scripts/generate-manifest.js` regenerates the counts and `last_session` automatically
+- **Note**: the `last_session_summary` field was removed from the schema (v2, 12 Apr 2026, subtraction A). The narrative lives in `git log` + `DS_HEALTH.md` when a cross-project lesson emerges
+- For ecosystem status: `node ~/Projects/ds-ops/scripts/ds-registry.js`
+- The manifest is committed to git
 
 ---
 
@@ -304,9 +304,9 @@ Compiled:       dist/designsystem.css
 
 For DS-wide checklist (CONTROLLED MODE, compliance, build, git) → [DS_HEALTH.md](/Projects/infra/DS_HEALTH.md)
 
-**Questa checklist include commit, push, e publish. Eseguire tutti gli step in ordine.**
+**This checklist covers commit, push and publish. Run every step, in order.**
 
-### 1. Verifica Codice
+### 1. Code Check
 - [ ] **No hardcoded values** — grep touched files for hex colors, px spacing, raw font names
 - [ ] **BEM naming correct** — `ds-component__element--modifier`
 - [ ] **File header present** — every new/modified component file has the header comment
@@ -315,20 +315,20 @@ For DS-wide checklist (CONTROLLED MODE, compliance, build, git) → [DS_HEALTH.m
 - [ ] **`npm run validate`** — zero errors
 
 ### 2. Build
-- [ ] `node scripts/build.js` — zero errori, dist/ aggiornato
-- [ ] **Light + dark work** — verificare componenti toccati in entrambi i temi
+- [ ] `node scripts/build.js` — zero errors, dist/ up to date
+- [ ] **Light + dark work** — check the components you touched in both themes
 
 ### 3. Commit & Push
-- [ ] Commit per modifica logica (non commit unico)
+- [ ] One commit per logical change (not a single lump commit)
 - [ ] `git push origin master`
 
-### 4. Publish (OIDC trusted publishing — nessun token)
-- [ ] `npm version patch` (o minor/major) — crea commit + tag `vX.Y.Z`
-- [ ] `git push origin master --follow-tags` — il push del tag fa partire la GitHub Action (`.github/workflows/publish.yml`) che builda e pubblica via OIDC, con provenance firmata
-- [ ] Verificare run verde (`gh run watch`) e versione live su npm
-- [ ] **Workspace** (ds-react/ds-shaders/ds-admin): `npm version patch --workspace=packages/<pkg> --no-git-tag-version` → commit → `git tag ds-<pkg>-vX.Y.Z` → `git push origin master ds-<pkg>-vX.Y.Z`
-- Mai `npm publish` locale: pubblica la CI. Setup, schema tag per-package e gotcha in `infra/DEV_CONVENTIONS.md`.
+### 4. Publish (OIDC trusted publishing — no tokens)
+- [ ] `npm version patch` (or minor/major) — creates the commit + the `vX.Y.Z` tag
+- [ ] `git push origin master --follow-tags` — pushing the tag starts the GitHub Action (`.github/workflows/publish.yml`), which builds and publishes over OIDC with signed provenance
+- [ ] Check the run is green (`gh run watch`) and the version is live on npm
+- [ ] **Workspaces** (ds-react/ds-shaders/ds-admin): `npm version patch --workspace=packages/<pkg> --no-git-tag-version` → commit → `git tag ds-<pkg>-vX.Y.Z` → `git push origin master ds-<pkg>-vX.Y.Z`
+- Never `npm publish` locally: CI publishes. Setup, the per-package tag scheme and the gotchas are in `infra/DEV_CONVENTIONS.md`.
 
 ### 5. Living Registry
-- [ ] `node ~/Projects/infra/scripts/generate-manifest.js` per rigenerare `ds.manifest.json` (aggiorna `last_session` e metriche)
-- [ ] `node ~/Projects/ds-ops/scripts/ds-registry.js` per verificare stato ecosistema
+- [ ] `node ~/Projects/infra/scripts/generate-manifest.js` to regenerate `ds.manifest.json` (updates `last_session` and the metrics)
+- [ ] `node ~/Projects/ds-ops/scripts/ds-registry.js` to check ecosystem status

@@ -64,6 +64,9 @@
     examples stop pretending to be real content, or the set grows, which is the
     thing it is designed not to do. Flagged as a warning by `validate`, not an
     error, for exactly that reason.
+- Docs site logs a React duplicate-key warning on every page, including ones
+  with no list of their own — so it comes from the shell (nav or sidebar), not
+  from a demo. Noticed 1 Aug 2026 while translating the docs; not investigated.
 - Figma token sync via Style Dictionary + DTCG
 - Visual regression testing (Playwright + screenshot comparison)
 - Documentation site (Astro/11ty)

@@ -22,16 +22,16 @@ export default function ComboboxPage() {
       <div className="demo-page-header">
         <h1>Combobox</h1>
         <p>
-          Autocomplete: input con risultati filtrati mentre scrivi,
-          selezione singola o multipla con tag, navigazione da tastiera.
-          Il confine coi cugini: Select sceglie un valore da una lista
-          chiusa (senza scrivere), Dropdown è un menu di azioni. Il
-          Combobox è per liste lunghe dove digitare è il modo più veloce.
+          Autocomplete: an input with results filtered as you type, single or
+          multiple selection with tags, keyboard navigation. Where the line sits
+          against its cousins: Select picks a value from a closed list (no
+          typing), Dropdown is a menu of actions. Combobox is for long lists
+          where typing is the fastest way in.
         </p>
       </div>
 
       <DemoSection
-        title="Singolo"
+        title="Single"
         code={`const [value, setValue] = useState<string | string[] | null>(null);\n\n<Combobox\n  options={FRAMEWORKS}\n  value={value}\n  onChange={setValue}\n  placeholder="Search framework…"\n/>`}
       >
         <div className="ds-max-w-sm ds-w-full">
@@ -45,7 +45,7 @@ export default function ComboboxPage() {
       </DemoSection>
 
       <DemoSection
-        title="Multi con tag"
+        title="Multiple, with tags"
         code={`<Combobox\n  multiple\n  options={FRAMEWORKS}\n  value={values}\n  onChange={setValues}\n  placeholder="Add frameworks…"\n/>`}
       >
         <div className="ds-max-w-sm ds-w-full">
@@ -60,7 +60,7 @@ export default function ComboboxPage() {
       </DemoSection>
 
       <DemoSection
-        title="Taglie (stessi tier di Button/Input)"
+        title="Sizes (the same tiers as Button/Input)"
         code={`<Combobox size="sm" … />\n<Combobox … />\n<Combobox size="lg" … />`}
       >
         <div className="ds-flex ds-flex-col ds-gap-3 ds-max-w-sm ds-w-full">

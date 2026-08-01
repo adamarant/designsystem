@@ -8,7 +8,7 @@ export default function InputPage() {
     <>
       <div className="demo-page-header">
         <h1>Input</h1>
-        <p>Surface bg, clean borders, focus ring. Includes Input and Textarea. Il Select ha la sua pagina — il pannello è il default anche a children; qui sotto la resa nativa esplicita.</p>
+        <p>Surface bg, clean borders, focus ring. Includes Input and Textarea. Select has its own page — the panel is the default for the children form too; below is the explicit native rendering.</p>
       </div>
 
       <DemoSectionCol title="Input" code={`<Label htmlFor="name">Name</Label>\n<Input id="name" placeholder="Enter your name" />\n\n<Label htmlFor="email">Email</Label>\n<Input id="email" state="error" placeholder="Invalid" />\n<Help variant="error">Please enter a valid email</Help>`}>
