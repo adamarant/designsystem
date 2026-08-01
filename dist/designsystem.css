@@ -564,8 +564,27 @@ body {
   --ds-search-bar-height: 3.5rem;
   --ds-toolbar-row-height: 2.5rem;
 
-  /* --- Section Padding (responsive, generous) --- */
-  --ds-section-padding: clamp(80px, 12vw, 160px);
+  /* --- Rhythm (1 Aug 2026) ---
+     The only vertical distances a page is supposed to have, one owner each,
+     resolved per surface like the type roles. This is the page-level slice
+     only: the spacing ramp and the size tiers never split by surface (470 of
+     ~670 ramp uses are component-internal geometry). Receipt for the family:
+     six consumers hand-picked five different section paddings because the
+     only named step was the big fluid one. Spec and locked values:
+     ds-ops/proposals/spec-2026-08-01-rhythm-tokens.md
+       section  between sections of a page
+       block    between blocks inside a section (the de-facto 48 measured
+                in the wild, 22 uses)
+       element  a title to its own content */
+  --ds-rhythm-section: clamp(80px, 12vw, 160px);
+  --ds-rhythm-block: var(--ds-space-12);   /* 48px */
+  --ds-rhythm-element: var(--ds-space-4);  /* 16px */
+
+  /* --- Section Padding ---
+     Compat alias since 0.38.0: reads the rhythm family. Brand overrides of
+     --ds-section-padding keep working (.ds-section reads this name); new
+     work targets --ds-rhythm-section. */
+  --ds-section-padding: var(--ds-rhythm-section);
 
   /* --- Container --- */
   --ds-container-max: 1440px;
@@ -594,6 +613,16 @@ body {
   --ds-z-modal: 100;
   --ds-z-toast: 150;
   --ds-z-tooltip: 200;
+}
+
+/* Product surface: dense page rhythm. Same switch as the type roles; the
+   unmarked default is web. A dense area inside a web page is not a section
+   variant, it is data-surface="product" on that subtree — density is the
+   surface, not a per-page knob. */
+[data-surface="product"] {
+  --ds-rhythm-section: var(--ds-space-8);  /* 32px */
+  --ds-rhythm-block: var(--ds-space-6);    /* 24px */
+  --ds-rhythm-element: var(--ds-space-3);  /* 12px */
 }
 
 /* ==========================================================================
@@ -11990,9 +12019,14 @@ hr {
    ========================================================================== */
 
 .ds-admin-page {
+  /* The gap is the block rhythm. The local declaration pins it to today's
+     24px until the admin shell sets data-surface="product" itself
+     (typography phase 2) — then this line retires and the surface resolves
+     it. Renders identically either way. */
+  --ds-rhythm-block: var(--ds-space-6);
   display: flex;
   flex-direction: column;
-  gap: var(--ds-space-6);
+  gap: var(--ds-rhythm-block);
   min-width: 0;
 }
 
