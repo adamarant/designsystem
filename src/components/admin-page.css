@@ -40,9 +40,14 @@
    ========================================================================== */
 
 .ds-admin-page {
+  /* The gap is the block rhythm. The local declaration pins it to today's
+     24px until the admin shell sets data-surface="product" itself
+     (typography phase 2) — then this line retires and the surface resolves
+     it. Renders identically either way. */
+  --ds-rhythm-block: var(--ds-space-6);
   display: flex;
   flex-direction: column;
-  gap: var(--ds-space-6);
+  gap: var(--ds-rhythm-block);
   min-width: 0;
 }
 
