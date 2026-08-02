@@ -9187,6 +9187,13 @@ hr {
 
   
 
+  /* Grab handle — absorbed from .ds-bottom-sheet (deprecated 2 Aug 2026),
+     which was this component with a different max-height. The handle is the
+     one thing it had that a drawer did not: it says "drag me", a mobile
+     affordance an edge panel on desktop has no use for. Put it first inside
+     __content on a bottom drawer. */
+  
+
   /* ==========================================================================
    * Sizes
    * ========================================================================== */
@@ -9297,6 +9304,15 @@ hr {
 .ds-drawer--bottom.ds-drawer--open .ds-drawer__content {
 
     transform: translateY(0);
+  }
+.ds-drawer__handle {
+
+    width: 2.5rem;
+    height: 4px;
+    margin: var(--ds-space-2) auto;
+    border-radius: var(--ds-radius-full);
+    background-color: var(--ds-color-surface-muted);
+    flex-shrink: 0;
   }
 .ds-drawer--sm .ds-drawer__content {
 
@@ -9736,6 +9752,36 @@ hr {
 
 
 /* ==========================================================================
+   @deprecated 2 Aug 2026 (0.38.0) — use .ds-drawer--bottom.
+
+   This was .ds-drawer--bottom with different numbers. Both pin to the
+   bottom edge, both slide up, both are full-width; they differed in
+   max-height (75dvh here, 90dvh there), z-index, and in how the backdrop
+   animates (keyframes here, a transition there). None of those reads as a
+   decision — they read as two people solving the same problem a month
+   apart. Zero uses across the 21 consumers, so absorbing it costs nothing.
+
+   The one thing it had that the drawer did not is the grab handle, and that
+   moved: .ds-drawer__handle.
+
+   Migration:
+     .ds-bottom-sheet            -> .ds-drawer .ds-drawer--bottom
+     .ds-bottom-sheet--open      -> .ds-drawer--open
+     .ds-bottom-sheet__backdrop  -> nothing: the drawer root IS the scrim
+     .ds-bottom-sheet__panel     -> .ds-drawer__content
+     .ds-bottom-sheet__handle    -> .ds-drawer__handle
+     .ds-bottom-sheet__header    -> .ds-drawer__header
+     .ds-bottom-sheet__title     -> the heading inside __header
+     .ds-bottom-sheet__body      -> .ds-drawer__body
+     .ds-bottom-sheet__close     -> .ds-drawer__close
+     .ds-bottom-sheet--full      -> no equivalent; the drawer caps at 90dvh
+
+   Note the max-height when migrating: 75dvh becomes 90dvh, which is the
+   drawer's. If a sheet was deliberately shorter, set it on the page.
+
+   Frozen byte-identical until removal at the next major.
+   Note: ds-ops/proposals/note-2026-08-02-overlay-shelf.md
+
    Component: Bottom Sheet
    Mobile overlay sliding up from the bottom. Alternative to dropdown on mobile.
 
