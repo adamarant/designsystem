@@ -9,6 +9,13 @@
   border-radius: var(--ds-radius-xl);
   overflow: hidden;
   transition: all var(--ds-duration-normal) var(--ds-ease-default);
+  /* Container query support — and a consequence worth knowing: an element
+     with container-type: inline-size cannot be sized by its own contents.
+     A .ds-card in a flex row with no width collapses to its borders (2px);
+     it needs a width from its context — ds-w-full, a grid cell, or a
+     flex-basis. The docs' own card page has always written ds-w-full for
+     this reason without saying why, and the stat page rediscovered it the
+     hard way on 2 Aug 2026. */
   container-type: inline-size;
 
   /* Container query: stack body content when card is narrow */
