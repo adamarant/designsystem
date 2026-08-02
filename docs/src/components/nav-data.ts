@@ -276,6 +276,10 @@ export const NAV = [
     "label": "Anchored",
     "items": [
       {
+        "name": "Panel",
+        "href": "/components/panel"
+      },
+      {
         "name": "Dropdown",
         "href": "/components/dropdown"
       },
