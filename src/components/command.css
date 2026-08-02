@@ -170,10 +170,11 @@
     flex: 1;
   }
 
-  /* Item shortcut hint */
+  /* Item shortcut hint. Type and colour come from .ds-kbd--flat (kbd.css),
+     which names this selector; the palette row keeps its own flex
+     behaviour. The active state below re-colours it and still wins, being
+     the more specific selector. */
   &__item-shortcut {
-    font-size: var(--ds-text-xs);
-    color: var(--ds-color-text-tertiary);
     flex-shrink: 0;
   }
 

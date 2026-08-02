@@ -137,10 +137,10 @@
     flex: 1;
   }
 
+    /* Type and colour come from .ds-kbd--flat (kbd.css), which names this
+     selector: the menu row keeps its own trailing alignment. */
   &__item-shortcut {
     margin-inline-start: auto;
-    font-size: var(--ds-text-xs);
-    color: var(--ds-color-text-tertiary);
   }
 
   /* --- Divider --- */
