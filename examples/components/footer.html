@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Timeline — Design System</title>
+  <title>Footer — Design System</title>
   <link rel="stylesheet" href="../../dist/designsystem.css">
   <link rel="stylesheet" href="../_shared/demo.css">
 </head>
@@ -45,7 +45,7 @@
         <a href="../components/skeleton.html" class="demo-sidebar__link">Skeleton</a>
         <a href="../components/tag.html" class="demo-sidebar__link">Tag</a>
         <a href="../components/progress.html" class="demo-sidebar__link">Progress</a>
-        <a href="../components/timeline.html" class="demo-sidebar__link demo-sidebar__link--active">Timeline</a>
+        <a href="../components/timeline.html" class="demo-sidebar__link">Timeline</a>
         <a href="../components/chip.html" class="demo-sidebar__link">Chip</a>
         <a href="../components/icon-box.html" class="demo-sidebar__link">Icon Box</a>
         <a href="../components/stat-card.html" class="demo-sidebar__link">Stat Card</a>
@@ -62,7 +62,7 @@
         <a href="../components/toolbar.html" class="demo-sidebar__link">Toolbar</a>
         <a href="../components/bottom-nav.html" class="demo-sidebar__link">Bottom Nav</a>
         <a href="../components/segmented-control.html" class="demo-sidebar__link">Segmented Control</a>
-        <a href="../components/footer.html" class="demo-sidebar__link">Footer</a>
+        <a href="../components/footer.html" class="demo-sidebar__link demo-sidebar__link--active">Footer</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Feedback</div>
@@ -118,87 +118,23 @@
     <main class="demo-main">
 
       <header>
-        <h1>Timeline</h1>
-        <p>Vertical timeline for roadmaps, activity feeds, and step-based flows.</p>
+        <h1>Footer</h1>
+        <p>The site closing chrome — one canonical shape: optional newsletter, brand + titled link columns, and a small credits row.</p>
         <div class="demo-meta">
-          <span class="ds-badge">Data Display</span>
-          <code>@import '@adamarant/designsystem/components/timeline';</code>
+          <span class="ds-badge">Navigation</span>
+          <code>@import '@adamarant/designsystem/components/footer';</code>
         </div>
       </header>
 
 
     <section class="demo-example">
-      <h2>Activity Timeline</h2>
+      <h2>Structure</h2>
       <div class="demo-preview">
-        <div class="ds-timeline">
-  <div class="ds-timeline__item ds-timeline__item--completed">
-    <div class="ds-timeline__dot"></div>
-    <div class="ds-timeline__content">
-      <div class="ds-timeline__title">Project Created</div>
-      <div class="ds-timeline__description">Initial repository setup and configuration.</div>
-      <div class="ds-timeline__time">3 days ago</div>
-    </div>
-  </div>
-  <div class="ds-timeline__item ds-timeline__item--completed">
-    <div class="ds-timeline__dot"></div>
-    <div class="ds-timeline__content">
-      <div class="ds-timeline__title">Design Review</div>
-      <div class="ds-timeline__description">UI mockups approved by the team.</div>
-      <div class="ds-timeline__time">2 days ago</div>
-    </div>
-  </div>
-  <div class="ds-timeline__item ds-timeline__item--current">
-    <div class="ds-timeline__dot"></div>
-    <div class="ds-timeline__content">
-      <div class="ds-timeline__title">Development</div>
-      <div class="ds-timeline__description">Building core components and layout.</div>
-      <div class="ds-timeline__time">In progress</div>
-    </div>
-  </div>
-  <div class="ds-timeline__item">
-    <div class="ds-timeline__dot"></div>
-    <div class="ds-timeline__content">
-      <div class="ds-timeline__title">Testing</div>
-      <div class="ds-timeline__description">QA and cross-browser testing.</div>
-    </div>
-  </div>
-</div>
+        <footer class="ds-footer"><div class="ds-container ds-footer__inner">…</div></footer>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-timeline&quot;&gt;
-  &lt;div class=&quot;ds-timeline__item ds-timeline__item--completed&quot;&gt;
-    &lt;div class=&quot;ds-timeline__dot&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;ds-timeline__content&quot;&gt;
-      &lt;div class=&quot;ds-timeline__title&quot;&gt;Project Created&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__description&quot;&gt;Initial repository setup and configuration.&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__time&quot;&gt;3 days ago&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-timeline__item ds-timeline__item--completed&quot;&gt;
-    &lt;div class=&quot;ds-timeline__dot&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;ds-timeline__content&quot;&gt;
-      &lt;div class=&quot;ds-timeline__title&quot;&gt;Design Review&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__description&quot;&gt;UI mockups approved by the team.&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__time&quot;&gt;2 days ago&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-timeline__item ds-timeline__item--current&quot;&gt;
-    &lt;div class=&quot;ds-timeline__dot&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;ds-timeline__content&quot;&gt;
-      &lt;div class=&quot;ds-timeline__title&quot;&gt;Development&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__description&quot;&gt;Building core components and layout.&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__time&quot;&gt;In progress&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-timeline__item&quot;&gt;
-    &lt;div class=&quot;ds-timeline__dot&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;ds-timeline__content&quot;&gt;
-      &lt;div class=&quot;ds-timeline__title&quot;&gt;Testing&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__description&quot;&gt;QA and cross-browser testing.&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+        <pre><code>&lt;footer class=&quot;ds-footer&quot;&gt;&lt;div class=&quot;ds-container ds-footer__inner&quot;&gt;…&lt;/div&gt;&lt;/footer&gt;</code></pre>
       </details>
     </section>
 
@@ -206,23 +142,23 @@
       <h2>API</h2>
       <table class="ds-table">
         <thead><tr><th>Class</th><th>Type</th></tr></thead>
-        <tbody><tr><td><code>.ds-timeline</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-timeline__item</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-timeline__dot</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-timeline__content</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-timeline__title</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-timeline__description</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-timeline__time</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-timeline--compact</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-timeline--completed</code></td><td>Modifier</td></tr>
-          <tr><td><code>.ds-timeline--current</code></td><td>Modifier</td></tr>
-          <tr><td><code>.ds-timeline--error</code></td><td>Modifier</td></tr></tbody>
+        <tbody><tr><td><code>.ds-footer</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-footer.ds-footer__inner</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-footer.ds-footer__newsletter</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-footer.ds-footer__body</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-footer.ds-footer__brand</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-footer.ds-footer__columns</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-footer.ds-footer__column</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-footer.ds-footer__link</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-footer.ds-footer__social</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-footer.ds-footer__credits</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-footer.ds-footer__note</code></td><td>Element</td></tr></tbody>
       </table>
     </section>
 
     <nav class="demo-nav-footer">
-      <a href="slider.html">&larr; Slider</a>
-      <a href="kbd.html">Kbd &rarr;</a>
+      <a href="media-library.html">&larr; Media Library</a>
+      <span></span>
     </nav>
     </main>
   </div>

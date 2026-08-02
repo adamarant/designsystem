@@ -23,10 +23,12 @@
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Form</div>
         <a href="../components/input.html" class="demo-sidebar__link">Input</a>
+        <a href="../components/checkbox.html" class="demo-sidebar__link">Checkbox</a>
+        <a href="../components/radio.html" class="demo-sidebar__link">Radio</a>
         <a href="../components/toggle.html" class="demo-sidebar__link">Toggle</a>
         <a href="../components/datepicker.html" class="demo-sidebar__link">Datepicker</a>
         <a href="../components/drop-zone.html" class="demo-sidebar__link">Drop Zone</a>
-        <a href="../components/custom-select.html" class="demo-sidebar__link">Custom Select</a>
+        <a href="../components/custom-select.html" class="demo-sidebar__link">Select</a>
         <a href="../components/slider.html" class="demo-sidebar__link">Slider</a>
         <a href="../components/field.html" class="demo-sidebar__link">Field</a>
         <a href="../components/combobox.html" class="demo-sidebar__link">Combobox</a>
@@ -45,6 +47,7 @@
         <a href="../components/progress.html" class="demo-sidebar__link">Progress</a>
         <a href="../components/timeline.html" class="demo-sidebar__link">Timeline</a>
         <a href="../components/chip.html" class="demo-sidebar__link">Chip</a>
+        <a href="../components/icon-box.html" class="demo-sidebar__link">Icon Box</a>
         <a href="../components/stat-card.html" class="demo-sidebar__link">Stat Card</a>
         <a href="../components/description-list.html" class="demo-sidebar__link">Description List</a>
         <a href="../components/result.html" class="demo-sidebar__link">Result</a>
@@ -59,6 +62,7 @@
         <a href="../components/toolbar.html" class="demo-sidebar__link">Toolbar</a>
         <a href="../components/bottom-nav.html" class="demo-sidebar__link">Bottom Nav</a>
         <a href="../components/segmented-control.html" class="demo-sidebar__link">Segmented Control</a>
+        <a href="../components/footer.html" class="demo-sidebar__link">Footer</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Feedback</div>
@@ -89,11 +93,16 @@
         <a href="../components/hero.html" class="demo-sidebar__link">Hero</a>
         <a href="../components/prose.html" class="demo-sidebar__link">Prose & Editorial</a>
         <a href="../components/admin-layout.html" class="demo-sidebar__link">Admin Layout</a>
+        <a href="../components/page-header.html" class="demo-sidebar__link">Page Header</a>
+        <a href="../components/admin-page.html" class="demo-sidebar__link">Admin Page</a>
+        <a href="../components/admin-form.html" class="demo-sidebar__link">Admin Form Layout</a>
+        <a href="../components/media.html" class="demo-sidebar__link">Media</a>
         <a href="../components/media-library.html" class="demo-sidebar__link">Media Library</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Action</div>
         <a href="../components/button.html" class="demo-sidebar__link">Button</a>
+        <a href="../components/theme-toggle.html" class="demo-sidebar__link">Theme Toggle</a>
         <a href="../components/kbd.html" class="demo-sidebar__link">Kbd</a>
         <a href="../components/sortable.html" class="demo-sidebar__link">Sortable</a>
         <a href="../components/search.html" class="demo-sidebar__link">Search</a>
@@ -121,13 +130,13 @@
     <section class="demo-example">
       <h2>Default & Copied</h2>
       <div class="demo-preview">
-        <button class="ds-copy-btn" aria-label="Copy">&#128203;</button>
-<button class="ds-copy-btn ds-copy-btn--copied" aria-label="Copied">&#10003;</button>
+        <button class="ds-copy-btn" aria-label="Copy"><svg data-icon="copy" class="ds-copy-btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 9V4.25C9 3.55964 9.55964 3 10.25 3H19.75C20.4404 3 21 3.55964 21 4.25V13.75C21 14.4404 20.4404 15 19.75 15H15M13.75 9H4.25C3.55964 9 3 9.55964 3 10.25V19.75C3 20.4404 3.55964 21 4.25 21H13.75C14.4404 21 15 20.4404 15 19.75V10.25C15 9.55964 14.4404 9 13.75 9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg><svg data-icon="check" class="ds-copy-btn__icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.3209 4.24472C20.0142 4.69807 20.2088 5.62768 19.7555 6.32105L11.2555 19.321C10.9972 19.7161 10.5681 19.9665 10.0971 19.997C9.62613 20.0276 9.16825 19.8347 8.86111 19.4764L4.36111 14.2264C3.82198 13.5974 3.89482 12.6504 4.52381 12.1113C5.1528 11.5722 6.09975 11.645 6.63888 12.274L9.83825 16.0066L17.2445 4.6793C17.6979 3.98593 18.6275 3.79136 19.3209 4.24472Z" fill="currentColor" /></svg></button>
+<button class="ds-copy-btn ds-copy-btn--copied" aria-label="Copied"><svg data-icon="copy" class="ds-copy-btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 9V4.25C9 3.55964 9.55964 3 10.25 3H19.75C20.4404 3 21 3.55964 21 4.25V13.75C21 14.4404 20.4404 15 19.75 15H15M13.75 9H4.25C3.55964 9 3 9.55964 3 10.25V19.75C3 20.4404 3.55964 21 4.25 21H13.75C14.4404 21 15 20.4404 15 19.75V10.25C15 9.55964 14.4404 9 13.75 9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg><svg data-icon="check" class="ds-copy-btn__icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.3209 4.24472C20.0142 4.69807 20.2088 5.62768 19.7555 6.32105L11.2555 19.321C10.9972 19.7161 10.5681 19.9665 10.0971 19.997C9.62613 20.0276 9.16825 19.8347 8.86111 19.4764L4.36111 14.2264C3.82198 13.5974 3.89482 12.6504 4.52381 12.1113C5.1528 11.5722 6.09975 11.645 6.63888 12.274L9.83825 16.0066L17.2445 4.6793C17.6979 3.98593 18.6275 3.79136 19.3209 4.24472Z" fill="currentColor" /></svg></button>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;button class=&quot;ds-copy-btn&quot; aria-label=&quot;Copy&quot;&gt;&amp;#128203;&lt;/button&gt;
-&lt;button class=&quot;ds-copy-btn ds-copy-btn--copied&quot; aria-label=&quot;Copied&quot;&gt;&amp;#10003;&lt;/button&gt;</code></pre>
+        <pre><code>&lt;button class=&quot;ds-copy-btn&quot; aria-label=&quot;Copy&quot;&gt;&lt;svg data-icon=&quot;copy&quot; class=&quot;ds-copy-btn__icon&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M9 9V4.25C9 3.55964 9.55964 3 10.25 3H19.75C20.4404 3 21 3.55964 21 4.25V13.75C21 14.4404 20.4404 15 19.75 15H15M13.75 9H4.25C3.55964 9 3 9.55964 3 10.25V19.75C3 20.4404 3.55964 21 4.25 21H13.75C14.4404 21 15 20.4404 15 19.75V10.25C15 9.55964 14.4404 9 13.75 9Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; /&gt;&lt;/svg&gt;&lt;svg data-icon=&quot;check&quot; class=&quot;ds-copy-btn__icon-check&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M19.3209 4.24472C20.0142 4.69807 20.2088 5.62768 19.7555 6.32105L11.2555 19.321C10.9972 19.7161 10.5681 19.9665 10.0971 19.997C9.62613 20.0276 9.16825 19.8347 8.86111 19.4764L4.36111 14.2264C3.82198 13.5974 3.89482 12.6504 4.52381 12.1113C5.1528 11.5722 6.09975 11.645 6.63888 12.274L9.83825 16.0066L17.2445 4.6793C17.6979 3.98593 18.6275 3.79136 19.3209 4.24472Z&quot; fill=&quot;currentColor&quot; /&gt;&lt;/svg&gt;&lt;/button&gt;
+&lt;button class=&quot;ds-copy-btn ds-copy-btn--copied&quot; aria-label=&quot;Copied&quot;&gt;&lt;svg data-icon=&quot;copy&quot; class=&quot;ds-copy-btn__icon&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M9 9V4.25C9 3.55964 9.55964 3 10.25 3H19.75C20.4404 3 21 3.55964 21 4.25V13.75C21 14.4404 20.4404 15 19.75 15H15M13.75 9H4.25C3.55964 9 3 9.55964 3 10.25V19.75C3 20.4404 3.55964 21 4.25 21H13.75C14.4404 21 15 20.4404 15 19.75V10.25C15 9.55964 14.4404 9 13.75 9Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; /&gt;&lt;/svg&gt;&lt;svg data-icon=&quot;check&quot; class=&quot;ds-copy-btn__icon-check&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M19.3209 4.24472C20.0142 4.69807 20.2088 5.62768 19.7555 6.32105L11.2555 19.321C10.9972 19.7161 10.5681 19.9665 10.0971 19.997C9.62613 20.0276 9.16825 19.8347 8.86111 19.4764L4.36111 14.2264C3.82198 13.5974 3.89482 12.6504 4.52381 12.1113C5.1528 11.5722 6.09975 11.645 6.63888 12.274L9.83825 16.0066L17.2445 4.6793C17.6979 3.98593 18.6275 3.79136 19.3209 4.24472Z&quot; fill=&quot;currentColor&quot; /&gt;&lt;/svg&gt;&lt;/button&gt;</code></pre>
       </details>
     </section>
 

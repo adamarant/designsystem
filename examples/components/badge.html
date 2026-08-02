@@ -23,10 +23,12 @@
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Form</div>
         <a href="../components/input.html" class="demo-sidebar__link">Input</a>
+        <a href="../components/checkbox.html" class="demo-sidebar__link">Checkbox</a>
+        <a href="../components/radio.html" class="demo-sidebar__link">Radio</a>
         <a href="../components/toggle.html" class="demo-sidebar__link">Toggle</a>
         <a href="../components/datepicker.html" class="demo-sidebar__link">Datepicker</a>
         <a href="../components/drop-zone.html" class="demo-sidebar__link">Drop Zone</a>
-        <a href="../components/custom-select.html" class="demo-sidebar__link">Custom Select</a>
+        <a href="../components/custom-select.html" class="demo-sidebar__link">Select</a>
         <a href="../components/slider.html" class="demo-sidebar__link">Slider</a>
         <a href="../components/field.html" class="demo-sidebar__link">Field</a>
         <a href="../components/combobox.html" class="demo-sidebar__link">Combobox</a>
@@ -45,6 +47,7 @@
         <a href="../components/progress.html" class="demo-sidebar__link">Progress</a>
         <a href="../components/timeline.html" class="demo-sidebar__link">Timeline</a>
         <a href="../components/chip.html" class="demo-sidebar__link">Chip</a>
+        <a href="../components/icon-box.html" class="demo-sidebar__link">Icon Box</a>
         <a href="../components/stat-card.html" class="demo-sidebar__link">Stat Card</a>
         <a href="../components/description-list.html" class="demo-sidebar__link">Description List</a>
         <a href="../components/result.html" class="demo-sidebar__link">Result</a>
@@ -59,6 +62,7 @@
         <a href="../components/toolbar.html" class="demo-sidebar__link">Toolbar</a>
         <a href="../components/bottom-nav.html" class="demo-sidebar__link">Bottom Nav</a>
         <a href="../components/segmented-control.html" class="demo-sidebar__link">Segmented Control</a>
+        <a href="../components/footer.html" class="demo-sidebar__link">Footer</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Feedback</div>
@@ -89,11 +93,16 @@
         <a href="../components/hero.html" class="demo-sidebar__link">Hero</a>
         <a href="../components/prose.html" class="demo-sidebar__link">Prose & Editorial</a>
         <a href="../components/admin-layout.html" class="demo-sidebar__link">Admin Layout</a>
+        <a href="../components/page-header.html" class="demo-sidebar__link">Page Header</a>
+        <a href="../components/admin-page.html" class="demo-sidebar__link">Admin Page</a>
+        <a href="../components/admin-form.html" class="demo-sidebar__link">Admin Form Layout</a>
+        <a href="../components/media.html" class="demo-sidebar__link">Media</a>
         <a href="../components/media-library.html" class="demo-sidebar__link">Media Library</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Action</div>
         <a href="../components/button.html" class="demo-sidebar__link">Button</a>
+        <a href="../components/theme-toggle.html" class="demo-sidebar__link">Theme Toggle</a>
         <a href="../components/kbd.html" class="demo-sidebar__link">Kbd</a>
         <a href="../components/sortable.html" class="demo-sidebar__link">Sortable</a>
         <a href="../components/search.html" class="demo-sidebar__link">Search</a>
@@ -110,7 +119,7 @@
 
       <header>
         <h1>Badge</h1>
-        <p>Pill shape, border + subtle bg, clean and refined.</p>
+        <p>The one small labelled pill in the system. Static by default; --interactive makes it a real <button> control (24px WCAG target, hover, focus ring) for filters and toggles, --active is the selected state, --removable adds the __remove button. Absorbed .ds-tag and .ds-chip on 2 Aug 2026, both deprecated.</p>
         <div class="demo-meta">
           <span class="ds-badge">Data Display</span>
           <code>@import '@adamarant/designsystem/components/badge';</code>
@@ -119,42 +128,83 @@
 
 
     <section class="demo-example">
-      <h2>Semantic Variants</h2>
+      <h2>Variants</h2>
       <div class="demo-preview">
-        <span class="ds-badge">Default</span>
-<span class="ds-badge ds-badge--primary">Primary</span>
-<span class="ds-badge ds-badge--success">Success</span>
-<span class="ds-badge ds-badge--warning">Warning</span>
-<span class="ds-badge ds-badge--error">Error</span>
-<span class="ds-badge ds-badge--info">Info</span>
-<span class="ds-badge ds-badge--purple">Purple</span>
+        <span class="ds-badge">Draft</span>
+<span class="ds-badge ds-badge--success">Live</span>
+<span class="ds-badge ds-badge--error">Failed</span>
+<span class="ds-badge ds-badge--outline">Outline</span>
+<span class="ds-badge ds-badge--inverted">Inverted</span>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;span class=&quot;ds-badge&quot;&gt;Default&lt;/span&gt;
-&lt;span class=&quot;ds-badge ds-badge--primary&quot;&gt;Primary&lt;/span&gt;
-&lt;span class=&quot;ds-badge ds-badge--success&quot;&gt;Success&lt;/span&gt;
-&lt;span class=&quot;ds-badge ds-badge--warning&quot;&gt;Warning&lt;/span&gt;
-&lt;span class=&quot;ds-badge ds-badge--error&quot;&gt;Error&lt;/span&gt;
-&lt;span class=&quot;ds-badge ds-badge--info&quot;&gt;Info&lt;/span&gt;
-&lt;span class=&quot;ds-badge ds-badge--purple&quot;&gt;Purple&lt;/span&gt;</code></pre>
+        <pre><code>&lt;span class=&quot;ds-badge&quot;&gt;Draft&lt;/span&gt;
+&lt;span class=&quot;ds-badge ds-badge--success&quot;&gt;Live&lt;/span&gt;
+&lt;span class=&quot;ds-badge ds-badge--error&quot;&gt;Failed&lt;/span&gt;
+&lt;span class=&quot;ds-badge ds-badge--outline&quot;&gt;Outline&lt;/span&gt;
+&lt;span class=&quot;ds-badge ds-badge--inverted&quot;&gt;Inverted&lt;/span&gt;</code></pre>
       </details>
     </section>
 
     <section class="demo-example">
-      <h2>Modifiers</h2>
+      <h2>Dot and uppercase</h2>
       <div class="demo-preview">
-        <span class="ds-badge ds-badge--outline">Outline</span>
-<span class="ds-badge ds-badge--dot ds-badge--success">Online</span>
-<span class="ds-badge ds-badge--upper ds-badge--primary">New</span>
-<span class="ds-badge ds-badge--upper ds-badge--purple">Beta</span>
+        <span class="ds-badge ds-badge--success ds-badge--dot">Live</span>
+<span class="ds-badge ds-badge--upper">New</span>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;span class=&quot;ds-badge ds-badge--outline&quot;&gt;Outline&lt;/span&gt;
-&lt;span class=&quot;ds-badge ds-badge--dot ds-badge--success&quot;&gt;Online&lt;/span&gt;
-&lt;span class=&quot;ds-badge ds-badge--upper ds-badge--primary&quot;&gt;New&lt;/span&gt;
-&lt;span class=&quot;ds-badge ds-badge--upper ds-badge--purple&quot;&gt;Beta&lt;/span&gt;</code></pre>
+        <pre><code>&lt;span class=&quot;ds-badge ds-badge--success ds-badge--dot&quot;&gt;Live&lt;/span&gt;
+&lt;span class=&quot;ds-badge ds-badge--upper&quot;&gt;New&lt;/span&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>Interactive filters (was ds-chip)</h2>
+      <div class="demo-preview">
+        <div role="group" aria-label="Filters" class="ds-flex ds-gap-2">
+  <button type="button" class="ds-badge ds-badge--interactive ds-badge--active" aria-pressed="true">Design</button>
+  <button type="button" class="ds-badge ds-badge--interactive" aria-pressed="false">Engineering</button>
+</div>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;div role=&quot;group&quot; aria-label=&quot;Filters&quot; class=&quot;ds-flex ds-gap-2&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;ds-badge ds-badge--interactive ds-badge--active&quot; aria-pressed=&quot;true&quot;&gt;Design&lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;ds-badge ds-badge--interactive&quot; aria-pressed=&quot;false&quot;&gt;Engineering&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>Removable (was ds-tag)</h2>
+      <div class="demo-preview">
+        <span class="ds-badge ds-badge--removable">
+  Typography
+  <button type="button" class="ds-badge__remove" aria-label="Remove Typography">&times;</button>
+</span>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;span class=&quot;ds-badge ds-badge--removable&quot;&gt;
+  Typography
+  &lt;button type=&quot;button&quot; class=&quot;ds-badge__remove&quot; aria-label=&quot;Remove Typography&quot;&gt;&amp;times;&lt;/button&gt;
+&lt;/span&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>Sizes</h2>
+      <div class="demo-preview">
+        <span class="ds-badge ds-badge--sm">Small</span>
+<span class="ds-badge">Medium</span>
+<span class="ds-badge ds-badge--lg">Large</span>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;span class=&quot;ds-badge ds-badge--sm&quot;&gt;Small&lt;/span&gt;
+&lt;span class=&quot;ds-badge&quot;&gt;Medium&lt;/span&gt;
+&lt;span class=&quot;ds-badge ds-badge--lg&quot;&gt;Large&lt;/span&gt;</code></pre>
       </details>
     </section>
 
@@ -163,6 +213,7 @@
       <table class="ds-table">
         <thead><tr><th>Class</th><th>Type</th></tr></thead>
         <tbody><tr><td><code>.ds-badge</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-badge__remove</code></td><td>Element</td></tr>
           <tr><td><code>.ds-badge--primary</code></td><td>Variant</td></tr>
           <tr><td><code>.ds-badge--success</code></td><td>Variant</td></tr>
           <tr><td><code>.ds-badge--warning</code></td><td>Variant</td></tr>
@@ -170,13 +221,19 @@
           <tr><td><code>.ds-badge--info</code></td><td>Variant</td></tr>
           <tr><td><code>.ds-badge--purple</code></td><td>Variant</td></tr>
           <tr><td><code>.ds-badge--outline</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-badge--inverted</code></td><td>Variant</td></tr>
+          <tr><td><code>.ds-badge--sm</code></td><td>Size</td></tr>
+          <tr><td><code>.ds-badge--lg</code></td><td>Size</td></tr>
           <tr><td><code>.ds-badge--dot</code></td><td>Modifier</td></tr>
-          <tr><td><code>.ds-badge--upper</code></td><td>Modifier</td></tr></tbody>
+          <tr><td><code>.ds-badge--upper</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-badge--active</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-badge--interactive</code></td><td>Modifier</td></tr>
+          <tr><td><code>.ds-badge--removable</code></td><td>Modifier</td></tr></tbody>
       </table>
     </section>
 
     <nav class="demo-nav-footer">
-      <a href="input.html">&larr; Input</a>
+      <a href="radio.html">&larr; Radio</a>
       <a href="nav.html">Navigation &rarr;</a>
     </nav>
     </main>

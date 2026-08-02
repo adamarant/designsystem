@@ -23,10 +23,12 @@
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Form</div>
         <a href="../components/input.html" class="demo-sidebar__link">Input</a>
+        <a href="../components/checkbox.html" class="demo-sidebar__link">Checkbox</a>
+        <a href="../components/radio.html" class="demo-sidebar__link">Radio</a>
         <a href="../components/toggle.html" class="demo-sidebar__link">Toggle</a>
         <a href="../components/datepicker.html" class="demo-sidebar__link">Datepicker</a>
         <a href="../components/drop-zone.html" class="demo-sidebar__link demo-sidebar__link--active">Drop Zone</a>
-        <a href="../components/custom-select.html" class="demo-sidebar__link">Custom Select</a>
+        <a href="../components/custom-select.html" class="demo-sidebar__link">Select</a>
         <a href="../components/slider.html" class="demo-sidebar__link">Slider</a>
         <a href="../components/field.html" class="demo-sidebar__link">Field</a>
         <a href="../components/combobox.html" class="demo-sidebar__link">Combobox</a>
@@ -45,6 +47,7 @@
         <a href="../components/progress.html" class="demo-sidebar__link">Progress</a>
         <a href="../components/timeline.html" class="demo-sidebar__link">Timeline</a>
         <a href="../components/chip.html" class="demo-sidebar__link">Chip</a>
+        <a href="../components/icon-box.html" class="demo-sidebar__link">Icon Box</a>
         <a href="../components/stat-card.html" class="demo-sidebar__link">Stat Card</a>
         <a href="../components/description-list.html" class="demo-sidebar__link">Description List</a>
         <a href="../components/result.html" class="demo-sidebar__link">Result</a>
@@ -59,6 +62,7 @@
         <a href="../components/toolbar.html" class="demo-sidebar__link">Toolbar</a>
         <a href="../components/bottom-nav.html" class="demo-sidebar__link">Bottom Nav</a>
         <a href="../components/segmented-control.html" class="demo-sidebar__link">Segmented Control</a>
+        <a href="../components/footer.html" class="demo-sidebar__link">Footer</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Feedback</div>
@@ -89,11 +93,16 @@
         <a href="../components/hero.html" class="demo-sidebar__link">Hero</a>
         <a href="../components/prose.html" class="demo-sidebar__link">Prose & Editorial</a>
         <a href="../components/admin-layout.html" class="demo-sidebar__link">Admin Layout</a>
+        <a href="../components/page-header.html" class="demo-sidebar__link">Page Header</a>
+        <a href="../components/admin-page.html" class="demo-sidebar__link">Admin Page</a>
+        <a href="../components/admin-form.html" class="demo-sidebar__link">Admin Form Layout</a>
+        <a href="../components/media.html" class="demo-sidebar__link">Media</a>
         <a href="../components/media-library.html" class="demo-sidebar__link">Media Library</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Action</div>
         <a href="../components/button.html" class="demo-sidebar__link">Button</a>
+        <a href="../components/theme-toggle.html" class="demo-sidebar__link">Theme Toggle</a>
         <a href="../components/kbd.html" class="demo-sidebar__link">Kbd</a>
         <a href="../components/sortable.html" class="demo-sidebar__link">Sortable</a>
         <a href="../components/search.html" class="demo-sidebar__link">Search</a>
@@ -122,7 +131,7 @@
       <h2>Default</h2>
       <div class="demo-preview">
         <div class="ds-drop-zone">
-  <div class="ds-drop-zone__icon">&#9729;</div>
+  <div class="ds-drop-zone__icon"><svg data-icon="upload" width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.75V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14.75M12 4V15.25M12 4L16.5 8.5M12 4L7.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
   <p class="ds-drop-zone__label">Drop files here or click to upload</p>
   <p class="ds-drop-zone__hint">JPG, PNG, WebP &middot; Max 10 MB</p>
 </div>
@@ -130,7 +139,7 @@
       <details class="demo-code">
         <summary>View Code</summary>
         <pre><code>&lt;div class=&quot;ds-drop-zone&quot;&gt;
-  &lt;div class=&quot;ds-drop-zone__icon&quot;&gt;&amp;#9729;&lt;/div&gt;
+  &lt;div class=&quot;ds-drop-zone__icon&quot;&gt;&lt;svg data-icon=&quot;upload&quot; width=&quot;32&quot; height=&quot;32&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M20 14.75V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14.75M12 4V15.25M12 4L16.5 8.5M12 4L7.5 8.5&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; /&gt;&lt;/svg&gt;&lt;/div&gt;
   &lt;p class=&quot;ds-drop-zone__label&quot;&gt;Drop files here or click to upload&lt;/p&gt;
   &lt;p class=&quot;ds-drop-zone__hint&quot;&gt;JPG, PNG, WebP &amp;middot; Max 10 MB&lt;/p&gt;
 &lt;/div&gt;</code></pre>
@@ -141,7 +150,7 @@
       <h2>Large (empty state)</h2>
       <div class="demo-preview">
         <div class="ds-drop-zone ds-drop-zone--lg">
-  <div class="ds-drop-zone__icon">&#9729;</div>
+  <div class="ds-drop-zone__icon"><svg data-icon="upload" width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.75V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14.75M12 4V15.25M12 4L16.5 8.5M12 4L7.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
   <p class="ds-drop-zone__label">Drop files here or click to upload</p>
   <p class="ds-drop-zone__hint">JPG, PNG, WebP, GIF, MP4, WebM</p>
 </div>
@@ -149,7 +158,7 @@
       <details class="demo-code">
         <summary>View Code</summary>
         <pre><code>&lt;div class=&quot;ds-drop-zone ds-drop-zone--lg&quot;&gt;
-  &lt;div class=&quot;ds-drop-zone__icon&quot;&gt;&amp;#9729;&lt;/div&gt;
+  &lt;div class=&quot;ds-drop-zone__icon&quot;&gt;&lt;svg data-icon=&quot;upload&quot; width=&quot;32&quot; height=&quot;32&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M20 14.75V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14.75M12 4V15.25M12 4L16.5 8.5M12 4L7.5 8.5&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; /&gt;&lt;/svg&gt;&lt;/div&gt;
   &lt;p class=&quot;ds-drop-zone__label&quot;&gt;Drop files here or click to upload&lt;/p&gt;
   &lt;p class=&quot;ds-drop-zone__hint&quot;&gt;JPG, PNG, WebP, GIF, MP4, WebM&lt;/p&gt;
 &lt;/div&gt;</code></pre>
@@ -173,7 +182,7 @@
 
     <nav class="demo-nav-footer">
       <a href="datepicker.html">&larr; Datepicker</a>
-      <a href="custom-select.html">Custom Select &rarr;</a>
+      <a href="custom-select.html">Select &rarr;</a>
     </nav>
     </main>
   </div>

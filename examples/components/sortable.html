@@ -23,10 +23,12 @@
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Form</div>
         <a href="../components/input.html" class="demo-sidebar__link">Input</a>
+        <a href="../components/checkbox.html" class="demo-sidebar__link">Checkbox</a>
+        <a href="../components/radio.html" class="demo-sidebar__link">Radio</a>
         <a href="../components/toggle.html" class="demo-sidebar__link">Toggle</a>
         <a href="../components/datepicker.html" class="demo-sidebar__link">Datepicker</a>
         <a href="../components/drop-zone.html" class="demo-sidebar__link">Drop Zone</a>
-        <a href="../components/custom-select.html" class="demo-sidebar__link">Custom Select</a>
+        <a href="../components/custom-select.html" class="demo-sidebar__link">Select</a>
         <a href="../components/slider.html" class="demo-sidebar__link">Slider</a>
         <a href="../components/field.html" class="demo-sidebar__link">Field</a>
         <a href="../components/combobox.html" class="demo-sidebar__link">Combobox</a>
@@ -45,6 +47,7 @@
         <a href="../components/progress.html" class="demo-sidebar__link">Progress</a>
         <a href="../components/timeline.html" class="demo-sidebar__link">Timeline</a>
         <a href="../components/chip.html" class="demo-sidebar__link">Chip</a>
+        <a href="../components/icon-box.html" class="demo-sidebar__link">Icon Box</a>
         <a href="../components/stat-card.html" class="demo-sidebar__link">Stat Card</a>
         <a href="../components/description-list.html" class="demo-sidebar__link">Description List</a>
         <a href="../components/result.html" class="demo-sidebar__link">Result</a>
@@ -59,6 +62,7 @@
         <a href="../components/toolbar.html" class="demo-sidebar__link">Toolbar</a>
         <a href="../components/bottom-nav.html" class="demo-sidebar__link">Bottom Nav</a>
         <a href="../components/segmented-control.html" class="demo-sidebar__link">Segmented Control</a>
+        <a href="../components/footer.html" class="demo-sidebar__link">Footer</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Feedback</div>
@@ -89,11 +93,16 @@
         <a href="../components/hero.html" class="demo-sidebar__link">Hero</a>
         <a href="../components/prose.html" class="demo-sidebar__link">Prose & Editorial</a>
         <a href="../components/admin-layout.html" class="demo-sidebar__link">Admin Layout</a>
+        <a href="../components/page-header.html" class="demo-sidebar__link">Page Header</a>
+        <a href="../components/admin-page.html" class="demo-sidebar__link">Admin Page</a>
+        <a href="../components/admin-form.html" class="demo-sidebar__link">Admin Form Layout</a>
+        <a href="../components/media.html" class="demo-sidebar__link">Media</a>
         <a href="../components/media-library.html" class="demo-sidebar__link">Media Library</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Action</div>
         <a href="../components/button.html" class="demo-sidebar__link">Button</a>
+        <a href="../components/theme-toggle.html" class="demo-sidebar__link">Theme Toggle</a>
         <a href="../components/kbd.html" class="demo-sidebar__link">Kbd</a>
         <a href="../components/sortable.html" class="demo-sidebar__link demo-sidebar__link--active">Sortable</a>
         <a href="../components/search.html" class="demo-sidebar__link">Search</a>
@@ -125,15 +134,15 @@
   <thead><tr><th style="width:2rem"></th><th>Name</th></tr></thead>
   <tbody>
     <tr>
-      <td><span class="ds-sortable__handle ds-sortable__handle--visible">&#9776;</span></td>
+      <td><span class="ds-sortable__handle ds-sortable__handle--visible"><svg data-icon="grip" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 5C10 5.55228 9.55228 6 9 6C8.44772 6 8 5.55228 8 5C8 4.44772 8.44772 4 9 4C9.55228 4 10 4.44772 10 5Z" stroke="currentColor" stroke-width="2" /><path d="M10 12C10 12.5523 9.55228 13 9 13C8.44772 13 8 12.5523 8 12C8 11.4477 8.44772 11 9 11C9.55228 11 10 11.4477 10 12Z" stroke="currentColor" stroke-width="2" /><path d="M10 19C10 19.5523 9.55228 20 9 20C8.44772 20 8 19.5523 8 19C8 18.4477 8.44772 18 9 18C9.55228 18 10 18.4477 10 19Z" stroke="currentColor" stroke-width="2" /><path d="M16 12C16 12.5523 15.5523 13 15 13C14.4477 13 14 12.5523 14 12C14 11.4477 14.4477 11 15 11C15.5523 11 16 11.4477 16 12Z" stroke="currentColor" stroke-width="2" /><path d="M16 19C16 19.5523 15.5523 20 15 20C14.4477 20 14 19.5523 14 19C14 18.4477 14.4477 18 15 18C15.5523 18 16 18.4477 16 19Z" stroke="currentColor" stroke-width="2" /><path d="M16 5C16 5.55228 15.5523 6 15 6C14.4477 6 14 5.55228 14 5C14 4.44772 14.4477 4 15 4C15.5523 4 16 4.44772 16 5Z" stroke="currentColor" stroke-width="2" /></svg></span></td>
       <td>First item</td>
     </tr>
     <tr>
-      <td><span class="ds-sortable__handle ds-sortable__handle--visible">&#9776;</span></td>
+      <td><span class="ds-sortable__handle ds-sortable__handle--visible"><svg data-icon="grip" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 5C10 5.55228 9.55228 6 9 6C8.44772 6 8 5.55228 8 5C8 4.44772 8.44772 4 9 4C9.55228 4 10 4.44772 10 5Z" stroke="currentColor" stroke-width="2" /><path d="M10 12C10 12.5523 9.55228 13 9 13C8.44772 13 8 12.5523 8 12C8 11.4477 8.44772 11 9 11C9.55228 11 10 11.4477 10 12Z" stroke="currentColor" stroke-width="2" /><path d="M10 19C10 19.5523 9.55228 20 9 20C8.44772 20 8 19.5523 8 19C8 18.4477 8.44772 18 9 18C9.55228 18 10 18.4477 10 19Z" stroke="currentColor" stroke-width="2" /><path d="M16 12C16 12.5523 15.5523 13 15 13C14.4477 13 14 12.5523 14 12C14 11.4477 14.4477 11 15 11C15.5523 11 16 11.4477 16 12Z" stroke="currentColor" stroke-width="2" /><path d="M16 19C16 19.5523 15.5523 20 15 20C14.4477 20 14 19.5523 14 19C14 18.4477 14.4477 18 15 18C15.5523 18 16 18.4477 16 19Z" stroke="currentColor" stroke-width="2" /><path d="M16 5C16 5.55228 15.5523 6 15 6C14.4477 6 14 5.55228 14 5C14 4.44772 14.4477 4 15 4C15.5523 4 16 4.44772 16 5Z" stroke="currentColor" stroke-width="2" /></svg></span></td>
       <td>Second item</td>
     </tr>
     <tr class="ds-sortable--over">
-      <td><span class="ds-sortable__handle ds-sortable__handle--visible">&#9776;</span></td>
+      <td><span class="ds-sortable__handle ds-sortable__handle--visible"><svg data-icon="grip" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 5C10 5.55228 9.55228 6 9 6C8.44772 6 8 5.55228 8 5C8 4.44772 8.44772 4 9 4C9.55228 4 10 4.44772 10 5Z" stroke="currentColor" stroke-width="2" /><path d="M10 12C10 12.5523 9.55228 13 9 13C8.44772 13 8 12.5523 8 12C8 11.4477 8.44772 11 9 11C9.55228 11 10 11.4477 10 12Z" stroke="currentColor" stroke-width="2" /><path d="M10 19C10 19.5523 9.55228 20 9 20C8.44772 20 8 19.5523 8 19C8 18.4477 8.44772 18 9 18C9.55228 18 10 18.4477 10 19Z" stroke="currentColor" stroke-width="2" /><path d="M16 12C16 12.5523 15.5523 13 15 13C14.4477 13 14 12.5523 14 12C14 11.4477 14.4477 11 15 11C15.5523 11 16 11.4477 16 12Z" stroke="currentColor" stroke-width="2" /><path d="M16 19C16 19.5523 15.5523 20 15 20C14.4477 20 14 19.5523 14 19C14 18.4477 14.4477 18 15 18C15.5523 18 16 18.4477 16 19Z" stroke="currentColor" stroke-width="2" /><path d="M16 5C16 5.55228 15.5523 6 15 6C14.4477 6 14 5.55228 14 5C14 4.44772 14.4477 4 15 4C15.5523 4 16 4.44772 16 5Z" stroke="currentColor" stroke-width="2" /></svg></span></td>
       <td>Drop target</td>
     </tr>
   </tbody>
@@ -145,15 +154,15 @@
   &lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;width:2rem&quot;&gt;&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;&lt;span class=&quot;ds-sortable__handle ds-sortable__handle--visible&quot;&gt;&amp;#9776;&lt;/span&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;span class=&quot;ds-sortable__handle ds-sortable__handle--visible&quot;&gt;&lt;svg data-icon=&quot;grip&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M10 5C10 5.55228 9.55228 6 9 6C8.44772 6 8 5.55228 8 5C8 4.44772 8.44772 4 9 4C9.55228 4 10 4.44772 10 5Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M10 12C10 12.5523 9.55228 13 9 13C8.44772 13 8 12.5523 8 12C8 11.4477 8.44772 11 9 11C9.55228 11 10 11.4477 10 12Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M10 19C10 19.5523 9.55228 20 9 20C8.44772 20 8 19.5523 8 19C8 18.4477 8.44772 18 9 18C9.55228 18 10 18.4477 10 19Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M16 12C16 12.5523 15.5523 13 15 13C14.4477 13 14 12.5523 14 12C14 11.4477 14.4477 11 15 11C15.5523 11 16 11.4477 16 12Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M16 19C16 19.5523 15.5523 20 15 20C14.4477 20 14 19.5523 14 19C14 18.4477 14.4477 18 15 18C15.5523 18 16 18.4477 16 19Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M16 5C16 5.55228 15.5523 6 15 6C14.4477 6 14 5.55228 14 5C14 4.44772 14.4477 4 15 4C15.5523 4 16 4.44772 16 5Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/td&gt;
       &lt;td&gt;First item&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;&lt;span class=&quot;ds-sortable__handle ds-sortable__handle--visible&quot;&gt;&amp;#9776;&lt;/span&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;span class=&quot;ds-sortable__handle ds-sortable__handle--visible&quot;&gt;&lt;svg data-icon=&quot;grip&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M10 5C10 5.55228 9.55228 6 9 6C8.44772 6 8 5.55228 8 5C8 4.44772 8.44772 4 9 4C9.55228 4 10 4.44772 10 5Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M10 12C10 12.5523 9.55228 13 9 13C8.44772 13 8 12.5523 8 12C8 11.4477 8.44772 11 9 11C9.55228 11 10 11.4477 10 12Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M10 19C10 19.5523 9.55228 20 9 20C8.44772 20 8 19.5523 8 19C8 18.4477 8.44772 18 9 18C9.55228 18 10 18.4477 10 19Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M16 12C16 12.5523 15.5523 13 15 13C14.4477 13 14 12.5523 14 12C14 11.4477 14.4477 11 15 11C15.5523 11 16 11.4477 16 12Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M16 19C16 19.5523 15.5523 20 15 20C14.4477 20 14 19.5523 14 19C14 18.4477 14.4477 18 15 18C15.5523 18 16 18.4477 16 19Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M16 5C16 5.55228 15.5523 6 15 6C14.4477 6 14 5.55228 14 5C14 4.44772 14.4477 4 15 4C15.5523 4 16 4.44772 16 5Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/td&gt;
       &lt;td&gt;Second item&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr class=&quot;ds-sortable--over&quot;&gt;
-      &lt;td&gt;&lt;span class=&quot;ds-sortable__handle ds-sortable__handle--visible&quot;&gt;&amp;#9776;&lt;/span&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;span class=&quot;ds-sortable__handle ds-sortable__handle--visible&quot;&gt;&lt;svg data-icon=&quot;grip&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M10 5C10 5.55228 9.55228 6 9 6C8.44772 6 8 5.55228 8 5C8 4.44772 8.44772 4 9 4C9.55228 4 10 4.44772 10 5Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M10 12C10 12.5523 9.55228 13 9 13C8.44772 13 8 12.5523 8 12C8 11.4477 8.44772 11 9 11C9.55228 11 10 11.4477 10 12Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M10 19C10 19.5523 9.55228 20 9 20C8.44772 20 8 19.5523 8 19C8 18.4477 8.44772 18 9 18C9.55228 18 10 18.4477 10 19Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M16 12C16 12.5523 15.5523 13 15 13C14.4477 13 14 12.5523 14 12C14 11.4477 14.4477 11 15 11C15.5523 11 16 11.4477 16 12Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M16 19C16 19.5523 15.5523 20 15 20C14.4477 20 14 19.5523 14 19C14 18.4477 14.4477 18 15 18C15.5523 18 16 18.4477 16 19Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;path d=&quot;M16 5C16 5.55228 15.5523 6 15 6C14.4477 6 14 5.55228 14 5C14 4.44772 14.4477 4 15 4C15.5523 4 16 4.44772 16 5Z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; /&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/td&gt;
       &lt;td&gt;Drop target&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Timeline — Design System</title>
+  <title>Radio — Design System</title>
   <link rel="stylesheet" href="../../dist/designsystem.css">
   <link rel="stylesheet" href="../_shared/demo.css">
 </head>
@@ -24,7 +24,7 @@
         <div class="demo-sidebar__label">Form</div>
         <a href="../components/input.html" class="demo-sidebar__link">Input</a>
         <a href="../components/checkbox.html" class="demo-sidebar__link">Checkbox</a>
-        <a href="../components/radio.html" class="demo-sidebar__link">Radio</a>
+        <a href="../components/radio.html" class="demo-sidebar__link demo-sidebar__link--active">Radio</a>
         <a href="../components/toggle.html" class="demo-sidebar__link">Toggle</a>
         <a href="../components/datepicker.html" class="demo-sidebar__link">Datepicker</a>
         <a href="../components/drop-zone.html" class="demo-sidebar__link">Drop Zone</a>
@@ -45,7 +45,7 @@
         <a href="../components/skeleton.html" class="demo-sidebar__link">Skeleton</a>
         <a href="../components/tag.html" class="demo-sidebar__link">Tag</a>
         <a href="../components/progress.html" class="demo-sidebar__link">Progress</a>
-        <a href="../components/timeline.html" class="demo-sidebar__link demo-sidebar__link--active">Timeline</a>
+        <a href="../components/timeline.html" class="demo-sidebar__link">Timeline</a>
         <a href="../components/chip.html" class="demo-sidebar__link">Chip</a>
         <a href="../components/icon-box.html" class="demo-sidebar__link">Icon Box</a>
         <a href="../components/stat-card.html" class="demo-sidebar__link">Stat Card</a>
@@ -118,87 +118,94 @@
     <main class="demo-main">
 
       <header>
-        <h1>Timeline</h1>
-        <p>Vertical timeline for roadmaps, activity feeds, and step-based flows.</p>
+        <h1>Radio</h1>
+        <p>Custom-drawn radio: a native input restyled inside a label wrapper.</p>
         <div class="demo-meta">
-          <span class="ds-badge">Data Display</span>
-          <code>@import '@adamarant/designsystem/components/timeline';</code>
+          <span class="ds-badge">Form</span>
+          <code>@import '@adamarant/designsystem/components/radio';</code>
         </div>
       </header>
 
 
     <section class="demo-example">
-      <h2>Activity Timeline</h2>
+      <h2>Basic</h2>
       <div class="demo-preview">
-        <div class="ds-timeline">
-  <div class="ds-timeline__item ds-timeline__item--completed">
-    <div class="ds-timeline__dot"></div>
-    <div class="ds-timeline__content">
-      <div class="ds-timeline__title">Project Created</div>
-      <div class="ds-timeline__description">Initial repository setup and configuration.</div>
-      <div class="ds-timeline__time">3 days ago</div>
-    </div>
-  </div>
-  <div class="ds-timeline__item ds-timeline__item--completed">
-    <div class="ds-timeline__dot"></div>
-    <div class="ds-timeline__content">
-      <div class="ds-timeline__title">Design Review</div>
-      <div class="ds-timeline__description">UI mockups approved by the team.</div>
-      <div class="ds-timeline__time">2 days ago</div>
-    </div>
-  </div>
-  <div class="ds-timeline__item ds-timeline__item--current">
-    <div class="ds-timeline__dot"></div>
-    <div class="ds-timeline__content">
-      <div class="ds-timeline__title">Development</div>
-      <div class="ds-timeline__description">Building core components and layout.</div>
-      <div class="ds-timeline__time">In progress</div>
-    </div>
-  </div>
-  <div class="ds-timeline__item">
-    <div class="ds-timeline__dot"></div>
-    <div class="ds-timeline__content">
-      <div class="ds-timeline__title">Testing</div>
-      <div class="ds-timeline__description">QA and cross-browser testing.</div>
-    </div>
-  </div>
-</div>
+        <label class="ds-radio"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="radio" name="plan" checked /> Free plan</label>
+<label class="ds-radio"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="radio" name="plan" /> Pro plan</label>
       </div>
       <details class="demo-code">
         <summary>View Code</summary>
-        <pre><code>&lt;div class=&quot;ds-timeline&quot;&gt;
-  &lt;div class=&quot;ds-timeline__item ds-timeline__item--completed&quot;&gt;
-    &lt;div class=&quot;ds-timeline__dot&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;ds-timeline__content&quot;&gt;
-      &lt;div class=&quot;ds-timeline__title&quot;&gt;Project Created&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__description&quot;&gt;Initial repository setup and configuration.&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__time&quot;&gt;3 days ago&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-timeline__item ds-timeline__item--completed&quot;&gt;
-    &lt;div class=&quot;ds-timeline__dot&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;ds-timeline__content&quot;&gt;
-      &lt;div class=&quot;ds-timeline__title&quot;&gt;Design Review&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__description&quot;&gt;UI mockups approved by the team.&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__time&quot;&gt;2 days ago&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-timeline__item ds-timeline__item--current&quot;&gt;
-    &lt;div class=&quot;ds-timeline__dot&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;ds-timeline__content&quot;&gt;
-      &lt;div class=&quot;ds-timeline__title&quot;&gt;Development&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__description&quot;&gt;Building core components and layout.&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__time&quot;&gt;In progress&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;ds-timeline__item&quot;&gt;
-    &lt;div class=&quot;ds-timeline__dot&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;ds-timeline__content&quot;&gt;
-      &lt;div class=&quot;ds-timeline__title&quot;&gt;Testing&lt;/div&gt;
-      &lt;div class=&quot;ds-timeline__description&quot;&gt;QA and cross-browser testing.&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+        <pre><code>&lt;label class=&quot;ds-radio&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;plan&quot; checked /&gt; Free plan&lt;/label&gt;
+&lt;label class=&quot;ds-radio&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;plan&quot; /&gt; Pro plan&lt;/label&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>With description</h2>
+      <div class="demo-preview">
+        <label class="ds-radio">
+  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="radio" name="tier" checked />
+  <span class="ds-radio__content">
+    <span class="ds-radio__label">Starter</span>
+    <span class="ds-radio__description">For individuals getting started. Up to 3 projects.</span>
+  </span>
+</label>
+<label class="ds-radio">
+  <input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="radio" name="tier" />
+  <span class="ds-radio__content">
+    <span class="ds-radio__label">Team</span>
+    <span class="ds-radio__description">For growing teams. Unlimited projects and shared workspaces.</span>
+  </span>
+</label>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;label class=&quot;ds-radio&quot;&gt;
+  &lt;input type=&quot;radio&quot; name=&quot;tier&quot; checked /&gt;
+  &lt;span class=&quot;ds-radio__content&quot;&gt;
+    &lt;span class=&quot;ds-radio__label&quot;&gt;Starter&lt;/span&gt;
+    &lt;span class=&quot;ds-radio__description&quot;&gt;For individuals getting started. Up to 3 projects.&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/label&gt;
+&lt;label class=&quot;ds-radio&quot;&gt;
+  &lt;input type=&quot;radio&quot; name=&quot;tier&quot; /&gt;
+  &lt;span class=&quot;ds-radio__content&quot;&gt;
+    &lt;span class=&quot;ds-radio__label&quot;&gt;Team&lt;/span&gt;
+    &lt;span class=&quot;ds-radio__description&quot;&gt;For growing teams. Unlimited projects and shared workspaces.&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/label&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>States</h2>
+      <div class="demo-preview">
+        <label class="ds-radio"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="radio" name="state" /> Unselected</label>
+<label class="ds-radio"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="radio" name="state" checked /> Selected</label>
+<label class="ds-radio"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="radio" name="state2" disabled /> Disabled</label>
+<label class="ds-radio"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="radio" name="state2" checked disabled /> Selected disabled</label>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;label class=&quot;ds-radio&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;state&quot; /&gt; Unselected&lt;/label&gt;
+&lt;label class=&quot;ds-radio&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;state&quot; checked /&gt; Selected&lt;/label&gt;
+&lt;label class=&quot;ds-radio&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;state2&quot; disabled /&gt; Disabled&lt;/label&gt;
+&lt;label class=&quot;ds-radio&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;state2&quot; checked disabled /&gt; Selected disabled&lt;/label&gt;</code></pre>
+      </details>
+    </section>
+
+    <section class="demo-example">
+      <h2>Sizes</h2>
+      <div class="demo-preview">
+        <label class="ds-radio ds-radio--sm"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="radio" name="sz1" checked /> Small</label>
+<label class="ds-radio"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="radio" name="sz2" checked /> Default</label>
+<label class="ds-radio ds-radio--lg"><input autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other" type="radio" name="sz3" checked /> Large</label>
+      </div>
+      <details class="demo-code">
+        <summary>View Code</summary>
+        <pre><code>&lt;label class=&quot;ds-radio ds-radio--sm&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;sz1&quot; checked /&gt; Small&lt;/label&gt;
+&lt;label class=&quot;ds-radio&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;sz2&quot; checked /&gt; Default&lt;/label&gt;
+&lt;label class=&quot;ds-radio ds-radio--lg&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;sz3&quot; checked /&gt; Large&lt;/label&gt;</code></pre>
       </details>
     </section>
 
@@ -206,23 +213,18 @@
       <h2>API</h2>
       <table class="ds-table">
         <thead><tr><th>Class</th><th>Type</th></tr></thead>
-        <tbody><tr><td><code>.ds-timeline</code></td><td>Base component</td></tr>
-          <tr><td><code>.ds-timeline__item</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-timeline__dot</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-timeline__content</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-timeline__title</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-timeline__description</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-timeline__time</code></td><td>Element</td></tr>
-          <tr><td><code>.ds-timeline--compact</code></td><td>Variant</td></tr>
-          <tr><td><code>.ds-timeline--completed</code></td><td>Modifier</td></tr>
-          <tr><td><code>.ds-timeline--current</code></td><td>Modifier</td></tr>
-          <tr><td><code>.ds-timeline--error</code></td><td>Modifier</td></tr></tbody>
+        <tbody><tr><td><code>.ds-radio</code></td><td>Base component</td></tr>
+          <tr><td><code>.ds-radio.ds-radio__content</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-radio.ds-radio__label</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-radio.ds-radio__description</code></td><td>Element</td></tr>
+          <tr><td><code>.ds-radio--sm</code></td><td>Size</td></tr>
+          <tr><td><code>.ds-radio--lg</code></td><td>Size</td></tr></tbody>
       </table>
     </section>
 
     <nav class="demo-nav-footer">
-      <a href="slider.html">&larr; Slider</a>
-      <a href="kbd.html">Kbd &rarr;</a>
+      <a href="checkbox.html">&larr; Checkbox</a>
+      <a href="badge.html">Badge &rarr;</a>
     </nav>
     </main>
   </div>

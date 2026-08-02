@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom Select — Design System</title>
+  <title>Select — Design System</title>
   <link rel="stylesheet" href="../../dist/designsystem.css">
   <link rel="stylesheet" href="../_shared/demo.css">
 </head>
@@ -23,10 +23,12 @@
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Form</div>
         <a href="../components/input.html" class="demo-sidebar__link">Input</a>
+        <a href="../components/checkbox.html" class="demo-sidebar__link">Checkbox</a>
+        <a href="../components/radio.html" class="demo-sidebar__link">Radio</a>
         <a href="../components/toggle.html" class="demo-sidebar__link">Toggle</a>
         <a href="../components/datepicker.html" class="demo-sidebar__link">Datepicker</a>
         <a href="../components/drop-zone.html" class="demo-sidebar__link">Drop Zone</a>
-        <a href="../components/custom-select.html" class="demo-sidebar__link demo-sidebar__link--active">Custom Select</a>
+        <a href="../components/custom-select.html" class="demo-sidebar__link demo-sidebar__link--active">Select</a>
         <a href="../components/slider.html" class="demo-sidebar__link">Slider</a>
         <a href="../components/field.html" class="demo-sidebar__link">Field</a>
         <a href="../components/combobox.html" class="demo-sidebar__link">Combobox</a>
@@ -45,6 +47,7 @@
         <a href="../components/progress.html" class="demo-sidebar__link">Progress</a>
         <a href="../components/timeline.html" class="demo-sidebar__link">Timeline</a>
         <a href="../components/chip.html" class="demo-sidebar__link">Chip</a>
+        <a href="../components/icon-box.html" class="demo-sidebar__link">Icon Box</a>
         <a href="../components/stat-card.html" class="demo-sidebar__link">Stat Card</a>
         <a href="../components/description-list.html" class="demo-sidebar__link">Description List</a>
         <a href="../components/result.html" class="demo-sidebar__link">Result</a>
@@ -59,6 +62,7 @@
         <a href="../components/toolbar.html" class="demo-sidebar__link">Toolbar</a>
         <a href="../components/bottom-nav.html" class="demo-sidebar__link">Bottom Nav</a>
         <a href="../components/segmented-control.html" class="demo-sidebar__link">Segmented Control</a>
+        <a href="../components/footer.html" class="demo-sidebar__link">Footer</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Feedback</div>
@@ -89,11 +93,16 @@
         <a href="../components/hero.html" class="demo-sidebar__link">Hero</a>
         <a href="../components/prose.html" class="demo-sidebar__link">Prose & Editorial</a>
         <a href="../components/admin-layout.html" class="demo-sidebar__link">Admin Layout</a>
+        <a href="../components/page-header.html" class="demo-sidebar__link">Page Header</a>
+        <a href="../components/admin-page.html" class="demo-sidebar__link">Admin Page</a>
+        <a href="../components/admin-form.html" class="demo-sidebar__link">Admin Form Layout</a>
+        <a href="../components/media.html" class="demo-sidebar__link">Media</a>
         <a href="../components/media-library.html" class="demo-sidebar__link">Media Library</a>
       </div>
       <div class="demo-sidebar__group">
         <div class="demo-sidebar__label">Action</div>
         <a href="../components/button.html" class="demo-sidebar__link">Button</a>
+        <a href="../components/theme-toggle.html" class="demo-sidebar__link">Theme Toggle</a>
         <a href="../components/kbd.html" class="demo-sidebar__link">Kbd</a>
         <a href="../components/sortable.html" class="demo-sidebar__link">Sortable</a>
         <a href="../components/search.html" class="demo-sidebar__link">Search</a>
@@ -109,8 +118,8 @@
     <main class="demo-main">
 
       <header>
-        <h1>Custom Select</h1>
-        <p>Styled select dropdown replacing native <select>. Desktop: absolute panel. Mobile: fullscreen sheet with search. Supports multi-select with tags.</p>
+        <h1>Select</h1>
+        <p>One select, two renderings: styled panel by default when options are provided (search auto over 5), OS-native via children or the native prop.</p>
         <div class="demo-meta">
           <span class="ds-badge">Form</span>
           <code>@import '@adamarant/designsystem/components/custom-select';</code>
@@ -124,7 +133,7 @@
         <div class="ds-custom-select">
   <button class="ds-custom-select__trigger">
     <span class="ds-custom-select__trigger-label">Apartamento</span>
-    <span class="ds-custom-select__chevron">&#9662;</span>
+    <span class="ds-custom-select__chevron"><svg data-icon="chevron-down" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.29289 8.29289C3.68342 7.90237 4.31658 7.90237 4.70711 8.29289L11.2929 14.8787C11.6834 15.2692 12.3166 15.2692 12.7071 14.8787L19.2929 8.29289C19.6834 7.90237 20.3166 7.90237 20.7071 8.29289C21.0976 8.68342 21.0976 9.31658 20.7071 9.70711L14.1213 16.2929C12.9498 17.4645 11.0503 17.4645 9.8787 16.2929L3.29289 9.70711C2.90237 9.31658 2.90237 8.68342 3.29289 8.29289Z" fill="currentColor" /></svg></span>
   </button>
 </div>
       </div>
@@ -133,7 +142,7 @@
         <pre><code>&lt;div class=&quot;ds-custom-select&quot;&gt;
   &lt;button class=&quot;ds-custom-select__trigger&quot;&gt;
     &lt;span class=&quot;ds-custom-select__trigger-label&quot;&gt;Apartamento&lt;/span&gt;
-    &lt;span class=&quot;ds-custom-select__chevron&quot;&gt;&amp;#9662;&lt;/span&gt;
+    &lt;span class=&quot;ds-custom-select__chevron&quot;&gt;&lt;svg data-icon=&quot;chevron-down&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M3.29289 8.29289C3.68342 7.90237 4.31658 7.90237 4.70711 8.29289L11.2929 14.8787C11.6834 15.2692 12.3166 15.2692 12.7071 14.8787L19.2929 8.29289C19.6834 7.90237 20.3166 7.90237 20.7071 8.29289C21.0976 8.68342 21.0976 9.31658 20.7071 9.70711L14.1213 16.2929C12.9498 17.4645 11.0503 17.4645 9.8787 16.2929L3.29289 9.70711C2.90237 9.31658 2.90237 8.68342 3.29289 8.29289Z&quot; fill=&quot;currentColor&quot; /&gt;&lt;/svg&gt;&lt;/span&gt;
   &lt;/button&gt;
 &lt;/div&gt;</code></pre>
       </details>
@@ -145,10 +154,10 @@
         <div class="ds-custom-select ds-custom-select--multi">
   <button class="ds-custom-select__trigger">
     <div class="ds-custom-select__tags">
-      <span class="ds-custom-select__tag">React <button class="ds-custom-select__tag-remove" aria-label="Remove">&times;</button></span>
-      <span class="ds-custom-select__tag">Vue <button class="ds-custom-select__tag-remove" aria-label="Remove">&times;</button></span>
+      <span class="ds-custom-select__tag">React <button class="ds-custom-select__tag-remove" aria-label="Remove"><svg data-icon="close" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.18934 4.18934C4.77513 3.60355 5.72487 3.60355 6.31066 4.18934L12 9.87868L17.6893 4.18934C18.2751 3.60355 19.2249 3.60355 19.8107 4.18934C20.3964 4.77513 20.3964 5.72487 19.8107 6.31066L14.1213 12L19.8107 17.6893C20.3964 18.2751 20.3964 19.2249 19.8107 19.8107C19.2249 20.3964 18.2751 20.3964 17.6893 19.8107L12 14.1213L6.31066 19.8107C5.72487 20.3964 4.77513 20.3964 4.18934 19.8107C3.60355 19.2249 3.60355 18.2751 4.18934 17.6893L9.87868 12L4.18934 6.31066C3.60355 5.72487 3.60355 4.77513 4.18934 4.18934Z" fill="currentColor" /></svg></button></span>
+      <span class="ds-custom-select__tag">Vue <button class="ds-custom-select__tag-remove" aria-label="Remove"><svg data-icon="close" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.18934 4.18934C4.77513 3.60355 5.72487 3.60355 6.31066 4.18934L12 9.87868L17.6893 4.18934C18.2751 3.60355 19.2249 3.60355 19.8107 4.18934C20.3964 4.77513 20.3964 5.72487 19.8107 6.31066L14.1213 12L19.8107 17.6893C20.3964 18.2751 20.3964 19.2249 19.8107 19.8107C19.2249 20.3964 18.2751 20.3964 17.6893 19.8107L12 14.1213L6.31066 19.8107C5.72487 20.3964 4.77513 20.3964 4.18934 19.8107C3.60355 19.2249 3.60355 18.2751 4.18934 17.6893L9.87868 12L4.18934 6.31066C3.60355 5.72487 3.60355 4.77513 4.18934 4.18934Z" fill="currentColor" /></svg></button></span>
     </div>
-    <span class="ds-custom-select__chevron">&#9662;</span>
+    <span class="ds-custom-select__chevron"><svg data-icon="chevron-down" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.29289 8.29289C3.68342 7.90237 4.31658 7.90237 4.70711 8.29289L11.2929 14.8787C11.6834 15.2692 12.3166 15.2692 12.7071 14.8787L19.2929 8.29289C19.6834 7.90237 20.3166 7.90237 20.7071 8.29289C21.0976 8.68342 21.0976 9.31658 20.7071 9.70711L14.1213 16.2929C12.9498 17.4645 11.0503 17.4645 9.8787 16.2929L3.29289 9.70711C2.90237 9.31658 2.90237 8.68342 3.29289 8.29289Z" fill="currentColor" /></svg></span>
   </button>
 </div>
       </div>
@@ -157,10 +166,10 @@
         <pre><code>&lt;div class=&quot;ds-custom-select ds-custom-select--multi&quot;&gt;
   &lt;button class=&quot;ds-custom-select__trigger&quot;&gt;
     &lt;div class=&quot;ds-custom-select__tags&quot;&gt;
-      &lt;span class=&quot;ds-custom-select__tag&quot;&gt;React &lt;button class=&quot;ds-custom-select__tag-remove&quot; aria-label=&quot;Remove&quot;&gt;&amp;times;&lt;/button&gt;&lt;/span&gt;
-      &lt;span class=&quot;ds-custom-select__tag&quot;&gt;Vue &lt;button class=&quot;ds-custom-select__tag-remove&quot; aria-label=&quot;Remove&quot;&gt;&amp;times;&lt;/button&gt;&lt;/span&gt;
+      &lt;span class=&quot;ds-custom-select__tag&quot;&gt;React &lt;button class=&quot;ds-custom-select__tag-remove&quot; aria-label=&quot;Remove&quot;&gt;&lt;svg data-icon=&quot;close&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M4.18934 4.18934C4.77513 3.60355 5.72487 3.60355 6.31066 4.18934L12 9.87868L17.6893 4.18934C18.2751 3.60355 19.2249 3.60355 19.8107 4.18934C20.3964 4.77513 20.3964 5.72487 19.8107 6.31066L14.1213 12L19.8107 17.6893C20.3964 18.2751 20.3964 19.2249 19.8107 19.8107C19.2249 20.3964 18.2751 20.3964 17.6893 19.8107L12 14.1213L6.31066 19.8107C5.72487 20.3964 4.77513 20.3964 4.18934 19.8107C3.60355 19.2249 3.60355 18.2751 4.18934 17.6893L9.87868 12L4.18934 6.31066C3.60355 5.72487 3.60355 4.77513 4.18934 4.18934Z&quot; fill=&quot;currentColor&quot; /&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;
+      &lt;span class=&quot;ds-custom-select__tag&quot;&gt;Vue &lt;button class=&quot;ds-custom-select__tag-remove&quot; aria-label=&quot;Remove&quot;&gt;&lt;svg data-icon=&quot;close&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M4.18934 4.18934C4.77513 3.60355 5.72487 3.60355 6.31066 4.18934L12 9.87868L17.6893 4.18934C18.2751 3.60355 19.2249 3.60355 19.8107 4.18934C20.3964 4.77513 20.3964 5.72487 19.8107 6.31066L14.1213 12L19.8107 17.6893C20.3964 18.2751 20.3964 19.2249 19.8107 19.8107C19.2249 20.3964 18.2751 20.3964 17.6893 19.8107L12 14.1213L6.31066 19.8107C5.72487 20.3964 4.77513 20.3964 4.18934 19.8107C3.60355 19.2249 3.60355 18.2751 4.18934 17.6893L9.87868 12L4.18934 6.31066C3.60355 5.72487 3.60355 4.77513 4.18934 4.18934Z&quot; fill=&quot;currentColor&quot; /&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;
     &lt;/div&gt;
-    &lt;span class=&quot;ds-custom-select__chevron&quot;&gt;&amp;#9662;&lt;/span&gt;
+    &lt;span class=&quot;ds-custom-select__chevron&quot;&gt;&lt;svg data-icon=&quot;chevron-down&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M3.29289 8.29289C3.68342 7.90237 4.31658 7.90237 4.70711 8.29289L11.2929 14.8787C11.6834 15.2692 12.3166 15.2692 12.7071 14.8787L19.2929 8.29289C19.6834 7.90237 20.3166 7.90237 20.7071 8.29289C21.0976 8.68342 21.0976 9.31658 20.7071 9.70711L14.1213 16.2929C12.9498 17.4645 11.0503 17.4645 9.8787 16.2929L3.29289 9.70711C2.90237 9.31658 2.90237 8.68342 3.29289 8.29289Z&quot; fill=&quot;currentColor&quot; /&gt;&lt;/svg&gt;&lt;/span&gt;
   &lt;/button&gt;
 &lt;/div&gt;</code></pre>
       </details>
