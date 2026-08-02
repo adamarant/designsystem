@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Component: Overlay
+   The dimmed layer that covers the page while something modal is open.
+
+   It exists because it already existed six times (2 Aug 2026). Every
+   component that needed a scrim wrote its own `position: fixed; inset: 0;
+   background: var(--ds-color-overlay)`, and they drifted on every axis:
+
+     modal          z-modal    slow    blur    transition
+     drawer         z-overlay  normal  —       transition
+     bottom-sheet   z-modal    normal  —       keyframes
+     command        z-modal    fast    —       transition
+     admin-layout   z-overlay  none    —       none (static)
+     custom-select  z-overlay  normal  —       keyframes
+
+   In practice a modal faded the page out slowly behind a blur while the
+   command palette snapped it in, and a drawer dimmed at a lower layer than
+   the other two, so a modal opened over a drawer covered its scrim but not
+   the reverse. None of that was decided; it is six people writing the same
+   four declarations on six different days. The question that found it was
+   "why does Overlay have six components — isn't the overlay a component?".
+
+   The shared rule below covers .ds-overlay AND the existing roots, so no
+   consumer markup changes: .ds-modal keeps working, it simply stops
+   carrying its own copy. New code can use .ds-overlay directly.
+
+   Layer: --ds-z-overlay (80), which is what that token is for. The scale
+   leaves --ds-z-modal (100) to panels that must sit ABOVE a scrim — a
+   custom-select panel opened inside a modal, a gallery — which is exactly
+   the relationship those two numbers should express, and did not while
+   modal itself sat at 100.
+
+   ARIA requirements (consumer responsibility):
+   - A standalone .ds-overlay is decorative: aria-hidden="true". The dialog
+     it dims carries role="dialog" and aria-modal, and owns the focus trap.
+   - Clicking it should close what it dims; that is the consumer's handler.
+   ========================================================================== */
+
+.ds-overlay,
+.ds-modal,
+.ds-drawer,
+.ds-command {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-overlay);
+  background-color: var(--ds-color-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--ds-duration-normal) var(--ds-ease-default),
+    visibility var(--ds-duration-normal) var(--ds-ease-default);
+}
+
+.ds-overlay--open,
+.ds-modal--open,
+.ds-drawer--open,
+.ds-command--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Blur is the one per-component choice worth keeping: a modal blurs the
+   page behind it, a command palette deliberately does not. Available to
+   anything as a modifier. */
+.ds-overlay--blur,
+.ds-modal {
+  backdrop-filter: blur(var(--ds-blur-sm));
+  -webkit-backdrop-filter: blur(var(--ds-blur-sm));
+}
+
+/* Always-on: no open state, for a scrim that is only in the DOM while the
+   thing it dims is mounted. */
+.ds-overlay--static {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* NOT folded in, deliberately: .ds-admin__overlay and
+   .ds-custom-select__backdrop keep their own four declarations. Both are
+   always-on scrims with their own state machine — the custom-select one is
+   display-gated by a media query and animated by keyframes, with its own
+   reduced-motion override — so folding them buys tidiness and risks their
+   behaviour. They are the remaining copies; if either grows a real open
+   state, fold it then. */
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-overlay,
+  .ds-modal,
+  .ds-drawer,
+  .ds-command {
+    transition-duration: 0.01ms;
+  }
+}

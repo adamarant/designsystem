@@ -11,25 +11,20 @@
    - On close: return focus to the element that triggered the modal
    ========================================================================== */
 
+/* The scrim — fixed inset-0, the overlay colour, the open transition and
+   the blur — lives in overlay.css since 2 Aug 2026, which owns it for this
+   component too. What stays here is what makes a modal a modal: it centres
+   its content. The transition was `slow` and is now `normal` like every
+   other scrim; the layer moved from --ds-z-modal to --ds-z-overlay, which
+   is what lets a custom-select panel open above a modal instead of
+   fighting it at the same level. */
 .ds-modal {
-  position: fixed;
-  inset: 0;
-  z-index: var(--ds-z-modal);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--ds-space-4);
-  background-color: var(--ds-color-overlay);
-  backdrop-filter: blur(var(--ds-blur-sm));
-  -webkit-backdrop-filter: blur(var(--ds-blur-sm));
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity var(--ds-duration-slow) var(--ds-ease-default),
-    visibility var(--ds-duration-slow) var(--ds-ease-default);
 
-  &[open],
-  &--open {
+  &[open] {
     opacity: 1;
     visibility: visible;
   }
