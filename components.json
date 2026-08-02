@@ -126,7 +126,7 @@
     {
       "name": "input",
       "title": "Input",
-      "description": "Form inputs with surface bg, clean borders, focus ring.",
+      "description": "The form control itself. Wrap it in .ds-field (or <Field>) to get its label, hint and error. NOTE: .ds-form-group and .ds-help in this file are deprecated (2 Aug 2026) in favour of .ds-field and .ds-field__hint; .ds-label stays, for controls with no field wrapper.",
       "category": "form",
       "classes": [
         ".ds-input",
@@ -1596,7 +1596,7 @@
     {
       "name": "field",
       "title": "Field",
-      "description": "Unified wrapper for form fields — label + input slot + hint + error.",
+      "description": "The form field: label, control, hint, error, in one component. ds-react <Field> takes them as props and derives the htmlFor / aria-describedby wiring, so the label points at its control and the messages are announced. The control inside it is .ds-input / .ds-textarea / .ds-select.",
       "category": "form",
       "classes": [
         ".ds-field"
@@ -1604,7 +1604,9 @@
       "elements": [
         "__label",
         "__hint",
-        "__error"
+        "__error",
+        "__success",
+        "__counter"
       ],
       "variants": [],
       "sizes": [],

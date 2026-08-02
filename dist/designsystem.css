@@ -1657,6 +1657,8 @@ hr {
 
 
 /* Help text */
+/* @deprecated 2 Aug 2026 (0.38.0) — use .ds-field__hint (or <Field hint>).
+   Zero uses across the 21 consumers, so nothing has to migrate. */
 .ds-help {
 
   font-size: var(--ds-text-xs);
@@ -1669,7 +1671,22 @@ hr {
  color: var(--ds-color-error); }
 
 
-/* Form Group (legacy — prefer ds-form) */
+/* @deprecated 2 Aug 2026 (0.38.0) — use .ds-field (or <Field>).
+   This file shipped a second wrapper vocabulary next to field.css:
+   .ds-form-group here vs .ds-field there, .ds-label vs .ds-field__label,
+   .ds-help vs .ds-field__hint. 37 uses across 4 consumers, and three of
+   them (riccardo, studio, enzo-spatalino) carry BOTH families — two ways
+   to build the same form inside one project.
+
+   The migration is not a rename: this class pushes 16px down from each
+   group, while .ds-field puts a 6px gap between its own parts and lets the
+   form own the distance between fields. Per-page review, not a codemod.
+
+   .ds-label is NOT deprecated: it stays the standalone label for the cases
+   with no field wrapper (a checkbox row, a table filter), 62 uses. Note
+   that it carries its own margin-block-end while .ds-field__label
+   deliberately does not — the field's gap owns that distance — so the two
+   must never be nested, or the spacing doubles. */
 .ds-form-group { margin-block-end: var(--ds-space-4); }
 
 /* --- Form Stack ---
