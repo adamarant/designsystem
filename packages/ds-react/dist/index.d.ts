@@ -11,7 +11,7 @@ export { Input, Textarea, InputGroup, InputGroupIcon, Help, Checkbox, Radio, typ
 export { Select, type SelectProps, type SelectOption, type SelectSize, } from "./components/Select";
 export { ignorePasswordManagers } from "./utils/passwordManager";
 export { Card, CardHeader, CardTitle, CardDescription, CardBody, CardFooter, CardMedia, type CardProps, type CardHeaderProps, type CardTitleProps, type CardDescriptionProps, type CardBodyProps, type CardFooterProps, type CardMediaProps, } from "./components/Card";
-export { Alert, AlertIcon, AlertContent, AlertTitle, AlertDescription, AlertClose, type AlertProps, type AlertIconProps, type AlertContentProps, type AlertTitleProps, type AlertDescriptionProps, type AlertCloseProps, } from "./components/Alert";
+export { Alert, AlertIcon, AlertContent, AlertTitle, AlertDescription, AlertClose, AlertActions, type AlertProps, type AlertIconProps, type AlertContentProps, type AlertTitleProps, type AlertDescriptionProps, type AlertCloseProps, type AlertActionsProps, } from "./components/Alert";
 export { Tag, TagRemove, type TagProps, type TagRemoveProps, } from "./components/Tag";
 export { Avatar, AvatarStatus, AvatarGroup, type AvatarProps, type AvatarStatusProps, type AvatarGroupProps, } from "./components/Avatar";
 export { Spinner, type SpinnerProps } from "./components/Spinner";

@@ -517,17 +517,18 @@
     {
       "name": "alert",
       "title": "Alert",
-      "description": "Contextual feedback banners with semantic variants and dismissibility.",
+      "description": "Contextual feedback banners with semantic variants and dismissibility. The colour lives on the icon and in the tinted fill. Optional __actions carries the buttons the alert is asking for — stacked under the content, or on the trailing edge with --actions-inline.",
       "category": "feedback",
       "classes": [
         ".ds-alert"
       ],
       "elements": [
-        "__icon",
+        "__actions",
+        "__close",
         "__content",
-        "__title",
         "__description",
-        "__close"
+        "__icon",
+        "__title"
       ],
       "variants": [
         "--info",
@@ -538,15 +539,21 @@
         "--banner"
       ],
       "sizes": [],
-      "modifiers": [],
+      "modifiers": [
+        "--actions-inline"
+      ],
       "examples": [
         {
           "title": "Semantic Variants",
-          "html": "<div class=\"ds-alert ds-alert--info\">\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Information</div>\n    <div class=\"ds-alert__description\">A new software update is available for download.</div>\n  </div>\n  <button class=\"ds-alert__close\"><svg data-icon=\"close\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M4.18934 4.18934C4.77513 3.60355 5.72487 3.60355 6.31066 4.18934L12 9.87868L17.6893 4.18934C18.2751 3.60355 19.2249 3.60355 19.8107 4.18934C20.3964 4.77513 20.3964 5.72487 19.8107 6.31066L14.1213 12L19.8107 17.6893C20.3964 18.2751 20.3964 19.2249 19.8107 19.8107C19.2249 20.3964 18.2751 20.3964 17.6893 19.8107L12 14.1213L6.31066 19.8107C5.72487 20.3964 4.77513 20.3964 4.18934 19.8107C3.60355 19.2249 3.60355 18.2751 4.18934 17.6893L9.87868 12L4.18934 6.31066C3.60355 5.72487 3.60355 4.77513 4.18934 4.18934Z\" fill=\"currentColor\" /></svg></button>\n</div>\n<div class=\"ds-alert ds-alert--success\" style=\"margin-top:0.5rem;\">\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Success</div>\n    <div class=\"ds-alert__description\">Your profile has been updated successfully.</div>\n  </div>\n</div>\n<div class=\"ds-alert ds-alert--warning\" style=\"margin-top:0.5rem;\">\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Warning</div>\n    <div class=\"ds-alert__description\">Your storage is almost full. Consider upgrading your plan.</div>\n  </div>\n</div>\n<div class=\"ds-alert ds-alert--error\" style=\"margin-top:0.5rem;\">\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Error</div>\n    <div class=\"ds-alert__description\">Unable to process your request. Please try again.</div>\n  </div>\n</div>"
+          "html": "<div class=\"ds-alert ds-alert--info\">\n  <span class=\"ds-alert__icon\">i</span>\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Information</div>\n    <div class=\"ds-alert__description\">A new software update is available for download.</div>\n  </div>\n  <button class=\"ds-alert__close\"><svg data-icon=\"close\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M4.18934 4.18934C4.77513 3.60355 5.72487 3.60355 6.31066 4.18934L12 9.87868L17.6893 4.18934C18.2751 3.60355 19.2249 3.60355 19.8107 4.18934C20.3964 4.77513 20.3964 5.72487 19.8107 6.31066L14.1213 12L19.8107 17.6893C20.3964 18.2751 20.3964 19.2249 19.8107 19.8107C19.2249 20.3964 18.2751 20.3964 17.6893 19.8107L12 14.1213L6.31066 19.8107C5.72487 20.3964 4.77513 20.3964 4.18934 19.8107C3.60355 19.2249 3.60355 18.2751 4.18934 17.6893L9.87868 12L4.18934 6.31066C3.60355 5.72487 3.60355 4.77513 4.18934 4.18934Z\" fill=\"currentColor\" /></svg></button>\n</div>\n<div class=\"ds-alert ds-alert--success\" style=\"margin-top:0.5rem;\">\n  <span class=\"ds-alert__icon\">&check;</span>\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Success</div>\n    <div class=\"ds-alert__description\">Your profile has been updated successfully.</div>\n  </div>\n</div>\n<div class=\"ds-alert ds-alert--warning\" style=\"margin-top:0.5rem;\">\n  <span class=\"ds-alert__icon\">!</span>\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Warning</div>\n    <div class=\"ds-alert__description\">Your storage is almost full. Consider upgrading your plan.</div>\n  </div>\n</div>\n<div class=\"ds-alert ds-alert--error\" style=\"margin-top:0.5rem;\">\n  <span class=\"ds-alert__icon\">&times;</span>\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Error</div>\n    <div class=\"ds-alert__description\">Unable to process your request. Please try again.</div>\n  </div>\n</div>"
         },
         {
-          "title": "Banner Alert",
-          "html": "<div class=\"ds-alert ds-alert--banner ds-alert--info\">\n  <div class=\"ds-alert__content\">\n    <div class=\"ds-alert__title\">Scheduled Maintenance</div>\n    <div class=\"ds-alert__description\">System will be down for maintenance on March 1st from 2:00 AM to 4:00 AM UTC.</div>\n  </div>\n</div>"
+          "title": "With actions (stacked)",
+          "html": "<div class=\"ds-alert ds-alert--warning\">\n  <span class=\"ds-alert__icon\">!</span>\n  <div class=\"ds-alert__content\">\n    <p class=\"ds-alert__title\">Your session expires in 5 minutes</p>\n    <p class=\"ds-alert__description\">Renew it now to avoid losing unsaved work.</p>\n    <div class=\"ds-alert__actions\">\n      <button class=\"ds-btn ds-btn--sm\">Renew</button>\n      <button class=\"ds-btn ds-btn--sm ds-btn--outline\">Dismiss</button>\n    </div>\n  </div>\n  <button class=\"ds-alert__close\" aria-label=\"Dismiss\">&times;</button>\n</div>"
+        },
+        {
+          "title": "With actions (inline)",
+          "html": "<div class=\"ds-alert ds-alert--success ds-alert--actions-inline\">\n  <span class=\"ds-alert__icon\">&check;</span>\n  <div class=\"ds-alert__content\">\n    <p class=\"ds-alert__title\">Saved</p>\n    <p class=\"ds-alert__description\">Your changes are live.</p>\n  </div>\n  <div class=\"ds-alert__actions\">\n    <button class=\"ds-btn ds-btn--sm\">View</button>\n  </div>\n  <button class=\"ds-alert__close\" aria-label=\"Dismiss\">&times;</button>\n</div>"
         }
       ]
     },

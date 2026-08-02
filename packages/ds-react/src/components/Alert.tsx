@@ -13,8 +13,11 @@ export interface AlertProps extends ComponentPropsWithoutRef<"div"> {
   variant?: AlertVariant;
   /** Reduced padding, no border-radius. Default: false */
   compact?: boolean;
-  /** Full-width banner (no left accent, horizontal borders). Default: false */
+  /** Full-width banner (no radius, horizontal borders only). Default: false */
   banner?: boolean;
+  /** Puts <Alert.Actions> on the trailing edge instead of under the content.
+   *  Falls back to stacked below md. Default: false */
+  actionsInline?: boolean;
   /** Additional className */
   className?: string;
 }
@@ -36,6 +39,10 @@ export interface AlertDescriptionProps extends ComponentPropsWithoutRef<"p"> {
 }
 
 export interface AlertCloseProps extends ComponentPropsWithoutRef<"button"> {
+  className?: string;
+}
+
+export interface AlertActionsProps extends ComponentPropsWithoutRef<"div"> {
   className?: string;
 }
 
@@ -111,13 +118,27 @@ const AlertClose = forwardRef<HTMLButtonElement, AlertCloseProps>(
   },
 );
 
+/* The buttons the alert is asking for. Put real <Button>s inside: the alert
+   arranges them, it does not restyle them.
+
+   Stacked (the default): render it INSIDE <Alert.Content>, after the
+   description. Inline: render it as a SIBLING of Content and set
+   actionsInline on the root. */
+const AlertActions = forwardRef<HTMLDivElement, AlertActionsProps>(
+  function AlertActions({ className, ...rest }, ref) {
+    return (
+      <div ref={ref} className={cn("ds-alert__actions", className)} {...rest} />
+    );
+  },
+);
+
 /* ================================================================== */
 /*  Alert (root + dot notation)                                        */
 /* ================================================================== */
 
 const AlertRoot = forwardRef<HTMLDivElement, AlertProps>(
   function Alert(
-    { variant = "default", compact, banner, className, ...rest },
+    { variant = "default", compact, banner, actionsInline, className, ...rest },
     ref,
   ) {
     return (
@@ -129,6 +150,7 @@ const AlertRoot = forwardRef<HTMLDivElement, AlertProps>(
           variantMap[variant],
           compact && "ds-alert--compact",
           banner && "ds-alert--banner",
+          actionsInline && "ds-alert--actions-inline",
           className,
         )}
         {...rest}
@@ -138,7 +160,7 @@ const AlertRoot = forwardRef<HTMLDivElement, AlertProps>(
 );
 
 /* Flat exports — RSC-safe (dot access on client refs is undefined in RSC). */
-export { AlertIcon, AlertContent, AlertTitle, AlertDescription, AlertClose };
+export { AlertIcon, AlertContent, AlertTitle, AlertDescription, AlertClose, AlertActions };
 
 export const Alert = Object.assign(AlertRoot, {
   Icon: AlertIcon,
@@ -146,4 +168,5 @@ export const Alert = Object.assign(AlertRoot, {
   Title: AlertTitle,
   Description: AlertDescription,
   Close: AlertClose,
+  Actions: AlertActions,
 });

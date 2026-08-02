@@ -13,7 +13,7 @@ export { Input, Textarea, InputGroup, InputGroupIcon, Help, Checkbox, Radio, } f
 export { Select, } from "./components/Select";
 export { ignorePasswordManagers } from "./utils/passwordManager";
 export { Card, CardHeader, CardTitle, CardDescription, CardBody, CardFooter, CardMedia, } from "./components/Card";
-export { Alert, AlertIcon, AlertContent, AlertTitle, AlertDescription, AlertClose, } from "./components/Alert";
+export { Alert, AlertIcon, AlertContent, AlertTitle, AlertDescription, AlertClose, AlertActions, } from "./components/Alert";
 export { Tag, TagRemove, } from "./components/Tag";
 export { Avatar, AvatarStatus, AvatarGroup, } from "./components/Avatar";
 export { Spinner } from "./components/Spinner";
