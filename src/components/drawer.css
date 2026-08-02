@@ -35,21 +35,10 @@
    Overlay backdrop
    --------------------------------------------------------------------------- */
 
+/* The scrim lives in overlay.css since 2 Aug 2026. What stays here is the
+   sliding panel and its direction — which is what a drawer actually is. */
 .ds-drawer {
-  position: fixed;
-  inset: 0;
-  z-index: var(--ds-z-overlay);
-  background-color: var(--ds-color-overlay);
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity var(--ds-duration-normal) var(--ds-ease-default),
-    visibility var(--ds-duration-normal) var(--ds-ease-default);
-
   &--open {
-    opacity: 1;
-    visibility: visible;
-
     & .ds-drawer__content {
       transform: translateX(0);
     }

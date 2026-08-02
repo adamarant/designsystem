@@ -9499,7 +9499,105 @@ hr {
 
 
 
-/* === Overlay — Floating panels and dialogs === */
+/* === Overlay — Floating panels and dialogs ===
+   overlay.css goes FIRST: it owns the scrim for the three modal-class
+   components below, and they layer their own posture on top of it. */
+/* ==========================================================================
+   Component: Overlay
+   The dimmed layer that covers the page while something modal is open.
+
+   It exists because it already existed six times (2 Aug 2026). Every
+   component that needed a scrim wrote its own `position: fixed; inset: 0;
+   background: var(--ds-color-overlay)`, and they drifted on every axis:
+
+     modal          z-modal    slow    blur    transition
+     drawer         z-overlay  normal  —       transition
+     bottom-sheet   z-modal    normal  —       keyframes
+     command        z-modal    fast    —       transition
+     admin-layout   z-overlay  none    —       none (static)
+     custom-select  z-overlay  normal  —       keyframes
+
+   In practice a modal faded the page out slowly behind a blur while the
+   command palette snapped it in, and a drawer dimmed at a lower layer than
+   the other two, so a modal opened over a drawer covered its scrim but not
+   the reverse. None of that was decided; it is six people writing the same
+   four declarations on six different days. The question that found it was
+   "why does Overlay have six components — isn't the overlay a component?".
+
+   The shared rule below covers .ds-overlay AND the existing roots, so no
+   consumer markup changes: .ds-modal keeps working, it simply stops
+   carrying its own copy. New code can use .ds-overlay directly.
+
+   Layer: --ds-z-overlay (80), which is what that token is for. The scale
+   leaves --ds-z-modal (100) to panels that must sit ABOVE a scrim — a
+   custom-select panel opened inside a modal, a gallery — which is exactly
+   the relationship those two numbers should express, and did not while
+   modal itself sat at 100.
+
+   ARIA requirements (consumer responsibility):
+   - A standalone .ds-overlay is decorative: aria-hidden="true". The dialog
+     it dims carries role="dialog" and aria-modal, and owns the focus trap.
+   - Clicking it should close what it dims; that is the consumer's handler.
+   ========================================================================== */
+
+.ds-overlay,
+.ds-modal,
+.ds-drawer,
+.ds-command {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-overlay);
+  background-color: var(--ds-color-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--ds-duration-normal) var(--ds-ease-default),
+    visibility var(--ds-duration-normal) var(--ds-ease-default);
+}
+
+.ds-overlay--open,
+.ds-modal--open,
+.ds-drawer--open,
+.ds-command--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Blur is the one per-component choice worth keeping: a modal blurs the
+   page behind it, a command palette deliberately does not. Available to
+   anything as a modifier. */
+.ds-overlay--blur,
+.ds-modal {
+  backdrop-filter: blur(var(--ds-blur-sm));
+  -webkit-backdrop-filter: blur(var(--ds-blur-sm));
+}
+
+/* Always-on: no open state, for a scrim that is only in the DOM while the
+   thing it dims is mounted. */
+.ds-overlay--static {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* NOT folded in, deliberately: .ds-admin__overlay and
+   .ds-custom-select__backdrop keep their own four declarations. Both are
+   always-on scrims with their own state machine — the custom-select one is
+   display-gated by a media query and animated by keyframes, with its own
+   reduced-motion override — so folding them buys tidiness and risks their
+   behaviour. They are the remaining copies; if either grows a real open
+   state, fold it then. */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ds-overlay,
+  .ds-modal,
+  .ds-drawer,
+  .ds-command {
+    transition-duration: 0.01ms;
+  }
+}
+
+
 /* ==========================================================================
    Component: Modal
    Backdrop blur, shadow-2xl, rounded-xl. Smooth scale transition.
@@ -9513,23 +9611,19 @@ hr {
    - On close: return focus to the element that triggered the modal
    ========================================================================== */
 
+/* The scrim — fixed inset-0, the overlay colour, the open transition and
+   the blur — lives in overlay.css since 2 Aug 2026, which owns it for this
+   component too. What stays here is what makes a modal a modal: it centres
+   its content. The transition was `slow` and is now `normal` like every
+   other scrim; the layer moved from --ds-z-modal to --ds-z-overlay, which
+   is what lets a custom-select panel open above a modal instead of
+   fighting it at the same level. */
 .ds-modal {
 
-  position: fixed;
-  inset: 0;
-  z-index: var(--ds-z-modal);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--ds-space-4);
-  background-color: var(--ds-color-overlay);
-  backdrop-filter: blur(var(--ds-blur-sm));
-  -webkit-backdrop-filter: blur(var(--ds-blur-sm));
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity var(--ds-duration-slow) var(--ds-ease-default),
-    visibility var(--ds-duration-slow) var(--ds-ease-default);
 
   
 
@@ -9552,8 +9646,7 @@ hr {
   /* Fullscreen on mobile */
   
 }
-.ds-modal[open],
-.ds-modal--open {
+.ds-modal[open] {
 
     opacity: 1;
     visibility: visible;
@@ -9708,17 +9801,9 @@ hr {
    Overlay backdrop
    --------------------------------------------------------------------------- */
 
+/* The scrim lives in overlay.css since 2 Aug 2026. What stays here is the
+   sliding panel and its direction — which is what a drawer actually is. */
 .ds-drawer {
-
-  position: fixed;
-  inset: 0;
-  z-index: var(--ds-z-overlay);
-  background-color: var(--ds-color-overlay);
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity var(--ds-duration-normal) var(--ds-ease-default),
-    visibility var(--ds-duration-normal) var(--ds-ease-default);
 
   
 
@@ -9794,13 +9879,6 @@ hr {
 
   
 }
-.ds-drawer--open {
-
-    opacity: 1;
-    visibility: visible;
-
-    
-  }
 .ds-drawer--open .ds-drawer__content {
 
       transform: translateX(0);
@@ -10561,22 +10639,17 @@ hr {
      .ds-command--open  — Shows the command palette
    ========================================================================== */
 
+/* The scrim lives in overlay.css since 2 Aug 2026. What stays here is the
+   palette's own posture: pinned near the top of the viewport rather than
+   centred, and deliberately unblurred — a command palette should not put
+   the page it searches out of focus. The transition was `fast` and is now
+   `normal`, one duration for every scrim. */
 .ds-command {
 
-  /* Overlay */
-  position: fixed;
-  inset: 0;
-  z-index: var(--ds-z-modal);
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding-block-start: 20vh;
-  background-color: var(--ds-color-overlay);
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity var(--ds-duration-fast) var(--ds-ease-default),
-    visibility var(--ds-duration-fast) var(--ds-ease-default);
 
   /* Open state */
   
@@ -10620,13 +10693,6 @@ hr {
   /* Footer */
   
 }
-.ds-command--open {
-
-    opacity: 1;
-    visibility: visible;
-
-    
-  }
 .ds-command--open .ds-command__content {
 
       transform: scale(1) translateY(0);
@@ -12457,6 +12523,9 @@ hr {
    Mobile Overlay
    ========================================================================== */
 
+/* The scrim itself lives in overlay.css since 2 Aug 2026, which names this
+   selector among the always-on ones: it has no open state because it is
+   only in the DOM while the mobile sidebar is out. */
 .ds-admin__overlay {
   position: fixed;
   inset: 0;

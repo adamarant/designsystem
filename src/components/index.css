@@ -47,7 +47,10 @@
 @import './empty-state.css';
 @import './tooltip.css';
 
-/* === Overlay — Floating panels and dialogs === */
+/* === Overlay — Floating panels and dialogs ===
+   overlay.css goes FIRST: it owns the scrim for the three modal-class
+   components below, and they layer their own posture on top of it. */
+@import './overlay.css';
 @import './modal.css';
 @import './drawer.css';
 @import './dropdown.css';

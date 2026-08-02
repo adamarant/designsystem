@@ -369,6 +369,9 @@
    Mobile Overlay
    ========================================================================== */
 
+/* The scrim itself lives in overlay.css since 2 Aug 2026, which names this
+   selector among the always-on ones: it has no open state because it is
+   only in the DOM while the mobile sidebar is out. */
 .ds-admin__overlay {
   position: fixed;
   inset: 0;

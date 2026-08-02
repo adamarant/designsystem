@@ -40,27 +40,19 @@
      .ds-command--open  — Shows the command palette
    ========================================================================== */
 
+/* The scrim lives in overlay.css since 2 Aug 2026. What stays here is the
+   palette's own posture: pinned near the top of the viewport rather than
+   centred, and deliberately unblurred — a command palette should not put
+   the page it searches out of focus. The transition was `fast` and is now
+   `normal`, one duration for every scrim. */
 .ds-command {
-  /* Overlay */
-  position: fixed;
-  inset: 0;
-  z-index: var(--ds-z-modal);
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding-block-start: 20vh;
-  background-color: var(--ds-color-overlay);
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity var(--ds-duration-fast) var(--ds-ease-default),
-    visibility var(--ds-duration-fast) var(--ds-ease-default);
 
   /* Open state */
   &--open {
-    opacity: 1;
-    visibility: visible;
-
     & .ds-command__content {
       transform: scale(1) translateY(0);
     }

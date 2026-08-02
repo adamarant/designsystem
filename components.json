@@ -335,6 +335,33 @@
       ]
     },
     {
+      "name": "overlay",
+      "title": "Overlay",
+      "description": "The dimmed layer that covers the page while something modal is open. It owns the scrim for Modal, Drawer and Command — they used to carry six drifted copies of it between them. Use it directly for anything else that needs to dim the page; --blur to blur what is behind, --static for a scrim that is only mounted while it is needed.",
+      "category": "overlay",
+      "classes": [
+        ".ds-overlay"
+      ],
+      "elements": [],
+      "variants": [],
+      "sizes": [],
+      "modifiers": [
+        "--open",
+        "--blur",
+        "--static"
+      ],
+      "examples": [
+        {
+          "title": "Standalone",
+          "html": "<div class=\"ds-overlay ds-overlay--open\" aria-hidden=\"true\"></div>"
+        },
+        {
+          "title": "Blurred",
+          "html": "<div class=\"ds-overlay ds-overlay--open ds-overlay--blur\" aria-hidden=\"true\"></div>"
+        }
+      ]
+    },
+    {
       "name": "modal",
       "title": "Modal",
       "description": "Backdrop blur, shadow-2xl, rounded-xl. Smooth scale transition.",
