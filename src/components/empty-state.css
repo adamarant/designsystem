@@ -1,6 +1,33 @@
 /* ==========================================================================
    Component: Empty State
    Centered message for when there's no data to display.
+
+   NOT the same thing as .ds-result, however similar they look (2 Aug 2026).
+   The two share a shape — icon, title, description, actions, centred — but
+   not a job, and the difference is already in their sizing:
+
+     empty-state  the state of a CONTAINER that has nothing in it. No
+                  max-width on the root: it fills whatever box holds it, and
+                  other components render it for you (see table.css's
+                  composition list, drop-zone). Emptiness has no valence, so
+                  the icon is always neutral and there are no semantic
+                  variants — an empty list is not an error.
+
+     result       the outcome of a FLOW, after an action. It centres itself
+                  in the page (max-width + margin-inline: auto) because it
+                  IS the page, and it carries valence: success, error,
+                  warning, info, which colour its icon.
+
+   The practical test: if another component renders it for you, or if the
+   page chrome around it stays, it is an empty state.
+
+   ARIA requirements (consumer responsibility):
+   - Do NOT put this in a live region and do NOT give it role="status".
+     It is the rendering of nothing, not an announcement; a screen reader
+     that narrates every empty table is noise. (.ds-result is the opposite
+     case — see its header.)
+   - The title should be the heading of the region it empties, at the level
+     the surrounding document calls for.
    ========================================================================== */
 
 .ds-empty-state {
@@ -12,10 +39,16 @@
   padding: var(--ds-space-12);
   gap: var(--ds-space-4);
 
+  /* Neutral, and neutral means secondary (owner call, 2 Aug 2026: the icon
+     takes a colour only when there is a success or an error to carry —
+     otherwise neutral). It was tertiary here and secondary in result.css, an
+     accident of which file you landed in. Secondary is the one that holds:
+     tertiary is 3.8:1 in dark, annotated in colors.css as decorative-only,
+     and --compact shrinks this glyph to 2rem where that gets thin. */
   &__icon {
     width: 3rem;
     height: 3rem;
-    color: var(--ds-color-text-tertiary);
+    color: var(--ds-color-text-secondary);
     margin-block-end: var(--ds-space-2);
   }
 
