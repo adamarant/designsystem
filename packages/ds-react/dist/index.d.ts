@@ -6,7 +6,7 @@ export { Text, type TextProps } from "./primitives/Text";
 export { Center, type CenterProps } from "./primitives/Center";
 export { Label, type LabelProps } from "./components/Label";
 export { Button, ButtonGroup, type ButtonProps, type ButtonGroupProps, } from "./components/Button";
-export { Badge, type BadgeProps } from "./components/Badge";
+export { Badge, BadgeRemove, type BadgeProps, type BadgeRemoveProps, } from "./components/Badge";
 export { Input, Textarea, InputGroup, InputGroupIcon, Help, Checkbox, Radio, type InputProps, type TextareaProps, type InputGroupProps, type InputGroupIconProps, type HelpProps, type CheckboxProps, type RadioProps, } from "./components/Input";
 export { Select, type SelectProps, type SelectOption, type SelectSize, } from "./components/Select";
 export { ignorePasswordManagers } from "./utils/passwordManager";

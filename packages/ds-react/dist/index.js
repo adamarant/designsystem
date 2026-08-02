@@ -5,7 +5,7 @@ export { Text } from "./primitives/Text";
 export { Center } from "./primitives/Center";
 export { Label } from "./components/Label";
 export { Button, ButtonGroup, } from "./components/Button";
-export { Badge } from "./components/Badge";
+export { Badge, BadgeRemove, } from "./components/Badge";
 export { Input, Textarea, InputGroup, InputGroupIcon, Help, Checkbox, Radio, } from "./components/Input";
 /* One select, two renderings: native by default, styled panel with search via
    `searchable` / `panel`. Same export name as before — existing native usage
