@@ -26,7 +26,24 @@ export const NAV = [
     ]
   },
   {
-    "label": "General",
+    "label": "Surfaces",
+    "items": [
+      {
+        "name": "Overlay",
+        "href": "/components/overlay"
+      },
+      {
+        "name": "Panel",
+        "href": "/components/panel"
+      },
+      {
+        "name": "Card",
+        "href": "/components/card"
+      }
+    ]
+  },
+  {
+    "label": "Actions",
     "items": [
       {
         "name": "Button",
@@ -37,25 +54,25 @@ export const NAV = [
         "href": "/components/icon-btn"
       },
       {
-        "name": "Badge",
-        "href": "/components/badge"
-      },
-      {
-        "name": "Kbd",
-        "href": "/components/kbd"
-      },
-      {
         "name": "Copy Button",
         "href": "/components/copy-button"
       },
       {
-        "name": "Spinner",
-        "href": "/components/spinner"
+        "name": "Dropdown",
+        "href": "/components/dropdown"
+      },
+      {
+        "name": "Command",
+        "href": "/components/command"
+      },
+      {
+        "name": "Toolbar",
+        "href": "/components/toolbar"
       }
     ]
   },
   {
-    "label": "Form",
+    "label": "Forms",
     "items": [
       {
         "name": "Field",
@@ -72,6 +89,10 @@ export const NAV = [
       {
         "name": "Toggle",
         "href": "/components/toggle"
+      },
+      {
+        "name": "Segmented Control",
+        "href": "/components/segmented-control"
       },
       {
         "name": "Select",
@@ -119,10 +140,6 @@ export const NAV = [
     "label": "Layout",
     "items": [
       {
-        "name": "Card",
-        "href": "/components/card"
-      },
-      {
         "name": "Divider",
         "href": "/components/divider"
       },
@@ -168,20 +185,20 @@ export const NAV = [
         "href": "/components/table"
       },
       {
-        "name": "Avatar",
-        "href": "/components/avatar"
-      },
-      {
         "name": "Stat",
         "href": "/components/stat"
       },
       {
-        "name": "Progress",
-        "href": "/components/progress"
+        "name": "Avatar",
+        "href": "/components/avatar"
       },
       {
-        "name": "Skeleton",
-        "href": "/components/skeleton"
+        "name": "Badge",
+        "href": "/components/badge"
+      },
+      {
+        "name": "Kbd",
+        "href": "/components/kbd"
       },
       {
         "name": "Timeline",
@@ -196,8 +213,58 @@ export const NAV = [
         "href": "/components/truncated-text"
       },
       {
+        "name": "Progress",
+        "href": "/components/progress"
+      },
+      {
+        "name": "Skeleton",
+        "href": "/components/skeleton"
+      }
+    ]
+  },
+  {
+    "label": "Messages",
+    "items": [
+      {
+        "name": "Alert",
+        "href": "/components/alert"
+      },
+      {
+        "name": "Toast",
+        "href": "/components/toast"
+      },
+      {
+        "name": "Empty State",
+        "href": "/components/empty-state"
+      },
+      {
         "name": "Result",
         "href": "/components/result"
+      },
+      {
+        "name": "Tooltip",
+        "href": "/components/tooltip"
+      },
+      {
+        "name": "Spinner",
+        "href": "/components/spinner"
+      }
+    ]
+  },
+  {
+    "label": "Overlays",
+    "items": [
+      {
+        "name": "Modal",
+        "href": "/components/modal"
+      },
+      {
+        "name": "Drawer",
+        "href": "/components/drawer"
+      },
+      {
+        "name": "Popover",
+        "href": "/components/popover"
       }
     ]
   },
@@ -221,75 +288,8 @@ export const NAV = [
         "href": "/components/pagination"
       },
       {
-        "name": "Segmented Control",
-        "href": "/components/segmented-control"
-      },
-      {
-        "name": "Toolbar",
-        "href": "/components/toolbar"
-      },
-      {
         "name": "Bottom Nav",
         "href": "/components/bottom-nav"
-      }
-    ]
-  },
-  {
-    "label": "Feedback",
-    "items": [
-      {
-        "name": "Alert",
-        "href": "/components/alert"
-      },
-      {
-        "name": "Toast",
-        "href": "/components/toast"
-      },
-      {
-        "name": "Empty State",
-        "href": "/components/empty-state"
-      }
-    ]
-  },
-  {
-    "label": "Modal-class",
-    "items": [
-      {
-        "name": "Overlay",
-        "href": "/components/overlay"
-      },
-      {
-        "name": "Modal",
-        "href": "/components/modal"
-      },
-      {
-        "name": "Drawer",
-        "href": "/components/drawer"
-      },
-      {
-        "name": "Command",
-        "href": "/components/command"
-      }
-    ]
-  },
-  {
-    "label": "Anchored",
-    "items": [
-      {
-        "name": "Panel",
-        "href": "/components/panel"
-      },
-      {
-        "name": "Dropdown",
-        "href": "/components/dropdown"
-      },
-      {
-        "name": "Popover",
-        "href": "/components/popover"
-      },
-      {
-        "name": "Tooltip",
-        "href": "/components/tooltip"
       }
     ]
   },
