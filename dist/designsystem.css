@@ -1,4 +1,4 @@
-/* @ds/designsystem v0.37.1 */
+/* @ds/designsystem v0.37.2 */
 /* ==========================================================================
    @adamarant/designsystem
 
@@ -8349,10 +8349,13 @@ hr {
      .ds-toolbar__btn--active      — Active/toggled button
      .ds-toolbar__group--scroll    — Scrollable group within a row
 
-   Segmented control:
-     <div class="ds-toolbar__segmented">
-       <button class="ds-toolbar__segmented-btn ds-toolbar__segmented-btn--active">Past</button>
-       <button class="ds-toolbar__segmented-btn">Future</button>
+   Segmented control — use the real one. A toolbar holds controls, it does
+   not reimplement them (2 Aug 2026; .ds-toolbar__segmented is deprecated
+   below, along with the reason and the migration):
+     <div class="ds-segmented" role="radiogroup" aria-label="Range">
+       <button class="ds-segmented__item ds-segmented__item--active"
+               role="radio" aria-checked="true">Past</button>
+       <button class="ds-segmented__item" role="radio" aria-checked="false">Future</button>
      </div>
    ========================================================================== */
 
@@ -8379,7 +8382,32 @@ hr {
   /* Eye toggle (visibility) */
   
 
-  /* Segmented control */
+  /* @deprecated 2 Aug 2026 — put a real .ds-segmented in the toolbar.
+
+     This was a second segmented control, and it had drifted from the real
+     one on every visible axis: `surface` instead of `surface-muted`,
+     radius-md instead of radius-lg, no border. So the same control looked
+     different depending on whether it sat inside a toolbar — which nobody
+     decided; it is a copy aging.
+
+     A toolbar HOLDS controls, it does not reimplement them. Same rule that
+     put the stat inside a card and the scrim in one file.
+
+     Migration (3 sites, cortex AppSubheader):
+       .ds-toolbar__segmented            -> .ds-segmented
+       .ds-toolbar__segmented-btn        -> .ds-segmented__item
+       .ds-toolbar__segmented-btn--active -> .ds-segmented__item--active
+     and add role="radiogroup" / role="radio" + aria-checked, which the
+     real component documents and this copy never mentioned.
+
+     Expect a visible change at migration: the muted fill and the hairline
+     border come back. That is the point.
+
+     Frozen until removal at the next major. The hardcoded `2px` below is
+     now the token that has always equalled it — same rendering, and the
+     component stops breaking the no-literals rule while it waits.
+
+     Note: ds-ops/proposals/note-2026-08-02-toolbar-segmented.md */
   
 
   
@@ -8504,7 +8532,7 @@ hr {
     display: flex;
     background: var(--ds-color-surface);
     border-radius: var(--ds-radius-md);
-    padding: 2px;
+    padding: var(--ds-space-0-5);
   }
 .ds-toolbar__segmented-btn {
 

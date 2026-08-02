@@ -1462,7 +1462,7 @@
     {
       "name": "toolbar",
       "title": "Toolbar",
-      "description": "Horizontal bar with action buttons, segmented controls, and scrollable groups.",
+      "description": "A bar holding rows of actions: buttons, badges, groups, scrollable rows. It HOLDS controls rather than reimplementing them — put a real .ds-segmented inside it. Its own __segmented and __segmented-btn are deprecated (2 Aug 2026): they were a second, drifted segmented control.",
       "category": "navigation",
       "classes": [
         ".ds-toolbar__row"
@@ -1487,8 +1487,8 @@
       ],
       "examples": [
         {
-          "title": "Toolbar with Buttons",
-          "html": "<div class=\"ds-toolbar__row\" style=\"border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg)\">\n  <div class=\"ds-toolbar__group\">\n    <button class=\"ds-toolbar__btn ds-toolbar__btn--active\">Filter <span class=\"ds-toolbar__badge\">2</span></button>\n    <button class=\"ds-toolbar__btn\">Sort</button>\n    <button class=\"ds-toolbar__btn\">Style</button>\n  </div>\n  <div class=\"ds-toolbar__spacer\"></div>\n  <div class=\"ds-toolbar__segmented\">\n    <button class=\"ds-toolbar__segmented-btn ds-toolbar__segmented-btn--active\">Past</button>\n    <button class=\"ds-toolbar__segmented-btn\">Future</button>\n  </div>\n</div>"
+          "title": "With a segmented control",
+          "html": "<div class=\"ds-toolbar\">\n  <div class=\"ds-toolbar__row\">\n    <div class=\"ds-toolbar__group\">\n      <div class=\"ds-segmented\" role=\"radiogroup\" aria-label=\"Range\">\n        <button class=\"ds-segmented__item ds-segmented__item--active\" role=\"radio\" aria-checked=\"true\">Past</button>\n        <button class=\"ds-segmented__item\" role=\"radio\" aria-checked=\"false\">Future</button>\n      </div>\n    </div>\n  </div>\n</div>"
         }
       ]
     },
