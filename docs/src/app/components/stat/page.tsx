@@ -17,9 +17,9 @@ export default function StatPage() {
       <DemoSection
         title="In a card"
         description="The card owns the box. That is the whole point of the split: ds-stat-card used to re-declare the surface, the border and the radius itself, so it could never inherit a card modifier or the container query that restacks a card when it narrows."
-        code={`<Card>\n  <CardBody>\n    <Stat label="Total revenue" value="$45,231" detail="+12.5% from last month" />\n  </CardBody>\n</Card>`}
+        code={`<Card className="ds-w-full">\n  <CardBody>\n    <Stat label="Total revenue" value="$45,231" detail="+12.5% from last month" />\n  </CardBody>\n</Card>`}
       >
-        <Card>
+        <Card className="ds-w-full">
             <CardBody>
               <Stat label="Total revenue" value="$45,231" detail="+12.5% from last month" />
             </CardBody>
@@ -29,14 +29,14 @@ export default function StatPage() {
       <DemoSection
         title="Inheriting the card"
         description="Modifiers a stat card never had: hover for a metric that links somewhere, elevated on a dashboard."
-        code={`<Card variant="hover"><CardBody>…</CardBody></Card>\n<Card variant="elevated"><CardBody>…</CardBody></Card>`}
+        code={`<Card variant="hover" className="ds-w-full"><CardBody>…</CardBody></Card>\n<Card variant="elevated" className="ds-w-full"><CardBody>…</CardBody></Card>`}
       >
-        <Card variant="hover">
+        <Card variant="hover" className="ds-w-full">
             <CardBody>
               <Stat icon="★" label="Leads" value="42" detail="7 this week" />
             </CardBody>
         </Card>
-        <Card variant="elevated">
+        <Card variant="elevated" className="ds-w-full">
             <CardBody>
               <Stat label="Uptime" value="99.98%" detail="30 days" />
             </CardBody>
@@ -54,19 +54,19 @@ export default function StatPage() {
       <DemoSection
         title="A row of them"
         description="The value follows the surface: display face on web, body face on product, where the weight steps up too. Flip the header's surface control to see it."
-        code={`<Card><CardBody><Stat … /></CardBody></Card> × 3`}
+        code={`<Card className="ds-w-full"><CardBody><Stat … /></CardBody></Card> × 3`}
       >
-        <Card>
+        <Card className="ds-w-full">
             <CardBody>
               <Stat label="Properties" value="128" />
             </CardBody>
         </Card>
-        <Card>
+        <Card className="ds-w-full">
             <CardBody>
               <Stat label="Leads" value="42" />
             </CardBody>
         </Card>
-        <Card>
+        <Card className="ds-w-full">
             <CardBody>
               <Stat label="Closed" value="17" detail="this quarter" />
             </CardBody>
