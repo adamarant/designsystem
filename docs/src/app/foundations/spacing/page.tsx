@@ -61,7 +61,7 @@ export default function SpacingPage() {
 
       <section className="demo-section">
         <h2 className="demo-section__title">Icon Sizes</h2>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           The other half of the size-tier contract. Two controls of the same
           height only <em>look</em>{" "}the same if the glyphs inside them match, and
           until these existed nothing said what a glyph should measure &mdash; it
@@ -89,7 +89,7 @@ export default function SpacingPage() {
             `).join("")}
           </div>
         ` }} />
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           <strong>Documented, not yet enforced.</strong> Nothing stops a component
           being handed a glyph of another size, and two places do not match the
           scale today: <code>.ds-icon-btn--xs</code> leaves 20px inside a 24px
@@ -97,7 +97,7 @@ export default function SpacingPage() {
           2.25rem, which is not a tier at all. Both are visible in every consumer,
           so neither was changed on the way in.
         </p>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           Glyphs are authored on a 24-unit grid &mdash;{" "}
           <code>viewBox=&quot;0 0 24 24&quot;</code>, <code>stroke-width: 2</code>,
           round caps &mdash; which every icon in <code>ds-react</code> follows. The

@@ -17,7 +17,7 @@ export default function ColorsPage() {
 
       <section className="demo-section">
         <h2 className="demo-section__title">Elevation</h2>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           Four surface tokens, one ladder. Each rung sits <em>on top of</em> the one
           before it, so pick by what your element is stacked on &mdash; not by how
           light or dark you want it.
@@ -44,7 +44,7 @@ export default function ColorsPage() {
             </div>
           </div>
         </div>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           <strong>The ladder climbs in dark and inverts in light, on purpose.</strong> In
           dark each rung is lighter than the one below (luminance .0028 &rarr; .0048
           &rarr; .0093 &rarr; .0266). In light you cannot go lighter than the white
@@ -53,14 +53,14 @@ export default function ColorsPage() {
           direction &mdash; which is why you choose by stacking position and never by
           the colour you have in mind.
         </p>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           <strong>Resting elevation is colour; lift is shadow.</strong> The rungs above
           are the resting state. When something rises on interaction &mdash; a card on
           hover, a dropdown opening &mdash; that is <code>--ds-shadow-sm/md/lg</code>,
           used by 18 components and documented in{" "}
           <a href="/foundations/effects">Effects</a>. Two mechanisms, one concept.
         </p>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           <strong>Not rungs:</strong> <code>--ds-color-surface-active</code> and every{" "}
           <code>-hover</code> token are <em>states</em>, on a different axis. An active
           sidebar item is not stacked higher than its neighbours; it is selected.
@@ -105,7 +105,7 @@ export default function ColorsPage() {
       {unannotated.length > 0 && (
         <section className="demo-section">
           <h2 className="demo-section__title">Tokens without guidance</h2>
-          <p className="demo-section__description">
+          <p className="ds-copy demo-section__description">
             These exist in <code>src/tokens/colors.css</code> and nothing here says when
             to reach for them. They are listed rather than hidden: an undocumented token
             is how a wrong one gets picked. Add a line to <code>USAGE</code> in{" "}
@@ -119,7 +119,7 @@ export default function ColorsPage() {
 
       <section className="demo-section">
         <h2 className="demo-section__title">Utility classes</h2>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           The tokens above are CSS variables, for when you write CSS. These are the
           classes that apply them, for when you write <code>className</code> in JSX.
           Same colours, two channels &mdash; and <strong>the names differ</strong>:{" "}
@@ -127,7 +127,7 @@ export default function ColorsPage() {
           token column rather than inferring it from the class name; that inference
           is where <code>--ds-color-text-primary</code> came from, and it does not exist.
         </p>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           Generated from <code>src/utilities/*.css</code>, so a new colour appears here
           on its own. {utilities.length} classes.
         </p>

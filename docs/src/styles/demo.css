@@ -779,17 +779,20 @@ body {
    `.demo-section__description` was used by foundations/colors and never
    defined — the paragraphs were falling back to bare <p>. Defined 30 Jul 2026. */
 
-/* No margin of its own: the section's row-gap owns every distance in the
-   content column. These 12/20 margins were the third instance of the
+/* Placement only. The TYPE comes from `.ds-copy`, which the markup carries
+   alongside this class: an explanation on a docs page is reading text, so
+   it uses the reading role rather than a private size (owner call, 2 Aug
+   2026 — "vorrei che le pagine usassero ds-copy"). demo.css is unlayered
+   and therefore beats every layered DS rule, so declaring font-size here
+   would silently win over the role and defeat the point.
+
+   No margin either: the section's row-gap owns every distance in the
+   content column. Those 12/20 margins were the third instance of the
    two-owner sin — they added to the 16px row-gap and put 48px between two
-   paragraphs of the same explanation, 36 between an explanation and the
-   demo it introduces. */
+   paragraphs of the same explanation. */
 .demo-section__description {
   max-width: 78ch;
   margin-block: 0;
-  font-size: var(--ds-text-base);
-  line-height: var(--ds-leading-relaxed);
-  color: var(--ds-color-text);
   text-wrap: pretty;
 }
 

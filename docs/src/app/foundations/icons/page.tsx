@@ -159,7 +159,7 @@ export default function IconsPage() {
 
       <section className="demo-section">
         <h2 className="demo-section__title">The set</h2>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           One grid and one weight: a 24 viewBox at stroke 2, corner radius 2.
           Shown at 24px. Colour is <code>currentColor</code>, so a mark inherits
           whatever text colour its container sets &mdash; which means the text
@@ -193,7 +193,7 @@ export default function IconsPage() {
 
       <section className="demo-section">
         <h2 className="demo-section__title">Sizing</h2>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           <code>size</code> takes a number as pixels, or any CSS length, so{" "}
           <code>size=&quot;var(--ds-icon-2)&quot;</code> follows the token scale.
           The default is 24. Each step pairs with the control tier it sits
@@ -223,7 +223,7 @@ export default function IconsPage() {
 
       <section className="demo-section">
         <h2 className="demo-section__title">What is ours and what is yours</h2>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           <strong>
             The system ships the mark when the component decides which mark it
             is. You supply it when the content decides.
@@ -255,7 +255,7 @@ export default function IconsPage() {
             </div>
           </div>
         </div>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           The right-hand column is a styled box with no mark of its own, and it
           never gains one. <code>.ds-icon-box</code> is the CSS counterpart
           &mdash; square, centred, not interactive; <code>.ds-icon-btn</code> is
@@ -265,7 +265,7 @@ export default function IconsPage() {
 
       <section className="demo-section">
         <h2 className="demo-section__title">Replacing one</h2>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           Every shipped mark is a default, not a fixture. Components that draw
           one take an override, so a project on its own icon set swaps a single
           mark without touching anything else &mdash; and without the set
@@ -291,7 +291,7 @@ export default function IconsPage() {
         <h2 className="demo-section__title">
           Not settled yet <Badge size="sm">4 marks</Badge>
         </h2>
-        <p className="demo-section__description">
+        <p className="ds-copy demo-section__description">
           Stated here rather than left to be discovered.{" "}
           <code>IconClose</code>, <code>IconCheck</code> and{" "}
           <code>IconArrowLeft</code> measure stroke 3 against the set&rsquo;s 2
