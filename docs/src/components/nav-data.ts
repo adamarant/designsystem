@@ -248,35 +248,44 @@ export const NAV = [
       {
         "name": "Empty State",
         "href": "/components/empty-state"
-      },
-      {
-        "name": "Tooltip",
-        "href": "/components/tooltip"
       }
     ]
   },
   {
-    "label": "Overlay",
+    "label": "Modal-class",
     "items": [
+      {
+        "name": "Overlay",
+        "href": "/components/overlay"
+      },
       {
         "name": "Modal",
         "href": "/components/modal"
-      },
-      {
-        "name": "Dropdown",
-        "href": "/components/dropdown"
       },
       {
         "name": "Drawer",
         "href": "/components/drawer"
       },
       {
+        "name": "Command",
+        "href": "/components/command"
+      }
+    ]
+  },
+  {
+    "label": "Anchored",
+    "items": [
+      {
+        "name": "Dropdown",
+        "href": "/components/dropdown"
+      },
+      {
         "name": "Popover",
         "href": "/components/popover"
       },
       {
-        "name": "Command",
-        "href": "/components/command"
+        "name": "Tooltip",
+        "href": "/components/tooltip"
       }
     ]
   },
