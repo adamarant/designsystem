@@ -958,7 +958,7 @@
     {
       "name": "drawer",
       "title": "Drawer",
-      "description": "A sliding overlay panel anchored to the edge of the viewport.",
+      "description": "A modal that enters from an edge of the viewport instead of the centre: same dialog semantics and parts as Modal, plus a direction (--right default, --left, --bottom) and sizes. Absorbed Bottom Sheet on 2 Aug 2026 — use --bottom with __handle for the mobile sheet.",
       "category": "overlay",
       "classes": [
         ".ds-drawer"
@@ -968,7 +968,8 @@
         "__header",
         "__close",
         "__body",
-        "__footer"
+        "__footer",
+        "__handle"
       ],
       "variants": [
         "--right",
@@ -2066,7 +2067,7 @@
     {
       "name": "bottom-sheet",
       "title": "Bottom Sheet",
-      "description": "Mobile overlay sliding up from the bottom.",
+      "description": "DEPRECATED 2 Aug 2026 (0.38.0) — use .ds-drawer--bottom. It was the same component with a different max-height; the grab handle moved to .ds-drawer__handle. Zero uses. Mobile overlay sliding up from the bottom.",
       "category": "overlay",
       "classes": [
         ".ds-bottom-sheet"

@@ -136,6 +136,20 @@
     transform: translateY(0);
   }
 
+  /* Grab handle — absorbed from .ds-bottom-sheet (deprecated 2 Aug 2026),
+     which was this component with a different max-height. The handle is the
+     one thing it had that a drawer did not: it says "drag me", a mobile
+     affordance an edge panel on desktop has no use for. Put it first inside
+     __content on a bottom drawer. */
+  &__handle {
+    width: 2.5rem;
+    height: 4px;
+    margin: var(--ds-space-2) auto;
+    border-radius: var(--ds-radius-full);
+    background-color: var(--ds-color-surface-muted);
+    flex-shrink: 0;
+  }
+
   /* ==========================================================================
    * Sizes
    * ========================================================================== */
