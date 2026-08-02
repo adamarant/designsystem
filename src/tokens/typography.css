@@ -240,8 +240,16 @@ body {
   --ds-type-copy-size: var(--ds-text-lg);  /* 18px, fixed */
 
   /* The stat value follows the surface like everything else: the body face
-     comes from --ds-type-heading-family above, and the weight steps up
-     because 400 in the sans face is thin for a metric that has to read at a
-     glance on a dashboard. */
+     here, and a weight that steps up because 400 in the sans face is thin
+     for a metric that has to read at a glance on a dashboard.
+
+     The family MUST be re-declared here, not left to inherit from the
+     :root alias: a var() inside a custom property is substituted where the
+     property is declared, so `--ds-font-stat-value: var(--ds-type-heading-
+     family)` at :root freezes the web face and descendants inherit it
+     resolved. Same trap as --ds-section-padding, and it caught this file
+     too — the weight switched and the typeface did not, which is exactly
+     how it looks when it bites. */
+  --ds-font-stat-value: var(--ds-font-sans);
   --ds-stat-value-weight: var(--ds-weight-robust);
 }

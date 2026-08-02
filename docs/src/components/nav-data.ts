@@ -172,8 +172,8 @@ export const NAV = [
         "href": "/components/avatar"
       },
       {
-        "name": "Stat Card",
-        "href": "/components/stat-card"
+        "name": "Stat",
+        "href": "/components/stat"
       },
       {
         "name": "Progress",
