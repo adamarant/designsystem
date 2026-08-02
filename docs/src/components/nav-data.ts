@@ -6,8 +6,14 @@
 // Forms take input, Layout arranges — including navigating between places
 // and opening over the page. Do not split a family across two groups.
 //
-// Inside a group: alphabetical, no exceptions. Any other order is a second
-// thing to learn, and it decays the moment someone appends an entry.
+// Inside a group: alphabetical. Any other order is a second thing to learn,
+// and it decays the moment someone appends an entry instead of placing it.
+//
+// Foundations is the one exception, deliberately: colour, then type, then
+// spacing, then icons, then effects is the order you learn the system in,
+// and each one leans on the ones above it. Five entries you read top to
+// bottom once — not a list you come back to hunt in. New foundations go
+// where they belong in that progression, not at the end.
 export const NAV = [
   {
     "label": "Foundations",
@@ -17,20 +23,20 @@ export const NAV = [
         "href": "/foundations/colors"
       },
       {
-        "name": "Effects",
-        "href": "/foundations/effects"
-      },
-      {
-        "name": "Icons",
-        "href": "/foundations/icons"
+        "name": "Typography",
+        "href": "/foundations/typography"
       },
       {
         "name": "Spacing",
         "href": "/foundations/spacing"
       },
       {
-        "name": "Typography",
-        "href": "/foundations/typography"
+        "name": "Icons",
+        "href": "/foundations/icons"
+      },
+      {
+        "name": "Effects",
+        "href": "/foundations/effects"
       }
     ]
   },
