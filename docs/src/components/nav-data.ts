@@ -58,8 +58,8 @@ export const NAV = [
     "label": "Form",
     "items": [
       {
-        "name": "Input",
-        "href": "/components/input"
+        "name": "Field",
+        "href": "/components/field"
       },
       {
         "name": "Checkbox",
@@ -72,10 +72,6 @@ export const NAV = [
       {
         "name": "Toggle",
         "href": "/components/toggle"
-      },
-      {
-        "name": "Field",
-        "href": "/components/field"
       },
       {
         "name": "Select",

@@ -1,103 +1,102 @@
+"use client";
+
+import {
+  Field,
+  Input,
+  Textarea,
+  Select,
+  Label,
+} from "@adamarant/ds-react";
+import { DemoSection, DemoSectionCol } from "@/components/DemoSection";
+
+/* One page for the whole form field: the wrapper and the control it holds.
+   They used to be two entries — Field and Input — which read as duplicates
+   and hid the fact that they compose. Merged 2 Aug 2026. */
+
 export default function FieldPage() {
   return (
     <>
       <div className="demo-page-header">
         <h1>Field</h1>
-        <p>Unified wrapper for form fields — label + input slot + hint + error.</p>
+        <p>
+          Label, control, hint, error — one component. The control inside it is an Input, a
+          Textarea or a Select.
+        </p>
       </div>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Default Field</h2>
-        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-field">
-  <label class="ds-field__label">Email</label>
-  <input class="ds-input" type="email" placeholder="you@example.com" />
-  <span class="ds-field__hint">We'll never share your email.</span>
-</div>` }} />
-        <details className="demo-code">
-          <summary>View Code</summary>
-          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-field&quot;&gt;
-  &lt;label class=&quot;ds-field__label&quot;&gt;Email&lt;/label&gt;
-  &lt;input class=&quot;ds-input&quot; type=&quot;email&quot; placeholder=&quot;you@example.com&quot; /&gt;
-  &lt;span class=&quot;ds-field__hint&quot;&gt;We'll never share your email.&lt;/span&gt;
-&lt;/div&gt;` }} /></pre>
-        </details>
-      </section>
+      <DemoSectionCol
+        title="The field"
+        description="Field takes its parts as props and derives the wiring: the label points at the control, and the hint and error are announced through aria-describedby. That wiring is the half hand-assembled forms usually skip."
+        code={`<Field label="Email" hint="We'll never share it.">\n  <Input type="email" placeholder="you@example.com" />\n</Field>`}
+      >
+        <Field label="Email" hint="We'll never share it.">
+          <Input type="email" placeholder="you@example.com" />
+        </Field>
+      </DemoSectionCol>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Required with Error</h2>
-        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-field ds-field--required">
-  <label class="ds-field__label">Password</label>
-  <input class="ds-input ds-input--error" type="password" />
-  <span class="ds-field__error">Password must be at least 8 characters.</span>
-</div>` }} />
-        <details className="demo-code">
-          <summary>View Code</summary>
-          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-field ds-field--required&quot;&gt;
-  &lt;label class=&quot;ds-field__label&quot;&gt;Password&lt;/label&gt;
-  &lt;input class=&quot;ds-input ds-input--error&quot; type=&quot;password&quot; /&gt;
-  &lt;span class=&quot;ds-field__error&quot;&gt;Password must be at least 8 characters.&lt;/span&gt;
-&lt;/div&gt;` }} /></pre>
-        </details>
-      </section>
+      <DemoSectionCol
+        title="Required, error, success"
+        description="required marks the label only — the control keeps its own required prop, so validation and presentation cannot drift apart. An error replaces the hint and sets aria-invalid on the control."
+        code={`<Field label="Password" required error="At least 8 characters.">\n  <Input type="password" state="error" />\n</Field>\n\n<Field label="Handle" success="Available">\n  <Input state="success" defaultValue="adamarant" />\n</Field>`}
+      >
+        <Field label="Password" required error="At least 8 characters.">
+          <Input type="password" state="error" />
+        </Field>
+        <Field label="Handle" success="Available">
+          <Input state="success" defaultValue="adamarant" />
+        </Field>
+      </DemoSectionCol>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">Horizontal Layout</h2>
-        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-field ds-field--horizontal">
-  <label class="ds-field__label">Username</label>
-  <input class="ds-input" type="text" />
-</div>` }} />
-        <details className="demo-code">
-          <summary>View Code</summary>
-          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-field ds-field--horizontal&quot;&gt;
-  &lt;label class=&quot;ds-field__label&quot;&gt;Username&lt;/label&gt;
-  &lt;input class=&quot;ds-input&quot; type=&quot;text&quot; /&gt;
-&lt;/div&gt;` }} /></pre>
-        </details>
-      </section>
+      <DemoSectionCol
+        title="Horizontal, disabled"
+        code={`<Field label="Username" horizontal>\n  <Input />\n</Field>\n\n<Field label="Locked" disabled hint="Ask an admin.">\n  <Input disabled defaultValue="read-only" />\n</Field>`}
+      >
+        <Field label="Username" horizontal>
+          <Input />
+        </Field>
+        <Field label="Locked" disabled hint="Ask an admin.">
+          <Input disabled defaultValue="read-only" />
+        </Field>
+      </DemoSectionCol>
 
-      <section className="demo-section">
-        <h2 className="demo-section__title">API Reference</h2>
-        <div className="ds-table-wrapper">
-          <table className="ds-table ds-table--compact">
-            <thead>
-              <tr>
-                <th>Class</th>
-                <th>Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>.ds-field</code></td>
-                <td>Base</td>
-              </tr>
-              <tr>
-                <td><code>__label</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__hint</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>__error</code></td>
-                <td>Element</td>
-              </tr>
-              <tr>
-                <td><code>--required</code></td>
-                <td>Modifier</td>
-              </tr>
-              <tr>
-                <td><code>--horizontal</code></td>
-                <td>Modifier</td>
-              </tr>
-              <tr>
-                <td><code>--disabled</code></td>
-                <td>Modifier</td>
-              </tr>
-            </tbody>
-          </table>
+      <DemoSection
+        title="Control sizes"
+        description="The control is sized on its own; the field only arranges it. Size tiers match every other inline control, so an Input sm and a Button sm are the same height."
+        code={`<Input size="xs" />\n<Input size="sm" />\n<Input />\n<Input size="lg" />`}
+      >
+        <Input size="xs" placeholder="XS" />
+        <Input size="sm" placeholder="SM" />
+        <Input placeholder="MD (default)" />
+        <Input size="lg" placeholder="LG" />
+      </DemoSection>
+
+      <DemoSectionCol
+        title="Textarea and Select"
+        description="Any control goes inside a Field. Select has its own page: the panel is the default, and this is the explicit native rendering."
+        code={`<Field label="Notes">\n  <Textarea placeholder="Write something..." />\n</Field>\n\n<Field label="Plan">\n  <Select native>…</Select>\n</Field>`}
+      >
+        <Field label="Notes">
+          <Textarea placeholder="Write something..." />
+        </Field>
+        <Field label="Plan">
+          <Select native>
+            <option>Choose...</option>
+            <option>Option A</option>
+            <option>Option B</option>
+          </Select>
+        </Field>
+      </DemoSectionCol>
+
+      <DemoSectionCol
+        title="Without a wrapper"
+        description="Label is the standalone label, for controls that have no field around them — a checkbox row, a table filter. Never put it inside a Field: it carries its own bottom margin, while the field's label does not, because the field's gap owns that distance."
+        code={`<Label htmlFor="q">Search</Label>\n<Input id="q" placeholder="Filter rows" />`}
+      >
+        <div>
+          <Label htmlFor="q">Search</Label>
+          <Input id="q" placeholder="Filter rows" />
         </div>
-      </section>
+      </DemoSectionCol>
     </>
   );
 }
