@@ -5646,14 +5646,21 @@ hr {
    So the box comes from the card it sits in, and this block only arranges
    the metric:
 
-     <div class="ds-card ds-card--compact">
-       <div class="ds-stat">
-         <div class="ds-stat__icon">…</div>
-         <p class="ds-stat__label">Properties</p>
-         <p class="ds-stat__value">128</p>
-         <p class="ds-stat__detail">+12 this month</p>
+     <div class="ds-card">
+       <div class="ds-card__body">
+         <div class="ds-stat">
+           <div class="ds-stat__icon">…</div>
+           <p class="ds-stat__label">Properties</p>
+           <p class="ds-stat__value">128</p>
+           <p class="ds-stat__detail">+12 this month</p>
+         </div>
        </div>
      </div>
+
+   The __body is not optional: a card's padding lives on its parts, not on
+   its root, so a stat dropped straight into .ds-card sits flush against the
+   border. (Checked the hard way — the first version of this file skipped it
+   and the demo rendered a 2px-wide card.)
 
    It does not need a card, either: 48 uses of .ds-stat-number across 16
    consumers — four times the whole stat-card component — are people taking
@@ -5672,7 +5679,6 @@ hr {
   display: flex;
   flex-direction: column;
   gap: var(--ds-space-1);
-  min-width: 0;
 
   
 
@@ -5731,17 +5737,21 @@ hr {
 
    Migration (12 sites, 3 consumers — esys, studio, cavallinogroup-realestate):
 
-     <div class="ds-stat-card">          <div class="ds-card ds-card--compact">
-       <div class="ds-stat-card__icon">    <div class="ds-stat">
-       <p class="ds-stat-card__label">       <div class="ds-stat__icon">
-       <p class="ds-stat-card__value">       <p class="ds-stat__label">
-       <p class="ds-stat-card__detail">      <p class="ds-stat__value">
-     </div>                                  <p class="ds-stat__detail">
+     <div class="ds-stat-card">        <div class="ds-card">
+       <div class="ds-stat-card__icon">  <div class="ds-card__body">
+       <p class="ds-stat-card__label">     <div class="ds-stat">
+       <p class="ds-stat-card__value">       <div class="ds-stat__icon">
+       <p class="ds-stat-card__detail">      <p class="ds-stat__label">
+     </div>                                  <p class="ds-stat__value">
+                                             <p class="ds-stat__detail">
                                            </div>
                                          </div>
+                                       </div>
 
-   Note the padding: this component had space-5 built in, .ds-card--compact
-   is the closest equivalent — check each page rather than assuming.
+   The __body is not optional: a card's padding lives on its parts, not on
+   its root. This component had space-5 built in and .ds-card__body has the
+   same, so the default lands in the same place — but check each page rather
+   than assuming, and reach for --compact only where the page was tighter.
 
    Frozen byte-identical until removal at the next major, which means it
    also keeps the two typography faults .ds-stat fixed: the display font on
