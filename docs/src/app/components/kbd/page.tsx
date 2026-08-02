@@ -3,7 +3,10 @@ export default function KbdPage() {
     <>
       <div className="demo-page-header">
         <h1>Kbd</h1>
-        <p>Keyboard shortcut display with a raised 3D key appearance.</p>
+        <p>
+          A keyboard key, drawn as a raised keycap. <code className="ex-code">--flat</code> drops the
+          cap for dense rows, where a dozen little 3D boxes read as noise.
+        </p>
       </div>
 
       <section className="demo-section">
@@ -93,6 +96,22 @@ export default function KbdPage() {
             </tbody>
           </table>
         </div>
+      </section>
+      <section className="demo-section">
+        <h2 className="demo-section__title">Flat</h2>
+        <p className="ds-copy demo-section__description">
+          For a shortcut printed at the end of a menu row. Dropdown, Context Menu and Command had
+          each re-implemented exactly this — the same two declarations, three times — so it is named
+          once here and those three slots read it.
+        </p>
+        <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<kbd class="ds-kbd ds-kbd--flat">&#8984;K</kbd>
+<kbd class="ds-kbd ds-kbd--flat">&#8984;&#8679;P</kbd>
+<kbd class="ds-kbd">&#8984;K</kbd>` }} />
+        <details className="demo-code">
+          <summary>View Code</summary>
+          <pre><code dangerouslySetInnerHTML={{ __html: `&lt;kbd class=&quot;ds-kbd ds-kbd--flat&quot;&gt;&#8984;K&lt;/kbd&gt;   &lt;!-- in a menu row --&gt;
+&lt;kbd class=&quot;ds-kbd&quot;&gt;&#8984;K&lt;/kbd&gt;                  &lt;!-- in prose --&gt;` }} /></pre>
+        </details>
       </section>
     </>
   );
