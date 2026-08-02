@@ -15,7 +15,12 @@ export {
   type ButtonGroupProps,
 } from "./components/Button";
 
-export { Badge, type BadgeProps } from "./components/Badge";
+export {
+  Badge,
+  BadgeRemove,
+  type BadgeProps,
+  type BadgeRemoveProps,
+} from "./components/Badge";
 
 export {
   Input,
