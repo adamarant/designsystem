@@ -245,12 +245,14 @@
     {
       "name": "badge",
       "title": "Badge",
-      "description": "Pill shape, border + subtle bg, clean and refined.",
+      "description": "The one small labelled pill in the system. Static by default; --interactive makes it a real <button> control (24px WCAG target, hover, focus ring) for filters and toggles, --active is the selected state, --removable adds the __remove button. Absorbed .ds-tag and .ds-chip on 2 Aug 2026, both deprecated.",
       "category": "data-display",
       "classes": [
         ".ds-badge"
       ],
-      "elements": [],
+      "elements": [
+        "__remove"
+      ],
       "variants": [
         "--primary",
         "--success",
@@ -258,7 +260,8 @@
         "--error",
         "--info",
         "--purple",
-        "--outline"
+        "--outline",
+        "--inverted"
       ],
       "sizes": [
         "--sm",
@@ -266,16 +269,31 @@
       ],
       "modifiers": [
         "--dot",
-        "--upper"
+        "--upper",
+        "--active",
+        "--interactive",
+        "--removable"
       ],
       "examples": [
         {
-          "title": "Semantic Variants",
-          "html": "<span class=\"ds-badge\">Default</span>\n<span class=\"ds-badge ds-badge--primary\">Primary</span>\n<span class=\"ds-badge ds-badge--success\">Success</span>\n<span class=\"ds-badge ds-badge--warning\">Warning</span>\n<span class=\"ds-badge ds-badge--error\">Error</span>\n<span class=\"ds-badge ds-badge--info\">Info</span>\n<span class=\"ds-badge ds-badge--purple\">Purple</span>"
+          "title": "Variants",
+          "html": "<span class=\"ds-badge\">Draft</span>\n<span class=\"ds-badge ds-badge--success\">Live</span>\n<span class=\"ds-badge ds-badge--error\">Failed</span>\n<span class=\"ds-badge ds-badge--outline\">Outline</span>\n<span class=\"ds-badge ds-badge--inverted\">Inverted</span>"
         },
         {
-          "title": "Modifiers",
-          "html": "<span class=\"ds-badge ds-badge--outline\">Outline</span>\n<span class=\"ds-badge ds-badge--dot ds-badge--success\">Online</span>\n<span class=\"ds-badge ds-badge--upper ds-badge--primary\">New</span>\n<span class=\"ds-badge ds-badge--upper ds-badge--purple\">Beta</span>"
+          "title": "Dot and uppercase",
+          "html": "<span class=\"ds-badge ds-badge--success ds-badge--dot\">Live</span>\n<span class=\"ds-badge ds-badge--upper\">New</span>"
+        },
+        {
+          "title": "Interactive filters (was ds-chip)",
+          "html": "<div role=\"group\" aria-label=\"Filters\" class=\"ds-flex ds-gap-2\">\n  <button type=\"button\" class=\"ds-badge ds-badge--interactive ds-badge--active\" aria-pressed=\"true\">Design</button>\n  <button type=\"button\" class=\"ds-badge ds-badge--interactive\" aria-pressed=\"false\">Engineering</button>\n</div>"
+        },
+        {
+          "title": "Removable (was ds-tag)",
+          "html": "<span class=\"ds-badge ds-badge--removable\">\n  Typography\n  <button type=\"button\" class=\"ds-badge__remove\" aria-label=\"Remove Typography\">&times;</button>\n</span>"
+        },
+        {
+          "title": "Sizes",
+          "html": "<span class=\"ds-badge ds-badge--sm\">Small</span>\n<span class=\"ds-badge\">Medium</span>\n<span class=\"ds-badge ds-badge--lg\">Large</span>"
         }
       ]
     },
@@ -865,7 +883,7 @@
     {
       "name": "tag",
       "title": "Tag",
-      "description": "Interactive, optionally removable tag for categorisation and filtering.",
+      "description": "DEPRECATED 2 Aug 2026 (0.38.0) — use .ds-badge. Interactive, optionally removable tag for categorisation and filtering.",
       "category": "data-display",
       "classes": [
         ".ds-tag"
@@ -1430,7 +1448,7 @@
     {
       "name": "chip",
       "title": "Chip",
-      "description": "Interactive filter/sort chips with optional remove button.",
+      "description": "DEPRECATED 2 Aug 2026 (0.38.0) — use .ds-badge--interactive. Interactive filter/sort chips with optional remove button.",
       "category": "data-display",
       "classes": [
         ".ds-chip"

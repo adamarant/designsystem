@@ -1,6 +1,25 @@
 /* ==========================================================================
    Tag / Chip Component
    ==========================================================================
+   @deprecated 2 Aug 2026 (0.38.0) — use .ds-badge.
+
+   Badge absorbed this component: three classes named the same object and
+   the source could not say which was which (this header claims
+   "interactive, optionally removable"; chip.css calls this one "a static
+   label"). 15 uses across 3 consumers, against 169 for badge.
+
+   Migration:
+     .ds-tag                  -> .ds-badge
+     .ds-tag--primary etc.    -> .ds-badge--primary etc.
+     .ds-tag--inverted        -> .ds-badge--inverted (the look), or
+                                 .ds-badge--active (if it meant "selected",
+                                 which is what dokle used it for)
+     .ds-tag--removable       -> .ds-badge--removable
+     .ds-tag__remove          -> .ds-badge__remove
+
+   Frozen byte-identical until removal at the next major. Proposal:
+   ds-ops/proposals/promote-2026-08-02-badge-absorbs-tag-chip.md
+
    Interactive, optionally removable tag for categorisation and filtering.
 
    ARIA requirements (consumer responsibility):

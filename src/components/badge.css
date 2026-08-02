@@ -1,6 +1,30 @@
 /* ==========================================================================
    Component: Badge
    Pill shape, border + subtle bg, clean and refined.
+
+   The one small labelled pill in the system (2 Aug 2026). `.ds-tag` and
+   `.ds-chip` are deprecated in its favour: three components named the same
+   object and the source could not say which was which — tag.css called
+   itself "Tag / Chip Component … interactive, optionally removable" while
+   chip.css called tag "a static label". Consumers followed neither
+   (dokle drove filters with tag, cavallinogroup labelled with it), and
+   chip was so unfinished that cortex invented `ds-chip--active` for the
+   selected state and it silently rendered nothing.
+
+   ARIA requirements (consumer responsibility):
+   - Interactive badge: render a <button type="button">; use
+     aria-pressed="true|false" when it toggles a filter.
+   - Remove button: aria-label="Remove [name]".
+   - A group of them: role="group" (or "list") with an aria-label.
+
+   Usage:
+     <span class="ds-badge">Draft</span>
+     <span class="ds-badge ds-badge--success ds-badge--dot">Live</span>
+     <button class="ds-badge ds-badge--interactive ds-badge--active"
+             aria-pressed="true">Design</button>
+     <span class="ds-badge ds-badge--removable">
+       Tag <button class="ds-badge__remove" aria-label="Remove">…</button>
+     </span>
    ========================================================================== */
 
 .ds-badge {
@@ -16,6 +40,18 @@
   border: 1px solid var(--ds-color-border);
   background-color: var(--ds-color-surface-muted);
   color: var(--ds-color-text-secondary);
+
+  /* Icon slot. The glyph is sized by the component, never by the author:
+     nothing used to say what an icon inside a badge should measure, which
+     is the drift --ds-icon-* was introduced to stop. 1em rather than a
+     ramp step, so it tracks --sm / --lg / --upper on its own (owner call,
+     2 Aug 2026) — the ramp starts at 16px, which reads dominant next to
+     12px text. */
+  & :is(svg, img) {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+  }
 
   /* Semantic variants — subtle bg + bright text + subtle border */
   &--primary {
@@ -89,4 +125,108 @@
     padding: var(--ds-space-1) var(--ds-space-3);
     font-size: var(--ds-text-sm);
   }
+
+  /* Inverted — the theme-swapping pair, so it reads dark-on-light in light
+     mode and light-on-dark in dark. Absorbed from .ds-tag. A LOOK, kept
+     distinct from --active below (owner call, 2 Aug 2026): dokle spelled
+     its selected filter `--inverted` because no state existed. */
+  &--inverted {
+    background-color: var(--ds-color-inverted);
+    color: var(--ds-color-on-inverted);
+    border-color: var(--ds-color-inverted);
+  }
+
+  /* Selected. The STATE chip never had: cortex wrote `ds-chip--active` in
+     two places against a modifier that did not exist, and the active row
+     rendered exactly like the inactive one. */
+  &--active {
+    background-color: var(--ds-color-surface-active);
+    border-color: var(--ds-color-border-active);
+    color: var(--ds-color-text);
+  }
+
+  /* Interactive — the filter/toggle form, absorbed from .ds-chip. A badge
+     that can be clicked is a control, so it takes the control contract:
+     the 24px WCAG 2.5.8 target (the resting badge box is ~19px tall), the
+     DS focus ring, and the disabled opacity token. Render it as a
+     <button type="button">. */
+  &--interactive {
+    min-height: var(--ds-size-1);
+    cursor: pointer;
+    font-family: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+    transition:
+      background-color var(--ds-duration-fast) var(--ds-ease-default),
+      border-color var(--ds-duration-fast) var(--ds-ease-default);
+
+    &:hover {
+      background-color: var(--ds-color-surface-hover);
+      border-color: var(--ds-color-border-hover);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+    }
+
+    &:disabled,
+    &[aria-disabled='true'] {
+      opacity: var(--ds-opacity-disabled);
+      cursor: not-allowed;
+    }
+  }
+
+  /* Room for the remove button on the trailing edge. Absorbed from .ds-tag. */
+  &--removable {
+    padding-inline-end: var(--ds-space-1);
+  }
+
+  /* The remove control is a real button: its own 24px target, its own
+     focus ring, its own label. */
+  &__remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--ds-size-1); /* WCAG 2.5.8 */
+    min-height: var(--ds-size-1);
+    padding: 0;
+    border: none;
+    border-radius: var(--ds-radius-full);
+    background: transparent;
+    color: currentColor;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: var(--ds-leading-none);
+    opacity: 0.6;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    transition:
+      opacity var(--ds-duration-fast) var(--ds-ease-out),
+      background-color var(--ds-duration-fast) var(--ds-ease-out);
+
+    &:hover {
+      opacity: 1;
+      background-color: var(--ds-color-surface-hover);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 var(--ds-ring-width) var(--ds-ring-color);
+      opacity: 1;
+    }
+  }
+}
+
+/* Radius modes: the interactive badge is a control, and a brand that asked
+   for square corners gets square controls (owner call, 2 Aug 2026). The
+   STATIC badge is untouched — it keeps --ds-radius-full in every mode, as
+   the radius spec locked ("pills stay pills"). Scoped here rather than by
+   adding a badge token to spacing.css: the radius modes stay a ramp, not a
+   per-component registry. Only `sharp` squares it; `soft` and `pill` mean
+   "less/more round", not "not round". */
+[data-radius='sharp'] .ds-badge--interactive,
+[data-radius='sharp'].ds-badge--interactive {
+  border-radius: 0;
 }
