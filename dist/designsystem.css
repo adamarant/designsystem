@@ -8078,7 +8078,19 @@ hr {
   padding: var(--ds-space-0-5);
   background-color: var(--ds-color-surface-muted);
   border-radius: var(--ds-radius-lg);
-  border: 1px solid var(--ds-color-border-subtle);
+  /* --ds-color-border, not border-subtle: this declaration rendered nothing
+     for as long as it shipped. In dark, border-subtle is #18181b — the exact
+     value of --ds-color-surface-muted, which is this control's own fill, so
+     the border was its own background. In light it is #f4f4f5 against a
+     #e4e4e7 fill: lighter than what it surrounds, an alone rather than an
+     edge. Measured 2 Aug 2026 on the docs page (backgroundColor and
+     borderTopColor both rgb(24,24,27)) while verifying cortex's migration.
+
+     The token is not at fault and is unchanged: its five other users
+     (divider, table, progress, number-input, combobox) sit on surfaces that
+     differ from #18181b, so a subtle border shows there. It disappears only
+     when the element's own background IS surface-muted. */
+  border: 1px solid var(--ds-color-border);
 
   
 
