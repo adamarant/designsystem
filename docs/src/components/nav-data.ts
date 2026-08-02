@@ -277,10 +277,6 @@ export const NAV = [
       {
         "name": "Command",
         "href": "/components/command"
-      },
-      {
-        "name": "Bottom Sheet",
-        "href": "/components/bottom-sheet"
       }
     ]
   },
