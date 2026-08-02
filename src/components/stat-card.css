@@ -1,5 +1,33 @@
 /* ==========================================================================
    Component: Stat Card
+   @deprecated 2 Aug 2026 (0.38.0) — use .ds-card + .ds-stat.
+
+   This re-declared the card's box, declaration for declaration: same
+   surface, same 1px border, same radius-xl. The copy cost nothing visible
+   and everything structural — a stat card can never have --hover,
+   --interactive, --elevated, --compact or the container query, because the
+   system does not know it is a card.
+
+   Migration (12 sites, 3 consumers — esys, studio, cavallinogroup-realestate):
+
+     <div class="ds-stat-card">          <div class="ds-card ds-card--compact">
+       <div class="ds-stat-card__icon">    <div class="ds-stat">
+       <p class="ds-stat-card__label">       <div class="ds-stat__icon">
+       <p class="ds-stat-card__value">       <p class="ds-stat__label">
+       <p class="ds-stat-card__detail">      <p class="ds-stat__value">
+     </div>                                  <p class="ds-stat__detail">
+                                           </div>
+                                         </div>
+
+   Note the padding: this component had space-5 built in, .ds-card--compact
+   is the closest equivalent — check each page rather than assuming.
+
+   Frozen byte-identical until removal at the next major, which means it
+   also keeps the two typography faults .ds-stat fixed: the display font on
+   a data screen, and a hardcoded --ds-text-2xl with no lever.
+
+   Proposal: ds-ops/proposals/promote-2026-08-02-stat-card-vs-card.md
+
    Compact metric display with label, value, detail, and optional icon.
    ========================================================================== */
 

@@ -382,10 +382,15 @@ hr {
 }
 
 /* Stat numbers — display font, large */
+/* The standalone large numeric value. Reads the stat tokens since 2 Aug
+   2026, same values on web: .ds-stat__value was the same three declarations
+   written twice, in a component file, and they would have drifted the first
+   time either was touched. 48 uses across 16 consumers, four times the
+   whole stat-card component — the ecosystem wants the number, not the box. */
 .ds-stat-number {
-  font-family: var(--ds-font-display);
-  font-weight: var(--ds-font-display-weight);
+  font-family: var(--ds-font-stat-value);
+  font-weight: var(--ds-stat-value-weight);
   font-variant-numeric: tabular-nums;
-  font-size: var(--ds-text-2xl);
+  font-size: var(--ds-stat-value-size);
   color: var(--ds-color-text);
 }

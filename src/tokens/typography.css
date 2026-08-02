@@ -188,6 +188,20 @@
   --ds-type-label-weight: var(--ds-weight-robust);
   --ds-type-caption-size: 0.8125rem;                             /* 13px */
   --ds-type-small-size: var(--ds-text-xs);                       /* 12px */
+
+  /* --- Stat value (2 Aug 2026) ---
+     The large numeric value, shared by .ds-stat__value and the standalone
+     .ds-stat-number so the two cannot drift — they were the same three
+     declarations written twice, in a component file and a typography file.
+
+     Two things fixed by tokenising it, both recorded during the in-use
+     exercise and never closed: the size was a hardcoded --ds-text-2xl with
+     no lever (right in a small card, weak as the stat band of a landing),
+     and the family was the display face even on a data screen, which the
+     typography law forbids. Family now follows the surface. */
+  --ds-stat-value-size: var(--ds-text-2xl);
+  --ds-font-stat-value: var(--ds-type-heading-family);
+  --ds-stat-value-weight: var(--ds-font-display-weight);
 }
 
 /* Body-scope re-declaration of the font tokens so they resolve against the
@@ -224,4 +238,10 @@ body {
   --ds-type-h5-weight: var(--ds-weight-robust);
   --ds-type-h6-size: var(--ds-text-sm);    /* 14px */
   --ds-type-copy-size: var(--ds-text-lg);  /* 18px, fixed */
+
+  /* The stat value follows the surface like everything else: the body face
+     comes from --ds-type-heading-family above, and the weight steps up
+     because 400 in the sans face is thin for a metric that has to read at a
+     glance on a dashboard. */
+  --ds-stat-value-weight: var(--ds-weight-robust);
 }
