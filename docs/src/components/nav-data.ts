@@ -1,4 +1,10 @@
-// Auto-generated from components.json — do not edit manually
+// The docs sidebar. Hand-maintained: no script writes this file, despite
+// what the header claimed until 2026-08-02.
+//
+// One question decides the group: what job does the thing do on the page.
+// Foundations are the raw material, UI is everything you put in a page,
+// Forms take input, Layout arranges — including navigating between places
+// and opening over the page. Do not split a family across two groups.
 export const NAV = [
   {
     "label": "Foundations",
@@ -26,51 +32,87 @@ export const NAV = [
     ]
   },
   {
-    "label": "Layout",
+    "label": "UI",
     "items": [
       {
-        "name": "Card",
-        "href": "/components/card"
+        "name": "Button",
+        "href": "/components/button"
       },
       {
-        "name": "Divider",
-        "href": "/components/divider"
+        "name": "Icon Button",
+        "href": "/components/icon-btn"
       },
       {
-        "name": "Accordion",
-        "href": "/components/accordion"
+        "name": "Copy Button",
+        "href": "/components/copy-button"
       },
       {
-        "name": "Collapsible",
-        "href": "/components/collapsible"
+        "name": "Command",
+        "href": "/components/command"
       },
       {
-        "name": "Scroll Area",
-        "href": "/components/scroll-area"
+        "name": "Table",
+        "href": "/components/table"
       },
       {
-        "name": "Hero",
-        "href": "/components/hero"
+        "name": "Description List",
+        "href": "/components/description-list"
       },
       {
-        "name": "Gallery",
-        "href": "/components/gallery"
+        "name": "Stat",
+        "href": "/components/stat"
       },
       {
-        "name": "Prose & Editorial",
-        "href": "/components/prose"
+        "name": "Avatar",
+        "href": "/components/avatar"
       },
       {
-        "name": "Admin Layout",
-        "href": "/components/admin-layout"
+        "name": "Badge",
+        "href": "/components/badge"
       },
       {
-        "name": "Sortable",
-        "href": "/components/sortable"
+        "name": "Kbd",
+        "href": "/components/kbd"
       },
       {
-        "name": "Toolbar",
-        "href": "/components/toolbar"
+        "name": "Timeline",
+        "href": "/components/timeline"
+      },
+      {
+        "name": "Truncated Text",
+        "href": "/components/truncated-text"
+      },
+      {
+        "name": "Alert",
+        "href": "/components/alert"
+      },
+      {
+        "name": "Toast",
+        "href": "/components/toast"
+      },
+      {
+        "name": "Result",
+        "href": "/components/result"
+      },
+      {
+        "name": "Empty State",
+        "href": "/components/empty-state"
+      },
+      {
+        "name": "Progress",
+        "href": "/components/progress"
+      },
+      {
+        "name": "Skeleton",
+        "href": "/components/skeleton"
+      },
+      {
+        "name": "Spinner",
+        "href": "/components/spinner"
+      },
+      {
+        "name": "Tooltip",
+        "href": "/components/tooltip"
       }
     ]
   },
@@ -136,99 +178,52 @@ export const NAV = [
     ]
   },
   {
-    "label": "Actions",
+    "label": "Layout",
     "items": [
       {
-        "name": "Button",
-        "href": "/components/button"
+        "name": "Card",
+        "href": "/components/card"
       },
       {
-        "name": "Icon Button",
-        "href": "/components/icon-btn"
+        "name": "Divider",
+        "href": "/components/divider"
       },
       {
-        "name": "Copy Button",
-        "href": "/components/copy-button"
-      }
-    ]
-  },
-  {
-    "label": "Data display",
-    "items": [
-      {
-        "name": "Table",
-        "href": "/components/table"
+        "name": "Accordion",
+        "href": "/components/accordion"
       },
       {
-        "name": "Description List",
-        "href": "/components/description-list"
+        "name": "Collapsible",
+        "href": "/components/collapsible"
       },
       {
-        "name": "Stat",
-        "href": "/components/stat"
+        "name": "Scroll Area",
+        "href": "/components/scroll-area"
       },
       {
-        "name": "Avatar",
-        "href": "/components/avatar"
+        "name": "Hero",
+        "href": "/components/hero"
       },
       {
-        "name": "Badge",
-        "href": "/components/badge"
+        "name": "Gallery",
+        "href": "/components/gallery"
       },
       {
-        "name": "Kbd",
-        "href": "/components/kbd"
+        "name": "Prose & Editorial",
+        "href": "/components/prose"
       },
       {
-        "name": "Timeline",
-        "href": "/components/timeline"
+        "name": "Admin Layout",
+        "href": "/components/admin-layout"
       },
       {
-        "name": "Truncated Text",
-        "href": "/components/truncated-text"
-      }
-    ]
-  },
-  {
-    "label": "Feedback",
-    "items": [
-      {
-        "name": "Alert",
-        "href": "/components/alert"
+        "name": "Sortable",
+        "href": "/components/sortable"
       },
       {
-        "name": "Toast",
-        "href": "/components/toast"
+        "name": "Toolbar",
+        "href": "/components/toolbar"
       },
-      {
-        "name": "Result",
-        "href": "/components/result"
-      },
-      {
-        "name": "Empty State",
-        "href": "/components/empty-state"
-      },
-      {
-        "name": "Progress",
-        "href": "/components/progress"
-      },
-      {
-        "name": "Skeleton",
-        "href": "/components/skeleton"
-      },
-      {
-        "name": "Spinner",
-        "href": "/components/spinner"
-      },
-      {
-        "name": "Tooltip",
-        "href": "/components/tooltip"
-      }
-    ]
-  },
-  {
-    "label": "Navigation",
-    "items": [
       {
         "name": "Tabs",
         "href": "/components/tabs"
@@ -252,12 +247,7 @@ export const NAV = [
       {
         "name": "Search",
         "href": "/components/search"
-      }
-    ]
-  },
-  {
-    "label": "Overlays",
-    "items": [
+      },
       {
         "name": "Overlay",
         "href": "/components/overlay"
@@ -281,10 +271,6 @@ export const NAV = [
       {
         "name": "Dropdown",
         "href": "/components/dropdown"
-      },
-      {
-        "name": "Command",
-        "href": "/components/command"
       }
     ]
   },
