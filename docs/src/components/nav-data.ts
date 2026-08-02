@@ -5,6 +5,9 @@
 // Foundations are the raw material, UI is everything you put in a page,
 // Forms take input, Layout arranges — including navigating between places
 // and opening over the page. Do not split a family across two groups.
+//
+// Inside a group: alphabetical, no exceptions. Any other order is a second
+// thing to learn, and it decays the moment someone appends an entry.
 export const NAV = [
   {
     "label": "Foundations",
@@ -14,20 +17,20 @@ export const NAV = [
         "href": "/foundations/colors"
       },
       {
-        "name": "Typography",
-        "href": "/foundations/typography"
-      },
-      {
-        "name": "Spacing",
-        "href": "/foundations/spacing"
+        "name": "Effects",
+        "href": "/foundations/effects"
       },
       {
         "name": "Icons",
         "href": "/foundations/icons"
       },
       {
-        "name": "Effects",
-        "href": "/foundations/effects"
+        "name": "Spacing",
+        "href": "/foundations/spacing"
+      },
+      {
+        "name": "Typography",
+        "href": "/foundations/typography"
       }
     ]
   },
@@ -35,32 +38,8 @@ export const NAV = [
     "label": "UI",
     "items": [
       {
-        "name": "Button",
-        "href": "/components/button"
-      },
-      {
-        "name": "Icon Button",
-        "href": "/components/icon-btn"
-      },
-      {
-        "name": "Copy Button",
-        "href": "/components/copy-button"
-      },
-      {
-        "name": "Command",
-        "href": "/components/command"
-      },
-      {
-        "name": "Table",
-        "href": "/components/table"
-      },
-      {
-        "name": "Description List",
-        "href": "/components/description-list"
-      },
-      {
-        "name": "Stat",
-        "href": "/components/stat"
+        "name": "Alert",
+        "href": "/components/alert"
       },
       {
         "name": "Avatar",
@@ -71,36 +50,40 @@ export const NAV = [
         "href": "/components/badge"
       },
       {
-        "name": "Kbd",
-        "href": "/components/kbd"
+        "name": "Button",
+        "href": "/components/button"
       },
       {
-        "name": "Timeline",
-        "href": "/components/timeline"
+        "name": "Command",
+        "href": "/components/command"
       },
       {
-        "name": "Truncated Text",
-        "href": "/components/truncated-text"
+        "name": "Copy Button",
+        "href": "/components/copy-button"
       },
       {
-        "name": "Alert",
-        "href": "/components/alert"
-      },
-      {
-        "name": "Toast",
-        "href": "/components/toast"
-      },
-      {
-        "name": "Result",
-        "href": "/components/result"
+        "name": "Description List",
+        "href": "/components/description-list"
       },
       {
         "name": "Empty State",
         "href": "/components/empty-state"
       },
       {
+        "name": "Icon Button",
+        "href": "/components/icon-btn"
+      },
+      {
+        "name": "Kbd",
+        "href": "/components/kbd"
+      },
+      {
         "name": "Progress",
         "href": "/components/progress"
+      },
+      {
+        "name": "Result",
+        "href": "/components/result"
       },
       {
         "name": "Skeleton",
@@ -111,8 +94,28 @@ export const NAV = [
         "href": "/components/spinner"
       },
       {
+        "name": "Stat",
+        "href": "/components/stat"
+      },
+      {
+        "name": "Table",
+        "href": "/components/table"
+      },
+      {
+        "name": "Timeline",
+        "href": "/components/timeline"
+      },
+      {
+        "name": "Toast",
+        "href": "/components/toast"
+      },
+      {
         "name": "Tooltip",
         "href": "/components/tooltip"
+      },
+      {
+        "name": "Truncated Text",
+        "href": "/components/truncated-text"
       }
     ]
   },
@@ -120,28 +123,12 @@ export const NAV = [
     "label": "Forms",
     "items": [
       {
-        "name": "Field",
-        "href": "/components/field"
-      },
-      {
         "name": "Checkbox",
         "href": "/components/checkbox"
       },
       {
-        "name": "Radio",
-        "href": "/components/radio"
-      },
-      {
-        "name": "Toggle",
-        "href": "/components/toggle"
-      },
-      {
-        "name": "Segmented Control",
-        "href": "/components/segmented-control"
-      },
-      {
-        "name": "Select",
-        "href": "/components/custom-select"
+        "name": "Color Picker",
+        "href": "/components/color-picker"
       },
       {
         "name": "Combobox",
@@ -152,8 +139,12 @@ export const NAV = [
         "href": "/components/datepicker"
       },
       {
-        "name": "Slider",
-        "href": "/components/slider"
+        "name": "Drop Zone",
+        "href": "/components/drop-zone"
+      },
+      {
+        "name": "Field",
+        "href": "/components/field"
       },
       {
         "name": "Number Input",
@@ -164,16 +155,28 @@ export const NAV = [
         "href": "/components/pin-input"
       },
       {
-        "name": "Color Picker",
-        "href": "/components/color-picker"
+        "name": "Radio",
+        "href": "/components/radio"
+      },
+      {
+        "name": "Segmented Control",
+        "href": "/components/segmented-control"
+      },
+      {
+        "name": "Select",
+        "href": "/components/custom-select"
+      },
+      {
+        "name": "Slider",
+        "href": "/components/slider"
       },
       {
         "name": "Star Rating",
         "href": "/components/star-rating"
       },
       {
-        "name": "Drop Zone",
-        "href": "/components/drop-zone"
+        "name": "Toggle",
+        "href": "/components/toggle"
       }
     ]
   },
@@ -181,96 +184,96 @@ export const NAV = [
     "label": "Layout",
     "items": [
       {
-        "name": "Card",
-        "href": "/components/card"
-      },
-      {
-        "name": "Divider",
-        "href": "/components/divider"
-      },
-      {
         "name": "Accordion",
         "href": "/components/accordion"
-      },
-      {
-        "name": "Collapsible",
-        "href": "/components/collapsible"
-      },
-      {
-        "name": "Scroll Area",
-        "href": "/components/scroll-area"
-      },
-      {
-        "name": "Hero",
-        "href": "/components/hero"
-      },
-      {
-        "name": "Gallery",
-        "href": "/components/gallery"
-      },
-      {
-        "name": "Prose & Editorial",
-        "href": "/components/prose"
       },
       {
         "name": "Admin Layout",
         "href": "/components/admin-layout"
       },
       {
-        "name": "Sortable",
-        "href": "/components/sortable"
-      },
-      {
-        "name": "Toolbar",
-        "href": "/components/toolbar"
-      },
-      {
-        "name": "Tabs",
-        "href": "/components/tabs"
-      },
-      {
-        "name": "Navigation",
-        "href": "/components/nav"
+        "name": "Bottom Nav",
+        "href": "/components/bottom-nav"
       },
       {
         "name": "Breadcrumb",
         "href": "/components/breadcrumb"
       },
       {
-        "name": "Pagination",
-        "href": "/components/pagination"
+        "name": "Card",
+        "href": "/components/card"
       },
       {
-        "name": "Bottom Nav",
-        "href": "/components/bottom-nav"
+        "name": "Collapsible",
+        "href": "/components/collapsible"
       },
       {
-        "name": "Search",
-        "href": "/components/search"
-      },
-      {
-        "name": "Overlay",
-        "href": "/components/overlay"
-      },
-      {
-        "name": "Panel",
-        "href": "/components/panel"
-      },
-      {
-        "name": "Modal",
-        "href": "/components/modal"
+        "name": "Divider",
+        "href": "/components/divider"
       },
       {
         "name": "Drawer",
         "href": "/components/drawer"
       },
       {
+        "name": "Dropdown",
+        "href": "/components/dropdown"
+      },
+      {
+        "name": "Gallery",
+        "href": "/components/gallery"
+      },
+      {
+        "name": "Hero",
+        "href": "/components/hero"
+      },
+      {
+        "name": "Modal",
+        "href": "/components/modal"
+      },
+      {
+        "name": "Navigation",
+        "href": "/components/nav"
+      },
+      {
+        "name": "Overlay",
+        "href": "/components/overlay"
+      },
+      {
+        "name": "Pagination",
+        "href": "/components/pagination"
+      },
+      {
+        "name": "Panel",
+        "href": "/components/panel"
+      },
+      {
         "name": "Popover",
         "href": "/components/popover"
       },
       {
-        "name": "Dropdown",
-        "href": "/components/dropdown"
+        "name": "Prose & Editorial",
+        "href": "/components/prose"
+      },
+      {
+        "name": "Scroll Area",
+        "href": "/components/scroll-area"
+      },
+      {
+        "name": "Search",
+        "href": "/components/search"
+      },
+      {
+        "name": "Sortable",
+        "href": "/components/sortable"
+      },
+      {
+        "name": "Tabs",
+        "href": "/components/tabs"
+      },
+      {
+        "name": "Toolbar",
+        "href": "/components/toolbar"
       }
     ]
   },
