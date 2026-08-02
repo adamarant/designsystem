@@ -1212,6 +1212,54 @@ hr {
 
 }
 @layer components {
+/* === Shared surfaces ===
+   These own a box that several components used to draw for themselves, so
+   they come FIRST: each component still overrides what is genuinely its
+   own (the select's mobile panel keeps its top-only radius, for one), and
+   an override only works if it is declared after the shared rule. */
+/* ==========================================================================
+   Component: Panel
+   The floating surface that anchored components open: a menu, a listbox, a
+   date grid, a popover's body.
+
+   Same story as overlay.css, one family over. Seven components each drew
+   this box themselves — `background: surface-muted; border: 1px solid
+   border; border-radius: xl; box-shadow: lg` — so nobody owned it and every
+   future change to it had to be remembered seven times:
+
+     .ds-dropdown__menu        .ds-combobox__listbox
+     .ds-custom-select__panel  .ds-context-menu
+     .ds-popover__content      .ds-datepicker__panel
+     .ds-command__content
+
+   The four declarations were identical in all seven, which is the tell:
+   nobody decided it seven times, they copied it seven times.
+
+   What is NOT here, on purpose: position, inset, z-index, width,
+   animation. Where a panel opens, how big it is and how it enters are the
+   things that genuinely differ between a dropdown and a date picker — that
+   is each component's own business, and it stays in its own file.
+
+   The shared rule names the seven alongside .ds-panel, so no consumer
+   markup changes. New code can use .ds-panel directly for a floating
+   surface the system does not already have a component for.
+   ========================================================================== */
+
+.ds-panel,
+.ds-dropdown__menu,
+.ds-custom-select__panel,
+.ds-popover__content,
+.ds-combobox__listbox,
+.ds-context-menu,
+.ds-datepicker__panel,
+.ds-command__content {
+  background-color: var(--ds-color-surface-muted);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  box-shadow: var(--ds-shadow-lg);
+}
+
+
 /* === Form — Inputs, selectors, and form controls === */
 /* ==========================================================================
    Component: Form Inputs
@@ -2661,10 +2709,6 @@ hr {
      at z-dropdown (50) opened invisibly UNDER ds-modal (100) — studio
      admin/users, 23 lug 2026. */
   z-index: calc(var(--ds-z-modal) + 10);
-  background-color: var(--ds-color-surface-muted);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-xl);
-  box-shadow: var(--ds-shadow-lg);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -3138,10 +3182,6 @@ hr {
   max-height: 16rem;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background-color: var(--ds-color-surface-muted);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-xl);
-  box-shadow: var(--ds-shadow-lg);
   padding-block: var(--ds-space-1);
 
   /* Hidden by default */
@@ -3820,10 +3860,6 @@ hr {
     z-index: var(--ds-z-dropdown);
     inset-block-start: calc(100% + var(--ds-offset-sm));
     inset-inline-start: 0;
-    background-color: var(--ds-color-surface-muted);
-    border: 1px solid var(--ds-color-border);
-    border-radius: var(--ds-radius-xl);
-    box-shadow: var(--ds-shadow-lg);
     padding: var(--ds-space-3);
     min-width: 17rem;
     opacity: 0;
@@ -9545,10 +9581,6 @@ hr {
     display: flex;
     flex-direction: column;
     padding-block: var(--ds-space-1-5);
-    background-color: var(--ds-color-surface-muted);
-    border: 1px solid var(--ds-color-border);
-    border-radius: var(--ds-radius-xl);
-    box-shadow: var(--ds-shadow-lg);
     opacity: 0;
     visibility: hidden;
     transform: scale(0.96);
@@ -9748,10 +9780,6 @@ hr {
 
     position: absolute;
     z-index: var(--ds-z-dropdown);
-    background-color: var(--ds-color-surface-muted);
-    border: 1px solid var(--ds-color-border);
-    border-radius: var(--ds-radius-xl);
-    box-shadow: var(--ds-shadow-lg);
     padding: var(--ds-space-4);
     min-width: 16rem;
     opacity: 0;
@@ -10134,10 +10162,6 @@ hr {
     }
 .ds-command__content {
 
-    background-color: var(--ds-color-surface-muted);
-    border: 1px solid var(--ds-color-border);
-    border-radius: var(--ds-radius-xl);
-    box-shadow: var(--ds-shadow-lg);
     width: 100%;
     max-width: 32rem;
     overflow: hidden;
@@ -10307,10 +10331,6 @@ hr {
   display: flex;
   flex-direction: column;
   padding-block: var(--ds-space-1-5);
-  background-color: var(--ds-color-surface-muted);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-xl);
-  box-shadow: var(--ds-shadow-lg);
   transform-origin: top left;
   animation: ds-context-menu-in var(--ds-duration-fast) var(--ds-ease-out-expo);
 

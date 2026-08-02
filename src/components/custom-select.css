@@ -127,10 +127,6 @@
      at z-dropdown (50) opened invisibly UNDER ds-modal (100) — studio
      admin/users, 23 lug 2026. */
   z-index: calc(var(--ds-z-modal) + 10);
-  background-color: var(--ds-color-surface-muted);
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-xl);
-  box-shadow: var(--ds-shadow-lg);
   overflow: hidden;
   display: flex;
   flex-direction: column;

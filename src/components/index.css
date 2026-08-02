@@ -1,3 +1,10 @@
+/* === Shared surfaces ===
+   These own a box that several components used to draw for themselves, so
+   they come FIRST: each component still overrides what is genuinely its
+   own (the select's mobile panel keeps its top-only radius, for one), and
+   an override only works if it is declared after the shared rule. */
+@import './panel.css';
+
 /* === Form — Inputs, selectors, and form controls === */
 @import './input.css';
 @import './checkbox.css';

@@ -28,10 +28,6 @@
   &__content {
     position: absolute;
     z-index: var(--ds-z-dropdown);
-    background-color: var(--ds-color-surface-muted);
-    border: 1px solid var(--ds-color-border);
-    border-radius: var(--ds-radius-xl);
-    box-shadow: var(--ds-shadow-lg);
     padding: var(--ds-space-4);
     min-width: 16rem;
     opacity: 0;
