@@ -41,14 +41,6 @@ export const NAV = [
         "href": "/components/badge"
       },
       {
-        "name": "Tag",
-        "href": "/components/tag"
-      },
-      {
-        "name": "Chip",
-        "href": "/components/chip"
-      },
-      {
         "name": "Kbd",
         "href": "/components/kbd"
       },
