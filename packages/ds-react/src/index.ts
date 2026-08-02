@@ -70,12 +70,14 @@ export {
   AlertTitle,
   AlertDescription,
   AlertClose,
+  AlertActions,
   type AlertProps,
   type AlertIconProps,
   type AlertContentProps,
   type AlertTitleProps,
   type AlertDescriptionProps,
   type AlertCloseProps,
+  type AlertActionsProps,
 } from "./components/Alert";
 
 export {
