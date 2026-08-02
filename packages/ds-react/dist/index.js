@@ -25,6 +25,8 @@ export { Toggle, ToggleLabel, ToggleLabelText, } from "./components/Toggle";
 export { ThemeToggle, } from "./components/ThemeToggle";
 export { Table, TableWrapper, TableSort, TableFooter, } from "./components/Table";
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent, AccordionBody, } from "./components/Accordion";
+export { Stat, StatLabel, StatValue, StatDetail, StatIcon, } from "./components/Stat";
+/* @deprecated — use <Card><Stat …/></Card>. See components/stat-card.css. */
 export { StatCard, StatCardLabel, StatCardValue, StatCardDetail, StatCardIcon, } from "./components/StatCard";
 export { Chip } from "./components/Chip";
 export { PageHeader, PageHeaderLead, PageHeaderTitle, PageHeaderDescription, PageHeaderActions, PageHeaderBack, } from "./components/PageHeader";

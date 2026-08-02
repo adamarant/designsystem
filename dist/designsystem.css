@@ -471,6 +471,20 @@
   --ds-type-label-weight: var(--ds-weight-robust);
   --ds-type-caption-size: 0.8125rem;                             /* 13px */
   --ds-type-small-size: var(--ds-text-xs);                       /* 12px */
+
+  /* --- Stat value (2 Aug 2026) ---
+     The large numeric value, shared by .ds-stat__value and the standalone
+     .ds-stat-number so the two cannot drift — they were the same three
+     declarations written twice, in a component file and a typography file.
+
+     Two things fixed by tokenising it, both recorded during the in-use
+     exercise and never closed: the size was a hardcoded --ds-text-2xl with
+     no lever (right in a small card, weak as the stat band of a landing),
+     and the family was the display face even on a data screen, which the
+     typography law forbids. Family now follows the surface. */
+  --ds-stat-value-size: var(--ds-text-2xl);
+  --ds-font-stat-value: var(--ds-type-heading-family);
+  --ds-stat-value-weight: var(--ds-font-display-weight);
 }
 
 /* Body-scope re-declaration of the font tokens so they resolve against the
@@ -507,6 +521,12 @@ body {
   --ds-type-h5-weight: var(--ds-weight-robust);
   --ds-type-h6-size: var(--ds-text-sm);    /* 14px */
   --ds-type-copy-size: var(--ds-text-lg);  /* 18px, fixed */
+
+  /* The stat value follows the surface like everything else: the body face
+     comes from --ds-type-heading-family above, and the weight steps up
+     because 400 in the sans face is thin for a metric that has to read at a
+     glance on a dashboard. */
+  --ds-stat-value-weight: var(--ds-weight-robust);
 }
 
 /* ==========================================================================
@@ -1269,11 +1289,16 @@ hr {
 }
 
 /* Stat numbers — display font, large */
+/* The standalone large numeric value. Reads the stat tokens since 2 Aug
+   2026, same values on web: .ds-stat__value was the same three declarations
+   written twice, in a component file, and they would have drifted the first
+   time either was touched. 48 uses across 16 consumers, four times the
+   whole stat-card component — the ecosystem wants the number, not the box. */
 .ds-stat-number {
-  font-family: var(--ds-font-display);
-  font-weight: var(--ds-font-display-weight);
+  font-family: var(--ds-font-stat-value);
+  font-weight: var(--ds-stat-value-weight);
   font-variant-numeric: tabular-nums;
-  font-size: var(--ds-text-2xl);
+  font-size: var(--ds-stat-value-size);
   color: var(--ds-color-text);
 }
 
@@ -5599,7 +5624,123 @@ hr {
 
 
 /* ==========================================================================
+   Component: Stat
+   A metric — label, value, detail, optional icon. A content block, NOT a box.
+
+   It replaces .ds-stat-card (deprecated 2 Aug 2026), which re-declared the
+   card's box: same surface, same 1px border, same radius-xl, re-typed. The
+   cost of that copy was invisible but permanent — a stat card could never
+   have --hover, --interactive, --elevated, --compact, or the container
+   query that restacks a card when it narrows, because as far as the system
+   was concerned it was not a card. It was a card that would never receive
+   the improvements made to cards.
+
+   So the box comes from the card it sits in, and this block only arranges
+   the metric:
+
+     <div class="ds-card ds-card--compact">
+       <div class="ds-stat">
+         <div class="ds-stat__icon">…</div>
+         <p class="ds-stat__label">Properties</p>
+         <p class="ds-stat__value">128</p>
+         <p class="ds-stat__detail">+12 this month</p>
+       </div>
+     </div>
+
+   It does not need a card, either: 48 uses of .ds-stat-number across 16
+   consumers — four times the whole stat-card component — are people taking
+   the number and arranging it themselves, in a Stack, in a card body, or
+   bare. This block is for when the label/value/detail set repeats.
+
+   ARIA requirements (consumer responsibility):
+   - The label and the value are one unit to a screen reader. If the value
+     alone would be meaningless ("128"), give the container an aria-label
+     that reads as a sentence, or wire the value to its label with
+     aria-labelledby.
+   ========================================================================== */
+
+.ds-stat {
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-1);
+  min-width: 0;
+
+  
+
+  /* Reads the shared stat tokens, which .ds-stat-number reads too, so the
+     two cannot drift. Family follows the surface (display on web, body face
+     on product — a dashboard metric is the most product-shaped thing there
+     is), and the size has a lever a brand can re-scale. */
+  
+
+  
+
+  
+}
+.ds-stat__label {
+
+    font-size: var(--ds-text-sm);
+    color: var(--ds-color-text-secondary);
+  }
+.ds-stat__value {
+
+    font-family: var(--ds-font-stat-value);
+    font-weight: var(--ds-stat-value-weight);
+    font-size: var(--ds-stat-value-size);
+    font-variant-numeric: tabular-nums;
+    color: var(--ds-color-text);
+    margin-block-start: var(--ds-space-1);
+  }
+.ds-stat__detail {
+
+    font-size: var(--ds-text-xs);
+    color: var(--ds-color-text-secondary);
+    margin-block-start: var(--ds-space-0-5);
+  }
+.ds-stat__icon {
+
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--ds-radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--ds-color-surface-muted);
+    color: var(--ds-color-text-secondary);
+  }
+
+
+/* ==========================================================================
    Component: Stat Card
+   @deprecated 2 Aug 2026 (0.38.0) — use .ds-card + .ds-stat.
+
+   This re-declared the card's box, declaration for declaration: same
+   surface, same 1px border, same radius-xl. The copy cost nothing visible
+   and everything structural — a stat card can never have --hover,
+   --interactive, --elevated, --compact or the container query, because the
+   system does not know it is a card.
+
+   Migration (12 sites, 3 consumers — esys, studio, cavallinogroup-realestate):
+
+     <div class="ds-stat-card">          <div class="ds-card ds-card--compact">
+       <div class="ds-stat-card__icon">    <div class="ds-stat">
+       <p class="ds-stat-card__label">       <div class="ds-stat__icon">
+       <p class="ds-stat-card__value">       <p class="ds-stat__label">
+       <p class="ds-stat-card__detail">      <p class="ds-stat__value">
+     </div>                                  <p class="ds-stat__detail">
+                                           </div>
+                                         </div>
+
+   Note the padding: this component had space-5 built in, .ds-card--compact
+   is the closest equivalent — check each page rather than assuming.
+
+   Frozen byte-identical until removal at the next major, which means it
+   also keeps the two typography faults .ds-stat fixed: the display font on
+   a data screen, and a hardcoded --ds-text-2xl with no lever.
+
+   Proposal: ds-ops/proposals/promote-2026-08-02-stat-card-vs-card.md
+
    Compact metric display with label, value, detail, and optional icon.
    ========================================================================== */
 

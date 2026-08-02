@@ -23,6 +23,7 @@ export { Toggle, ToggleLabel, ToggleLabelText, type ToggleProps, type ToggleLabe
 export { ThemeToggle, type ThemeToggleProps, } from "./components/ThemeToggle";
 export { Table, TableWrapper, TableSort, TableFooter, type TableProps, type TableWrapperProps, type TableSortProps, type TableFooterProps, } from "./components/Table";
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent, AccordionBody, type AccordionProps, type AccordionItemProps, type AccordionTriggerProps, type AccordionContentProps, type AccordionBodyProps, } from "./components/Accordion";
+export { Stat, StatLabel, StatValue, StatDetail, StatIcon, type StatProps, type StatLabelProps, type StatValueProps, type StatDetailProps, type StatIconProps, } from "./components/Stat";
 export { StatCard, StatCardLabel, StatCardValue, StatCardDetail, StatCardIcon, type StatCardProps, type StatCardLabelProps, type StatCardValueProps, type StatCardDetailProps, type StatCardIconProps, } from "./components/StatCard";
 export { Chip, type ChipProps } from "./components/Chip";
 export { PageHeader, PageHeaderLead, PageHeaderTitle, PageHeaderDescription, PageHeaderActions, PageHeaderBack, type PageHeaderProps, type PageHeaderLeadProps, type PageHeaderTitleProps, type PageHeaderDescriptionProps, type PageHeaderActionsProps, type PageHeaderBackProps, } from "./components/PageHeader";

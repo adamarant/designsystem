@@ -1,6 +1,14 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils/cn";
 
+/* @deprecated 2 Aug 2026 — use <Card><Stat …/></Card>.
+
+   .ds-stat-card re-declared the card's box, so it can never inherit a card
+   modifier or the container query, and its value carries two typography
+   faults <Stat> fixed: the display face on a data screen, and a hardcoded
+   size with no lever. Kept working, unchanged, until the next major.
+   Migration map in components/stat-card.css. */
+
 export interface StatCardProps extends ComponentPropsWithoutRef<"div"> { className?: string; }
 export interface StatCardLabelProps extends ComponentPropsWithoutRef<"div"> { className?: string; }
 export interface StatCardValueProps extends ComponentPropsWithoutRef<"div"> { className?: string; }

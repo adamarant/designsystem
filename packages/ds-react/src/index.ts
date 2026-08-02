@@ -198,6 +198,20 @@ export {
 } from "./components/Accordion";
 
 export {
+  Stat,
+  StatLabel,
+  StatValue,
+  StatDetail,
+  StatIcon,
+  type StatProps,
+  type StatLabelProps,
+  type StatValueProps,
+  type StatDetailProps,
+  type StatIconProps,
+} from "./components/Stat";
+
+/* @deprecated — use <Card><Stat …/></Card>. See components/stat-card.css. */
+export {
   StatCard,
   StatCardLabel,
   StatCardValue,

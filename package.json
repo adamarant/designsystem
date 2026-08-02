@@ -68,6 +68,7 @@
     "./components/spinner": "./src/components/spinner.css",
     "./components/star-rating": "./src/components/star-rating.css",
     "./components/stat-card": "./src/components/stat-card.css",
+    "./components/stat": "./src/components/stat.css",
     "./components/table": "./src/components/table.css",
     "./components/tabs": "./src/components/tabs.css",
     "./components/tag": "./src/components/tag.css",

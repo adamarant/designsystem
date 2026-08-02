@@ -1,0 +1,77 @@
+/* ==========================================================================
+   Component: Stat
+   A metric — label, value, detail, optional icon. A content block, NOT a box.
+
+   It replaces .ds-stat-card (deprecated 2 Aug 2026), which re-declared the
+   card's box: same surface, same 1px border, same radius-xl, re-typed. The
+   cost of that copy was invisible but permanent — a stat card could never
+   have --hover, --interactive, --elevated, --compact, or the container
+   query that restacks a card when it narrows, because as far as the system
+   was concerned it was not a card. It was a card that would never receive
+   the improvements made to cards.
+
+   So the box comes from the card it sits in, and this block only arranges
+   the metric:
+
+     <div class="ds-card ds-card--compact">
+       <div class="ds-stat">
+         <div class="ds-stat__icon">…</div>
+         <p class="ds-stat__label">Properties</p>
+         <p class="ds-stat__value">128</p>
+         <p class="ds-stat__detail">+12 this month</p>
+       </div>
+     </div>
+
+   It does not need a card, either: 48 uses of .ds-stat-number across 16
+   consumers — four times the whole stat-card component — are people taking
+   the number and arranging it themselves, in a Stack, in a card body, or
+   bare. This block is for when the label/value/detail set repeats.
+
+   ARIA requirements (consumer responsibility):
+   - The label and the value are one unit to a screen reader. If the value
+     alone would be meaningless ("128"), give the container an aria-label
+     that reads as a sentence, or wire the value to its label with
+     aria-labelledby.
+   ========================================================================== */
+
+.ds-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-1);
+  min-width: 0;
+
+  &__label {
+    font-size: var(--ds-text-sm);
+    color: var(--ds-color-text-secondary);
+  }
+
+  /* Reads the shared stat tokens, which .ds-stat-number reads too, so the
+     two cannot drift. Family follows the surface (display on web, body face
+     on product — a dashboard metric is the most product-shaped thing there
+     is), and the size has a lever a brand can re-scale. */
+  &__value {
+    font-family: var(--ds-font-stat-value);
+    font-weight: var(--ds-stat-value-weight);
+    font-size: var(--ds-stat-value-size);
+    font-variant-numeric: tabular-nums;
+    color: var(--ds-color-text);
+    margin-block-start: var(--ds-space-1);
+  }
+
+  &__detail {
+    font-size: var(--ds-text-xs);
+    color: var(--ds-color-text-secondary);
+    margin-block-start: var(--ds-space-0-5);
+  }
+
+  &__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--ds-radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--ds-color-surface-muted);
+    color: var(--ds-color-text-secondary);
+  }
+}
