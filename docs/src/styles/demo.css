@@ -779,9 +779,14 @@ body {
    `.demo-section__description` was used by foundations/colors and never
    defined — the paragraphs were falling back to bare <p>. Defined 30 Jul 2026. */
 
+/* No margin of its own: the section's row-gap owns every distance in the
+   content column. These 12/20 margins were the third instance of the
+   two-owner sin — they added to the 16px row-gap and put 48px between two
+   paragraphs of the same explanation, 36 between an explanation and the
+   demo it introduces. */
 .demo-section__description {
   max-width: 78ch;
-  margin-block: var(--ds-space-3) var(--ds-space-5);
+  margin-block: 0;
   font-size: var(--ds-text-base);
   line-height: var(--ds-leading-relaxed);
   color: var(--ds-color-text);
