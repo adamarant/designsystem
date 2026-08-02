@@ -26,23 +26,6 @@ export const NAV = [
     ]
   },
   {
-    "label": "In use",
-    "items": [
-      {
-        "name": "Web",
-        "href": "/in-use/web"
-      },
-      {
-        "name": "Editorial",
-        "href": "/in-use/editorial"
-      },
-      {
-        "name": "Product",
-        "href": "/in-use/product"
-      }
-    ]
-  },
-  {
     "label": "General",
     "items": [
       {
