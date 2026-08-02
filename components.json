@@ -1630,11 +1630,11 @@
       "examples": [
         {
           "title": "Stat in a card",
-          "html": "<div class=\"ds-card ds-card--compact\">\n  <div class=\"ds-stat\">\n    <p class=\"ds-stat__label\">Properties</p>\n    <p class=\"ds-stat__value\">128</p>\n    <p class=\"ds-stat__detail\">+12 this month</p>\n  </div>\n</div>"
+          "html": "<div class=\"ds-card\">\n  <div class=\"ds-card__body\">\n    <div class=\"ds-stat\">\n      <p class=\"ds-stat__label\">Properties</p>\n      <p class=\"ds-stat__value\">128</p>\n      <p class=\"ds-stat__detail\">+12 this month</p>\n    </div>\n  </div>\n</div>"
         },
         {
-          "title": "With an icon, and a card that reacts",
-          "html": "<div class=\"ds-card ds-card--compact ds-card--hover\">\n  <div class=\"ds-stat\">\n    <div class=\"ds-stat__icon\">★</div>\n    <p class=\"ds-stat__label\">Leads</p>\n    <p class=\"ds-stat__value\">42</p>\n  </div>\n</div>"
+          "title": "With an icon, in a card that reacts",
+          "html": "<div class=\"ds-card ds-card--hover\">\n  <div class=\"ds-card__body\">\n    <div class=\"ds-stat\">\n      <div class=\"ds-stat__icon\">*</div>\n      <p class=\"ds-stat__label\">Leads</p>\n      <p class=\"ds-stat__value\">42</p>\n    </div>\n  </div>\n</div>"
         }
       ]
     },
