@@ -1,6 +1,37 @@
 /* ==========================================================================
    Component: Result
-   Feedback page for success, error, 404, empty, etc.
+   The outcome of a flow, after an action: payment taken, form submitted,
+   404, request failed.
+
+   NOT .ds-empty-state, however similar they look (2 Aug 2026). The two
+   share a shape — icon, title, description, actions, centred — but not a
+   job, and the difference is already in their sizing:
+
+     result       the outcome of a FLOW. It centres itself in the page
+                  (max-width + margin-inline: auto) because it IS the page,
+                  and it carries valence: --success, --error, --warning,
+                  --info, which colour the icon. Its actions lead onward:
+                  continue, retry, go back.
+
+     empty-state  the state of a CONTAINER with nothing in it. No root
+                  max-width, because other components render it inside
+                  themselves (table.css composes it). No valence: an empty
+                  list is not an error. Its action leads out of emptiness:
+                  create the first one.
+
+   The practical test: if another component renders it for you, or the page
+   chrome around it stays, it is an empty state — not this.
+
+   The header above used to say this component covered "empty" too. It does
+   not: cortex's EmptyState.tsx renders these classes, which is a misuse
+   that was possible only because the rule was written nowhere.
+
+   ARIA requirements (consumer responsibility):
+   - Announce it. The user has just done something and the outcome has to
+     reach a screen reader: role="status" (polite) on the container, or
+     role="alert" for --error. This is the behavioural difference from
+     .ds-empty-state, which must NOT be announced.
+   - The title is the page's <h1> when the result IS the page.
    ========================================================================== */
 
 .ds-result {
@@ -16,6 +47,10 @@
      Icon
      --------------------------------------------------------------------------- */
 
+  /* The icon takes a colour only when there is an outcome to carry — the
+     semantic variants below do that. With no variant there is nothing to
+     signal, so it stays neutral, and neutral is secondary in both
+     components (owner call, 2 Aug 2026). */
   &__icon {
     width: 3rem;
     height: 3rem;
