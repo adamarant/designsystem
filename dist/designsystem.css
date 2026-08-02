@@ -9651,6 +9651,8 @@ hr {
 
   
 
+    /* Type and colour come from .ds-kbd--flat (kbd.css), which names this
+     selector: the menu row keeps its own trailing alignment. */
   
 
   /* --- Divider --- */
@@ -9804,8 +9806,6 @@ hr {
 .ds-dropdown__item-shortcut {
 
     margin-inline-start: auto;
-    font-size: var(--ds-text-xs);
-    color: var(--ds-color-text-tertiary);
   }
 .ds-dropdown__divider {
 
@@ -10249,7 +10249,10 @@ hr {
   /* Item label */
   
 
-  /* Item shortcut hint */
+  /* Item shortcut hint. Type and colour come from .ds-kbd--flat (kbd.css),
+     which names this selector; the palette row keeps its own flex
+     behaviour. The active state below re-colours it and still wins, being
+     the more specific selector. */
   
 
   /* Empty state */
@@ -10379,8 +10382,6 @@ hr {
   }
 .ds-command__item-shortcut {
 
-    font-size: var(--ds-text-xs);
-    color: var(--ds-color-text-tertiary);
     flex-shrink: 0;
   }
 .ds-command__empty {
@@ -10456,6 +10457,8 @@ hr {
 
   
 
+    /* Type and colour come from .ds-kbd--flat (kbd.css), which names this
+     selector: the menu row keeps its own trailing alignment. */
   
 
   /* --- Divider --- */
@@ -10553,8 +10556,6 @@ hr {
 .ds-context-menu__item-shortcut {
 
     margin-inline-start: auto;
-    font-size: var(--ds-text-xs);
-    color: var(--ds-color-text-tertiary);
   }
 .ds-context-menu__divider {
 
@@ -13738,6 +13739,36 @@ hr {
   }
 
 
+/* --- Flat: the same key without the cap (2 Aug 2026) ---------------------
+
+   A shortcut printed at the end of a menu row does not want a raised
+   keycap: the row is already dense, and a dozen little 3D boxes down a
+   dropdown read as noise. Three components had reached that conclusion
+   independently and each written the same three declarations —
+   dropdown, context-menu and command all render their shortcut as plain
+   tertiary text at text-xs, none of them using .ds-kbd.
+
+   Three files agreeing is a preference, not three mistakes. So the
+   preference gets a name, and the slots read it instead of restating it.
+   Their positioning stays in their own files, which is the part that
+   genuinely differs (margin-inline-start: auto in the menus, a container
+   query in search).
+
+   Rendering is unchanged for everyone: bare text in one of those slots
+   looks exactly as it did, because the slots are named in the rule. New
+   markup can put a real <kbd class="ds-kbd ds-kbd--flat"> inside instead,
+   which is what it should have been able to do all along. */
+.ds-kbd--flat,
+.ds-dropdown__item-shortcut,
+.ds-context-menu__item-shortcut,
+.ds-command__item-shortcut {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  background: none;
+  border: none;
+  padding: 0;
+}
+
 /* Key group (for combos like Cmd + K) */
 .ds-kbd-group {
 
@@ -13873,7 +13904,12 @@ hr {
 /* Keyboard shortcut hint */
 .ds-search__shortcut {
   flex-shrink: 0;
-  padding: 0.125rem 0.375rem;
+  /* 0.125rem and 0.375rem were --ds-space-0-5 and --ds-space-1-5 all along.
+     Same literal-where-a-token-exists as the toolbar's 2px, found the same
+     way. This slot keeps its own box on purpose: it sits INSIDE an input,
+     where a hint needs to separate itself from the placeholder, and the
+     keycap's raised edge would be heavy at that size. */
+  padding: var(--ds-space-0-5) var(--ds-space-1-5);
   font-size: var(--ds-text-2xs);
   font-family: inherit;
   line-height: 1;

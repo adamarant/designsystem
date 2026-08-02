@@ -112,7 +112,12 @@
 /* Keyboard shortcut hint */
 .ds-search__shortcut {
   flex-shrink: 0;
-  padding: 0.125rem 0.375rem;
+  /* 0.125rem and 0.375rem were --ds-space-0-5 and --ds-space-1-5 all along.
+     Same literal-where-a-token-exists as the toolbar's 2px, found the same
+     way. This slot keeps its own box on purpose: it sits INSIDE an input,
+     where a hint needs to separate itself from the placeholder, and the
+     keycap's raised edge would be heavy at that size. */
+  padding: var(--ds-space-0-5) var(--ds-space-1-5);
   font-size: var(--ds-text-2xs);
   font-family: inherit;
   line-height: 1;

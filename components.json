@@ -1312,7 +1312,7 @@
     {
       "name": "kbd",
       "title": "Kbd",
-      "description": "Keyboard shortcut display with a raised 3D key appearance.",
+      "description": "A keyboard key, drawn as a raised keycap. --flat drops the cap for dense rows: it is what dropdown, context-menu and command had each re-implemented for their shortcut slot, now named once and read by all three.",
       "category": "action",
       "classes": [
         ".ds-kbd",
@@ -1325,7 +1325,9 @@
       "sizes": [
         "--lg"
       ],
-      "modifiers": [],
+      "modifiers": [
+        "--flat"
+      ],
       "examples": [
         {
           "title": "Single Keys",

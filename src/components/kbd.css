@@ -40,6 +40,36 @@
   }
 }
 
+/* --- Flat: the same key without the cap (2 Aug 2026) ---------------------
+
+   A shortcut printed at the end of a menu row does not want a raised
+   keycap: the row is already dense, and a dozen little 3D boxes down a
+   dropdown read as noise. Three components had reached that conclusion
+   independently and each written the same three declarations —
+   dropdown, context-menu and command all render their shortcut as plain
+   tertiary text at text-xs, none of them using .ds-kbd.
+
+   Three files agreeing is a preference, not three mistakes. So the
+   preference gets a name, and the slots read it instead of restating it.
+   Their positioning stays in their own files, which is the part that
+   genuinely differs (margin-inline-start: auto in the menus, a container
+   query in search).
+
+   Rendering is unchanged for everyone: bare text in one of those slots
+   looks exactly as it did, because the slots are named in the rule. New
+   markup can put a real <kbd class="ds-kbd ds-kbd--flat"> inside instead,
+   which is what it should have been able to do all along. */
+.ds-kbd--flat,
+.ds-dropdown__item-shortcut,
+.ds-context-menu__item-shortcut,
+.ds-command__item-shortcut {
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-tertiary);
+  background: none;
+  border: none;
+  padding: 0;
+}
+
 /* Key group (for combos like Cmd + K) */
 .ds-kbd-group {
   display: inline-flex;
