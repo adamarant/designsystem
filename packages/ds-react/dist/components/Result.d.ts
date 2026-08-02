@@ -1,7 +1,17 @@
-import { type ComponentPropsWithoutRef } from "react";
+import { type ComponentPropsWithoutRef, type ReactNode } from "react";
 type ResultVariant = "success" | "error" | "warning" | "info";
-export interface ResultProps extends ComponentPropsWithoutRef<"div"> {
+export interface ResultProps extends Omit<ComponentPropsWithoutRef<"div">, "title"> {
+    /** Valence of the outcome. Omit for a neutral result — a 404, say. */
     variant?: ResultVariant;
+    /** Composed shorthand: the glyph. */
+    icon?: ReactNode;
+    /** Composed shorthand: the headline. */
+    title?: ReactNode;
+    /** Composed shorthand: the explanation. */
+    description?: ReactNode;
+    /** Composed shorthand: what to do next — continue, retry, go back. */
+    actions?: ReactNode;
+    children?: ReactNode;
     className?: string;
 }
 export interface ResultIconProps extends ComponentPropsWithoutRef<"div"> {

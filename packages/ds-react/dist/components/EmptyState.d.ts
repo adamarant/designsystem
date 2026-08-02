@@ -1,5 +1,20 @@
-import { type ComponentPropsWithoutRef } from "react";
-export interface EmptyStateProps extends ComponentPropsWithoutRef<"div"> {
+import { type ComponentPropsWithoutRef, type ReactNode } from "react";
+export interface EmptyStateProps extends Omit<ComponentPropsWithoutRef<"div">, "title"> {
+    /** Composed shorthand: the glyph. Always neutral — nothing to signal. */
+    icon?: ReactNode;
+    /** Composed shorthand: what is empty. */
+    title?: ReactNode;
+    /** Composed shorthand: why, or what to do about it. */
+    description?: ReactNode;
+    /** Composed shorthand: the way out of emptiness — "create the first one". */
+    actions?: ReactNode;
+    /** Sits the state inside a bordered card. */
+    card?: boolean;
+    /** Tighter padding and a smaller glyph, for a state inside a small box. */
+    compact?: boolean;
+    /** Left-aligned instead of centred. */
+    left?: boolean;
+    children?: ReactNode;
     className?: string;
 }
 export interface EmptyStateIconProps extends ComponentPropsWithoutRef<"div"> {
