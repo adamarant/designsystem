@@ -579,6 +579,25 @@
       ]
     },
     {
+      "name": "panel",
+      "title": "Panel",
+      "description": "The floating surface that anchored components open — a menu, a listbox, a date grid, a popover's body. It owns the box for all seven of them (dropdown, select, popover, combobox, context-menu, datepicker, command), which used to draw it themselves. Where a panel opens, how wide it is and how it enters stay each component's own business.",
+      "category": "overlay",
+      "classes": [
+        ".ds-panel"
+      ],
+      "elements": [],
+      "variants": [],
+      "sizes": [],
+      "modifiers": [],
+      "examples": [
+        {
+          "title": "A floating surface",
+          "html": "<div class=\"ds-panel\" style=\"padding: var(--ds-space-4); max-width: 16rem\">\n  Anything that floats over the page and is not a scrim.\n</div>"
+        }
+      ]
+    },
+    {
       "name": "dropdown",
       "title": "Dropdown",
       "description": "Floating menu with surface bg, scale transition, keyboard-friendly items.",

@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Component: Panel
+   The floating surface that anchored components open: a menu, a listbox, a
+   date grid, a popover's body.
+
+   Same story as overlay.css, one family over. Seven components each drew
+   this box themselves — `background: surface-muted; border: 1px solid
+   border; border-radius: xl; box-shadow: lg` — so nobody owned it and every
+   future change to it had to be remembered seven times:
+
+     .ds-dropdown__menu        .ds-combobox__listbox
+     .ds-custom-select__panel  .ds-context-menu
+     .ds-popover__content      .ds-datepicker__panel
+     .ds-command__content
+
+   The four declarations were identical in all seven, which is the tell:
+   nobody decided it seven times, they copied it seven times.
+
+   What is NOT here, on purpose: position, inset, z-index, width,
+   animation. Where a panel opens, how big it is and how it enters are the
+   things that genuinely differ between a dropdown and a date picker — that
+   is each component's own business, and it stays in its own file.
+
+   The shared rule names the seven alongside .ds-panel, so no consumer
+   markup changes. New code can use .ds-panel directly for a floating
+   surface the system does not already have a component for.
+   ========================================================================== */
+
+.ds-panel,
+.ds-dropdown__menu,
+.ds-custom-select__panel,
+.ds-popover__content,
+.ds-combobox__listbox,
+.ds-context-menu,
+.ds-datepicker__panel,
+.ds-command__content {
+  background-color: var(--ds-color-surface-muted);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  box-shadow: var(--ds-shadow-lg);
+}

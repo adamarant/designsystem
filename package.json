@@ -54,6 +54,7 @@
     "./components/overlay": "./src/components/overlay.css",
     "./components/page-header": "./src/components/page-header.css",
     "./components/pagination": "./src/components/pagination.css",
+    "./components/panel": "./src/components/panel.css",
     "./components/pin-input": "./src/components/pin-input.css",
     "./components/popover": "./src/components/popover.css",
     "./components/progress": "./src/components/progress.css",
