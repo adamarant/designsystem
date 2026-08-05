@@ -57,6 +57,26 @@ if (!headings.length) fail('has no version sections at all.');
 const target = new RegExp(`[>→]\\s*v?${version.replace(/\./g, '\\.')}\\s*$`);
 const match = headings.find((h) => target.test(h[0].trim()));
 
+// Run standalone BEFORE a bump, package.json still holds the old version while
+// the guide already documents the next one. That is the healthy state — the
+// section is written first, on purpose — so report it instead of crying wolf.
+// During `npm version` the two are equal by then, so the gate still bites.
+const cmp = (a, b) => {
+  const pa = a.split('.').map(Number);
+  const pb = b.split('.').map(Number);
+  for (let i = 0; i < 3; i++) if (pa[i] !== pb[i]) return pa[i] - pb[i];
+  return 0;
+};
+const newestTarget = (headings[0][0].match(/[>→]\s*v?(\d+\.\d+\.\d+)\s*$/) || [])[1];
+
+if (!match && newestTarget && cmp(newestTarget, version) > 0) {
+  console.log(
+    `  OK: MIGRATION-GUIDE.md is ahead of package.json — ` +
+      `v${version} installed, v${newestTarget} written and ready to bump.`,
+  );
+  process.exit(0);
+}
+
 if (!match) {
   const newest = headings[0][0].trim();
   fail(
