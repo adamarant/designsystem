@@ -1,7 +1,7 @@
 {
   "name": "@adamarant/ds-admin",
-  "version": "0.17.0",
-  "description": "React admin components for @adamarant/designsystem \u2014 page contract, shell, tables, forms and states.",
+  "version": "0.18.0",
+  "description": "React admin components for @adamarant/designsystem — page contract, shell, tables, forms and states.",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
