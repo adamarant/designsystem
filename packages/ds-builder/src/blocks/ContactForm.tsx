@@ -61,7 +61,7 @@ export function ContactForm({ endpoint, labels }: ContactFormProps) {
   }
 
   if (status === 'sent') {
-    return <p className="ds-editorial-lede">{labels.success}</p>
+    return <p className="ds-copy">{labels.success}</p>
   }
 
   return (

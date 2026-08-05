@@ -15,8 +15,8 @@ export const CtaBlock = defineBlock({
   render: ({ data }) => (
     <section className="ds-section ds-border-t">
       <div className="ds-container ds-flex ds-flex-col ds-items-center ds-text-center ds-gap-6 ds-max-w-2xl ds-mx-auto">
-        <h2 className="ds-section-title">{data.title}</h2>
-        {data.text ? <p className="ds-editorial-lede">{data.text}</p> : null}
+        <h2 className="ds-heading-2">{data.title}</h2>
+        {data.text ? <p className="ds-copy">{data.text}</p> : null}
         {data.primary?.href || data.secondary?.href ? (
           <div className="ds-flex ds-flex-wrap ds-justify-center ds-gap-3">
             {data.primary?.href ? (

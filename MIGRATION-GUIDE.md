@@ -62,6 +62,13 @@ Nothing new.
       product block now also targets `body`, so the body-scope aliases cannot
       undo the surface switch.
 
+**Shipped right after, standalone: ds-builder 0.8.0** — the five blocks that
+carried deprecated typography (`hero`, `prose`, `cta`, `contacts`,
+`ContactForm`) now render the role ladder: `ds-hero-title` → `ds-heading-1`,
+`ds-section-title` → `ds-heading-2`, `ds-editorial-lede` → `ds-copy`. If your
+theme styles the deprecated names instead of the roles, restyle the roles
+before taking this bump, or those block titles fall back to stock DS type.
+
 ## v0.37.2 → v0.38.0
 
 The largest deprecation round in the DS's history: **12 classes deprecated,

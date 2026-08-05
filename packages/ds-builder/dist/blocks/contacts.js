@@ -111,7 +111,7 @@ export const ContactsBlock = defineBlock({
     },
     render: ({ data }) => {
         const Heading = data.titleStyle === 'sezione' ? 'h2' : 'h1';
-        const headingClass = data.titleStyle === 'sezione' ? 'ds-section-title' : 'ds-hero-title';
+        const headingClass = data.titleStyle === 'sezione' ? 'ds-heading-2' : 'ds-heading-1';
         const form = data.form;
         const recapiti = data.recapiti ?? [];
         const social = data.social ?? [];

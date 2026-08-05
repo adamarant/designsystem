@@ -29,7 +29,7 @@ export const ProseBlock = defineBlock({
           {hasHeading ? (
             <div className="ds-flex ds-flex-col ds-gap-4 ds-mb-8">
               {data.overline ? <p className="ds-overline">{data.overline}</p> : null}
-              {data.title ? <h2 className="ds-section-title">{data.title}</h2> : null}
+              {data.title ? <h2 className="ds-heading-2">{data.title}</h2> : null}
             </div>
           ) : null}
           <div className="ds-prose">

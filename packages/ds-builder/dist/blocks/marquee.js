@@ -6,16 +6,16 @@ const SPEED_CLASS = {
     veloce: ' dsb-marquee--veloce',
 };
 /**
- * Marquee — una fila di parole che scorre senza fine, separate da un glifo.
+ * Marquee — a row of words scrolling without end, separated by a glyph.
  *
- * Il binario è ripetuto due volte, identico: quando il primo esce di scena il
- * secondo è già esattamente al suo posto, e il ciclo non ha salti. La copia
- * è `aria-hidden`, così chi usa uno screen reader sente le parole una volta
- * sola invece che due.
+ * The track is repeated twice, identical: by the time the first leaves the
+ * stage the second is already exactly in its place, so the cycle never jumps.
+ * The copy is `aria-hidden`, so screen reader users hear the words once
+ * instead of twice.
  *
- * Richiede il foglio dei blocchi:
+ * Requires the blocks stylesheet:
  *   `@import "@adamarant/ds-builder/styles/blocks";`
- * Senza, le parole restano una riga statica: leggibile, non rotta.
+ * Without it the words stay a static row: readable, not broken.
  */
 export const MarqueeBlock = defineBlock({
     type: 'marquee',

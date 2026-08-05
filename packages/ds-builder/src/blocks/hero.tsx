@@ -19,8 +19,8 @@ export const HeroBlock = defineBlock({
     <section className="ds-section ds-flex ds-items-center">
       <div className="ds-container ds-flex ds-flex-col ds-items-center ds-text-center ds-gap-6 ds-max-w-3xl ds-mx-auto">
         {data.overline ? <p className="ds-overline">{data.overline}</p> : null}
-        <h1 className="ds-hero-title">{data.title}</h1>
-        {data.lede ? <p className="ds-editorial-lede">{data.lede}</p> : null}
+        <h1 className="ds-heading-1">{data.title}</h1>
+        {data.lede ? <p className="ds-copy">{data.lede}</p> : null}
         {data.cta?.href ? (
           <a
             href={data.cta.href}
