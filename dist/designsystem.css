@@ -495,6 +495,18 @@ body {
   --ds-font-display: var(--font-display, "Clash Display"), system-ui, sans-serif;
   --ds-font-sans: var(--font-sans, "Switzer"), system-ui, -apple-system, sans-serif;
   --ds-font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, "SF Mono", monospace;
+
+  /* The two family aliases must re-resolve here for the same reason the three
+     tokens above do: substituted at :root they have already frozen the
+     fallback face before next/font's --font-* exist, so every .ds-heading-*
+     and the stat value would ship the fallback instead of the brand face.
+     Caught on the first consumer bump to 0.38.0: the one .ds-stat-number on
+     the page dropped to system-ui while every frozen class around it kept the
+     brand's display face. Same trap as --ds-section-padding and the product
+     block below — an alias resolves where it is declared, not where it is
+     used. */
+  --ds-type-heading-family: var(--ds-font-display);
+  --ds-font-stat-value: var(--ds-type-heading-family);
 }
 
 /* Product surface: apps, webapps, admin, dashboards. Fixed sizes (density on
@@ -503,8 +515,14 @@ body {
    subtree; a product widget inside a web page just carries the attribute).
    The unmarked default is web. Custom properties inherit, so the switch
    nests and costs no specificity. Roles not re-declared here (body, label,
-   caption, small, h4-h6 leading, tracking) are surface-invariant. */
-[data-surface="product"] {
+   caption, small, h4-h6 leading, tracking) are surface-invariant.
+
+   The second selector exists because body re-declares the family aliases at
+   web values (block above): with the attribute on <html>, inheritance alone
+   would lose those two tokens to the body rule. Re-applying the whole block
+   on body is deliberate — same values, and no second list to keep in sync. */
+[data-surface="product"],
+[data-surface="product"] body {
   --ds-type-heading-family: var(--ds-font-sans);
   --ds-type-h1-size: 1.75rem;              /* 28px, deliberately off the ramp */
   --ds-type-h1-weight: var(--ds-weight-intense);
