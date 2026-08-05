@@ -1,7 +1,7 @@
 {
   "name": "@adamarant/designsystem",
-  "version": "0.37.2",
-  "description": "Design system \u2014 installable, extensible, indestructible.",
+  "version": "0.38.0",
+  "description": "Design system — installable, extensible, indestructible.",
   "main": "dist/designsystem.css",
   "style": "dist/designsystem.css",
   "exports": {
