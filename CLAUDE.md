@@ -323,6 +323,11 @@ For DS-wide checklist (CONTROLLED MODE, compliance, build, git) → [DS_HEALTH.m
 - [ ] `git push origin master`
 
 ### 4. Publish (OIDC trusted publishing — no tokens)
+- [ ] **Write the `MIGRATION-GUIDE.md` section for the new version, first.**
+      `npm version` runs `scripts/check-migration-guide.js` and refuses to bump
+      without it — a stub heading does not pass either. The shape and the rule
+      are at the top of the guide. A release with nothing consumer-visible
+      still gets a section saying exactly that.
 - [ ] `npm version patch` (or minor/major) — creates the commit + the `vX.Y.Z` tag
 - [ ] `git push origin master --follow-tags` — pushing the tag starts the GitHub Action (`.github/workflows/publish.yml`), which builds and publishes over OIDC with signed provenance
 - [ ] Check the run is green (`gh run watch`) and the version is live on npm

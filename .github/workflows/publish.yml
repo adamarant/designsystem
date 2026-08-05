@@ -59,6 +59,12 @@ jobs:
           esac
           echo "ref=$REF -> target=${WS:-root}"
           echo "ws=$WS" >> "$GITHUB_OUTPUT"
+      # Second net behind the `version` npm script, for a tag pushed by hand or
+      # a workflow_dispatch that skipped the local bump. Root package only:
+      # workspace releases are documented inside the DS section they ship with.
+      - name: Migration guide
+        run: |
+          [ -n "${{ steps.t.outputs.ws }}" ] || node scripts/check-migration-guide.js
       - name: Build + publish
         run: |
           WS="${{ steps.t.outputs.ws }}"
