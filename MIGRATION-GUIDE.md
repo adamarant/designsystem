@@ -41,6 +41,13 @@ Counted by grep across the 21 registered consumers on 2 Aug 2026 (occurrences
 in `src/`, `app/`, `components/`, including CSS), so treat them as scale, not
 as a work list.
 
+Ships with **ds-react 1.12.0** — composed APIs for Field, Result and
+EmptyState, the Stat block, badge's absorbed props and the alert action
+slots; `StatCard` and `CustomSelect` are marked `@deprecated` — and
+**ds-admin 0.18.0**, whose icons are now re-exports from ds-react (new peer
+dependency `@adamarant/ds-react >=1.11.0`) and whose header burger draws two
+bars instead of three, matching SiteHeader.
+
 ### 1. Looks different with no change on your side
 
 These hit markup you already ship. Nothing to edit; there is something to
