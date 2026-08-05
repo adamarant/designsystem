@@ -30,6 +30,38 @@ one is on you.
 > it cannot lapse again. The pre-0.8.0 sections were deleted on 5 Aug 2026 —
 > nobody is upgrading from 0.3.x, and git has them.
 
+## v0.38.0 → v0.38.1
+
+One bug, caught on the first consumer bump, fixed at the source.
+
+### 1. Looks different with no change on your side
+
+- **`.ds-heading-1…6`, `.ds-stat-number`, `.ds-stat__value`** — their family
+  honours a body-level font override again. 0.38.0 routed all of them through
+  `--ds-type-heading-family`, declared at `:root`, where the alias resolves
+  before next/font's `--font-*` variables exist on `<body>`: every consumer
+  loading fonts the documented way got the literal fallback face ("Clash
+  Display", i.e. system-ui wherever it isn't loaded) on exactly those
+  classes. The two family aliases are now re-declared at body scope, the same
+  way the three `--ds-font-*` tokens always were. If your fonts looked right
+  on 0.38.0, nothing moves; if the stat value or the new headings had dropped
+  to a system face, they come back to the brand face.
+
+### 2. New, and entirely opt-in
+
+Nothing.
+
+### 3. Deprecated — frozen, removal at the next major
+
+Nothing new.
+
+### Migration checklist
+
+- [ ] `npm update @adamarant/designsystem`
+- [ ] If you set `data-surface="product"` on `<html>`: nothing to do — the
+      product block now also targets `body`, so the body-scope aliases cannot
+      undo the surface switch.
+
 ## v0.37.2 → v0.38.0
 
 The largest deprecation round in the DS's history: **12 classes deprecated,
