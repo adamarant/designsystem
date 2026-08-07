@@ -300,6 +300,7 @@ strong, b {
   font-size: var(--ds-type-copy-size);
   line-height: var(--ds-type-copy-leading);
   color: var(--ds-color-text);
+  max-width: var(--ds-measure); /* lede parity — the role it succeeds capped its measure */
 }
 
 /* The subordinate half of a pair: under an image, under a value. Secondary

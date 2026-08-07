@@ -30,6 +30,38 @@ one is on you.
 > it cannot lapse again. The pre-0.8.0 sections were deleted on 5 Aug 2026 —
 > nobody is upgrading from 0.3.x, and git has them.
 
+## v0.38.1 → v0.38.2
+
+Two parity gaps in the ladder migration path, both found on the first
+consumers to walk it.
+
+### 1. Looks different with no change on your side
+
+- **Header rhythm returns to migrated headers.** The editorial trio shipped
+  adjacency margins (`.ds-overline + .ds-editorial-title`,
+  `.ds-editorial-title + .ds-editorial-lede`) that the ladder names did not
+  inherit: an overline, title and standfirst rendered as direct siblings lost
+  12px + 16px on migration and glued together. The same two rules now exist
+  for `.ds-heading-1` and `.ds-copy`. Sequences spaced by a flex/grid gap or
+  with wrapped elements are untouched — the sibling combinator never matched
+  there in the first place.
+- **`.ds-copy` caps at `--ds-measure`**, like the lede it succeeds. An
+  uncontained `.ds-copy` no longer runs the full container width.
+
+### 2. New, and entirely opt-in
+
+Nothing.
+
+### 3. Deprecated — frozen, removal at the next major
+
+Nothing new.
+
+### Migration checklist
+
+- [ ] `npm update @adamarant/designsystem`
+- [ ] If you hand-spaced a migrated header while on 0.38.0/0.38.1, remove
+      the shim — the rhythm is back.
+
 ## v0.38.0 → v0.38.1
 
 One bug, caught on the first consumer bump, fixed at the source.
