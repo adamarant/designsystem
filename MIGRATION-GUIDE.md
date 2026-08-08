@@ -30,6 +30,36 @@ one is on you.
 > it cannot lapse again. The pre-0.8.0 sections were deleted on 5 Aug 2026 —
 > nobody is upgrading from 0.3.x, and git has them.
 
+## v0.38.3 → v0.38.4
+
+### 1. Looks different with no change on your side
+
+- **Your ledes get their measure back.** This is really a 0.38.0 change that
+  went undocumented: `.ds-editorial-lede` stopped being `max-width: 600px`
+  and became `max-width: var(--ds-measure)`, a new token set to `60ch`. On a
+  23px lede that resolves to **945px** — every lede in the ecosystem widened
+  at the bump (144 uses, 14 consumers) and nothing said so. The token is now
+  **`48ch`**, which is the same intent measured properly: `ch` is the width
+  of the *zero* glyph, wider than the average letter, so 60ch fits 73-83
+  characters rather than the ~60 it reads as. 48ch lands at 60-70.
+  Same applies to `.ds-copy`, which inherits the cap.
+- If you preferred the wide version, override the token — that is what it is
+  for: `:root { --ds-measure: 60ch; }`.
+
+### 2. New, and entirely opt-in
+
+Nothing.
+
+### 3. Deprecated — frozen, removal at the next major
+
+Nothing new.
+
+### Migration checklist
+
+- [ ] `npm update @adamarant/designsystem`
+- [ ] **Look at one long lede** and confirm the line length reads right for
+      your type. The token is a single override away either direction.
+
 ## v0.38.2 → v0.38.3
 
 **0.38.2 shipped a mistake and this takes it back.** One release, two

@@ -91,11 +91,18 @@
   /* --- Reading measure ---
        Replaces the literal `max-width: 600px` that sat in .ds-editorial-lede
        (the only hardcoded length in the typography layer). Expressed in `ch`
-       so it tracks the font size instead of freezing one viewport's guess:
-       ~60 characters is the classic comfortable line. `dokle` had already
-       invented its own 46rem for the article body — this is the lever it was
-       missing. --- */
-  --ds-measure: 60ch;
+       so it tracks the font size instead of freezing one viewport's guess.
+       `dokle` had already invented its own 46rem for the article body — this
+       is the lever it was missing.
+
+       48, not the 60 this shipped with in 0.38.0. `ch` is the width of the
+       ZERO glyph, which is wider than the average letter, so a line set to
+       60ch actually fits 73-83 characters — past the comfortable range, not
+       at it. Measured on a real page, not reasoned about: 0.38.0 widened
+       every lede in the ecosystem (600px → 945px at a 23px lede in DM Sans)
+       and the first consumer to bump caught it. 48ch lands in the 60-70
+       characters the 60 was aiming for. --- */
+  --ds-measure: 48ch;
 
   /* --- Font Weights --- */
   --ds-weight-extralight: 200;
