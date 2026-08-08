@@ -199,19 +199,26 @@
   margin-block-start: var(--ds-space-4);
 }
 
-/* The same rhythm for the role ladder (0.38): the successor names must keep
-   the header spacing the editorial trio had, or every migration glues the
-   meta row to the title and the title to the standfirst. Found on the first
-   consumer that swapped — overline, title and lede as direct siblings lost
-   both margins at once. heading-1 only, mirroring the rule above: heading-2+
-   sequences were always consumer-spaced and stay that way. Retire together
-   with the editorial pair at the major. */
-.ds-overline + .ds-heading-1 {
-  margin-block-start: var(--ds-space-3);
-}
-.ds-heading-1 + .ds-copy {
-  margin-block-start: var(--ds-space-4);
-}
+/* The ladder deliberately does NOT get the same pair of rules.
+   0.38.2 added them, and 0.38.3 took them back out after one release: an
+   adjacency margin on a child fights whatever the parent already owns, and
+   the classes above are the ones every consumer is migrating TO, so the
+   collision would have shipped ecosystem-wide instead of staying on two
+   deprecated names.
+
+   The evidence came from two consumers on the same day. One had a header
+   with no gap and leaned on these margins by accident; the other builds the
+   same header as a flex column with a gap and carries two `margin: 0` lines
+   written for no other reason than to cancel the editorial pair. The second
+   one is right (see DS_HEALTH 12a: one vertical distance, one owner), and a
+   rule that half the consumers have to neutralise is a rule the DS should
+   not ship.
+
+   A header made of overline + title + standfirst wants a container that owns
+   the rhythm — `display: flex; flex-direction: column; gap: var(--ds-rhythm-element)`
+   — not three children each carrying a margin. The two rules above stay only
+   because they are published behaviour on frozen names; they go at the major
+   with the classes they serve. */
 
 .ds-editorial-body {
   color: var(--ds-color-text);

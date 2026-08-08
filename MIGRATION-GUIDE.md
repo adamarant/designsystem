@@ -30,6 +30,47 @@ one is on you.
 > it cannot lapse again. The pre-0.8.0 sections were deleted on 5 Aug 2026 —
 > nobody is upgrading from 0.3.x, and git has them.
 
+## v0.38.2 → v0.38.3
+
+**0.38.2 shipped a mistake and this takes it back.** One release, two
+consumers, enough evidence to reverse it.
+
+### 1. Looks different with no change on your side
+
+- **The ladder no longer carries adjacency margins.** 0.38.2 added
+  `.ds-overline + .ds-heading-1` (12px) and `.ds-heading-1 + .ds-copy` (16px),
+  copying what the deprecated editorial trio does. Wrong mechanism: a margin
+  on the child fights whatever the parent already owns, and unlike the
+  editorial pair — two frozen names — these are the classes every consumer is
+  migrating *to*, so the collision would have spread ecosystem-wide. A header
+  inside a flex column with a `gap` was getting the gap **plus** 12px.
+  If you took 0.38.2 and your migrated headers look 12–16px tighter now, that
+  is this, and the space was never meant to be there.
+- **Unchanged from 0.38.2:** `.ds-copy` keeps `max-width: var(--ds-measure)`,
+  the lede's cap. That one was parity, not a distance.
+
+### 2. New, and entirely opt-in
+
+Nothing.
+
+### 3. Deprecated — frozen, removal at the next major
+
+Nothing new. `.ds-overline + .ds-editorial-title` and
+`.ds-editorial-title + .ds-editorial-lede` still work, on the deprecated
+names, and retire with them.
+
+### Migration checklist
+
+- [ ] `npm update @adamarant/designsystem`
+- [ ] **If a migrated header relied on those margins** (overline, title and
+      standfirst as direct siblings, no gap): give the container the rhythm
+      instead of the children —
+      `display: flex; flex-direction: column; gap: var(--ds-rhythm-element)`.
+      One owner per distance (DS_HEALTH 12a); it also survives the next
+      class rename, which a margin keyed to a class name does not.
+- [ ] If your header already had a gap: delete any `margin: 0` you wrote to
+      cancel the editorial pair once you finish migrating off those names.
+
 ## v0.38.1 → v0.38.2
 
 Two parity gaps in the ladder migration path, both found on the first
