@@ -203,6 +203,8 @@ look at.
 | **`.ds-input`** and the select chevron | ecosystem-wide | The hand-drawn 12px triangle is now the icon set's chevron, at `--ds-color-text-tertiary` (`#71717a`) instead of a hardcoded `#a1a1aa` that matched no token in either theme. |
 | **`.ds-checkbox`**, **`.ds-star-rating`** | ecosystem-wide | Both were drawing their own glyph — a hand-written check path, and the text character `★` layered over an SVG that never lined up with it. Both now use the icon set's mark. |
 | **`.ds-stat-number`** | 48 uses, 16 consumers | Same rendering on web. It now reads tokens instead of hardcoding, so under `data-surface="product"` it switches to the sans face at a heavier weight — the display face on a dashboard metric is what the typography law forbids. |
+| **`.ds-editorial-lede`** | 144 uses, 14 consumers | *(added 5 Aug — missed when this section was written, found on a consumer bump)* Its `max-width` was a literal `600px` and now reads `--ds-measure`. That token shipped here at `60ch`, corrected to `48ch` in 0.38.4. On 0.38.0–0.38.3 every lede is wider than it was; take 0.38.4 and the line lands where this release meant it to. |
+| **`.ds-editorial-body` headings** | 63 uses, 8 consumers | *(added 5 Aug, same reason)* `h2` was a flat `--ds-text-4xl` (36px), `h3` a flat 24px. Both are fluid now — h2 `24 → 32px`, h3 `20 → 24px`. Desktop subheads come down a little; phones come down a lot, which is the point: a 36px subhead above 20px body text was a flat value doing what flat values do. |
 
 **Zero change, said explicitly** so nobody goes hunting: the seven floating
 panels (`dropdown`, `custom-select`, `popover`, `combobox`, `context-menu`,
