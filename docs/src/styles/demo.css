@@ -27,7 +27,15 @@
    tops the content column only — the modes change everything except the
    sidebar, and the layout says so. < lg overrides to block and the drawer
    chrome below takes over. */
+/* The bar's height lives here, not on .demo-bar: custom properties inherit
+   downwards, and main is the bar's SIBLING — declared on the bar, nothing in
+   the content column can read it, which is how the map ended up with
+   `top: auto` and parked under the chrome. The value below is only the
+   fallback for first paint: PageMap measures the bar and overwrites it,
+   because a calc of the bar's parts guessed 57px for something that renders
+   at 43. */
 .demo-layout {
+  --demo-bar-h: 44px;
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr);
   grid-template-rows: auto 1fr;
@@ -247,12 +255,118 @@
   font-weight: var(--ds-weight-medium);
 }
 
+/* Content, then the map. The rail is a column of the main area rather than
+   something floated over it: the reading column keeps its own width and the
+   map cannot cover it at any size. Below lg the rail is gone (the sidebar has
+   already gone off-canvas there — there is no room for a second index). */
 .demo-main {
   grid-area: main;
-  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ds-space-10);
   padding: var(--ds-space-6) var(--ds-space-8);
-  max-width: 1220px;
+  /* Wide enough for the reading column AND the map beside it, then centred:
+     capped at 1220 the pair used barely half of a large desktop and dumped
+     the rest on the right. The cap still exists — a document does not want
+     to be 2000px wide — it just now measures the whole thing. */
+  max-width: 1640px;
+  margin-inline: auto;
+  /* No overflow here: `overflow-x` on an ancestor silently kills
+     `position: sticky` in the subtree, which is why the map scrolled away.
+     The clipping belongs to the column that actually has wide children. */
+}
+
+@media (min-width: 1280px) {
+  .demo-main {
+    grid-template-columns: minmax(0, 1fr) 200px;
+    align-items: start;
+  }
+}
+
+.demo-main__content {
+  min-width: 0;
   overflow-x: hidden;
+}
+
+/* ── The page map ─────────────────────────────────────────────────────────
+   Sticky, quiet, and the only thing on the page allowed to be a list of
+   labels — because navigating IS its job, which is exactly what the section
+   band in the margin was not. */
+.demo-map {
+  display: none;
+}
+
+/* The top bar is sticky at inset 0, so anything else that sticks has to
+   start below it or it parks underneath — which is what the map did. The
+   bar's height is its two paddings plus its content line plus the border,
+   and --demo-bar-h holds that in one place rather than a magic number
+   repeated wherever something needs to clear it. */
+@media (min-width: 1280px) {
+  .demo-map {
+    display: block;
+    position: sticky;
+    top: calc(var(--demo-bar-h) + var(--ds-space-6));
+    max-height: calc(100vh - var(--demo-bar-h) - var(--ds-space-12));
+    overflow-y: auto;
+  }
+}
+
+.demo-map__title {
+  margin: 0 0 var(--ds-space-3);
+  font-size: var(--ds-type-small-size);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-color-text);
+}
+
+/* The rail is one unbroken line and the current entry lights up its own
+   segment of it — the reader's position shown on the edge, not only in the
+   ink. No gap between items: the spacing is padding INSIDE each link, so the
+   segments touch and the line stays continuous. */
+.demo-map__list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-inline-start: 1px solid var(--ds-color-border);
+}
+
+/* Secondary until it is where you are — the one place an all-secondary block
+   is correct (DS §10: menus and nav). */
+.demo-map__link {
+  position: relative;
+  display: block;
+  padding-block: var(--ds-space-1-5);
+  padding-inline-start: var(--ds-space-3);
+  font-size: var(--ds-type-caption-size);
+  line-height: var(--ds-leading-snug);
+  color: var(--ds-color-text-secondary);
+  text-decoration: none;
+  transition: color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+/* Sits exactly on top of the list's own border, so the highlight replaces
+   that segment instead of doubling it. */
+.demo-map__link::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: -1px;
+  width: 1px;
+  background-color: transparent;
+  transition: background-color var(--ds-duration-fast) var(--ds-ease-default);
+}
+
+.demo-map__link:hover {
+  color: var(--ds-color-text);
+}
+
+.demo-map__link[aria-current="true"] {
+  color: var(--ds-color-text);
+}
+
+.demo-map__link[aria-current="true"]::before {
+  background-color: var(--ds-color-text);
 }
 
 /* ── Docs viewport modes ──────────────────────────────────────────────────
@@ -326,11 +440,20 @@
    it is the only owner of that distance (.demo-code's own 8px margin used
    to add to it: 24 + 8 = 32 between a demo and its own code). The column
    gap stays space-6: that is the 12-col grid's gutter, not rhythm. */
+/* ONE LEFT EDGE (9 Aug 2026, owner call after reading Apple's HIG).
+   This was a 12-column grid with the section label parked in columns 1-4 and
+   the content in 5-12 — two left edges, and a title that lived in the margin
+   of the thing it named. It reads as an index down the page edge only if you
+   already know that is what it is; otherwise it is a stranded word.
+
+   Apple's reference page puts the page title, every section heading and all
+   body text on the same x. The right-hand column is navigation, never
+   labelling. Everything below follows that: one column, one edge, and the
+   heading sits directly above its own block. */
 .demo-section {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--ds-space-6);
-  row-gap: var(--ds-rhythm-element);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-rhythm-element);
   max-width: 1156px;
   margin-inline: auto;
   padding-block: calc(var(--ds-rhythm-section) / 2);
@@ -341,41 +464,33 @@
    auto-placement the first one lands at column 5 and the next wraps back to
    column 1, so a "View Code" block sat under the label instead of under its
    own preview. */
-.demo-section > *:not(.demo-section__title) {
-  grid-column: 5 / span 8;
+.demo-section > * {
   min-width: 0;
 }
 
+/* A heading, not a tag in the margin. It was 0.6875rem uppercase — SMALLER
+   than the body it introduced (11px against 16), which is the wrong way round
+   for anything called a title. It now takes a real rung and binds downward:
+   the gap above it is the section's padding, the gap below is the element
+   rhythm, so it belongs to the block it names. */
+/* Clicking a map entry must not land the heading under the sticky bar. */
 .demo-section__title {
-  grid-column: span 4;
-  align-self: start;
-  font-family: var(--ds-font-sans);
-  font-size: 0.6875rem;
-  font-weight: var(--ds-weight-normal);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+  scroll-margin-block-start: calc(var(--demo-bar-h) + var(--ds-space-6));
+  font-family: var(--ds-type-heading-family);
+  font-size: var(--ds-text-2xl);
+  font-weight: var(--ds-weight-semibold);
+  line-height: var(--ds-leading-snug);
+  letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
   margin: 0;
 }
 
 .demo-section__description {
-  grid-column: 5 / span 8;
+  max-width: 68ch;
 }
 
-/* The label column needs about 220px to hold a tracked uppercase label on one
-   line. Below md there is no width for it and the content beside it, so the
-   row stacks: label, then demo. Above md — including the whole tablet range,
-   where the sidebar has gone off-canvas and handed its 260px back — the
-   4 | 8 split holds, and it is the same split as on desktop. */
-@media (max-width: 767px) /* < --ds-breakpoint-md */ {
-  .demo-section > *:not(.demo-section__title),
-  .demo-section__title,
-  .demo-section__description { grid-column: span 12; }
-
-  .demo-section {
-    column-gap: var(--ds-space-4);
-  }
-}
+/* No responsive column rules left: one column is one column at every width.
+   The 4 | 8 split and its md breakpoint went with the label band. */
 
 .demo-preview {
   padding: var(--ds-space-6);
@@ -437,10 +552,8 @@
    its lede in the content column. 30px semibold display became the page-title
    treatment the typography page introduced. */
 .demo-page-header {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--ds-space-6);
-  row-gap: 0;
+  display: flex;
+  flex-direction: column;
   max-width: 1156px;
   margin-inline: auto;
   padding-block: calc(var(--ds-rhythm-section) / 2);
@@ -453,14 +566,26 @@
    the sidebar stays outside the switch, and that is structural. This also
    retires the hand-set clamp and the hand-set bold that the DS forbids
    consumers from writing on a heading. */
+/* Calmer register (9 Aug 2026, owner call). The page title read at the h1
+   rung — 56→80px — a landing-page voice that flattened everything under it
+   and forced the section headings down to a label to stay out of its way.
+   36px now, near Apple's 40, and the ladder breathes underneath: sections
+   24, lede 18, body 16.
+
+   Fixed sizes, NOT ladder rungs, and that is the point. The Web/Product
+   control sets data-surface on <main>, so a rung restyles the documentation
+   itself whenever you preview a component on the other surface: on product
+   the section title landed at 16px, smaller than the 18px paragraph beneath
+   it — the very inversion this pass set out to remove — and the page title
+   collapsed to 20. The chrome is furniture and holds still; the specimens
+   inside the previews are what the toggle is for. */
 .demo-page-header h1 {
-  grid-column: 5 / span 8;
   margin: 0;
   font-family: var(--ds-type-heading-family);
-  font-size: var(--ds-type-h1-size);
-  font-weight: var(--ds-type-h1-weight);
-  line-height: var(--ds-type-h1-leading);
-  letter-spacing: var(--ds-type-h1-tracking);
+  font-size: var(--ds-text-4xl);
+  font-weight: var(--ds-weight-semibold);
+  line-height: var(--ds-leading-tight);
+  letter-spacing: var(--ds-tracking-tight);
   color: var(--ds-color-text);
 }
 
@@ -475,23 +600,15 @@
    this header (the column gap still holds the 12-col grid) and the margin
    is the single owner. */
 .demo-page-header p {
-  grid-column: 5 / span 8;
   margin: var(--ds-rhythm-element) 0 0;
   max-width: 46ch;
-  font-size: var(--ds-type-h5-size);
+  font-size: var(--ds-text-lg);
   line-height: var(--ds-leading-snug);
   color: var(--ds-color-text);
   text-wrap: pretty;
 }
 
-@media (max-width: 767px) /* < --ds-breakpoint-md */ {
-  .demo-page-header h1,
-  .demo-page-header p { grid-column: span 12; }
-
-  .demo-page-header {
-    column-gap: var(--ds-space-4);
-  }
-}
+/* No column rules to unwind at mobile: the header is one column already. */
 
 /* Sidebar footer — the theme control lives with the chrome, not floating in
    the top-right of the content area. */
@@ -1363,19 +1480,3 @@ body {
   padding-block-end: var(--ds-rhythm-block);
 }
 
-/* The intro's section label is a heading, not a tag in the margin. The docs
-   grid puts .demo-section__title in the 4-column band at 11px uppercase,
-   which works when a page is a long run of sections and the band reads as an
-   index down the left edge. On a two-block landing it just strands a tiny
-   word far from the thing it names.
-
-   Here it moves into the content column, above its block and aligned with
-   it, and takes a real rung of the ladder instead of the label treatment. */
-.demo-intro .demo-section__title {
-  grid-column: 5 / span 8;
-  font-size: var(--ds-type-h6-size);
-  font-weight: var(--ds-type-h6-weight);
-  line-height: var(--ds-type-h6-leading);
-  letter-spacing: var(--ds-type-h6-tracking);
-  text-transform: none;
-}
