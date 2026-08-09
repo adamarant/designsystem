@@ -5,7 +5,7 @@ import { Badge } from "@adamarant/ds-react";
 export default function Home() {
   return (
     <>
-      <div className="demo-page-header">
+      <div className="demo-page-header demo-intro-header">
         <h1>Design System</h1>
         {/* No counts in this line. The three it used to carry — 13 React
             components, 58 CSS components, 140+ tokens — were all stale:
@@ -15,6 +15,7 @@ export default function Home() {
         <p>Interactive React components, built on top of the CSS components and design tokens.</p>
       </div>
 
+      <div className="demo-intro">
       <section className="demo-section">
         <h2 className="demo-section__title">Quick Start</h2>
         <div className="demo-preview demo-preview--col">
@@ -42,6 +43,7 @@ export default function Home() {
           <Badge>Toggle</Badge>
         </div>
       </section>
+      </div>
     </>
   );
 }

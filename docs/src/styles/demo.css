@@ -1341,3 +1341,24 @@ body {
   color: var(--ds-color-text);
   text-align: center;
 }
+
+/* ── Home: one introduction, not three pages ──────────────────────────────
+   The landing is a title, the install line and what is inside — one thought
+   read in a single screen, not three topics. Left on the section rhythm it
+   paid 76.8px below one block plus 76.8 above the next: 153px of air between
+   lines that belong together, which reads as three unrelated pages stacked.
+
+   So the intro drops one step down the same family: half a --ds-rhythm-block
+   per side, the token that means "distance between blocks inside a section".
+   Sections keep their own rhythm everywhere else, where each one really is a
+   separate topic. Same vocabulary, correct rung.
+   ─────────────────────────────────────────────────────────────────────────── */
+.demo-intro .demo-section {
+  padding-block: calc(var(--ds-rhythm-block) / 2);
+}
+
+/* The page title still divides — it keeps its border — but it stops holding
+   the whole intro at arm's length. */
+.demo-intro-header {
+  padding-block-end: var(--ds-rhythm-block);
+}
