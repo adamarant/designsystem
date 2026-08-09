@@ -132,19 +132,35 @@ strong, b {
   color: var(--ds-color-text-tertiary);
 }
 
-/* UI heading — body font for functional/interface headings (labels, settings, admin).
-   Weight goes through --ds-heading-ui-weight, the sibling of
-   --ds-admin-title-weight: a consumer whose body typeface has no Medium cut
-   overrides the token once instead of re-declaring the class.
-   @deprecated 0.38.0. Successor: .ds-heading-3/4/5 under
-   data-surface="product", which finally give it a size. Frozen until the
-   next major. */
+/* Plain heading — a heading that declines the display treatment: the body
+   face, medium weight, and no size of its own (the context sets it).
+
+   Named for the treatment, not for a place. Its old name was
+   .ds-heading-ui, and the name was the bug: "UI" reads as "the interface",
+   so the class looked like it belonged to admin panels — while 75 of its
+   129 uses were on public marketing pages, where a heading may perfectly
+   well want the body face. Renamed 9 Aug 2026 (owner call) rather than
+   deprecated away, because the ladder cannot express this: on the web
+   surface .ds-heading-* is the display face by definition, and asking for
+   the body face there is not a size question.
+
+   Weight goes through --ds-heading-ui-weight (the token keeps the old name
+   until the major, so a consumer's override does not break): a consumer
+   whose body typeface has no Medium cut overrides the token once instead
+   of re-declaring the class. */
+.ds-heading-plain {
+  font-family: var(--ds-font-sans);
+  font-weight: var(--ds-heading-ui-weight);
+}
+
+/* @deprecated 0.41.0 — renamed to .ds-heading-plain, same declarations.
+   Frozen until removal at the next major. */
 .ds-heading-ui {
   font-family: var(--ds-font-sans);
   font-weight: var(--ds-heading-ui-weight);
 }
 
-/* Admin page title — the sized member of the .ds-heading-ui family.
+/* Admin page title — the sized member of the .ds-heading-plain family.
    For the h1 at the top of an admin/dashboard page. Body font, calm size:
    admin is functional, not editorial, so it must NOT reach for the display
    font. Use this instead of .ds-section-title (2.25rem, display) or a bare
