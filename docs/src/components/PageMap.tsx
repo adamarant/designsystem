@@ -11,6 +11,7 @@
  * so nothing runs between sections. */
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface Entry {
   id: string;
@@ -31,6 +32,10 @@ function slug(text: string, i: number) {
 export function PageMap() {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [active, setActive] = useState<string | null>(null);
+  /* App Router keeps the layout mounted across navigations, so a mount-only
+     effect leaves the previous page's headings in the rail forever. The
+     pathname is the signal that the content underneath was replaced. */
+  const pathname = usePathname();
 
   /* The sticky bar's height, measured rather than recomputed from its parts.
      Written as a custom property on the layout so both the map's sticky
@@ -84,7 +89,7 @@ export function PageMap() {
 
     titles.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   if (entries.length === 0) return null;
 

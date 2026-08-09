@@ -269,6 +269,12 @@
      capped at 1220 the pair used barely half of a large desktop and dumped
      the rest on the right. The cap still exists — a document does not want
      to be 2000px wide — it just now measures the whole thing. */
+  /* width:100% is load-bearing, not belt-and-braces. `margin-inline: auto`
+     on a grid item cancels the default stretch, so the item falls back to
+     shrink-to-fit and sizes itself on its own content: main measured 1340px
+     on one page and 1279 on the next at the same viewport, which moved the
+     reading column and the map sideways every time you changed page. */
+  width: 100%;
   max-width: 1640px;
   margin-inline: auto;
   /* No overflow here: `overflow-x` on an ancestor silently kills
