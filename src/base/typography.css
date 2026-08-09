@@ -132,22 +132,32 @@ strong, b {
   color: var(--ds-color-text-tertiary);
 }
 
-/* Plain heading — a heading that declines the display treatment: the body
-   face, medium weight, and no size of its own (the context sets it).
+/* Plain heading — the body face and medium weight, with no size of its own.
+   @deprecated 0.42.0. Removal at the next major, with the rest of the round.
 
-   Named for the treatment, not for a place. Its old name was
-   .ds-heading-ui, and the name was the bug: "UI" reads as "the interface",
-   so the class looked like it belonged to admin panels — while 75 of its
-   129 uses were on public marketing pages, where a heading may perfectly
-   well want the body face. Renamed 9 Aug 2026 (owner call) rather than
-   deprecated away, because the ladder cannot express this: on the web
-   surface .ds-heading-* is the display face by definition, and asking for
-   the body face there is not a size question.
+   Renamed here from .ds-heading-ui on 9 Aug 2026 and retired the same day,
+   once counting what it actually bought made the case against it. It is not
+   a role: it names a treatment, and it cannot size anything — 67 of its 129
+   uses had to carry a size utility beside them.
 
-   Weight goes through --ds-heading-ui-weight (the token keeps the old name
-   until the major, so a consumer's override does not break): a consumer
-   whose body typeface has no Medium cut overrides the token once instead
-   of re-declaring the class. */
+   Measured across the 18 consumers: in NINE of them the display face and
+   the body face are already the same typeface, unified in their own themes.
+   For those 74 uses the class changed nothing but the weight. For the other
+   55 it did pick the body face, which .ds-font-sans already does.
+
+   Migration, and both replacements are classes the DS already shipped:
+     one typeface        -> drop it, add .ds-font-medium
+     two typefaces       -> drop it, add .ds-font-sans .ds-font-medium
+     admin / auth panels -> better: a .ds-heading-N rung under
+                            data-surface="product", which gives the body
+                            face, the weight AND a size, so the size utility
+                            beside it goes too
+
+   The hole it filled is real and stays open: on the web surface the ladder
+   is the display face by definition, so "a heading in the body face" has no
+   rung. The answer is a face lever on the ladder, not a sizeless class
+   pretending to be a role. */
+
 .ds-heading-plain {
   font-family: var(--ds-font-sans);
   font-weight: var(--ds-heading-ui-weight);
