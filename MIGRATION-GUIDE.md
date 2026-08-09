@@ -30,6 +30,52 @@ one is on you.
 > it cannot lapse again. The pre-0.8.0 sections were deleted on 5 Aug 2026 —
 > nobody is upgrading from 0.3.x, and git has them.
 
+## v0.41.0 → v0.42.0
+
+### 1. Looks different with no change on your side
+
+Nothing.
+
+### 2. New, and entirely opt-in
+
+Nothing.
+
+### 3. Deprecated — frozen, removal at the next major
+
+| deprecated | successor | uses / consumers |
+|---|---|---|
+| `.ds-heading-plain` | `.ds-font-medium`, or `.ds-font-sans .ds-font-medium` | 129 / 18 |
+
+Renamed from `.ds-heading-ui` in 0.41.0 and retired one release later, once
+counting what it bought made the case against it. **It is not a role** — it
+names a treatment, and it cannot size anything: 67 of its 129 uses carried a
+size utility beside them because the class could not.
+
+What it actually did, measured across the 18 consumers using it: in **nine
+of them the display face and the body face are the same typeface**, unified
+in their own themes. For those **74** uses the class changed nothing but the
+weight. For the other **55** it did pick the body face — which
+`.ds-font-sans` already does.
+
+| your project | replacement |
+|---|---|
+| one typeface for headings and text | drop it, add `.ds-font-medium` |
+| two typefaces | drop it, add `.ds-font-sans .ds-font-medium` |
+| admin, auth or checkout panels | better: a `.ds-heading-N` rung under `data-surface="product"` — that gives the body face, the weight **and** a size, so the size utility beside it goes too |
+
+**The hole it filled is real and stays open.** On the web surface the ladder
+is the display face by definition, so "a heading in the body face" has no
+rung to go to. The answer is a face lever on the ladder, not a sizeless
+class shaped like a role — and that is a design decision, not a rename.
+
+### Migration checklist
+
+- [ ] `npm update @adamarant/designsystem`
+- [ ] Check which case you are: is `--ds-font-display` the same typeface as
+      `--ds-font-sans` in your theme? Nine of eighteen were.
+- [ ] Replace per the table. Nothing moves either way — both replacements
+      declare exactly what the class declared.
+
 ## v0.40.0 → v0.41.0
 
 ### 1. Looks different with no change on your side
