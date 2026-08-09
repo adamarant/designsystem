@@ -320,7 +320,8 @@
      same way --ds-font-display-weight governs display headings. --- */
   --ds-admin-title-weight: var(--ds-weight-semibold);
 
-  /* --- UI heading weight (.ds-heading-ui) ---
+  /* --- Plain heading weight (.ds-heading-plain; the token keeps the old
+       name until the major so consumer overrides survive the rename) ---
      The sibling lever to --ds-admin-title-weight, added 30 Jul 2026 because
      the class hardcoded --ds-weight-medium and two consumers (studio, dokle)
      carried the *same* override with the *same* comment: their body typeface
@@ -13519,7 +13520,7 @@ hr {
 
    Designed for: blog posts, long-form articles, editorial landing, magazine
    layouts. NOT for admin UI, dashboards, or functional copy — use
-   .ds-heading-ui / .ds-section-title / .ds-prose-block for those.
+   .ds-heading-plain / .ds-section-title / .ds-prose-block for those.
 
    @deprecated 0.38.0. The type roles ladder replaces this family:
      .ds-editorial-title -> .ds-heading-1 (web surface)
