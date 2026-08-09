@@ -136,6 +136,22 @@
     border-color: var(--ds-color-inverted);
   }
 
+  /* Tinted neutral — the one tag look badge was missing, and the reason 7
+     uses could not migrate (owner call, 9 Aug 2026). `.ds-tag--primary`
+     reads the interactive tokens and paints a low-opacity wash of the
+     foreground; neither --outline (transparent, secondary text) nor
+     --primary (the info colour) is that. Same three declarations as the tag
+     it replaces, so the swap is byte-identical where it lands.
+
+     Not a semantic variant: it carries no meaning, it is quieter than the
+     base. The fallbacks matter — a theme that never defined the interactive
+     family still gets a sane pill instead of an unstyled one. */
+  &--subtle {
+    background-color: var(--ds-color-interactive-subtle, var(--ds-color-surface-muted));
+    color: var(--ds-color-interactive);
+    border-color: var(--ds-color-interactive-border, var(--ds-color-interactive));
+  }
+
   /* Selected. The STATE chip never had: cortex wrote `ds-chip--active` in
      two places against a modifier that did not exist, and the active row
      rendered exactly like the inactive one. */

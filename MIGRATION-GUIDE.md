@@ -30,6 +30,66 @@ one is on you.
 > it cannot lapse again. The pre-0.8.0 sections were deleted on 5 Aug 2026 —
 > nobody is upgrading from 0.3.x, and git has them.
 
+## v0.38.4 → v0.39.0
+
+The three rulings that were blocking the last of the 0.38 migration. All
+21 consumers are on 0.38.4 with the typography classes at zero; what was
+left needed decisions, not edits.
+
+### 1. Looks different with no change on your side
+
+- **Admin chrome is the product surface.** `AdminLayout` — so `AdminShell`
+  and everything built on it — now carries `data-surface="product"` on its
+  root. If your admin already used only `.ds-heading-ui`, `.ds-admin-title`
+  or bare elements, **nothing moves**: none of those read the surface. If
+  your admin uses the ladder (`.ds-heading-1…6`, `.ds-copy`), it now renders
+  at product sizes on the body face — an `h3` goes from 48px to 20px, which
+  is the size a panel heading was always meant to be. That was the whole
+  point: without it, every consumer adopting the ladder got page-hero type
+  inside a dashboard. A subtree that genuinely wants web sizes can set
+  `data-surface="web"` on itself.
+
+### 2. New, and entirely opt-in
+
+- **`.ds-badge--subtle`** — the tinted neutral pill: a low-opacity wash of
+  the interactive colour, with the same three declarations
+  `.ds-tag--primary` shipped. It exists because the tag → badge map was
+  wrong: it said `--primary → --primary etc.`, and badge's `--primary` is
+  the info colour. Two consumers could not migrate because of it.
+
+### 3. Deprecated — frozen, removal at the next major
+
+Nothing new. Two **corrections** to existing deprecation notes, both of
+which sent people to the wrong successor:
+
+| class | said | says now |
+|---|---|---|
+| `.ds-tag--primary` | `.ds-badge--primary` (via "etc.") | **`.ds-badge--subtle`** |
+| `.ds-editorial-body` | `.ds-copy` | **`.ds-prose-block`** |
+
+`.ds-copy` was never a candidate for the body: it is a leaf text role and
+covers none of editorial-body's 25 prose rules. `.ds-prose-block` does the
+same job and dresses all six heading levels where editorial-body stops at
+h4 — but it is **not a rename**, and these three differences are the
+migration (same markup, measured):
+
+| | `.ds-editorial-body` | `.ds-prose-block` |
+|---|---|---|
+| body size | 18px, set on the root | inherited, so 16px |
+| headings | sized in tokens | the bare element size |
+| rhythm between blocks | `--ds-space-5` | `em`-based |
+
+31 uses across 8 consumers, and each gets looked at rather than sed-ed.
+
+### Migration checklist
+
+- [ ] `npm update @adamarant/designsystem @adamarant/ds-admin`
+- [ ] **Open one admin page.** If it uses the ladder, the type just got
+      smaller and denser — that is the fix, but look at it once.
+- [ ] `.ds-tag--primary` → `.ds-badge--subtle` (a rename, safe)
+- [ ] `.ds-editorial-body` → `.ds-prose-block`: per page, with the table
+      above in hand
+
 ## v0.38.3 → v0.38.4
 
 ### 1. Looks different with no change on your side

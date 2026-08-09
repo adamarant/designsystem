@@ -4983,6 +4983,18 @@ hr {
      its selected filter `--inverted` because no state existed. */
   
 
+  /* Tinted neutral — the one tag look badge was missing, and the reason 7
+     uses could not migrate (owner call, 9 Aug 2026). `.ds-tag--primary`
+     reads the interactive tokens and paints a low-opacity wash of the
+     foreground; neither --outline (transparent, secondary text) nor
+     --primary (the info colour) is that. Same three declarations as the tag
+     it replaces, so the swap is byte-identical where it lands.
+
+     Not a semantic variant: it carries no meaning, it is quieter than the
+     base. The fallbacks matter — a theme that never defined the interactive
+     family still gets a sane pill instead of an unstyled one. */
+  
+
   /* Selected. The STATE chip never had: cortex wrote `ds-chip--active` in
      two places against a modifier that did not exist, and the active row
      rendered exactly like the inactive one. */
@@ -5080,6 +5092,12 @@ hr {
     background-color: var(--ds-color-inverted);
     color: var(--ds-color-on-inverted);
     border-color: var(--ds-color-inverted);
+  }
+.ds-badge--subtle {
+
+    background-color: var(--ds-color-interactive-subtle, var(--ds-color-surface-muted));
+    color: var(--ds-color-interactive);
+    border-color: var(--ds-color-interactive-border, var(--ds-color-interactive));
   }
 .ds-badge--active {
 
@@ -5188,7 +5206,13 @@ hr {
 
    Migration:
      .ds-tag                  -> .ds-badge
-     .ds-tag--primary etc.    -> .ds-badge--primary etc.
+     .ds-tag--primary         -> .ds-badge--subtle (added 9 Aug 2026 for
+                                 exactly this: --primary is a tinted neutral
+                                 off the interactive tokens, NOT badge's
+                                 --primary, which is the info colour. The
+                                 line above used to say "etc." and sent two
+                                 consumers to the wrong pill.)
+     .ds-tag--success etc.    -> .ds-badge--success etc.
      .ds-tag--inverted        -> .ds-badge--inverted (the look), or
                                  .ds-badge--active (if it meant "selected",
                                  which is what dokle used it for)
@@ -13429,9 +13453,10 @@ hr {
    Editorial long-form typography (promoted from esys blog — 12 Apr 2026)
 
    Three classes that together make an article page look like a magazine
-   instead of a dashboard. They fill the gap between .ds-hero-title (too
-   big for articles) and .ds-prose-block (whose h2 is 4xl — too heavy for
-   reading rhythm).
+   instead of a dashboard. They filled the gap between .ds-hero-title (too
+   big for articles) and .ds-prose-block, whose h2 was 4xl when this was
+   written — that stopped being true when prose-block dropped its heading
+   sizes, which is half of why the successor below is prose-block after all.
 
    Usage:
      <h1 class="ds-editorial-title">The title of the article</h1>
@@ -13445,10 +13470,28 @@ hr {
    layouts. NOT for admin UI, dashboards, or functional copy — use
    .ds-heading-ui / .ds-section-title / .ds-prose-block for those.
 
-   @deprecated 0.38.0. The type roles ladder replaces this family: title →
-   .ds-heading-1 (web), lede AND body → .ds-copy (the reading tier; the
-   Figma scale has no separate lede step). Frozen byte-identical until
-   removal at the next major. Spec:
+   @deprecated 0.38.0. The type roles ladder replaces this family:
+     .ds-editorial-title -> .ds-heading-1 (web surface)
+     .ds-editorial-lede  -> .ds-copy (the reading tier; the Figma scale has
+                            no separate lede step)
+     .ds-editorial-body  -> .ds-prose-block   <- corrected 9 Aug 2026
+
+   The body line said .ds-copy until the migration reached the last
+   consumers, and it was wrong: copy is a leaf text role and covers none of
+   the 25 rules below. .ds-prose-block does the same job and is a
+   structural superset — it dresses all six heading levels where this stops
+   at h4. It is NOT a rename, and the three differences are the whole
+   migration (measured 9 Aug, same markup in both):
+     body     16px (inherited) vs 18px here — prose-block sets no root size
+     heading  the bare element size vs sized in tokens here
+     rhythm   em-based vs --ds-space-5 here
+   So each of the 31 uses gets looked at, not sed-ed. If that proves
+   painful, the lever prose-block is missing is a reading-size custom
+   property — which would also answer enzo-spatalino, which avoids the
+   component in writing because `.ds-prose-block p` outranks any utility a
+   consumer can pass.
+
+   Frozen byte-identical until removal at the next major. Spec:
    ds-ops/proposals/spec-2026-08-01-typography-roles-surfaces.md
    ========================================================================== */
 
