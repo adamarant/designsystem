@@ -7,7 +7,12 @@ export default function Home() {
     <>
       <div className="demo-page-header">
         <h1>Design System</h1>
-        <p>Interactive React component documentation. 13 components, built on top of 58 CSS components and 140+ design tokens.</p>
+        {/* No counts in this line. The three it used to carry — 13 React
+            components, 58 CSS components, 140+ tokens — were all stale:
+            nothing updates a number written in prose, and the sidebar had
+            been longer than 13 for months. Same reason the stale-list hook
+            blocks counts in CLAUDE.md files. The sidebar is the inventory. */}
+        <p>Interactive React components, built on top of the CSS components and design tokens.</p>
       </div>
 
       <section className="demo-section">

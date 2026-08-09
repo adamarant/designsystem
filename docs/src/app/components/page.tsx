@@ -418,7 +418,10 @@ export default function ComponentsIndex() {
     <>
       <div className="demo-page-header">
         <h1>Components</h1>
-        <p>All 68 components in the design system.</p>
+        {/* "All 68" was wrong too — the list below renders from COMPONENTS,
+            so the page already counts itself and the prose only had to be
+            kept in sync by hand, which it wasn't. */}
+        <p>Every component in the design system.</p>
       </div>
       <div className="demo-preview demo-preview--col">
         {COMPONENTS.map((c) => (
