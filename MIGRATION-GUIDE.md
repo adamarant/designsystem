@@ -30,6 +30,30 @@ one is on you.
 > it cannot lapse again. The pre-0.8.0 sections were deleted on 5 Aug 2026 —
 > nobody is upgrading from 0.3.x, and git has them.
 
+## v0.39.0 → v0.39.1
+
+### 1. Looks different with no change on your side
+
+- **`.ds-prose-block` can be tinted now.** The wrapper declares the reading
+  colour and `p` inherits it, instead of `p` hardcoding primary against a
+  root that declared nothing. Nothing moves by default — primary was what
+  `p` forced and primary is the root default — but a consumer can finally
+  set the prose colour on the wrapper, which the old `.ds-prose-block p`
+  selector outranked. Relevant if you are migrating off
+  `.ds-editorial-body`, which has worked this way since v0.10.2.
+
+### 2. New, and entirely opt-in
+
+Nothing.
+
+### 3. Deprecated — frozen, removal at the next major
+
+Nothing new.
+
+### Migration checklist
+
+- [ ] `npm update @adamarant/designsystem`
+
 ## v0.38.4 → v0.39.0
 
 The three rulings that were blocking the last of the 0.38 migration. All
