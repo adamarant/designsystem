@@ -19,6 +19,16 @@
 
 .ds-prose-block {
   line-height: var(--ds-leading-relaxed);
+  /* The wrapper owns the reading colour and the parts inherit it (9 Aug
+     2026). It used to be the other way round — no colour here, `p` forcing
+     primary — which meant a consumer could not tint the prose at all: the
+     `.ds-prose-block p` selector outranks any utility passed on the wrapper.
+     enzo-spatalino has that written in a file header as its reason for
+     avoiding the component, and this is the successor of .ds-editorial-body,
+     which learned the same lesson in v0.10.2 and fixed it the same way.
+     Zero delta: primary was what `p` hardcoded and primary is the default
+     here. */
+  color: var(--ds-color-text);
 }
 
 .ds-prose-block :is(h1, h2, h3, h4, h5, h6) {
@@ -35,7 +45,7 @@
 }
 
 .ds-prose-block p {
-  color: var(--ds-color-text);
+  color: inherit;
   margin-block-end: 1em;
 }
 
