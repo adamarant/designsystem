@@ -30,6 +30,48 @@ one is on you.
 > it cannot lapse again. The pre-0.8.0 sections were deleted on 5 Aug 2026 —
 > nobody is upgrading from 0.3.x, and git has them.
 
+## v0.40.0 → v0.41.0
+
+### 1. Looks different with no change on your side
+
+Nothing.
+
+### 2. New, and entirely opt-in
+
+- **`.ds-heading-plain`** — a heading that declines the display treatment:
+  body face, medium weight, no size of its own. Same three lines
+  `.ds-heading-ui` shipped, under a name that says the treatment instead of
+  a place.
+
+### 3. Deprecated — frozen, removal at the next major
+
+| deprecated | successor | uses / consumers | why |
+|---|---|---|---|
+| `.ds-heading-ui` | `.ds-heading-plain` | 129 / 18 | a rename, byte-identical |
+
+**The 0.38.0 note on this class was wrong** and this replaces it. It said
+the successor was `.ds-heading-3/4/5` under `data-surface="product"`, which
+covers 54 of the 129 uses — the admin, auth and checkout ones. The other
+**75 are on public marketing pages**, where that successor does not exist:
+on the web surface `.ds-heading-*` is the display face by definition, and a
+card heading that wants the body face is not asking a size question. Only
+2 of 8 consumers sampled alias display onto sans, so for the rest the face
+genuinely differs.
+
+The name was the bug. "UI" reads as "the interface", so a class whose real
+job is *body face, no size* looked like it belonged to admin panels, and
+spread everywhere else anyway.
+
+### Migration checklist
+
+- [ ] `npm update @adamarant/designsystem`
+- [ ] `.ds-heading-ui` → `.ds-heading-plain`. A rename: same declarations,
+      same size utility beside it, nothing moves.
+- [ ] Optional, in admin only: those uses can instead drop to the ladder
+      (`.ds-heading-3/4/5`), which under `data-surface="product"` gives them
+      a size and lets you delete the size utility. An upgrade, not a
+      requirement.
+
 ## v0.39.1 → v0.40.0
 
 ### 1. Looks different with no change on your side
