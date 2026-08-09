@@ -310,6 +310,12 @@
 @media (min-width: 1280px) {
   .demo-map {
     display: block;
+    /* Starts where the page starts. The header carries half a rhythm-section
+       of padding above its title; the map is its own grid item and had none,
+       so it floated ~77px above the first line of the page. A margin, not
+       padding: the sticky offset pins the box from the top of the viewport
+       once you scroll, so the alignment is a rest-state concern only. */
+    margin-block-start: calc(var(--ds-rhythm-section) / 2);
     position: sticky;
     top: calc(var(--demo-bar-h) + var(--ds-space-6));
     max-height: calc(100vh - var(--demo-bar-h) - var(--ds-space-12));
@@ -483,7 +489,7 @@
 .demo-section__title {
   scroll-margin-block-start: calc(var(--demo-bar-h) + var(--ds-space-6));
   font-family: var(--ds-type-heading-family);
-  font-size: var(--ds-text-2xl);
+  font-size: var(--ds-text-3xl);
   font-weight: var(--ds-weight-semibold);
   line-height: var(--ds-leading-snug);
   letter-spacing: var(--ds-tracking-tight);
@@ -588,7 +594,7 @@
 .demo-page-header h1 {
   margin: 0;
   font-family: var(--ds-type-heading-family);
-  font-size: var(--ds-text-4xl);
+  font-size: var(--ds-text-5xl);
   font-weight: var(--ds-weight-semibold);
   line-height: var(--ds-leading-tight);
   letter-spacing: var(--ds-tracking-tight);
@@ -607,8 +613,8 @@
    is the single owner. */
 .demo-page-header p {
   margin: var(--ds-rhythm-element) 0 0;
-  max-width: 46ch;
-  font-size: var(--ds-text-lg);
+  max-width: 52ch;
+  font-size: var(--ds-text-xl);
   line-height: var(--ds-leading-snug);
   color: var(--ds-color-text);
   text-wrap: pretty;
