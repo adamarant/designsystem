@@ -10,7 +10,13 @@
 
    Migration:
      .ds-tag                  -> .ds-badge
-     .ds-tag--primary etc.    -> .ds-badge--primary etc.
+     .ds-tag--primary         -> .ds-badge--subtle (added 9 Aug 2026 for
+                                 exactly this: --primary is a tinted neutral
+                                 off the interactive tokens, NOT badge's
+                                 --primary, which is the info colour. The
+                                 line above used to say "etc." and sent two
+                                 consumers to the wrong pill.)
+     .ds-tag--success etc.    -> .ds-badge--success etc.
      .ds-tag--inverted        -> .ds-badge--inverted (the look), or
                                  .ds-badge--active (if it meant "selected",
                                  which is what dokle used it for)
