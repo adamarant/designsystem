@@ -13337,6 +13337,19 @@ hr {
      Zero delta: primary was what `p` hardcoded and primary is the default
      here. */
   color: var(--ds-color-text);
+
+  /* Prose has a reading size (9 Aug 2026, owner call). It had none, and the
+     size arrived from whatever the context happened to be — which is how
+     .ds-editorial-body, the class this succeeds, ended up carrying 1.125rem
+     on its own root: every consumer needs one, so the component should say
+     it. Five of the eight migrating consumers were about to restate the
+     same three declarations, which is the signal the rule belongs here.
+
+     It reads the copy role rather than a literal, so prose follows the
+     surface like everything else on the ladder: 18→20px on web, fixed on
+     product. A hardcoded 18px would have fought data-surface in exactly
+     the panels the ladder just taught to be denser. */
+  font-size: var(--ds-type-copy-size);
 }
 
 .ds-prose-block :is(h1, h2, h3, h4, h5, h6) {
@@ -13346,6 +13359,18 @@ hr {
   color: var(--ds-color-text);
   margin-block-start: 1.5em;
   margin-block-end: 0.5em;
+}
+
+/* Subheads inside prose, sized for reading rather than for a page. Left to
+   the bare element they run a step large over body text — an h2 at 26→36
+   above 18→20px copy shouts. These are the curves .ds-editorial-body
+   shipped and eight consumers read for months. h4 and below already sit at
+   a sane step, so they keep the element's own size. */
+.ds-prose-block h2 {
+  font-size: clamp(1.5rem, 1.2vw + 1.15rem, 2rem); /* 24 → 32px */
+}
+.ds-prose-block h3 {
+  font-size: clamp(1.25rem, 0.75vw + 1.05rem, 1.5rem); /* 20 → 24px */
 }
 
 .ds-prose-block :is(h1, h2, h3, h4, h5, h6):first-child {

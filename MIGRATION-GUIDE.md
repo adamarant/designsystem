@@ -30,6 +30,42 @@ one is on you.
 > it cannot lapse again. The pre-0.8.0 sections were deleted on 5 Aug 2026 —
 > nobody is upgrading from 0.3.x, and git has them.
 
+## v0.39.1 → v0.40.0
+
+### 1. Looks different with no change on your side
+
+- **`.ds-prose-block` has a reading size and prose subheads.** It had
+  neither: the size came from whatever the context happened to be, and the
+  headings sat at the bare element size — an h2 at 26→36px over 16px copy.
+  Now the root reads `--ds-type-copy-size` (18→20px on web, fixed on
+  product, so prose follows `data-surface` like the rest of the ladder) and
+  h2/h3 take the curves `.ds-editorial-body` shipped: 24→32 and 20→24.
+  **If you already set a size on the wrapper or an ancestor, nothing
+  changes** — your rule still wins. If you did not, your prose grows from
+  16px and its subheads shrink into proportion.
+  This is what makes prose-block a real successor to `.ds-editorial-body`:
+  five of the eight consumers migrating were about to restate the same
+  three declarations, which is where the rule belonged all along.
+
+### 2. New, and entirely opt-in
+
+Nothing.
+
+### 3. Deprecated — frozen, removal at the next major
+
+Nothing new. `.ds-editorial-body` → `.ds-prose-block` is now much closer to
+a rename: the root size and the heading curves match. What still differs is
+the rhythm between blocks — `em`-based here, `--ds-space-5` there — which
+scales with the reading size instead of staying at 20px.
+
+### Migration checklist
+
+- [ ] `npm update @adamarant/designsystem`
+- [ ] **Look at one prose page.** If it did not set its own size, the text
+      just got bigger and the subheads smaller — both on purpose.
+- [ ] Migrating off `.ds-editorial-body`: it is now a rename plus a look at
+      the block rhythm.
+
 ## v0.39.0 → v0.39.1
 
 ### 1. Looks different with no change on your side
