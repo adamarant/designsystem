@@ -68,6 +68,47 @@ is the display face by definition, so "a heading in the body face" has no
 rung to go to. The answer is a face lever on the ladder, not a sizeless
 class shaped like a role — and that is a design decision, not a rename.
 
+#### Expect `ds/utility-budget` to start failing
+
+`.ds-heading-plain` carried none of the prefixes the rule counts
+(`ds-text-`, `ds-font-`, `ds-leading-`, `ds-tracking-`), so it was free.
+Both replacements are counted. Swapping it took **16 elements across 8 of
+the 18 consumers** over the text budget of 2 — not a regression, just the
+true cost becoming visible: those elements were always carrying three
+typographic decisions by hand, and the class was hiding one of them.
+
+Two-typeface projects feel it hardest: `.ds-font-sans .ds-font-medium`
+spends the whole budget before you have picked a size.
+
+Three things resolved all 16, in this order of preference:
+
+1. **The `Text` primitive** from `@adamarant/ds-react`, the default answer
+   when the treatment is genuinely one-off: `size`, `weight`, `color`,
+   `align="balance"`, `transform`, `truncate` are all props, and they map to
+   exactly the classes you would have typed. Nothing moves — this is the
+   only one of the three that is delta-zero by construction. Be honest about
+   what it is, though: it expresses the same decisions through the typed API
+   instead of stacking them in `className`. It does not answer the missing
+   rung above.
+2. **Drop a redundant `.ds-text-primary`.** The reset sets `a { color:
+   inherit }`, so on a wordmark link inside a primary-coloured ancestor that
+   class buys nothing. Probe the parent's computed `color` before you
+   delete; do not assume.
+3. **A rung under `data-surface="product"`** — the right destination for an
+   admin or auth shell, but it is not a free swap, so measure it. Two
+   things bite:
+   - **The surface has to actually be declared.** `AdminLayout` only sets
+     `data-surface="product"` from **ds-admin 0.19.0**. On 0.18.0 the rung
+     resolves against the *web* ladder instead, and an 18px sans heading
+     silently becomes a 40px display one. It is not a build error and not a
+     console warning — the only thing that catches it is reading the
+     computed style.
+   - **Tracking is not re-declared** in the product block, only size, weight
+     and (h1-h3) leading. So a bare heading goes from `--ds-tracking-tight`
+     (-0.01em) to the h-level -0.03em, and a non-heading like a wordmark
+     link goes from `normal` to -0.03em: about 0.6px per character at 20px,
+     which is roughly 10px across a long wordmark. Visible.
+
 ### Migration checklist
 
 - [ ] `npm update @adamarant/designsystem`
@@ -75,6 +116,14 @@ class shaped like a role — and that is a design decision, not a rename.
       `--ds-font-sans` in your theme? Nine of eighteen were.
 - [ ] Replace per the table. Nothing moves either way — both replacements
       declare exactly what the class declared.
+- [ ] Re-run lint. Anything newly over the text budget is on the list above,
+      not a mistake in the swap.
+- [ ] If your theme overrode `.ds-heading-plain`, that override is now
+      orphaned — delete it and check what it was correcting. Two consumers
+      had one, pulling in opposite directions: `studio` forced the weight
+      back to 400 (its typeface has no Medium cut), `ai-avvocato` forced the
+      family to display (it wants serif on functional headings). A blind
+      swap gets both of them wrong.
 
 ## v0.40.0 → v0.41.0
 
