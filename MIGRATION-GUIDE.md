@@ -63,10 +63,14 @@ weight. For the other **55** it did pick the body face — which
 | two typefaces | drop it, add `.ds-font-sans .ds-font-medium` |
 | admin, auth or checkout panels | better: a `.ds-heading-N` rung under `data-surface="product"` — that gives the body face, the weight **and** a size, so the size utility beside it goes too |
 
-**The hole it filled is real and stays open.** On the web surface the ladder
-is the display face by definition, so "a heading in the body face" has no
-rung to go to. The answer is a face lever on the ladder, not a sizeless
-class shaped like a role — and that is a design decision, not a rename.
+**The hole it filled is real, and the owner decided to leave it open**
+(10 Aug 2026). On the web surface the ladder is the display face by
+definition, so "a heading in the body face" has no rung to go to. The
+obvious fix was a face lever — `.ds-heading-4` plus a modifier that swaps
+only the typeface — and it was turned down as more machinery than the
+problem is worth: about ten call sites across four consumers, none of them
+broken. Compose it: `.ds-font-sans`, a weight, a size. If that stack keeps
+growing, or the count does, reopen the question then.
 
 #### Expect `ds/utility-budget` to start failing
 
