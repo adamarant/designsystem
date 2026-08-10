@@ -376,7 +376,28 @@ hr {
   margin: var(--ds-space-8) 0;
 }
 
-/* Prose: opt-in rich text styling */
+/* Prose: opt-in rich text styling.
+
+   @deprecated 0.43.0 — use .ds-prose-block. Removal at the next major.
+
+   Two prose components was one too many, and this is the one that has to
+   go. It came first, as "the lighter one for simple rich text", and then
+   .ds-prose-block was written for full markdown and covered everything this
+   does — with different values for the parts they share: links here are
+   info + always underlined, there they are interactive + underlined on
+   hover; list items here are secondary, which reads against the DS's own
+   §10 (secondary is the lesser half of a pair, not a default). Nobody could
+   say which one to reach for, because the honest answer was "the other one".
+
+   Nothing in a consumer's own markup asked for it: the only live element
+   carrying it in the whole ecosystem came from ds-builder's prose block,
+   and the <Prose> wrapper in ds-react emitted it to nobody. Both now say
+   .ds-prose-block. What is left here keeps working until the major.
+
+   Migration: swap the class. Expect the wrapper to gain a reading size
+   (--ds-type-copy-size) and relaxed leading, paragraph spacing to move from
+   16px above each to 1em below each, and links to change colour. If you
+   pinned any of that from the consumer side, re-point the selector. */
 .ds-prose a {
   color: var(--ds-color-info);
   text-decoration: underline;
@@ -408,16 +429,8 @@ hr {
   font-variant-numeric: tabular-nums;
 }
 
-/* Stat numbers — display font, large */
-/* The standalone large numeric value. Reads the stat tokens since 2 Aug
-   2026, same values on web: .ds-stat__value was the same three declarations
-   written twice, in a component file, and they would have drifted the first
-   time either was touched. 48 uses across 16 consumers, four times the
-   whole stat-card component — the ecosystem wants the number, not the box. */
-.ds-stat-number {
-  font-family: var(--ds-font-stat-value);
-  font-weight: var(--ds-stat-value-weight);
-  font-variant-numeric: tabular-nums;
-  font-size: var(--ds-stat-value-size);
-  color: var(--ds-color-text);
-}
+/* Stat numbers — the standalone large numeric value.
+   Declared in components/stat.css, next to .ds-stat__value, because the two
+   are one treatment and were written out twice. Pointing both at the same
+   tokens (2 Aug 2026) stopped the *values* drifting; it left five duplicated
+   declarations, which is one selector list. See the note in that file. */

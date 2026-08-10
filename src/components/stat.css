@@ -51,16 +51,9 @@
     color: var(--ds-color-text-secondary);
   }
 
-  /* Reads the shared stat tokens, which .ds-stat-number reads too, so the
-     two cannot drift. Family follows the surface (display on web, body face
-     on product — a dashboard metric is the most product-shaped thing there
-     is), and the size has a lever a brand can re-scale. */
+  /* Only the margin: the type comes from the shared rule below, which this
+     selector is part of. */
   &__value {
-    font-family: var(--ds-font-stat-value);
-    font-weight: var(--ds-stat-value-weight);
-    font-size: var(--ds-stat-value-size);
-    font-variant-numeric: tabular-nums;
-    color: var(--ds-color-text);
     margin-block-start: var(--ds-space-1);
   }
 
@@ -80,4 +73,30 @@
     background-color: var(--ds-color-surface-muted);
     color: var(--ds-color-text-secondary);
   }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   The number itself — one treatment, two ways in.
+
+   `.ds-stat-number` is the standalone use: 48 uses across 16 consumers,
+   four times the whole component, people taking the metric and arranging it
+   themselves. `.ds-stat__value` is the same number inside the label / value
+   / detail set, which adds a margin of its own above.
+
+   They used to be two rules in two files. Pointing both at the same tokens
+   (2 Aug 2026) stopped the values drifting, but five declarations still sat
+   written out twice, one edit away from disagreeing again. A selector list
+   costs nothing and removes the question.
+
+   Family follows the surface (display on web, the body face on product — a
+   dashboard metric is the most product-shaped thing there is) and the size
+   has a lever a brand can re-scale.
+   ────────────────────────────────────────────────────────────────────────── */
+.ds-stat-number,
+.ds-stat__value {
+  font-family: var(--ds-font-stat-value);
+  font-weight: var(--ds-stat-value-weight);
+  font-size: var(--ds-stat-value-size);
+  font-variant-numeric: tabular-nums;
+  color: var(--ds-color-text);
 }

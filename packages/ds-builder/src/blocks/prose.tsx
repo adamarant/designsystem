@@ -32,7 +32,7 @@ export const ProseBlock = defineBlock({
               {data.title ? <h2 className="ds-heading-2">{data.title}</h2> : null}
             </div>
           ) : null}
-          <div className="ds-prose">
+          <div className="ds-prose-block">
             {paragraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
