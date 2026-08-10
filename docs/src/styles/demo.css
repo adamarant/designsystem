@@ -682,159 +682,6 @@ body {
   --ds-font-display: var(--ds-font-sans);
 }
 
-/* ── Chrome typography ────────────────────────────────────────────────────
-   Four roles, and NONE of them is a DS class.
-
-   Dogfooding the documented classes for the page's own furniture was the
-   thing that made demo and documentation indistinguishable: ds-overline was
-   both the kicker and a specimen, ds-editorial-lede was both the intro and a
-   specimen. Chrome now has its own vocabulary, so every DS class on the page
-   appears exactly once — inside a panel, as the thing being shown.
-
-   The system is borrowed from brand.s25.studio, which uses one family and
-   a binary weight: 300 for everything, 700 only for the display moment.
-   Hierarchy comes from size and weight, never from greying text down —
-   their labels are 10.5px at FULL contrast, uppercase and tracked. */
-
-
-.typo-heading {
-  margin: 0;
-  font-size: clamp(1.5rem, 2.4vw, 1.75rem);
-  font-weight: var(--ds-weight-light);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--ds-color-text);
-}
-
-.typo-body {
-  margin: 0;
-  max-width: 62ch;
-  font-size: var(--ds-text-base);
-  font-weight: var(--ds-weight-light);
-  line-height: var(--ds-leading-normal);
-  color: var(--ds-color-text);
-  text-wrap: pretty;
-}
-
-
-/* ══════════════════════════════════════════════════════════════════════════
-   foundations/typography — the grid
-
-   Reverse-engineered from brand.s25.studio, which is what this page should
-   have been built on from the start. Its whole layout is one structure:
-
-     12 columns, 1156px container, 24px gutters
-     every row is LABEL (4 cols) | CONTENT (8 cols)
-     the label column is left EMPTY on continuation rows, so a run of content
-       flows under a single label
-     uniform 64px section padding, everywhere, with no bespoke gaps at all
-
-   Measured, not guessed: their label column is 369px and their content column
-   763px, which is exactly 4 and 8 columns of that grid (4*74.33 + 3*24 = 369,
-   8*74.33 + 7*24 = 763, and 369 + 24 + 763 = 1156).
-
-   The rhythm comes from the grid holding still. Every previous attempt here
-   was a single column with hand-tuned gaps per section, which is why it read
-   as a pile of unrelated blocks no matter how the type was set.
-   ══════════════════════════════════════════════════════════════════════════ */
-
-.s-section {
-  padding-block: calc(var(--ds-rhythm-section) / 2);
-  border-block-end: 1px solid var(--ds-color-border);
-}
-
-.s-section:last-child { border-block-end: none; }
-
-.s-container {
-  max-width: 1156px;
-  margin-inline: auto;
-}
-
-/* Same rule as .demo-section: the column gap is the grid's gutter, the row
-   gap (which only appears once the row stacks below md) is the element
-   rhythm — a label and the specimen it names are one group. */
-.s-row {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--ds-space-6);
-  row-gap: var(--ds-rhythm-element);
-}
-
-.s-row + .s-row { margin-block-start: var(--ds-rhythm-block); }
-
-.s-label   { grid-column: span 4; }
-.s-content { grid-column: span 8; min-width: 0; }
-
-/* Two things side by side inside the content column. */
-.s-split {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--ds-space-8);
-}
-
-@media (max-width: 767px) /* < --ds-breakpoint-md */ {
-  .s-label, .s-content { grid-column: span 12; }
-  .s-split { gap: var(--ds-space-6); }
-}
-
-/* ── Two surfaces, and that is the whole layout ───────────────────────────
-   The page read as a wall because explanation and demonstration shared one
-   surface, one column width and one density: flat text on the page
-   background, all the way down, so nothing told the eye "this part is me
-   talking, this part is the type".
-
-   Now there are exactly two states:
-
-     prose   — narrow measure, on the page background. Me talking.
-     panel   — a surface with a border and real padding. The type itself.
-
-   Nothing else changes between them. One rule, applied everywhere, and the
-   reader stops having to work out which mode they are in. */
-
-.typo-prose {
-  max-width: 62ch;
-}
-
-.typo-panel {
-  padding: clamp(var(--ds-space-6), 4vw, var(--ds-space-12));
-  border: 1px solid var(--ds-color-border);
-  border-radius: var(--ds-radius-xl);
-  background-color: var(--ds-color-surface);
-}
-
-.typo-hero {
-  padding-block: calc(var(--ds-rhythm-section) / 2) var(--ds-space-10);
-}
-
-
-/* A block inside an act. The gaps were uniform and tight everywhere, so the
-   page had no breathing pattern — everything looked equally urgent. */
-.typo-block {
-  margin-block: var(--ds-rhythm-block);
-}
-
-.typo-block__lede {
-  max-width: 62ch;
-  margin-block: var(--ds-space-4) var(--ds-space-8);
-}
-
-/* An act opens with air above it and a rule, so the eye knows a new part
-   started without having to read the heading to find out. */
-/* An act is the page's biggest gap by a wide margin. If the reader is going
-   to lose their place anywhere, it should be obvious that a new part began. */
-.typo-act {
-  padding-block-start: var(--ds-space-12);
-  /* A pure margin is a true between-distance, so it takes the full token:
-     the act gap IS one rhythm-section. */
-  margin-block: var(--ds-rhythm-section) var(--ds-space-10);
-  border-block-start: 1px solid var(--ds-color-border);
-  max-width: 62ch;
-}
-
-.typo-act:first-of-type {
-  margin-block-start: 0;
-}
-
 /* ── The label role ───────────────────────────────────────────────────────
    Small AND legible. These were .ds-meta, which is 12px tertiary (#71717a,
    ~3.8:1 on the dark background — the DS's own colors.css flags it as
@@ -858,50 +705,6 @@ body {
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--ds-color-text);
-}
-
-.typo-act__n {
-  display: block;
-  margin-block-end: var(--ds-space-4);
-}
-
-.typo-act__lede {
-  max-width: 46ch;
-  margin-block-start: var(--ds-space-5);
-}
-
-/* The two doors, side by side. This is the page's one big idea, so it gets
-   the width and the air rather than a paragraph. */
-.typo-doors {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--ds-space-10);
-  margin-block: var(--ds-space-10);
-}
-
-.typo-door {
-  padding-block-start: var(--ds-space-5);
-  border-block-start: 2px solid var(--ds-color-text);
-}
-
-.typo-door__what {
-  margin-block: var(--ds-space-3) var(--ds-space-5);
-  max-width: 30ch;
-}
-
-.typo-door__facts {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.typo-door__facts li {
-  padding-block: var(--ds-space-2);
-  border-block-end: 1px solid var(--ds-color-border);
-}
-
-.typo-door__facts li:last-child {
-  border-block-end: none;
 }
 
 /* Section prose.
@@ -948,6 +751,17 @@ body {
 /* Inside a panel the rows get real air. They were padding-block: space-8 with
    a divider, which packed a 72px specimen and a 12px one into the same tight
    band and made the whole column feel crushed. */
+/* The list is a surface of its own, so the specimen column reads as a
+   held-out exhibit rather than more page. Its own padding, and the first
+   and last rows lose theirs so the type sits on the frame's rhythm and not
+   on a doubled one. */
+.typo-specs {
+  padding: clamp(var(--ds-space-6), 4vw, var(--ds-space-12));
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-xl);
+  background-color: var(--ds-color-surface);
+}
+
 .typo-spec__row {
   display: grid;
   grid-template-columns: 11rem minmax(0, 1fr);
@@ -955,6 +769,26 @@ body {
   align-items: baseline;
   padding-block: var(--ds-space-12);
   border-block-end: 1px solid var(--ds-color-border);
+}
+
+/* An 80px specimen sets its own line box; the cell must not clip it, and a
+   long sentence at that size has to be allowed to wrap. */
+.typo-spec__type {
+  min-width: 0;
+}
+
+/* The weight rows show weight, so they hold size still — .ds-text-xl for
+   all four, and only the numeral in the label changes. */
+.typo-weight {
+  font-size: var(--ds-text-xl);
+}
+
+/* Two things side by side: the Avoid / Use pair. auto-fit rather than a
+   fixed 1fr 1fr so it collapses to one column on its own. */
+.typo-split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--ds-space-8);
 }
 
 .typo-spec__row:first-child { padding-block-start: 0; }
@@ -997,66 +831,16 @@ body {
   margin-block-start: var(--ds-space-1);
 }
 
-/* Group divider inside an act. A label, not a heading. */
-.typo-group {
-  margin-block: var(--ds-space-10) var(--ds-space-2);
-}
-
+/* Below the rail's width the two columns stack: 11rem of label next to a
+   40px specimen leaves the type nowhere to go. */
 @media (max-width: 760px) {
   .typo-spec__row {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--ds-space-3);
+    padding-block: var(--ds-space-8);
   }
   .typo-spec__label { position: static; }
-}
-
-.typo-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.typo-table th {
-  padding: 0 var(--ds-space-4) var(--ds-space-3) 0;
-  text-align: start;
-  font-size: var(--ds-text-xs);
-  font-weight: var(--ds-weight-medium);
-  letter-spacing: var(--ds-tracking-wide);
-  text-transform: uppercase;
-  color: var(--ds-color-text-tertiary);
-  border-block-end: 1px solid var(--ds-color-border);
-}
-
-.typo-table td {
-  padding: var(--ds-space-4) var(--ds-space-4) var(--ds-space-4) 0;
-  vertical-align: baseline;
-  font-size: var(--ds-text-base);
-  color: var(--ds-color-text);
-  border-block-end: 1px solid var(--ds-color-border);
-}
-
-.typo-table tr:last-child td {
-  border-block-end: none;
-}
-
-/* Column widths are declared, not left to the browser. The spec column was
-   `white-space: nowrap` and it starved the middle column, so "Use for"
-   wrapped to four lines while the spec sat on one. The prose column gets the
-   most room; the two mono columns wrap like everything else. */
-.typo-table__cls {
-  width: 20%;
-  font-family: var(--ds-font-mono);
-  font-size: var(--ds-text-sm);
-}
-
-.typo-table__spec {
-  width: 38%;
-  font-family: var(--ds-font-mono);
-  font-size: var(--ds-text-sm);
-  color: var(--ds-color-text-secondary);
-}
-
-@media (max-width: 900px) {
-  .typo-table__spec { display: none; }
+  .typo-split { gap: var(--ds-space-6); }
 }
 
 .demo-type-list {
@@ -1230,51 +1014,6 @@ body {
   color: var(--ds-color-text-secondary);
 }
 
-/* ── Pieces that live inside the grid ─────────────────────────────────── */
-
-/* The class name in the label column. Primary, because it is the answer to
-   "what am I looking at"; the DS <code> chip comes off since this is a
-   caption, not an inline token. */
-.typo-cls {
-  display: block;
-  padding: 0;
-  background: none;
-  border-radius: 0;
-  font-family: var(--ds-font-mono);
-  font-size: var(--ds-text-sm);
-  line-height: var(--ds-leading-snug);
-  color: var(--ds-color-text);
-}
-
-/* The purpose under it: subordinate half of a pair, so secondary is right. */
-.typo-cls__what {
-  margin-block-start: var(--ds-space-1);
-  color: var(--ds-color-text-secondary);
-}
-
-
-.typo-door__what {
-  margin-block: var(--ds-space-2) var(--ds-space-5);
-}
-
-.typo-facts {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: var(--ds-text-base);
-  font-weight: var(--ds-weight-light);
-  color: var(--ds-color-text);
-}
-
-.typo-facts li {
-  padding-block: var(--ds-space-2);
-  border-block-end: 1px solid var(--ds-color-border);
-}
-
-.typo-facts li:last-child { border-block-end: none; }
-
-.typo-facts code { font-size: var(--ds-text-sm); }
-
 /* Verdict labels on a comparison. They carry meaning in colour, not in size,
    which is why they can stay at label size without going grey. */
 .typo-verdict {
@@ -1300,17 +1039,6 @@ body {
   margin-block-start: var(--ds-space-4);
 }
 
-.typo-snippet {
-  margin: 0;
-  padding: var(--ds-space-4);
-  border-radius: var(--ds-radius-md);
-  background-color: var(--ds-color-surface);
-  font-size: var(--ds-text-sm);
-  line-height: var(--ds-leading-relaxed);
-  color: var(--ds-color-text-secondary);
-  overflow-x: auto;
-}
-
 /* ── Exemplars: the type in composition ───────────────────────────────────
    /foundations/typography shows the ten classes one at a time, on a rail,
    which proves the ramp exists and proves nothing about whether a page built
@@ -1331,8 +1059,8 @@ body {
         size instead of freezing one viewport's guess.
    ────────────────────────────────────────────────────────────────────────── */
 
-/* Inline token name inside a sentence. .typo-cls is display:block, built for
-   the rail's label column, so it cannot be reused here. */
+/* Inline token name inside a sentence. The rail's own <code> is a block,
+   built for the label column, so it cannot be reused here. */
 .ex-code {
   padding: 0;
   background: none;

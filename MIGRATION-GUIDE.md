@@ -30,6 +30,81 @@ one is on you.
 > it cannot lapse again. The pre-0.8.0 sections were deleted on 5 Aug 2026 —
 > nobody is upgrading from 0.3.x, and git has them.
 
+## v0.42.0 → v0.43.0
+
+Two duplicates, both found by asking the same question — *why are there two
+of these?* — and both answered the same way: keep the one that does the
+whole job.
+
+### 1. Looks different with no change on your side
+
+Nothing from the CSS package.
+
+**From the workspaces, one thing, and only if you bump them.** `<Prose>` in
+ds-react and the `prose` block in ds-builder both used to render
+`.ds-prose`; they now render `.ds-prose-block`. On that element expect:
+
+| | before (`.ds-prose`) | after (`.ds-prose-block`) |
+|---|---|---|
+| size | whatever it inherited | `--ds-type-copy-size` (18→20px web, fixed on product) |
+| leading | inherited | relaxed |
+| colour | inherited | `--ds-color-text`, and the parts inherit *that* |
+| paragraphs | 16px above each after the first | 1em below each, none on the last |
+| links | info, always underlined | interactive, underlined on hover |
+| headings, code, quotes, tables | unstyled | styled |
+
+`<Prose>` had no consumers at all. The builder block had exactly one live
+element in the ecosystem, on enzo-spatalino's home, which is bumped and
+measured in the same release.
+
+### 2. New, and entirely opt-in
+
+Nothing.
+
+### 3. Deprecated — frozen, removal at the next major
+
+| deprecated | successor | uses / consumers |
+|---|---|---|
+| `.ds-prose` | `.ds-prose-block` | 0 in consumer markup |
+
+Two prose components was one too many. `.ds-prose` came first, as "the
+lighter one for simple rich text"; `.ds-prose-block` was written afterwards
+for full markdown and covers everything the lighter one does. Where they
+overlapped they **disagreed** — links info-and-always-underlined here,
+interactive-and-underlined-on-hover there; list items secondary here, which
+reads against the DS's own §10 — so the honest answer to "which do I reach
+for" was always "the other one".
+
+Nothing in any consumer's own markup asked for it. Every live instance came
+through the two wrappers above, which is why retiring it is a package bump
+and not a migration.
+
+### Also in this release, with nothing to do
+
+`.ds-stat-number` moved from `base/typography.css` to `components/stat.css`
+and now shares one selector list with `.ds-stat__value`. Those two are the
+same treatment reached two ways — standalone, and inside the label / value /
+detail set — and they were five declarations written out twice. Pointing
+both at the same tokens in August stopped the *values* drifting; it left the
+declarations duplicated, one edit away from disagreeing again.
+
+Only the margin above the value stays on the component. Verified in the DOM
+with both classes on sibling elements: family, weight, size, numeric variant
+and colour identical, `margin-block-start` 4px on `__value` and 0 on
+`.ds-stat-number`. The layer changes from `base` to `components`, which is
+inert for consumers — your own CSS is imported unlayered and already
+outranks both.
+
+### Migration checklist
+
+- [ ] `npm update @adamarant/designsystem`
+- [ ] If you bump `ds-react` or `ds-builder` too, find every `<Prose>` and
+      every `prose` block and check them against the table above. If you
+      pinned size, leading or paragraph spacing from your own CSS, re-point
+      the selector from `.ds-prose` to `.ds-prose-block` — otherwise it
+      silently stops matching.
+- [ ] Nothing to do for stat.
+
 ## v0.41.0 → v0.42.0
 
 ### 1. Looks different with no change on your side

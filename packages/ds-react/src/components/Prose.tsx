@@ -5,6 +5,6 @@ export interface ProseProps extends ComponentPropsWithoutRef<"div"> { className?
 
 export const Prose = forwardRef<HTMLDivElement, ProseProps>(
   function Prose({ className, ...rest }, ref) {
-    return <div ref={ref} className={cn("ds-prose", className)} {...rest} />;
+    return <div ref={ref} className={cn("ds-prose-block", className)} {...rest} />;
   },
 );

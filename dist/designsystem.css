@@ -1317,7 +1317,28 @@ hr {
   margin: var(--ds-space-8) 0;
 }
 
-/* Prose: opt-in rich text styling */
+/* Prose: opt-in rich text styling.
+
+   @deprecated 0.43.0 — use .ds-prose-block. Removal at the next major.
+
+   Two prose components was one too many, and this is the one that has to
+   go. It came first, as "the lighter one for simple rich text", and then
+   .ds-prose-block was written for full markdown and covered everything this
+   does — with different values for the parts they share: links here are
+   info + always underlined, there they are interactive + underlined on
+   hover; list items here are secondary, which reads against the DS's own
+   §10 (secondary is the lesser half of a pair, not a default). Nobody could
+   say which one to reach for, because the honest answer was "the other one".
+
+   Nothing in a consumer's own markup asked for it: the only live element
+   carrying it in the whole ecosystem came from ds-builder's prose block,
+   and the <Prose> wrapper in ds-react emitted it to nobody. Both now say
+   .ds-prose-block. What is left here keeps working until the major.
+
+   Migration: swap the class. Expect the wrapper to gain a reading size
+   (--ds-type-copy-size) and relaxed leading, paragraph spacing to move from
+   16px above each to 1em below each, and links to change colour. If you
+   pinned any of that from the consumer side, re-point the selector. */
 .ds-prose a {
   color: var(--ds-color-info);
   text-decoration: underline;
@@ -1349,19 +1370,11 @@ hr {
   font-variant-numeric: tabular-nums;
 }
 
-/* Stat numbers — display font, large */
-/* The standalone large numeric value. Reads the stat tokens since 2 Aug
-   2026, same values on web: .ds-stat__value was the same three declarations
-   written twice, in a component file, and they would have drifted the first
-   time either was touched. 48 uses across 16 consumers, four times the
-   whole stat-card component — the ecosystem wants the number, not the box. */
-.ds-stat-number {
-  font-family: var(--ds-font-stat-value);
-  font-weight: var(--ds-stat-value-weight);
-  font-variant-numeric: tabular-nums;
-  font-size: var(--ds-stat-value-size);
-  color: var(--ds-color-text);
-}
+/* Stat numbers — the standalone large numeric value.
+   Declared in components/stat.css, next to .ds-stat__value, because the two
+   are one treatment and were written out twice. Pointing both at the same
+   tokens (2 Aug 2026) stopped the *values* drifting; it left five duplicated
+   declarations, which is one selector list. See the note in that file. */
 
 
 }
@@ -5795,10 +5808,8 @@ hr {
 
   
 
-  /* Reads the shared stat tokens, which .ds-stat-number reads too, so the
-     two cannot drift. Family follows the surface (display on web, body face
-     on product — a dashboard metric is the most product-shaped thing there
-     is), and the size has a lever a brand can re-scale. */
+  /* Only the margin: the type comes from the shared rule below, which this
+     selector is part of. */
   
 
   
@@ -5812,11 +5823,6 @@ hr {
   }
 .ds-stat__value {
 
-    font-family: var(--ds-font-stat-value);
-    font-weight: var(--ds-stat-value-weight);
-    font-size: var(--ds-stat-value-size);
-    font-variant-numeric: tabular-nums;
-    color: var(--ds-color-text);
     margin-block-start: var(--ds-space-1);
   }
 .ds-stat__detail {
@@ -5837,6 +5843,32 @@ hr {
     color: var(--ds-color-text-secondary);
   }
 
+
+/* ──────────────────────────────────────────────────────────────────────────
+   The number itself — one treatment, two ways in.
+
+   `.ds-stat-number` is the standalone use: 48 uses across 16 consumers,
+   four times the whole component, people taking the metric and arranging it
+   themselves. `.ds-stat__value` is the same number inside the label / value
+   / detail set, which adds a margin of its own above.
+
+   They used to be two rules in two files. Pointing both at the same tokens
+   (2 Aug 2026) stopped the values drifting, but five declarations still sat
+   written out twice, one edit away from disagreeing again. A selector list
+   costs nothing and removes the question.
+
+   Family follows the surface (display on web, the body face on product — a
+   dashboard metric is the most product-shaped thing there is) and the size
+   has a lever a brand can re-scale.
+   ────────────────────────────────────────────────────────────────────────── */
+.ds-stat-number,
+.ds-stat__value {
+  font-family: var(--ds-font-stat-value);
+  font-weight: var(--ds-stat-value-weight);
+  font-size: var(--ds-stat-value-size);
+  font-variant-numeric: tabular-nums;
+  color: var(--ds-color-text);
+}
 
 /* ==========================================================================
    Component: Stat Card
@@ -13338,10 +13370,10 @@ hr {
    Full markdown-rendered content styling. Use for CMS output, blog posts,
    documentation, or any container with user-generated rich text.
 
-   Note: The lighter `.ds-prose` in base/typography.css handles simple
-   inline rich text (p + p spacing, links, lists). This component is for
-   comprehensive markdown rendering with headings, code blocks, blockquotes,
-   images, and horizontal rules.
+   This is the only prose component. `.ds-prose` in base/typography.css was
+   a lighter subset of it and is deprecated as of 0.43.0 — the note there
+   explains why, and both `<Prose>` in ds-react and ds-builder's prose block
+   now render this class.
 
    Usage:
      <div class="ds-prose-block">

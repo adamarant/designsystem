@@ -3,10 +3,10 @@
    Full markdown-rendered content styling. Use for CMS output, blog posts,
    documentation, or any container with user-generated rich text.
 
-   Note: The lighter `.ds-prose` in base/typography.css handles simple
-   inline rich text (p + p spacing, links, lists). This component is for
-   comprehensive markdown rendering with headings, code blocks, blockquotes,
-   images, and horizontal rules.
+   This is the only prose component. `.ds-prose` in base/typography.css was
+   a lighter subset of it and is deprecated as of 0.43.0 — the note there
+   explains why, and both `<Prose>` in ds-react and ds-builder's prose block
+   now render this class.
 
    Usage:
      <div class="ds-prose-block">
