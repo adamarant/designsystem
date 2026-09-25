@@ -142,12 +142,6 @@ const COMPONENTS = [
     "description": "A row of page-number controls for navigating multi-page content."
   },
   {
-    "name": "Tag",
-    "href": "/components/tag",
-    "cat": "Data Display",
-    "description": "Interactive, optionally removable tag for categorisation and filtering."
-  },
-  {
     "name": "Accordion",
     "href": "/components/accordion",
     "cat": "Layout",
@@ -232,12 +226,6 @@ const COMPONENTS = [
     "description": "Horizontal bar with action buttons, segmented controls, and scrollable groups."
   },
   {
-    "name": "Chip",
-    "href": "/components/chip",
-    "cat": "Data Display",
-    "description": "Interactive filter/sort chips with optional remove button."
-  },
-  {
     "name": "Icon Button",
     "href": "/components/icon-btn",
     "cat": "Action",
@@ -266,12 +254,6 @@ const COMPONENTS = [
     "href": "/components/field",
     "cat": "Form",
     "description": "Unified wrapper for form fields — label + input slot + hint + error."
-  },
-  {
-    "name": "Stat Card",
-    "href": "/components/stat-card",
-    "cat": "Data Display",
-    "description": "Compact metric display with label, value, detail, and optional icon."
   },
   {
     "name": "Collapsible",
@@ -346,12 +328,6 @@ const COMPONENTS = [
     "description": "Display long text (hashes, addresses, IDs) with middle or end truncation."
   },
   {
-    "name": "Bottom Sheet",
-    "href": "/components/bottom-sheet",
-    "cat": "Overlay",
-    "description": "Mobile overlay sliding up from the bottom."
-  },
-  {
     "name": "Star Rating",
     "href": "/components/star-rating",
     "cat": "Form",
@@ -362,12 +338,6 @@ const COMPONENTS = [
     "href": "/components/hero",
     "cat": "Layout",
     "description": "Full-width hero section with background image, gradient overlay, and optional frosted glass backdrop."
-  },
-  {
-    "name": "Prose & Editorial",
-    "href": "/components/prose",
-    "cat": "Layout",
-    "description": "Long-form reading typography. ds-prose-block is a full markdown-rendered container (functional / docs / CMS output). ds-editorial-title, ds-editorial-lede and ds-editorial-body are the editorial long-form family for articles, blog posts and magazine layouts (promoted from esys blog 12 Apr 2026 — fills the gap between ds-hero-title which is too big and ds-prose-block whose h2 is too heavy for article rhythm)."
   },
   {
     "name": "Admin Layout",

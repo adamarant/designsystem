@@ -12,7 +12,7 @@ export default function PageHeaderPage() {
   <div class="ds-page-header__lead">
     <button class="ds-page-header__back" aria-label="Back">&larr;</button>
     <div>
-      <h1 class="ds-page-header__title ds-admin-title">Edit article</h1>
+      <h1 class="ds-page-header__title ds-heading-1">Edit article</h1>
       <p class="ds-page-header__description">Draft saved 2 minutes ago</p>
     </div>
   </div>
@@ -26,7 +26,7 @@ export default function PageHeaderPage() {
   &lt;div class=&quot;ds-page-header__lead&quot;&gt;
     &lt;button class=&quot;ds-page-header__back&quot; aria-label=&quot;Back&quot;&gt;&amp;larr;&lt;/button&gt;
     &lt;div&gt;
-      &lt;h1 class=&quot;ds-page-header__title ds-admin-title&quot;&gt;Edit article&lt;/h1&gt;
+      &lt;h1 class=&quot;ds-page-header__title ds-heading-1&quot;&gt;Edit article&lt;/h1&gt;
       &lt;p class=&quot;ds-page-header__description&quot;&gt;Draft saved 2 minutes ago&lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;

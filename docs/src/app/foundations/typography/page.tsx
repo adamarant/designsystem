@@ -2,7 +2,7 @@
 
    Same shell as every other docs page: .demo-section with a real
    .demo-section__title, one left edge, and therefore an entry in the page
-   map. It used to run its own 12-column band — LABEL (4) | CONTENT (8) —
+   map. It used to run its own 12-column band, LABEL (4) | CONTENT (8),
    which was the last survivor of a layout the rest of the docs dropped, and
    it cost the page its map entries and its alignment with its siblings.
 
@@ -158,16 +158,31 @@ export default function TypographyPage() {
       </section>
 
       <section className="demo-section">
-        <h2 className="demo-section__title">The old names</h2>
+        <h2 className="demo-section__title">Prose</h2>
         <p className="demo-section__description">
-          Frozen means deprecated and unchanged until the next major, which removes them all at
-          once. ds-hero-title, ds-section-title, ds-admin-title and the ds-editorial-* family went
-          at 0.38.0; ds-heading-ui became ds-heading-plain at 0.41.0 and both were deprecated at
-          0.42.0; ds-prose at 0.43.0. Successors: heading-1 and heading-2 on web; heading-1 and
-          heading-3/4/5 on product; copy for editorial, lede and body alike; prose-block for
-          prose. Bare h1 to h6 keep their legacy sizes and flip to the role tokens at the major.
-          Deltas and the full map live in the migration guide.
+          A rung styles one element. <code className="ex-code">.ds-prose-block</code> styles a
+          container and everything inside it, which is what you want for markdown you did not
+          write: CMS output, an article body, a docs page. It is the only prose component.
         </p>
+        <p className="demo-section__description">
+          It owns the reading size (<code className="ex-code">--ds-type-copy-size</code>, so it
+          follows the surface like everything else), relaxed leading, and the colour, which the
+          parts inherit, so passing a colour on the wrapper actually works. Bare h1 to h6 keep
+          their legacy sizes and flip to the role tokens at the major.
+        </p>
+        <div className="typo-specs">
+          <SpecRow name=".ds-prose-block" what="container">
+            <div
+              className="ds-prose-block"
+              dangerouslySetInnerHTML={{
+                __html: `<h2>Almost before we knew it</h2>
+<p>The body of the block, with a <a href="#">link</a> and a piece of <code>inline code</code>, at the reading size the container owns.</p>
+<ul><li>A list item</li><li>And a second one</li></ul>
+<blockquote>A quotation, set apart.</blockquote>`,
+              }}
+            />
+          </SpecRow>
+        </div>
       </section>
     </>
   )

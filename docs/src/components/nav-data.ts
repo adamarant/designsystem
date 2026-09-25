@@ -258,10 +258,6 @@ export const NAV = [
         "href": "/components/popover"
       },
       {
-        "name": "Prose & Editorial",
-        "href": "/components/prose"
-      },
-      {
         "name": "Scroll Area",
         "href": "/components/scroll-area"
       },
@@ -289,6 +285,15 @@ export const NAV = [
       {
         "name": "SiteKit",
         "href": "/components/sitekit"
+      }
+    ]
+  },
+  {
+    "label": "Reference",
+    "items": [
+      {
+        "name": "Deprecated",
+        "href": "/deprecated"
       }
     ]
   }

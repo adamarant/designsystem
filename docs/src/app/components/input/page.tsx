@@ -1,6 +1,6 @@
 "use client";
 
-import { Input, Textarea, Select, InputGroup, InputGroupIcon, Help, Label } from "@adamarant/ds-react";
+import { Input, Textarea, Select, InputGroup, InputGroupIcon, Field, Label } from "@adamarant/ds-react";
 import { DemoSection, DemoSectionCol } from "@/components/DemoSection";
 
 export default function InputPage() {
@@ -11,16 +11,14 @@ export default function InputPage() {
         <p>Surface bg, clean borders, focus ring. Includes Input and Textarea. Select has its own page — the panel is the default for the children form too; below is the explicit native rendering.</p>
       </div>
 
-      <DemoSectionCol title="Input" code={`<Label htmlFor="name">Name</Label>\n<Input id="name" placeholder="Enter your name" />\n\n<Label htmlFor="email">Email</Label>\n<Input id="email" state="error" placeholder="Invalid" />\n<Help variant="error">Please enter a valid email</Help>`}>
+      <DemoSectionCol title="Input" code={`<Label htmlFor="name">Name</Label>\n<Input id="name" placeholder="Enter your name" />\n\n<Field label="Email" error="Please enter a valid email">\n  <Input state="error" placeholder="Invalid" />\n</Field>`}>
         <div>
           <Label htmlFor="name">Name</Label>
           <Input id="name" placeholder="Enter your name" />
         </div>
-        <div>
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" state="error" placeholder="Invalid email" />
-          <Help variant="error">Please enter a valid email</Help>
-        </div>
+        <Field label="Email" error="Please enter a valid email">
+          <Input state="error" placeholder="Invalid email" />
+        </Field>
         <div>
           <Label htmlFor="ok">Confirmed</Label>
           <Input id="ok" state="success" defaultValue="All good" />

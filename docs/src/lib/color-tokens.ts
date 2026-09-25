@@ -217,10 +217,17 @@ export function colorTokens(): ColorToken[] {
   return out
 }
 
-/** Grouped in source order, which is the order someone reasoning about them wants. */
+/**
+ * Grouped in source order, which is the order someone reasoning about them
+ * wants. Deprecated tokens are dropped: they live on /deprecated and nowhere
+ * else, so a reader browsing colours is only shown what to reach for. The
+ * `deprecated` flag stays on the type because the parser still needs it to
+ * keep those tokens out of `unannotatedTokens`.
+ */
 export function colorTokensByGroup(): [string, ColorToken[]][] {
   const groups = new Map<string, ColorToken[]>()
   for (const t of colorTokens()) {
+    if (t.deprecated) continue
     const list = groups.get(t.group) ?? []
     list.push(t)
     groups.set(t.group, list)

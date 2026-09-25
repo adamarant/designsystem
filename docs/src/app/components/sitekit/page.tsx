@@ -105,7 +105,7 @@ export default function SiteKitPage() {
       >
         <div className="ds-w-full">
           <SiteFooter
-            brand={<span className="ds-heading-ui ds-text-lg">ESYS VIP</span>}
+            brand={<span className="ds-font-medium ds-text-lg">ESYS VIP</span>}
             tagline="Exclusive homes on the Costa Blanca, from search to keys."
             social={SOCIAL}
             columns={FOOTER_COLUMNS}
@@ -135,7 +135,7 @@ export default function SiteKitPage() {
       >
         <div className="ds-w-full">
           <SiteFooter
-            brand={<span className="ds-heading-ui ds-text-lg">Adamarant</span>}
+            brand={<span className="ds-font-medium ds-text-lg">Adamarant</span>}
             columns={FOOTER_COLUMNS}
             copyright="© 2026 Adamarant"
             legal={[{ label: "Privacy", href: "#" }]}

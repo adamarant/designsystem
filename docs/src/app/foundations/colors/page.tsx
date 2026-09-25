@@ -1,10 +1,7 @@
-import { colorUtilities, colorUtilitiesByProperty } from "@/lib/color-utilities"
 import { colorTokensByGroup, unannotatedTokens } from "@/lib/color-tokens"
 
 
 export default function ColorsPage() {
-  const utilities = colorUtilities()
-  const utilitiesByProperty = colorUtilitiesByProperty()
   const tokensByGroup = colorTokensByGroup()
   const unannotated = unannotatedTokens()
 
@@ -12,15 +9,22 @@ export default function ColorsPage() {
     <>
       <div className="demo-page-header">
         <h1>Colors</h1>
-        <p>Semantic color tokens for light and dark themes. Every color adapts automatically via data-theme.</p>
+        <p>
+          Semantic color tokens for light and dark themes. Every color adapts automatically via
+          data-theme. The utility classes apply these same tokens, and the two vocabularies are
+          not spelled alike: <code className="ex-code">.ds-text-primary</code> applies{" "}
+          <code className="ex-code">--ds-color-text</code>. Read the token, not the class name.
+          That inference is where <code className="ex-code">--ds-color-text-primary</code> came
+          from, and it does not exist.
+        </p>
       </div>
 
       <section className="demo-section">
         <h2 className="demo-section__title">Elevation</h2>
         <p className="ds-copy demo-section__description">
-          Four surface tokens, one ladder. Each rung sits <em>on top of</em> the one
-          before it, so pick by what your element is stacked on &mdash; not by how
-          light or dark you want it.
+          Four surface tokens, one ladder. Each rung sits <em>on top of</em>{" "}
+          the one before it, so pick by what your element is stacked on, not by
+          how light or dark you want it.
         </p>
         <div className="demo-preview">
           <div style={{ background: "var(--ds-color-bg)", padding: "var(--ds-space-5)", borderRadius: "var(--ds-radius-lg)", border: "1px solid var(--ds-color-border)" }}>
@@ -73,7 +77,7 @@ export default function ColorsPage() {
           <div className="demo-preview">
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(400px, 100%), 1fr))", gap: "var(--ds-space-3)" }}>
               {tokens.map((t) => (
-                <div key={t.name} style={{ display: "flex", alignItems: "flex-start", gap: "var(--ds-space-4)", padding: "var(--ds-space-3)", opacity: t.deprecated ? 0.55 : 1 }}>
+                <div key={t.name} style={{ display: "flex", alignItems: "flex-start", gap: "var(--ds-space-4)", padding: "var(--ds-space-3)" }}>
                   <div style={{ width: 72, height: 72, flexShrink: 0, borderRadius: "var(--ds-radius-lg)", border: "1px solid var(--ds-color-border)", background: `var(${t.name})` }} />
                   <div style={{ minWidth: 0 }}>
                     <div className="ds-overline">
@@ -84,16 +88,9 @@ export default function ColorsPage() {
                     </div>
                     <div className="ds-text-base ds-text-secondary" style={{ marginBlockStart: "var(--ds-space-2)" }}>
                       {t.usage ?? t.sourceNote ?? (
-                        <span className="ds-text-tertiary">
-                          {t.deprecated ? "On its way out — see below." : "No guidance yet."}
-                        </span>
+                        <span className="ds-text-tertiary">No guidance yet.</span>
                       )}
                     </div>
-                    {t.deprecated && (
-                      <div className="ds-text-sm" style={{ color: "var(--ds-color-warning)", marginBlockStart: "var(--ds-space-2)" }}>
-                        deprecated &mdash; do not use in new code
-                      </div>
-                    )}
                   </div>
                 </div>
               ))}
@@ -116,57 +113,6 @@ export default function ColorsPage() {
           </ul>
         </section>
       )}
-
-      <section className="demo-section">
-        <h2 className="demo-section__title">Utility classes</h2>
-        <p className="ds-copy demo-section__description">
-          The tokens above are CSS variables, for when you write CSS. These are the
-          classes that apply them, for when you write <code>className</code> in JSX.
-          Same colours, two channels &mdash; and <strong>the names differ</strong>:{" "}
-          <code>.ds-text-primary</code> applies <code>--ds-color-text</code>. Read the
-          token column rather than inferring it from the class name; that inference
-          is where <code>--ds-color-text-primary</code> came from, and it does not exist.
-        </p>
-        <p className="ds-copy demo-section__description">
-          Generated from <code>src/utilities/*.css</code>, so a new colour appears here
-          on its own. {utilities.length} classes.
-        </p>
-
-        {utilitiesByProperty.map(([property, list]) => (
-          <div key={property} style={{ marginBlockEnd: "var(--ds-space-6)" }}>
-            <h3 className="ds-text-secondary ds-text-sm" style={{ fontFamily: "var(--ds-font-mono)", marginBlockEnd: "var(--ds-space-3)" }}>
-              {property}
-            </h3>
-            <div className="demo-preview">
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(400px, 100%), 1fr))", gap: "var(--ds-space-3)" }}>
-                {list.map((u) => (
-                  <div key={u.cls} style={{ display: "flex", alignItems: "flex-start", gap: "var(--ds-space-4)", padding: "var(--ds-space-3)", opacity: u.replacedBy ? 0.55 : 1 }}>
-                    <div style={{ width: 72, height: 72, flexShrink: 0, borderRadius: "var(--ds-radius-lg)", border: "1px solid var(--ds-color-border)", background: `var(${u.token})` }} />
-                    <div style={{ minWidth: 0 }}>
-                      <div className="ds-overline">
-                        {u.property}
-                        {u.blended ? " · 50% mix" : ""}
-                        {u.alsoSets?.length ? ` · + ${u.alsoSets.join(", ")}` : ""}
-                      </div>
-                      <div className="ds-text-xl" style={{ fontFamily: "var(--ds-font-mono)", marginBlockStart: "var(--ds-space-1)", wordBreak: "break-word" }}>
-                        .{u.cls}
-                      </div>
-                      <div className="ds-text-base ds-text-secondary" style={{ fontFamily: "var(--ds-font-mono)", marginBlockStart: "var(--ds-space-2)" }}>
-                        var({u.token})
-                      </div>
-                      {u.replacedBy && (
-                        <div className="ds-text-sm" style={{ color: "var(--ds-color-warning)", marginBlockStart: "var(--ds-space-2)" }}>
-                          deprecated &mdash; use .{u.replacedBy}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        ))}
-      </section>
 
     </>
   );

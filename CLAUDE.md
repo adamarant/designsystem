@@ -1,12 +1,23 @@
 # CLAUDE.md — Design System Guidelines
 
-## DS Health → [/Projects/infra/DS_HEALTH.md](/Projects/infra/DS_HEALTH.md)
+> **Frozen. D8, 21 August 2026.**
+>
+> `@adamarant/designsystem` sits at 0.43.0 and takes a fix a live consumer needs
+> and nothing else: no new component, token, utility, variant or docs page, and
+> **v1.0.0 does not ship**. Its 26 consumers were declared finished on 27 August
+> 2026.
+>
+> The live system is [WebCommerciale OS](/Projects/os/CLAUDE.md), two renderers
+> under one stylesheet, documented on port 4048. Anything this repo would have
+> gained is a task in `os/ROADMAP.md`.
+>
+> The backward compatibility rule below still holds, and costs nothing now: a
+> frozen package renames nothing.
 
-Metrics, open actions, general CONTROLLED MODE rules, DS rules for every project: all centralised in DS_HEALTH.md.
+## Rules specific to the DS source
 
-## CONTROLLED MODE — Rules Specific to the DS Source
-
-The DS is in a consolidation phase. These rules are additional to the general ones in DS_HEALTH.md.
+They were the additional half of CONTROLLED MODE, which is gone. What is left is
+what a frozen package still owes the consumers that ship it.
 
 ### The Fundamental Rule — Backward Compatibility
 
@@ -17,7 +28,7 @@ Every consumer project depends on these classes. Renaming or removing one breaks
 If a class has to change:
 1. **Deprecate** — add a `/* @deprecated — use .ds-new-name instead */` comment and keep the old class working
 2. **Add the new one** — the new class coexists with the old one
-3. **Announce** — document it in the DS_HEALTH.md "Deprecations" section with a removal deadline
+3. **Announce** — document it in `MIGRATION-GUIDE.md`, with a removal deadline
 4. **Wait** — consumers get at least 2 minor versions to migrate
 5. **Only then** — remove the old class, in a major version
 
@@ -294,7 +305,7 @@ Compiled:       dist/designsystem.css
 
 - `ds.manifest.json` in the project root tracks the DS version, structural overrides and metrics (no longer the session narrative)
 - At session close: `node ~/Projects/infra/scripts/generate-manifest.js` regenerates the counts and `last_session` automatically
-- **Note**: the `last_session_summary` field was removed from the schema (v2, 12 Apr 2026, subtraction A). The narrative lives in `git log` + `DS_HEALTH.md` when a cross-project lesson emerges
+- **Note**: the `last_session_summary` field was removed from the schema (v2, 12 Apr 2026, subtraction A). The narrative lives in `git log`
 - For ecosystem status: `node ~/Projects/ds-ops/scripts/ds-registry.js`
 - The manifest is committed to git
 
@@ -302,7 +313,7 @@ Compiled:       dist/designsystem.css
 
 ## End-of-Session Checklist
 
-For DS-wide checklist (CONTROLLED MODE, compliance, build, git) → [DS_HEALTH.md](/Projects/infra/DS_HEALTH.md)
+Session close → [DEV_CONVENTIONS.md](/Projects/infra/DEV_CONVENTIONS.md). The DS checklist went with CONTROLLED MODE on 27 August 2026.
 
 **This checklist covers commit, push and publish. Run every step, in order.**
 

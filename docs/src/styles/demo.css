@@ -1220,3 +1220,36 @@ body {
   padding-block-end: var(--ds-rhythm-block);
 }
 
+
+/* ── /deprecated ───────────────────────────────────────────────────────────
+   Four columns, and the last one carries a sentence rather than a value, so
+   it needs a measure and normal type. Without the width declarations the
+   browser gives the "why" column whatever the two code columns leave over,
+   which on a long class name is nothing. */
+.dep-table code {
+  white-space: normal;
+  word-break: break-word;
+}
+
+.dep-table__since {
+  white-space: nowrap;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-secondary);
+}
+
+.dep-table__why {
+  min-width: 22ch;
+  color: var(--ds-color-text-secondary);
+  text-wrap: pretty;
+}
+
+/* The why column is the widest thing on the page and the first to go when
+   the viewport does. It stays: what a reader needs from this page is the
+   reason, not the inventory. The two code columns wrap instead. */
+.dep-table th:nth-child(1),
+.dep-table td:nth-child(1) { width: 24%; }
+.dep-table th:nth-child(3),
+.dep-table td:nth-child(3) { width: 22%; }
+.dep-table th:nth-child(4),
+.dep-table td:nth-child(4) { width: 40%; }

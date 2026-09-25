@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardBody, Stat, Badge } from "@adamarant/ds-react";
+import { Card, CardBody, Stat } from "@adamarant/ds-react";
 import { DemoSection } from "@/components/DemoSection";
 
 export default function StatPage() {
@@ -16,7 +16,7 @@ export default function StatPage() {
 
       <DemoSection
         title="In a card"
-        description="The card owns the box. That is the whole point of the split: ds-stat-card used to re-declare the surface, the border and the radius itself, so it could never inherit a card modifier or the container query that restacks a card when it narrows."
+        description="The card owns the box, and Stat only arranges the metric inside it. That is the whole point of the split: the block inherits every card modifier, and the container query that restacks a card when it narrows."
         code={`<Card className="ds-w-full">\n  <CardBody>\n    <Stat label="Total revenue" value="$45,231" detail="+12.5% from last month" />\n  </CardBody>\n</Card>`}
       >
         <Card className="ds-w-full">
@@ -71,14 +71,6 @@ export default function StatPage() {
               <Stat label="Closed" value="17" detail="this quarter" />
             </CardBody>
         </Card>
-      </DemoSection>
-
-      <DemoSection
-        title="The old component"
-        description="ds-stat-card is deprecated and frozen: it still renders, unchanged, including the two typography faults Stat fixed — the display face on a data screen and a hardcoded size with no lever. Migration map in stat-card.css."
-        code={`<div class="ds-stat-card">…</div>  /* deprecated */`}
-      >
-        <Badge variant="warning">deprecated</Badge>
       </DemoSection>
     </>
   );

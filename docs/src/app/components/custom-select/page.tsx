@@ -28,9 +28,7 @@ export default function SelectPage() {
           5 entries); the `&lt;option&gt;` children form gets the panel too (the
           options are extracted, and the old `onChange(e.target.value)` keeps
           working); the native system menu ONLY with the `native` prop.
-          `CustomSelect` is a deprecated alias for `&lt;Select panel&gt;`: same API,
-          removed in the next major. For a menu of actions use Dropdown; for
-          autocomplete use Combobox.
+          For a menu of actions use Dropdown; for autocomplete use Combobox.
         </p>
       </div>
 

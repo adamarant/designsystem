@@ -11,7 +11,7 @@ export default function AdminPagePage() {
         <div className="demo-preview" dangerouslySetInnerHTML={{ __html: `<div class="ds-admin-page">
   <div class="ds-page-header">
     <div class="ds-page-header__lead">
-      <h1 class="ds-page-header__title ds-admin-title">Projects</h1>
+      <h1 class="ds-page-header__title ds-heading-1">Projects</h1>
     </div>
     <div class="ds-page-header__actions">
       <button class="ds-btn">New Project</button>
@@ -38,7 +38,7 @@ export default function AdminPagePage() {
           <pre><code dangerouslySetInnerHTML={{ __html: `&lt;div class=&quot;ds-admin-page&quot;&gt;
   &lt;div class=&quot;ds-page-header&quot;&gt;
     &lt;div class=&quot;ds-page-header__lead&quot;&gt;
-      &lt;h1 class=&quot;ds-page-header__title ds-admin-title&quot;&gt;Projects&lt;/h1&gt;
+      &lt;h1 class=&quot;ds-page-header__title ds-heading-1&quot;&gt;Projects&lt;/h1&gt;
     &lt;/div&gt;
     &lt;div class=&quot;ds-page-header__actions&quot;&gt;
       &lt;button class=&quot;ds-btn&quot;&gt;New Project&lt;/button&gt;

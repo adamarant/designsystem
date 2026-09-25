@@ -10,7 +10,7 @@ export default function BadgePage() {
         <h1>Badge</h1>
         <p>
           The one small labelled pill. Static by default; interactive when it is a filter or a
-          toggle. It absorbed Tag and Chip, both deprecated.
+          toggle.
         </p>
       </div>
 

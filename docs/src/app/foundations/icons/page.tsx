@@ -134,7 +134,7 @@ const SHIPS: [string, string][] = [
 
 const SLOTS: [string, string][] = [
   ["EmptyState.Icon", ".ds-empty-state__icon"],
-  ["StatCard.Icon", ".ds-stat-card__icon"],
+  ["StatCard.Icon", ".ds-stat__icon"],
   ["Tabs.Icon", ".ds-tabs__icon"],
   ["Dropdown.ItemIcon", ".ds-dropdown__item-icon"],
   ["Alert.Icon", ".ds-alert__icon"],

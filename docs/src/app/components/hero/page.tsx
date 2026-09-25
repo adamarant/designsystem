@@ -12,7 +12,7 @@ export default function HeroPage() {
   <div class="ds-hero__overlay"></div>
   <div class="ds-hero__content ds-container">
     <div class="ds-hero__backdrop">
-      <h1 class="ds-hero__title ds-hero-title">Welcome</h1>
+      <h1 class="ds-hero__title ds-heading-1">Welcome</h1>
       <p class="ds-hero__subtitle">A beautiful hero section</p>
     </div>
   </div>
@@ -23,7 +23,7 @@ export default function HeroPage() {
   &lt;div class=&quot;ds-hero__overlay&quot;&gt;&lt;/div&gt;
   &lt;div class=&quot;ds-hero__content ds-container&quot;&gt;
     &lt;div class=&quot;ds-hero__backdrop&quot;&gt;
-      &lt;h1 class=&quot;ds-hero__title ds-hero-title&quot;&gt;Welcome&lt;/h1&gt;
+      &lt;h1 class=&quot;ds-hero__title ds-heading-1&quot;&gt;Welcome&lt;/h1&gt;
       &lt;p class=&quot;ds-hero__subtitle&quot;&gt;A beautiful hero section&lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -37,7 +37,7 @@ export default function HeroPage() {
   <div class="ds-hero__overlay ds-hero__overlay--subtle"></div>
   <div class="ds-hero__content ds-container">
     <div class="ds-hero__backdrop">
-      <h1 class="ds-hero__title ds-hero-title">Full Hero</h1>
+      <h1 class="ds-hero__title ds-heading-1">Full Hero</h1>
       <p class="ds-hero__subtitle">With subtle overlay</p>
     </div>
   </div>
@@ -48,7 +48,7 @@ export default function HeroPage() {
   &lt;div class=&quot;ds-hero__overlay ds-hero__overlay--subtle&quot;&gt;&lt;/div&gt;
   &lt;div class=&quot;ds-hero__content ds-container&quot;&gt;
     &lt;div class=&quot;ds-hero__backdrop&quot;&gt;
-      &lt;h1 class=&quot;ds-hero__title ds-hero-title&quot;&gt;Full Hero&lt;/h1&gt;
+      &lt;h1 class=&quot;ds-hero__title ds-heading-1&quot;&gt;Full Hero&lt;/h1&gt;
       &lt;p class=&quot;ds-hero__subtitle&quot;&gt;With subtle overlay&lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
